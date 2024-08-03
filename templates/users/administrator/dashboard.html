@@ -1,0 +1,204 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-specific-class">
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
+        <h1 class="text-4xl font-bold text-center mb-2">LMS Admin Dashboard</h1>
+        <p class="text-center text-lg">Empowering Education, Enriching Minds</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Dashboard
+                </a>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Key Metrics -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-xl font-semibold text-primary mb-2">Total Users</h3>
+            <p class="text-4xl font-bold text-accent">5,234</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> 12% from last month</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-xl font-semibold text-primary mb-2">Active Courses</h3>
+            <p class="text-4xl font-bold text-accent">87</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-plus text-blue-500"></i> 3 new this week</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-xl font-semibold text-primary mb-2">Completion Rate</h3>
+            <p class="text-4xl font-bold text-accent">76%</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> 5% from last month</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-xl font-semibold text-primary mb-2">Total Revenue</h3>
+            <p class="text-4xl font-bold text-accent">$124,500</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> 18% from last month</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- User Activity Chart -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-primary mb-4">User Activity</h3>
+            <canvas id="userActivityChart"></canvas>
+        </div>
+
+        <!-- Course Popularity -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-primary mb-4">Most Popular Courses</h3>
+            <ul class="space-y-4">
+                <li class="flex justify-between items-center">
+                    <span class="font-semibold">Advanced Arabic</span>
+                    <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">1,234 enrolled</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="font-semibold">Business Management</span>
+                    <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">987 enrolled</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="font-semibold">Data Science Fundamentals</span>
+                    <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">856 enrolled</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="font-semibold">Digital Marketing</span>
+                    <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">743 enrolled</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span class="font-semibold">Introduction to AI</span>
+                    <span class="bg-accent text-white px-3 py-1 rounded-full text-sm">621 enrolled</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Recent Activities -->
+    <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
+        <h3 class="text-2xl font-semibold text-primary mb-4">Recent Activities</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">Ahmed Al-Mansour</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Completed course</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Advanced Arabic</td>
+                        <td class="px-6 py-4 whitespace-nowrap">July 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">Fatima Al-Sayed</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Enrolled in course</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Business Management</td>
+                        <td class="px-6 py-4 whitespace-nowrap">July 14, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">Mohammed Al-Harbi</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Submitted assignment</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Data Science Fundamentals</td>
+                        <td class="px-6 py-4 whitespace-nowrap">July 13, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">Noura Al-Qhtani</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Started course</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Digital Marketing</td>
+                        <td class="px-6 py-4 whitespace-nowrap">July 12, 2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- New Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Top Performers -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-primary mb-4">Top Performers</h3>
+            <ul class="space-y-4">
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="User" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">Layla Al-Farsi</p>
+                        <p class="text-sm text-gray-500">98% completion rate</p>
+                    </div>
+                </li>
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="User" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">Karim El-Masri</p>
+                        <p class="text-sm text-gray-500">95% completion rate</p>
+                    </div>
+                </li>
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="User" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">Amira Khalil</p>
+                        <p class="text-sm text-gray-500">93% completion rate</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-primary mb-4">Upcoming Events</h3>
+            <ul class="space-y-4">
+                <li>
+                    <p class="font-semibold">New Course Launch: Advanced Machine Learning</p>
+                    <p class="text-sm text-gray-500">July 20, 2024</p>
+                </li>
+                <li>
+                    <p class="font-semibold">Webinar: Future of E-learning</p>
+                    <p class="text-sm text-gray-500">July 25, 2024</p>
+                </li>
+                <li>
+                    <p class="font-semibold">Summer Coding Bootcamp</p>
+                    <p class="text-sm text-gray-500">August 1-15, 2024</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- System Health -->
+    <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-2xl font-semibold text-primary mb-4">System Health</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <p class="font-semibold">Server Uptime</p>
+                <p class="text-2xl font-bold text-green-500">99.9%</p>
+            </div>
+            <div>
+                <p class="font-semibold">Average Response Time</p>
+                <p class="text-2xl font-bold text-blue-500">0.3s</p>
+            </div>
+            <div>
+                <p class="font-semibold">Active Sessions</p>
+                <p class="text-2xl font-bold text-purple-500">1,234</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="{% static 'js/administrator/dashboard.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

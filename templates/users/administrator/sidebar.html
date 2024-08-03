@@ -1,0 +1,185 @@
+<aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-300 lg:flex transition-all" aria-label="Sidebar">
+    <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-gradient-to-b from-gray-900 to-gray-800 border-r border-gray-700 shadow-lg">
+        <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
+            <div class="flex-1 px-3 space-y-1 divide-y divide-gray-700">
+                <ul class="pb-2 space-y-2">
+                    <li>
+                        <a href="{% url 'administrator_dashboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-chart-line mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12 sidebar-icon"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_calendar' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-calendar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
+                            <i class="fa-solid fa-graduation-cap mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Courses</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-courses" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">All Courses</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Categories</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Enrollments</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-users" data-collapse-toggle="dropdown-users">
+                            <i class="fa-solid fa-users mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Users</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-users" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_learner_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learners</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_facilitator_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Facilitators</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_supervisor_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Supervisors</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_leaderboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-trophy mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Leaderboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-comments mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Messages</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-reports" data-collapse-toggle="dropdown-reports">
+                            <i class="fa-solid fa-chart-bar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Reports & Analytics</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-reports" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Course Completion</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Progress</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Assessment Results</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Engagement</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Resource Usage</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Certification Tracking</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learner Feedback</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Custom Reports</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-certificate mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Certificates</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-bullhorn mr-3 text-red-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Announcements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-question-circle mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Help & Support</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pt-5 mt-5 space-y-2 border-t border-gray-700">
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-gear mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-90"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-file-invoice mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Billing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-right-from-bracket mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<style>
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.sidebar-icon {
+    animation: pulse 2s infinite;
+}
+
+.sidebar-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.sidebar-dropdown.show {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const dropdownToggles = document.querySelectorAll('[data-collapse-toggle]');
+    
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const targetId = toggle.getAttribute('data-collapse-toggle');
+            const target = document.getElementById(targetId);
+            target.classList.toggle('show');
+            toggle.querySelector('i:last-child').classList.toggle('fa-rotate-180');
+        });
+    });
+});
+</script>

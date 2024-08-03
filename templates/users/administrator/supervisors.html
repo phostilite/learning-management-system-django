@@ -1,0 +1,163 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block title %}Supervisors - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/supervisors.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div>
+        <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-4xl font-bold text-center mb-2">Supervisors Management</h1>
+                <p class="text-center text-lg">Manage and view all supervisors in the system</p>
+            </div>
+        </header>
+
+        <nav class="flex mb-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Supervisors</a>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex flex-wrap items-center justify-between mb-6">
+                <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                    <input type="text" id="search-input" placeholder="Search supervisor..." class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="w-full md:w-auto flex flex-wrap gap-2">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        <i class="fas fa-filter mr-2"></i>Filter
+                    </button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+                        <i class="fas fa-file-export mr-2"></i>Export
+                    </button>
+                    <button class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                        <i class="fas fa-plus mr-2"></i>Add Supervisor
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="px-4 py-3 text-left">Name</th>
+                            <th class="px-4 py-3 text-left">Email</th>
+                            <th class="px-4 py-3 text-left">Department</th>
+                            <th class="px-4 py-3 text-left">Status</th>
+                            <th class="px-4 py-3 text-left">Facilitators</th>
+                            <th class="px-4 py-3 text-left">Last Login</th>
+                            <th class="px-4 py-3 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="supervisor-table-body" class="text-gray-600 text-sm font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="mr-2">
+                                        <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/women/1.jpg" alt="Avatar">
+                                    </div>
+                                    <span class="font-medium">Jane Smith</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-left">jane.smith@example.com</td>
+                            <td class="py-3 px-6 text-left">Computer Science</td>
+                            <td class="py-3 px-6 text-left">
+                                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Active</span>
+                            </td>
+                            <td class="py-3 px-6 text-left">8</td>
+                            <td class="py-3 px-6 text-left">2023-08-15 14:30</td>
+                            <td class="py-3 px-6 text-center">
+                                <div>
+                                    <button id="supervisorDropdownButton" data-dropdown-toggle="supervisorDropdown" class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div id="supervisorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                        <ul class="py-2 text-sm text-black" aria-labelledby="supervisorDropdownButton">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-user-shield mr-2"></i> View Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-users-cog mr-2"></i> Manage Facilitators
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-user-graduate mr-2"></i> View Students
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-book mr-2"></i> Course Overview
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-chart-line mr-2"></i> Performance Reports
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-tasks mr-2"></i> Assign Tasks
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-comments mr-2"></i> Moderate Discussions
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-calendar-check mr-2"></i> Approve Schedules
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-envelope mr-2"></i> Send Notifications
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-file-alt mr-2"></i> Generate Reports
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="flex justify-between items-center">
+            <div>
+                <span class="text-gray-600">Showing 1 to 10 of 100 entries</span>
+            </div>
+            <div class="flex">
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-l-lg hover:bg-gray-300 transition duration-300">Previous</button>
+                <button class="bg-primary text-white px-4 py-2 hover:bg-blue-700 transition duration-300">1</button>
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 hover:bg-gray-300 transition duration-300">2</button>
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 hover:bg-gray-300 transition duration-300">3</button>
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-r-lg hover:bg-gray-300 transition duration-300">Next</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

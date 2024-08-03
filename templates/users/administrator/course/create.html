@@ -1,0 +1,322 @@
+{% extends '../_base.html' %}
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+
+
+<style>
+    .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    </style>
+    
+<div class="bg-white rounded-lg card-shadow p-8">
+    <h1 class="text-4xl font-bold text-primary mb-8">Create a New Course</h1>
+    <form method="post" enctype="multipart/form-data" id="course-form">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        <div class="mb-8">
+            <div class="relative pt-1">
+                <div class="flex mb-2 items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-blue-200">
+                            Progress
+                        </span>
+                    </div>
+                    <div class="text-right">
+                        <span id="progress-percentage" class="text-xs font-semibold inline-block text-primary">
+                            0%
+                        </span>
+                    </div>
+                </div>
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                    <div id="progress-bar" class="progress-bar shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex">
+            <div class="w-1/4 pr-8">
+                <ul class="steps">
+                    <li class="mb-4 flex items-center text-primary" data-step="0">
+                        <i class="fas fa-circle mr-2"></i>
+                        <span>Basic Info</span>
+                    </li>
+                    <li class="mb-4 flex items-center text-gray-400" data-step="1">
+                        <i class="fas fa-circle mr-2"></i>
+                        <span>Learning Resources</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="w-3/4">
+                {% if wizard.steps.current == 'basic_info' %}
+                <div class="form-step active" data-step="1">                
+                    <h2 class="text-2xl font-semibold mb-4">Basic Course Information</h2>
+                    <div class="space-y-4" style="max-height: 410px; overflow-y: auto; padding-right: 16px;">
+                        <div>
+                            <label for="id_title" class="block text-sm font-medium text-gray-700">Title</label>
+                            <input type="text" name="{{ wizard.form.title.html_name }}" id="id_title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ wizard.form.title.value|default:'' }}">
+                        </div>
+                        <div>
+                            <label for="id_description" class="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea name="{{ wizard.form.description.html_name }}" id="id_description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ wizard.form.description.value|default:'' }}</textarea>
+                        </div>
+                        <div>
+                            <label for="id_short_description" class="block text-sm font-medium text-gray-700">Short Description</label>
+                            <input type="text" name="{{ wizard.form.short_description.html_name }}" id="id_short_description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ wizard.form.short_description.value|default:'' }}">
+                        </div>
+                        <div>
+                            <label for="id_category" class="block text-sm font-medium text-gray-700">Category</label>
+                            <select name="{{ wizard.form.category.html_name }}" id="id_category" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                {% for value, label in wizard.form.category.field.choices %}
+                                    <option value="{{ value }}" {% if value == wizard.form.category.value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="id_cover_image" class="block text-sm font-medium text-gray-700">Cover Image</label>
+                            <input type="file" name="{{ wizard.form.cover_image.html_name }}" id="id_cover_image" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        </div>
+                    </div>
+                </div>   
+                {% elif wizard.steps.current == 'learning_resources' %}
+                <div class="form-step" data-step="2">
+                    <h2 class="text-2xl font-semibold mb-4">Learning Resources</h2>
+                    {{ wizard.form.management_form }}
+                    <div id="learning-resources-container" class="space-y-6" style="max-height: 400px; overflow-y: auto; padding-right: 16px;">
+                        {% for form in wizard.form.forms %}
+                            <div class="resource-form p-4 border rounded-lg shadow-sm">
+                                <h3 class="text-xl font-medium mb-3">Learning Resource {{ forloop.counter }}</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-title" class="block text-sm font-medium text-gray-700">Title</label>
+                                        <input type="text" name="{{ form.title.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ form.title.value|default:'' }}">
+                                    </div>
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-description" class="block text-sm font-medium text-gray-700">Description</label>
+                                        <textarea name="{{ form.description.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ form.description.value|default:'' }}</textarea>
+                                    </div>
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-resource_type" class="block text-sm font-medium text-gray-700">Resource Type</label>
+                                        <select name="{{ form.resource_type.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-resource_type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                            {% for value, label in form.resource_type.field.choices %}
+                                                <option value="{{ value }}" {% if value == form.resource_type.value %}selected{% endif %}>{{ label }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-content" class="block text-sm font-medium text-gray-700">Content</label>
+                                        <input type="file" name="{{ form.content.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-content" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                    </div>
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-external_url" class="block text-sm font-medium text-gray-700">External URL</label>
+                                        <input type="url" name="{{ form.external_url.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-external_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ form.external_url.value|default:'' }}">
+                                    </div>
+                                    <div>
+                                        <label for="id_learning_resources-{{ forloop.counter0 }}-order" class="block text-sm font-medium text-gray-700">Order</label>
+                                        <input type="number" name="{{ form.order.html_name }}" id="id_learning_resources-{{ forloop.counter0 }}-order" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ form.order.value|default:'' }}">
+                                    </div>
+                                </div>
+                                {% if form.instance.pk in scorm_forms %}
+                                    <div class="scorm-details mt-4 p-4 bg-gray-50 rounded-md" style="display: none;">
+                                        <h4 class="text-lg font-medium mb-2">SCORM Details</h4>
+                                        {% with scorm_form=scorm_forms|get_item:form.instance.pk %}
+                                            {% if scorm_form %}
+                                                <div class="space-y-4">
+                                                    {% for field in scorm_form %}
+                                                        <div>
+                                                            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                                                            {{ field }}
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                <p>SCORM form not available.</p>
+                                            {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                {% endif %}
+                                <button type="button" class="remove-resource mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">Remove Resource</button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" id="add-resource" class="mt-6 px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">Add More Resources</button>
+                </div>
+                {% endif %}
+
+                <div class="mt-8 flex justify-between">
+                    {% if wizard.steps.prev %}
+                        <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">First step</button>
+                        <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Previous step</button>
+                    {% endif %}
+                    
+                    <input id="submit-button" type="submit" value="{% if wizard.steps.current == wizard.steps.last %}Create Course{% else %}Next step{% endif %}" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"/>
+                </div>
+            </div>
+        </div>         
+    </form>
+</div>
+
+<div id="loading-screen" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden z-50">
+    <div class="text-center">
+        <div class="loader mb-4"></div>
+        <div class="text-white text-2xl font-semibold">Creating your course...</div>
+        <div class="text-gray-300 text-lg mt-2">This may take a moment</div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('learning-resources-container');
+        const addButton = document.getElementById('add-resource');
+        const totalFormsInput = document.querySelector('input[name="learning_resources-TOTAL_FORMS"]');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const form = document.getElementById('course-form');
+        const steps = document.querySelectorAll('.steps li');
+        const formSteps = document.querySelectorAll('.form-step');
+        let currentStep = 1;
+
+        function updateProgress(step) {
+            const progress = (step / 2) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressPercentage.textContent = `${Math.round(progress)}%`;
+        }
+
+        function updateSteps(step) {
+            steps.forEach((s, index) => {
+                if (index < step) {
+                    s.classList.remove('text-gray-400');
+                    s.classList.add('text-primary');
+                } else {
+                    s.classList.remove('text-primary');
+                    s.classList.add('text-gray-400');
+                }
+            });
+        }
+
+        function showStep(step) {
+            formSteps.forEach((s, index) => {
+                if (index === step - 1) {
+                    s.style.display = 'block';
+                } else {
+                    s.style.display = 'none';
+                }
+            });
+        }
+        
+        function updateResourceType() {
+            const resourceForms = document.querySelectorAll('.resource-form');
+            resourceForms.forEach(form => {
+                const resourceTypeSelect = form.querySelector('select[name$="-resource_type"]');
+                const scormDetails = form.querySelector('.scorm-details');
+        
+                if (resourceTypeSelect && scormDetails) {
+                    resourceTypeSelect.addEventListener('change', function() {
+                        scormDetails.style.display = this.value === 'SCORM' ? 'block' : 'none';
+                    });
+                    // Trigger change event to set initial state
+                    resourceTypeSelect.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+        
+        function updateFormIndex() {
+            const forms = container.querySelectorAll('.resource-form');
+            forms.forEach((form, index) => {
+                form.querySelectorAll('[name^="learning_resources-"]').forEach(input => {
+                    input.name = input.name.replace(/learning_resources-\d+/, `learning_resources-${index}`);
+                    input.id = input.id.replace(/id_learning_resources-\d+/, `id_learning_resources-${index}`);
+                });
+                form.querySelector('h3').textContent = `Learning Resource ${index + 1}`;
+            });
+            totalFormsInput.value = forms.length;
+        }
+        
+        if (addButton) {
+            addButton.addEventListener('click', function() {
+                const forms = container.querySelectorAll('.resource-form');
+                const newForm = forms[forms.length - 1].cloneNode(true);
+                newForm.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.value = '';
+                });
+                container.appendChild(newForm);
+                updateFormIndex();
+                updateResourceType();
+            });
+        }
+        
+        container.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-resource')) {
+                const forms = container.querySelectorAll('.resource-form');
+                if (forms.length > 1) {
+                    e.target.closest('.resource-form').remove();
+                    updateFormIndex();
+                }
+            }
+        });
+        
+        form.addEventListener('submit', function(e) {            
+            if (currentStep === 1) {
+                updateProgress(currentStep);
+                updateSteps(currentStep);
+                showStep(currentStep);
+            }
+        });
+        
+        updateProgress(currentStep);
+        updateSteps(currentStep);
+        showStep(currentStep);
+        updateResourceType();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const submitButton = document.getElementById('submit-button');
+        const loadingScreen = document.getElementById('loading-screen');
+        
+        submitButton.addEventListener('click', function(event) {
+            if (submitButton.value === 'Create Course') {
+                event.preventDefault(); // Prevent form submission to show loading screen
+                
+                // Show loading screen
+                loadingScreen.classList.remove('hidden');
+                
+                // Animate loading screen
+                anime({
+                    targets: '#loading-screen',
+                    opacity: [0, 1],
+                    duration: 500,
+                    easing: 'easeInOutQuad',
+                    complete: function() {
+                        // Animate loader
+                        anime({
+                            targets: '.loader',
+                            rotate: '1turn',
+                            duration: 1000,
+                            loop: true,
+                            easing: 'linear'
+                        });
+                        
+                        // After a short delay, submit the form
+                        setTimeout(() => {
+                            submitButton.closest('form').submit();
+                        }, 1000);
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}
