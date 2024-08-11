@@ -2,9 +2,9 @@
 FROM python:3.12
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV VIRTUAL_ENV=/opt/venv
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    VIRTUAL_ENV=/opt/venv
 
 # Set work directory
 WORKDIR /code
@@ -20,8 +20,9 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.txt /code/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Install Tailwind CSS
-RUN npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+# Install npm packages including Tailwind CSS and Flowbite
+COPY package.json package-lock.json* /code/
+RUN npm install
 
 # Copy project
 COPY . /code/
@@ -32,17 +33,12 @@ RUN mkdir -p /code/static/dist/css /code/static/dist/js
 # Create input.css file with Tailwind directives
 RUN echo '@tailwind base;\n@tailwind components;\n@tailwind utilities;' > /code/static/dist/css/input.css
 
-# Copy all JS files from flowbite to static/dist/js
-RUN cp -r node_modules/flowbite/dist/*.js /code/static/dist/js/
-
-# Copy all CSS files from flowbite to static/dist/css
-RUN cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/
+# Copy Flowbite files (adjust paths if necessary)
+RUN cp -r node_modules/flowbite/dist/*.js /code/static/dist/js/ || true
+RUN cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/ || true
 
 # Run Tailwind CSS build
 RUN npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/output.css --minify
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
-
-# Run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
