@@ -26,8 +26,23 @@ RUN npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 # Copy project
 COPY . /code/
 
+# Create dist, css, and js folders
+RUN mkdir -p /code/static/dist/css /code/static/dist/js
+
+# Create input.css file with Tailwind directives
+RUN echo '@tailwind base;\n@tailwind components;\n@tailwind utilities;' > /code/static/dist/css/input.css
+
+# Copy all JS files from flowbite to static/dist/js
+RUN cp -r node_modules/flowbite/dist/*.js /code/static/dist/js/
+
+# Copy all CSS files from flowbite to static/dist/css
+RUN cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/
+
 # Run Tailwind CSS build
-# RUN npx tailwindcss -i ./static/dist/css/input.css -o ./static/dist/css/output.css --minify
+RUN npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/output.css --minify
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
+
+# Run the application
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
