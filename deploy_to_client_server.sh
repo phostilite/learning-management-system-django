@@ -121,6 +121,7 @@ services:
       - DB_NAME=${db_name}
       - DB_USER=${db_user}
       - DB_PASSWORD=${db_password}
+      - ALLOWED_HOST=${server_ip}
     depends_on:
       - db
 
