@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e  # Exit immediately if a command exits with a non-zero status.
+
 # Function to check if a command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
@@ -89,11 +91,14 @@ fi
 
 # Clone the repository on the remote server
 echo "Cloning the repository on the remote server..."
-ssh_execute "git clone -b $git_branch $git_repo ~/${client_name}"
+if ! ssh_execute "git clone -b $git_branch $git_repo ~/${client_name}"; then
+    echo "Error: Failed to clone the repository. Please check the repository URL and your access rights."
+    exit 1
+fi
 
 # Create Docker Compose file for the client
 echo "Creating Docker Compose file..."
-ssh_execute "cat << EOF > ~/${client_name}/docker-compose.yml
+if ! ssh_execute "cat << EOF > ~/${client_name}/docker-compose.yml
 version: '3.8'
 
 services:
@@ -110,7 +115,6 @@ services:
      \"
     volumes:
       - .:/code
-      - initial_data_flag:/code
     ports:
       - \"8000:8000\"
     environment:
@@ -131,12 +135,17 @@ services:
 
 volumes:
   postgres_data:
-  initial_data_flag:
-EOF"
+EOF"; then
+    echo "Error: Failed to create Docker Compose file."
+    exit 1
+fi
 
 # Start the Docker containers
 echo "Starting Docker containers on the remote server..."
-ssh_execute "cd ~/${client_name} && docker-compose up -d"
+if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
+    echo "Error: Failed to start Docker containers."
+    exit 1
+fi
 
 echo "Deployment completed successfully!"
 echo "You can access the application at http://$server_ip:8000"

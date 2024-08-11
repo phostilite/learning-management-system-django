@@ -27,7 +27,7 @@ RUN npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 COPY . /code/
 
 # Run Tailwind CSS build
-RUN npx tailwindcss -i ./static/dist/css/input.css -o ./static/dist/css/output.css --minify
+# RUN npx tailwindcss -i ./static/dist/css/input.css -o ./static/dist/css/output.css --minify
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
