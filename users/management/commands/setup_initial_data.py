@@ -15,9 +15,9 @@ class Command(BaseCommand):
         self.create_users()
 
     def create_superuser(self):
-        username = settings.DJANGO_SUPERUSER_USERNAME
-        email = settings.DJANGO_SUPERUSER_EMAIL
-        password = settings.DJANGO_SUPERUSER_PASSWORD
+        username = 'admin'
+        email = 'admin@test.com'
+        password = 'admin@123'
 
         if not all([username, email, password]):
             self.stdout.write(self.style.ERROR("Error: Superuser credentials not found in settings."))
