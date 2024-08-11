@@ -152,7 +152,7 @@ fi
 
 # Copy static files from Docker container to host
 echo "Copying static files from Docker container to host..."
-if ! ssh_execute "docker cp \$(docker-compose ps -q web):/code/staticfiles ~/${client_name}/staticfiles"; then
+if ! ssh_execute "cd ~/${client_name} && docker cp \$(docker-compose ps -q web):/code/staticfiles ./staticfiles"; then
     echo "Error: Failed to copy static files from Docker container."
     exit 1
 fi
