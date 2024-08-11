@@ -111,10 +111,12 @@ services:
         python manage.py setup_initial_data &&
         touch /code/.initial_data_loaded;
       fi &&
+      python manage.py collectstatic --noinput &&
       exec python manage.py runserver 0.0.0.0:8000
      \"
     volumes:
       - .:/code
+      - static_volume:/code/staticfiles
     ports:
       - \"8000:8000\"
     environment:
@@ -135,6 +137,7 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
 EOF"; then
     echo "Error: Failed to create Docker Compose file."
     exit 1
@@ -147,6 +150,21 @@ if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
     exit 1
 fi
 
+# Copy static files from Docker container to host
+echo "Copying static files from Docker container to host..."
+if ! ssh_execute "docker cp \$(docker-compose ps -q web):/code/staticfiles ~/${client_name}/staticfiles"; then
+    echo "Error: Failed to copy static files from Docker container."
+    exit 1
+fi
+
+# Update permissions for the copied static files
+echo "Updating permissions for static files..."
+if ! ssh_execute "chmod -R 755 ~/${client_name}/staticfiles"; then
+    echo "Error: Failed to update permissions for static files."
+    exit 1
+fi
+
 echo "Deployment completed successfully!"
 echo "You can access the application at http://$server_ip:8000"
 echo "The client's code is located in ~/$client_name on the remote server"
+echo "Static files are located in ~/$client_name/staticfiles on the remote server"
