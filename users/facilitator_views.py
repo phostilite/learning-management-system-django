@@ -17,7 +17,7 @@ from django.http import Http404
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
-from .api_client import create_scorm_course, register_user_for_course
+from .api_client import upload_scorm_package, register_user_for_course
 
 logger = logging.getLogger(__name__)
 

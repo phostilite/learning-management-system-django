@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-ls#yq@w!$)_^yj^a!+2ljhow_x%+=n=z0xsw2lz#+vz8v)qda^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', 'localhost')]
 
 
 # Application definition
@@ -48,16 +49,21 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'formtools',
+    'corsheaders',
+    'csp',
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -86,10 +92,19 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
+
+# Superuser credentials
+DJANGO_SUPERUSER_USERNAME = os.getenv('DJANGO_SUPERUSER_USERNAME')
+DJANGO_SUPERUSER_EMAIL = os.getenv('DJANGO_SUPERUSER_EMAIL')
+DJANGO_SUPERUSER_PASSWORD = os.getenv('DJANGO_SUPERUSER_PASSWORD')
 
 
 # Password validation
@@ -114,13 +129,24 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('ar', _('Arabic')),
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -131,6 +157,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files (user-uploaded files)
 
@@ -151,7 +179,10 @@ AUTH_USER_MODEL = 'users.User'
 CLOUDSCORM_APP_ID = os.getenv('CLOUDSCORM_APP_ID')
 CLOUDSCORM_SECRET_KEY = os.getenv('CLOUDSCORM_SECRET_KEY')
 CLOUDSCORM_API_URL = os.getenv('CLOUDSCORM_API_URL')
+
+# SCORMHub API settings
 SCORM_API_BASE_URL = os.getenv('SCORM_API_BASE_URL')
+SCORM_API_TOKEN = os.getenv('SCORM_API_TOKEN')
 
 # Logging settings
 
@@ -170,3 +201,13 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+
+# Allow embedding from all origins
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+# Allow all origins for CORS
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Remove CSP middleware if it's causing issues
+MIDDLEWARE = [middleware for middleware in MIDDLEWARE if middleware != 'csp.middleware.CSPMiddleware']

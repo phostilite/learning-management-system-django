@@ -1,0 +1,77 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    overflow: hidden;
+}
+
+.login-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before,
+.login-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    opacity: 0.5;
+    animation: rotate 10s linear infinite;
+}
+
+.login-container::before {
+    background: linear-gradient(0deg, transparent, #1e3a8a, #1e3a8a);
+    animation-delay: -5s;
+}
+
+.login-container::after {
+    background: linear-gradient(0deg, transparent, #c2410c, #c2410c);
+}
+
+.login-form {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.floating-shapes::before,
+.floating-shapes::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(30, 58, 138, 0.1);
+    animation: float 4s infinite ease-in-out;
+}
+
+.floating-shapes::before {
+    left: 10%;
+    animation-delay: -2s;
+}
+
+.floating-shapes::after {
+    right: 10%;
+    width: 75px;
+    height: 75px;
+    background: rgba(194, 65, 12, 0.1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}

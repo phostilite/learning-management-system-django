@@ -1,0 +1,41 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+.bg-primary { background-color: #1e3a8a; }
+.bg-secondary { background-color: #f9fafb; }
+.bg-accent { background-color: #c2410c; }
+.text-primary { color: #1e3a8a; }
+.text-secondary { color: #4b5563; }
+.text-accent { color: #c2410c; }
+.border-primary { border-color: #1e3a8a; }
+.hover-bg-accent:hover { background-color: #9a3412; }
+
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.card-shadow {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar {
+    transition: all 0.3s;
+}
+
+.sidebar-closed {
+    transform: translateX(-100%);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        z-index: 40;
+    }
+}

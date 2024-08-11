@@ -1,47 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - TimesproLMS</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+{% extends './_base.html' %}
+
+{% block title %}Login - LMS Auth{% endblock %}
+
+{% block content %}
     <style>
-        /* Your existing styles here */
-        
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f0f0;
             color: #333;
             overflow: hidden;
         }
-    
-        .login-container,
+
         .signup-container {
             position: relative;
             overflow: hidden;
         }
-    
-        .login-container::before,
-        .signup-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                0deg,
-                transparent,
-                #1e3a8a,
-                #1e3a8a
-            );
-            transform-origin: bottom right;
-            animation: rotate 6s linear infinite;
-        }
-    
-        .login-container::after,
+
+        .signup-container::before,
         .signup-container::after {
             content: '';
             position: absolute;
@@ -49,25 +24,27 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                0deg,
-                transparent,
-                #c2410c,
-                #c2410c
-            );
-            transform-origin: bottom right;
-            animation: rotate 6s linear infinite;
-            animation-delay: -3s;
+            opacity: 0.5;
+            animation: rotate 10s linear infinite;
         }
-    
-        .login-form,
+
+        .signup-container::before {
+            background: linear-gradient(0deg, transparent, #1e3a8a, #1e3a8a);
+            animation-delay: -5s;
+        }
+
+        .signup-container::after {
+            background: linear-gradient(0deg, transparent, #c2410c, #c2410c);
+        }
+
         .signup-form {
             position: relative;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             z-index: 10;
+            backdrop-filter: blur(10px);
         }
-    
+
         @keyframes rotate {
             0% {
                 transform: rotate(0deg);
@@ -76,7 +53,7 @@
                 transform: rotate(360deg);
             }
         }
-    
+
         .floating-shapes::before,
         .floating-shapes::after {
             content: '';
@@ -87,72 +64,74 @@
             background: rgba(30, 58, 138, 0.1);
             animation: float 4s infinite ease-in-out;
         }
-    
+
         .floating-shapes::before {
             left: 10%;
             animation-delay: -2s;
         }
-    
+
         .floating-shapes::after {
             right: 10%;
             width: 75px;
             height: 75px;
             background: rgba(194, 65, 12, 0.1);
         }
-    
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
     </style>
-</head>
-<body class="bg-secondary min-h-screen flex items-center justify-center">
-    <div class="signup-container w-full max-w-md p-8 rounded-lg card-shadow">
+    <div class="signup-container w-full max-w-md p-8 rounded-lg shadow-lg">
         <div class="signup-form p-8 rounded-lg">
             <h2 class="text-4xl font-bold text-center mb-8 text-primary">Join Us</h2>
-            <form>
+            <form method="post">
+                {% csrf_token %}
                 <div class="mb-6">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
-                    <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
                 <div class="mb-6">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
                 <div class="mb-6">
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                    <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
                 <div class="mb-6">
                     <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
-                    <input type="password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <input type="password" id="confirm-password" name="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
-                <button type="submit" class="w-full text-white bg-primary hover:bg-accent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
+                <button type="submit" class="w-full text-white bg-primary hover:bg-accent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-300">Sign Up</button>
             </form>
             <p class="mt-4 text-sm text-center text-gray-500">
                 Already have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login</a>
             </p>
         </div>
     </div>
+    <div class="floating-shapes"></div>
 
     <script>
-        anime({
-            targets: '.signup-form',
-            translateY: [50, 0],
-            opacity: [0, 1],
-            easing: 'easeOutExpo',
-            duration: 1200,
-            delay: 300
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            anime({
+                targets: '.signup-form',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1200,
+                delay: 300
+            });
 
-        anime({
-            targets: 'input, button',
-            translateX: [-50, 0],
-            opacity: [0, 1],
-            easing: 'easeOutExpo',
-            duration: 800,
-            delay: anime.stagger(100, {start: 600})
+            anime({
+                targets: '.signup-form input, .signup-form button',
+                translateX: [-50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 800,
+                delay: anime.stagger(100, {start: 600})
+            });
         });
     </script>
-</body>
-</html>
+
+{% endblock %}

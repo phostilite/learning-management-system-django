@@ -1,7 +1,8 @@
 {% extends './_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Leaderboard - LMS Admin{% endblock %}
+{% block title %}{% trans "Leaderboard - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
@@ -9,27 +10,29 @@
 
 {% block content %}
 
-<div class="leaderboard-specific-class">
+<div class="leaderboard-specific-class" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
     <!-- Header -->
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-4xl font-bold text-center mb-2">Leaderboard</h1>
-            <p class="text-center text-lg">Celebrating Our Top Achievers</p>
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Leaderboard" %}</h1>
+            <p class="text-center text-lg">{% trans "Celebrating Our Top Achievers" %}</p>
         </div>
     </header>
 
+   
+
     <nav class="flex mb-4" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
                 <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                    Dashboard
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
                 </a>
             </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Leaderboard</a>
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 rtl:mr-1 rtl:ml-0">{% trans "Leaderboard" %}</a>
                 </div>
             </li>
         </ol>
@@ -37,27 +40,27 @@
 
     <!-- Leaderboard Filters -->
     <div class="mb-6 flex flex-wrap justify-between items-center">
-        <div class="flex space-x-4 mb-4 sm:mb-0">
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>All Categories</option>
-                <option>IT & Programming</option>
-                <option>Business</option>
-                <option>Languages</option>
-                <option>Science & Math</option>
+        <div class="flex space-x-4 rtl:space-x-reverse mb-4 sm:mb-0">
+            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
+                <option selected>{% trans "All Categories" %}</option>
+                <option>{% trans "IT & Programming" %}</option>
+                <option>{% trans "Business" %}</option>
+                <option>{% trans "Languages" %}</option>
+                <option>{% trans "Science & Math" %}</option>
             </select>
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>This Month</option>
-                <option>Last 3 Months</option>
-                <option>This Year</option>
-                <option>All Time</option>
+            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
+                <option selected>{% trans "This Month" %}</option>
+                <option>{% trans "Last 3 Months" %}</option>
+                <option>{% trans "This Year" %}</option>
+                <option>{% trans "All Time" %}</option>
             </select>
         </div>
-        <div class="flex space-x-2">
+        <div class="flex space-x-2 rtl:space-x-reverse">
             <button class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
-                Export CSV
+                {% trans "Export CSV" %}
             </button>
             <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-                Print Report
+                {% trans "Print Report" %}
             </button>
         </div>
     </div>
@@ -69,41 +72,41 @@
             <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden">
                 <img src="https://i.pravatar.cc/150?img=2" alt="Second Place" class="w-full h-full object-cover">
             </div>
-            <h3 class="text-xl font-semibold mb-2">Fatima Al-Sayed</h3>
-            <p class="text-gray-600 mb-2">Total Points: 9,800</p>
-            <p class="text-accent font-bold text-2xl">2nd</p>
+            <h3 class="text-xl font-semibold mb-2">{% trans "Fatima Al-Sayed" %}</h3>
+            <p class="text-gray-600 mb-2">{% trans "Total Points:" %} 9,800</p>
+            <p class="text-accent font-bold text-2xl">{% trans "2nd" %}</p>
         </div>
         <!-- First Place -->
         <div class="bg-primary text-white rounded-lg p-6 card-shadow text-center order-1 md:order-2 transform md:-translate-y-4">
             <div class="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden border-4 border-accent">
                 <img src="https://i.pravatar.cc/150?img=1" alt="First Place" class="w-full h-full object-cover">
             </div>
-            <h3 class="text-2xl font-semibold mb-2">Ahmed Al-Mansour</h3>
-            <p class="mb-2">Total Points: 12,500</p>
-            <p class="text-accent font-bold text-3xl">1st</p>
+            <h3 class="text-2xl font-semibold mb-2">{% trans "Ahmed Al-Mansour" %}</h3>
+            <p class="mb-2">{% trans "Total Points:" %} 12,500</p>
+            <p class="text-accent font-bold text-3xl">{% trans "1st" %}</p>
         </div>
         <!-- Third Place -->
         <div class="bg-white rounded-lg p-6 card-shadow text-center order-3">
             <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 overflow-hidden">
                 <img src="https://i.pravatar.cc/150?img=3" alt="Third Place" class="w-full h-full object-cover">
             </div>
-            <h3 class="text-xl font-semibold mb-2">Mohammed Al-Harbi</h3>
-            <p class="text-gray-600 mb-2">Total Points: 8,600</p>
-            <p class="text-accent font-bold text-2xl">3rd</p>
+            <h3 class="text-xl font-semibold mb-2">{% trans "Mohammed Al-Harbi" %}</h3>
+            <p class="text-gray-600 mb-2">{% trans "Total Points:" %} 8,600</p>
+            <p class="text-accent font-bold text-2xl">{% trans "3rd" %}</p>
         </div>
     </div>
 
     <!-- Leaderboard Table -->
     <div class="bg-white rounded-lg card-shadow overflow-hidden">
-    <table class="w-full text-sm text-left text-gray-500">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th scope="col" class="px-6 py-3">Rank</th>
-                <th scope="col" class="px-6 py-3">User</th>
-                <th scope="col" class="px-6 py-3">Courses Completed</th>
-                <th scope="col" class="px-6 py-3">Avg. Score</th>
-                <th scope="col" class="px-6 py-3">Total Points</th>
-                <th scope="col" class="px-6 py-3">Actions</th>
+                <th scope="col" class="px-6 py-3">{% trans "Rank" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "User" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Courses Completed" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Avg. Score" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Total Points" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -113,115 +116,34 @@
                     1
                 </th>
                 <td class="px-6 py-4 flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://i.pravatar.cc/150?img=2" alt="John Doe">
-                    John Doe
+                    <img class="w-10 h-10 rounded-full mr-3 rtl:ml-3 rtl:mr-0" src="https://i.pravatar.cc/150?img=2" alt="John Doe">
+                    {% trans "John Doe" %}
                 </td>
                 <td class="px-6 py-4">8</td>
                 <td class="px-6 py-4">85%</td>
                 <td class="px-6 py-4 font-semibold">2400</td>
                 <td class="px-6 py-4">
-                    <button class="text-blue-600 hover:text-blue-900" title="View Profile">
+                    <button class="text-blue-600 hover:text-blue-900" title="{% trans 'View Profile' %}">
                         <i class="fas fa-user"></i>
                     </button>
-                    <button class="text-green-600 hover:text-green-900 ml-3" title="Send Message">
+                    <button class="text-green-600 hover:text-green-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Send Message' %}">
                         <i class="fas fa-envelope"></i>
                     </button>
                 </td>
             </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    2
-                </th>
-                <td class="px-6 py-4 flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://i.pravatar.cc/150?img=3" alt="Emily Smith">
-                    Emily Smith
-                </td>
-                <td class="px-6 py-4">6</td>
-                <td class="px-6 py-4">78%</td>
-                <td class="px-6 py-4 font-semibold">1950</td>
-                <td class="px-6 py-4">
-                    <button class="text-blue-600 hover:text-blue-900" title="View Profile">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <button class="text-green-600 hover:text-green-900 ml-3" title="Send Message">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    3
-                </th>
-                <td class="px-6 py-4 flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://i.pravatar.cc/150?img=4" alt="Michael Johnson">
-                    Michael Johnson
-                </td>
-                <td class="px-6 py-4">5</td>
-                <td class="px-6 py-4">92%</td>
-                <td class="px-6 py-4 font-semibold">3100</td>
-                <td class="px-6 py-4">
-                    <button class="text-blue-600 hover:text-blue-900" title="View Profile">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <button class="text-green-600 hover:text-green-900 ml-3" title="Send Message">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    4
-                </th>
-                <td class="px-6 py-4 flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://i.pravatar.cc/150?img=5" alt="Sophia Lee">
-                    Sophia Lee
-                </td>
-                <td class="px-6 py-4">7</td>
-                <td class="px-6 py-4">81%</td>
-                <td class="px-6 py-4 font-semibold">2250</td>
-                <td class="px-6 py-4">
-                    <button class="text-blue-600 hover:text-blue-900" title="View Profile">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <button class="text-green-600 hover:text-green-900 ml-3" title="Send Message">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    5
-                </th>
-                <td class="px-6 py-4 flex items-center">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://i.pravatar.cc/150?img=6" alt="Daniel Brown">
-                    Daniel Brown
-                </td>
-                <td class="px-6 py-4">4</td>
-                <td class="px-6 py-4">88%</td>
-                <td class="px-6 py-4 font-semibold">1800</td>
-                <td class="px-6 py-4">
-                    <button class="text-blue-600 hover:text-blue-900" title="View Profile">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <button class="text-green-600 hover:text-green-900 ml-3" title="Send Message">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                </td>
-            </tr>
+            <!-- Add more rows as needed -->
         </tbody>
     </table>
     </div>
 
-
-
     <!-- Pagination -->
     <div class="flex justify-center mt-8">
         <nav aria-label="Page navigation">
-            <ul class="inline-flex items-center -space-x-px">
+            <ul class="inline-flex items-center -space-x-px rtl:space-x-reverse">
                 <li>
-                    <a href="#" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
-                        <span class="sr-only">Previous</span>
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 rtl:rounded-r-lg rtl:rounded-l-none">
+                        <span class="sr-only">{% trans "Previous" %}</span>
+                        <svg aria-hidden="true" class="w-5 h-5 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                     </a>
                 </li>
                 <li>
@@ -240,9 +162,9 @@
                     <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
                 </li>
                 <li>
-                    <a href="#" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
-                        <span class="sr-only">Next</span>
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 rtl:rounded-l-lg rtl:rounded-r-none">
+                        <span class="sr-only">{% trans "Next" %}</span>
+                        <svg aria-hidden="true" class="w-5 h-5 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </a>
                 </li>
             </ul>

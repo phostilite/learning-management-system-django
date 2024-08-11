@@ -1,8 +1,11 @@
 from django.urls import path, include
 
-from . import administartor_views, facilitator_views, learner_views, auth_views
+from . import administartor_views, facilitator_views, learner_views, supervisor_views, auth_views
+from django.views.i18n import set_language
 
 urlpatterns = [
+
+    path('i18n/setlang/', set_language, name='set_language'),
 
     # Authentication views
     path('login/', auth_views.LoginView.as_view(), name='login'),
@@ -26,4 +29,7 @@ urlpatterns = [
 
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
+
+    # Supervisor views
+    path('supervisor/dashboard/', supervisor_views.SupervisorDashboardView.as_view(), name='supervisor_dashboard'),
 ]

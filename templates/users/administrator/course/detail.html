@@ -5,6 +5,38 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/administrator/course_detail.css' %}">
+<link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <style>
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        .aspect-w-16 iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        .learning-path-item {
+            position: relative;
+        }
+        .learning-path-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 15px;
+            bottom: -10px;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .learning-path-item:last-child::before {
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -102,7 +134,7 @@
                     <button class="bg-accent text-white px-4 py-2 rounded hover:bg-red-700 transition">Unpublish</button>
                 </div>
                 <div class="flex justify-between">
-                    <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Preview</button>
+                    <button onclick="previewResource()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Preview</button>
                     <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Analytics</button>
                 </div>
             </div>
@@ -419,6 +451,46 @@
                 </div>
             </div>
         </div>
+
+   <!-- Preview Modal -->
+<div id="previewModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="modal-backdrop absolute inset-0"></div>
+    <div class="bg-white w-11/12 h-5/6 rounded-lg shadow-2xl z-10 overflow-hidden flex" data-aos="zoom-in">
+        <!-- Learning Path Sidebar -->
+        <div class="w-1/3 bg-gray-50 p-6 overflow-auto border-r">
+            <h3 class="text-xl font-bold mb-4">Learning Path</h3>
+            <div id="learningPath" class="space-y-4">
+                <!-- Learning path items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="w-2/3 flex flex-col">
+            <div class="flex justify-between items-center p-6 bg-gray-50 border-b">
+                <h3 class="text-2xl font-bold text-gray-800" id="modalTitle">Course Resource Preview</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-1 p-6 overflow-auto">
+                <div id="modalContent" class="h-full">
+                    <!-- Resource Content -->
+                    <div id="resourceContent" class="border p-6 rounded-lg shadow-md mb-6">
+                        <!-- Content will be loaded here based on selection -->
+                    </div>
+                    
+                    <!-- Resource Metadata -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold mb-4">Resource Metadata</h4>
+                        <div id="resourceMetadata" class="grid grid-cols-2 gap-4">
+                            <!-- Metadata will be loaded here based on selection -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
         <script>
             const tabLinks = document.querySelectorAll('#mainTabs a');
@@ -462,6 +534,184 @@
             console.log('Deleting resource with id:', id);
         }
         </script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    AOS.init();
+
+    const resources = [
+        {
+            type: 'video',
+            title: 'Introduction to Machine Learning',
+            icon: 'fas fa-video',
+            content: '<div class="aspect-w-16" data-aos="fade-up"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+            metadata: {
+                'Duration': '15:30',
+                'Format': 'MP4',
+                'Resolution': '1080p',
+                'Uploaded': '2023-07-15',
+                'Views': '1,250'
+            }
+        },
+        {
+            type: 'document',
+            title: 'Advanced ML Techniques',
+            icon: 'fas fa-file-alt',
+            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Sample Document Content</p><p>This is a preview of the document content. In a real application, you might show the first few paragraphs or a PDF viewer here.</p></div>',
+            metadata: {
+                'File Type': 'PDF',
+                'Pages': '25',
+                'Author': 'Dr. Sarah Johnson',
+                'Last Modified': '2023-07-20',
+                'Downloads': '450'
+            }
+        },
+        {
+            type: 'quiz',
+            title: 'Module 1 Assessment',
+            icon: 'fas fa-question-circle',
+            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Quiz Preview</p><ol class="list-decimal list-inside space-y-2"><li>What is the primary purpose of feature scaling?</li><li>Which of the following is not a type of neural network?</li><li>Explain the concept of overfitting in machine learning.</li></ol></div>',
+            metadata: {
+                'Questions': '20',
+                'Time Limit': '30 minutes',
+                'Passing Score': '70%',
+                'Average Score': '82%',
+                'Attempts Allowed': '2'
+            }
+        },
+        {
+            type: 'scorm',
+            title: 'Neural Networks Basics',
+            icon: 'fas fa-cube',
+            content: '<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">This is a placeholder for SCORM package content. In a real application, you would load the actual SCORM content here.</p><button class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Launch SCORM Package</button></div>',
+            scormUrl: 'https://scorm.learnknowdigital.com/launch/3/',
+            metadata: {
+                'SCORM Version': '1.2',
+                'Completion Time': '2 hours',
+                'Last Updated': '2023-07-10',
+                'Completion Rate': '85%',
+                'Average Score': '78/100'
+            }
+        },
+        {
+            type: 'presentation',
+            title: 'Data Preprocessing Methods',
+            icon: 'fas fa-file-powerpoint',
+            content: '<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><img src="https://via.placeholder.com/600x400" alt="Presentation Slide" class="mx-auto rounded shadow-lg"></div>',
+            metadata: {
+                'Slides': '30',
+                'Format': 'PPTX',
+                'Created By': 'Prof. Michael Lee',
+                'Last Updated': '2023-07-18',
+                'Total Views': '780'
+            }
+        },
+        {
+            type: 'link',
+            title: 'Supplementary ML Research Paper',
+            icon: 'fas fa-link',
+            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="https://www.example.com/ml-resource" target="_blank" class="text-blue-500 hover:underline">https://www.example.com/ml-resource</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>',
+            metadata: {
+                'Type': 'External Link',
+                'Added On': '2023-07-22',
+                'Last Checked': '2023-08-01',
+                'Clicks': '325',
+                'Status': 'Active'
+            }
+        }
+    ];
+
+    function previewResource() {
+        const modal = document.getElementById('previewModal');
+        modal.classList.remove('hidden');
+        renderLearningPath();
+        showResource(0);
+    }
+
+    function renderLearningPath() {
+        const pathContainer = document.getElementById('learningPath');
+        pathContainer.innerHTML = resources.map((resource, index) => `
+            <div class="learning-path-item flex items-start p-2 cursor-pointer hover:bg-gray-200 rounded transition duration-300 ease-in-out" onclick="showResource(${index})">
+                <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3 z-10">
+                    ${index + 1}
+                </div>
+                <div>
+                    <h4 class="font-semibold">${resource.title}</h4>
+                    <p class="text-sm text-gray-600"><i class="${resource.icon} mr-1"></i>${resource.type}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function showResource(index) {
+        const resource = resources[index];
+        const contentDiv = document.getElementById('resourceContent');
+        const metadataDiv = document.getElementById('resourceMetadata');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        modalTitle.textContent = resource.title;
+        
+        if (resource.type === 'scorm') {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up">
+                    <p class="mb-4">This is a SCORM package. Click the button below to launch the course.</p>
+                    <button onclick="launchScorm('${resource.scormUrl}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        Launch SCORM Package
+                    </button>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = resource.content;
+        }
+        
+        metadataDiv.innerHTML = Object.entries(resource.metadata).map(([key, value]) => 
+            `<div data-aos="fade-up" data-aos-delay="100"><strong class="text-gray-700">${key}:</strong> ${value}</div>`
+        ).join('');
+
+        metadataDiv.innerHTML = Object.entries(resource.metadata).map(([key, value]) => 
+            `<div data-aos="fade-up" data-aos-delay="100"><strong class="text-gray-700">${key}:</strong> ${value}</div>`
+        ).join('');
+        
+        // Highlight active item in learning path
+        document.querySelectorAll('.learning-path-item').forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('bg-blue-100');
+            } else {
+                item.classList.remove('bg-blue-100');
+            }
+        });
+        
+        AOS.refresh();
+    }
+
+    function launchScorm(url) {
+        const contentDiv = document.getElementById('resourceContent');
+        const metadataDiv = document.getElementById('resourceMetadata');
+        
+        // Hide the metadata section
+        metadataDiv.classList.add('hidden');
+        
+        // Expand the content div to full height
+        contentDiv.classList.add('h-full');
+        
+        contentDiv.innerHTML = `
+            <div class="w-full h-full flex flex-col">
+                <iframe src="${url}" allowfullscreen class="w-full flex-grow border-none"></iframe>
+            </div>
+        `;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('previewModal');
+        modal.classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('previewModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeModal();
+        }
+    });
+    </script>
 </body>
     
 {% endblock %}

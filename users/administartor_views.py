@@ -17,7 +17,7 @@ from django.http import Http404
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
-from .api_client import create_scorm_course, register_user_for_course
+from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
 
 logger = logging.getLogger(__name__)
 
@@ -116,6 +116,10 @@ class CourseCreationWizard(SessionWizardView):
             basic_info.save()
             logger.info(f"Basic course info saved: {basic_info.id}")
 
+            # Create course on SCORMHub API
+            scormhub_course_id = create_scormhub_course(basic_info.title, basic_info.description)
+            logger.info(f"Course created on SCORMHub with ID: {scormhub_course_id}")
+
             learning_resource_formset = form_list[1]
             for resource_form in learning_resource_formset:
                 if resource_form.is_valid() and not resource_form.cleaned_data.get('DELETE', False):
@@ -128,30 +132,29 @@ class CourseCreationWizard(SessionWizardView):
                         logger.info(f"Processing SCORM resource: {resource.id}")
                         scorm_details = resource_form.cleaned_data.get('scorm_details')
                         if scorm_details and resource.content:
-                            file_path = resource.content.path
-                            logger.info(f"SCORM file path: {file_path}")
-                            logger.info(f"Calling create_scorm_course API for resource: {resource.id}")
-                            api_response = create_scorm_course(
-                                scorm_details['scorm_course_id'],
-                                file_path,
-                                scorm_details['version']
+                            file = resource.content
+                            logger.info(f"SCORM file path: {file}")
+                            logger.info(f"Calling upload_scorm_package API for resource: {resource.id}")
+                            api_response = upload_scorm_package(
+                                scormhub_course_id,  
+                                file,
                             )
                             logger.info(f"API response received: {api_response}")
-                            if api_response.get('success'):
-                                logger.info(f"SCORM course created successfully: {api_response['scorm_course_id']}")
+                            if isinstance(api_response, dict) and 'id' in api_response:
+                                logger.info(f"SCORM course created successfully: {api_response['id']}")
                                 ScormResource.objects.create(
                                     learning_resource=resource,
-                                    scorm_course_id=api_response['scorm_course_id'],
-                                    version=scorm_details['version'],
-                                    web_path=api_response['web_path']
+                                    scorm_course_id=api_response['id'],
+                                    version=api_response.get('version', scorm_details['version']),
+                                    web_path=api_response.get('launch_path', '')
                                 )
                                 logger.info(f"ScormResource created for: {resource.id}")
                             else:
-                                logger.error(f"Failed to create SCORM course: {api_response.get('error')}")
-                                raise Exception(f"Failed to create SCORM course: {api_response.get('error')}")
+                                error_message = api_response.get('error') if isinstance(api_response, dict) else "Unexpected API response format"
+                                logger.error(f"Failed to create SCORM course: {error_message}")
+                                raise Exception(f"Failed to create SCORM course: {error_message}")
                         else:
                             logger.warning(f"SCORM resource {resource.id} missing scorm_details or content")
-
 
             logger.info("Course creation process completed successfully")
             messages.success(self.request, 'Course created successfully!')
@@ -161,6 +164,30 @@ class CourseCreationWizard(SessionWizardView):
             logger.exception("Error during course creation:")
             messages.error(self.request, f"An error occurred while creating the course: {str(e)}")
             return redirect('course_list')
+        
+    def create_scormhub_course(self, title, description):
+        """
+        Create a course on SCORMHub API and return the course ID.
+        """
+        url = f'{settings.SCORM_API_BASE_URL}/api/courses/'
+        token = f'{settings.SCORM_API_TOKEN}'
+        headers = {
+            'Authorization': f'Token {token}',
+            'Content-Type': 'application/json'
+        }
+        data = {
+            'title': title,
+            'description': description
+        }
+
+        try:
+            response = requests.post(url, json=data, headers=headers)
+            response.raise_for_status()
+            course_data = response.json()
+            return course_data['id']
+        except requests.RequestException as e:
+            logger.error(f"Failed to create course on SCORMHub: {str(e)}")
+            raise Exception("Failed to create course on SCORMHub API")
 
 def create_course(request):
     logger.info("create_course view called")
