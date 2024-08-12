@@ -18,6 +18,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install Python dependencies
 COPY requirements.txt /code/
+RUN source $VIRTUAL_ENV/bin/activate
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Install npm packages including Tailwind CSS and Flowbite
