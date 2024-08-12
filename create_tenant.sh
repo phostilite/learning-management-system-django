@@ -19,95 +19,9 @@ find_available_port() {
     echo $port
 }
 
-# Function to check if a command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Function to check Nginx configuration
-check_nginx() {
-    if ! command_exists nginx; then
-        echo "Error: Nginx is not installed."
-        return 1
-    fi
-
-    if ! nginx -t >/dev/null 2>&1; then
-        echo "Error: Nginx configuration test failed."
-        return 1
-    fi
-
-    echo "Nginx is installed and configured correctly."
-    return 0
-}
-
-# Function to check and setup Gunicorn
-setup_gunicorn() {
-    local client_name="$1"
-    local project_dir="/home/$USER/${client_name}"
-    local venv_dir="/opt/venv"  # Using the VIRTUAL_ENV from Dockerfile
-
-    # Check if Gunicorn is installed in the virtual environment
-    if ! $venv_dir/bin/pip freeze | grep -q gunicorn; then
-        echo "Error: Gunicorn is not installed in the virtual environment."
-        return 1
-    fi
-
-    # Create Gunicorn socket file
-    sudo tee /etc/systemd/system/gunicorn_${client_name}.socket > /dev/null << EOF
-[Unit]
-Description=gunicorn socket for ${client_name}
-
-[Socket]
-ListenStream=/run/gunicorn_${client_name}.sock
-
-[Install]
-WantedBy=sockets.target
-EOF
-
-    # Create Gunicorn service file
-    sudo tee /etc/systemd/system/gunicorn_${client_name}.service > /dev/null << EOF
-[Unit]
-Description=gunicorn daemon for ${client_name}
-Requires=gunicorn_${client_name}.socket
-After=network.target
-
-[Service]
-User=$USER
-Group=www-data
-WorkingDirectory=${project_dir}
-ExecStart=${venv_dir}/bin/gunicorn \\
-          --access-logfile - \\
-          --workers 3 \\
-          --bind unix:/run/gunicorn_${client_name}.sock \\
-          ${client_name}.wsgi:application
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-    # Start and enable Gunicorn socket
-    sudo systemctl start gunicorn_${client_name}.socket
-    sudo systemctl enable gunicorn_${client_name}.socket
-
-    # Check if Gunicorn socket file exists
-    if [ ! -e /run/gunicorn_${client_name}.sock ]; then
-        echo "Error: Gunicorn socket file not created."
-        return 1
-    fi
-
-    echo "Gunicorn setup completed successfully for ${client_name}."
-    return 0
-}
-
-# Main script starts here
-echo "Welcome to the Enhanced Tenant Creation Wizard!"
-echo "-----------------------------------------------"
-
-# Check Nginx configuration
-if ! check_nginx; then
-    echo "Please fix Nginx configuration before proceeding."
-    exit 1
-fi
+# Prompt for tenant details
+echo "Welcome to the Tenant Creation Wizard!"
+echo "--------------------------------------"
 
 client_name=$(prompt_with_default "Enter client name" "client1")
 git_repo=$(prompt_with_default "Enter Git repository URL" "https://github.com/yourusername/your-repo.git")
@@ -117,8 +31,9 @@ git_branch=$(prompt_with_default "Enter Git branch" "main")
 read -p "Deploy locally or remotely? (local/remote): " deploy_type
 
 if [ "$deploy_type" = "remote" ]; then
-    echo "Remote deployment is not implemented in this script."
-    exit 1
+    # Call the remote deployment script
+    ./deploy_to_client_server.sh "$client_name" "$git_repo" "$git_branch"
+    exit 0
 fi
 
 # Continue with local deployment
@@ -147,12 +62,11 @@ if [ "$confirm" != "y" ]; then
 fi
 
 # Create client directory and clone the repository
-mkdir -p /home/$USER/${client_name}
-git clone -b "$git_branch" "$git_repo" /home/$USER/${client_name}
+mkdir -p ../${client_name}
+git clone -b "$git_branch" "$git_repo" ../${client_name}
 
-# Create Docker Compose file for the client
-echo "Creating Docker Compose file..."
-cat << EOF > /home/$USER/${client_name}/docker-compose.yml
+# Create Docker Compose file for the tenant
+cat << EOF > ../${client_name}/docker-compose.yml
 version: '3.8'
 
 services:
@@ -165,12 +79,11 @@ services:
         python manage.py setup_initial_data &&
         touch /code/.initial_data_loaded;
       fi &&
-      python manage.py collectstatic --noinput &&
-      gunicorn ${client_name}.wsgi:application --bind 0.0.0.0:8000
-    "
+      exec python manage.py runserver 0.0.0.0:8000
+     "
     volumes:
       - .:/code
-      - static_volume:/code/staticfiles
+      - initial_data_flag:/code
     ports:
       - "${port}:8000"
     environment:
@@ -191,61 +104,13 @@ services:
 
 volumes:
   postgres_data:
-  static_volume:
+  initial_data_flag:
 EOF
 
-# Setup Gunicorn
-if ! setup_gunicorn "$client_name"; then
-    echo "Error: Failed to setup Gunicorn."
-    exit 1
-fi
+# Start the tenant's container
+cd ../${client_name}
+docker-compose up -d
 
-# Create Nginx configuration file
-sudo tee /etc/nginx/sites-available/${client_name} > /dev/null << EOF
-server {
-    server_name ${client_name}.example.com;
-    
-    location = /favicon.ico { access_log off; log_not_found off; }
-    
-    location /static/ {
-        alias /home/$USER/${client_name}/staticfiles/;
-    }
-    
-    location / {
-        include proxy_params;
-        proxy_pass http://unix:/run/gunicorn_${client_name}.sock;
-    }
-}
-EOF
-
-# Enable the Nginx site
-sudo ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/
-
-# Test Nginx configuration
-sudo nginx -t
-
-if [ $? -ne 0 ]; then
-    echo "Error: Nginx configuration test failed."
-    exit 1
-fi
-
-# Restart Nginx
-sudo systemctl restart nginx
-
-# Start the Docker containers
-echo "Starting Docker containers..."
-cd /home/$USER/${client_name} && docker-compose up -d --build
-
-# Copy static files from Docker container to host
-echo "Copying static files from Docker container to host..."
-docker cp $(docker-compose ps -q web):/code/staticfiles /home/$USER/${client_name}/
-
-# Update permissions for the copied static files
-echo "Updating permissions for static files..."
-sudo chmod -R 755 /home/$USER/${client_name}/staticfiles
-
-echo "Deployment completed successfully!"
+echo "Tenant ${client_name} created successfully!"
 echo "You can access the application at http://localhost:${port}"
-echo "The client's code is located in /home/$USER/${client_name}"
-echo "Static files are located in /home/$USER/${client_name}/staticfiles"
-echo "Don't forget to update your DNS settings to point ${client_name}.example.com to your server's IP address."
+echo "The tenant's code is located in ../${client_name}"

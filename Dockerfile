@@ -31,7 +31,7 @@ COPY . /code/
 RUN mkdir -p /code/static/dist/css /code/static/dist/js
 
 # Create input.css file with Tailwind directives
-RUN echo '@tailwind base;\n@tailwind components;\n@tailwind utilities;' > /code/static/dist/css/input.css
+RUN echo '@tailwind base;@tailwind components;@tailwind utilities;' > /code/static/dist/css/input.css
 
 # Copy Flowbite files (adjust paths if necessary)
 RUN cp -r node_modules/flowbite/dist/*.js /code/static/dist/js/ || true
@@ -39,3 +39,12 @@ RUN cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/ || true
 
 # Run Tailwind CSS build
 RUN npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/output.css --minify
+
+# Install Gunicorn
+RUN pip install gunicorn
+
+# Expose port 8000
+EXPOSE 8000
+
+# Run Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "lms.wsgi:application"]

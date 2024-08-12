@@ -89,11 +89,20 @@ if ! ssh_execute 'command -v docker >/dev/null 2>&1 && command -v docker-compose
     exit 1
 fi
 
-# Install Nginx if not already installed
+# Check if the server has Nginx installed
 echo "Checking for Nginx on the remote server..."
 if ! ssh_execute 'command -v nginx >/dev/null 2>&1'; then
-    echo "Nginx is not installed. Installing Nginx..."
-    ssh_execute 'sudo apt-get update && sudo apt-get install -y nginx'
+    echo "Error: Nginx is not installed on the remote server."
+    echo "Please install Nginx before proceeding with the deployment."
+    exit 1
+fi
+
+# Check if the server has Gunicorn installed
+echo "Checking for Gunicorn on the remote server..."
+if ! ssh_execute 'command -v gunicorn >/dev/null 2>&1'; then
+    echo "Error: Gunicorn is not installed on the remote server."
+    echo "Please install Gunicorn before proceeding with the deployment."
+    exit 1
 fi
 
 # Clone the repository on the remote server
@@ -119,13 +128,12 @@ services:
         touch /code/.initial_data_loaded;
       fi &&
       python manage.py collectstatic --noinput &&
-      exec gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+      gunicorn lms.wsgi:application --bind unix:/run/gunicorn.sock
      \"
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
-    expose:
-      - 8000
+      - /run/gunicorn.sock:/run/gunicorn.sock
     environment:
       - DB_NAME=${db_name}
       - DB_USER=${db_user}
@@ -150,6 +158,93 @@ EOF"; then
     exit 1
 fi
 
+# Create Nginx configuration file
+echo "Creating Nginx configuration file..."
+if ! ssh_execute "cat << EOF > /etc/nginx/sites-available/${client_name}
+server {
+    server_name ${server_ip};
+
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    location /static/ {
+        alias /home/${ssh_user}/${client_name}/staticfiles/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+EOF"; then
+    echo "Error: Failed to create Nginx configuration file."
+    exit 1
+fi
+
+# Enable Nginx configuration
+echo "Enabling Nginx configuration..."
+if ! ssh_execute "ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/"; then
+    echo "Error: Failed to enable Nginx configuration."
+    exit 1
+fi
+
+# Test Nginx configuration
+echo "Testing Nginx configuration..."
+if ! ssh_execute "nginx -t"; then
+    echo "Error: Nginx configuration test failed."
+    exit 1
+fi
+
+# Create Gunicorn socket file
+echo "Creating Gunicorn socket file..."
+if ! ssh_execute "cat << EOF > /etc/systemd/system/gunicorn.socket
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+EOF"; then
+    echo "Error: Failed to create Gunicorn socket file."
+    exit 1
+fi
+
+# Create Gunicorn service file
+echo "Creating Gunicorn service file..."
+if ! ssh_execute "cat << EOF > /etc/systemd/system/gunicorn.service
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=${ssh_user}
+Group=www-data
+WorkingDirectory=/home/${ssh_user}/${client_name}
+ExecStart=/home/${ssh_user}/${client_name}/venv/bin/gunicorn \\
+    --access-logfile - \\
+    --workers 3 \\
+    --bind unix:/run/gunicorn.sock \\
+    lms.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+EOF"; then
+    echo "Error: Failed to create Gunicorn service file."
+    exit 1
+fi
+
+# Start and enable Gunicorn socket
+echo "Starting and enabling Gunicorn socket..."
+if ! ssh_execute "systemctl start gunicorn.socket && systemctl enable gunicorn.socket"; then
+    echo "Error: Failed to start and enable Gunicorn socket."
+    exit 1
+fi
+
 # Start the Docker containers
 echo "Starting Docker containers on the remote server..."
 if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
@@ -166,50 +261,14 @@ fi
 
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
-if ! ssh_execute "sudo chown -R $ssh_user:$ssh_user ~/${client_name}/staticfiles && sudo chmod -R 755 ~/${client_name}/staticfiles"; then
+if ! ssh_execute "chmod -R 755 ~/${client_name}/staticfiles"; then
     echo "Error: Failed to update permissions for static files."
-    exit 1
-fi
-
-# Create Nginx configuration
-echo "Creating Nginx configuration..."
-if ! ssh_execute "sudo tee /etc/nginx/sites-available/${client_name} > /dev/null << EOF
-server {
-    listen 80;
-    server_name ${server_ip};
-
-    location /static/ {
-        alias /home/${ssh_user}/${client_name}/staticfiles/;
-    }
-
-    location / {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-    }
-}
-EOF"; then
-    echo "Error: Failed to create Nginx configuration."
-    exit 1
-fi
-
-# Enable Nginx configuration
-echo "Enabling Nginx configuration..."
-if ! ssh_execute "sudo ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/"; then
-    echo "Error: Failed to enable Nginx configuration."
-    exit 1
-fi
-
-# Test Nginx configuration
-echo "Testing Nginx configuration..."
-if ! ssh_execute "sudo nginx -t"; then
-    echo "Error: Nginx configuration test failed."
     exit 1
 fi
 
 # Restart Nginx
 echo "Restarting Nginx..."
-if ! ssh_execute "sudo systemctl restart nginx"; then
+if ! ssh_execute "systemctl restart nginx"; then
     echo "Error: Failed to restart Nginx."
     exit 1
 fi
