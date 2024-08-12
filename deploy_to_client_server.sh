@@ -36,6 +36,7 @@ git_branch="$3"
 
 server_ip=$(prompt_with_default "Enter server IP address" "")
 ssh_user=$(prompt_with_default "Enter SSH user" "root")
+domain_name=$(prompt_with_default "Enter domain name" "lms.learnknowdigital.com")
 
 # Prompt for authentication method
 read -p "Use password authentication? (y/n): " use_password_input
@@ -65,6 +66,7 @@ echo "Git Repository: $git_repo"
 echo "Git Branch: $git_branch"
 echo "Server IP: $server_ip"
 echo "SSH User: $ssh_user"
+echo "Domain Name: $domain_name"
 if [ "$use_password" = true ]; then
     echo "Authentication: Password-based"
 else
@@ -112,13 +114,12 @@ services:
         touch /code/.initial_data_loaded;
       fi &&
       python manage.py collectstatic --noinput &&
-      exec python manage.py runserver 0.0.0.0:8000
+      exec gunicorn lms.wsgi:application --bind unix:/run/gunicorn.sock
      \"
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
-    ports:
-      - \"8000:8000\"
+      - /run:/run
     environment:
       - DB_NAME=${db_name}
       - DB_USER=${db_user}
@@ -143,6 +144,101 @@ EOF"; then
     exit 1
 fi
 
+# Create Gunicorn socket file
+echo "Creating Gunicorn socket file..."
+if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.socket > /dev/null << EOF
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+EOF"; then
+    echo "Error: Failed to create Gunicorn socket file."
+    exit 1
+fi
+
+# Create Gunicorn service file
+echo "Creating Gunicorn service file..."
+if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.service > /dev/null << EOF
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=${ssh_user}
+Group=www-data
+WorkingDirectory=/home/${ssh_user}/${client_name}
+ExecStart=/opt/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          lms.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+EOF"; then
+    echo "Error: Failed to create Gunicorn service file."
+    exit 1
+fi
+
+# Start and enable Gunicorn socket
+echo "Starting and enabling Gunicorn socket..."
+if ! ssh_execute "sudo systemctl start gunicorn.socket && sudo systemctl enable gunicorn.socket"; then
+    echo "Error: Failed to start and enable Gunicorn socket."
+    exit 1
+fi
+
+# Restart Gunicorn
+echo "Restarting Gunicorn..."
+if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
+    echo "Error: Failed to restart Gunicorn."
+    exit 1
+fi
+
+# Create Nginx configuration
+echo "Creating Nginx configuration..."
+if ! ssh_execute "sudo tee /etc/nginx/sites-available/${client_name} > /dev/null << EOF
+server {
+    server_name ${domain_name};
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        alias /home/${ssh_user}/${client_name}/staticfiles/;
+    }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+EOF"; then
+    echo "Error: Failed to create Nginx configuration."
+    exit 1
+fi
+
+# Enable Nginx configuration
+echo "Enabling Nginx configuration..."
+if ! ssh_execute "sudo ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/ && sudo nginx -t"; then
+    echo "Error: Failed to enable Nginx configuration."
+    exit 1
+fi
+
+# Restart Nginx
+echo "Restarting Nginx..."
+if ! ssh_execute "sudo systemctl restart nginx"; then
+    echo "Error: Failed to restart Nginx."
+    exit 1
+fi
+
+# Configure firewall
+echo "Configuring firewall..."
+if ! ssh_execute "sudo ufw delete allow 8000 && sudo ufw allow 'Nginx Full'"; then
+    echo "Error: Failed to configure firewall."
+    exit 1
+fi
+
 # Start the Docker containers
 echo "Starting Docker containers on the remote server..."
 if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
@@ -150,21 +246,7 @@ if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
     exit 1
 fi
 
-# Copy static files from Docker container to host
-echo "Copying static files from Docker container to host..."
-if ! ssh_execute "cd ~/${client_name} && docker cp \$(docker-compose ps -q web):/code/staticfiles ./staticfiles"; then
-    echo "Error: Failed to copy static files from Docker container."
-    exit 1
-fi
-
-# Update permissions for the copied static files
-echo "Updating permissions for static files..."
-if ! ssh_execute "chmod -R 755 ~/${client_name}/staticfiles"; then
-    echo "Error: Failed to update permissions for static files."
-    exit 1
-fi
-
 echo "Deployment completed successfully!"
-echo "You can access the application at http://$server_ip:8000"
-echo "The client's code is located in ~/$client_name on the remote server"
-echo "Static files are located in ~/$client_name/staticfiles on the remote server"
+echo "You can access the application at http://${domain_name}"
+echo "The client's code is located in ~/${client_name} on the remote server"
+echo "Static files are located in ~/${client_name}/staticfiles on the remote server"
