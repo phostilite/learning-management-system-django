@@ -206,7 +206,7 @@ server {
     server_name ${domain_name};
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        alias /home/${ssh_user}/${client_name}/staticfiles/;
+        alias /${ssh_user}/${client_name}/staticfiles/;
     }
     location / {
         include proxy_params;
