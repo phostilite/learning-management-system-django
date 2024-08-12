@@ -107,7 +107,6 @@ services:
   web:
     build: .
     command: sh -c \"
-      source env/bin/activate &&
       python manage.py makemigrations &&
       python manage.py migrate &&
       if [ ! -f /code/.initial_data_loaded ]; then
