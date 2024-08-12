@@ -246,6 +246,43 @@ if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
     exit 1
 fi
 
+# Remove existing staticfiles directory on host
+echo "Removing existing staticfiles directory on host..."
+if ! ssh_execute "rm -rf ~/${client_name}/staticfiles"; then
+    echo "Error: Failed to remove existing staticfiles directory."
+    exit 1
+fi
+
+# Copy staticfiles directory from Docker container to host
+echo "Copying staticfiles directory from Docker container to host..."
+if ! ssh_execute "cd ~/${client_name} && \
+                  docker cp \$(docker-compose ps -q web):/code/staticfiles ~/${client_name}/"; then
+    echo "Error: Failed to copy staticfiles directory from Docker container."
+    exit 1
+fi
+
+# Update permissions for the copied static files
+echo "Updating permissions for static files..."
+if ! ssh_execute "chmod -R 755 ~/${client_name}/staticfiles"; then
+    echo "Error: Failed to update permissions for static files."
+    exit 1
+fi
+
+
+# Restart Gunicorn
+echo "Restarting Gunicorn..."
+if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
+    echo "Error: Failed to restart Gunicorn."
+    exit 1
+fi
+
+# Restart Nginx
+echo "Restarting Nginx..."
+if ! ssh_execute "sudo systemctl restart nginx"; then
+    echo "Error: Failed to restart Nginx."
+    exit 1
+fi
+
 echo "Deployment completed successfully!"
 echo "You can access the application at http://${domain_name}"
 echo "The client's code is located in ~/${client_name} on the remote server"
