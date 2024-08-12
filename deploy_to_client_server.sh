@@ -263,8 +263,10 @@ fi
 
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
-if ! ssh_execute "sudo chown -R www-data:www-data ~/${client_name}/staticfiles && \
-                  sudo chmod -R 755 ~/${client_name}/staticfiles"; then
+if ! ssh_execute "sudo find ~/${client_name}/staticfiles -type d -exec chmod 755 {} \; && \
+                  sudo find ~/${client_name}/staticfiles -type f -exec chmod 644 {} \; && \
+                  sudo chown -R www-data:www-data ~/${client_name}/staticfiles && \
+                  sudo chmod g+s ~/${client_name}/staticfiles"; then
     echo "Error: Failed to update permissions for static files."
     exit 1
 fi
