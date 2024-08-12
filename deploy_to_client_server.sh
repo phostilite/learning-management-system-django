@@ -143,14 +143,21 @@ EOF"; then
     exit 1
 fi
 
+# Create and activate virtual environment
+echo "Creating and activating virtual environment..."
+if ! ssh_execute "cd ~/${client_name} && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt"; then
+    echo "Error: Failed to create and activate virtual environment or install requirements."
+    exit 1
+fi
+
 # Create Gunicorn socket file
 echo "Creating Gunicorn socket file..."
-if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn_${client_name}.socket > /dev/null << EOF
+if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.socket > /dev/null << EOF
 [Unit]
-Description=gunicorn socket for ${client_name}
+Description=gunicorn socket
 
 [Socket]
-ListenStream=/run/gunicorn_${client_name}.sock
+ListenStream=/run/gunicorn.sock
 
 [Install]
 WantedBy=sockets.target
@@ -161,17 +168,21 @@ fi
 
 # Create Gunicorn service file
 echo "Creating Gunicorn service file..."
-if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn_${client_name}.service > /dev/null << EOF
+if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.service > /dev/null << EOF
 [Unit]
-Description=gunicorn daemon for ${client_name}
-Requires=gunicorn_${client_name}.socket
+Description=gunicorn daemon
+Requires=gunicorn.socket
 After=network.target
 
 [Service]
 User=${ssh_user}
 Group=www-data
 WorkingDirectory=/${ssh_user}/${client_name}
-ExecStart=/usr/local/bin/docker-compose -f /${ssh_user}/${client_name}/docker-compose.yml up web
+ExecStart=/${ssh_user}/${client_name}/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          lms.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
@@ -182,8 +193,15 @@ fi
 
 # Start and enable Gunicorn socket
 echo "Starting and enabling Gunicorn socket..."
-if ! ssh_execute "sudo systemctl start gunicorn_${client_name}.socket && sudo systemctl enable gunicorn_${client_name}.socket"; then
+if ! ssh_execute "sudo systemctl start gunicorn.socket && sudo systemctl enable gunicorn.socket"; then
     echo "Error: Failed to start and enable Gunicorn socket."
+    exit 1
+fi
+
+# Restart Gunicorn
+echo "Restarting Gunicorn..."
+if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
+    echo "Error: Failed to restart Gunicorn."
     exit 1
 fi
 
@@ -198,7 +216,7 @@ server {
     }
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/gunicorn_${client_name}.sock;
+        proxy_pass http://unix:/run/gunicorn.sock;
     }
 }
 EOF"; then
@@ -222,7 +240,7 @@ fi
 
 # Configure firewall
 echo "Configuring firewall..."
-if ! ssh_execute "sudo ufw allow 'Nginx Full'"; then
+if ! ssh_execute "sudo ufw delete allow 8000 && sudo ufw allow 'Nginx Full'"; then
     echo "Error: Failed to configure firewall."
     exit 1
 fi
@@ -234,10 +252,56 @@ if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
     exit 1
 fi
 
+# Remove existing staticfiles directory on host
+echo "Removing existing staticfiles directory on host..."
+if ! ssh_execute "rm -rf ~/${client_name}/staticfiles"; then
+    echo "Error: Failed to remove existing staticfiles directory."
+    exit 1
+fi
+
+# Copy staticfiles directory from Docker container to host
+echo "Copying staticfiles directory from Docker container to host..."
+if ! ssh_execute "cd ~/${client_name} && \
+                  docker cp \$(docker-compose ps -q web):/code/staticfiles ~/${client_name}/"; then
+    echo "Error: Failed to copy staticfiles directory from Docker container."
+    exit 1
+fi
+
+# Define the path to the static files
+STATIC_FILES_PATH="~/${client_name}/staticfiles"
+TARGET_PATH="/var/www/${client_name}/staticfiles"
+
+# Update permissions for the copied static files
+echo "Updating permissions for static files..."
+if ! ssh_execute "sudo find ${STATIC_FILES_PATH} -type d -exec chmod 755 {} \; && \
+                  sudo find ${STATIC_FILES_PATH} -type f -exec chmod 644 {} \; && \
+                  sudo chown -R www-data:www-data ${STATIC_FILES_PATH} && \
+                  sudo chmod g+s ${STATIC_FILES_PATH}"; then
+    echo "Error: Failed to update permissions for static files."
+    exit 1
+fi
+
+# Move static files to the target directory
+echo "Moving static files to ${TARGET_PATH}..."
+if ! ssh_execute "sudo mkdir -p /var/www/${client_name} && \
+                  sudo mv ${STATIC_FILES_PATH} /var/www/${client_name}/ && \
+                  sudo chown -R www-data:www-data ${TARGET_PATH} && \
+                  sudo chmod -R 755 ${TARGET_PATH}"; then
+    echo "Error: Failed to move static files to ${TARGET_PATH}."
+    exit 1
+fi
+
 # Restart Gunicorn
 echo "Restarting Gunicorn..."
-if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn_${client_name}"; then
+if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
     echo "Error: Failed to restart Gunicorn."
+    exit 1
+fi
+
+# Restart Nginx
+echo "Restarting Nginx..."
+if ! ssh_execute "sudo systemctl restart nginx"; then
+    echo "Error: Failed to restart Nginx."
     exit 1
 fi
 
