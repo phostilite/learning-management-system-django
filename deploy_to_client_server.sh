@@ -97,12 +97,17 @@ if ! ssh_execute 'command -v nginx >/dev/null 2>&1'; then
     exit 1
 fi
 
-# Check if the server has Gunicorn installed
+# Check if the server has Gunicorn installed, if not, install it
 echo "Checking for Gunicorn on the remote server..."
 if ! ssh_execute 'command -v gunicorn >/dev/null 2>&1'; then
-    echo "Error: Gunicorn is not installed on the remote server."
-    echo "Please install Gunicorn before proceeding with the deployment."
-    exit 1
+    echo "Gunicorn is not installed. Installing Gunicorn..."
+    if ! ssh_execute 'sudo apt-get update && sudo apt-get install -y python3-pip && sudo pip3 install gunicorn'; then
+        echo "Error: Failed to install Gunicorn."
+        exit 1
+    fi
+    echo "Gunicorn installed successfully."
+else
+    echo "Gunicorn is already installed."
 fi
 
 # Clone the repository on the remote server
