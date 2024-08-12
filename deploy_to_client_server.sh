@@ -100,22 +100,21 @@ fi
 
 # Create Docker Compose file for the client
 echo "Creating Docker Compose file..."
-if ! ssh_execute "cat << EOF > ~/${client_name}/docker-compose.yml
-version: '3.8'
-
+if ! ssh_execute "cat << 'EOF' > ~/${client_name}/docker-compose.yml
 services:
   web:
     build: .
-    command: sh -c \"
-      python manage.py makemigrations &&
-      python manage.py migrate &&
-      if [ ! -f /code/.initial_data_loaded ]; then
-        python manage.py setup_initial_data &&
-        touch /code/.initial_data_loaded;
-      fi &&
-      python manage.py collectstatic --noinput &&
-      gunicorn lms.wsgi:application --bind 0.0.0.0:8000
-    \"
+    command: >
+      sh -c \"
+        python manage.py makemigrations &&
+        python manage.py migrate &&
+        if [ ! -f /code/.initial_data_loaded ]; then
+          python manage.py setup_initial_data &&
+          touch /code/.initial_data_loaded;
+        fi &&
+        python manage.py collectstatic --noinput &&
+        gunicorn lms.wsgi:application --bind 0.0.0.0:8000
+      \"
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
