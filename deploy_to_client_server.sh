@@ -264,10 +264,7 @@ fi
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
 if ! ssh_execute "sudo chown -R www-data:www-data ~/${client_name}/staticfiles && \
-                  sudo chmod -R 755 ~/${client_name}/staticfiles && \
-                  sudo chmod -R g+s ~/${client_name}/staticfiles && \
-                  sudo setfacl -R -m u:nginx:rx ~/${client_name}/staticfiles && \
-                  sudo setfacl -R -m u:www-data:rx ~/${client_name}/staticfiles"; then
+                  sudo chmod -R 755 ~/${client_name}/staticfiles"; then
     echo "Error: Failed to update permissions for static files."
     exit 1
 fi
