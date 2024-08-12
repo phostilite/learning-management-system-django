@@ -30,9 +30,9 @@ ssh_execute() {
 echo "Welcome to the Remote Client Deployment Wizard!"
 echo "-----------------------------------------------"
 
-client_name=$(prompt_with_default "Enter client name" "")
-git_repo=$(prompt_with_default "Enter Git repository URL" "")
-git_branch=$(prompt_with_default "Enter Git branch" "main")
+client_name="$1"
+git_repo="$2"
+git_branch="$3"
 
 server_ip=$(prompt_with_default "Enter server IP address" "")
 ssh_user=$(prompt_with_default "Enter SSH user" "root")
