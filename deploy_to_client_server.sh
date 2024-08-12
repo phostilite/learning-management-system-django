@@ -261,13 +261,23 @@ if ! ssh_execute "cd ~/${client_name} && \
     exit 1
 fi
 
+# Define the path to the static files
+STATIC_FILES_PATH="~/${client_name}/staticfiles"
+
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
-if ! ssh_execute "sudo find ~/${client_name}/staticfiles -type d -exec chmod 755 {} \; && \
-                  sudo find ~/${client_name}/staticfiles -type f -exec chmod 644 {} \; && \
-                  sudo chown -R www-data:www-data ~/${client_name}/staticfiles && \
-                  sudo chmod g+s ~/${client_name}/staticfiles"; then
+if ! ssh_execute "sudo find ${STATIC_FILES_PATH} -type d -exec chmod 755 {} \; && \
+                  sudo find ${STATIC_FILES_PATH} -type f -exec chmod 644 {} \; && \
+                  sudo chown -R www-data:www-data ${STATIC_FILES_PATH} && \
+                  sudo chmod g+s ${STATIC_FILES_PATH}"; then
     echo "Error: Failed to update permissions for static files."
+    exit 1
+fi
+
+# Verify the permissions and ownership
+echo "Verifying permissions and ownership..."
+if ! ssh_execute "sudo ls -lR ${STATIC_FILES_PATH}"; then
+    echo "Error: Failed to verify permissions and ownership for static files."
     exit 1
 fi
 
