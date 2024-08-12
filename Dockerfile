@@ -4,7 +4,7 @@ FROM python:3.12
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    VIRTUAL_ENV=/opt/venv
+    VIRTUAL_ENV=/code/env
 
 # Set work directory
 WORKDIR /code
@@ -52,3 +52,6 @@ RUN npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
+
+# Command to run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "lms.wsgi:application"]

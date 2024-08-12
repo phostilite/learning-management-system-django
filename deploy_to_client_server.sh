@@ -114,12 +114,11 @@ services:
         touch /code/.initial_data_loaded;
       fi &&
       python manage.py collectstatic --noinput &&
-      exec gunicorn lms.wsgi:application --bind unix:/run/gunicorn.sock
+      exec gunicorn lms.wsgi:application --bind 0.0.0.0:8000
      \"
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
-      - /run:/run
     environment:
       - DB_NAME=${db_name}
       - DB_USER=${db_user}
@@ -141,6 +140,13 @@ volumes:
   static_volume:
 EOF"; then
     echo "Error: Failed to create Docker Compose file."
+    exit 1
+fi
+
+# Create and activate virtual environment
+echo "Creating and activating virtual environment..."
+if ! ssh_execute "cd ~/${client_name} && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt"; then
+    echo "Error: Failed to create and activate virtual environment or install requirements."
     exit 1
 fi
 
@@ -171,8 +177,8 @@ After=network.target
 [Service]
 User=${ssh_user}
 Group=www-data
-WorkingDirectory=/home/${ssh_user}/${client_name}
-ExecStart=/opt/venv/bin/gunicorn \
+WorkingDirectory=/${ssh_user}/${client_name}
+ExecStart=/${ssh_user}/${client_name}/env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
@@ -206,7 +212,7 @@ server {
     server_name ${domain_name};
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        alias /${ssh_user}/${client_name}/staticfiles/;
+        alias /var/www/${client_name}/staticfiles/;
     }
     location / {
         include proxy_params;
@@ -263,6 +269,7 @@ fi
 
 # Define the path to the static files
 STATIC_FILES_PATH="~/${client_name}/staticfiles"
+TARGET_PATH="/var/www/${client_name}/staticfiles"
 
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
@@ -274,13 +281,15 @@ if ! ssh_execute "sudo find ${STATIC_FILES_PATH} -type d -exec chmod 755 {} \; &
     exit 1
 fi
 
-# Verify the permissions and ownership
-echo "Verifying permissions and ownership..."
-if ! ssh_execute "sudo ls -lR ${STATIC_FILES_PATH}"; then
-    echo "Error: Failed to verify permissions and ownership for static files."
+# Move static files to the target directory
+echo "Moving static files to ${TARGET_PATH}..."
+if ! ssh_execute "sudo mkdir -p /var/www/${client_name} && \
+                  sudo mv ${STATIC_FILES_PATH} /var/www/${client_name}/ && \
+                  sudo chown -R www-data:www-data ${TARGET_PATH} && \
+                  sudo chmod -R 755 ${TARGET_PATH}"; then
+    echo "Error: Failed to move static files to ${TARGET_PATH}."
     exit 1
 fi
-
 
 # Restart Gunicorn
 echo "Restarting Gunicorn..."
@@ -299,4 +308,4 @@ fi
 echo "Deployment completed successfully!"
 echo "You can access the application at http://${domain_name}"
 echo "The client's code is located in ~/${client_name} on the remote server"
-echo "Static files are located in ~/${client_name}/staticfiles on the remote server"
+echo "Static files are located in /var/www/${client_name}/staticfiles on the remote server"
