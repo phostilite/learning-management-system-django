@@ -39,6 +39,3 @@ RUN cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/ || true
 
 # Run Tailwind CSS build
 RUN npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/output.css --minify
-
-# Collect static files
-RUN python manage.py collectstatic --noinput

@@ -89,6 +89,13 @@ if ! ssh_execute 'command -v docker >/dev/null 2>&1 && command -v docker-compose
     exit 1
 fi
 
+# Install Nginx if not already installed
+echo "Checking for Nginx on the remote server..."
+if ! ssh_execute 'command -v nginx >/dev/null 2>&1'; then
+    echo "Nginx is not installed. Installing Nginx..."
+    ssh_execute 'sudo apt-get update && sudo apt-get install -y nginx'
+fi
+
 # Clone the repository on the remote server
 echo "Cloning the repository on the remote server..."
 if ! ssh_execute "git clone -b $git_branch $git_repo ~/${client_name}"; then
@@ -112,13 +119,13 @@ services:
         touch /code/.initial_data_loaded;
       fi &&
       python manage.py collectstatic --noinput &&
-      exec python manage.py runserver 0.0.0.0:8000
+      exec gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
      \"
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
-    ports:
-      - \"8000:8000\"
+    expose:
+      - 8000
     environment:
       - DB_NAME=${db_name}
       - DB_USER=${db_user}
@@ -152,19 +159,62 @@ fi
 
 # Copy static files from Docker container to host
 echo "Copying static files from Docker container to host..."
-if ! ssh_execute "cd ~/${client_name} && docker cp \$(docker-compose ps -q web):/code/staticfiles ./staticfiles"; then
+if ! ssh_execute "cd ~/${client_name} && rm -rf staticfiles && docker cp \$(docker-compose ps -q web):/code/staticfiles ."; then
     echo "Error: Failed to copy static files from Docker container."
     exit 1
 fi
 
 # Update permissions for the copied static files
 echo "Updating permissions for static files..."
-if ! ssh_execute "chmod -R 755 ~/${client_name}/staticfiles"; then
+if ! ssh_execute "sudo chown -R $ssh_user:$ssh_user ~/${client_name}/staticfiles && sudo chmod -R 755 ~/${client_name}/staticfiles"; then
     echo "Error: Failed to update permissions for static files."
     exit 1
 fi
 
+# Create Nginx configuration
+echo "Creating Nginx configuration..."
+if ! ssh_execute "sudo tee /etc/nginx/sites-available/${client_name} > /dev/null << EOF
+server {
+    listen 80;
+    server_name ${server_ip};
+
+    location /static/ {
+        alias /home/${ssh_user}/${client_name}/staticfiles/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+    }
+}
+EOF"; then
+    echo "Error: Failed to create Nginx configuration."
+    exit 1
+fi
+
+# Enable Nginx configuration
+echo "Enabling Nginx configuration..."
+if ! ssh_execute "sudo ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/"; then
+    echo "Error: Failed to enable Nginx configuration."
+    exit 1
+fi
+
+# Test Nginx configuration
+echo "Testing Nginx configuration..."
+if ! ssh_execute "sudo nginx -t"; then
+    echo "Error: Nginx configuration test failed."
+    exit 1
+fi
+
+# Restart Nginx
+echo "Restarting Nginx..."
+if ! ssh_execute "sudo systemctl restart nginx"; then
+    echo "Error: Failed to restart Nginx."
+    exit 1
+fi
+
 echo "Deployment completed successfully!"
-echo "You can access the application at http://$server_ip:8000"
+echo "You can access the application at http://$server_ip"
 echo "The client's code is located in ~/$client_name on the remote server"
 echo "Static files are located in ~/$client_name/staticfiles on the remote server"
