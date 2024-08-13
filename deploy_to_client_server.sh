@@ -196,7 +196,18 @@ ssh_execute "cd ~/${client_name} && docker-compose up -d --build"
 
 # Configure firewall
 echo "Configuring firewall..."
-ssh_execute "sudo ufw allow 'Nginx Full'"
+ssh_execute '
+if command -v ufw > /dev/null; then
+    if sudo ufw status | grep -q "Status: active"; then
+        sudo ufw allow 80/tcp
+        sudo ufw allow 443/tcp
+    else
+        echo "UFW is installed but not active. Skipping firewall configuration."
+    fi
+else
+    echo "UFW is not installed. Skipping firewall configuration."
+fi
+'
 
 echo "Deployment completed successfully!"
 echo "You can access the application at http://${domain_name}"
