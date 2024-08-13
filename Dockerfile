@@ -7,13 +7,11 @@ WORKDIR /code
 
 RUN apt-get update && apt-get install -y nodejs npm netcat-traditional
 
-COPY requirements.txt /code/
+COPY . /code/
+
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY package.json package-lock.json* /code/
 RUN npm install
-
-COPY . /code/
 
 RUN mkdir -p /code/static/dist/css /code/static/dist/js
 RUN echo '@tailwind base;\n@tailwind components;\n@tailwind utilities;' > /code/static/dist/css/input.css
