@@ -83,27 +83,25 @@ if [ "$confirm" != "y" ]; then
     exit 1
 fi
 
-# Check if the server has Docker and Docker Compose installed
-echo "Checking for Docker and Docker Compose on the remote server..."
-if ! ssh_execute 'command -v docker >/dev/null 2>&1 && command -v docker-compose >/dev/null 2>&1'; then
-    echo "Error: Docker and/or Docker Compose are not installed on the remote server."
-    echo "Please install them before proceeding with the deployment."
-    exit 1
-fi
-
 # Clone the repository on the remote server
 echo "Cloning the repository on the remote server..."
-if ! ssh_execute "git clone -b $git_branch $git_repo ~/${client_name}"; then
-    echo "Error: Failed to clone the repository. Please check the repository URL and your access rights."
-    exit 1
-fi
+ssh_execute "git clone -b $git_branch $git_repo ~/${client_name}"
 
-# Create Docker Compose file for the client
+# Copy Docker Compose file
 echo "Creating Docker Compose file..."
-if ! ssh_execute "cat << 'EOF' > ~/${client_name}/docker-compose.yml
+ssh_execute "cat << EOF > ~/${client_name}/docker-compose.yml
 services:
   web:
     build: .
+    volumes:
+      - .:/code
+      - static_volume:/code/staticfiles
+    environment:
+      - DB_NAME=${db_name}
+      - DB_USER=${db_user}
+      - DB_PASSWORD=${db_password}
+    depends_on:
+      - db
     command: >
       sh -c \"
         python manage.py makemigrations &&
@@ -115,15 +113,6 @@ services:
         python manage.py collectstatic --noinput &&
         gunicorn lms.wsgi:application --bind 0.0.0.0:8000
       \"
-    volumes:
-      - .:/code
-      - static_volume:/code/staticfiles
-    environment:
-      - DB_NAME=${db_name}
-      - DB_USER=${db_user}
-      - DB_PASSWORD=${db_password}
-    depends_on:
-      - db
 
   db:
     image: postgres:13
@@ -134,177 +123,81 @@ services:
       - POSTGRES_USER=${db_user}
       - POSTGRES_PASSWORD=${db_password}
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - \"80:80\"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - static_volume:/code/staticfiles
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
   static_volume:
-EOF"; then
-    echo "Error: Failed to create Docker Compose file."
-    exit 1
-fi
-
-# Create and activate virtual environment
-echo "Creating and activating virtual environment..."
-if ! ssh_execute "cd ~/${client_name} && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt"; then
-    echo "Error: Failed to create and activate virtual environment or install requirements."
-    exit 1
-fi
-
-# Create Gunicorn socket file
-echo "Creating Gunicorn socket file..."
-if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.socket > /dev/null << EOF
-[Unit]
-Description=gunicorn socket
-
-[Socket]
-ListenStream=/run/gunicorn.sock
-
-[Install]
-WantedBy=sockets.target
-EOF"; then
-    echo "Error: Failed to create Gunicorn socket file."
-    exit 1
-fi
-
-# Create Gunicorn service file
-echo "Creating Gunicorn service file..."
-if ! ssh_execute "sudo tee /etc/systemd/system/gunicorn.service > /dev/null << EOF
-[Unit]
-Description=gunicorn daemon
-Requires=gunicorn.socket
-After=network.target
-
-[Service]
-User=${ssh_user}
-Group=www-data
-WorkingDirectory=/${ssh_user}/${client_name}
-ExecStart=/${ssh_user}/${client_name}/env/bin/gunicorn \
-          --access-logfile - \
-          --workers 3 \
-          --bind unix:/run/gunicorn.sock \
-          lms.wsgi:application
-
-[Install]
-WantedBy=multi-user.target
-EOF"; then
-    echo "Error: Failed to create Gunicorn service file."
-    exit 1
-fi
-
-# Start and enable Gunicorn socket
-echo "Starting and enabling Gunicorn socket..."
-if ! ssh_execute "sudo systemctl start gunicorn.socket && sudo systemctl enable gunicorn.socket"; then
-    echo "Error: Failed to start and enable Gunicorn socket."
-    exit 1
-fi
-
-# Restart Gunicorn
-echo "Restarting Gunicorn..."
-if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
-    echo "Error: Failed to restart Gunicorn."
-    exit 1
-fi
+EOF"
 
 # Create Nginx configuration
 echo "Creating Nginx configuration..."
-if ! ssh_execute "sudo tee /etc/nginx/sites-available/${client_name} > /dev/null << EOF
-server {
-    server_name ${domain_name};
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location /static/ {
-        alias /var/www/${client_name}/staticfiles/;
+ssh_execute "cat << EOF > ~/${client_name}/nginx.conf
+events {
+    worker_connections 1024;
+}
+
+http {
+    upstream django {
+        server web:8000;
     }
-    location / {
-        include proxy_params;
-        proxy_pass http://unix:/run/gunicorn.sock;
+
+    server {
+        listen 80;
+        server_name ${domain_name};
+
+        location / {
+            proxy_pass http://django;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header Host \$host;
+            proxy_redirect off;
+        }
+
+        location /static/ {
+            alias /code/staticfiles/;
+        }
     }
 }
-EOF"; then
-    echo "Error: Failed to create Nginx configuration."
-    exit 1
-fi
+EOF"
 
-# Enable Nginx configuration
-echo "Enabling Nginx configuration..."
-if ! ssh_execute "sudo ln -s /etc/nginx/sites-available/${client_name} /etc/nginx/sites-enabled/ && sudo nginx -t"; then
-    echo "Error: Failed to enable Nginx configuration."
-    exit 1
-fi
+# Set up environment variables
+echo "Setting up environment variables..."
+ssh_execute "cat << EOF > ~/${client_name}/.env
+DB_NAME=${db_name}
+DB_USER=${db_user}
+DB_PASSWORD=${db_password}
+EOF"
 
-# Restart Nginx
-echo "Restarting Nginx..."
-if ! ssh_execute "sudo systemctl restart nginx"; then
-    echo "Error: Failed to restart Nginx."
-    exit 1
+# Install Docker and Docker Compose if not already installed
+echo "Ensuring Docker and Docker Compose are installed..."
+ssh_execute '
+if ! command -v docker &> /dev/null; then
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo usermod -aG docker $USER
 fi
-
-# Configure firewall
-echo "Configuring firewall..."
-if ! ssh_execute "sudo ufw delete allow 8000 && sudo ufw allow 'Nginx Full'"; then
-    echo "Error: Failed to configure firewall."
-    exit 1
+if ! command -v docker-compose &> /dev/null; then
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
 fi
+'
 
 # Start the Docker containers
 echo "Starting Docker containers on the remote server..."
-if ! ssh_execute "cd ~/${client_name} && docker-compose up -d --build"; then
-    echo "Error: Failed to start Docker containers."
-    exit 1
-fi
+ssh_execute "cd ~/${client_name} && docker-compose up -d --build"
 
-# Remove existing staticfiles directory on host
-echo "Removing existing staticfiles directory on host..."
-if ! ssh_execute "rm -rf ~/${client_name}/staticfiles"; then
-    echo "Error: Failed to remove existing staticfiles directory."
-    exit 1
-fi
-
-# Copy staticfiles directory from Docker container to host
-echo "Copying staticfiles directory from Docker container to host..."
-if ! ssh_execute "cd ~/${client_name} && \
-                  docker cp \$(docker-compose ps -q web):/code/staticfiles ~/${client_name}/"; then
-    echo "Error: Failed to copy staticfiles directory from Docker container."
-    exit 1
-fi
-
-# Define the path to the static files
-STATIC_FILES_PATH="~/${client_name}/staticfiles"
-TARGET_PATH="/var/www/${client_name}/staticfiles"
-
-# Update permissions for the copied static files
-echo "Updating permissions for static files..."
-if ! ssh_execute "sudo find ${STATIC_FILES_PATH} -type d -exec chmod 755 {} \; && \
-                  sudo find ${STATIC_FILES_PATH} -type f -exec chmod 644 {} \; && \
-                  sudo chown -R www-data:www-data ${STATIC_FILES_PATH} && \
-                  sudo chmod g+s ${STATIC_FILES_PATH}"; then
-    echo "Error: Failed to update permissions for static files."
-    exit 1
-fi
-
-# Move static files to the target directory
-echo "Moving static files to ${TARGET_PATH}..."
-if ! ssh_execute "sudo mkdir -p /var/www/${client_name} && \
-                  sudo mv ${STATIC_FILES_PATH} /var/www/${client_name}/ && \
-                  sudo chown -R www-data:www-data ${TARGET_PATH} && \
-                  sudo chmod -R 755 ${TARGET_PATH}"; then
-    echo "Error: Failed to move static files to ${TARGET_PATH}."
-    exit 1
-fi
-
-# Restart Gunicorn
-echo "Restarting Gunicorn..."
-if ! ssh_execute "sudo systemctl daemon-reload && sudo systemctl restart gunicorn"; then
-    echo "Error: Failed to restart Gunicorn."
-    exit 1
-fi
-
-# Restart Nginx
-echo "Restarting Nginx..."
-if ! ssh_execute "sudo systemctl restart nginx"; then
-    echo "Error: Failed to restart Nginx."
-    exit 1
-fi
+# Configure firewall
+echo "Configuring firewall..."
+ssh_execute "sudo ufw allow 'Nginx Full'"
 
 echo "Deployment completed successfully!"
 echo "You can access the application at http://${domain_name}"
 echo "The client's code is located in ~/${client_name} on the remote server"
-echo "Static files are located in /var/www/${client_name}/staticfiles on the remote server"
