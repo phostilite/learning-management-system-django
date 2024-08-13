@@ -104,6 +104,19 @@ services:
       - db
     command: >
       sh -c \"
+        pip install --upgrade pip && pip install -r requirements.txt &&
+        npm install &&
+        mkdir -p /code/static/dist/css /code/static/dist/js &&
+        echo '@tailwind base;\n@tailwind components;\n@tailwind utilities;' > /code/static/dist/css/input.css &&
+        cp -r node_modules/flowbite/dist/*.js /code/static/dist/js/ || true &&
+        cp -r node_modules/flowbite/dist/*.css /code/static/dist/css/ || true &&
+        cp -r node_modules/flowbite-datepicker/dist/*.js /code/static/dist/js/ || true &&
+        cp -r node_modules/flowbite-datepicker/dist/*.css /code/static/dist/css/ || true &&
+        cp -r node_modules/leaflet/dist/*.js /code/static/dist/js/ || true &&
+        cp -r node_modules/leaflet/dist/*.css /code/static/dist/css/ || true &&
+        cp -r node_modules/animejs/lib/*.js /code/static/dist/js/ || true &&
+        cp -r node_modules/chart.js/dist/*.js /code/static/dist/js/ || true &&
+        npx tailwindcss -i /code/static/dist/css/input.css -o /code/static/dist/css/output.css --minify &&
         python manage.py makemigrations &&
         python manage.py migrate &&
         if [ ! -f /code/.initial_data_loaded ]; then
