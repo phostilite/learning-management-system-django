@@ -1,11 +1,295 @@
 {% extends './_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Dashboard - LMS Learner{% endblock %}
+{% block title %}{% trans "Dashboard - LMS Learner" %}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/learner/dashboard.css' %}">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f4f8;
+    }
+
+    .gradient-bg {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    }
+
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .dashboard-card {
+        transition: all 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-ring {
+        transform: rotate(-90deg);
+    }
+
+    .progress-ring__circle {
+        transition: stroke-dashoffset 0.35s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background-color: #e5e7eb;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .calendar-header {
+        background-color: #3b82f6;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .calendar-day {
+        background-color: white;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .calendar-day.today {
+        background-color: #bfdbfe;
+        font-weight: bold;
+    }
+
+    .calendar-day:hover {
+        background-color: #eff6ff;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Learner Dashboard" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Welcome back, Sarah! Here's your learning overview." %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="dashboard-card bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Courses in Progress" %}</h3>
+            <p class="text-3xl font-bold text-blue-600">4</p>
+        </div>
+        <div class="dashboard-card bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Completed Courses" %}</h3>
+            <p class="text-3xl font-bold text-green-600">7</p>
+        </div>
+        <div class="dashboard-card bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Certificates Earned" %}</h3>
+            <p class="text-3xl font-bold text-yellow-600">3</p>
+        </div>
+        <div class="dashboard-card bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Learning Streak" %}</h3>
+            <p class="text-3xl font-bold text-red-600">15 {% trans "days" %}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Learning Progress" %}</h3>
+                <canvas id="learningProgressChart" height="200"></canvas>
+            </div>
+        </div>
+        <div>
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Calendar" %}</h3>
+                <div class="calendar">
+                    <div class="calendar-header">Sun</div>
+                    <div class="calendar-header">Mon</div>
+                    <div class="calendar-header">Tue</div>
+                    <div class="calendar-header">Wed</div>
+                    <div class="calendar-header">Thu</div>
+                    <div class="calendar-header">Fri</div>
+                    <div class="calendar-header">Sat</div>
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day today">14</div>
+                    <div class="calendar-day">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    <div class="calendar-day">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day">28</div>
+                    <div class="calendar-day">29</div>
+                    <div class="calendar-day">30</div>
+                    <div class="calendar-day">31</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Current Courses" %}</h3>
+            <ul class="space-y-6">
+                <li class="flex items-center">
+                    <div class="w-16 h-16 mr-4">
+                        <svg class="progress-ring" width="60" height="60">
+                            <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                            <circle class="progress-ring__circle" stroke="#3b82f6" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163.36" stroke-dashoffset="40.84"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold text-gray-700">{% trans "Web Development Fundamentals" %}</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <span class="text-blue-600 font-semibold text-lg">75%</span>
+                </li>
+                <li class="flex items-center">
+                    <div class="w-16 h-16 mr-4">
+                        <svg class="progress-ring" width="60" height="60">
+                            <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                            <circle class="progress-ring__circle" stroke="#10b981" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163.36" stroke-dashoffset="81.68"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-semibold text-gray-700">{% trans "Data Science Basics" %}</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    <span class="text-green-500 font-semibold text-lg">50%</span>
+                </li>
+            </ul>
+        </div>
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Upcoming Deadlines" %}</h3>
+            <ul class="space-y-4">
+                <li class="flex items-center bg-red-50 p-4 rounded-lg">
+                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-white font-semibold">23</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700">{% trans "JavaScript Final Project" %}</h4>
+                        <p class="text-gray-600">{% trans "Due: July 23, 2024" %}</p>
+                    </div>
+                </li>
+                <li class="flex items-center bg-yellow-50 p-4 rounded-lg">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-white font-semibold">28</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-700">{% trans "Data Visualization Quiz" %}</h4>
+                        <p class="text-gray-600">{% trans "Due: July 28, 2024" %}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6 card-shadow">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Recent Activity" %}</h3>
+        <ul class="space-y-4">
+            <li class="flex items-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-book text-blue-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-700">{% trans "Completed lesson: Introduction to JavaScript" %}</h4>
+                    <p class="text-gray-600">{% trans "2 hours ago" %}</p>
+                </div>
+            </li>
+            <li class="flex items-center">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-certificate text-green-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-700">{% trans "Earned certificate: HTML & CSS Fundamentals" %}</h4>
+                    <p class="text-gray-600">{% trans "1 day ago" %}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script>
+    // Learning Progress Chart
+    var ctx = document.getElementById('learningProgressChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: '{% trans "Courses Completed" %}',
+                data: [1, 2, 2, 3, 5, 6, 7],
+                fill: false,
+                borderColor: 'rgb(59, 130, 246)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '{% trans "Number of Courses" %}'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: '{% trans "Month" %}'
+                    }
+                }
+            }
+        }
+    });
+
+    // Progress Ring Animation
+    function setProgress(percentage, circleElement) {
+        const radius = circleElement.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        const offset = circumference - (percentage / 100) * circumference;
+        circleElement.style.strokeDasharray = `${circumference} ${circumference}`;
+        circleElement.style.strokeDashoffset = offset;
+    }
+
+    document.querySelectorAll('.progress-ring__circle').forEach((circle, index) => {
+        const percentages = [75, 50]; // Corresponding to the course progress percentages
+        setProgress(percentages[index], circle);
+    });
+</script>
 {% endblock %}

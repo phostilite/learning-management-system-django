@@ -31,4 +31,11 @@ class LearnerDashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
+@method_decorator(login_required, name='dispatch')
+class LearnerMyCoursesView(ListView):
+    template_name = 'users/learner/my_courses.html'
+    context_object_name = 'courses'
+
+    def get_queryset(self):
+        pass
 
