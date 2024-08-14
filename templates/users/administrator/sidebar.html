@@ -1,4 +1,6 @@
-<aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-300 lg:flex transition-all" aria-label="Sidebar">
+{% load i18n %}
+
+<aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-300 lg:flex transition-all" aria-label="{% trans 'Sidebar' %}">
     <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-gradient-to-b from-gray-900 to-gray-800 border-r border-gray-700 shadow-lg">
         <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
             <div class="flex-1 px-3 space-y-1 divide-y divide-gray-700">
@@ -6,112 +8,112 @@
                     <li>
                         <a href="{% url 'administrator_dashboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-chart-line mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12 sidebar-icon"></i>
-                            <span class="ml-3">Dashboard</span>
+                            <span class="ml-3">{% trans "Dashboard" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'administrator_calendar' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-calendar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Calendar</span>
+                            <span class="ml-3">{% trans "Calendar" %}</span>
                         </a>
                     </li>
                     <li>
                         <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
                             <i class="fa-solid fa-graduation-cap mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Courses</span>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Courses" %}</span>
                             <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
                         </button>
                         <ul id="dropdown-courses" class="hidden py-2 space-y-2 sidebar-dropdown">
                             <li>
-                                <a href="{% url 'course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">All Courses</a>
+                                <a href="{% url 'course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Courses" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_course_category_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Categories</a>
+                                <a href="{% url 'administrator_course_category_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Categories" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_course_enrollment_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Enrollments</a>
+                                <a href="{% url 'administrator_course_enrollment_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Enrollments" %}</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-users" data-collapse-toggle="dropdown-users">
                             <i class="fa-solid fa-users mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Users</span>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Users" %}</span>
                             <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
                         </button>
                         <ul id="dropdown-users" class="hidden py-2 space-y-2 sidebar-dropdown">
                             <li>
-                                <a href="{% url 'administrator_learner_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learners</a>
+                                <a href="{% url 'administrator_learner_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Learners" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_facilitator_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Facilitators</a>
+                                <a href="{% url 'administrator_facilitator_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Facilitators" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_supervisor_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Supervisors</a>
+                                <a href="{% url 'administrator_supervisor_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Supervisors" %}</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="{% url 'administrator_leaderboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-trophy mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Leaderboard</span>
+                            <span class="ml-3">{% trans "Leaderboard" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'administrator_message_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-comments mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Messages</span>
+                            <span class="ml-3">{% trans "Messages" %}</span>
                         </a>
                     </li>
                     <li>
                         <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-reports" data-collapse-toggle="dropdown-reports">
                             <i class="fa-solid fa-chart-bar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Reports & Analytics</span>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Reports & Analytics" %}</span>
                             <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
                         </button>
                         <ul id="dropdown-reports" class="hidden py-2 space-y-2 sidebar-dropdown">
                             <li>
-                                <a href="{% url 'administrator_course_completion_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Course Completion</a>
+                                <a href="{% url 'administrator_course_completion_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Course Completion" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_user_progress_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Progress</a>
+                                <a href="{% url 'administrator_user_progress_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "User Progress" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_assessment_results_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Assessment Results</a>
+                                <a href="{% url 'administrator_assessment_results_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Assessment Results" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_user_engagement_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Engagement</a>
+                                <a href="{% url 'administrator_user_engagement_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "User Engagement" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_resource_usage_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Resource Usage</a>
+                                <a href="{% url 'administrator_resource_usage_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Resource Usage" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_certification_tracking_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Certification Tracking</a>
+                                <a href="{% url 'administrator_certification_tracking_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Certification Tracking" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_learner_feedback_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learner Feedback</a>
+                                <a href="{% url 'administrator_learner_feedback_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Learner Feedback" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_custom_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Custom Reports</a>
+                                <a href="{% url 'administrator_custom_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Custom Reports" %}</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="{% url 'administrator_certificate_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-certificate mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Certificates</span>
+                            <span class="ml-3">{% trans "Certificates" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'administrator_announcement_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-bullhorn mr-3 text-red-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Announcements</span>
+                            <span class="ml-3">{% trans "Announcements" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'administrator_help_support' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-question-circle mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Help & Support</span>
+                            <span class="ml-3">{% trans "Help & Support" %}</span>
                         </a>
                     </li>
                 </ul>
@@ -119,19 +121,19 @@
                     <li>
                         <a href="{% url 'administrator_settings' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-gear mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-90"></i>
-                            <span class="ml-3">Settings</span>
+                            <span class="ml-3">{% trans "Settings" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-file-invoice mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Billing</span>
+                            <span class="ml-3">{% trans "Billing" %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'logout' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-right-from-bracket mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Logout</span>
+                            <span class="ml-3">{% trans "Logout" %}</span>
                         </a>
                     </li>
                 </ul>

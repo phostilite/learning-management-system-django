@@ -13,16 +13,16 @@
                 <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
                     <span class="self-center whitespace-nowrap text-primary">
                         {% comment %} <img src="{% static 'img/timesprologo.jpg' %}" style="width: 100px; height: auto;" alt="TimesproLogo"> {% endcomment %}
-                         LMS
+                         {% trans "LMS" %}
                     </span>
                 </a>
             </div>
             
             <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
                 <div class="max-w-lg w-full lg:max-w-xs">
-                    <label for="search" class="sr-only">AI Search</label>
+                    <label for="search" class="sr-only">{% trans "AI Search" %}</label>
                     <div class="relative">
-                        <input id="search" name="search" class="block w-full py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="🤖 Ask AI anything..." type="search">
+                        <input id="search" name="search" class="block w-full py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="{% trans '🤖 Ask AI anything...' %}" type="search">
                         <button id="voice-search" class="absolute inset-y-0 right-0 pr-3 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
@@ -42,7 +42,7 @@
                 <div class="ml-3 relative">
                     <div>
                         <button type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="sr-only">View notifications</span>
+                            <span class="sr-only">{% trans "View notifications" %}</span>
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
@@ -53,8 +53,8 @@
                 <div class="ml-3 relative">
                     <div>
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                            <span class="sr-only">{% trans "Open user menu" %}</span>
+                            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="{% trans 'user photo' %}">
                         </button>
                     </div>
                 </div>
@@ -76,7 +76,6 @@
                     </form>
                 </div>
                 
-                
             </div>
         </div>
     </div>
@@ -94,32 +93,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const voiceSearchButton = document.getElementById('voice-search');
     voiceSearchButton.addEventListener('click', () => {
         // Implement voice search functionality here
-        alert('Voice search activated!');
+        alert('{% trans "Voice search activated!" %}');
     });
 
     const languageButton = document.getElementById('language-menu-button');
     languageButton.addEventListener('click', () => {
         // Implement language switch functionality here
-        alert('Language menu opened!');
+        alert('{% trans "Language menu opened!" %}');
     });
 
     const userMenuButton = document.getElementById('user-menu-button');
     userMenuButton.addEventListener('click', () => {
         // Implement user menu functionality here
-        alert('User menu opened!');
+        alert('{% trans "User menu opened!" %}');
     });
 
     const notificationButton = document.getElementById('notification-menu-button');
     notificationButton.addEventListener('click', () => {
         // Implement notification menu functionality here
-        alert('Notification menu opened!');
+        alert('{% trans "Notification menu opened!" %}');
     });
 
     const searchInput = document.getElementById('search');
     searchInput.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             // Implement AI search functionality here
-            alert(`Performing AI search for: ${searchInput.value}`);
+            alert(`{% trans "Performing AI search for:" %} ${searchInput.value}`);
         }
     });
 });
