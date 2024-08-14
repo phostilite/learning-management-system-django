@@ -100,6 +100,13 @@ class AdministratorCourseEnrollmentListView(ListView):
     def get_queryset(self):
         return Enrollment.objects.all()
     
+class AdministratorLearningPathListView(TemplateView):
+    template_name = 'users/administrator/course/learning_path.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
 @method_decorator(login_required, name='dispatch')
 class AdministratorCourseCompletionReportView(TemplateView):
     template_name = 'users/administrator/reports/course_completion.html'
