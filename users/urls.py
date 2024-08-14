@@ -41,6 +41,7 @@ urlpatterns = [
     path('administrator/help-support/', administartor_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
     path('administrator/messages/', administartor_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administartor_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
+    path('administrator/course/<uuid:pk>/delete/', administartor_views.AdministratorCourseDeleteView.as_view(), name='administrator_delete_course'),
 
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),

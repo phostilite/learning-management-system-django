@@ -14,6 +14,12 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAdminUser
+from django.db import transaction
+
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
@@ -348,3 +354,77 @@ class CourseDetailView(DetailView):
             logger.exception("Error fetching course details:")
             messages.error(self.request, f"An error occurred while fetching the course details: {str(e)}")
             raise Http404("An error occurred while fetching the course details.")
+        
+
+class AdministratorCourseDeleteView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, course_id):
+        """
+        Provide information about what will be deleted if the course is removed.
+        """
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Gather related data
+        deliveries = CourseDelivery.objects.filter(course=course)
+        enrollments = Enrollment.objects.filter(course_delivery__course=course)
+        resources = LearningResource.objects.filter(course=course)
+        scorm_resources = ScormResource.objects.filter(learning_resource__course=course)
+
+        warning_message = f"""
+        Warning: Deleting this course will remove the following:
+        - The course from this LMS
+        - The course and all associated SCORM packages from the SCORM player
+        - {deliveries.count()} course deliveries
+        - {enrollments.count()} user enrollments
+        - {resources.count()} learning resources
+        - {scorm_resources.count()} SCORM packages
+
+        This action cannot be undone. Are you sure you want to proceed?
+        """
+
+        return Response({"warning": warning_message}, status=status.HTTP_200_OK)
+
+    def delete(self, request, course_id):
+        """
+        Delete the course and all associated data from both the current LMS and SCORM player.
+        """
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Start a transaction to ensure all deletions are successful or none are applied
+        with transaction.atomic():
+            # Delete all SCORM packages associated with the course
+            learning_resources = LearningResource.objects.filter(course=course, resource_type='SCORM')
+            for resource in learning_resources:
+                try:
+                    scorm_resource = ScormResource.objects.get(learning_resource=resource)
+                    self.delete_scorm_package_from_scorm_player(scorm_resource.scorm_course_id)
+                except ScormResource.DoesNotExist:
+                    logger.warning(f"SCORM resource not found for learning resource {resource.id}")
+
+            # Delete the course and all related data from our local database
+            course.delete()
+
+        return Response({"message": "Course and all associated data have been successfully deleted from the LMS and SCORM player."}, status=status.HTTP_200_OK)
+
+    def delete_scorm_package_from_scorm_player(self, scorm_course_id):
+        """
+        Delete a SCORM package from the SCORM player API.
+        """
+        scorm_api_url = f"https://scorm.learnknowdigital.com/api/scorm-packages/{scorm_course_id}/"
+        headers = {"Authorization": f"Token {settings.SCORM_API_TOKEN}"}
+
+        try:
+            response = requests.delete(scorm_api_url, headers=headers)
+            if response.status_code != 204:
+                logger.error(f"Failed to delete SCORM package {scorm_course_id} from SCORM player API. Status: {response.status_code}")
+                raise Exception("Failed to delete SCORM package from SCORM player API")
+        except requests.RequestException as e:
+            logger.error(f"Error deleting SCORM package {scorm_course_id} from SCORM player API: {str(e)}")
+            raise
