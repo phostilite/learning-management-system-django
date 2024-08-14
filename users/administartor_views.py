@@ -47,6 +47,123 @@ class AdministratorLeaderboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
+class AdministratorCertificateListView(TemplateView):
+    template_name = 'users/administrator/certificates.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class AdministratorAnnouncementListView(TemplateView):
+    template_name = 'users/administrator/announcements.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class AdministratorHelpSupportView(TemplateView):
+    template_name = 'users/administrator/help_support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class AdministratorMessageListView(TemplateView):
+    template_name = 'users/administrator/messages.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class AdministratorSettingsView(TemplateView):
+    template_name = 'users/administrator/settings.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+@method_decorator(login_required, name='dispatch')
+class AdministratorCourseCategoryListView(ListView):
+    model = CourseCategory
+    template_name = 'users/administrator/course/categories.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        return CourseCategory.objects.all()
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorCourseEnrollmentListView(ListView):
+    model = Enrollment
+    template_name = 'users/administrator/course/enrollments.html'
+    context_object_name = 'enrollments'
+
+    def get_queryset(self):
+        return Enrollment.objects.all()
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorCourseCompletionReportView(TemplateView):
+    template_name = 'users/administrator/reports/course_completion.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorUserProgressReportView(TemplateView):
+    template_name = 'users/administrator/reports/user_progress.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorAssessmentResultsReportView(TemplateView):
+    template_name = 'users/administrator/reports/assessment_results.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorUserEngagementReportView(TemplateView):
+    template_name = 'users/administrator/reports/user_engagement.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorResourceUsageReportView(TemplateView):
+    template_name = 'users/administrator/reports/resource_usage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorCertificationTrackingReportView(TemplateView):
+    template_name = 'users/administrator/reports/certification_tracking.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorLearnerFeedbackReportView(TemplateView):
+    template_name = 'users/administrator/reports/learner_feedback.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorCustomReportView(TemplateView):
+    template_name = 'users/administrator/reports/custom_reports.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
 @method_decorator(login_required, name='dispatch')
 class AdministratorLearnerListView(ListView):
     template_name = 'users/administrator/learners.html'

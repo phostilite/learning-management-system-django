@@ -1,0 +1,264 @@
+{% extends '../_base.html' %}
+{% load static %}
+
+{% block title %}Assessment Results Report - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="assessment-results-page">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">Assessment Results Report</h1>
+        <p class="text-lg text-white text-center">Comprehensive analysis of assessment performance across courses and students</p>
+    </header>
+
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Assessments</h3>
+            <p class="text-3xl font-bold text-primary">324</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Score</h3>
+            <p class="text-3xl font-bold text-green-600">78.5%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Pass Rate</h3>
+            <p class="text-3xl font-bold text-blue-600">82%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Assessments This Month</h3>
+            <p class="text-3xl font-bold text-purple-600">47</p>
+        </div>
+    </div>
+
+    <!-- Assessment Search and Filters -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex-grow">
+                <input type="text" placeholder="Search assessments..." class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="flex gap-4">
+                <select class="p-2 border rounded-lg">
+                    <option>All Courses</option>
+                    <option>Web Development</option>
+                    <option>Data Science</option>
+                    <option>Digital Marketing</option>
+                </select>
+                <select class="p-2 border rounded-lg">
+                    <option>All Types</option>
+                    <option>Quiz</option>
+                    <option>Exam</option>
+                    <option>Project</option>
+                </select>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Assessment Performance Overview -->
+        <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Assessment Performance Overview</h2>
+            <canvas id="assessmentPerformanceChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Top Performing Assessments -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Top Performing Assessments</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-800 font-semibold">JavaScript Basics Quiz</p>
+                        <p class="text-gray-600 text-sm">Web Development</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">94% avg. score</span>
+                </li>
+                <li class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Data Visualization Project</p>
+                        <p class="text-gray-600 text-sm">Data Science</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">92% avg. score</span>
+                </li>
+                <li class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-800 font-semibold">SEO Strategies Exam</p>
+                        <p class="text-gray-600 text-sm">Digital Marketing</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">89% avg. score</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Assessment Type Distribution -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Assessment Type Distribution</h2>
+            <canvas id="assessmentTypeChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Recent Assessment Results -->
+        <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Assessment Results</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="Student" class="w-10 h-10 rounded-full">
+                    <div class="flex-grow">
+                        <p class="text-gray-800 font-semibold">John Doe</p>
+                        <p class="text-gray-600 text-sm">Python Fundamentals Quiz</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">95%</span>
+                    <span class="text-gray-500 text-sm">2 hours ago</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="Student" class="w-10 h-10 rounded-full">
+                    <div class="flex-grow">
+                        <p class="text-gray-800 font-semibold">Jane Smith</p>
+                        <p class="text-gray-600 text-sm">Marketing Analytics Exam</p>
+                    </div>
+                    <span class="text-yellow-600 font-semibold">78%</span>
+                    <span class="text-gray-500 text-sm">5 hours ago</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="Student" class="w-10 h-10 rounded-full">
+                    <div class="flex-grow">
+                        <p class="text-gray-800 font-semibold">Mike Johnson</p>
+                        <p class="text-gray-600 text-sm">UX Design Project</p>
+                    </div>
+                    <span class="text-green-600 font-semibold">88%</span>
+                    <span class="text-gray-500 text-sm">1 day ago</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Detailed Assessment Results Table -->
+    <div class="mt-8 bg-white rounded-lg shadow overflow-hidden">
+        <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">Detailed Assessment Results</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-600 text-sm leading-normal">
+                        <th class="py-3 px-6">Assessment Name</th>
+                        <th class="py-3 px-6">Course</th>
+                        <th class="py-3 px-6">Type</th>
+                        <th class="py-3 px-6">Avg. Score</th>
+                        <th class="py-3 px-6">Pass Rate</th>
+                        <th class="py-3 px-6">Attempts</th>
+                        <th class="py-3 px-6">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">JavaScript Fundamentals Quiz</td>
+                        <td class="py-3 px-6">Web Development Bootcamp</td>
+                        <td class="py-3 px-6">Quiz</td>
+                        <td class="py-3 px-6">85%</td>
+                        <td class="py-3 px-6">
+                            <div class="flex items-center">
+                                <span class="text-green-600 font-semibold">92%</span>
+                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">245</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:underline">View Details</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">Data Analysis Final Project</td>
+                        <td class="py-3 px-6">Data Science Fundamentals</td>
+                        <td class="py-3 px-6">Project</td>
+                        <td class="py-3 px-6">79%</td>
+                        <td class="py-3 px-6">
+                            <div class="flex items-center">
+                                <span class="text-yellow-600 font-semibold">84%</span>
+                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                    <div class="bg-yellow-600 h-2 rounded-full" style="width: 84%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">128</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:underline">View Details</button>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Assessment Performance Overview Chart
+    var performanceCtx = document.getElementById('assessmentPerformanceChart').getContext('2d');
+    var performanceChart = new Chart(performanceCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Average Score',
+                data: [75, 78, 76, 79, 80, 82],
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            {
+                label: 'Pass Rate',
+                data: [80, 82, 79, 83, 85, 87],
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+
+    // Assessment Type Distribution Chart
+    var typeCtx = document.getElementById('assessmentTypeChart').getContext('2d');
+    var typeChart = new Chart(typeCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Quizzes', 'Exams', 'Projects', 'Assignments'],
+            datasets: [{
+                data: [40, 25, 20, 15],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

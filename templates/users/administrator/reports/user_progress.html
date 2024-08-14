@@ -1,0 +1,269 @@
+{% extends '../_base.html' %}
+{% load static %}
+
+{% block title %}User Progress Analytics - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="user-progress-page">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">User Progress Analytics</h1>
+        <p class="text-lg text-white text-center">Detailed insights into individual learner progress and performance</p>
+    </header>
+
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Active Users</h3>
+            <p class="text-3xl font-bold text-primary">1,248</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Courses per User</h3>
+            <p class="text-3xl font-bold text-green-600">3.5</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Completion Rate</h3>
+            <p class="text-3xl font-bold text-blue-600">72%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Weekly Study Time</h3>
+            <p class="text-3xl font-bold text-purple-600">5.2 hours</p>
+        </div>
+    </div>
+
+    <!-- User Search and Filters -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex-grow">
+                <input type="text" placeholder="Search users..." class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="flex gap-4">
+                <select class="p-2 border rounded-lg">
+                    <option>All Courses</option>
+                    <option>Web Development</option>
+                    <option>Data Science</option>
+                    <option>Digital Marketing</option>
+                </select>
+                <select class="p-2 border rounded-lg">
+                    <option>All Progress</option>
+                    <option>Not Started</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                </select>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- User Progress Overview -->
+        <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">User Progress Overview</h2>
+            <canvas id="userProgressChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Top Performing Users -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Top Performing Users</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">John Doe</p>
+                        <p class="text-gray-600 text-sm">5 courses completed</p>
+                    </div>
+                    <span class="text-green-600 font-semibold ml-auto">98%</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Jane Smith</p>
+                        <p class="text-gray-600 text-sm">4 courses completed</p>
+                    </div>
+                    <span class="text-green-600 font-semibold ml-auto">95%</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Mike Johnson</p>
+                        <p class="text-gray-600 text-sm">3 courses completed</p>
+                    </div>
+                    <span class="text-green-600 font-semibold ml-auto">92%</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Recent User Activity -->
+        <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent User Activity</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=4" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Emily Brown</p>
+                        <p class="text-gray-600 text-sm">Completed module: Introduction to JavaScript</p>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-auto">2 hours ago</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=5" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Alex Wilson</p>
+                        <p class="text-gray-600 text-sm">Started course: Advanced Data Analysis</p>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-auto">5 hours ago</span>
+                </li>
+                <li class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=6" alt="User" class="w-10 h-10 rounded-full">
+                    <div>
+                        <p class="text-gray-800 font-semibold">Sarah Lee</p>
+                        <p class="text-gray-600 text-sm">Submitted assignment: Marketing Strategy Plan</p>
+                    </div>
+                    <span class="text-gray-500 text-sm ml-auto">1 day ago</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- User Engagement Metrics -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">User Engagement Metrics</h2>
+            <canvas id="userEngagementChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Detailed User Progress Table -->
+    <div class="mt-8 bg-white rounded-lg shadow overflow-hidden">
+        <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">Detailed User Progress</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-600 text-sm leading-normal">
+                        <th class="py-3 px-6">User</th>
+                        <th class="py-3 px-6">Courses Enrolled</th>
+                        <th class="py-3 px-6">Courses Completed</th>
+                        <th class="py-3 px-6">Avg. Progress</th>
+                        <th class="py-3 px-6">Study Time (Last 7 days)</th>
+                        <th class="py-3 px-6">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 flex items-center">
+                            <img src="https://i.pravatar.cc/40?img=7" alt="User" class="w-8 h-8 rounded-full mr-4">
+                            <span>David Miller</span>
+                        </td>
+                        <td class="py-3 px-6">4</td>
+                        <td class="py-3 px-6">2</td>
+                        <td class="py-3 px-6">
+                            <div class="flex items-center">
+                                <span class="text-green-600 font-semibold">75%</span>
+                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">8.5 hours</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:underline">View Details</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 flex items-center">
+                            <img src="https://i.pravatar.cc/40?img=8" alt="User" class="w-8 h-8 rounded-full mr-4">
+                            <span>Emma Wilson</span>
+                        </td>
+                        <td class="py-3 px-6">3</td>
+                        <td class="py-3 px-6">1</td>
+                        <td class="py-3 px-6">
+                            <div class="flex items-center">
+                                <span class="text-yellow-600 font-semibold">45%</span>
+                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                    <div class="bg-yellow-600 h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-6">5.2 hours</td>
+                        <td class="py-3 px-6">
+                            <button class="text-blue-500 hover:underline">View Details</button>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // User Progress Overview Chart
+    var userProgressCtx = document.getElementById('userProgressChart').getContext('2d');
+    var userProgressChart = new Chart(userProgressCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Not Started', 'In Progress', 'Completed'],
+            datasets: [{
+                label: 'Number of Users',
+                data: [150, 680, 418],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // User Engagement Chart
+    var userEngagementCtx = document.getElementById('userEngagementChart').getContext('2d');
+    var userEngagementChart = new Chart(userEngagementCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Video Lessons', 'Quizzes', 'Assignments', 'Discussion Forums'],
+            datasets: [{
+                data: [45, 25, 20, 10],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

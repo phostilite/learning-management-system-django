@@ -1,0 +1,159 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Messages - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="messages-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Message Center" %}</h1>
+            <p class="text-center text-lg">{% trans "Manage and Oversee System Communications" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 rtl:mr-1 rtl:ml-0">{% trans "Messages" %}</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Message Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Total Messages" %}</h3>
+            <p class="text-3xl font-bold text-primary">12,345</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Unread Messages" %}</h3>
+            <p class="text-3xl font-bold text-accent">78</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Flagged Messages" %}</h3>
+            <p class="text-3xl font-bold text-yellow-500">23</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Response Time" %}</h3>
+            <p class="text-3xl font-bold text-green-600">2.5h</p>
+        </div>
+    </div>
+
+    <!-- Message Management Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <!-- Message List -->
+        <div class="md:col-span-1 bg-white rounded-lg card-shadow overflow-hidden">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold">{% trans "Messages" %}</h2>
+                <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                    {% trans "Compose" %}
+                </button>
+            </div>
+            <div class="overflow-y-auto" style="max-height: 600px;">
+                <!-- Message Item -->
+                <div class="border-b border-gray-200 p-4 hover:bg-gray-50 cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-semibold">John Doe</span>
+                        <span class="text-sm text-gray-500">2023-08-14 10:30</span>
+                    </div>
+                    <p class="text-gray-600 truncate">{% trans "Question about course registration..." %}</p>
+                </div>
+                <!-- Repeat for more messages -->
+            </div>
+        </div>
+
+        <!-- Message Content -->
+        <div class="md:col-span-2 bg-white rounded-lg card-shadow overflow-hidden">
+            <div class="p-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold">{% trans "Message Details" %}</h2>
+            </div>
+            <div class="p-4">
+                <div class="mb-4">
+                    <span class="font-semibold">{% trans "From:" %}</span> John Doe (john.doe@example.com)
+                </div>
+                <div class="mb-4">
+                    <span class="font-semibold">{% trans "Subject:" %}</span> {% trans "Question about course registration" %}
+                </div>
+                <div class="mb-4">
+                    <span class="font-semibold">{% trans "Date:" %}</span> 2023-08-14 10:30
+                </div>
+                <div class="mb-4">
+                    <p>{% trans "Hello, I'm having trouble registering for the Advanced Python course. The system keeps showing an error message when I try to complete the registration. Can you please help me with this issue?" %}</p>
+                </div>
+                <div class="mt-6">
+                    <textarea class="w-full p-2 border border-gray-300 rounded-lg" rows="4" placeholder="{% trans 'Type your reply here...' %}"></textarea>
+                    <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                        {% trans "Send Reply" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Filters and Search -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <div class="p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold">{% trans "Message Filters" %}</h2>
+        </div>
+        <div class="p-4 flex flex-wrap gap-4">
+            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                <option selected>{% trans "All Messages" %}</option>
+                <option>{% trans "Unread" %}</option>
+                <option>{% trans "Flagged" %}</option>
+                <option>{% trans "Archived" %}</option>
+            </select>
+            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                <option selected>{% trans "All Users" %}</option>
+                <option>{% trans "Students" %}</option>
+                <option>{% trans "Instructors" %}</option>
+                <option>{% trans "Administrators" %}</option>
+            </select>
+            <input type="text" placeholder="{% trans 'Search messages...' %}" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                {% trans "Apply Filters" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Bulk Actions -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <div class="p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold">{% trans "Bulk Actions" %}</h2>
+        </div>
+        <div class="p-4 flex flex-wrap gap-4">
+            <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                {% trans "Mark as Read" %}
+            </button>
+            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+                {% trans "Flag Selected" %}
+            </button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                {% trans "Delete Selected" %}
+            </button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                {% trans "Export Selected" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

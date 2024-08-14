@@ -26,10 +26,10 @@
                                 <a href="{% url 'course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">All Courses</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Categories</a>
+                                <a href="{% url 'administrator_course_category_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Categories</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Enrollments</a>
+                                <a href="{% url 'administrator_course_enrollment_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Enrollments</a>
                             </li>
                         </ul>
                     </li>
@@ -58,7 +58,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{% url 'administrator_message_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-comments mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Messages</span>
                         </a>
@@ -71,45 +71,45 @@
                         </button>
                         <ul id="dropdown-reports" class="hidden py-2 space-y-2 sidebar-dropdown">
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Course Completion</a>
+                                <a href="{% url 'administrator_course_completion_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Course Completion</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Progress</a>
+                                <a href="{% url 'administrator_user_progress_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Progress</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Assessment Results</a>
+                                <a href="{% url 'administrator_assessment_results_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Assessment Results</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Engagement</a>
+                                <a href="{% url 'administrator_user_engagement_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">User Engagement</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Resource Usage</a>
+                                <a href="{% url 'administrator_resource_usage_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Resource Usage</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Certification Tracking</a>
+                                <a href="{% url 'administrator_certification_tracking_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Certification Tracking</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learner Feedback</a>
+                                <a href="{% url 'administrator_learner_feedback_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Learner Feedback</a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Custom Reports</a>
+                                <a href="{% url 'administrator_custom_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Custom Reports</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{% url 'administrator_certificate_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-certificate mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Certificates</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{% url 'administrator_announcement_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-bullhorn mr-3 text-red-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Announcements</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{% url 'administrator_help_support' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-question-circle mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Help & Support</span>
                         </a>
@@ -117,7 +117,7 @@
                 </ul>
                 <ul class="pt-5 mt-5 space-y-2 border-t border-gray-700">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{% url 'administrator_settings' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-gear mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-90"></i>
                             <span class="ml-3">Settings</span>
                         </a>

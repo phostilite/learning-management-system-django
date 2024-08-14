@@ -1,0 +1,301 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Settings - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/administrator/settings.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="settings-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "LMS Settings" %}</h1>
+            <p class="text-center text-lg">{% trans "Configure and Customize Your Learning Management System" %}</p>
+        </div>
+        <div class="absolute inset-0 islamic-pattern"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 rtl:mr-1 rtl:ml-0">{% trans "Settings" %}</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Settings Tabs and Content -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden">
+        <!-- Tabs -->
+        <div class="border-b border-gray-200">
+            <nav class="flex flex-wrap" aria-label="Tabs">
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" data-tab="general">
+                    {% trans "General" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="security">
+                    {% trans "Security" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="appearance">
+                    {% trans "Appearance" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="notifications">
+                    {% trans "Notifications" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="integrations">
+                    {% trans "Integrations" %}
+                </button>
+            </nav>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="p-6">
+            <!-- General Settings -->
+            <div id="general" class="tab-content">
+                <form>
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-semibold mb-4">{% trans "General Settings" %}</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="site_name" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site Name" %}</label>
+                                <input type="text" id="site_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="My LMS" required>
+                            </div>
+                            <div>
+                                <label for="site_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site URL" %}</label>
+                                <input type="url" id="site_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="https://example.com" required>
+                            </div>
+                            <div>
+                                <label for="admin_email" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Admin Email" %}</label>
+                                <input type="email" id="admin_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="admin@example.com" required>
+                            </div>
+                            <div>
+                                <label for="time_zone" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Time Zone" %}</label>
+                                <select id="time_zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="UTC">UTC</option>
+                                    <option value="America/New_York">America/New_York</option>
+                                    <option value="Europe/London">Europe/London</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Registration Settings" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_registration" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="allow_registration" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow new user registrations" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="require_approval" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="require_approval" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require admin approval for new registrations" %}</label>
+                        </div>
+                    </div>
+    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Course Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="default_course_duration" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Course Duration (weeks)" %}</label>
+                                <input type="number" id="default_course_duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" max="52" value="12">
+                            </div>
+                            <div>
+                                <label for="max_students_per_course" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Students per Course" %}</label>
+                                <input type="number" id="max_students_per_course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="100">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+                </form>
+            </div>
+
+            <!-- Security Settings -->
+            <div id="security" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Security Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Password Policy" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="require_uppercase" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="require_uppercase" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require uppercase letters" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="require_number" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="require_number" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require numbers" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="require_special_char" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="require_special_char" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require special characters" %}</label>
+                        </div>
+                        <div>
+                            <label for="min_password_length" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Minimum Password Length" %}</label>
+                            <input type="number" id="min_password_length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="8" value="8">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Two-Factor Authentication" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_2fa" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_2fa" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Two-Factor Authentication" %}</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+                </form>
+            </div>
+
+            <!-- Appearance Settings -->
+            <div id="appearance" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Appearance Settings" %}</h2>
+                    <div class="mb-6">
+                        <label for="theme_color" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Primary Theme Color" %}</label>
+                        <input type="color" id="theme_color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="#1e3a8a">
+                    </div>
+                    <div class="mb-6">
+                        <label for="logo_upload" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Upload Logo" %}</label>
+                        <input type="file" id="logo_upload" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" accept="image/*">
+                    </div>
+                    <div class="mb-6">
+                        <label for="font_family" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Font Family" %}</label>
+                        <select id="font_family" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="Helvetica, sans-serif">Helvetica</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Times New Roman', serif">Times New Roman</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+                </form>
+            </div>
+
+            <!-- Notifications Settings -->
+            <div id="notifications" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Notifications Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Email Notifications" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="notify_new_user" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="notify_new_user" class="ml-2 text-sm font-medium text-gray-900">{% trans "New user registration" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="notify_course_completion" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="notify_course_completion" class="ml-2 text-sm font-medium text-gray-900">{% trans "Course completion" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="notify_new_course" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="notify_new_course" class="ml-2 text-sm font-medium text-gray-900">
+                                <label for="notify_new_course" class="ml-2 text-sm font-medium text-gray-900">{% trans "New course added" %}</label>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">{% trans "In-App Notifications" %}</h3>
+                <div class="flex items-center mb-4">
+                    <input id="notify_assignment_due" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="notify_assignment_due" class="ml-2 text-sm font-medium text-gray-900">{% trans "Assignment due dates" %}</label>
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="notify_forum_activity" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="notify_forum_activity" class="ml-2 text-sm font-medium text-gray-900">{% trans "Forum activity" %}</label>
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="notify_grade_posted" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="notify_grade_posted" class="ml-2 text-sm font-medium text-gray-900">{% trans "New grades posted" %}</label>
+                </div>
+            </div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+        </form>
+    </div>
+
+    <!-- Integrations Settings -->
+    <div id="integrations" class="tab-content hidden">
+        <form>
+            <h2 class="text-2xl font-semibold mb-4">{% trans "Integrations Settings" %}</h2>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">{% trans "Google Integration" %}</h3>
+                <div class="mb-4">
+                    <label for="google_client_id" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Google Client ID" %}</label>
+                    <input type="text" id="google_client_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter Google Client ID">
+                </div>
+                <div class="mb-4">
+                    <label for="google_client_secret" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Google Client Secret" %}</label>
+                    <input type="password" id="google_client_secret" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter Google Client Secret">
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="enable_google_login" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="enable_google_login" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Google Login" %}</label>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">{% trans "Payment Gateway Integration" %}</h3>
+                <div class="mb-4">
+                    <label for="payment_gateway" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Select Payment Gateway" %}</label>
+                    <select id="payment_gateway" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="">{% trans "Select a gateway" %}</option>
+                        <option value="stripe">Stripe</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="square">Square</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="payment_api_key" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Key" %}</label>
+                    <input type="password" id="payment_api_key" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter API Key">
+                </div>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">{% trans "Video Conferencing Integration" %}</h3>
+                <div class="mb-4">
+                    <label for="video_platform" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Select Video Platform" %}</label>
+                    <select id="video_platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="">{% trans "Select a platform" %}</option>
+                        <option value="zoom">Zoom</option>
+                        <option value="google_meet">Google Meet</option>
+                        <option value="microsoft_teams">Microsoft Teams</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="video_api_key" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Key" %}</label>
+                    <input type="password" id="video_api_key" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter API Key">
+                </div>
+            </div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.getAttribute('data-tab');
+                
+                tabButtons.forEach(btn => btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+                document.getElementById(tabName).classList.remove('hidden');
+            });
+        });
+    });
+</script>
+{% endblock %}
