@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 04:56+0000\n"
+"POT-Creation-Date: 2024-08-14 05:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -603,6 +603,7 @@ msgid "Order"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py:499
+#: templates/users/administrator/course/list.html:133
 msgid "Delete"
 msgstr ""
 
@@ -762,30 +763,37 @@ msgid "Sunday"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:16
+#: templates/users/administrator/calendar.html:120
 msgid "Mon"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:17
+#: templates/users/administrator/calendar.html:121
 msgid "Tue"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:18
+#: templates/users/administrator/calendar.html:122
 msgid "Wed"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:19
+#: templates/users/administrator/calendar.html:123
 msgid "Thu"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:20
+#: templates/users/administrator/calendar.html:124
 msgid "Fri"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:21
+#: templates/users/administrator/calendar.html:125
 msgid "Sat"
 msgstr ""
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py:22
+#: templates/users/administrator/calendar.html:119
 msgid "Sun"
 msgstr ""
 
@@ -1257,7 +1265,9 @@ msgid "Create and Manage System-wide Announcements"
 msgstr "إنشاء وإدارة الإعلانات عبر النظام"
 
 #: templates/users/administrator/announcements.html:66
+#: templates/users/administrator/calendar.html:94
 #: templates/users/administrator/certificates.html:66
+#: templates/users/administrator/course/list.html:24
 #: templates/users/administrator/dashboard.html:34
 #: templates/users/administrator/help_support.html:66
 #: templates/users/administrator/leaderboard.html:66
@@ -1296,6 +1306,7 @@ msgid "Create New Announcement"
 msgstr "إنشاء إعلان جديد"
 
 #: templates/users/administrator/announcements.html:112
+#: templates/users/administrator/course/list.html:48
 #: templates/users/administrator/leaderboard.html:82
 msgid "All Categories"
 msgstr "جميع الفئات"
@@ -1318,6 +1329,7 @@ msgid "Maintenance"
 msgstr "الصيانة"
 
 #: templates/users/administrator/announcements.html:119
+#: templates/users/administrator/course/list.html:54
 #, fuzzy
 #| msgid "All Categories"
 msgid "All Statuses"
@@ -1406,6 +1418,117 @@ msgstr "السابق"
 #: templates/users/administrator/leaderboard.html:203
 msgid "Next"
 msgstr "التالي"
+
+#: templates/users/administrator/calendar.html:85
+#, fuzzy
+#| msgid "Calendar"
+msgid "LMS Calendar"
+msgstr "التقويم"
+
+#: templates/users/administrator/calendar.html:86
+msgid "Plan, Schedule, and Manage Your Educational Journey"
+msgstr "خطط وجدول وأدر رحلتك التعليمية"
+
+#: templates/users/administrator/calendar.html:100
+#: templates/users/administrator/sidebar.html:17
+msgid "Calendar"
+msgstr "التقويم"
+
+#: templates/users/administrator/calendar.html:108
+#, fuzzy
+#| msgid "July 20, 2024"
+msgid "July 2024"
+msgstr "20 يوليو 2024"
+
+#: templates/users/administrator/calendar.html:134
+#, fuzzy
+#| msgid "New course added"
+msgid "New Course Launch"
+msgstr "دورة جديدة مضافة"
+
+#: templates/users/administrator/calendar.html:192
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Advanced ML Course"
+msgstr "الدورات النشطة"
+
+#: templates/users/administrator/calendar.html:208
+msgid "E-learning Webinar"
+msgstr "ندوة عبر الإنترنت للتعلم الإلكتروني"
+
+#: templates/users/administrator/calendar.html:244
+#: templates/users/administrator/calendar.html:270
+#, fuzzy
+#| msgid "Events"
+msgid "Add Event"
+msgstr "الفعاليات"
+
+#: templates/users/administrator/calendar.html:248
+#, fuzzy
+#| msgid "Site Name"
+msgid "Event Name"
+msgstr "اسم الموقع"
+
+#: templates/users/administrator/calendar.html:254
+#: templates/users/administrator/dashboard.html:109
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/users/administrator/calendar.html:260
+#, fuzzy
+#| msgid "Events"
+msgid "Event Type"
+msgstr "الفعاليات"
+
+#: templates/users/administrator/calendar.html:263
+#, fuzzy
+#| msgid "Course"
+msgid "Course Launch"
+msgstr "الدورة"
+
+#: templates/users/administrator/calendar.html:264
+msgid "Webinar"
+msgstr "ندوة عبر الإنترنت"
+
+#: templates/users/administrator/calendar.html:265
+msgid "Workshop"
+msgstr "ورشة عمل"
+
+#: templates/users/administrator/calendar.html:266
+msgid "Exam"
+msgstr "امتحان"
+
+#: templates/users/administrator/calendar.html:277
+#: templates/users/administrator/dashboard.html:174
+msgid "Upcoming Events"
+msgstr "الفعاليات القادمة"
+
+#: templates/users/administrator/calendar.html:284
+#, fuzzy
+#| msgid "New Course Launch: Advanced Machine Learning"
+msgid "Advanced Machine Learning Course Launch"
+msgstr "إطلاق دورة جديدة: تعلم الآلة المتقدم"
+
+#: templates/users/administrator/calendar.html:285
+#: templates/users/administrator/calendar.html:294
+#, python-format
+msgid "%(date|date:\"F d, Y\")s"
+msgstr "%(date|date:\"d F, Y\")s"
+
+#: templates/users/administrator/calendar.html:293
+#: templates/users/administrator/dashboard.html:181
+msgid "Webinar: Future of E-learning"
+msgstr "ندوة عبر الويب: مستقبل التعليم الإلكتروني"
+
+#: templates/users/administrator/calendar.html:302
+#: templates/users/administrator/dashboard.html:185
+msgid "Summer Coding Bootcamp"
+msgstr "معسكر الترميز الصيفي"
+
+#: templates/users/administrator/calendar.html:303
+#, python-format
+msgid "%(start_date|date:\"F d\")s - %(end_date|date:\"F d, Y\")s"
+msgstr "%(start_date|date:\"d F\")s - %(end_date|date:\"d F, Y\")s"
 
 #: templates/users/administrator/certificates.html:5
 #, fuzzy
@@ -1550,6 +1673,117 @@ msgstr "تحميل الشهادة"
 msgid "Revoke Certificate"
 msgstr "إلغاء الشهادة"
 
+#: templates/users/administrator/course/list.html:5
+#, fuzzy
+#| msgid "Leaderboard - LMS Admin"
+msgid "Courses - LMS Admin"
+msgstr "لوحة المتصدرين - إدارة نظام إدارة التعلم"
+
+#: templates/users/administrator/course/list.html:15
+#, fuzzy
+#| msgid "Business Management"
+msgid "Courses Management"
+msgstr "إدارة الأعمال"
+
+#: templates/users/administrator/course/list.html:16
+msgid "Manage and Organize Your Courses"
+msgstr ""
+
+#: templates/users/administrator/course/list.html:19
+msgid "Breadcrumb"
+msgstr ""
+
+#: templates/users/administrator/course/list.html:30
+#: templates/users/administrator/sidebar.html:23
+msgid "Courses"
+msgstr "الدورات"
+
+#: templates/users/administrator/course/list.html:43
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search courses..."
+msgstr "ابحث عن الرسائل..."
+
+#: templates/users/administrator/course/list.html:49
+#, fuzzy
+#| msgid "All Categories"
+msgid "Category 1"
+msgstr "الفئة"
+
+#: templates/users/administrator/course/list.html:50
+#, fuzzy
+#| msgid "All Categories"
+msgid "Category 2"
+msgstr "الفئة"
+
+#: templates/users/administrator/course/list.html:51
+#, fuzzy
+#| msgid "All Categories"
+msgid "Category 3"
+msgstr "الفئة"
+
+#: templates/users/administrator/course/list.html:55
+#: templates/users/administrator/course/list.html:92
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published"
+msgstr "تاريخ النشر"
+
+#: templates/users/administrator/course/list.html:56
+#: templates/users/administrator/course/list.html:92
+#, fuzzy
+#| msgid "Published Date"
+msgid "Unpublished"
+msgstr "تاريخ النشر"
+
+#: templates/users/administrator/course/list.html:64
+#, fuzzy
+#| msgid "Completed course"
+msgid "Create Course"
+msgstr "أكمل الدورة"
+
+#: templates/users/administrator/course/list.html:67
+#, fuzzy
+#| msgid "All Categories"
+msgid "Create Category"
+msgstr "الفئة"
+
+#: templates/users/administrator/course/list.html:76
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Cover"
+msgstr "إتمام الدورة"
+
+#: templates/users/administrator/course/list.html:102
+msgid "View"
+msgstr ""
+
+#: templates/users/administrator/course/list.html:107
+msgid "Edit"
+msgstr ""
+
+#: templates/users/administrator/course/list.html:112
+#, fuzzy
+#| msgid "Manage Templates"
+msgid "Manage Deliveries"
+msgstr "إدارة القوالب"
+
+#: templates/users/administrator/course/list.html:117
+#, fuzzy
+#| msgid "Expiry Date"
+msgid "Export Data"
+msgstr "تاريخ الانتهاء"
+
+#: templates/users/administrator/course/list.html:123
+msgid "Unpublish"
+msgstr ""
+
+#: templates/users/administrator/course/list.html:127
+#, fuzzy
+#| msgid "Published Date"
+msgid "Publish"
+msgstr "تاريخ النشر"
+
 #: templates/users/administrator/dashboard.html:5
 msgid "Dashboard - LMS Admin"
 msgstr "لوحة التحكم - إدارة نظام إدارة التعلم"
@@ -1662,10 +1896,6 @@ msgstr "المستخدم"
 msgid "Activity"
 msgstr "النشاط"
 
-#: templates/users/administrator/dashboard.html:109
-msgid "Date"
-msgstr "التاريخ"
-
 #: templates/users/administrator/dashboard.html:114
 #: templates/users/administrator/leaderboard.html:121
 msgid "Ahmed Al-Mansour"
@@ -1748,10 +1978,6 @@ msgstr "أميرة خليل"
 msgid "93%% completion rate"
 msgstr "93% معدل الإكمال"
 
-#: templates/users/administrator/dashboard.html:174
-msgid "Upcoming Events"
-msgstr "الفعاليات القادمة"
-
 #: templates/users/administrator/dashboard.html:177
 msgid "New Course Launch: Advanced Machine Learning"
 msgstr "إطلاق دورة جديدة: تعلم الآلة المتقدم"
@@ -1760,17 +1986,9 @@ msgstr "إطلاق دورة جديدة: تعلم الآلة المتقدم"
 msgid "July 20, 2024"
 msgstr "20 يوليو 2024"
 
-#: templates/users/administrator/dashboard.html:181
-msgid "Webinar: Future of E-learning"
-msgstr "ندوة عبر الويب: مستقبل التعليم الإلكتروني"
-
 #: templates/users/administrator/dashboard.html:182
 msgid "July 25, 2024"
 msgstr "25 يوليو 2024"
-
-#: templates/users/administrator/dashboard.html:185
-msgid "Summer Coding Bootcamp"
-msgstr "معسكر الترميز الصيفي"
 
 #: templates/users/administrator/dashboard.html:186
 msgid "August 1-15, 2024"
@@ -2450,14 +2668,6 @@ msgstr "اختر منصة"
 #: templates/users/administrator/sidebar.html:3
 msgid "Sidebar"
 msgstr "الشريط الجانبي"
-
-#: templates/users/administrator/sidebar.html:17
-msgid "Calendar"
-msgstr "التقويم"
-
-#: templates/users/administrator/sidebar.html:23
-msgid "Courses"
-msgstr "الدورات"
 
 #: templates/users/administrator/sidebar.html:31
 msgid "Categories"

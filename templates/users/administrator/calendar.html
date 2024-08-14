@@ -1,4 +1,6 @@
 {% extends './_base.html' %}
+{% load i18n %}
+
 {% load static %}
 
 {% block title %}Calendar - LMS Admin{% endblock %}
@@ -80,8 +82,8 @@ h1, h2, h3, h4, h5, h6 {
 
 <div class="calendar-specific-class">
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
-        <h1 class="text-4xl font-bold text-center mb-2">LMS Calendar</h1>
-        <p class="text-center text-lg">Plan, Schedule, and Manage Your Educational Journey</p>
+        <h1 class="text-4xl font-bold text-center mb-2">{% trans "LMS Calendar" %}</h1>
+        <p class="text-center text-lg">{% trans "Plan, Schedule, and Manage Your Educational Journey" %}</p>
     </header>
 
     <nav class="flex mb-4" aria-label="Breadcrumb">
@@ -89,13 +91,13 @@ h1, h2, h3, h4, h5, h6 {
             <li class="inline-flex items-center">
                 <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                    Dashboard
+                    {% trans "Dashboard" %}
                 </a>
             </li>
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Calendar</a>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Calendar" %}</a>
                 </div>
             </li>
         </ol>
@@ -103,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 
     <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-3xl font-semibold text-primary">July 2024</h2>
+            <h2 class="text-3xl font-semibold text-primary">{% trans "July 2024" %}</h2>
             <div>
                 <button class="text-gray-600 hover:text-primary">
                     <i class="fas fa-chevron-left"></i>
@@ -114,13 +116,13 @@ h1, h2, h3, h4, h5, h6 {
             </div>
         </div>
         <div class="calendar">
-            <div class="calendar-header">Sun</div>
-            <div class="calendar-header">Mon</div>
-            <div class="calendar-header">Tue</div>
-            <div class="calendar-header">Wed</div>
-            <div class="calendar-header">Thu</div>
-            <div class="calendar-header">Fri</div>
-            <div class="calendar-header">Sat</div>
+            <div class="calendar-header">{% trans "Sun" %}</div>
+            <div class="calendar-header">{% trans "Mon" %}</div>
+            <div class="calendar-header">{% trans "Tue" %}</div>
+            <div class="calendar-header">{% trans "Wed" %}</div>
+            <div class="calendar-header">{% trans "Thu" %}</div>
+            <div class="calendar-header">{% trans "Fri" %}</div>
+            <div class="calendar-header">{% trans "Sat" %}</div>
 
             <!-- Previous month -->
             <div class="calendar-day other-month">
@@ -129,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
             <!-- July 2024 -->
             <div class="calendar-day">
                 <div class="calendar-day-header">1</div>
-                <div class="calendar-event">New Course Launch</div>
+                <div class="calendar-event">{% trans "New Course Launch" %}</div>
             </div>
             <div class="calendar-day">
                 <div class="calendar-day-header">2</div>
@@ -187,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
             </div>
             <div class="calendar-day">
                 <div class="calendar-day-header">20</div>
-                <div class="calendar-event">Advanced ML Course</div>
+                <div class="calendar-event">{% trans "Advanced ML Course" %}</div>
             </div>
             <div class="calendar-day">
                 <div class="calendar-day-header">21</div>
@@ -203,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
             </div>
             <div class="calendar-day">
                 <div class="calendar-day-header">25</div>
-                <div class="calendar-event">E-learning Webinar</div>
+                <div class="calendar-event">{% trans "E-learning Webinar" %}</div>
             </div>
             <div class="calendar-day">
                 <div class="calendar-day-header">26</div>
@@ -239,48 +241,48 @@ h1, h2, h3, h4, h5, h6 {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Add Event -->
         <div class="bg-white rounded-xl p-6 card-shadow">
-            <h3 class="text-2xl font-semibold text-primary mb-4">Add Event</h3>
+            <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Add Event" %}</h3>
             <form>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2" for="event-name">
-                        Event Name
+                        {% trans "Event Name" %}
                     </label>
                     <input type="text" id="event-name" name="event-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2" for="event-date">
-                        Date
+                        {% trans "Date" %}
                     </label>
                     <input type="date" id="event-date" name="event-date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2" for="event-type">
-                        Event Type
+                        {% trans "Event Type" %}
                     </label>
                     <select id="event-type" name="event-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option>Course Launch</option>
-                        <option>Webinar</option>
-                        <option>Workshop</option>
-                        <option>Exam</option>
+                        <option>{% trans "Course Launch" %}</option>
+                        <option>{% trans "Webinar" %}</option>
+                        <option>{% trans "Workshop" %}</option>
+                        <option>{% trans "Exam" %}</option>
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-accent text-white py-2 px-4 rounded-md hover:bg-accent-dark transition duration-300">
-                    Add Event
+                    {% trans "Add Event" %}
                 </button>
             </form>
         </div>
 
         <!-- Upcoming Events -->
         <div class="bg-white rounded-xl p-6 card-shadow">
-            <h3 class="text-2xl font-semibold text-primary mb-4">Upcoming Events</h3>
+            <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Upcoming Events" %}</h3>
             <ul class="space-y-4">
                 <li class="flex items-center">
                     <div class="bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div>
-                        <p class="font-semibold">Advanced Machine Learning Course Launch</p>
-                        <p class="text-sm text-gray-500">July 20, 2024</p>
+                        <p class="font-semibold">{% trans "Advanced Machine Learning Course Launch" %}</p>
+                        <p class="text-sm text-gray-500">{% blocktrans with date="2024-07-20" %}{{ date|date:"F d, Y" }}{% endblocktrans %}</p>
                     </div>
                 </li>
                 <li class="flex items-center">
@@ -288,8 +290,8 @@ h1, h2, h3, h4, h5, h6 {
                         <i class="fas fa-video"></i>
                     </div>
                     <div>
-                        <p class="font-semibold">Webinar: Future of E-learning</p>
-                        <p class="text-sm text-gray-500">July 25, 2024</p>
+                        <p class="font-semibold">{% trans "Webinar: Future of E-learning" %}</p>
+                        <p class="text-sm text-gray-500">{% blocktrans with date="2024-07-25" %}{{ date|date:"F d, Y" }}{% endblocktrans %}</p>
                     </div>
                 </li>
                 <li class="flex items-center">
@@ -297,8 +299,8 @@ h1, h2, h3, h4, h5, h6 {
                         <i class="fas fa-code"></i>
                     </div>
                     <div>
-                        <p class="font-semibold">Summer Coding Bootcamp</p>
-                        <p class="text-sm text-gray-500">August 1-15, 2024</p>
+                        <p class="font-semibold">{% trans "Summer Coding Bootcamp" %}</p>
+                        <p class="text-sm text-gray-500">{% blocktrans with start_date="2024-08-01" end_date="2024-08-15" %}{{ start_date|date:"F d" }} - {{ end_date|date:"F d, Y" }}{% endblocktrans %}</p>
                     </div>
                 </li>
             </ul>
