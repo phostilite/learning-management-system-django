@@ -18,6 +18,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import BasePermission
 from django.db import transaction
 
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
@@ -356,16 +357,22 @@ class CourseDetailView(DetailView):
             raise Http404("An error occurred while fetching the course details.")
         
 
+class IsInAdministratorGroup(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.groups.filter(name='administrator').exists()
+
 class AdministratorCourseDeleteView(APIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsInAdministratorGroup]
 
     def get(self, request, course_id):
         """
         Provide information about what will be deleted if the course is removed.
         """
+        logger.info(f"GET request received for course_id: {course_id}")
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
+            logger.error(f"Course with id {course_id} not found")
             return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
 
         # Gather related data
@@ -373,6 +380,8 @@ class AdministratorCourseDeleteView(APIView):
         enrollments = Enrollment.objects.filter(course_delivery__course=course)
         resources = LearningResource.objects.filter(course=course)
         scorm_resources = ScormResource.objects.filter(learning_resource__course=course)
+
+        logger.info(f"Related data for course_id {course_id}: {deliveries.count()} deliveries, {enrollments.count()} enrollments, {resources.count()} resources, {scorm_resources.count()} SCORM packages")
 
         warning_message = f"""
         Warning: Deleting this course will remove the following:
@@ -386,19 +395,23 @@ class AdministratorCourseDeleteView(APIView):
         This action cannot be undone. Are you sure you want to proceed?
         """
 
+        logger.info(f"GET request for course_id {course_id} completed successfully")
         return Response({"warning": warning_message}, status=status.HTTP_200_OK)
 
     def delete(self, request, course_id):
         """
         Delete the course and all associated data from both the current LMS and SCORM player.
         """
+        logger.info(f"DELETE request received for course_id: {course_id}")
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
+            logger.error(f"Course with id {course_id} not found")
             return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
 
         # Start a transaction to ensure all deletions are successful or none are applied
         with transaction.atomic():
+            logger.info(f"Transaction started for deleting course_id {course_id}")
             # Delete all SCORM packages associated with the course
             learning_resources = LearningResource.objects.filter(course=course, resource_type='SCORM')
             for resource in learning_resources:
@@ -410,14 +423,17 @@ class AdministratorCourseDeleteView(APIView):
 
             # Delete the course and all related data from our local database
             course.delete()
+            logger.info(f"Course and all related data for course_id {course_id} deleted successfully")
 
+        logger.info(f"Transaction completed for deleting course_id {course_id}")
         return Response({"message": "Course and all associated data have been successfully deleted from the LMS and SCORM player."}, status=status.HTTP_200_OK)
 
     def delete_scorm_package_from_scorm_player(self, scorm_course_id):
         """
         Delete a SCORM package from the SCORM player API.
         """
-        scorm_api_url = f"https://scorm.learnknowdigital.com/api/scorm-packages/{scorm_course_id}/"
+        logger.info(f"Deleting SCORM package with id {scorm_course_id} from SCORM player API")
+        scorm_api_url = f"{settings.SCORM_API_BASE_URL}/api/scorm-packages/{scorm_course_id}/"
         headers = {"Authorization": f"Token {settings.SCORM_API_TOKEN}"}
 
         try:
