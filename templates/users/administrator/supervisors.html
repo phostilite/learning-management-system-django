@@ -45,7 +45,7 @@
                     <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">
                         <i class="fas fa-file-export mr-2"></i>Export
                     </button>
-                    <button class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                    <button id="openModalBtn" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
                         <i class="fas fa-plus mr-2"></i>Add Supervisor
                     </button>
                 </div>
@@ -59,35 +59,40 @@
                             <th class="px-4 py-3 text-left">Email</th>
                             <th class="px-4 py-3 text-left">Department</th>
                             <th class="px-4 py-3 text-left">Status</th>
-                            <th class="px-4 py-3 text-left">Facilitators</th>
+                            <th class="px-4 py-3 text-left">Supervisors</th>
                             <th class="px-4 py-3 text-left">Last Login</th>
                             <th class="px-4 py-3 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="supervisor-table-body" class="text-gray-600 text-sm font-light">
+                        {% for supervisor in supervisors %}
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="mr-2">
                                         <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/women/1.jpg" alt="Avatar">
                                     </div>
-                                    <span class="font-medium">Jane Smith</span>
+                                    <span class="font-medium">{{ supervisor.user.first_name }} {{ supervisor.user.last_name }}</span>
                                 </div>
                             </td>
-                            <td class="py-3 px-6 text-left">jane.smith@example.com</td>
+                            <td class="py-3 px-6 text-left">{{ supervisor.user.email }}</td>
                             <td class="py-3 px-6 text-left">Computer Science</td>
                             <td class="py-3 px-6 text-left">
-                                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Active</span>
+                                {% if supervisor.user.is_active %}
+                                    <span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Active</span>
+                                {% else %}
+                                    <span class="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">Inactive</span>
+                                {% endif %}
                             </td>
                             <td class="py-3 px-6 text-left">8</td>
-                            <td class="py-3 px-6 text-left">2023-08-15 14:30</td>
+                            <td class="py-3 px-6 text-left">{{ supervisor.user.last_login }}</td>
                             <td class="py-3 px-6 text-center">
                                 <div>
-                                    <button id="supervisorDropdownButton" data-dropdown-toggle="supervisorDropdown" class="text-gray-500 hover:text-gray-700">
+                                    <button id="supervisorDropdownButton-{{ supervisor.id }}" data-dropdown-toggle="supervisorDropdown-{{ supervisor.id }}" class="text-gray-500 hover:text-gray-700">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
-                                    <div id="supervisorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
-                                        <ul class="py-2 text-sm text-black" aria-labelledby="supervisorDropdownButton">
+                                    <div id="supervisorDropdown-{{ supervisor.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                        <ul class="py-2 text-sm text-black" aria-labelledby="supervisorDropdownButton-{{ supervisor.id }}">
                                             <li>
                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                                                     <i class="fas fa-user-shield mr-2"></i> View Profile
@@ -95,7 +100,7 @@
                                             </li>
                                             <li>
                                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
-                                                    <i class="fas fa-users-cog mr-2"></i> Manage Facilitators
+                                                    <i class="fas fa-users-cog mr-2"></i> Manage Supervisors
                                                 </a>
                                             </li>
                                             <li>
@@ -143,6 +148,7 @@
                                 </div>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -160,4 +166,83 @@
             </div>
         </div>
     </div>
+<!-- Updated Modal -->
+<div id="addSupervisorModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    Add New Supervisor
+                </h3>
+                <div class="mt-2">
+                    <form id="addSupervisorForm" method="post" action="{% url 'administrator_supervisor_list' %}">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" name="firstName" id="firstName" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                            <input type="text" name="username" id="username" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" name="password" id="password" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                Add Supervisor
+                            </button>
+                            <button type="button" id="closeModalBtn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('addSupervisorModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const addSupervisorForm = document.getElementById('addSupervisorForm');
+
+        function toggleModal() {
+            modal.classList.toggle('hidden');
+        }
+
+        openModalBtn.addEventListener('click', toggleModal);
+        closeModalBtn.addEventListener('click', toggleModal);
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                toggleModal();
+            }
+        });
+
+        addSupervisorForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // You can add form validation here if needed
+
+            // If validation passes, submit the form
+            this.submit();
+        });
+    });
+</script>
 {% endblock %}

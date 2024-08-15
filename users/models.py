@@ -23,6 +23,7 @@ class User(AbstractUser):
 class Learner(models.Model):
     """Model representing a learner."""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'

@@ -1,5 +1,6 @@
 import logging
 import requests
+import json
 
 from django.conf import settings
 from django.contrib import messages
@@ -21,14 +22,18 @@ from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import BasePermission
 from django.db import transaction
+from django.views.decorators.http import require_http_methods
 
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import Group
 
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
+from users.forms import LearnerCreationForm
+from users.models import Learner, Facilitator, Supervisor
 from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
 
 logger = logging.getLogger(__name__)
@@ -189,7 +194,69 @@ class AdministratorLearnerListView(ListView):
     context_object_name = 'learners'
 
     def get_queryset(self):
-        pass
+        return Learner.objects.all()
+    
+    def post(self, request, *args, **kwargs):
+        logger.info("Received request to create learner")
+        try:
+            data = request.POST
+            logger.info("Request body parsed successfully")
+
+            user = User.objects.create_user(
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
+                first_name=data['firstName'],
+                last_name=data['lastName']
+            )
+            logger.info(f"User created: {user.username}")
+
+            learner_group, created = Group.objects.get_or_create(name='learner')
+            user.groups.add(learner_group)
+            logger.info(f"User added to group: learner")
+
+            scorm_api_url = f"{settings.SCORM_API_BASE_URL}/api/users/"
+            scorm_data = {
+                'username': user.username,
+                'password': data['password'],
+                'email': user.email
+            }
+            response = requests.post(scorm_api_url, data=scorm_data)
+            logger.info(f"SCORM API request sent: {scorm_api_url}")
+
+            if response.status_code == 201:
+                scorm_data = response.json()
+                learner = Learner.objects.create(user=user, token=scorm_data['token'])
+                logger.info(f"Learner created with SCORM token: {learner.token}")
+                return redirect('administrator_learner_list')
+            else:
+                user.delete()
+                logger.error("Failed to create user in SCORM system")
+                return JsonResponse({
+                    'success': False,
+                    'message': "Failed to create user in SCORM system. Please try again."
+                }, status=400)
+
+        except KeyError as e:
+            logger.error(f"Missing required field: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': f"Missing required field: {str(e)}"
+            }, status=400)
+        except json.JSONDecodeError:
+            logger.error("Invalid JSON in request body")
+            return JsonResponse({
+                'success': False,
+                'message': "Invalid JSON in request body"
+            }, status=400)
+        except Exception as e:
+            logger.error(f"An unexpected error occurred: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': str(e)
+            }, status=500)
+
+
 
 @method_decorator(login_required, name='dispatch')
 class AdministratorFacilitatorListView(ListView):
@@ -197,7 +264,45 @@ class AdministratorFacilitatorListView(ListView):
     context_object_name = 'facilitators'
 
     def get_queryset(self):
-        pass
+        return Facilitator.objects.all()
+    
+    def post(self, request, *args, **kwargs):
+        logger.info("Received request to create facilitator")
+        try:
+            data = request.POST
+            logger.info("Request body parsed successfully")
+
+            user = User.objects.create_user(
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
+                first_name=data['firstName'],
+                last_name=data['lastName']
+            )
+            logger.info(f"User created: {user.username}")
+
+            facilitator_group, created = Group.objects.get_or_create(name='facilitator')
+            user.groups.add(facilitator_group)
+            logger.info(f"User added to group: facilitator")
+
+            facilitator = Facilitator.objects.create(user=user)
+            logger.info(f"Facilitator created: {facilitator.id}")
+
+            return redirect('administrator_facilitator_list')  # Redirect to the list view after creation
+
+        except KeyError as e:
+            logger.error(f"Missing required field: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': f"Missing required field: {str(e)}"
+            }, status=400)
+        except Exception as e:
+            logger.error(f"An unexpected error occurred: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': str(e)
+            }, status=500)
+    
 
 @method_decorator(login_required, name='dispatch')
 class AdministratorSupervisorListView(ListView):
@@ -205,7 +310,44 @@ class AdministratorSupervisorListView(ListView):
     context_object_name = 'supervisors'
 
     def get_queryset(self):
-        pass
+        return Supervisor.objects.all()
+    
+    def post(self, request, *args, **kwargs):
+        logger.info("Received request to create supervisor")
+        try:
+            data = request.POST
+            logger.info("Request body parsed successfully")
+
+            user = User.objects.create_user(
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
+                first_name=data['firstName'],
+                last_name=data['lastName']
+            )
+            logger.info(f"User created: {user.username}")
+
+            supervisor_group, created = Group.objects.get_or_create(name='supervisor')
+            user.groups.add(supervisor_group)
+            logger.info(f"User added to group: supervisor")
+
+            supervisor = Supervisor.objects.create(user=user)
+            logger.info(f"Supervisor created: {supervisor.id}")
+
+            return redirect('administrator_supervisor_list')  # Redirect to the list view after creation
+
+        except KeyError as e:
+            logger.error(f"Missing required field: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': f"Missing required field: {str(e)}"
+            }, status=400)
+        except Exception as e:
+            logger.error(f"An unexpected error occurred: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': str(e)
+            }, status=500)
 
 class CourseCreationWizard(SessionWizardView):
     file_storage = FileSystemStorage(location=settings.MEDIA_ROOT)
@@ -338,6 +480,22 @@ def list_courses(request):
         logger.exception("Error fetching course list:")
         messages.error(request, f"An error occurred while fetching the course list: {str(e)}")
         return render(request, 'users/administrator/course/list.html', {'courses': []})
+    
+@method_decorator(login_required, name='dispatch')
+class AdministratorCourseDeliveryListView(ListView):
+    model = CourseDelivery
+    template_name = 'users/administrator/course/deliveries.html'
+    context_object_name = 'deliveries'
+
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        self.course = get_object_or_404(Course, id=course_id)
+        return CourseDelivery.objects.filter(course=self.course)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = self.course
+        return context
     
 @require_POST
 def add_learning_resource(request, course_id):
