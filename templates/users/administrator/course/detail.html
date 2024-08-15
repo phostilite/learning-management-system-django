@@ -288,41 +288,54 @@
     </div>
 </div>
 
+
 <!-- Add Resource Modal -->
 <div id="addResourceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
     <div class="bg-white rounded-lg p-8 max-w-md w-full">
         <h2 class="text-2xl font-semibold mb-4">Add New Resource</h2>
-        <form>
+        <form id="addResourceForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-md">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_title">Title</label>
+                <input type="text" id="id_title" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Resource Type</label>
-                <select class="w-full px-3 py-2 border rounded-md">
-                    <option>SCORM Package</option>
-                    <option>Video</option>
-                    <option>Document</option>
-                    <option>Presentation</option>
-                    <option>External Link</option>
-                    <option>Quiz</option>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_resource_type">Resource Type</label>
+                <select id="id_resource_type" name="resource_type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option value="">Select a type</option>
+                    <option value="VIDEO">Video</option>
+                    <option value="DOCUMENT">Document</option>
+                    <option value="PRESENTATION">Presentation</option>
+                    <option value="LINK">Link</option>
+                    <option value="QUIZ">Quiz</option>
+                    <option value="SCORM">SCORM</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea class="w-full px-3 py-2 border rounded-md" rows="3"></textarea>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_description">Description</label>
+                <textarea id="id_description" name="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Content File</label>
-                <input type="file" class="w-full px-3 py-2 border rounded-md">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_content">Content File</label>
+                <input type="file" id="id_content" name="content" class="mt-1 block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100
+                ">
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Order</label>
-                <input type="number" class="w-full px-3 py-2 border rounded-md" min="1">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_external_url">External URL</label>
+                <input type="url" id="id_external_url" name="external_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_order">Order</label>
+                <input type="number" id="id_order" name="order" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div class="flex justify-end">
-                <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2" onclick="closeAddResourceModal()">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Resource</button>
+                <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 hover:bg-gray-400 transition duration-150 ease-in-out" onclick="closeAddResourceModal()">Cancel</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-150 ease-in-out">Add Resource</button>
             </div>
         </form>
     </div>
@@ -371,6 +384,7 @@
 <script>
     const tabLinks = document.querySelectorAll('#mainTabs a');
     const tabContents = document.querySelectorAll('.tab-content');
+    const course_id = "{{ course.id }}";
 
     tabLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -393,6 +407,100 @@
     function closeAddResourceModal() {
         document.getElementById('addResourceModal').classList.add('hidden');
         document.getElementById('addResourceModal').classList.remove('flex');
+    }
+
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const resourceTypeSelect = document.getElementById('id_resource_type');
+            const contentFileDiv = document.getElementById('id_content').parentNode;
+            const externalUrlDiv = document.getElementById('id_external_url').parentNode;
+        
+            function toggleFields() {
+                const selectedType = resourceTypeSelect.value;
+                
+                if (selectedType === 'LINK') {
+                    contentFileDiv.style.display = 'none';
+                    externalUrlDiv.style.display = 'block';
+                } else if (selectedType === 'SCORM' || selectedType === 'QUIZ') {
+                    contentFileDiv.style.display = 'none';
+                    externalUrlDiv.style.display = 'none';
+                } else {
+                    contentFileDiv.style.display = 'block';
+                    externalUrlDiv.style.display = 'none';
+                }
+            }
+        
+            resourceTypeSelect.addEventListener('change', toggleFields);
+            toggleFields(); // Call once to set initial state
+        });
+        
+
+    document.getElementById('addResourceForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const course_id = '{{ course.id }}'; // Make sure this variable is available in your template
+    
+        fetch(`/en/user/administrator/course/${course_id}/add-resource/`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Add the new resource to the table
+                const tableBody = document.querySelector('#content table tbody');
+                const newRow = `
+                    <tr>
+                        <td class="px-4 py-2">
+                            <div class="flex items-center">
+                                <span class="resource-type-icon w-8 h-8 rounded-full flex items-center justify-center mr-2 bg-blue-100 text-blue-600">
+                                    <i class="fas fa-file-alt"></i>
+                                </span>
+                                ${data.resource.title}
+                            </div>
+                        </td>
+                        <td class="px-4 py-2">${data.resource.resource_type}</td>
+                        <td class="px-4 py-2">${data.resource.order}</td>
+                        <td class="px-4 py-2">${data.resource.updated_at}</td>
+                        <td class="px-4 py-2">
+                            <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource('${data.resource.id}')"><i class="fas fa-edit"></i></button>
+                            <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource('${data.resource.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="text-red-500 hover:text-red-700" onclick="deleteResource('${data.resource.id}')"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', newRow);
+                
+                // Close the modal and reset the form
+                closeAddResourceModal();
+                document.getElementById('addResourceForm').reset();
+            } else {
+                // Display errors
+                console.error('Form submission errors:', data.errors);
+                // You can display these errors in the modal if you want
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 
     function editResource(id) {
@@ -423,8 +531,13 @@
             type: '{{ resource.resource_type|lower }}',
             title: '{{ resource.title|escapejs }}',
             icon: getIconForResourceType('{{ resource.resource_type }}'),
-            content: getContentForResourceType('{{ resource.resource_type }}', '{{ resource.content.url|default:""|escapejs }}', '{{ resource.external_url|default:""|escapejs }}'),
+            content: getContentForResourceType(
+                '{{ resource.resource_type }}', 
+                '{% if resource.content %}{{ resource.content.url|default:""|escapejs }}{% else %}{% endif %}',
+                '{{ resource.external_url|default:""|escapejs }}'
+            ),
             metadata: {
+                'Description': '{{ resource.description|escapejs }}',
                 'Type': '{{ resource.get_resource_type_display }}',
                 'Created': '{{ resource.created_at|date:"F d, Y" }}',
                 'Last Updated': '{{ resource.updated_at|date:"F d, Y" }}',
@@ -456,17 +569,21 @@
     function getContentForResourceType(type, contentUrl, externalUrl) {
         switch (type) {
             case 'VIDEO':
-                return `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>`;
+                return contentUrl ? `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>` : 
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Video Resource</p><p>No video file available.</p></div>`;
             case 'DOCUMENT':
-                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Preview</p><p>This is a preview of the document. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View full document</a></p></div>`;
+                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Preview</p><p>This is a preview of the document. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View full document</a></p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Resource</p><p>No document file available.</p></div>`;
             case 'QUIZ':
                 return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Quiz Preview</p><p>This quiz is available in the course. Click to attempt.</p></div>`;
             case 'SCORM':
                 return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">This is a SCORM package. Click the button below to launch it.</p><button class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Launch SCORM Package</button></div>`;
             case 'PRESENTATION':
-                return `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><p>This is a presentation. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View presentation</a></p></div>`;
+                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><p>This is a presentation. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View presentation</a></p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Presentation Resource</p><p>No presentation file available.</p></div>`;
             case 'LINK':
-                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>`;
+                return externalUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><p>No external URL provided.</p></div>`;
             default:
                 return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Resource Preview</p><p>Preview not available for this resource type.</p></div>`;
         }

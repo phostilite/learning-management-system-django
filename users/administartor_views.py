@@ -22,7 +22,11 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import BasePermission
 from django.db import transaction
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
+
+from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
 from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
@@ -335,6 +339,31 @@ def list_courses(request):
         messages.error(request, f"An error occurred while fetching the course list: {str(e)}")
         return render(request, 'users/administrator/course/list.html', {'courses': []})
     
+@require_POST
+def add_learning_resource(request, course_id):
+    course = get_object_or_404(Course, id=course_id, created_by=request.user)
+    form = LearningResourceForm(request.POST, request.FILES)
+    if form.is_valid():
+        resource = form.save(commit=False)
+        resource.course = course
+        resource.save()
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Resource added successfully',
+            'resource': {
+                'id': resource.id,
+                'title': resource.title,
+                'resource_type': resource.get_resource_type_display(),
+                'order': resource.order,
+                'updated_at': resource.updated_at.strftime('%B %d, %Y')
+            }
+        })
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'errors': form.errors
+        }, status=400)
+    
 @method_decorator(login_required, name='dispatch')
 class CourseDetailView(DetailView):
     model = Course
@@ -359,6 +388,7 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'] = LearningResourceForm()  
         course = self.object
 
         # Fetch learning resources

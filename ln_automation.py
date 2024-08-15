@@ -87,5 +87,5 @@ def main(target_lang):
     compile_messages()
 
 if __name__ == "__main__":
-    target_language = 'ar'  # Change this to your target language code
+    target_language = 'ar'  
     main(target_language)
