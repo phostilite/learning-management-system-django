@@ -187,7 +187,7 @@
                 const csrftoken = getCookie('csrftoken');
                 
                 // Make GET request to get warning information
-                fetch(`/{{ LANGUAGE_CODE }}/user/administrator/course/${currentCourseId}/delete/`, {
+                fetch(`/en/user/administrator/course/${currentCourseId}/delete/`, {
                     method: 'GET',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
@@ -216,7 +216,7 @@
                     } else if (error.message.includes('permission denied')) {
                         alert("{% trans 'You do not have permission to delete this course. Please contact an administrator.' %}");
                     } else {
-                        alert(`{% trans 'An error occurred:' %} ${error.message}`);
+                        alert(`{% trans 'An error occurred:' %}: ${error.message}`);
                     }
                 });
             });
@@ -227,11 +227,11 @@
                 console.error('No course ID set for deletion');
                 return;
             }
-        
+    
             const csrftoken = getCookie('csrftoken');
-        
+    
             // Make DELETE request to delete the course
-            fetch(`/{{ LANGUAGE_CODE }}/user/administrator/course/${currentCourseId}/delete/`, {
+            fetch(`/en/user/administrator/course/${currentCourseId}/delete/`, {
                 method: 'DELETE',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
@@ -250,20 +250,20 @@
             })
             .then(data => {
                 console.log('Delete response:', data);
-                alert(data.message || "{% trans 'Course successfully deleted' %}");
+                alert(data.message || 'Course successfully deleted');
                 // Optionally, refresh the page or update the UI to reflect the deleted course
                 window.location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert(`{% trans 'An error occurred while deleting the course:' %} ${error.message}`);
+                alert(`An error occurred while deleting the course: ${error.message}`);
             })
             .finally(() => {
                 modal.classList.add('hidden');
                 currentCourseId = null;
             });
         });
-        
+    
         cancelButton.addEventListener('click', function() {
             modal.classList.add('hidden');
             currentCourseId = null;
@@ -285,5 +285,5 @@
         }
         return cookieValue;
     }
-    </script>
-    {% endblock %}
+</script>
+{% endblock %}
