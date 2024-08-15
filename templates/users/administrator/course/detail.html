@@ -1,110 +1,53 @@
 {% extends '../_base.html' %}
 {% load static %}
 
-{% block title %}Courses - LMS Admin{% endblock %}
+{% block title %}{{ course.title }} - LMS Admin{% endblock %}
 
 {% block extra_css %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-}
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-}
-.bg-primary { background-color: #1e3a8a; }
-.bg-secondary { background-color: #f9fafb; }
-.bg-accent { background-color: #c2410c; }
-.text-primary { color: #1e3a8a; }
-.text-secondary { color: #4b5563; }
-.text-accent { color: #c2410c; }
-.border-primary { border-color: #1e3a8a; }
-.hover-bg-accent:hover { background-color: #9a3412; }
-.gradient-bg {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-}
-.card-shadow {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-.islamic-pattern {
-    background-color: #f9fafb;
-    background-image: 
-        radial-gradient(circle at 0% 50%, transparent 9px, #1e3a8a 10px, #1e3a8a 15px, transparent 16px),
-        radial-gradient(circle at 100% 50%, transparent 9px, #1e3a8a 10px, #1e3a8a 15px, transparent 16px);
-    background-size: 40px 40px;
-    opacity: 0.05;
-}
-.tab-content {
-    display: none;
-}
-.tab-content.active {
-    display: block;
-}
-.subtab-content {
-    display: none;
-}
-.subtab-content.active {
-    display: block;
-}
-
-.resource-type-icon {
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-.gradient-bg {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+    }
+    .bg-primary { background-color: #1e3a8a; }
+    .bg-secondary { background-color: #f9fafb; }
+    .bg-accent { background-color: #c2410c; }
+    .text-primary { color: #1e3a8a; }
+    .text-secondary { color: #4b5563; }
+    .text-accent { color: #c2410c; }
+    .border-primary { border-color: #1e3a8a; }
+    .hover-bg-accent:hover { background-color: #9a3412; }
+    .gradient-bg {
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    }
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .tab-content {
+        display: none;
+    }
+    .tab-content.active {
+        display: block;
+    }
 </style>
 <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
-    <style>
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .aspect-w-16 {
-            position: relative;
-            padding-bottom: 56.25%;
-        }
-        .aspect-w-16 iframe {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-        .learning-path-item {
-            position: relative;
-        }
-        .learning-path-item::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: 15px;
-            bottom: -10px;
-            width: 2px;
-            background-color: #e5e7eb;
-        }
-        .learning-path-item:last-child::before {
-            display: none;
-        }
-    </style>
 {% endblock %}
 
 {% block content %}
-
-<div>
+<div class="container mx-auto">
+    <!-- Header -->
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">Course: {{ course.title }}</h1>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{{ course.title }}</h1>
         <p class="text-xl text-blue-100 text-center">Course ID: {{ course.id }}</p>
     </header>
     
+    <!-- Breadcrumbs -->
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -128,389 +71,264 @@ h1, h2, h3, h4, h5, h6 {
         </ol>
     </nav>
 
-    <div class="grid grid-cols-3 gap-8 mb-8">
-        <div class="col-span-2">
+    <div class="flex flex-wrap -mx-4">
+        <!-- Left Column -->
+        <div class="w-full lg:w-1/3 px-4 mb-8">
+            <div class="bg-white rounded-lg card-shadow overflow-hidden">
+                {% if course.cover_image %}
+                    <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                {% else %}
+                    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500">No Cover Image</span>
+                    </div>
+                {% endif %}
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-primary mb-2">{{ course.title }}</h2>
+                    <p class="text-secondary mb-4">Course ID: {{ course.id }}</p>
+                    <div class="flex justify-between mb-4">
+                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition">Edit Course</button>
+                        <button class="bg-accent text-white px-4 py-2 rounded hover:bg-red-700 transition">Unpublish</button>
+                    </div>
+                    <div class="flex justify-between mb-4">
+                        <button onclick="previewResource()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Preview</button>
+                        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Analytics</button>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-user-plus mr-2"></i>Add New Student</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-calendar-alt mr-2"></i>Schedule Live Session</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-chart-bar mr-2"></i>Generate Report</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-envelope mr-2"></i>Send Announcement</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full lg:w-2/3 px-4">
             <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-                <h2 class="text-2xl font-semibold mb-4">Course Overview</h2>
+                <h2 class="text-xl font-semibold mb-4">Course Overview</h2>
                 <p class="mb-4">{{ course.description }}</p>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <p><strong>Category:</strong> {{ course.category }}</p>
                         <p><strong>Created by:</strong> {{ course.created_by }}</p>
-                        <p><strong>Last Updated:</strong> 2023-07-15</p>
+                        <p><strong>Last Updated:</strong> {{ course.updated_at|date:"F d, Y" }}</p>
                     </div>
                     <div>
-                        <p><strong>Duration:</strong> 12 weeks</p>
-                        <p><strong>Level:</strong> Advanced</p>
-                        <p><strong>Language:</strong> English (Arabic subtitles)</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-                <h2 class="text-2xl font-semibold mb-4">Course Statistics</h2>
-                <div class="grid grid-cols-3 gap-4 text-center">
-                    <div class="bg-blue-100 p-4 rounded-lg">
-                        <p class="text-3xl font-bold text-primary">1,250</p>
-                        <p class="text-sm text-secondary">Enrolled Students</p>
-                    </div>
-                    <div class="bg-green-100 p-4 rounded-lg">
-                        <p class="text-3xl font-bold text-green-600">85%</p>
-                        <p class="text-sm text-secondary">Completion Rate</p>
-                    </div>
-                    <div class="bg-yellow-100 p-4 rounded-lg">
-                        <p class="text-3xl font-bold text-yellow-600">4.8/5</p>
-                        <p class="text-sm text-secondary">Average Rating</p>
+                        <p><strong>Total Enrollments:</strong> {{ total_enrollments }}</p>
+                        <p><strong>Active Enrollments:</strong> {{ total_active_enrollments }}</p>
+                        <p><strong>Course Deliveries:</strong> {{ total_deliveries }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-white rounded-lg card-shadow p-6">
-                <h2 class="text-2xl font-semibold mb-4">Instructor Details</h2>
-                <div class="flex items-center mb-4">
-                    <img src="https://via.placeholder.com/60" alt="Instructor Avatar" class="w-16 h-16 rounded-full mr-4">
-                    <div>
-                        <h3 class="text-xl font-semibold">Dr. Sarah Johnson</h3>
-                        <p class="text-gray-600">Professor of Machine Learning</p>
-                    </div>
-                </div>
-                <p class="mb-2"><strong>Email:</strong> sarah.johnson@example.edu</p>
-                <p class="mb-2"><strong>Office Hours:</strong> Mon, Wed 2-4 PM</p>
-                <p><strong>Courses Taught:</strong> 5</p>
-            </div>
-        </div>
-
-        <div>
-            <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-                {% if course.cover_image %}
-                    <img src="{{ course.cover_image.url }}" alt="Course Cover Image" class="w-full rounded-lg mb-4">
-                {% else %}
-                    <img src="https://via.placeholder.com/60" alt="Placeholder Image" class="w-full rounded-lg mb-4">
-                {% endif %}
-                <div class="flex justify-between mb-4">
-                    <button class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition">Edit Course</button>
-                    <button class="bg-accent text-white px-4 py-2 rounded hover:bg-red-700 transition">Unpublish</button>
-                </div>
-                <div class="flex justify-between">
-                    <button onclick="previewResource()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Preview</button>
-                    <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Analytics</button>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg card-shadow p-6">
-                <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-user-plus mr-2"></i>Add New Student</a></li>
-                    <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-calendar-alt mr-2"></i>Schedule Live Session</a></li>
-                    <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-chart-bar mr-2"></i>Generate Report</a></li>
-                    <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-envelope mr-2"></i>Send Announcement</a></li>
+                <ul class="flex border-b border-gray-200 mb-6" id="mainTabs">
+                    <li class="mr-1">
+                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold active" href="#" data-tab="content">
+                            Course Content
+                        </a>
+                    </li>
+                    <li class="mr-1">
+                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="enrollments">
+                            Enrollments
+                        </a>
+                    </li>
+                    <li class="mr-1">
+                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="deliveries">
+                            Course Deliveries
+                        </a>
+                    </li>
                 </ul>
-            </div>       
+
+                <div id="content" class="tab-content active">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold">Course Content</h3>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onclick="showAddResourceModal()">
+                            <i class="fas fa-plus mr-2"></i>Add New Resource
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-2 text-left">Title</th>
+                                    <th class="px-4 py-2 text-left">Type</th>
+                                    <th class="px-4 py-2 text-left">Order</th>
+                                    <th class="px-4 py-2 text-left">Last Updated</th>
+                                    <th class="px-4 py-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for resource in learning_resources %}
+                                <tr>
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center">
+                                            <span class="resource-type-icon w-8 h-8 rounded-full flex items-center justify-center mr-2
+                                                {% if resource.resource_type == 'SCORM' %}
+                                                    bg-blue-100 text-blue-600
+                                                {% elif resource.resource_type == 'VIDEO' %}
+                                                    bg-red-100 text-red-600
+                                                {% elif resource.resource_type == 'DOCUMENT' %}
+                                                    bg-yellow-100 text-yellow-600
+                                                {% elif resource.resource_type == 'PRESENTATION' %}
+                                                    bg-orange-100 text-orange-600
+                                                {% elif resource.resource_type == 'LINK' %}
+                                                    bg-purple-100 text-purple-600
+                                                {% elif resource.resource_type == 'QUIZ' %}
+                                                    bg-green-100 text-green-600
+                                                {% else %}
+                                                    bg-gray-100 text-gray-600
+                                                {% endif %}">
+                                                <i class="fas fa-{{ resource.get_resource_type_display|lower }}-alt"></i>
+                                            </span>
+                                            {{ resource.title }}
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">{{ resource.get_resource_type_display }}</td>
+                                    <td class="px-4 py-2">{{ resource.order }}</td>
+                                    <td class="px-4 py-2">{{ resource.updated_at|date:"F d, Y" }}</td>
+                                    <td class="px-4 py-2">
+                                        <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource('{{ resource.id }}')"><i class="fas fa-edit"></i></button>
+                                        <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource('{{ resource.id }}')"><i class="fas fa-eye"></i></button>
+                                        <button class="text-red-500 hover:text-red-700" onclick="deleteResource('{{ resource.id }}')"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="enrollments" class="tab-content">
+                    <h3 class="text-xl font-semibold mb-4">Recent Enrollments</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-2 px-4 text-left">User</th>
+                                    <th class="py-2 px-4 text-left">Delivery</th>
+                                    <th class="py-2 px-4 text-left">Enrollment Date</th>
+                                    <th class="py-2 px-4 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for enrollment in recent_enrollments %}
+                                <tr>
+                                    <td class="py-2 px-4">{{ enrollment.user.username }}</td>
+                                    <td class="py-2 px-4">{{ enrollment.course_delivery.title }}</td>
+                                    <td class="py-2 px-4">{{ enrollment.enrollment_date|date:"F d, Y H:i" }}</td>
+                                    <td class="py-2 px-4">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                            {% if enrollment.status == 'ENROLLED' %}
+                                                bg-green-100 text-green-800
+                                            {% elif enrollment.status == 'IN_PROGRESS' %}
+                                                bg-blue-100 text-blue-800
+                                            {% elif enrollment.status == 'COMPLETED' %}
+                                                bg-purple-100 text-purple-800
+                                            {% else %}
+                                                bg-red-100 text-red-800
+                                            {% endif %}">
+                                            {{ enrollment.get_status_display }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="deliveries" class="tab-content">
+                    <h3 class="text-xl font-semibold mb-4">Course Deliveries</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-2 px-4 text-left">Title</th>
+                                    <th class="py-2 px-4 text-left">Start Date</th>
+                                    <th class="py-2 px-4 text-left">Total Enrollments</th>
+                                    <th class="py-2 px-4 text-left">Active Enrollments</th>
+                                    <th class="py-2 px-4 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for delivery in course_deliveries %}
+                                <tr>
+                                    <td class="py-2 px-4">{{ delivery.title }}</td>
+                                    <td class="py-2 px-4">{{ delivery.start_date|date:"F d, Y" }}</td>
+                                    <td class="py-2 px-4">{{ delivery.total_enrollments }}</td>
+                                    <td class="py-2 px-4">{{ delivery.active_enrollments }}</td>
+                                    <td class="py-2 px-4">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                            {% if delivery.status == 'ACTIVE' %}
+                                                bg-green-100 text-green-800
+                                            {% elif delivery.status == 'DRAFT' %}
+                                                bg-yellow-100 text-yellow-800
+                                            {% elif delivery.status == 'COMPLETED' %}
+                                                bg-blue-100 text-blue-800
+                                            {% else %}
+                                                bg-gray-100 text-gray-800
+                                            {% endif %}">
+                                            {{ delivery.get_status_display }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-        <ul class="flex border-b border-gray-200 mb-6" id="mainTabs">
-            <li class="mr-1">
-                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold active" href="#" data-tab="content">
-                    Course Content
-                </a>
-            </li>
-            <li class="mr-1">
-                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="students">
-                    Students
-                </a>
-            </li>
-            <li class="mr-1">
-                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="discussions">
-                    Discussions
-                </a>
-            </li>
-            <li class="mr-1">
-                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="assessments">
-                    Assessments
-                </a>
-            </li>
-        </ul>
-
-        <div id="content" class="tab-content active">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-semibold">Course Content</h3>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onclick="showAddResourceModal()">
-                    <i class="fas fa-plus mr-2"></i>Add New Resource
-                </button>
+<!-- Add Resource Modal -->
+<div id="addResourceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full">
+        <h2 class="text-2xl font-semibold mb-4">Add New Resource</h2>
+        <form>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                <input type="text" class="w-full px-3 py-2 border rounded-md">
             </div>
-            
-            <div class="bg-white rounded-lg card-shadow p-6">
-                <div class="mb-4">
-                    <input type="text" placeholder="Search resources..." class="w-full px-4 py-2 border rounded-md">
-                </div>
-                
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="px-4 py-2 text-left">Title</th>
-                                <th class="px-4 py-2 text-left">Type</th>
-                                <th class="px-4 py-2 text-left">Order</th>
-                                <th class="px-4 py-2 text-left">Last Updated</th>
-                                <th class="px-4 py-2 text-left">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-4 py-2">
-                                    <div class="flex items-center">
-                                        <span class="resource-type-icon bg-blue-100 text-blue-600">
-                                            <i class="fas fa-video"></i>
-                                        </span>
-                                        Introduction to Machine Learning
-                                    </div>
-                                </td>
-                                <td class="px-4 py-2">Video</td>
-                                <td class="px-4 py-2">1</td>
-                                <td class="px-4 py-2">2023-07-28</td>
-                                <td class="px-4 py-2">
-                                    <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource(1)"><i class="fas fa-edit"></i></button>
-                                    <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource(1)"><i class="fas fa-eye"></i></button>
-                                    <button class="text-red-500 hover:text-red-700" onclick="deleteResource(1)"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2">
-                                    <div class="flex items-center">
-                                        <span class="resource-type-icon bg-green-100 text-green-600">
-                                            <i class="fas fa-file-alt"></i>
-                                        </span>
-                                        Neural Networks Basics
-                                    </div>
-                                </td>
-                                <td class="px-4 py-2">SCORM Package</td>
-                                <td class="px-4 py-2">2</td>
-                                <td class="px-4 py-2">2023-07-25</td>
-                                <td class="px-4 py-2">
-                                    <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource(2)"><i class="fas fa-edit"></i></button>
-                                    <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource(2)"><i class="fas fa-eye"></i></button>
-                                    <button class="text-red-500 hover:text-red-700" onclick="deleteResource(2)"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <!-- More resource rows... -->
-                        </tbody>
-                    </table>
-                </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Resource Type</label>
+                <select class="w-full px-3 py-2 border rounded-md">
+                    <option>SCORM Package</option>
+                    <option>Video</option>
+                    <option>Document</option>
+                    <option>Presentation</option>
+                    <option>External Link</option>
+                    <option>Quiz</option>
+                </select>
             </div>
-        </div>
-
-        <!-- Add Resource Modal -->
-    <div id="addResourceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
-        <div class="bg-white rounded-lg p-8 max-w-md w-full">
-            <h2 class="text-2xl font-semibold mb-4">Add New Resource</h2>
-            <form>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded-md">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Resource Type</label>
-                    <select class="w-full px-3 py-2 border rounded-md">
-                        <option>SCORM Package</option>
-                        <option>Video</option>
-                        <option>Document</option>
-                        <option>Presentation</option>
-                        <option>External Link</option>
-                        <option>Quiz</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                    <textarea class="w-full px-3 py-2 border rounded-md" rows="3"></textarea>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Content File</label>
-                    <input type="file" class="w-full px-3 py-2 border rounded-md">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Order</label>
-                    <input type="number" class="w-full px-3 py-2 border rounded-md" min="1">
-                </div>
-                <div class="flex justify-end">
-                    <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2" onclick="closeAddResourceModal()">Cancel</button>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Resource</button>
-                </div>
-            </form>
-        </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea class="w-full px-3 py-2 border rounded-md" rows="3"></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Content File</label>
+                <input type="file" class="w-full px-3 py-2 border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Order</label>
+                <input type="number" class="w-full px-3 py-2 border rounded-md" min="1">
+            </div>
+            <div class="flex justify-end">
+                <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2" onclick="closeAddResourceModal()">Cancel</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Resource</button>
+            </div>
+        </form>
     </div>
+</div>
 
-        <div id="students" class="tab-content">
-            <h3 class="text-2xl font-semibold mb-4">Enrolled Students</h3>
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="py-2 px-4 text-left">Name</th>
-                            <th class="py-2 px-4 text-left">Email</th>
-                            <th class="py-2 px-4 text-left">Progress</th>
-                            <th class="py-2 px-4 text-left">Last Access</th>
-                            <th class="py-2 px-4 text-left">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="py-2 px-4">Ahmed Al-Farsi</td>
-                            <td class="py-2 px-4">ahmed@example.com</td>
-                            <td class="py-2 px-4">
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4">2023-07-28</td>
-                            <td class="py-2 px-4">
-                                <button class="text-blue-500 hover:text-blue-700 mr-2"><i class="fas fa-eye"></i></button>
-                                <button class="text-green-500 hover:text-green-700 mr-2"><i class="fas fa-envelope"></i></button>
-                                <button class="text-red-500 hover:text-red-700"><i class="fas fa-user-minus"></i></button>
-                            </td>
-                        </tr>
-                        <!-- More student rows... -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="discussions" class="tab-content">
-            <h3 class="text-2xl font-semibold mb-4">Course Discussions</h3>
-            <div class="space-y-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="text-lg font-semibold">Thread: Challenges in Implementing CNNs</h4>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Active</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Started by: Fatima Al-Sayed | Last reply: 2 hours ago</p>
-                    <p class="mb-2">I'm having trouble understanding the concept of pooling layers in CNNs. Can someone explain?</p>
-                    <button class="text-blue-500 hover:text-blue-700">View Thread (15 replies)</button>
-                </div>
-                <!-- More discussion threads... -->
-            </div>
-            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start New Discussion</button>
-        </div>
-
-        <div id="assessments" class="tab-content">
-            <h3 class="text-2xl font-semibold mb-4">Assessments</h3>
-            <ul class="space-y-4">
-                <li class="bg-white rounded-lg card-shadow p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="text-lg font-semibold">Module 1 Quiz: Foundations of Advanced ML</h4>
-                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Active</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Type: Multiple Choice | Questions: 20 | Time Limit: 30 minutes</p>
-                    <p class="mb-2">Average Score: 85% | Completion Rate: 92%</p>
-                    <div class="flex space-x-2">
-                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit mr-1"></i>Edit</button>
-                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-eye mr-1"></i>Preview</button>
-                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash mr-1"></i>Delete</button>
-                    </div>
-                </li>
-                <li class="bg-white rounded-lg card-shadow p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="text-lg font-semibold">Mid-term Project: Implementing a Neural Network</h4>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Upcoming</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Type: Programming Assignment | Due Date: 2023-08-15</p>
-                    <p class="mb-2">Submissions: 0 | Grading: Manual</p>
-                    <div class="flex space-x-2">
-                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit mr-1"></i>Edit</button>
-                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-eye mr-1"></i>Preview</button>
-                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash mr-1"></i>Delete</button>
-                    </div>
-                </li>
-                <li class="bg-white rounded-lg card-shadow p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <h4 class="text-lg font-semibold">Final Exam: Comprehensive ML Techniques</h4>
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Scheduled</span>
-                    </div>
-                    <p class="text-gray-600 mb-2">Type: Mixed (MCQ + Short Answer) | Questions: 50 | Time Limit: 180 minutes</p>
-                    <p class="mb-2">Date: 2023-09-30 | Proctoring: Online</p>
-                    <div class="flex space-x-2">
-                        <button class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit mr-1"></i>Edit</button>
-                        <button class="text-green-500 hover:text-green-700"><i class="fas fa-eye mr-1"></i>Preview</button>
-                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash mr-1"></i>Delete</button>
-                    </div>
-                </li>
-            </ul>
-            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Add New Assessment</button>
-        
-            <div class="mt-8">
-                <h4 class="text-xl font-semibold mb-4">Assessment Analytics</h4>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white rounded-lg card-shadow p-4">
-                        <h5 class="text-lg font-semibold mb-2">Overall Performance</h5>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-3xl font-bold text-blue-600">78%</p>
-                                <p class="text-sm text-gray-600">Average Score</p>
-                            </div>
-                            <div>
-                                <p class="text-3xl font-bold text-green-600">85%</p>
-                                <p class="text-sm text-gray-600">Pass Rate</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg card-shadow p-4">
-                        <h5 class="text-lg font-semibold mb-2">Assessment Completion</h5>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-3xl font-bold text-purple-600">92%</p>
-                                <p class="text-sm text-gray-600">Quizzes</p>
-                            </div>
-                            <div>
-                                <p class="text-3xl font-bold text-indigo-600">88%</p>
-                                <p class="text-sm text-gray-600">Assignments</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="mt-8">
-                <h4 class="text-xl font-semibold mb-4">Assessment Settings</h4>
-                <div class="bg-white rounded-lg card-shadow p-4">
-                    <form>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Minimum Pass Score</label>
-                                <input type="number" class="w-full px-3 py-2 border rounded-md" value="70" min="0" max="100">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Allow Retakes</label>
-                                <select class="w-full px-3 py-2 border rounded-md">
-                                    <option>Yes, unlimited</option>
-                                    <option>Yes, up to 3 attempts</option>
-                                    <option>No retakes allowed</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Show Answers After Submission</label>
-                                <select class="w-full px-3 py-2 border rounded-md">
-                                    <option>Yes, immediately</option>
-                                    <option>Yes, after assessment closes</option>
-                                    <option>No, never show answers</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Grading Method</label>
-                                <select class="w-full px-3 py-2 border rounded-md">
-                                    <option>Automatic for MCQ, Manual for others</option>
-                                    <option>Fully Automatic</option>
-                                    <option>Fully Manual</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Save Settings</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-   <!-- Preview Modal -->
+<!-- Preview Modal -->
 <div id="previewModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
     <div class="modal-backdrop absolute inset-0"></div>
     <div class="bg-white w-11/12 h-5/6 rounded-lg shadow-2xl z-10 overflow-hidden flex" data-aos="zoom-in">
@@ -550,134 +368,109 @@ h1, h2, h3, h4, h5, h6 {
     </div>
 </div>
         
-        <script>
-            const tabLinks = document.querySelectorAll('#mainTabs a');
-            const tabContents = document.querySelectorAll('.tab-content');
-        
-            tabLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const tabId = link.getAttribute('data-tab');
-                    
-                    tabLinks.forEach(l => l.classList.remove('active', 'border-b-2', 'border-blue-500'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    link.classList.add('active', 'border-b-2', 'border-blue-500');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });      
+<script>
+    const tabLinks = document.querySelectorAll('#mainTabs a');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = link.getAttribute('data-tab');
             
-            function showAddResourceModal() {
-            document.getElementById('addResourceModal').classList.remove('hidden');
-            document.getElementById('addResourceModal').classList.add('flex');
-        }
+            tabLinks.forEach(l => l.classList.remove('active', 'border-b-2', 'border-blue-500'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            
+            link.classList.add('active', 'border-b-2', 'border-blue-500');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });      
+    
+    function showAddResourceModal() {
+        document.getElementById('addResourceModal').classList.remove('hidden');
+        document.getElementById('addResourceModal').classList.add('flex');
+    }
 
-        function closeAddResourceModal() {
-            document.getElementById('addResourceModal').classList.add('hidden');
-            document.getElementById('addResourceModal').classList.remove('flex');
-        }
+    function closeAddResourceModal() {
+        document.getElementById('addResourceModal').classList.add('hidden');
+        document.getElementById('addResourceModal').classList.remove('flex');
+    }
 
-        function editResource(id) {
-            // Implement edit functionality
-            console.log('Editing resource with id:', id);
-        }
+    function editResource(id) {
+        // Implement edit functionality
+        console.log('Editing resource with id:', id);
+    }
 
-        function previewResource(id) {
-            // Implement preview functionality
-            console.log('Previewing resource with id:', id);
-        }
+    function previewResource(id) {
+        // Implement preview functionality
+        console.log('Previewing resource with id:', id);
+    }
 
-        function deleteResource(id) {
-            // Implement delete functionality
-            console.log('Deleting resource with id:', id);
-        }
-        </script>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
+    function deleteResource(id) {
+        // Implement delete functionality
+        console.log('Deleting resource with id:', id);
+    }
+</script>
+
+
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
     AOS.init();
     const scorm_url = "{{ course.scorm_url|escapejs }}";
-
     const resources = [
+        {% for resource in learning_resources %}
         {
-            type: 'video',
-            title: 'Introduction to Machine Learning',
-            icon: 'fas fa-video',
-            content: '<div class="aspect-w-16" data-aos="fade-up"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+            type: '{{ resource.resource_type|lower }}',
+            title: '{{ resource.title|escapejs }}',
+            icon: getIconForResourceType('{{ resource.resource_type }}'),
+            content: getContentForResourceType('{{ resource.resource_type }}', '{{ resource.content.url|default:""|escapejs }}', '{{ resource.external_url|default:""|escapejs }}'),
             metadata: {
-                'Duration': '15:30',
-                'Format': 'MP4',
-                'Resolution': '1080p',
-                'Uploaded': '2023-07-15',
-                'Views': '1,250'
+                'Type': '{{ resource.get_resource_type_display }}',
+                'Created': '{{ resource.created_at|date:"F d, Y" }}',
+                'Last Updated': '{{ resource.updated_at|date:"F d, Y" }}',
+                'Order': '{{ resource.order }}',
+                {% if resource.resource_type == 'DOCUMENT' %}
+                'File Type': 'NA',
+                {% elif resource.resource_type == 'VIDEO' %}
+                'Duration': 'N/A', // You'd need to implement video duration extraction
+                {% elif resource.resource_type == 'QUIZ' %}
+                'Questions': 'N/A', // You'd need to implement quiz question count
+                {% endif %}
             }
-        },
-        {
-            type: 'document',
-            title: 'Advanced ML Techniques',
-            icon: 'fas fa-file-alt',
-            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Sample Document Content</p><p>This is a preview of the document content. In a real application, you might show the first few paragraphs or a PDF viewer here.</p></div>',
-            metadata: {
-                'File Type': 'PDF',
-                'Pages': '25',
-                'Author': 'Dr. Sarah Johnson',
-                'Last Modified': '2023-07-20',
-                'Downloads': '450'
-            }
-        },
-        {
-            type: 'quiz',
-            title: 'Module 1 Assessment',
-            icon: 'fas fa-question-circle',
-            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Quiz Preview</p><ol class="list-decimal list-inside space-y-2"><li>What is the primary purpose of feature scaling?</li><li>Which of the following is not a type of neural network?</li><li>Explain the concept of overfitting in machine learning.</li></ol></div>',
-            metadata: {
-                'Questions': '20',
-                'Time Limit': '30 minutes',
-                'Passing Score': '70%',
-                'Average Score': '82%',
-                'Attempts Allowed': '2'
-            }
-        },
-        {
-            type: 'scorm',
-            title: 'Neural Networks Basics',
-            icon: 'fas fa-cube',
-            content: '<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">This is a placeholder for SCORM package content. In a real application, you would load the actual SCORM content here.</p><button class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Launch SCORM Package</button></div>',
-            scormUrl: scorm_url,
-            metadata: {
-                'SCORM Version': '1.2',
-                'Completion Time': '2 hours',
-                'Last Updated': '2023-07-10',
-                'Completion Rate': '85%',
-                'Average Score': '78/100'
-            }
-        },
-        {
-            type: 'presentation',
-            title: 'Data Preprocessing Methods',
-            icon: 'fas fa-file-powerpoint',
-            content: '<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><img src="https://via.placeholder.com/600x400" alt="Presentation Slide" class="mx-auto rounded shadow-lg"></div>',
-            metadata: {
-                'Slides': '30',
-                'Format': 'PPTX',
-                'Created By': 'Prof. Michael Lee',
-                'Last Updated': '2023-07-18',
-                'Total Views': '780'
-            }
-        },
-        {
-            type: 'link',
-            title: 'Supplementary ML Research Paper',
-            icon: 'fas fa-link',
-            content: '<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="https://www.example.com/ml-resource" target="_blank" class="text-blue-500 hover:underline">https://www.example.com/ml-resource</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>',
-            metadata: {
-                'Type': 'External Link',
-                'Added On': '2023-07-22',
-                'Last Checked': '2023-08-01',
-                'Clicks': '325',
-                'Status': 'Active'
-            }
-        }
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
     ];
+
+    function getIconForResourceType(type) {
+        const iconMap = {
+            'SCORM': 'fas fa-cube',
+            'VIDEO': 'fas fa-video',
+            'DOCUMENT': 'fas fa-file-alt',
+            'PRESENTATION': 'fas fa-file-powerpoint',
+            'LINK': 'fas fa-link',
+            'QUIZ': 'fas fa-question-circle'
+        };
+        return iconMap[type] || 'fas fa-file';
+    }
+
+    function getContentForResourceType(type, contentUrl, externalUrl) {
+        switch (type) {
+            case 'VIDEO':
+                return `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>`;
+            case 'DOCUMENT':
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Preview</p><p>This is a preview of the document. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View full document</a></p></div>`;
+            case 'QUIZ':
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Quiz Preview</p><p>This quiz is available in the course. Click to attempt.</p></div>`;
+            case 'SCORM':
+                return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">This is a SCORM package. Click the button below to launch it.</p><button class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Launch SCORM Package</button></div>`;
+            case 'PRESENTATION':
+                return `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><p>This is a presentation. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View presentation</a></p></div>`;
+            case 'LINK':
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>`;
+            default:
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Resource Preview</p><p>Preview not available for this resource type.</p></div>`;
+        }
+    }
 
     function previewResource() {
         const modal = document.getElementById('previewModal');
@@ -713,7 +506,7 @@ h1, h2, h3, h4, h5, h6 {
             contentDiv.innerHTML = `
                 <div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up">
                     <p class="mb-4">This is a SCORM package. Click the button below to launch the course.</p>
-                    <button onclick="launchScorm('${resource.scormUrl}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <button onclick="launchScorm('${scorm_url}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                         Launch SCORM Package
                     </button>
                 </div>
@@ -722,10 +515,6 @@ h1, h2, h3, h4, h5, h6 {
             contentDiv.innerHTML = resource.content;
         }
         
-        metadataDiv.innerHTML = Object.entries(resource.metadata).map(([key, value]) => 
-            `<div data-aos="fade-up" data-aos-delay="100"><strong class="text-gray-700">${key}:</strong> ${value}</div>`
-        ).join('');
-
         metadataDiv.innerHTML = Object.entries(resource.metadata).map(([key, value]) => 
             `<div data-aos="fade-up" data-aos-delay="100"><strong class="text-gray-700">${key}:</strong> ${value}</div>`
         ).join('');
@@ -770,7 +559,5 @@ h1, h2, h3, h4, h5, h6 {
             closeModal();
         }
     });
-    </script>
-</body>
-    
+</script>
 {% endblock %}

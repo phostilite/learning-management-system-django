@@ -13,6 +13,7 @@ from formtools.wizard.views import SessionWizardView
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
+from django.db.models import Count, Q
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -355,6 +356,36 @@ class CourseDetailView(DetailView):
             logger.exception("Error fetching course details:")
             messages.error(self.request, f"An error occurred while fetching the course details: {str(e)}")
             raise Http404("An error occurred while fetching the course details.")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        course = self.object
+
+        # Fetch learning resources
+        context['learning_resources'] = LearningResource.objects.filter(course=course).order_by('order')
+
+        # Fetch course deliveries with enrollment counts
+        deliveries = CourseDelivery.objects.filter(course=course).annotate(
+            total_enrollments=Count('enrollment'),
+            active_enrollments=Count('enrollment', filter=Q(enrollment__status__in=['ENROLLED', 'IN_PROGRESS']))
+        ).order_by('-start_date')
+
+        context['course_deliveries'] = deliveries
+
+        # Calculate total enrollments across all deliveries
+        context['total_enrollments'] = sum(delivery.total_enrollments for delivery in deliveries)
+        context['total_active_enrollments'] = sum(delivery.active_enrollments for delivery in deliveries)
+
+        # Fetch recent enrollments
+        context['recent_enrollments'] = Enrollment.objects.filter(
+            course_delivery__course=course
+        ).select_related('user', 'course_delivery').order_by('-enrollment_date')[:10]
+
+        # Calculate some statistics
+        context['total_resources'] = context['learning_resources'].count()
+        context['total_deliveries'] = deliveries.count()
+        
+        return context
         
 
 class IsInAdministratorGroup(BasePermission):
