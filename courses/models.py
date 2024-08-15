@@ -50,6 +50,7 @@ class LearningResource(models.Model):
     resource_type = models.CharField(max_length=20, choices=RESOURCE_TYPES)
     content = models.FileField(upload_to='course_resources/', null=True, blank=True)
     external_url = models.URLField(null=True, blank=True)
+    launch_url = models.URLField(null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

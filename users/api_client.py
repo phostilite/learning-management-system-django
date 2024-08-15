@@ -85,6 +85,7 @@ def create_scormhub_course(title, description):
         except requests.RequestException as e:
             logger.error(f"Failed to create course on SCORMHub: {str(e)}")
             raise Exception("Failed to create course on SCORMHub API")
+        
     
 def register_user_for_course(user_id, course_id):
     logger.info(f"register_user_for_course called with user_id: {user_id}, course_id: {course_id}")

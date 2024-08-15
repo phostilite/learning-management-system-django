@@ -346,6 +346,28 @@ def add_learning_resource(request, course_id):
     if form.is_valid():
         resource = form.save(commit=False)
         resource.course = course
+
+        if resource.resource_type == 'SCORM':
+            try:
+                scorm_course_id = create_scormhub_course(resource.title, resource.description)
+                upload_result =  upload_scorm_package(scorm_course_id, resource.content)
+
+                if upload_result.get('success'):
+                    try:
+                        ScormResource.objects.create(
+                            learning_resource=resource,
+                            scorm_course_id=upload_result['id'],
+                            version=upload_result.get('version', upload_result['version']),
+                            web_path=upload_result.get('launch_path', '')
+                        )
+                    except Exception as e:
+                        messages.error(request, f"Error saving SCORM package details: {str(e)}")
+                        return render(request, 'add_learning_resource.html', {'form': form})
+                else:
+                    messages.error(request, f"Failed to upload SCORM package: {upload_result.get('error', 'Unknown error')}")
+                    return render(request, 'add_learning_resource.html', {'form': form})
+            except Exception as e:
+                messages.error(request, f"Error processing SCORM package: {str(e)}")
         resource.save()
         return JsonResponse({
             'status': 'success',
