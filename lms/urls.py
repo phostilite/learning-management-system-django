@@ -26,5 +26,6 @@ urlpatterns = i18n_patterns(
     path('auth/', include('authentication.urls')),
     path('user/', include('users.urls')),
     path('', include('website.urls')),
+    path('rosetta/', include('rosetta.urls')),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

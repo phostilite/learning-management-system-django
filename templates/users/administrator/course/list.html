@@ -152,16 +152,16 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
             </div>
-            <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">Warning</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900 mt-4">{% trans "Warning" %}</h3>
             <div class="mt-2 px-7 py-3">
                 <p id="warningMessage" class="text-sm text-gray-500"></p>
             </div>
             <div class="items-center px-4 py-3">
                 <button id="deleteButton" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
-                    Delete Course
+                    {% trans "Delete Course" %}
                 </button>
                 <button id="cancelButton" class="mt-3 px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
-                    Cancel
+                    {% trans "Cancel" %}
                 </button>
             </div>
         </div>
@@ -187,7 +187,7 @@
                 const csrftoken = getCookie('csrftoken');
                 
                 // Make GET request to get warning information
-                fetch(`/en/user/administrator/course/${currentCourseId}/delete/`, {
+                fetch(`/{{ LANGUAGE_CODE }}/user/administrator/course/${currentCourseId}/delete/`, {
                     method: 'GET',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
@@ -212,11 +212,11 @@
                 .catch(error => {
                     console.error('Error:', error);
                     if (error.message === 'Authentication required') {
-                        alert('You need to be logged in to perform this action.');
+                        alert("{% trans 'You need to be logged in to perform this action.' %}");
                     } else if (error.message.includes('permission denied')) {
-                        alert('You do not have permission to delete this course. Please contact an administrator.');
+                        alert("{% trans 'You do not have permission to delete this course. Please contact an administrator.' %}");
                     } else {
-                        alert(`An error occurred: ${error.message}`);
+                        alert(`{% trans 'An error occurred:' %} ${error.message}`);
                     }
                 });
             });
@@ -227,11 +227,11 @@
                 console.error('No course ID set for deletion');
                 return;
             }
-    
+        
             const csrftoken = getCookie('csrftoken');
-    
+        
             // Make DELETE request to delete the course
-            fetch(`/en/user/administrator/course/${currentCourseId}/delete/`, {
+            fetch(`/{{ LANGUAGE_CODE }}/user/administrator/course/${currentCourseId}/delete/`, {
                 method: 'DELETE',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
@@ -250,20 +250,20 @@
             })
             .then(data => {
                 console.log('Delete response:', data);
-                alert(data.message || 'Course successfully deleted');
+                alert(data.message || "{% trans 'Course successfully deleted' %}");
                 // Optionally, refresh the page or update the UI to reflect the deleted course
                 window.location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert(`An error occurred while deleting the course: ${error.message}`);
+                alert(`{% trans 'An error occurred while deleting the course:' %} ${error.message}`);
             })
             .finally(() => {
                 modal.classList.add('hidden');
                 currentCourseId = null;
             });
         });
-    
+        
         cancelButton.addEventListener('click', function() {
             modal.classList.add('hidden');
             currentCourseId = null;
@@ -285,5 +285,5 @@
         }
         return cookieValue;
     }
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}

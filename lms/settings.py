@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'formtools',
     'corsheaders',
     'csp',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
