@@ -39,3 +39,5 @@ class LearnerMyCoursesView(ListView):
     def get_queryset(self):
         pass
 
+def learner_course_detail(request):
+    return render(request, 'users/learner/course_detail.html')

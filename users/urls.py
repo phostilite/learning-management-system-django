@@ -51,6 +51,7 @@ urlpatterns = [
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),
     path('learner/my-courses/', learner_views.LearnerMyCoursesView.as_view(), name='learner_my_courses'),
+    path('learner/course/detail/', learner_views.learner_course_detail, name='learner_course_detail'),
 
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
