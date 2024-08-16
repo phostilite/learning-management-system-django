@@ -25,6 +25,7 @@ urlpatterns = [
     path('administrator/course/<uuid:course_id>/add-resource/', administartor_views.add_learning_resource, name='add_learning_resource'),
 
     path('administrator/course/<uuid:course_id>/deliveries/', administartor_views.AdministratorCourseDeliveryListView.as_view(), name='administrator_course_delivery_list'),
+    path('administrator/course/<uuid:course_id>/delivery/create/', administartor_views.AdministratorCourseDeliveryCreateView.as_view(), name='administrator_course_delivery_create'),
 
 
     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),

@@ -65,3 +65,6 @@ LearningResourceFormSet = inlineformset_factory(
     Course, LearningResource, form=LearningResourceForm,
     extra=1, can_delete=True
 )
+
+class CourseDeliveryForm(forms.ModelForm):
+    pass

@@ -1,4 +1,5 @@
 import logging
+from django.views import View
 import requests
 import json
 
@@ -29,7 +30,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm
+from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
 from users.forms import LearnerCreationForm
@@ -685,3 +686,14 @@ class AdministratorCourseDeleteView(APIView):
         except requests.RequestException as e:
             logger.error(f"Error deleting SCORM package {scorm_course_id} from SCORM player API: {str(e)}")
             raise
+
+
+
+class AdministratorCourseDeliveryCreateView(TemplateView):
+    template_name = 'users/administrator/course/create_delivery.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        course_id = self.kwargs['course_id']
+        context['course'] = get_object_or_404(Course, id=course_id)
+        return context

@@ -1,0 +1,277 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Create Course Delivery - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create Course Delivery" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Set up a new delivery for" %} {{ course.title }}</p>
+        </header>
+
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course.title }}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Create Delivery" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Multi-step form -->
+        <form id="courseDeliveryForm" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            <!-- Progress bar -->
+            <div class="mb-8">
+                <div class="flex justify-between mb-1">
+                    <span class="text-base font-medium text-blue-700 dark:text-white">{% trans "Progress" %}</span>
+                    <span class="text-sm font-medium text-blue-700 dark:text-white" id="progress-text">20%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-500 ease-in-out" id="progress-bar" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <!-- Step 1: Basic Details -->
+            <div class="step" id="step1">
+                <h3 class="text-2xl font-semibold mb-4">{% trans "Basic Details" %}</h3>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_delivery_code">
+                        {% trans "Delivery Code" %}
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_delivery_code" name="delivery_code" type="text" placeholder="{% trans 'Enter delivery code' %}" readonly value="{{ form.delivery_code.value }}">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_delivery_type">
+                        {% trans "How will the course be delivered?" %}
+                    </label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_delivery_type" name="delivery_type">
+                        <option value="SELF_PACED" {% if form.delivery_type.value == "SELF_PACED" %}selected{% endif %}>{% trans "Self Paced" %}</option>
+                        <option value="INSTRUCTOR_LED" {% if form.delivery_type.value == "INSTRUCTOR_LED" %}selected{% endif %}>{% trans "Instructor Led" %}</option>
+                    </select>
+                </div>
+                <!-- Add more fields from Step 1 here -->
+            </div>
+
+            <!-- Step 2: Assign Facilitators -->
+            <div class="step hidden" id="step2">
+                <h3 class="text-2xl font-semibold mb-4">{% trans "Assign Facilitators" %}</h3>
+                <div class="mb-4">
+                    <label for="facilitators" class="block text-sm font-medium text-gray-700">{% trans "Facilitators" %}</label>
+                    <select id="facilitators" name="facilitators" multiple class="form-multiselect mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        {% for facilitator in form.facilitators.field.queryset %}
+                            <option value="{{ facilitator.pk }}" {% if facilitator.pk in form.facilitators.value %}selected{% endif %}>{{ facilitator }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 3: Assign Participants -->
+            <div class="step hidden" id="step3">
+                <h3 class="text-2xl font-semibold mb-4">{% trans "Assign Participants" %}</h3>
+                <div class="mb-4">
+                    <label for="participants" class="block text-sm font-medium text-gray-700">{% trans "Participants" %}</label>
+                    <select id="participants" name="participants" multiple class="form-multiselect mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        {% for participant in form.participants.field.queryset %}
+                            <option value="{{ participant.pk }}" {% if participant.pk in form.participants.value %}selected{% endif %}>{{ participant }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 4: Advanced Settings -->
+            <div class="step hidden" id="step4">
+                <h3 class="text-2xl font-semibold mb-4">{% trans "Advanced Settings" %}</h3>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="access_period_checkbox">
+                        {% trans "Would you like to add access period for Course content for this Delivery?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="access_period_checkbox">
+                    <span class="text-sm">{% trans "Yes, add access period" %}</span>
+                    
+                    <div id="date-range-picker" class="hidden mt-4">
+                        <div class="flex items-center">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-start" name="start_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select start date' %}" value="{{ form.start_date.value|date:'Y-m-d' }}">
+                            </div>
+                            <span class="mx-4 text-gray-500">{% trans "to" %}</span>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-end" name="end_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select end date' %}" value="{{ form.end_date.value|date:'Y-m-d' }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="deactivation_date_checkbox">
+                        {% trans "Would you like to add deactivation date for this Delivery?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="deactivation_date_checkbox">
+                    <span class="text-sm">{% trans "Yes, add deactivation date" %}</span>
+                
+                    <div id="datepicker-container" class="hidden mt-4">
+                        <div class="relative max-w-sm">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                </svg>
+                            </div>
+                            <input id="default-datepicker" name="deactivation_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select date' %}" value="{{ form.deactivation_date.value|date:'Y-m-d' }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_feedback">
+                        {% trans "Would you like to get feedback from the Participant for this Delivery?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="id_feedback" name="feedback">
+                    <span class="text-sm">{% trans "Yes, collect feedback" %}</span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_mandatory">
+                        {% trans "Would you like to mark this Delivery as Mandatory for the Participant?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="id_mandatory" name="mandatory">
+                    <span class="text-sm">{% trans "Yes, mark as mandatory" %}</span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_attendance">
+                        {% trans "Do you want to capture the Participant attendance for this Course?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="id_attendance" name="attendance">
+                    <span class="text-sm">{% trans "Yes, capture attendance" %}</span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_completion_certificate">
+                        {% trans "Does this Course require a Completion Certificate?" %}
+                    </label>
+                    <input class="mr-2 leading-tight" type="checkbox" id="id_completion_certificate" name="completion_certificate">
+                    <span class="text-sm">{% trans "Yes, require completion certificate" %}</span>
+                </div>
+            </div>
+
+            <!-- Step 5: Email Settings -->
+            <div class="step hidden" id="step5">
+                <h3 class="text-2xl font-semibold mb-4">{% trans "Email Settings" %}</h3>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_invite_email">
+                        {% trans "Invite Email Template" %}
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_invite_email" name="invite_email" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_completion_email">
+                        {% trans "Completion Email Template" %}
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_completion_email" name="completion_email" rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="flex justify-between mt-6">
+                <button type="button" id="prevBtn" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    {% trans "Previous" %}
+                </button>
+                <button type="button" id="nextBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    {% trans "Next" %}
+                </button>
+                <button type="submit" id="submitBtn" class="hidden bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    {% trans "Submit" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script>
+    // Add your JavaScript for form navigation and validation here
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('courseDeliveryForm');
+        const steps = document.querySelectorAll('.step');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.toggle('hidden', index !== stepIndex);
+            });
+            prevBtn.classList.toggle('hidden', stepIndex === 0);
+            nextBtn.classList.toggle('hidden', stepIndex === steps.length - 1);
+            submitBtn.classList.toggle('hidden', stepIndex !== steps.length - 1);
+            
+            const progress = ((stepIndex + 1) / steps.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add form validation logic here
+            // If valid, submit the form
+            // form.submit();
+        });
+
+        showStep(currentStep);
+    });
+</script>
+{% endblock %}
