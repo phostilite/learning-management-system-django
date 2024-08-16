@@ -6,9 +6,10 @@ import re
 import chardet
 import unicodedata
 import codecs
+from langdetect import detect
 
 def detect_encoding(file_path):
-    encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii']
+    encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii', 'big5', 'gb2312', 'gbk']
     for enc in encodings:
         try:
             with codecs.open(file_path, 'r', encoding=enc) as file:
@@ -26,7 +27,7 @@ def sanitize_string(s):
     return ''.join(ch for ch in s if unicodedata.category(ch)[0] != 'C')
 
 def unicode_escape(s):
-    return ''.join('\\U{:08x}'.format(ord(c)) if ord(c) > 0xFFFF else c for c in s)
+    return s.encode('unicode-escape').decode('ascii')
 
 def translate_po_file(input_file, target_lang):
     encoding = detect_encoding(input_file)
@@ -49,13 +50,17 @@ def translate_po_file(input_file, target_lang):
                 # Preserve format specifiers
                 placeholders = re.findall(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', entry.msgid)
                 sanitized_msgid = sanitize_string(re.sub(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', '{}', entry.msgid))
-                translated = translator.translate(sanitized_msgid, dest=target_lang).text
+                
+                # Detect source language
+                source_lang = detect(sanitized_msgid)
+                
+                translated = translator.translate(sanitized_msgid, src=source_lang, dest=target_lang).text
                 
                 # Reinsert placeholders
                 for i, placeholder in enumerate(placeholders):
                     translated = translated.replace('{}', placeholder, 1)
                 
-                entry.msgstr = unicode_escape(translated)
+                entry.msgstr = translated
                 print(f"Translated '{entry.msgid}' to '{entry.msgstr}'")
             except Exception as e:
                 print(f"Error translating '{entry.msgid}': {str(e)}")
@@ -87,5 +92,5 @@ def main(target_lang):
     compile_messages()
 
 if __name__ == "__main__":
-    target_language = 'ar'  
+    target_language = 'zh-tw'  # Changed to lowercase with hyphen
     main(target_language)
