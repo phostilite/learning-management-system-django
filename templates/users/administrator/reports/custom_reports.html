@@ -1,72 +1,70 @@
 {% extends '../_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Custom Reports - LMS Admin{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
-<!-- Include Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="custom-reports-page">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">Custom Reports</h1>
-        <p class="text-lg text-white text-center">Create, view, and manage custom reports for in-depth LMS analysis</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Custom Reports" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Create, view, and manage custom reports for in-depth LMS analysis" %}</p>
     </header>
 
     <!-- Report Builder -->
     <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Report Builder</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Report Builder" %}</h2>
         <form class="space-y-4">
             <div>
-                <label for="report-name" class="block text-sm font-medium text-gray-700">Report Name</label>
+                <label for="report-name" class="block text-sm font-medium text-gray-700">{% trans "Report Name" %}</label>
                 <input type="text" id="report-name" name="report-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div>
-                <label for="data-source" class="block text-sm font-medium text-gray-700">Data Source</label>
+                <label for="data-source" class="block text-sm font-medium text-gray-700">{% trans "Data Source" %}</label>
                 <select id="data-source" name="data-source" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option>Course Enrollments</option>
-                    <option>User Progress</option>
-                    <option>Assessment Results</option>
-                    <option>User Engagement</option>
-                    <option>Certification Tracking</option>
+                    <option>{% trans "Course Enrollments" %}</option>
+                    <option>{% trans "User Progress" %}</option>
+                    <option>{% trans "Assessment Results" %}</option>
+                    <option>{% trans "User Engagement" %}</option>
+                    <option>{% trans "Certification Tracking" %}</option>
                 </select>
             </div>
             <div>
-                <label for="metrics" class="block text-sm font-medium text-gray-700">Metrics</label>
+                <label for="metrics" class="block text-sm font-medium text-gray-700">{% trans "Metrics" %}</label>
                 <select id="metrics" name="metrics" multiple class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option>Total Enrollments</option>
-                    <option>Completion Rate</option>
-                    <option>Average Score</option>
-                    <option>Time Spent</option>
-                    <option>User Satisfaction</option>
+                    <option>{% trans "Total Enrollments" %}</option>
+                    <option>{% trans "Completion Rate" %}</option>
+                    <option>{% trans "Average Score" %}</option>
+                    <option>{% trans "Time Spent" %}</option>
+                    <option>{% trans "User Satisfaction" %}</option>
                 </select>
             </div>
             <div>
-                <label for="date-range" class="block text-sm font-medium text-gray-700">Date Range</label>
+                <label for="date-range" class="block text-sm font-medium text-gray-700">{% trans "Date Range" %}</label>
                 <select id="date-range" name="date-range" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option>Last 7 days</option>
-                    <option>Last 30 days</option>
-                    <option>Last 3 months</option>
-                    <option>Last 6 months</option>
-                    <option>Last year</option>
-                    <option>Custom range</option>
+                    <option>{% trans "Last 7 days" %}</option>
+                    <option>{% trans "Last 30 days" %}</option>
+                    <option>{% trans "Last 3 months" %}</option>
+                    <option>{% trans "Last 6 months" %}</option>
+                    <option>{% trans "Last year" %}</option>
+                    <option>{% trans "Custom range" %}</option>
                 </select>
             </div>
             <div>
-                <label for="chart-type" class="block text-sm font-medium text-gray-700">Chart Type</label>
+                <label for="chart-type" class="block text-sm font-medium text-gray-700">{% trans "Chart Type" %}</label>
                 <select id="chart-type" name="chart-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option>Bar Chart</option>
-                    <option>Line Chart</option>
-                    <option>Pie Chart</option>
-                    <option>Table</option>
+                    <option>{% trans "Bar Chart" %}</option>
+                    <option>{% trans "Line Chart" %}</option>
+                    <option>{% trans "Pie Chart" %}</option>
+                    <option>{% trans "Table" %}</option>
                 </select>
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Generate Report
+                    {% trans "Generate Report" %}
                 </button>
             </div>
         </form>
@@ -74,34 +72,34 @@
 
     <!-- Saved Reports -->
     <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Saved Reports</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Saved Reports" %}</h2>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Report Name</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Source</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Run</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Report Name" %}</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Data Source" %}</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Last Run" %}</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Actions" %}</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">Course Completion Trends</td>
-                        <td class="px-6 py-4 whitespace-nowrap">User Progress</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{% trans "Course Completion Trends" %}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{% trans "User Progress" %}</td>
                         <td class="px-6 py-4 whitespace-nowrap">2023-06-15</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">View</a>
-                            <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">{% trans "View" %}</a>
+                            <a href="#" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
                         </td>
                     </tr>
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">Assessment Performance Analysis</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Assessment Results</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{% trans "Assessment Performance Analysis" %}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{% trans "Assessment Results" %}</td>
                         <td class="px-6 py-4 whitespace-nowrap">2023-06-10</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">View</a>
-                            <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">{% trans "View" %}</a>
+                            <a href="#" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
                         </td>
                     </tr>
                     <!-- Add more rows as needed -->
@@ -112,46 +110,48 @@
 
     <!-- Sample Custom Report -->
     <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Sample Custom Report: Course Completion Trends</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Sample Custom Report: Course Completion Trends" %}</h2>
         <div class="mb-4">
             <canvas id="customReportChart" width="400" height="200"></canvas>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold mb-2">Key Insight 1</h3>
-                <p class="text-gray-700">Completion rates have increased by 15% over the last 3 months.</p>
+                <h3 class="text-lg font-semibold mb-2">{% trans "Key Insight 1" %}</h3>
+                <p class="text-gray-700">{% trans "Completion rates have increased by 15% over the last 3 months." %}</p>
             </div>
             <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold mb-2">Key Insight 2</h3>
-                <p class="text-gray-700">Web Development courses show the highest completion rates at 78%.</p>
+                <h3 class="text-lg font-semibold mb-2">{% trans "Key Insight 2" %}</h3>
+                <p class="text-gray-700">{% trans "Web Development courses show the highest completion rates at 78%." %}</p>
             </div>
             <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold mb-2">Key Insight 3</h3>
-                <p class="text-gray-700">Average time to completion has decreased from 45 to 38 days.</p>
+                <h3 class="text-lg font-semibold mb-2">{% trans "Key Insight 3" %}</h3>
+                <p class="text-gray-700">{% trans "Average time to completion has decreased from 45 to 38 days." %}</p>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
     // Sample Custom Report Chart
     var ctx = document.getElementById('customReportChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: ['{% trans "Jan" %}', '{% trans "Feb" %}', '{% trans "Mar" %}', '{% trans "Apr" %}', '{% trans "May" %}', '{% trans "Jun" %}'],
             datasets: [{
-                label: 'Web Development',
+                label: '{% trans "Web Development" %}',
                 data: [65, 70, 72, 75, 76, 78],
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }, {
-                label: 'Data Science',
+                label: '{% trans "Data Science" %}',
                 data: [60, 62, 65, 68, 70, 72],
                 borderColor: 'rgb(255, 99, 132)',
                 tension: 0.1
             }, {
-                label: 'Digital Marketing',
+                label: '{% trans "Digital Marketing" %}',
                 data: [55, 58, 60, 63, 65, 68],
                 borderColor: 'rgb(255, 205, 86)',
                 tension: 0.1

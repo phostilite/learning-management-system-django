@@ -155,6 +155,7 @@ LANGUAGES = [
     ('mr', _('Marathi')),
     # ('or', _('Odia (Oriya)')),
     # ('kok', _('Konkani')),
+    ('ml', _('Malayalam')),
 ]
 
 TIME_ZONE = 'UTC'

@@ -1,34 +1,10 @@
 {% extends '../_base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %}{{ course.title }} - LMS Admin{% endblock %}
 
 {% block extra_css %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f0f0f0;
-        color: #333;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', serif;
-    }
-    .bg-primary { background-color: #1e3a8a; }
-    .bg-secondary { background-color: #f9fafb; }
-    .bg-accent { background-color: #c2410c; }
-    .text-primary { color: #1e3a8a; }
-    .text-secondary { color: #4b5563; }
-    .text-accent { color: #c2410c; }
-    .border-primary { border-color: #1e3a8a; }
-    .hover-bg-accent:hover { background-color: #9a3412; }
-    .gradient-bg {
-        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    }
-    .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
     .tab-content {
         display: none;
     }
@@ -36,7 +12,6 @@
         display: block;
     }
 </style>
-<link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -44,22 +19,23 @@
     <!-- Header -->
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{{ course.title }}</h1>
-        <p class="text-xl text-blue-100 text-center">Course ID: {{ course.id }}</p>
+        <p class="text-xl text-blue-100 text-center">{% trans "Course ID:" %} {{ course.id }}</p>
     </header>
     
+
     <!-- Breadcrumbs -->
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                    Dashboard
+                    {% trans "Dashboard" %}
                 </a>
             </li>
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Courses</a>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
                 </div>
             </li>
             <li aria-current="page">
@@ -79,27 +55,27 @@
                     <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
                 {% else %}
                     <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
-                        <span class="text-gray-500">No Cover Image</span>
+                        <span class="text-gray-500">{% trans "No Cover Image" %}</span>
                     </div>
                 {% endif %}
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-primary mb-2">{{ course.title }}</h2>
-                    <p class="text-secondary mb-4">Course ID: {{ course.id }}</p>
+                    <p class="text-secondary mb-4">{% trans "Course ID:" %} {{ course.id }}</p>
                     <div class="flex justify-between mb-4">
-                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition">Edit Course</button>
-                        <button class="bg-accent text-white px-4 py-2 rounded hover:bg-red-700 transition">Unpublish</button>
+                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 transition">{% trans "Edit Course" %}</button>
+                        <button class="bg-accent text-white px-4 py-2 rounded hover:bg-red-700 transition">{% trans "Unpublish" %}</button>
                     </div>
                     <div class="flex justify-between mb-4">
-                        <button onclick="previewResource()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Preview</button>
-                        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Analytics</button>
+                        <button onclick="previewResource()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">{% trans "Preview" %}</button>
+                        <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">{% trans "Analytics" %}</button>
                     </div>
                     <div class="mt-6">
-                        <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Quick Actions" %}</h3>
                         <ul class="space-y-2">
-                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-user-plus mr-2"></i>Add New Student</a></li>
-                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-calendar-alt mr-2"></i>Schedule Live Session</a></li>
-                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-chart-bar mr-2"></i>Generate Report</a></li>
-                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-envelope mr-2"></i>Send Announcement</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-user-plus mr-2"></i>{% trans "Add New Student" %}</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-calendar-alt mr-2"></i>{% trans "Schedule Live Session" %}</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-chart-bar mr-2"></i>{% trans "Generate Report" %}</a></li>
+                            <li><a href="#" class="text-blue-600 hover:underline"><i class="fas fa-envelope mr-2"></i>{% trans "Send Announcement" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -107,182 +83,180 @@
         </div>
 
         <!-- Right Column -->
-        <div class="w-full lg:w-2/3 px-4">
-            <div class="bg-white rounded-lg card-shadow p-6 mb-8">
-                <h2 class="text-xl font-semibold mb-4">Course Overview</h2>
-                <p class="mb-4">{{ course.description }}</p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <p><strong>Category:</strong> {{ course.category }}</p>
-                        <p><strong>Created by:</strong> {{ course.created_by }}</p>
-                        <p><strong>Last Updated:</strong> {{ course.updated_at|date:"F d, Y" }}</p>
-                    </div>
-                    <div>
-                        <p><strong>Total Enrollments:</strong> {{ total_enrollments }}</p>
-                        <p><strong>Active Enrollments:</strong> {{ total_active_enrollments }}</p>
-                        <p><strong>Course Deliveries:</strong> {{ total_deliveries }}</p>
-                    </div>
-                </div>
+<div class="w-full lg:w-2/3 px-4">
+    <div class="bg-white rounded-lg card-shadow p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">{% trans "Course Overview" %}</h2>
+        <p class="mb-4">{{ course.description }}</p>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p><strong>{% trans "Category:" %}</strong> {{ course.category }}</p>
+                <p><strong>{% trans "Created by:" %}</strong> {{ course.created_by }}</p>
+                <p><strong>{% trans "Last Updated:" %}</strong> {{ course.updated_at|date:"F d, Y" }}</p>
             </div>
+            <div>
+                <p><strong>{% trans "Total Enrollments:" %}</strong> {{ total_enrollments }}</p>
+                <p><strong>{% trans "Active Enrollments:" %}</strong> {{ total_active_enrollments }}</p>
+                <p><strong>{% trans "Course Deliveries:" %}</strong> {{ total_deliveries }}</p>
+            </div>
+        </div>
+    </div>
 
-            <div class="bg-white rounded-lg card-shadow p-6">
-                <ul class="flex border-b border-gray-200 mb-6" id="mainTabs">
-                    <li class="mr-1">
-                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold active" href="#" data-tab="content">
-                            Course Content
-                        </a>
-                    </li>
-                    <li class="mr-1">
-                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="enrollments">
-                            Enrollments
-                        </a>
-                    </li>
-                    <li class="mr-1">
-                        <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="deliveries">
-                            Course Deliveries
-                        </a>
-                    </li>
-                </ul>
+    <div class="bg-white rounded-lg card-shadow p-6">
+        <ul class="flex border-b border-gray-200 mb-6" id="mainTabs">
+            <li class="mr-1">
+                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold active" href="#" data-tab="content">
+                    {% trans "Course Content" %}
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="enrollments">
+                    {% trans "Enrollments" %}
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="deliveries">
+                    {% trans "Course Deliveries" %}
+                </a>
+            </li>
+        </ul>
 
-                <div id="content" class="tab-content active">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-semibold">Course Content</h3>
-                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onclick="showAddResourceModal()">
-                            <i class="fas fa-plus mr-2"></i>Add New Resource
-                        </button>
-                    </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="px-4 py-2 text-left">Title</th>
-                                    <th class="px-4 py-2 text-left">Type</th>
-                                    <th class="px-4 py-2 text-left">Order</th>
-                                    <th class="px-4 py-2 text-left">Last Updated</th>
-                                    <th class="px-4 py-2 text-left">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for resource in learning_resources %}
-                                <tr>
-                                    <td class="px-4 py-2">
-                                        <div class="flex items-center">
-                                            <span class="resource-type-icon w-8 h-8 rounded-full flex items-center justify-center mr-2
-                                                {% if resource.resource_type == 'SCORM' %}
-                                                    bg-blue-100 text-blue-600
-                                                {% elif resource.resource_type == 'VIDEO' %}
-                                                    bg-red-100 text-red-600
-                                                {% elif resource.resource_type == 'DOCUMENT' %}
-                                                    bg-yellow-100 text-yellow-600
-                                                {% elif resource.resource_type == 'PRESENTATION' %}
-                                                    bg-orange-100 text-orange-600
-                                                {% elif resource.resource_type == 'LINK' %}
-                                                    bg-purple-100 text-purple-600
-                                                {% elif resource.resource_type == 'QUIZ' %}
-                                                    bg-green-100 text-green-600
-                                                {% else %}
-                                                    bg-gray-100 text-gray-600
-                                                {% endif %}">
-                                                <i class="fas fa-{{ resource.get_resource_type_display|lower }}-alt"></i>
-                                            </span>
-                                            {{ resource.title }}
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-2">{{ resource.get_resource_type_display }}</td>
-                                    <td class="px-4 py-2">{{ resource.order }}</td>
-                                    <td class="px-4 py-2">{{ resource.updated_at|date:"F d, Y" }}</td>
-                                    <td class="px-4 py-2">
-                                        <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource('{{ resource.id }}')"><i class="fas fa-edit"></i></button>
-                                        <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource('{{ resource.id }}')"><i class="fas fa-eye"></i></button>
-                                        <button class="text-red-500 hover:text-red-700" onclick="deleteResource('{{ resource.id }}')"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div id="content" class="tab-content active">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold">{% trans "Course Content" %}</h3>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" onclick="showAddResourceModal()">
+                    <i class="fas fa-plus mr-2"></i>{% trans "Add New Resource" %}
+                </button>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-4 py-2 text-left">{% trans "Title" %}</th>
+                            <th class="px-4 py-2 text-left">{% trans "Type" %}</th>
+                            <th class="px-4 py-2 text-left">{% trans "Order" %}</th>
+                            <th class="px-4 py-2 text-left">{% trans "Last Updated" %}</th>
+                            <th class="px-4 py-2 text-left">{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for resource in learning_resources %}
+                        <tr>
+                            <td class="px-4 py-2">
+                                <div class="flex items-center">
+                                    <span class="resource-type-icon w-8 h-8 rounded-full flex items-center justify-center mr-2
+                                        {% if resource.resource_type == 'SCORM' %}
+                                            bg-blue-100 text-blue-600
+                                        {% elif resource.resource_type == 'VIDEO' %}
+                                            bg-red-100 text-red-600
+                                        {% elif resource.resource_type == 'DOCUMENT' %}
+                                            bg-yellow-100 text-yellow-600
+                                        {% elif resource.resource_type == 'PRESENTATION' %}
+                                            bg-orange-100 text-orange-600
+                                        {% elif resource.resource_type == 'LINK' %}
+                                            bg-purple-100 text-purple-600
+                                        {% elif resource.resource_type == 'QUIZ' %}
+                                            bg-green-100 text-green-600
+                                        {% else %}
+                                            bg-gray-100 text-gray-600
+                                        {% endif %}">
+                                        <i class="fas fa-{{ resource.get_resource_type_display|lower }}-alt"></i>
+                                    </span>
+                                    {{ resource.title }}
+                                </div>
+                            </td>
+                            <td class="px-4 py-2">{{ resource.get_resource_type_display }}</td>
+                            <td class="px-4 py-2">{{ resource.order }}</td>
+                            <td class="px-4 py-2">{{ resource.updated_at|date:"F d, Y" }}</td>
+                            <td class="px-4 py-2">
+                                <button class="text-blue-500 hover:text-blue-700 mr-2" onclick="editResource('{{ resource.id }}')"><i class="fas fa-edit"></i></button>
+                                <button class="text-green-500 hover:text-green-700 mr-2" onclick="previewResource('{{ resource.id }}')"><i class="fas fa-eye"></i></button>
+                                <button class="text-red-500 hover:text-red-700" onclick="deleteResource('{{ resource.id }}')"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div id="enrollments" class="tab-content">
-                    <h3 class="text-xl font-semibold mb-4">Recent Enrollments</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="py-2 px-4 text-left">User</th>
-                                    <th class="py-2 px-4 text-left">Delivery</th>
-                                    <th class="py-2 px-4 text-left">Enrollment Date</th>
-                                    <th class="py-2 px-4 text-left">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for enrollment in recent_enrollments %}
-                                <tr>
-                                    <td class="py-2 px-4">{{ enrollment.user.username }}</td>
-                                    <td class="py-2 px-4">{{ enrollment.course_delivery.title }}</td>
-                                    <td class="py-2 px-4">{{ enrollment.enrollment_date|date:"F d, Y H:i" }}</td>
-                                    <td class="py-2 px-4">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            {% if enrollment.status == 'ENROLLED' %}
-                                                bg-green-100 text-green-800
-                                            {% elif enrollment.status == 'IN_PROGRESS' %}
-                                                bg-blue-100 text-blue-800
-                                            {% elif enrollment.status == 'COMPLETED' %}
-                                                bg-purple-100 text-purple-800
-                                            {% else %}
-                                                bg-red-100 text-red-800
-                                            {% endif %}">
-                                            {{ enrollment.get_status_display }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div id="enrollments" class="tab-content">
+            <h3 class="text-xl font-semibold mb-4">{% trans "Recent Enrollments" %}</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 text-left">{% trans "User" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Delivery" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Enrollment Date" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Status" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enrollment in recent_enrollments %}
+                        <tr>
+                            <td class="py-2 px-4">{{ enrollment.user.username }}</td>
+                            <td class="py-2 px-4">{{ enrollment.course_delivery.title }}</td>
+                            <td class="py-2 px-4">{{ enrollment.enrollment_date|date:"F d, Y H:i" }}</td>
+                            <td class="py-2 px-4">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    {% if enrollment.status == 'ENROLLED' %}
+                                        bg-green-100 text-green-800
+                                    {% elif enrollment.status == 'IN_PROGRESS' %}
+                                        bg-blue-100 text-blue-800
+                                    {% elif enrollment.status == 'COMPLETED' %}
+                                        bg-purple-100 text-purple-800
+                                    {% else %}
+                                        bg-red-100 text-red-800
+                                    {% endif %}">
+                                    {{ enrollment.get_status_display }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div id="deliveries" class="tab-content">
-                    <h3 class="text-xl font-semibold mb-4">Course Deliveries</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="py-2 px-4 text-left">Title</th>
-                                    <th class="py-2 px-4 text-left">Start Date</th>
-                                    <th class="py-2 px-4 text-left">Total Enrollments</th>
-                                    <th class="py-2 px-4 text-left">Active Enrollments</th>
-                                    <th class="py-2 px-4 text-left">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for delivery in course_deliveries %}
-                                <tr>
-                                    <td class="py-2 px-4">{{ delivery.title }}</td>
-                                    <td class="py-2 px-4">{{ delivery.start_date|date:"F d, Y" }}</td>
-                                    <td class="py-2 px-4">{{ delivery.total_enrollments }}</td>
-                                    <td class="py-2 px-4">{{ delivery.active_enrollments }}</td>
-                                    <td class="py-2 px-4">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            {% if delivery.status == 'ACTIVE' %}
-                                                bg-green-100 text-green-800
-                                            {% elif delivery.status == 'DRAFT' %}
-                                                bg-yellow-100 text-yellow-800
-                                            {% elif delivery.status == 'COMPLETED' %}
-                                                bg-blue-100 text-blue-800
-                                            {% else %}
-                                                bg-gray-100 text-gray-800
-                                            {% endif %}">
-                                            {{ delivery.get_status_display }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div id="deliveries" class="tab-content">
+            <h3 class="text-xl font-semibold mb-4">{% trans "Course Deliveries" %}</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 text-left">{% trans "Title" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Start Date" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Total Enrollments" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Active Enrollments" %}</th>
+                            <th class="py-2 px-4 text-left">{% trans "Status" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for delivery in course_deliveries %}
+                        <tr>
+                            <td class="py-2 px-4">{{ delivery.title }}</td>
+                            <td class="py-2 px-4">{{ delivery.start_date|date:"F d, Y" }}</td>
+                            <td class="py-2 px-4">{{ delivery.total_enrollments }}</td>
+                            <td class="py-2 px-4">{{ delivery.active_enrollments }}</td>
+                            <td class="py-2 px-4">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    {% if delivery.status == 'ACTIVE' %}
+                                        bg-green-100 text-green-800
+                                    {% elif delivery.status == 'DRAFT' %}
+                                        bg-yellow-100 text-yellow-800
+                                    {% elif delivery.status == 'COMPLETED' %}
+                                        bg-blue-100 text-blue-800
+                                    {% else %}
+                                        bg-gray-100 text-gray-800
+                                    {% endif %}">
+                                    {{ delivery.get_status_display }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -292,31 +266,31 @@
 <!-- Add Resource Modal -->
 <div id="addResourceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
     <div class="bg-white rounded-lg p-8 max-w-md w-full">
-        <h2 class="text-2xl font-semibold mb-4">Add New Resource</h2>
+        <h2 class="text-2xl font-semibold mb-4">{% trans "Add New Resource" %}</h2>
         <form id="addResourceForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_title">Title</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_title">{% trans "Title" %}</label>
                 <input type="text" id="id_title" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_resource_type">Resource Type</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_resource_type">{% trans "Resource Type" %}</label>
                 <select id="id_resource_type" name="resource_type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option value="">Select a type</option>
-                    <option value="VIDEO">Video</option>
-                    <option value="DOCUMENT">Document</option>
-                    <option value="PRESENTATION">Presentation</option>
-                    <option value="LINK">Link</option>
-                    <option value="QUIZ">Quiz</option>
-                    <option value="SCORM">SCORM</option>
+                    <option value="">{% trans "Select a type" %}</option>
+                    <option value="VIDEO">{% trans "Video" %}</option>
+                    <option value="DOCUMENT">{% trans "Document" %}</option>
+                    <option value="PRESENTATION">{% trans "Presentation" %}</option>
+                    <option value="LINK">{% trans "Link" %}</option>
+                    <option value="QUIZ">{% trans "Quiz" %}</option>
+                    <option value="SCORM">{% trans "SCORM" %}</option>
                 </select>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_description">Description</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_description">{% trans "Description" %}</label>
                 <textarea id="id_description" name="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_content">Content File</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_content">{% trans "Content File" %}</label>
                 <input type="file" id="id_content" name="content" class="mt-1 block w-full text-sm text-gray-500
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
@@ -326,16 +300,16 @@
                 ">
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_external_url">External URL</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_external_url">{% trans "External URL" %}</label>
                 <input type="url" id="id_external_url" name="external_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_order">Order</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="id_order">{% trans "Order" %}</label>
                 <input type="number" id="id_order" name="order" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
             <div class="flex justify-end">
-                <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 hover:bg-gray-400 transition duration-150 ease-in-out" onclick="closeAddResourceModal()">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-150 ease-in-out">Add Resource</button>
+                <button type="button" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 hover:bg-gray-400 transition duration-150 ease-in-out" onclick="closeAddResourceModal()">{% trans "Cancel" %}</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-150 ease-in-out">{% trans "Add Resource" %}</button>
             </div>
         </form>
     </div>
@@ -347,16 +321,17 @@
     <div class="bg-white w-11/12 h-5/6 rounded-lg shadow-2xl z-10 overflow-hidden flex" data-aos="zoom-in">
         <!-- Learning Path Sidebar -->
         <div class="w-1/3 bg-gray-50 p-6 overflow-auto border-r">
-            <h3 class="text-xl font-bold mb-4">Learning Path</h3>
+            <h3 class="text-xl font-bold mb-4">{% trans "Learning Path" %}</h3>
             <div id="learningPath" class="space-y-4">
                 <!-- Learning path items will be inserted here -->
             </div>
         </div>
 
+
         <!-- Main Content Area -->
         <div class="w-2/3 flex flex-col">
             <div class="flex justify-between items-center p-6 bg-gray-50 border-b">
-                <h3 class="text-2xl font-bold text-gray-800" id="modalTitle">Course Resource Preview</h3>
+                <h3 class="text-2xl font-bold text-gray-800" id="modalTitle">{% trans "Course Resource Preview" %}</h3>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">
                     <i class="fas fa-times text-xl"></i>
                 </button>
@@ -370,7 +345,7 @@
                     
                     <!-- Resource Metadata -->
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <h4 class="text-xl font-semibold mb-4">Resource Metadata</h4>
+                        <h4 class="text-xl font-semibold mb-4">{% trans "Resource Metadata" %}</h4>
                         <div id="resourceMetadata" class="grid grid-cols-2 gap-4">
                             <!-- Metadata will be loaded here based on selection -->
                         </div>
@@ -380,7 +355,9 @@
         </div>
     </div>
 </div>
-        
+{% endblock %}
+    
+{% block extra_js %}
 <script>
     const tabLinks = document.querySelectorAll('#mainTabs a');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -518,9 +495,6 @@
         console.log('Deleting resource with id:', id);
     }
 </script>
-
-
-
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init();
@@ -538,17 +512,17 @@
                 '{{ resource.launch_url|default:""|escapejs }}'
             ),
             metadata: {
-                'Description': '{{ resource.description|escapejs }}',
-                'Type': '{{ resource.get_resource_type_display }}',
-                'Created': '{{ resource.created_at|date:"F d, Y" }}',
-                'Last Updated': '{{ resource.updated_at|date:"F d, Y" }}',
-                'Order': '{{ resource.order }}',
+                '{% trans "Description" %}': '{{ resource.description|escapejs }}',
+                '{% trans "Type" %}': '{{ resource.get_resource_type_display }}',
+                '{% trans "Created" %}': '{{ resource.created_at|date:"F d, Y" }}',
+                '{% trans "Last Updated" %}': '{{ resource.updated_at|date:"F d, Y" }}',
+                '{% trans "Order" %}': '{{ resource.order }}',
                 {% if resource.resource_type == 'DOCUMENT' %}
-                'File Type': 'NA',
+                '{% trans "File Type" %}': 'NA',
                 {% elif resource.resource_type == 'VIDEO' %}
-                'Duration': 'N/A', // You'd need to implement video duration extraction
+                '{% trans "Duration" %}': 'N/A', // You'd need to implement video duration extraction
                 {% elif resource.resource_type == 'QUIZ' %}
-                'Questions': 'N/A', // You'd need to implement quiz question count
+                '{% trans "Questions" %}': 'N/A', // You'd need to implement quiz question count
                 {% endif %}
             }
         }{% if not forloop.last %},{% endif %}
@@ -571,22 +545,22 @@
         switch (type) {
             case 'VIDEO':
                 return contentUrl ? `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>` : 
-                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Video Resource</p><p>No video file available.</p></div>`;
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Video Resource" %}</p><p>{% trans "No video file available." %}</p></div>`;
             case 'DOCUMENT':
-                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Preview</p><p>This is a preview of the document. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View full document</a></p></div>` :
-                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Document Resource</p><p>No document file available.</p></div>`;
+                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Document Preview" %}</p><p>{% trans "This is a preview of the document." %} <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "View full document" %}</a></p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Document Resource" %}</p><p>{% trans "No document file available." %}</p></div>`;
             case 'QUIZ':
-                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Quiz Preview</p><p>This quiz is available in the course. Click to attempt.</p></div>`;
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Quiz Preview" %}</p><p>{% trans "This quiz is available in the course. Click to attempt." %}</p></div>`;
             case 'SCORM':
-                return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">This is a SCORM package. Click the button below to launch it.</p><button onclick="launchScorm('${launchUrl}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Launch SCORM Package</button></div>`;
+                return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">{% trans "This is a SCORM package. Click the button below to launch it." %}</p><button onclick="launchScorm('${launchUrl}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">{% trans "Launch SCORM Package" %}</button></div>`;
             case 'PRESENTATION':
-                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">Presentation Preview</p><p>This is a presentation. <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">View presentation</a></p></div>` :
-                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Presentation Resource</p><p>No presentation file available.</p></div>`;
+                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Preview" %}</p><p>{% trans "This is a presentation." %} <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "View presentation" %}</a></p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Resource" %}</p><p>{% trans "No presentation file available." %}</p></div>`;
             case 'LINK':
-                return externalUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">Click the link above to access the external resource. Please note that this will open in a new tab.</p></div>` :
-                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">External Resource</p><p>No external URL provided.</p></div>`;
+                return externalUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "External Resource" %}</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">{% trans "Click the link above to access the external resource. Please note that this will open in a new tab." %}</p></div>` :
+                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "External Resource" %}</p><p>{% trans "No external URL provided." %}</p></div>`;
             default:
-                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">Resource Preview</p><p>Preview not available for this resource type.</p></div>`;
+                return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Resource Preview" %}</p><p>{% trans "Preview not available for this resource type." %}</p></div>`;
         }
     }
 

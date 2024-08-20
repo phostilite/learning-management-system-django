@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 12:33+0530\n"
+"POT-Creation-Date: 2024-08-18 23:43+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -318,6 +318,7 @@ msgid ""
 msgstr "“%(value)s” 값의 형식이 잘못되었습니다. [DD] [[HH:]MM:]ss[.uuuuuu] 형식이어야 합니다."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "지속"
 
@@ -595,12 +596,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "주문하다"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "삭제"
 
@@ -764,36 +768,43 @@ msgstr "일요일"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "나의"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "화"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "수요일"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "모으다"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "금"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "앉았다"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "해"
 
@@ -814,6 +825,12 @@ msgid "April"
 msgstr "4월"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "5월"
 
@@ -1298,6 +1315,86 @@ msgstr "러시아인"
 msgid "Italian"
 msgstr "이탈리아 사람"
 
+#: lms/settings.py
+msgid "Korean"
+msgstr "한국인"
+
+#: lms/settings.py
+msgid "Dutch"
+msgstr "네덜란드 사람"
+
+#: lms/settings.py
+msgid "Turkish"
+msgstr "터키어"
+
+#: lms/settings.py
+#, fuzzy
+#| msgid "Publish"
+msgid "Polish"
+msgstr "게시"
+
+#: lms/settings.py
+msgid "Swedish"
+msgstr "스웨덴어"
+
+#: lms/settings.py
+#, fuzzy
+#| msgid "Spanish"
+msgid "Danish"
+msgstr "스페인 사람"
+
+#: lms/settings.py
+msgid "Finnish"
+msgstr "핀란드어"
+
+#: lms/settings.py
+msgid "Greek"
+msgstr "그리스 사람"
+
+#: lms/settings.py
+msgid "Hebrew"
+msgstr "헤브라이 사람"
+
+#: lms/settings.py
+msgid "Thai"
+msgstr "태국어"
+
+#: lms/settings.py
+msgid "Vietnamese"
+msgstr "베트남 사람"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "인도네시아 인"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "벵골 사람"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "타밀 사람"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "텔루구어"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "칸나다어"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "펀잡어"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "마라티어"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "말라얄람어"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "공지사항 - LMS 관리자"
@@ -1315,6 +1412,8 @@ msgstr "시스템 전반에 걸친 공지사항 생성 및 관리"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1378,12 +1477,14 @@ msgstr "유지"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "모든 상태"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "활동적인"
 
@@ -1400,16 +1501,22 @@ msgid "Export Report"
 msgstr "보고서 내보내기"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "제목"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "범주"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "상태"
@@ -1429,8 +1536,16 @@ msgstr "약혼"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "행위"
 
@@ -1454,6 +1569,7 @@ msgstr "공지사항 삭제"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "이전의"
@@ -1462,6 +1578,7 @@ msgstr "이전의"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "다음"
@@ -1526,6 +1643,7 @@ msgid "Workshop"
 msgstr "작업장"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "시험"
 
@@ -1584,6 +1702,7 @@ msgid "Certificates This Month"
 msgstr "이번 달 인증서"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "승인 보류 중"
 
@@ -1592,6 +1711,9 @@ msgid "Courses with Certificates"
 msgstr "수료증이 있는 강좌"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "모든 강좌"
@@ -1603,6 +1725,9 @@ msgstr "IT 및 프로그래밍"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "사업"
 
@@ -1636,6 +1761,8 @@ msgid "All Time"
 msgstr "모든 시간"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "보고서 생성"
 
@@ -1648,11 +1775,16 @@ msgid "Certificate ID"
 msgstr "인증서ID"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "학습자"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "강의"
 
@@ -1662,6 +1794,9 @@ msgstr "발행일"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "존 도"
 
@@ -1708,6 +1843,7 @@ msgstr "탐색경로"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1719,6 +1855,7 @@ msgid "Create Delivery"
 msgstr "배달 생성"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "진전"
@@ -1783,6 +1920,7 @@ msgstr "시작일 선택"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "에게"
 
@@ -1871,12 +2009,19 @@ msgid "Search deliveries..."
 msgstr "배송 검색..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "진행 중"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "완전한"
@@ -1910,6 +2055,7 @@ msgid "Delivery ID"
 msgstr "배송ID"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "시작일"
 
@@ -1918,6 +2064,7 @@ msgid "End Date"
 msgstr "종료일"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "강사"
 
@@ -1927,10 +2074,15 @@ msgid "Students"
 msgstr "재학생"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "세부정보 보기"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "편집하다"
@@ -1940,14 +2092,17 @@ msgid "Manage Students"
 msgstr "학생 관리"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "전시"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "~의"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "결과"
 
@@ -1956,9 +2111,793 @@ msgid "Delete Delivery"
 msgstr "배송 삭제"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "취소"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "강의"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "표지 이미지 없음"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "강의"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "게시 취소"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "이전의"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "고급 아랍어"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "대량 작업"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "재학생"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "활성 세션"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "공지사항 수정"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "코스 개요"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "범주"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "배달 생성"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "마지막 업데이트"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "수출 납품"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "코스 커버"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "수출 납품"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "새 리소스 추가"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "유형"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "마지막 업데이트"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "사용자"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "배송ID"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "등록"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "날짜 선택"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "동영상"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "문서"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "프레젠테이션"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "링크"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "놀리다"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "스콜"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "지속"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "영업팀에 문의"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "유효한 URL을 입력하세요."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "학습 경로"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "코스 개요"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "강좌 생성"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "파일 경로"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "사용후기"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "학습 자료"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "사용 가능한 비디오 파일이 없습니다."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "문서"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "문서의 미리보기입니다."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "전체 문서 보기"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "문서"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "문서 파일이 없습니다."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "퀴즈 미리보기"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "이 퀴즈는 강좌에서 볼 수 있습니다. 시도하려면 클릭하세요."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "이것은 SCORM 패키지입니다. 아래 버튼을 클릭하여 실행하세요."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM 패키지"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "프레젠테이션"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "프레젠테이션"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "프레젠테이션"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "프레젠테이션"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "프리젠테이션 파일이 없습니다."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "학습 자료"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr "외부 리소스에 액세스하려면 위 링크를 클릭하세요. 새 탭에서 열립니다."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "제공된 외부 URL이 없습니다."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "이 리소스 유형에는 미리보기를 사용할 수 없습니다."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "공지사항 - LMS 관리자"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "공지사항 관리"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "시스템 전반에 걸친 공지사항 생성 및 관리"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "강좌 검색..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "웹 개발 기초"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "디지털 마케팅"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "보류 중"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "빼는"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "등록"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "데이터 내보내기"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "사이트 이름"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "웹 개발 기초"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "보다"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "철회하다"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "승인하다"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "주제"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "디지털 마케팅"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "인증서"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "학습 경로"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr "학습자를 위한 학습 여정을 설계, 모니터링 및 최적화하세요."
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "학습 경로"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "총 등록 학습자"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "완료율"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "사용자 만족도"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "학습 경로"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "새 티켓 만들기"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "기존 경로 편집"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "학습자"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "보고서 생성"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "사이트 이름"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "과정에 등록됨"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "완료율"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "맞춤형 모델 개발"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "기술"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "보고 및 분석"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "학습 경로 시각화: 풀스택 웹 개발"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML 및 CSS 기본"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4주"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6주"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Node.js를 사용한 백엔드"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8주"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "프런트엔드 프레임워크"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "자바스크립트 최종 프로젝트"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "학습 경로 시각화: 데이터 과학 숙달"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "AI 소개"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "통계와 확률"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "데이터 과학을 위한 Python"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "데이터 시각화 퀴즈"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10주"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "학습에 혁명을 일으키다"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "빅데이터 기술"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "학습 진행"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "완료율"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "학습자 피드백"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"학습 경로는 체계적으로 구성되어 있으며 풀 스택 개발자가 되기 위한 명확한 로드맵을 제공했습니다. 프로젝트는 배운 개념을 적용하는 데 "
+"특히 도움이 되었습니다."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"훌륭한 콘텐츠와 진행. 기계 학습 섹션에서 더 많은 실습을 진행해 주시면 감사하겠습니다. 하지만 전반적으로 이는 훌륭한 학습 경로입니다."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "시작하기 가이드"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "지난 3개월"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "월"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "월"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9~12개월"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12개월"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "강좌 수"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2010,21 +2949,8 @@ msgid "Course Cover"
 msgstr "코스 커버"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "보다"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "배송 관리"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "데이터 내보내기"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "게시 취소"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2074,16 +3000,13 @@ msgid "12%% from last month"
 msgstr "지난달 대비 12%%"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "활성 코스"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "이번주 신규 3개"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "완료율"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2124,16 +3047,8 @@ msgid "987 enrolled"
 msgstr "987명이 등록했습니다"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "데이터 과학 기초"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856명이 등록했습니다"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "디지털 마케팅"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2150,11 +3065,6 @@ msgstr "621명이 등록했습니다"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "최근 활동"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "사용자"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2305,6 +3215,7 @@ msgid "Resolved This Week"
 msgstr "이번 주에 해결됨"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "사용자 만족도"
 
@@ -2335,10 +3246,6 @@ msgstr "주제"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "제출자"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "마지막 업데이트"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2478,11 +3385,13 @@ msgid "Rank"
 msgstr "계급"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "완료된 과정"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "평균 점수"
 
@@ -2604,6 +3513,8 @@ msgid "Search messages..."
 msgstr "메시지 검색..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "필터 적용"
 
@@ -2628,6 +3539,7 @@ msgid "Export Selected"
 msgstr "선택 내보내기"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2637,7 +3549,7 @@ msgstr "AI 검색"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 AI에게 무엇이든 물어보세요..."
+msgstr "🤖 AI에게 무엇이든 물어보세요..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2652,12 +3564,15 @@ msgid "user photo"
 msgstr "사용자 사진"
 
 #: templates/users/administrator/navbar.html
-msgid "Voice search activated!"
-msgstr "음성 검색이 활성화되었습니다!"
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search language..."
+msgstr "메시지 검색..."
 
 #: templates/users/administrator/navbar.html
-msgid "Language menu opened!"
-msgstr "언어 메뉴가 열렸습니다!"
+msgid "Voice search activated!"
+msgstr "음성 검색이 활성화되었습니다!"
 
 #: templates/users/administrator/navbar.html
 msgid "User menu opened!"
@@ -2670,6 +3585,1338 @@ msgstr "알림 메뉴가 열렸습니다!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "다음에 대한 AI 검색 수행:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr "강좌 및 학생 전반의 평가 성과에 대한 종합 분석"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "총 공지사항"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "합격률"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "메시지 검색..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "모든 시간"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "프로젝트"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "평가 성과 개요"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "최고 성과자"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "자바스크립트"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "평균 점수"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "데이터 시각화 퀴즈"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "SEO 전략 시험"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "재학생"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "마케팅 분석 시험"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "UX 디자인 프로젝트"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1일 전"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "시도"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "자바스크립트 최종 프로젝트"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "1월"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "2월"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "3월"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "4월"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "6월"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "평균 점수"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "놀리다"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "시험"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "프로젝트"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "과제 마감일"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "인증 추적"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr "인증 프로그램, 진행 상황, 학습자 성취도 모니터링"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "총 인증서"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "학습자"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "취득한 인증서"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "완료율"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "인증 추적"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "총 인증서"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "발급됨"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "풀스택 웹 개발자"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "디지털 마케팅"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "고급 머신러닝 강좌 개설"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "사이버보안 분석가"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "완료율"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "인증서 취소"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1일 전"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "인증 추적"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "인증 추적"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "평균 완료 시간"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI와 ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "보안"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "과정 수료"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr "과정 완료율 및 학생 진행 상황에 대한 포괄적인 통찰력"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "모든 강좌"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "이번 달 인증서"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "과정 수료"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "최고 성과자"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI 디자인 원칙"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "고급 머신러닝 강좌 개설"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "완료율"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "과정 수료"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "과정 수료"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "강의"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "등록"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "IT 및 프로그래밍"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "디지털 마케팅"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "설계"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "맞춤 보고서"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr "심층적인 LMS 분석을 위한 맞춤형 보고서 생성, 보기 및 관리"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "보고서 작성기"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "이벤트 이름"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "데이터 소스"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "등록"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "사용자 진행 상황"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "평가 결과"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "사용자 참여"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "측정항목"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "시간대"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "날짜가 범위를 벗어났습니다."
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "지난 30일"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "지난 30일"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "지난 3개월"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "지난 3개월"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "작년"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "맞춤 보고서"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "이벤트 유형"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "막대 차트"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "라이브 채팅 지원"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "라이브 채팅 지원"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "테이블"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "보고서 생성"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "마지막 실행"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "과정 수료"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "평가 성과 분석"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "샘플 사용자 정의 보고서: 과정 완료 추세"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "핵심 통찰 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "지난 3개월 동안 완료율이 15%% 증가했습니다."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "핵심 통찰 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr "웹 개발 과정은 78%%로 가장 높은 완료율을 보여줍니다."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "핵심 통찰 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "평균 완료 시간이 45일에서 38일로 단축되었습니다."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "학습자 피드백"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr "학습자 만족도, 강좌 평가, 피드백 추세에 대한 통찰력"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "사용자 만족도"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "총 수익"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "평균 응답 시간"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "코스 설정"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "사용자 만족도"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "평점 분포"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "평가"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "리뷰"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "고급 머신러닝 강좌 개설"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "제인 스미스 박사"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "학습자 피드백"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr "훌륭한 코스! 내용이 잘 구성되어 있었고 강사님이 복잡한 개념을 명확하게 설명해 주셨습니다."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr "실제 사례를 통해 매우 실용적인 과정입니다. 나는 이미 내 작업에 전략을 적용하기 시작했습니다."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "고급 아랍어"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "피드백의 공통 주제"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "양의 정수"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "복잡한 주제에 대한 명확한 설명"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "실제적이고 실제적인 사례"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "강사"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "잘 구성된 코스 콘텐츠"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "유용한 퀴즈 및 과제"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "개선 분야"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "더 많은 대화형 요소"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "추가 연습"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "질문에 대한 더 빠른 응답"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "강의 자료에 접근할 수 없습니다"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "고급 아랍어"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "시작"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "시작"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "시작"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "시작"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "시작"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "강좌 수"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr "시스템 리소스 활용도 및 콘텐츠 인기도에 대한 포괄적인 통찰력"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "총 메시지"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "총 수익"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "평균 응답 시간"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "스토리지 사용량 추세"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "지원 티켓 관리 및 리소스 액세스"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "액세스 횟수"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "마지막 액세스"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "AI 소개"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "데이터 구조 치트 시트"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "고급 아랍어"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "웹 개발 기초"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "크기"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "로고 업로드"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "다운로드"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "데이터 과학 기초"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "참가자 할당"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "UI/UX 디자인"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "사용된 스토리지(TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "과제 마감일"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "다른"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "자원 사용량"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "사용자 참여"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr "사용자 활동 및 플랫폼 상호 작용에 대한 포괄적인 통찰력"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "지난 30일"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "평균 일일 활성 사용자"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "평균 세션 시간"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "사용자 유지율"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "일일 활성 사용자 추세"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "총 사용자"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "이번 달에는 45시간"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "제인 스미스"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "사라 존슨"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "이번달 38시간"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "기능 사용량 분포"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "사용자 참여"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "최근 활동"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "에밀리 브라운"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "완료된 강의: JavaScript 소개"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "알렉스 윌슨"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "'고급 데이터 분석' 강좌 개설"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1일 전"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "사라 리"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "토론 포럼 '마케팅 전략'에 게시됨"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2시간 전"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "사용자 참여"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "총점"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "최근 활동"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "포럼 게시물"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "활동적인"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "약혼"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "데이비드 밀러"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "엠마 윌슨"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "활성 코스"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "포럼 방문"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "활성 세션"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "평균 참여율"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "사용자 진행 상황"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr "개별 학습자의 진행 상황과 성과에 대한 자세한 통찰력"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "총 사용자"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "평균 사용자당 강좌"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "평균 응답 시간"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "강좌 검색..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "진전"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "사용자 진행 상황"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "최고 성과자"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "최근 활동"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "완료된 강의: JavaScript 소개"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "시작된 과정: 고급 데이터 분석"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "제출된 과제"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "사용자 참여"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "사용자 진행 상황"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "완료된 과정"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "진전"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "학습 시간(지난 7일)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "강좌 수"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "비디오 레슨"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2878,6 +5125,7 @@ msgid "API Key"
 msgstr "API 키"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "화상회의 통합"
 
@@ -2896,14 +5144,6 @@ msgstr "사이드바"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "카테고리"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "등록"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "학습 경로"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -2926,32 +5166,8 @@ msgid "Course Completion"
 msgstr "과정 수료"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "사용자 진행 상황"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "평가 결과"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "사용자 참여"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "자원 사용량"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "인증 추적"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "학습자 피드백"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "맞춤 보고서"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -2961,9 +5177,65 @@ msgstr "청구"
 msgid "Logout"
 msgstr "로그아웃"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "차세대 LMS"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "돌아온 것을 환영합니다"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "NextGen LMS 계정에 로그인하세요."
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "이메일 주소"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "비밀번호 정책"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "12월"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "비밀번호를 잊으셨나요?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "로그인"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "계정이 없나요?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "관리자"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "홈으로 돌아가기"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "과정 세부 정보 - 뇌물 수수 방지 및 부패 방지 정책"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "코스 설정"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -2978,10 +5250,6 @@ msgstr "전 직원을 위한 필수 규정 준수 교육"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "내 코스"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "코스 개요"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3032,20 +5300,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "뇌물수수 위험 인식"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "동영상"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "보다"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "회사 부패 방지 정책"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "문서"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3056,16 +5316,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "사례 연구: 윤리적 의사결정"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "프레젠테이션"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "뇌물방지 및 부패방지 평가"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "놀리다"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3129,10 +5381,6 @@ msgid "Courses in Progress"
 msgstr "진행 중인 강좌"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "완료된 과정"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "취득한 인증서"
 
@@ -3189,16 +5437,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "완료된 강의: JavaScript 소개"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2시간 전"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "인증서 획득: HTML 및 CSS 기초"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1일 전"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3272,6 +5512,561 @@ msgstr "2.5시간"
 msgid "4 modules"
 msgstr "모듈 4개"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - 학습에 혁명을 일으키세요"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "다음"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "특징"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "통합"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "사용후기"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "가격"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "로그인"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "학습에 혁명을 일으키다"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "~와 함께"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "차세대 LMS"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"혁신적인 기술의 힘을 활용하여 개인화된 학습 경험을 창출하고, 콘텐츠 전달을 최적화하며, 기업 교육에 전례 없는 참여를 유도하십시오."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "미래를 경험해 보세요"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "최첨단 기능"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "학습 경로"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr "우리의 알고리즘은 학습자의 행동과 성과를 분석하여 맞춤형 학습 여정을 만들어 최적의 기술 개발을 보장합니다."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "고급 아랍어"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr "데이터 기반 통찰력을 활용하여 학습자 결과를 예측하고, 잠재적인 문제를 식별하고, 더 나은 결과를 위해 사전에 개입합니다."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "몰입형 VR 교육"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr "복잡하거나 위험성이 높은 시나리오에서 위험 없이 실습할 수 있는 교육을 위해 가상 현실 경험을 통합하세요."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "고급 엔터프라이즈 기능"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "유연한 배포"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Windows Server 지원을 포함하여 모든 클라우드 플랫폼(AWS, Azure, DigitalOcean) 또는 온프레미스에 "
+"배포하세요."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "다중 테넌트 아키텍처"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr "단일 인스턴스 내에서 여러 조직을 안전하게 관리하여 데이터 격리 및 사용자 정의를 보장합니다."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "다국어 지원"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "다음을 포함하여 30개 이상의 언어로 제공됩니다."
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "아랍어 - 안녕하세요"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "영어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "스페인어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "프랑스어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "독일어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "중국어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "한국어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "이탈리아어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "러시아어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "포르투갈어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "힌디어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "한국어 - 환영합니다"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "널리 사용되는 플랫폼과의 원활한 통합:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "줌"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "구글 클라이언트 ID"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "마이크로소프트 팀즈"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "학습 경로"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr "순차적 과정, 전제 조건 및 분기 경로를 통해 맞춤형 학습 여정을 만드세요."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "공지사항 관리"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr "SCORM 지원, 다양한 미디어 유형 및 직관적인 파일 관리자를 갖춘 강력한 CMS입니다."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "최첨단 기술 스택"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "파이썬"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "장고"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "포스트그레SQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "도커"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "순풍"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "자바스크립트"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "웹소켓"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "고급 설정"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "혁신적인 학습 접근 방식"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "강좌 전달 생성"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"우리의 스마트 엔진은 실시간 학습자 성과에 따라 콘텐츠 난이도와 프레젠테이션을 동적으로 조정하여 각 개인에게 최적의 도전 수준을 "
+"보장합니다."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "맞춤형 학습 속도"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "적응형 평가 기술"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "지능형 콘텐츠 추천"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "적응형 학습 시각화"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "성공 사례"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "클라이언트 아바타"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "사라 존슨"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "HR 이사, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS는 기업 교육을 변화시켰습니다. 맞춤형 학습 경로와 예측 분석을 통해 직원 참여도와 성과가 크게 향상되었습니다."
+" 과정 완료율이 40%% 증가하고 지식 보유율이 25%% 향상되었습니다."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "마크 톰슨"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "L&D 관리자, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"NextGen AI LMS가 제공하는 AI 기반 통찰력은 직원 개발에 대한 접근 방식을 혁신했습니다. 이제 우리는 기술 격차를 사전에 "
+"파악하고 전례 없는 정확성으로 교육 프로그램을 맞춤화할 수 있습니다. 이 최첨단 시스템을 구현한 이후 우리 팀의 생산성은 30%% "
+"증가했습니다."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "유연한 구독 계획"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "시작"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "월"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "최대 500명의 사용자"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "기본 세부정보"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "맞춤형 학습 경로"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "연중무휴 챗봇 지원"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "시작하기 가이드"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "가장 인기 있는 강좌"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "전문적인"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "최대 2,000명의 사용자"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "고급 분석 및 예측"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "자동화된 콘텐츠 추천"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "VR 교육 모듈"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "보고서 인쇄"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "프로로 업그레이드"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "기업"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "맞춤 보고서"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "무제한 사용자"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "전체 LMS 생태계 통합"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "맞춤형 모델 개발"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "고급 VR 및 AR 기능"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "전담 계정 관리자"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "영업팀에 문의"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "학습 경험을 변화시킬 준비가 되셨나요?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr "혁신적인 학습 관리 시스템을 통해 조직의 재능의 잠재력을 최대한 활용하세요."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "데모 요청"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "혁신적인 기술로 학습의 미래를 강화합니다."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 테크 스트리트, 샌프란시스코, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "전화: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "이메일: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "빠른 링크"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "집"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "연락하다"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "회사 소개"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "블로그"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "도움말 및 지원"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "비밀번호 정책"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "서비스 약관"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "쿠키 정책"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "도움말 및 지원 센터"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "시스템 업데이트"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "우리와 연결"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "회람 신문"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "귀하의 이메일"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "구독하다"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. 모든 권리 보유."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "성공적으로 로그인되었습니다."
@@ -3279,3 +6074,9 @@ msgstr "성공적으로 로그인되었습니다."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "로그인에 실패했습니다. 아래 오류를 확인해주세요."
+
+#~ msgid "Language menu opened!"
+#~ msgstr "언어 메뉴가 열렸습니다!"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "과정 세부 정보 - 뇌물 수수 방지 및 부패 방지 정책"

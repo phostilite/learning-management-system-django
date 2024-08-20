@@ -4,7 +4,6 @@
 {% block title %}Course Categories - LMS Admin{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/courses.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -139,7 +138,10 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+
+{% block extra_js %}
 <script>
     function openModal() {
         document.getElementById('categoryModal').classList.remove('hidden');
@@ -169,5 +171,4 @@
         }
     }
 </script>
-
 {% endblock %}

@@ -163,40 +163,40 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const sidebarLinks = document.querySelectorAll('#sidebar a');
-        const dropdownToggles = document.querySelectorAll('[data-collapse-toggle]');
-        const currentPath = window.location.pathname;
-    
-        sidebarLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-                // If the active link is in a dropdown, expand that dropdown
-                const parentDropdown = link.closest('ul[id^="dropdown-"]');
-                if (parentDropdown) {
-                    parentDropdown.classList.remove('hidden');
-                    const toggle = document.querySelector(`[data-collapse-toggle="${parentDropdown.id}"]`);
-                    if (toggle) {
-                        toggle.setAttribute('aria-expanded', 'true');
-                        toggle.querySelector('i:last-child').classList.add('fa-rotate-180');
-                    }
+document.addEventListener('DOMContentLoaded', (event) => {
+    const sidebarLinks = document.querySelectorAll('#sidebar a');
+    const dropdownToggles = document.querySelectorAll('[data-collapse-toggle]');
+    const currentPath = window.location.pathname;
+
+    sidebarLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+            // If the active link is in a dropdown, expand that dropdown
+            const parentDropdown = link.closest('ul[id^="dropdown-"]');
+            if (parentDropdown) {
+                parentDropdown.classList.remove('hidden');
+                const toggle = document.querySelector(`[data-collapse-toggle="${parentDropdown.id}"]`);
+                if (toggle) {
+                    toggle.setAttribute('aria-expanded', 'true');
+                    toggle.querySelector('i:last-child').classList.add('fa-rotate-180');
                 }
             }
-    
-            link.addEventListener('click', function() {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const targetId = toggle.getAttribute('data-collapse-toggle');
-                const target = document.getElementById(targetId);
-                target.classList.toggle('hidden');
-                toggle.setAttribute('aria-expanded', target.classList.contains('hidden') ? 'false' : 'true');
-                toggle.querySelector('i:last-child').classList.toggle('fa-rotate-180');
-            });
+        }
+
+        link.addEventListener('click', function() {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
         });
     });
-    </script>
+
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const targetId = toggle.getAttribute('data-collapse-toggle');
+            const target = document.getElementById(targetId);
+            target.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', target.classList.contains('hidden') ? 'false' : 'true');
+            toggle.querySelector('i:last-child').classList.toggle('fa-rotate-180');
+        });
+    });
+});
+</script>

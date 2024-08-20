@@ -1,37 +1,36 @@
 {% extends '../_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Certification Tracking - LMS Admin{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
-<!-- Include Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="certification-tracking-page">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">Certification Tracking</h1>
-        <p class="text-lg text-white text-center">Monitor certification programs, progress, and learner achievements</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Certification Tracking" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Monitor certification programs, progress, and learner achievements" %}</p>
     </header>
+
 
     <!-- Overview Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Certifications</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Total Certifications" %}</h3>
             <p class="text-3xl font-bold text-primary">28</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Learners</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Active Learners" %}</h3>
             <p class="text-3xl font-bold text-green-600">1,245</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Certifications Issued</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Certifications Issued" %}</h3>
             <p class="text-3xl font-bold text-blue-600">876</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Completion Time</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Avg. Completion Time" %}</h3>
             <p class="text-3xl font-bold text-purple-600">45 days</p>
         </div>
     </div>
@@ -40,144 +39,146 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Certification Issuance Trend -->
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Certification Issuance Trend</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Certification Issuance Trend" %}</h2>
             <canvas id="certificationTrendChart" width="400" height="200"></canvas>
         </div>
 
         <!-- Top Certifications -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Top Certifications</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Top Certifications" %}</h2>
             <ul class="space-y-4">
                 <li class="flex items-center justify-between">
-                    <span class="text-gray-700">Data Science Professional</span>
-                    <span class="text-green-600 font-semibold">189 issued</span>
+                    <span class="text-gray-700">{% trans "Data Science Professional" %}</span>
+                    <span class="text-green-600 font-semibold">189 {% trans "issued" %}</span>
                 </li>
                 <li class="flex items-center justify-between">
-                    <span class="text-gray-700">Full Stack Web Developer</span>
-                    <span class="text-green-600 font-semibold">156 issued</span>
+                    <span class="text-gray-700">{% trans "Full Stack Web Developer" %}</span>
+                    <span class="text-green-600 font-semibold">156 {% trans "issued" %}</span>
                 </li>
                 <li class="flex items-center justify-between">
-                    <span class="text-gray-700">Digital Marketing Specialist</span>
-                    <span class="text-green-600 font-semibold">132 issued</span>
+                    <span class="text-gray-700">{% trans "Digital Marketing Specialist" %}</span>
+                    <span class="text-green-600 font-semibold">132 {% trans "issued" %}</span>
                 </li>
                 <li class="flex items-center justify-between">
-                    <span class="text-gray-700">AI and Machine Learning Expert</span>
-                    <span class="text-green-600 font-semibold">118 issued</span>
+                    <span class="text-gray-700">{% trans "AI and Machine Learning Expert" %}</span>
+                    <span class="text-green-600 font-semibold">118 {% trans "issued" %}</span>
                 </li>
                 <li class="flex items-center justify-between">
-                    <span class="text-gray-700">Cybersecurity Analyst</span>
-                    <span class="text-green-600 font-semibold">105 issued</span>
+                    <span class="text-gray-700">{% trans "Cybersecurity Analyst" %}</span>
+                    <span class="text-green-600 font-semibold">105 {% trans "issued" %}</span>
                 </li>
             </ul>
         </div>
 
         <!-- Certification Completion Rates -->
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Certification Completion Rates</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Certification Completion Rates" %}</h2>
             <canvas id="completionRatesChart" width="400" height="200"></canvas>
         </div>
 
         <!-- Recent Certifications -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Certifications</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Recent Certifications" %}</h2>
             <ul class="space-y-4">
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=1" alt="Learner" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="{% trans "Learner" %}" class="w-10 h-10 rounded-full">
                     <div>
                         <p class="text-gray-800 font-semibold">John Doe</p>
-                        <p class="text-gray-600 text-sm">Data Science Professional</p>
+                        <p class="text-gray-600 text-sm">{% trans "Data Science Professional" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">2 hours ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "2 hours ago" %}</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=2" alt="Learner" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="{% trans "Learner" %}" class="w-10 h-10 rounded-full">
                     <div>
                         <p class="text-gray-800 font-semibold">Jane Smith</p>
-                        <p class="text-gray-600 text-sm">Full Stack Web Developer</p>
+                        <p class="text-gray-600 text-sm">{% trans "Full Stack Web Developer" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">1 day ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "1 day ago" %}</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=3" alt="Learner" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="{% trans "Learner" %}" class="w-10 h-10 rounded-full">
                     <div>
                         <p class="text-gray-800 font-semibold">Mike Johnson</p>
-                        <p class="text-gray-600 text-sm">Digital Marketing Specialist</p>
+                        <p class="text-gray-600 text-sm">{% trans "Digital Marketing Specialist" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">2 days ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "2 days ago" %}</span>
                 </li>
             </ul>
         </div>
     </div>
 
     <!-- Detailed Certification Table -->
-    <div class="mt-8 bg-white rounded-lg shadow overflow-hidden">
-        <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">Detailed Certification Tracking</h2>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead>
-                    <tr class="bg-gray-50 text-gray-600 text-sm leading-normal">
-                        <th class="py-3 px-6">Certification Name</th>
-                        <th class="py-3 px-6">Category</th>
-                        <th class="py-3 px-6">Enrolled Learners</th>
-                        <th class="py-3 px-6">Completed</th>
-                        <th class="py-3 px-6">Completion Rate</th>
-                        <th class="py-3 px-6">Avg. Time to Complete</th>
-                        <th class="py-3 px-6">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-600 text-sm">
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-6">Data Science Professional</td>
-                        <td class="py-3 px-6">Data Science</td>
-                        <td class="py-3 px-6">325</td>
-                        <td class="py-3 px-6">189</td>
-                        <td class="py-3 px-6">
-                            <div class="flex items-center">
-                                <span class="text-green-600 font-semibold">58%</span>
-                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 58%"></div>
-                                </div>
+<div class="mt-8 bg-white rounded-lg shadow overflow-hidden">
+    <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">{% trans "Detailed Certification Tracking" %}</h2>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="bg-gray-50 text-gray-600 text-sm leading-normal">
+                    <th class="py-3 px-6">{% trans "Certification Name" %}</th>
+                    <th class="py-3 px-6">{% trans "Category" %}</th>
+                    <th class="py-3 px-6">{% trans "Enrolled Learners" %}</th>
+                    <th class="py-3 px-6">{% trans "Completed" %}</th>
+                    <th class="py-3 px-6">{% trans "Completion Rate" %}</th>
+                    <th class="py-3 px-6">{% trans "Avg. Time to Complete" %}</th>
+                    <th class="py-3 px-6">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 text-sm">
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6">{% trans "Data Science Professional" %}</td>
+                    <td class="py-3 px-6">{% trans "Data Science" %}</td>
+                    <td class="py-3 px-6">325</td>
+                    <td class="py-3 px-6">189</td>
+                    <td class="py-3 px-6">
+                        <div class="flex items-center">
+                            <span class="text-green-600 font-semibold">58%</span>
+                            <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 58%"></div>
                             </div>
-                        </td>
-                        <td class="py-3 px-6">52 days</td>
-                        <td class="py-3 px-6">
-                            <button class="text-blue-500 hover:underline">View Details</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-6">Full Stack Web Developer</td>
-                        <td class="py-3 px-6">Web Development</td>
-                        <td class="py-3 px-6">280</td>
-                        <td class="py-3 px-6">156</td>
-                        <td class="py-3 px-6">
-                            <div class="flex items-center">
-                                <span class="text-green-600 font-semibold">56%</span>
-                                <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
-                                    <div class="bg-green-600 h-2 rounded-full" style="width: 56%"></div>
-                                </div>
+                        </div>
+                    </td>
+                    <td class="py-3 px-6">52 days</td>
+                    <td class="py-3 px-6">
+                        <button class="text-blue-500 hover:underline">{% trans "View Details" %}</button>
+                    </td>
+                </tr>
+                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                    <td class="py-3 px-6">{% trans "Full Stack Web Developer" %}</td>
+                    <td class="py-3 px-6">{% trans "Web Development" %}</td>
+                    <td class="py-3 px-6">280</td>
+                    <td class="py-3 px-6">156</td>
+                    <td class="py-3 px-6">
+                        <div class="flex items-center">
+                            <span class="text-green-600 font-semibold">56%</span>
+                            <div class="w-16 bg-gray-200 rounded-full h-2 ml-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 56%"></div>
                             </div>
-                        </td>
-                        <td class="py-3 px-6">60 days</td>
-                        <td class="py-3 px-6">
-                            <button class="text-blue-500 hover:underline">View Details</button>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                    <td class="py-3 px-6">60 days</td>
+                    <td class="py-3 px-6">
+                        <button class="text-blue-500 hover:underline">{% trans "View Details" %}</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
     </div>
 </div>
+</div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
     // Certification Issuance Trend Chart
     var trendCtx = document.getElementById('certificationTrendChart').getContext('2d');
     var trendChart = new Chart(trendCtx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: ['{% trans "Jan" %}', '{% trans "Feb" %}', '{% trans "Mar" %}', '{% trans "Apr" %}', '{% trans "May" %}', '{% trans "Jun" %}'],
             datasets: [{
-                label: 'Certifications Issued',
+                label: '{% trans "Certifications Issued" %}',
                 data: [65, 78, 90, 105, 125, 138],
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
@@ -198,9 +199,9 @@
     var completionChart = new Chart(completionCtx, {
         type: 'bar',
         data: {
-            labels: ['Data Science', 'Web Development', 'Digital Marketing', 'AI & ML', 'Cybersecurity'],
+            labels: ['{% trans "Data Science" %}', '{% trans "Web Development" %}', '{% trans "Digital Marketing" %}', '{% trans "AI & ML" %}', '{% trans "Cybersecurity" %}'],
             datasets: [{
-                label: 'Completion Rate',
+                label: '{% trans "Completion Rate" %}',
                 data: [58, 56, 62, 48, 53],
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)',

@@ -1,31 +1,31 @@
 {% extends '../_base.html' %}
 {% load static %}
 
-{% block title %}Enrollments - LMS Admin{% endblock %}
+{% block title %}{% trans "Enrollments - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/courses.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="enrollments-page">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">Enrollment Management</h1>
-        <p class="text-lg text-white text-center">Monitor and Manage Student Enrollments</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Enrollment Management" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Monitor and Manage Student Enrollments" %}</p>
     </header>
+
 
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                    Dashboard
+                    {% trans "Dashboard" %}
                 </a>
             </li>
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">Enrollments</a>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Enrollments" %}</a>
                 </div>
             </li>
         </ol>
@@ -34,19 +34,19 @@
     <!-- Enrollment Statistics -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">Total Enrollments</h3>
+            <h3 class="text-lg font-semibold mb-2">{% trans "Total Enrollments" %}</h3>
             <p class="text-3xl font-bold text-primary">1,234</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">Active Enrollments</h3>
+            <h3 class="text-lg font-semibold mb-2">{% trans "Active Enrollments" %}</h3>
             <p class="text-3xl font-bold text-green-600">987</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">Pending Approvals</h3>
+            <h3 class="text-lg font-semibold mb-2">{% trans "Pending Approvals" %}</h3>
             <p class="text-3xl font-bold text-yellow-500">56</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">Completed Courses</h3>
+            <h3 class="text-lg font-semibold mb-2">{% trans "Completed Courses" %}</h3>
             <p class="text-3xl font-bold text-blue-600">191</p>
         </div>
     </div>
@@ -58,34 +58,34 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search enrollments...">
+                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans "Search enrollments..." %}">
             </div>
         </div>
         <div class="flex gap-4">
             <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>All Courses</option>
-                <option>Web Development</option>
-                <option>Data Science</option>
-                <option>Digital Marketing</option>
+                <option selected>{% trans "All Courses" %}</option>
+                <option>{% trans "Web Development" %}</option>
+                <option>{% trans "Data Science" %}</option>
+                <option>{% trans "Digital Marketing" %}</option>
             </select>
             <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>All Statuses</option>
-                <option>Active</option>
-                <option>Pending</option>
-                <option>Completed</option>
-                <option>Withdrawn</option>
+                <option selected>{% trans "All Statuses" %}</option>
+                <option>{% trans "Active" %}</option>
+                <option>{% trans "Pending" %}</option>
+                <option>{% trans "Completed" %}</option>
+                <option>{% trans "Withdrawn" %}</option>
             </select>
-            <input type="date" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" placeholder="Enrollment Date">
+            <input type="date" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" placeholder="{% trans "Enrollment Date" %}">
         </div>
     </div>
 
     <!-- Action Buttons -->
     <div class="mb-6 flex gap-4">
         <button type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-            <i class="fas fa-plus mr-2"></i> New Enrollment
+            <i class="fas fa-plus mr-2"></i> {% trans "New Enrollment" %}
         </button>
         <button type="button" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-            <i class="fas fa-file-export mr-2"></i> Export Data
+            <i class="fas fa-file-export mr-2"></i> {% trans "Export Data" %}
         </button>
     </div>
 
@@ -94,12 +94,12 @@
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3">Student Name</th>
-                    <th scope="col" class="px-6 py-3">Course</th>
-                    <th scope="col" class="px-6 py-3">Enrollment Date</th>
-                    <th scope="col" class="px-6 py-3">Status</th>
-                    <th scope="col" class="px-6 py-3">Progress</th>
-                    <th scope="col" class="px-6 py-3">Actions</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Student Name" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Course" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Enrollment Date" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Progress" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,11 +107,11 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         John Doe
                     </th>
-                    <td class="px-6 py-4">Web Development Bootcamp</td>
+                    <td class="px-6 py-4">{% trans "Web Development Bootcamp" %}</td>
                     <td class="px-6 py-4">2023-05-15</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
-                            Active
+                            {% trans "Active" %}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -121,19 +121,19 @@
                         <span class="text-sm text-gray-600">65%</span>
                     </td>
                     <td class="px-6 py-4">
-                        <button class="font-medium text-blue-600 hover:underline mr-2">View</button>
-                        <button class="font-medium text-red-600 hover:underline">Withdraw</button>
+                        <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "View" %}</button>
+                        <button class="font-medium text-red-600 hover:underline">{% trans "Withdraw" %}</button>
                     </td>
                 </tr>
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         Jane Smith
                     </th>
-                    <td class="px-6 py-4">Data Science Fundamentals</td>
+                    <td class="px-6 py-4">{% trans "Data Science Fundamentals" %}</td>
                     <td class="px-6 py-4">2023-06-01</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
-                            Pending
+                            {% trans "Pending" %}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -143,19 +143,19 @@
                         <span class="text-sm text-gray-600">0%</span>
                     </td>
                     <td class="px-6 py-4">
-                        <button class="font-medium text-blue-600 hover:underline mr-2">Approve</button>
-                        <button class="font-medium text-red-600 hover:underline">Reject</button>
+                        <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "Approve" %}</button>
+                        <button class="font-medium text-red-600 hover:underline">{% trans "Reject" %}</button>
                     </td>
                 </tr>
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         Mike Johnson
                     </th>
-                    <td class="px-6 py-4">Digital Marketing Mastery</td>
+                    <td class="px-6 py-4">{% trans "Digital Marketing Mastery" %}</td>
                     <td class="px-6 py-4">2023-04-20</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">
-                            Completed
+                            {% trans "Completed" %}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -165,8 +165,8 @@
                         <span class="text-sm text-gray-600">100%</span>
                     </td>
                     <td class="px-6 py-4">
-                        <button class="font-medium text-blue-600 hover:underline mr-2">View</button>
-                        <button class="font-medium text-green-600 hover:underline">Certificate</button>
+                        <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "View" %}</button>
+                        <button class="font-medium text-green-600 hover:underline">{% trans "Certificate" %}</button>
                     </td>
                 </tr>
             </tbody>
@@ -176,19 +176,19 @@
     <!-- Pagination -->
     <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4">
         <div class="flex flex-1 justify-between sm:hidden">
-            <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-            <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+            <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">{% trans "Previous" %}</a>
+            <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">{% trans "Next" %}</a>
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700">
-                    Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">97</span> results
+                    {% trans "Showing" %} <span class="font-medium">1</span> {% trans "to" %} <span class="font-medium">10</span> {% trans "of" %} <span class="font-medium">97</span> {% trans "results" %}
                 </p>
             </div>
             <div>
                 <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                     <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">{% trans "Previous" %}</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
                         </svg>
@@ -201,7 +201,7 @@
                     <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
                     <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
                     <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">{% trans "Next" %}</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                         </svg>
@@ -211,10 +211,7 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
-<script>
-    // You can add any necessary JavaScript here
-    // For example, handling the search functionality or filtering
-</script>
-
+{% block extra_js %}
 {% endblock %}

@@ -1,37 +1,36 @@
 {% extends '../_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}User Engagement Analytics - LMS Admin{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/leaderboard.css' %}">
-<!-- Include Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="user-engagement-page">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">User Engagement Analytics</h1>
-        <p class="text-lg text-white text-center">Comprehensive insights into user activity and platform interaction</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "User Engagement Analytics" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Comprehensive insights into user activity and platform interaction" %}</p>
     </header>
+
 
     <!-- Overview Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Users (Last 30 Days)</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Active Users (Last 30 Days)" %}</h3>
             <p class="text-3xl font-bold text-primary">1,248</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Daily Active Users</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Avg. Daily Active Users" %}</h3>
             <p class="text-3xl font-bold text-green-600">876</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Session Duration</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Avg. Session Duration" %}</h3>
             <p class="text-3xl font-bold text-blue-600">28 min</p>
         </div>
         <div class="bg-white rounded-lg shadow p-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">User Retention Rate</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "User Retention Rate" %}</h3>
             <p class="text-3xl font-bold text-purple-600">72%</p>
         </div>
     </div>
@@ -40,35 +39,35 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Daily Active Users Trend -->
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Daily Active Users Trend</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Daily Active Users Trend" %}</h2>
             <canvas id="dauTrendChart" width="400" height="200"></canvas>
         </div>
 
         <!-- Top Engaged Users -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Top Engaged Users</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Top Engaged Users" %}</h2>
             <ul class="space-y-4">
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=1" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">John Doe</p>
-                        <p class="text-gray-600 text-sm">45 hours this month</p>
+                        <p class="text-gray-800 font-semibold">{% trans "John Doe" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "45 hours this month" %}</p>
                     </div>
                     <span class="text-green-600 font-semibold ml-auto">98%</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=2" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">Jane Smith</p>
-                        <p class="text-gray-600 text-sm">42 hours this month</p>
+                        <p class="text-gray-800 font-semibold">{% trans "Jane Smith" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "42 hours this month" %}</p>
                     </div>
                     <span class="text-green-600 font-semibold ml-auto">95%</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=3" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">Mike Johnson</p>
-                        <p class="text-gray-600 text-sm">38 hours this month</p>
+                        <p class="text-gray-800 font-semibold">{% trans "Mike Johnson" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "38 hours this month" %}</p>
                     </div>
                     <span class="text-green-600 font-semibold ml-auto">92%</span>
                 </li>
@@ -77,43 +76,43 @@
 
         <!-- Feature Usage Distribution -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Feature Usage Distribution</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Feature Usage Distribution" %}</h2>
             <canvas id="featureUsageChart" width="400" height="200"></canvas>
         </div>
 
         <!-- User Engagement by Course Category -->
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">User Engagement by Course Category</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "User Engagement by Course Category" %}</h2>
             <canvas id="categoryEngagementChart" width="400" height="200"></canvas>
         </div>
 
         <!-- Recent User Activities -->
         <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent User Activities</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Recent User Activities" %}</h2>
             <ul class="space-y-4">
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=4" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=4" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">Emily Brown</p>
-                        <p class="text-gray-600 text-sm">Completed a quiz in "JavaScript Basics"</p>
+                        <p class="text-gray-800 font-semibold">{% trans "Emily Brown" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "Completed a quiz in 'JavaScript Basics'" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">2 min ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "2 min ago" %}</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=5" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=5" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">Alex Wilson</p>
-                        <p class="text-gray-600 text-sm">Started a new course "Advanced Data Analysis"</p>
+                        <p class="text-gray-800 font-semibold">{% trans "Alex Wilson" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "Started a new course 'Advanced Data Analysis'" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">15 min ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "15 min ago" %}</span>
                 </li>
                 <li class="flex items-center space-x-4">
-                    <img src="https://i.pravatar.cc/40?img=6" alt="User" class="w-10 h-10 rounded-full">
+                    <img src="https://i.pravatar.cc/40?img=6" alt="{% trans "User" %}" class="w-10 h-10 rounded-full">
                     <div>
-                        <p class="text-gray-800 font-semibold">Sarah Lee</p>
-                        <p class="text-gray-600 text-sm">Posted in discussion forum "Marketing Strategies"</p>
+                        <p class="text-gray-800 font-semibold">{% trans "Sarah Lee" %}</p>
+                        <p class="text-gray-600 text-sm">{% trans "Posted in discussion forum 'Marketing Strategies'" %}</p>
                     </div>
-                    <span class="text-gray-500 text-sm ml-auto">1 hour ago</span>
+                    <span class="text-gray-500 text-sm ml-auto">{% trans "1 hour ago" %}</span>
                 </li>
             </ul>
         </div>
@@ -121,31 +120,31 @@
 
     <!-- Detailed User Engagement Table -->
     <div class="mt-8 bg-white rounded-lg shadow overflow-hidden">
-        <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">Detailed User Engagement</h2>
+        <h2 class="text-xl font-semibold text-gray-800 p-6 bg-gray-50 border-b">{% trans "Detailed User Engagement" %}</h2>
         <div class="overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="bg-gray-50 text-gray-600 text-sm leading-normal">
-                        <th class="py-3 px-6">User</th>
-                        <th class="py-3 px-6">Total Time Spent</th>
-                        <th class="py-3 px-6">Courses Accessed</th>
-                        <th class="py-3 px-6">Completed Activities</th>
-                        <th class="py-3 px-6">Forum Posts</th>
-                        <th class="py-3 px-6">Last Active</th>
-                        <th class="py-3 px-6">Engagement Score</th>
+                        <th class="py-3 px-6">{% trans "User" %}</th>
+                        <th class="py-3 px-6">{% trans "Total Time Spent" %}</th>
+                        <th class="py-3 px-6">{% trans "Courses Accessed" %}</th>
+                        <th class="py-3 px-6">{% trans "Completed Activities" %}</th>
+                        <th class="py-3 px-6">{% trans "Forum Posts" %}</th>
+                        <th class="py-3 px-6">{% trans "Last Active" %}</th>
+                        <th class="py-3 px-6">{% trans "Engagement Score" %}</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm">
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                         <td class="py-3 px-6 flex items-center">
-                            <img src="https://i.pravatar.cc/40?img=7" alt="User" class="w-8 h-8 rounded-full mr-4">
-                            <span>David Miller</span>
+                            <img src="https://i.pravatar.cc/40?img=7" alt="{% trans "User" %}" class="w-8 h-8 rounded-full mr-4">
+                            <span>{% trans "David Miller" %}</span>
                         </td>
                         <td class="py-3 px-6">35h 42m</td>
                         <td class="py-3 px-6">7</td>
                         <td class="py-3 px-6">128</td>
                         <td class="py-3 px-6">15</td>
-                        <td class="py-3 px-6">2 hours ago</td>
+                        <td class="py-3 px-6">{% trans "2 hours ago" %}</td>
                         <td class="py-3 px-6">
                             <div class="flex items-center">
                                 <span class="text-green-600 font-semibold">85%</span>
@@ -157,14 +156,14 @@
                     </tr>
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                         <td class="py-3 px-6 flex items-center">
-                            <img src="https://i.pravatar.cc/40?img=8" alt="User" class="w-8 h-8 rounded-full mr-4">
-                            <span>Emma Wilson</span>
+                            <img src="https://i.pravatar.cc/40?img=8" alt="{% trans "User" %}" class="w-8 h-8 rounded-full mr-4">
+                            <span>{% trans "Emma Wilson" %}</span>
                         </td>
                         <td class="py-3 px-6">28h 15m</td>
                         <td class="py-3 px-6">5</td>
                         <td class="py-3 px-6">95</td>
                         <td class="py-3 px-6">8</td>
-                        <td class="py-3 px-6">1 day ago</td>
+                        <td class="py-3 px-6">{% trans "1 day ago" %}</td>
                         <td class="py-3 px-6">
                             <div class="flex items-center">
                                 <span class="text-yellow-600 font-semibold">72%</span>
@@ -180,16 +179,18 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
     // Daily Active Users Trend Chart
     var dauCtx = document.getElementById('dauTrendChart').getContext('2d');
     var dauChart = new Chart(dauCtx, {
         type: 'line',
         data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            labels: ['{% trans "Mon" %}', '{% trans "Tue" %}', '{% trans "Wed" %}', '{% trans "Thu" %}', '{% trans "Fri" %}', '{% trans "Sat" %}', '{% trans "Sun" %}'],
             datasets: [{
-                label: 'Daily Active Users',
+                label: '{% trans "Daily Active Users" %}',
                 data: [820, 932, 901, 934, 1290, 1330, 1320],
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
@@ -210,7 +211,7 @@
     var featureChart = new Chart(featureCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Course Content', 'Quizzes', 'Assignments', 'Discussion Forums', 'Live Sessions'],
+            labels: ['{% trans "Course Content" %}', '{% trans "Quizzes" %}', '{% trans "Assignments" %}', '{% trans "Discussion Forums" %}', '{% trans "Live Sessions" %}'],
             datasets: [{
                 data: [35, 25, 20, 15, 5],
                 backgroundColor: [
@@ -245,9 +246,9 @@
     var categoryChart = new Chart(categoryCtx, {
         type: 'bar',
         data: {
-            labels: ['Programming', 'Data Science', 'Business', 'Design', 'Marketing'],
+            labels: ['{% trans "Programming" %}', '{% trans "Data Science" %}', '{% trans "Business" %}', '{% trans "Design" %}', '{% trans "Marketing" %}'],
             datasets: [{
-                label: 'Average Engagement Score',
+                label: '{% trans "Average Engagement Score" %}',
                 data: [85, 78, 72, 80, 76],
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)',

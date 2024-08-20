@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 12:51+0530\n"
+"POT-Creation-Date: 2024-08-18 23:46+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,6 +337,7 @@ msgstr ""
 "biçiminde olmalıdır."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Süre"
 
@@ -622,12 +623,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Emir"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Silmek"
 
@@ -793,36 +797,43 @@ msgstr "Pazar"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "Benim"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "Salı"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "Çar"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "TOPLAMAK"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "Cuma"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "Doygunluk"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "Güneş"
 
@@ -843,6 +854,12 @@ msgid "April"
 msgstr "Nisan"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "Mayıs"
 
@@ -1344,6 +1361,78 @@ msgstr "Korece"
 msgid "Dutch"
 msgstr "Flemenkçe"
 
+#: lms/settings.py
+msgid "Turkish"
+msgstr "Türkçe"
+
+#: lms/settings.py
+#, fuzzy
+#| msgid "Publish"
+msgid "Polish"
+msgstr "Yayınla"
+
+#: lms/settings.py
+msgid "Swedish"
+msgstr "İsveççe"
+
+#: lms/settings.py
+#, fuzzy
+#| msgid "Spanish"
+msgid "Danish"
+msgstr "İspanyol"
+
+#: lms/settings.py
+msgid "Finnish"
+msgstr "Fince"
+
+#: lms/settings.py
+msgid "Greek"
+msgstr "Yunan"
+
+#: lms/settings.py
+msgid "Hebrew"
+msgstr "İbranice"
+
+#: lms/settings.py
+msgid "Thai"
+msgstr "Tay dili"
+
+#: lms/settings.py
+msgid "Vietnamese"
+msgstr "Vietnam"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "Endonezya dili"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "Bengalce"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "Tamilce"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "Telugu dili"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "Kannadaca"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "Pencap"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "Marathi"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "Malayalamca"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "Duyurular - LMS Yöneticisi"
@@ -1361,6 +1450,8 @@ msgstr "Sistem Genelinde Duyurular Oluşturun ve Yönetin"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1424,12 +1515,14 @@ msgstr "Bakım"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Tüm Durumlar"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "Aktif"
 
@@ -1446,16 +1539,22 @@ msgid "Export Report"
 msgstr "Raporu Dışa Aktar"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Başlık"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "Kategori"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "Durum"
@@ -1475,8 +1574,16 @@ msgstr "Nişanlanmak"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "Eylemler"
 
@@ -1500,6 +1607,7 @@ msgstr "Duyuru Sil"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Öncesi"
@@ -1508,6 +1616,7 @@ msgstr "Öncesi"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "Sonraki"
@@ -1572,6 +1681,7 @@ msgid "Workshop"
 msgstr "Atölye"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "Sınav"
 
@@ -1630,6 +1740,7 @@ msgid "Certificates This Month"
 msgstr "Bu Ayki Sertifikalar"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Bekleyen Onaylar"
 
@@ -1638,6 +1749,9 @@ msgid "Courses with Certificates"
 msgstr "Sertifikalı Kurslar"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "Tüm Kurslar"
@@ -1649,6 +1763,9 @@ msgstr "BT ve Programlama"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "İşletme"
 
@@ -1682,6 +1799,8 @@ msgid "All Time"
 msgstr "Tüm Zamanlar"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Rapor Oluştur"
 
@@ -1694,11 +1813,16 @@ msgid "Certificate ID"
 msgstr "Sertifika Kimliği"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "Öğrenci"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "Kurs"
 
@@ -1708,6 +1832,9 @@ msgstr "Düzenleme tarihi"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "John Doe"
 
@@ -1754,6 +1881,7 @@ msgstr "Ekmek kırıntısı"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1765,6 +1893,7 @@ msgid "Create Delivery"
 msgstr "Teslimat Oluştur"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "İlerlemek"
@@ -1829,6 +1958,7 @@ msgstr "Başlangıç ​​tarihini seçin"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "ile"
 
@@ -1842,7 +1972,7 @@ msgstr "Bu Teslimat için devre dışı bırakma tarihi eklemek ister misiniz?"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Yes, add deactivation date"
-msgstr ""
+msgstr "Evet, devre dışı bırakma tarihi ekleyin"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Select date"
@@ -1917,12 +2047,19 @@ msgid "Search deliveries..."
 msgstr "Teslimatları ara..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "Devam etmekte"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "Tamamlanmış"
@@ -1956,6 +2093,7 @@ msgid "Delivery ID"
 msgstr "Teslimat Kimliği"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "Başlangıç ​​Tarihi"
 
@@ -1964,6 +2102,7 @@ msgid "End Date"
 msgstr "Bitiş Tarihi"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "Eğitmen"
 
@@ -1973,10 +2112,15 @@ msgid "Students"
 msgstr "Öğrenciler"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "Ayrıntıları Görüntüle"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "Düzenlemek"
@@ -1986,14 +2130,17 @@ msgid "Manage Students"
 msgstr "Öğrencileri Yönet"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "Gösterilen"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "ile ilgili"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "sonuçlar"
 
@@ -2002,9 +2149,799 @@ msgid "Delete Delivery"
 msgstr "Teslimatı Sil"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "İptal etmek"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "Kurs"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "Kapak Resmi Yok"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "Kurs"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "Yayından kaldır"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Öncesi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "İleri Arapça"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "Toplu İşlemler"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "Öğrenciler"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "Aktif Oturumlar"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "Duyuru Düzenle"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "Kursa Genel Bakış"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "Kategori"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "Teslimat Oluştur"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "Son Güncelleme"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "İhracat Teslimatları"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "Ders Kapsamı"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "İhracat Teslimatları"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "Yeni Kaynak Ekle"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Tip"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "Son Güncelleme"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "Kullanıcı"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "Teslimat Kimliği"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "Tarih seçin"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "Video"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "Belge"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "Sunum"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "Bağlantı"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "Sınav"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "Süre"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "Satış Ekibiyle İletişime Geçin"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "Geçerli bir URL girin."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "Öğrenme Yolu"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "Kursa Genel Bakış"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "Kurs Oluştur"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "Dosya yolu"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "Görüşler"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "Öğrenme Kaynakları"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "Video dosyası mevcut değil."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "Belge"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "Bu belgenin önizlemesidir."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "Belgenin tamamını görüntüle"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "Belge"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "Belge dosyası mevcut değil."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "Test Önizlemesi"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "Bu sınav kursta mevcuttur. Denemek için tıklayın."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "Bu bir SCORM paketidir. Başlatmak için aşağıdaki düğmeye tıklayın."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM Paketi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "Sunum"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "Sunum"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "Sunum"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "Sunum"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "Sunum dosyası mevcut değil."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "Öğrenme Kaynakları"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"Harici kaynağa erişmek için yukarıdaki bağlantıya tıklayın. Lütfen bunun "
+"yeni bir sekmede açılacağını unutmayın."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "Harici URL sağlanmadı."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "Bu kaynak türü için önizleme kullanılamıyor."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "Duyurular - LMS Yöneticisi"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "Duyuru Yönetimi"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "Sistem Genelinde Duyurular Oluşturun ve Yönetin"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "Dersleri ara..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Web Geliştirmenin Temelleri"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Dijital Pazarlama"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "Askıda olması"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "Geri çekildi"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "Verileri Dışa Aktar"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "Site Adı"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Web Geliştirmenin Temelleri"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "Görüş"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "Geri çekilmek"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "Onaylamak"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "Ders"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Dijital Pazarlama"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "Sertifikalar"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "Öğrenme Yolu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"Öğrencileriniz için öğrenme yolculuklarını tasarlayın, izleyin ve optimize "
+"edin"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "Öğrenme Yolu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "Toplam Kayıtlı Öğrenci Sayısı"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "Kullanıcı Memnuniyeti"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "Öğrenme Yolu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "Yeni Bilet Oluştur"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "Mevcut Yolu Düzenle"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "Öğrenciler"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Rapor Oluştur"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "Site Adı"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "Kursa kayıtlı"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "Özel model geliştirme"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "Teknoloji"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "Raporlar ve Analizler"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "Öğrenim Yolu Görselleştirmesi: Tam Yığın Web Geliştirme"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML ve CSS Temelleri"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 hafta"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 hafta"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Node.js ile arka uç"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 hafta"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "Ön Uç Çerçeveleri"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "JavaScript Final Projesi"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "Öğrenim Yolu Görselleştirmesi: Veri Bilimi Ustalığı"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "Yapay zekaya giriş"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "İstatistik ve Olasılık"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "Veri Bilimi için Python"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "Veri Görselleştirme Sınavı"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 hafta"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "Öğrenmede Devrim Yapın"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "Büyük Veri Teknolojileri"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "Öğrenme İlerlemesi"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "Öğrenci Geri Bildirimi"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"Öğrenme yolu iyi yapılandırılmıştı ve tam yığın geliştiricisi olma yolunda "
+"net bir yol haritası sağladı. Projeler özellikle öğrenilen kavramların "
+"uygulanmasında faydalı oldu."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"Harika içerik ve ilerleme. Makine öğrenimi bölümünde daha fazla uygulamalı "
+"alıştırmadan memnun olurum, ancak genel olarak mükemmel bir öğrenme yolu."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "Başlangıç ​​Kılavuzu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "Son 3 Ay"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "Ay"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "Ay"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 ay"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 ay"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Ders Sayısı"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2056,21 +2993,8 @@ msgid "Course Cover"
 msgstr "Ders Kapsamı"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "Görüş"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "Teslimatları Yönet"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "Verileri Dışa Aktar"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "Yayından kaldır"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2120,16 +3044,13 @@ msgid "12%% from last month"
 msgstr "Geçen aya göre %%12"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "Aktif Kurslar"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "Bu hafta 3 yeni"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "Tamamlanma Oranı"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2170,16 +3091,8 @@ msgid "987 enrolled"
 msgstr "987 kayıtlı"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "Veri Biliminin Temelleri"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 kayıtlı"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "Dijital Pazarlama"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2196,11 +3109,6 @@ msgstr "621 kayıtlı"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "Son Etkinlikler"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "Kullanıcı"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2351,6 +3259,7 @@ msgid "Resolved This Week"
 msgstr "Bu Hafta Çözüldü"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "Kullanıcı Memnuniyeti"
 
@@ -2381,10 +3290,6 @@ msgstr "Ders"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "Gönderen"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "Son Güncelleme"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2475,6 +3380,8 @@ msgid ""
 "Join our community forum to connect with other administrators, share "
 "experiences, and get answers to your questions."
 msgstr ""
+"Diğer yöneticilerle bağlantı kurmak, deneyimleri paylaşmak ve sorularınızın "
+"yanıtlarını almak için topluluk forumumuza katılın."
 
 #: templates/users/administrator/help_support.html
 msgid "Visit Forum"
@@ -2526,11 +3433,13 @@ msgid "Rank"
 msgstr "Rütbe"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "Tamamlanan Kurslar"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "Ortalama Gol"
 
@@ -2653,6 +3562,8 @@ msgid "Search messages..."
 msgstr "Mesajları ara..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "Filtreleri Uygula"
 
@@ -2677,6 +3588,7 @@ msgid "Export Selected"
 msgstr "Seçileni Dışa Aktar"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "ÖYS/ÖYS"
 
@@ -2686,7 +3598,7 @@ msgstr "Yapay Zeka Arama"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 Yapay zekaya dilediğinizi sorun..."
+msgstr "🤖 Yapay zekaya dilediğinizi sorun..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2701,12 +3613,15 @@ msgid "user photo"
 msgstr "kullanıcı fotoğrafı"
 
 #: templates/users/administrator/navbar.html
-msgid "Voice search activated!"
-msgstr "Sesli arama etkinleştirildi!"
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search language..."
+msgstr "Mesajları ara..."
 
 #: templates/users/administrator/navbar.html
-msgid "Language menu opened!"
-msgstr "Dil menüsü açıldı!"
+msgid "Voice search activated!"
+msgstr "Sesli arama etkinleştirildi!"
 
 #: templates/users/administrator/navbar.html
 msgid "User menu opened!"
@@ -2719,6 +3634,1352 @@ msgstr "Bildirim menüsü açıldı!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "Aşağıdakiler için AI araması gerçekleştiriliyor:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr ""
+"Kurslar ve öğrenciler genelinde değerlendirme performansının kapsamlı "
+"analizi"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "Toplam Duyurular"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "Geçiş Oranı"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "Mesajları ara..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "Tüm Zamanlar"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "Proje"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "Değerlendirme Performansına Genel Bakış"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "En İyi Performans Gösterenler"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "Ortalama Gol"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "Veri Görselleştirme Sınavı"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "SEO Stratejileri Sınavı"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "Öğrenciler"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "Pazarlama Analitiği Sınavı"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "UX Tasarım Projesi"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 gün önce"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "denemeler"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "JavaScript Final Projesi"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "Ocak."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "Şubat."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "Mart"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "Nisan"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "Haziran"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "Ortalama Gol"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "Sınav"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "Sınav"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "Projeler"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "Ödev teslim tarihleri"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "Sertifika Takibi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr "Sertifika programlarını, ilerlemeyi ve öğrenci başarılarını izleyin"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "Toplam Sertifikalar"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "Öğrenciler"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "Kazanılan Sertifikalar"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "Sertifika Takibi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "Toplam Sertifikalar"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "Veriliş"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "Tam Yığın Web Geliştiricisi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "Dijital Pazarlama"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "İleri Makine Öğrenimi Kursu Lansmanı"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "Siber Güvenlik Analisti"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "Sertifikayı İptal Et"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 gün önce"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "Sertifika Takibi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "Sertifika Takibi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "Ortalama Tamamlanma Zamanı"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "Yapay zeka ve makine öğrenimi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "Güvenlik"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "Kurs Tamamlanması"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr ""
+"Kurs tamamlama oranlarına ve öğrenci ilerlemesine ilişkin kapsamlı bilgiler"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Tüm Kurslar"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "Bu Ayki Sertifikalar"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "Kurs Tamamlanması"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "En İyi Performans Gösterenler"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI Tasarım İlkeleri"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "İleri Makine Öğrenimi Kursu Lansmanı"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "Tamamlanma Oranı"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "Kurs Tamamlanması"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "Kurs Tamamlanması"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "Kurs"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "BT ve Programlama"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "Dijital Pazarlama"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "Tasarım"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "Özel Raporlar"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"Ayrıntılı LMS analizi için özel raporlar oluşturun, görüntüleyin ve yönetin"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "Rapor Oluşturucu"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "Etkinlik Adı"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "Veri Kaynağı"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "Kayıtlar"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "Kullanıcı İlerlemesi"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "Değerlendirme Sonuçları"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "Kullanıcı Etkileşimi"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "Metrikler"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "Saat Dilimi"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "Tarih aralığın dışında"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "Son 30 Gün"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "Son 30 Gün"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "Son 3 Ay"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "Son 3 Ay"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "Geçen sene"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "Özel Raporlar"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "Etkinlik Türü"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "Çubuk Grafik"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "Canlı Sohbet Desteği"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "Canlı Sohbet Desteği"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "Masa"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "Rapor Oluştur"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "Son Çalıştırma"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "Kurs Tamamlanması"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "Değerlendirme Performans Analizi"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "Örnek Özel Rapor: Kurs Tamamlama Eğilimleri"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "Temel Bilgi 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "Tamamlama oranları son 3 ayda %15 arttı."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "Temel Bilgi 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr ""
+"Web Geliştirme kursları %%78 ile en yüksek tamamlanma oranlarını gösterir."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "Temel Bilgi 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "Ortalama tamamlanma süresi 45 günden 38 güne düştü."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "Öğrenci Geri Bildirimi"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"Öğrenci memnuniyeti, ders derecelendirmeleri ve geri bildirim eğilimlerine "
+"ilişkin bilgiler"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "Kullanıcı Memnuniyeti"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "Toplam Gelir"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "Ortalama Yanıt Süresi"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "Kurs Ayarları"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "Kullanıcı Memnuniyeti"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "Derecelendirme Dağılımı"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "Derecelendirme"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "Yorumlar"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "İleri Makine Öğrenimi Kursu Lansmanı"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "Dr.Jane Smith"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "Öğrenci Geri Bildirimi"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"Harika kurs! İçerik iyi yapılandırılmıştı ve eğitmen karmaşık kavramları net"
+" bir şekilde açıkladı."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"Gerçek dünyadan örneklerle çok pratik bir kurs. Stratejileri çalışmalarımda "
+"uygulamaya başladım bile."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "İleri Arapça"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "Geri Bildirimde Ortak Temalar"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "Pozitif tamsayı"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "Karmaşık konuların net açıklamaları"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "Pratik, gerçek dünyadan örnekler"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "eğitmenler"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "İyi yapılandırılmış ders içeriği"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "Yararlı testler ve ödevler"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "İyileştirme Alanları"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "Daha etkileşimli öğeler"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "Ek pratik alıştırmaları"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "Sorulara daha hızlı yanıt"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "Ders materyallerine erişilemiyor"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "İleri Arapça"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "Başlangıç"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "Başlangıç"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "Başlangıç"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "Başlangıç"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "Başlangıç"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "Ders Sayısı"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr ""
+"Sistem kaynağı kullanımına ve içerik popülerliğine ilişkin kapsamlı bilgiler"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "Toplam Mesajlar"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "Toplam Gelir"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "Ortalama Tepki Süresi"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "Depolama Kullanım Trendi"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "Destek Biletlerini ve Erişim Kaynaklarını Yönetin"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "Erişim Sayısı"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "Son Erişim"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "Yapay zekaya giriş"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "Veri Yapıları Hile Sayfası"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF'ler"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "İleri Arapça"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "Web Geliştirmenin Temelleri"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "Boyut"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "Logoyu Yükle"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "İndirilenler"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "Veri Biliminin Temelleri"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "Katılımcıları Ata"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "Kullanıcı Arayüzü/UX Tasarımı"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "Kullanılan Depolama (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "Ödev teslim tarihleri"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "Diğer"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "Kaynak Kullanımı"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "Kullanıcı Etkileşimi"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr ""
+"Kullanıcı etkinliği ve platform etkileşimine ilişkin kapsamlı bilgiler"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "Son 30 Gün"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "Ortalama Günlük Aktif Kullanıcı Sayısı"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "Ortalama Oturum Süresi"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "Kullanıcıyı Elde Tutma Oranı"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "Günlük Aktif Kullanıcı Trendi"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "Toplam Kullanıcı Sayısı"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "bu ay 45 saat"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "Jane Smith"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "bu ay 38 saat"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "Özellik Kullanım Dağılımı"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "Kullanıcı Etkileşimi"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "Son Etkinlikler"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "Emily Brown"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "Tamamlanan ders: JavaScript'e Giriş"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "Alex Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "Yeni bir kurs olan 'İleri Veri Analizi' başladı"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 gün önce"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "Sarah Lee"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "'Pazarlama Stratejileri' tartışma forumunda yayınlandı"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 saat önce"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "Kullanıcı Etkileşimi"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "Toplam Puan"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "Son Etkinlikler"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "Forum Gönderileri"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "Aktif"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "Nişanlanmak"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "David Miller"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "Emma Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "Aktif Kurslar"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "Forumu Ziyaret Et"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "Aktif Oturumlar"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "Ortalama Etkileşim Oranı"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "Kullanıcı İlerlemesi"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr ""
+"Bireysel öğrencinin ilerlemesi ve performansına ilişkin ayrıntılı bilgiler"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "Toplam Kullanıcı Sayısı"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "Ortalama Kullanıcı Başına Kurslar"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "Ortalama Tepki Süresi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "Dersleri ara..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "İlerlemek"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "Kullanıcı İlerlemesi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "En İyi Performans Gösterenler"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "Son Etkinlik"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "Tamamlanan ders: JavaScript'e Giriş"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "Kursa başlandı: İleri Veri Analizi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "Gönderilen ödev"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "Kullanıcı Etkileşimi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "Kullanıcı İlerlemesi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "Tamamlanan Kurslar"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "İlerlemek"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "Çalışma Süresi (Son 7 gün)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "Ders Sayısı"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "Video Dersleri"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2927,6 +5188,7 @@ msgid "API Key"
 msgstr "API Anahtarı"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "Video Konferans Entegrasyonu"
 
@@ -2945,14 +5207,6 @@ msgstr "Kenar çubuğu"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "Kategoriler"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Kayıtlar"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "Öğrenme Yolu"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -2975,32 +5229,8 @@ msgid "Course Completion"
 msgstr "Kurs Tamamlanması"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "Kullanıcı İlerlemesi"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "Değerlendirme Sonuçları"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "Kullanıcı Etkileşimi"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "Kaynak Kullanımı"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "Sertifika Takibi"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "Öğrenci Geri Bildirimi"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "Özel Raporlar"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3010,9 +5240,65 @@ msgstr "Faturalandırma"
 msgid "Logout"
 msgstr "Oturumu kapat"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "Yeni Nesil ÖYS/ÖYS"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "Tekrar hoşgeldiniz"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "NextGen LMS hesabınızda oturum açın"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "E-posta adresi"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "Şifre Politikası"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "Aralık"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "Parolanızı mı unuttunuz?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "Giriş yapmak"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "Hesabınız yok mu?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "Yöneticiler"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "Ana Sayfaya Geri Dön"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "Kurs Detayları - Rüşvet ve Yolsuzlukla Mücadele Politikası"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "Kurs Ayarları"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3027,10 +5313,6 @@ msgstr "Tüm çalışanlar için temel uyum eğitimi"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Kurslarım"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "Kursa Genel Bakış"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3083,20 +5365,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "Rüşvet Risklerinin Tanınması"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "Video"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "Kol saati"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "Şirketin Yolsuzlukla Mücadele Politikası"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "Belge"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3107,16 +5381,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "Vaka Çalışmaları: Etik Karar Verme"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "Sunum"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "Rüşvet ve Yolsuzlukla Mücadele Değerlendirmesi"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "Sınav"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3180,10 +5446,6 @@ msgid "Courses in Progress"
 msgstr "Devam Eden Kurslar"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "Tamamlanan Kurslar"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "Kazanılan Sertifikalar"
 
@@ -3240,16 +5502,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Tamamlanan ders: JavaScript'e Giriş"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 saat önce"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "Kazanılan sertifika: HTML ve CSS Temelleri"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 gün önce"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3323,6 +5577,584 @@ msgstr "2,5 saat"
 msgid "4 modules"
 msgstr "4 modül"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - Öğreniminizde Devrim Yaratın"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "Sonraki"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "Özellikler"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "Entegrasyonlar"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "Görüşler"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "Fiyatlandırma"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "Giriş yapmak"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "Öğrenmede Devrim Yapın"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "ile"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "Yeni Nesil ÖYS/ÖYS"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"Kişiselleştirilmiş öğrenme deneyimleri oluşturmak, içerik dağıtımını "
+"optimize etmek ve kurumsal eğitime benzeri görülmemiş bir katılımı teşvik "
+"etmek için yenilikçi teknolojinin gücünden yararlanın."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "Geleceği Deneyimleyin"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "Son Teknoloji Özellikler"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "Öğrenme Yolu"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"Algoritmalarımız, kişiselleştirilmiş öğrenme yolculukları oluşturmak ve "
+"optimum beceri gelişimini sağlamak için öğrenci davranışını ve performansını"
+" analiz eder."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "İleri Arapça"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"Öğrenci sonuçlarını tahmin etmek, olası zorlukları belirlemek ve daha iyi "
+"sonuçlar için proaktif olarak müdahale etmek için veriye dayalı içgörülerden"
+" yararlanın."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "Sürükleyici VR Eğitimi"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"Karmaşık veya yüksek riskli senaryolarda uygulamalı, risksiz eğitim için "
+"sanal gerçeklik deneyimlerini entegre edin."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "Gelişmiş Kurumsal Özellikler"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "Esnek Dağıtım"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Windows Server desteği de dahil olmak üzere herhangi bir bulut platformunda "
+"(AWS, Azure, DigitalOcean) veya şirket içinde dağıtın."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "Çok Kiracılı Mimari"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"Veri izolasyonunu ve özelleştirmeyi sağlayarak birden fazla kuruluşu tek bir"
+" örnekte güvenli bir şekilde yönetin."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "Çok Dilli Destek"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "Aşağıdakiler dahil 30'dan fazla dilde mevcuttur:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "Arapça - Merhaba"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "İngilizce - Hoş Geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "İspanyolca - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "Fransızca - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "Almanca - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "Çince - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "Japonca - Hoş Geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "İtalyanca - Hoş Geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "Rusça - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "Portekizce - Hoş geldiniz"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "Hintçe - Hoş Geldiniz"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "Korece - Hoş Geldiniz"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "Popüler platformlarla kusursuz entegrasyon:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "Yakınlaştır"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "Google Müşteri Kimliği"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "Microsoft Ekipleri"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "Öğrenme Yolu"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"Sıralı kurslar, ön koşullar ve dallanma yolları ile özelleştirilmiş öğrenme "
+"yolculukları oluşturun."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "Duyuru Yönetimi"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"SCORM desteği, çoklu ortam türleri ve sezgisel dosya yöneticisi ile sağlam "
+"CMS."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "En Son Teknoloji Yığını"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "Piton"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "Django"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "Liman işçisi"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "Arka rüzgarlar"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "WebSoketleri"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "Gelişmiş Ayarlar"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "Yenilikçi Öğrenme Yaklaşımı"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "Kurs Teslimatı Oluştur"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"Akıllı motorumuz, içeriğin zorluğunu ve sunumunu gerçek zamanlı öğrenci "
+"performansına göre dinamik olarak ayarlayarak her birey için en uygun zorluk"
+" düzeyini sağlar."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "Kişiselleştirilmiş öğrenme hızı"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "Uyarlanabilir değerlendirme teknikleri"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "Akıllı içerik önerileri"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "Uyarlanabilir öğrenme görselleştirmesi"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "Başarı Hikayeleri"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "Müşteri Avatarı"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "İK Direktörü, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS, kurumsal eğitimimizi dönüştürdü. Kişiselleştirilmiş öğrenme "
+"yolları ve tahmine dayalı analitik, çalışanların katılımını ve performansını"
+" önemli ölçüde artırdı. Kurs tamamlama oranlarında %%40'lık bir artış ve "
+"bilgilerin akılda tutulmasında %%25'lik bir iyileşme gördük."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "Mark Thompson"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "Öğrenme ve Geliştirme Müdürü, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"NextGen AI LMS tarafından sağlanan yapay zeka destekli bilgiler, çalışan "
+"gelişimine yaklaşımımızda devrim yarattı. Artık beceri boşluklarını proaktif"
+" bir şekilde tespit edebiliyor ve eğitim programlarımızı benzeri görülmemiş "
+"bir hassasiyetle uyarlayabiliyoruz. Bu son teknoloji ürünü sistemin "
+"uygulanmasından bu yana ekibimizin üretkenliği %30 arttı."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "Esnek Abonelik Planları"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "Başlangıç"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "Ay"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "500 kullanıcıya kadar"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "Temel Ayrıntılar"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "Kişiselleştirilmiş öğrenme yolları"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "7/24 chatbot desteği"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "Başlangıç ​​Kılavuzu"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "En Popüler Kurslar"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Profesyonel"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "2.000'e kadar kullanıcı"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "Gelişmiş analizler ve tahminler"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "Otomatik içerik önerileri"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "VR eğitim modülleri"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "Raporu Yazdır"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "Pro'ya yükseltin"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "Girişim"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "Özel Raporlar"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "Sınırsız kullanıcı"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "Tam LMS ekosistem entegrasyonu"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "Özel model geliştirme"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "Gelişmiş VR ve AR özellikleri"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "Özel hesap yöneticisi"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "Satış Ekibiyle İletişime Geçin"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "Öğrenme Deneyiminizi Dönüştürmeye Hazır mısınız?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"Yenilikçi öğrenme yönetimi sistemimizle kuruluşunuzun yeteneklerinin tüm "
+"potansiyelini ortaya çıkarın."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "Demo Talep Edin"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "Öğrenmenin geleceğini yenilikçi teknolojiyle güçlendiriyoruz."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 Tech Caddesi, San Francisco, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "Telefon: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "E-posta: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Hızlı Bağlantılar"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "Ev"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "Temas etmek"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "Hakkımızda"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "Yardım ve Destek"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "Şifre Politikası"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "Hizmet Şartları"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "Çerez Politikası"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "SSS"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "Yardım ve Destek Merkezi"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Sistem Güncellemeleri"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "Bizimle iletişime geçin"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "Bülten"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "E-postanız"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "Abone"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. Her hakkı saklıdır."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "Başarıyla giriş yaptınız."
@@ -3330,3 +6162,9 @@ msgstr "Başarıyla giriş yaptınız."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Giriş başarısız oldu. Lütfen aşağıdaki hataları kontrol edin."
+
+#~ msgid "Language menu opened!"
+#~ msgstr "Dil menüsü açıldı!"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Kurs Detayları - Rüşvet ve Yolsuzlukla Mücadele Politikası"

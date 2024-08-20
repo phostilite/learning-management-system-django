@@ -4,9 +4,6 @@ from . import administartor_views, facilitator_views, learner_views, supervisor_
 from django.views.i18n import set_language
 
 urlpatterns = [
-
-    path('i18n/setlang/', set_language, name='set_language'),
-
     # Authentication views
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', auth_views.SignupView.as_view(), name='signup'),

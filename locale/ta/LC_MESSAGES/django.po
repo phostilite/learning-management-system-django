@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 15:14+0530\n"
+"POT-Creation-Date: 2024-08-19 00:01+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,6 +339,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuu] வடிவத்தில் இருக்க வேண்டும்."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "கால அளவு"
 
@@ -631,12 +632,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "ஆர்டர்"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "நீக்கு"
 
@@ -804,36 +808,43 @@ msgstr "ஞாயிறு"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "என்"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "செவ்வாய்"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "புதன்"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "சேகரிக்கவும்"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "வெள்ளி"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "சனி"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "சூரியன்"
 
@@ -854,6 +865,12 @@ msgid "April"
 msgstr "ஏப்ரல்"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "மே"
 
@@ -1380,10 +1397,6 @@ msgid "Finnish"
 msgstr "ஃபின்னிஷ்"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "நார்வேஜியன்"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "கிரேக்கம்"
 
@@ -1407,6 +1420,30 @@ msgstr "இந்தோனேஷியன்"
 msgid "Bengali"
 msgstr "பெங்காலி"
 
+#: lms/settings.py
+msgid "Tamil"
+msgstr "தமிழ்"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "தெலுங்கு"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "கன்னடம்"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "பஞ்சாபி"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "மராத்தி"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "மலையாளம்"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "அறிவிப்புகள் - LMS நிர்வாகம்"
@@ -1424,6 +1461,8 @@ msgstr "கணினி அளவிலான அறிவிப்புகள�
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1487,12 +1526,14 @@ msgstr "பராமரிப்பு"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "அனைத்து நிலைகள்"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "செயலில்"
 
@@ -1509,16 +1550,22 @@ msgid "Export Report"
 msgstr "ஏற்றுமதி அறிக்கை"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "தலைப்பு"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "வகை"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "நிலை"
@@ -1538,8 +1585,16 @@ msgstr "நிச்சயதார்த்தம்"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "செயல்கள்"
 
@@ -1563,6 +1618,7 @@ msgstr "அறிவிப்பை நீக்கு"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "முந்தைய"
@@ -1571,6 +1627,7 @@ msgstr "முந்தைய"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "அடுத்து"
@@ -1636,6 +1693,7 @@ msgid "Workshop"
 msgstr "பட்டறை"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "தேர்வு"
 
@@ -1694,6 +1752,7 @@ msgid "Certificates This Month"
 msgstr "இந்த மாதம் சான்றிதழ்கள்"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "நிலுவையில் உள்ள ஒப்புதல்கள்"
 
@@ -1702,6 +1761,9 @@ msgid "Courses with Certificates"
 msgstr "சான்றிதழ்களுடன் கூடிய படிப்புகள்"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "அனைத்து படிப்புகள்"
@@ -1713,6 +1775,9 @@ msgstr "ஐடி & புரோகிராமிங்"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "வணிகம்"
 
@@ -1746,6 +1811,8 @@ msgid "All Time"
 msgstr "எல்லா நேரமும்"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "அறிக்கையை உருவாக்கவும்"
 
@@ -1758,11 +1825,16 @@ msgid "Certificate ID"
 msgstr "சான்றிதழ் ஐடி"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "கற்றவர்"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "பாடநெறி"
 
@@ -1772,6 +1844,9 @@ msgstr "வெளியீட்டு தேதி"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "ஜான் டோ"
 
@@ -1818,6 +1893,7 @@ msgstr "ரொட்டிதூள்"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1829,6 +1905,7 @@ msgid "Create Delivery"
 msgstr "விநியோகத்தை உருவாக்கவும்"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "முன்னேற்றம்"
@@ -1895,6 +1972,7 @@ msgstr "தொடக்க தேதியைத் தேர்ந்தெட�
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "செய்ய"
 
@@ -1986,12 +2064,19 @@ msgid "Search deliveries..."
 msgstr "டெலிவரிகளைத் தேடு..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "செயல்பாட்டில் உள்ளது"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "முடிக்கப்பட்டது"
@@ -2025,6 +2110,7 @@ msgid "Delivery ID"
 msgstr "டெலிவரி ஐடி"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "தொடக்க தேதி"
 
@@ -2033,6 +2119,7 @@ msgid "End Date"
 msgstr "முடிவு தேதி"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "பயிற்றுவிப்பாளர்"
 
@@ -2042,10 +2129,15 @@ msgid "Students"
 msgstr "மாணவர்கள்"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "விவரங்களைக் காண்க"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "திருத்தவும்"
@@ -2055,14 +2147,17 @@ msgid "Manage Students"
 msgstr "மாணவர்களை நிர்வகிக்கவும்"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "காட்டும்"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "இன்"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "முடிவுகள்"
 
@@ -2071,9 +2166,802 @@ msgid "Delete Delivery"
 msgstr "டெலிவரியை நீக்கு"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "ரத்து செய்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "பாடநெறி"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "அட்டைப் படம் இல்லை"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "பாடநெறி"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "வெளியிட வேண்டாம்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "முந்தைய"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "மேம்பட்ட அரபு"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "மொத்த செயல்கள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "மாணவர்கள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "செயலில் உள்ள அமர்வுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "அறிவிப்பைத் திருத்தவும்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "பாட மேலோட்டம்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "வகை"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "விநியோகத்தை உருவாக்கவும்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "ஏற்றுமதி விநியோகங்கள்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "பாட அட்டை"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "ஏற்றுமதி விநியோகங்கள்"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "புதிய ஆதாரத்தைச் சேர்க்கவும்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "வகை"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "பயனர்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "டெலிவரி ஐடி"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "தேதியைத் தேர்ந்தெடுக்கவும்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "வீடியோ"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "ஆவணம்"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "விளக்கக்காட்சி"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "இணைப்பு"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "வினாடி வினா"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "கால அளவு"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "விற்பனையைத் தொடர்பு கொள்ளவும்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "சரியான URL ஐ உள்ளிடவும்."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "கற்றல் பாதை"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "பாட மேலோட்டம்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "பாடத்தை உருவாக்கவும்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "கோப்பு பாதை"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "சான்றுகள்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "கற்றல் வளங்கள்"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "வீடியோ கோப்பு இல்லை."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "ஆவணம்"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "இது ஆவணத்தின் முன்னோட்டம்."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "முழு ஆவணத்தையும் பார்க்கவும்"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "ஆவணம்"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "ஆவணக் கோப்பு இல்லை."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "வினாடி வினா முன்னோட்டம்"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr ""
+"இந்த வினாடி வினா பாடத்தில் கிடைக்கிறது. முயற்சி செய்ய கிளிக் செய்யவும்."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr ""
+"இது ஒரு SCORM தொகுப்பு. அதைத் தொடங்க கீழே உள்ள பொத்தானைக் கிளிக் செய்யவும்."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM தொகுப்பு"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "விளக்கக்காட்சி"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "விளக்கக்காட்சி"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "விளக்கக்காட்சி"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "விளக்கக்காட்சி"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "விளக்கக்காட்சி கோப்பு இல்லை."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "கற்றல் வளங்கள்"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"வெளிப்புற ஆதாரத்தை அணுக மேலே உள்ள இணைப்பைக் கிளிக் செய்யவும். இது புதிய "
+"தாவலில் திறக்கப்படும் என்பதை நினைவில் கொள்ளவும்."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "வெளிப்புற URL எதுவும் வழங்கப்படவில்லை."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "இந்த ஆதார வகைக்கு முன்னோட்டம் கிடைக்கவில்லை."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "அறிவிப்புகள் - LMS நிர்வாகம்"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "அறிவிப்பு மேலாண்மை"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "கணினி அளவிலான அறிவிப்புகளை உருவாக்கி நிர்வகிக்கவும்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "முடித்த படிப்புகள்"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "படிப்புகளைத் தேடு..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "வலை அபிவிருத்தி அடிப்படைகள்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "டிஜிட்டல் மார்க்கெட்டிங்"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "நிலுவையில் உள்ளது"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "திரும்பப் பெறப்பட்டது"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "தரவு ஏற்றுமதி"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "தளத்தின் பெயர்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "வலை அபிவிருத்தி அடிப்படைகள்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "காண்க"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "திரும்பப் பெறவும்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "ஒப்புதல்"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "பொருள்"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "டிஜிட்டல் மார்க்கெட்டிங்"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "சான்றிதழ்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "கற்றல் பாதை"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"உங்கள் கற்பவர்களுக்கு கற்றல் பயணங்களை வடிவமைக்கவும், கண்காணிக்கவும் மற்றும் "
+"மேம்படுத்தவும்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "கற்றல் பாதை"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "மொத்தம் பதிவுசெய்த கற்றவர்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "பயனர் திருப்தி"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "கற்றல் பாதை"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "புதிய டிக்கெட்டை உருவாக்கவும்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "இருக்கும் பாதையைத் திருத்தவும்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "கற்றவர்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "அறிக்கையை உருவாக்கவும்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "தளத்தின் பெயர்"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "படிப்பில் சேர்ந்தார்"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "தனிப்பயன் மாதிரி வளர்ச்சி"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "தொழில்நுட்பம்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "அறிக்கைகள் & பகுப்பாய்வு"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "கற்றல் பாதை காட்சிப்படுத்தல்: முழு அடுக்கு வலை அபிவிருத்தி"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML & CSS அடிப்படைகள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 வாரங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 வாரங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Node.js உடன் பின்தளம்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 வாரங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "முன்னணி கட்டமைப்புகள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "ஜாவாஸ்கிரிப்ட் இறுதி திட்டம்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "கற்றல் பாதை காட்சிப்படுத்தல்: தரவு அறிவியல் தேர்ச்சி"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "AI அறிமுகம்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "புள்ளியியல் மற்றும் நிகழ்தகவு"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "தரவு அறிவியலுக்கான பைதான்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "தரவு காட்சிப்படுத்தல் வினாடிவினா"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 வாரங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "கற்றலைப் புரட்சியாக்குங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "பெரிய தரவு தொழில்நுட்பங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "கற்றல் முன்னேற்றம்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "கற்றவர் கருத்து"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"கற்றல் பாதை நன்கு கட்டமைக்கப்பட்டது மற்றும் முழுமையான ஸ்டேக் டெவலப்பராக "
+"மாறுவதற்கான தெளிவான பாதையை வழங்கியது. கற்றுக்கொண்ட கருத்துகளைப் "
+"பயன்படுத்துவதில் திட்டங்கள் குறிப்பாக உதவியாக இருந்தன."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"சிறந்த உள்ளடக்கம் மற்றும் முன்னேற்றம். மெஷின் லேர்னிங் பிரிவில் அதிகமான "
+"பயிற்சிகளை நான் பாராட்டுகிறேன், ஆனால் ஒட்டுமொத்தமாக, இது ஒரு சிறந்த கற்றல் "
+"பாதை."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "தொடங்குதல் வழிகாட்டி"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "கடந்த 3 மாதங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "மாதம்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "மாதம்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 மாதங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 மாதங்கள்"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "படிப்புகளின் எண்ணிக்கை"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2125,21 +3013,8 @@ msgid "Course Cover"
 msgstr "பாட அட்டை"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "காண்க"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "விநியோகங்களை நிர்வகிக்கவும்"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "தரவு ஏற்றுமதி"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "வெளியிட வேண்டாம்"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2191,16 +3066,13 @@ msgid "12%% from last month"
 msgstr "கடந்த மாதத்திலிருந்து 12%%"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "செயலில் உள்ள படிப்புகள்"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "இந்த வாரம் 3 புதியது"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "நிறைவு விகிதம்"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2241,16 +3113,8 @@ msgid "987 enrolled"
 msgstr "987 பேர் சேர்ந்துள்ளனர்"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "தரவு அறிவியல் அடிப்படைகள்"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 பேர் சேர்ந்துள்ளனர்"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "டிஜிட்டல் மார்க்கெட்டிங்"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2267,11 +3131,6 @@ msgstr "621 பேர் சேர்ந்துள்ளனர்"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "சமீபத்திய செயல்பாடுகள்"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "பயனர்"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2422,6 +3281,7 @@ msgid "Resolved This Week"
 msgstr "இந்த வாரம் தீர்க்கப்பட்டது"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "பயனர் திருப்தி"
 
@@ -2452,10 +3312,6 @@ msgstr "பொருள்"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "மூலம் சமர்ப்பிக்கப்பட்டது"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2600,11 +3456,13 @@ msgid "Rank"
 msgstr "தரவரிசை"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "படிப்புகள் முடிந்தது"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "சராசரி மதிப்பெண்"
 
@@ -2727,6 +3585,8 @@ msgid "Search messages..."
 msgstr "செய்திகளைத் தேடு..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "வடிப்பான்களைப் பயன்படுத்து"
 
@@ -2751,6 +3611,7 @@ msgid "Export Selected"
 msgstr "ஏற்றுமதி தேர்ந்தெடுக்கப்பட்டது"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2760,7 +3621,7 @@ msgstr "AI தேடல்"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 AIயிடம் எதையும் கேளுங்கள்..."
+msgstr "🤖 AIயிடம் எதையும் கேளுங்கள்..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2775,6 +3636,7 @@ msgid "user photo"
 msgstr "பயனர் புகைப்படம்"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "Search language..."
 msgstr "தேடல் மொழி..."
 
@@ -2793,6 +3655,1354 @@ msgstr "அறிவிப்பு மெனு திறக்கப்பட�
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "AI தேடலைச் செய்கிறது:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr ""
+"படிப்புகள் மற்றும் மாணவர்கள் முழுவதும் மதிப்பீட்டு செயல்திறன் பற்றிய விரிவான"
+" பகுப்பாய்வு"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "மொத்த அறிவிப்புகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "தேர்ச்சி விகிதம்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "செய்திகளைத் தேடு..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "எல்லா நேரமும்"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "திட்டம்"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "மதிப்பீட்டு செயல்திறன் மேலோட்டம்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "சிறந்த கலைஞர்கள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "ஜாவாஸ்கிரிப்ட்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "சராசரி மதிப்பெண்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "தரவு காட்சிப்படுத்தல் வினாடிவினா"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "எஸ்சிஓ உத்திகள் தேர்வு"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "மாணவர்கள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "மார்க்கெட்டிங் அனலிட்டிக்ஸ் தேர்வு"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "UX வடிவமைப்பு திட்டம்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 நாள் முன்பு"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "முயற்சிகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "ஜாவாஸ்கிரிப்ட் இறுதி திட்டம்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "ஜன."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "பிப்."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "மார்ச்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "ஏப்ரல்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "ஜூன்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "சராசரி மதிப்பெண்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "வினாடி வினா"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "தேர்வு"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "திட்டங்கள்"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "பணி வழங்க வேண்டிய தேதிகள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "சான்றிதழ் கண்காணிப்பு"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr ""
+"சான்றிதழ் திட்டங்கள், முன்னேற்றம் மற்றும் கற்றவர் சாதனைகளை கண்காணிக்கவும்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "மொத்த சான்றிதழ்கள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "கற்றவர்கள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "பெற்ற சான்றிதழ்கள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "சான்றிதழ் கண்காணிப்பு"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "மொத்த சான்றிதழ்கள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "வெளியிடப்பட்டது"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "முழு அடுக்கு வலை டெவலப்பர்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "டிஜிட்டல் மார்க்கெட்டிங்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "மேம்பட்ட இயந்திர கற்றல் படிப்பு துவக்கம்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "சைபர் பாதுகாப்பு ஆய்வாளர்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "ரத்துச் சான்றிதழ்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 நாள் முன்பு"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "சான்றிதழ் கண்காணிப்பு"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "சான்றிதழ் கண்காணிப்பு"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "சராசரி முடிக்க வேண்டிய நேரம்"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI மற்றும் ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "பாதுகாப்பு"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "பாடநெறி நிறைவு"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr ""
+"படிப்பை முடிக்கும் விகிதங்கள் மற்றும் மாணவர் முன்னேற்றம் பற்றிய விரிவான "
+"நுண்ணறிவு"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "அனைத்து படிப்புகள்"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "இந்த மாதம் சான்றிதழ்கள்"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "பாடநெறி நிறைவு"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "சிறந்த கலைஞர்கள்"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI வடிவமைப்பு கோட்பாடுகள்"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "மேம்பட்ட இயந்திர கற்றல் படிப்பு துவக்கம்"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "நிறைவு விகிதம்"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "பாடநெறி நிறைவு"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "பாடநெறி நிறைவு"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "பாடநெறி"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "ஐடி & புரோகிராமிங்"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "டிஜிட்டல் மார்க்கெட்டிங்"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "வடிவமைப்பு"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "தனிப்பயன் அறிக்கைகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"ஆழமான LMS பகுப்பாய்விற்கான தனிப்பயன் அறிக்கைகளை உருவாக்கவும், பார்க்கவும் "
+"மற்றும் நிர்வகிக்கவும்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "அறிக்கை உருவாக்குபவர்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "நிகழ்வின் பெயர்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "தரவு ஆதாரம்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "பதிவுகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "பயனர் முன்னேற்றம்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "மதிப்பீட்டு முடிவுகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "பயனர் ஈடுபாடு"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "அளவீடுகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "நேர மண்டலம்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "தேதி வரம்பிற்கு அப்பாற்பட்டது"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "கடந்த 30 நாட்கள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "கடந்த 30 நாட்கள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "கடந்த 3 மாதங்கள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "கடந்த 3 மாதங்கள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "கடந்த ஆண்டு"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "தனிப்பயன் அறிக்கைகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "நிகழ்வு வகை"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "பார் விளக்கப்படம்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "நேரடி அரட்டை ஆதரவு"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "நேரடி அரட்டை ஆதரவு"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "அட்டவணை"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "அறிக்கையை உருவாக்கவும்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "கடைசி ஓட்டம்"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "பாடநெறி நிறைவு"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "மதிப்பீட்டு செயல்திறன் பகுப்பாய்வு"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "மாதிரி தனிப்பயன் அறிக்கை: பாடநெறி முடிக்கும் போக்குகள்"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "முக்கிய நுண்ணறிவு 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "கடந்த 3 மாதங்களில் நிறைவு விகிதம் 15% அதிகரித்துள்ளது."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "முக்கிய நுண்ணறிவு 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr ""
+"வெப் டெவலப்மென்ட் படிப்புகள் அதிகபட்சமாக 78% நிறைவு விகிதங்களைக் "
+"காட்டுகின்றன."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "முக்கிய நுண்ணறிவு 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "முடிப்பதற்கான சராசரி நேரம் 45 முதல் 38 நாட்களாக குறைந்துள்ளது."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "கற்றவர் கருத்து"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"கற்பவர் திருப்தி, பாட மதிப்பீடுகள் மற்றும் கருத்துப் போக்குகள் பற்றிய "
+"நுண்ணறிவு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "பயனர் திருப்தி"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "மொத்த வருவாய்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "சராசரி பதில் நேரம்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "பாட அமைப்புகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "பயனர் திருப்தி"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "மதிப்பீடு விநியோகம்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "முடித்த படிப்புகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "மதிப்பீடு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "விமர்சனங்கள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "மேம்பட்ட இயந்திர கற்றல் படிப்பு துவக்கம்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "டாக்டர் ஜேன் ஸ்மித்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "கற்றவர் கருத்து"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"அருமையான படிப்பு! உள்ளடக்கம் நன்கு கட்டமைக்கப்பட்டது மற்றும் "
+"பயிற்றுவிப்பாளர் சிக்கலான கருத்துக்களை தெளிவாக விளக்கினார்."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"நிஜ உலக உதாரணங்களுடன் மிகவும் நடைமுறை படிப்பு. நான் ஏற்கனவே எனது வேலையில் "
+"உத்திகளைப் பயன்படுத்தத் தொடங்கினேன்."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "மேம்பட்ட அரபு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "பின்னூட்டத்தில் பொதுவான தீம்கள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "நேர்மறை முழு எண்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "சிக்கலான தலைப்புகளின் தெளிவான விளக்கங்கள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "நடைமுறை, நிஜ உலக உதாரணங்கள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "பயிற்றுனர்கள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "நன்கு கட்டமைக்கப்பட்ட பாடநெறி உள்ளடக்கம்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "பயனுள்ள வினாடி வினாக்கள் மற்றும் பணிகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "முன்னேற்றத்திற்கான பகுதிகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "மேலும் ஊடாடும் கூறுகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "கூடுதல் பயிற்சி பயிற்சிகள்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "கேள்விகளுக்கு விரைவான பதில்"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "பாடப் பொருட்களை அணுக முடியவில்லை"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "மேம்பட்ட அரபு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "தொடங்கு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "தொடங்கு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "தொடங்கு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "தொடங்கு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "தொடங்கு"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "படிப்புகளின் எண்ணிக்கை"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr "கணினி வள பயன்பாடு மற்றும் உள்ளடக்க பிரபலம் பற்றிய விரிவான நுண்ணறிவு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "மொத்த செய்திகள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "மொத்த வருவாய்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "சராசரி பதில் நேரம்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "சேமிப்பக பயன்பாட்டுப் போக்கு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "ஆதரவு டிக்கெட்டுகள் மற்றும் அணுகல் ஆதாரங்களை நிர்வகிக்கவும்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "அணுகல் எண்ணிக்கை"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "கடைசியாக அணுகப்பட்டது"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "AI அறிமுகம்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "தரவு கட்டமைப்புகள் ஏமாற்று தாள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "மேம்பட்ட அரபு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "வலை அபிவிருத்தி அடிப்படைகள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "அளவு"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "லோகோவைப் பதிவேற்றவும்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "பதிவிறக்கங்கள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "தரவு அறிவியல் அடிப்படைகள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "பங்கேற்பாளர்களை நியமிக்கவும்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "UI/UX வடிவமைப்பு"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "பயன்படுத்திய சேமிப்பு (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "பணி வழங்க வேண்டிய தேதிகள்"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "மற்றவை"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "வள பயன்பாடு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "பயனர் ஈடுபாடு"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr "பயனர் செயல்பாடு மற்றும் இயங்குதள தொடர்பு பற்றிய விரிவான நுண்ணறிவு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "கடந்த 30 நாட்கள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "சராசரி தினசரி செயலில் உள்ள பயனர்கள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "சராசரி அமர்வு காலம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "பயனர் தக்கவைப்பு விகிதம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "தினசரி செயலில் உள்ள பயனர்களின் போக்கு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "மொத்த பயனர்கள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "இந்த மாதம் 45 மணி நேரம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "ஜேன் ஸ்மித்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "சாரா ஜான்சன்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "இந்த மாதம் 38 மணி நேரம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "அம்சம் பயன்பாடு விநியோகம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "பயனர் ஈடுபாடு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "சமீபத்திய செயல்பாடுகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "எமிலி பிரவுன்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "முடிக்கப்பட்ட பாடம்: ஜாவாஸ்கிரிப்ட் அறிமுகம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "அலெக்ஸ் வில்சன்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "'மேம்பட்ட தரவு பகுப்பாய்வு' என்ற புதிய பாடத்திட்டத்தை தொடங்கினார்."
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 நாள் முன்பு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "சாரா லீ"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "விவாத அரங்கில் இடுகையிடப்பட்டது 'சந்தைப்படுத்தல் உத்திகள்'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 மணி நேரத்திற்கு முன்பு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "பயனர் ஈடுபாடு"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "மொத்த புள்ளிகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "படிப்புகள் முடிந்தது"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "சமீபத்திய செயல்பாடுகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "மன்ற இடுகைகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "செயலில்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "நிச்சயதார்த்தம்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "டேவிட் மில்லர்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "எம்மா வில்சன்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "செயலில் உள்ள படிப்புகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "மன்றத்தைப் பார்வையிடவும்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "செயலில் உள்ள அமர்வுகள்"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "சராசரி நிச்சயதார்த்த விகிதம்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "பயனர் முன்னேற்றம்"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr ""
+"தனிப்பட்ட கற்பவரின் முன்னேற்றம் மற்றும் செயல்திறன் பற்றிய விரிவான நுண்ணறிவு"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "மொத்த பயனர்கள்"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "சராசரி ஒவ்வொரு பயனருக்கும் படிப்புகள்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "சராசரி பதில் நேரம்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "படிப்புகளைத் தேடு..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "முன்னேற்றம்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "பயனர் முன்னேற்றம்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "சிறந்த கலைஞர்கள்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "படிப்புகள் முடிந்தது"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "படிப்புகள் முடிந்தது"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "படிப்புகள் முடிந்தது"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "சமீபத்திய செயல்பாடு"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "முடிக்கப்பட்ட பாடம்: ஜாவாஸ்கிரிப்ட் அறிமுகம்"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "தொடங்கப்பட்ட பாடநெறி: மேம்பட்ட தரவு பகுப்பாய்வு"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "சமர்ப்பிக்கப்பட்ட பணி"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "பயனர் ஈடுபாடு"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "பயனர் முன்னேற்றம்"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "படிப்புகள் முடிந்தது"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "முன்னேற்றம்"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "படிப்பு நேரம் (கடந்த 7 நாட்கள்)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "படிப்புகளின் எண்ணிக்கை"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "வீடியோ பாடங்கள்"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -3001,6 +5211,7 @@ msgid "API Key"
 msgstr "API விசை"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "வீடியோ கான்பரன்சிங் ஒருங்கிணைப்பு"
 
@@ -3019,14 +5230,6 @@ msgstr "பக்கப்பட்டி"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "வகைகள்"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "பதிவுகள்"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "கற்றல் பாதை"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -3049,32 +5252,8 @@ msgid "Course Completion"
 msgstr "பாடநெறி நிறைவு"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "பயனர் முன்னேற்றம்"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "மதிப்பீட்டு முடிவுகள்"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "பயனர் ஈடுபாடு"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "வள பயன்பாடு"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "சான்றிதழ் கண்காணிப்பு"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "கற்றவர் கருத்து"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "தனிப்பயன் அறிக்கைகள்"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3084,9 +5263,65 @@ msgstr "பில்லிங்"
 msgid "Logout"
 msgstr "வெளியேறு"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "NextGen LMS"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "மீண்டும் வரவேற்கிறோம்"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "உங்கள் NextGen LMS கணக்கில் உள்நுழையவும்"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "மின்னஞ்சல் முகவரி"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "கடவுச்சொல் கொள்கை"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "டிசம்பர்"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "கடவுச்சொல் மறந்துவிட்டதா?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "உள்நுழைக"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "கணக்கு இல்லையா?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "நிர்வாகிகள்"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "முகப்புக்குத் திரும்பு"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "படிப்பு விவரங்கள் - லஞ்சம் மற்றும் ஊழல் எதிர்ப்பு கொள்கை"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "பாட அமைப்புகள்"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3101,10 +5336,6 @@ msgstr "அனைத்து ஊழியர்களுக்கும் அ�
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "எனது படிப்புகள்"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "பாட மேலோட்டம்"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3158,20 +5389,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "லஞ்சம் அபாயங்களை அங்கீகரித்தல்"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "வீடியோ"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "பார்க்கவும்"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "நிறுவனத்தின் ஊழல் எதிர்ப்புக் கொள்கை"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "ஆவணம்"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3182,16 +5405,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "வழக்கு ஆய்வுகள்: நெறிமுறை முடிவெடுத்தல்"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "விளக்கக்காட்சி"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "லஞ்சம் மற்றும் ஊழல் எதிர்ப்பு மதிப்பீடு"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "வினாடி வினா"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3259,10 +5474,6 @@ msgid "Courses in Progress"
 msgstr "படிப்புகள் நடந்து வருகின்றன"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "முடித்த படிப்புகள்"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "பெற்ற சான்றிதழ்கள்"
 
@@ -3319,16 +5530,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "முடிக்கப்பட்ட பாடம்: ஜாவாஸ்கிரிப்ட் அறிமுகம்"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 மணி நேரத்திற்கு முன்பு"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "பெற்ற சான்றிதழ்: HTML மற்றும் CSS அடிப்படைகள்"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 நாள் முன்பு"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3402,6 +5605,586 @@ msgstr "2.5 மணி நேரம்"
 msgid "4 modules"
 msgstr "4 தொகுதிகள்"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - உங்கள் கற்றலில் புரட்சியை ஏற்படுத்துங்கள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "அடுத்து"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "அம்சங்கள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "ஒருங்கிணைப்புகள்"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "சான்றுகள்"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "விலை நிர்ணயம்"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "உள்நுழைக"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "கற்றலைப் புரட்சியாக்குங்கள்"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "உடன்"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "NextGen LMS"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"தனிப்பயனாக்கப்பட்ட கற்றல் அனுபவங்களை உருவாக்கவும், உள்ளடக்க விநியோகத்தை "
+"மேம்படுத்தவும் மற்றும் பெருநிறுவனப் பயிற்சியில் முன்னோடியில்லாத ஈடுபாட்டை "
+"ஏற்படுத்தவும் புதுமையான தொழில்நுட்பத்தின் ஆற்றலைப் பயன்படுத்துங்கள்."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "எதிர்காலத்தை அனுபவியுங்கள்"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "கட்டிங் எட்ஜ் அம்சங்கள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "கற்றல் பாதை"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"தனிப்பயனாக்கப்பட்ட கற்றல் பயணங்களை உருவாக்க, சிறந்த திறன் மேம்பாட்டை "
+"உறுதிசெய்ய, கற்பவரின் நடத்தை மற்றும் செயல்திறனை எங்கள் வழிமுறைகள் "
+"பகுப்பாய்வு செய்கின்றன."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "மேம்பட்ட அரபு"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"கற்றவரின் விளைவுகளை முன்னறிவிப்பதற்கும், சாத்தியமான சவால்களைக் "
+"கண்டறிவதற்கும், சிறந்த முடிவுகளுக்கு முன்கூட்டியே தலையிடுவதற்கும் தரவு "
+"சார்ந்த நுண்ணறிவுகளைப் பயன்படுத்தவும்."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "அதிவேக VR பயிற்சி"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"சிக்கலான அல்லது அதிக-பங்குகள் உள்ள சூழ்நிலைகளில் ஆபத்தில்லாத பயிற்சிக்கான "
+"விர்ச்சுவல் ரியாலிட்டி அனுபவங்களை ஒருங்கிணைக்கவும்."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "மேம்பட்ட நிறுவன அம்சங்கள்"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "நெகிழ்வான வரிசைப்படுத்தல்"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"எந்த கிளவுட் பிளாட்ஃபார்மிலும் (AWS, Azure, DigitalOcean) அல்லது விண்டோஸ் "
+"சர்வர் ஆதரவு உட்பட வளாகத்தில் பயன்படுத்தவும்."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "பல குத்தகைதாரர் கட்டிடக்கலை"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"தரவு தனிமைப்படுத்தல் மற்றும் தனிப்பயனாக்கத்தை உறுதிசெய்து, ஒரே நிகழ்வில் பல "
+"நிறுவனங்களை பாதுகாப்பாக நிர்வகிக்கவும்."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "பன்மொழி ஆதரவு"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "30+ மொழிகளில் கிடைக்கிறது, உட்பட:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "அரபு - வணக்கம்"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "ஆங்கிலம் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "ஸ்பானிஷ் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "பிரஞ்சு - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "ஜெர்மன் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "சீன - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "ஜப்பானியர் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "இத்தாலியன் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "ரஷியன் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "போர்த்துகீசியம் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "இந்தி - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "கொரியன் - வரவேற்கிறோம்"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "பிரபலமான தளங்களுடன் தடையற்ற ஒருங்கிணைப்பு:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "பெரிதாக்கு"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "Google கிளையண்ட் ஐடி"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "மைக்ரோசாப்ட் குழுக்கள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "கற்றல் பாதை"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"தொடர்ச்சியான படிப்புகள், முன்நிபந்தனைகள் மற்றும் கிளை பாதைகள் மூலம் "
+"தனிப்பயனாக்கப்பட்ட கற்றல் பயணங்களை உருவாக்கவும்."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "அறிவிப்பு மேலாண்மை"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"SCORM ஆதரவுடன் வலுவான CMS, பல மீடியா வகைகள் மற்றும் உள்ளுணர்வு கோப்பு "
+"மேலாளர்."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "கட்டிங் எட்ஜ் டெக்னாலஜி ஸ்டேக்"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "மலைப்பாம்பு"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "ஜாங்கோ"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "டோக்கர்"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "டெயில்விண்ட்சிஎஸ்எஸ்"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "ஜாவாஸ்கிரிப்ட்"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "வெப்சாக்கெட்டுகள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "மேம்பட்ட அமைப்புகள்"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "புதுமையான கற்றல் அணுகுமுறை"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "பாட விநியோகத்தை உருவாக்கவும்"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"எங்களின் ஸ்மார்ட் எஞ்சின், நிகழ்நேரக் கற்றவரின் செயல்திறனின் அடிப்படையில் "
+"உள்ளடக்க சிரமம் மற்றும் விளக்கக்காட்சியை மாறும் வகையில் சரிசெய்து, ஒவ்வொரு "
+"தனிநபருக்கும் உகந்த சவால் நிலையை உறுதி செய்கிறது."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "தனிப்பயனாக்கப்பட்ட கற்றல் வேகம்"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "தகவமைப்பு மதிப்பீட்டு நுட்பங்கள்"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "அறிவார்ந்த உள்ளடக்க பரிந்துரைகள்"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "தகவமைப்பு கற்றல் காட்சிப்படுத்தல்"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "வெற்றிக் கதைகள்"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "கிளையண்ட் அவதார்"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "சாரா ஜான்சன்"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "மனிதவள இயக்குநர், டெக்கார்ப்"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS எங்கள் நிறுவனப் பயிற்சியை மாற்றியுள்ளது. தனிப்பயனாக்கப்பட்ட "
+"கற்றல் பாதைகள் மற்றும் முன்கணிப்பு பகுப்பாய்வு ஆகியவை பணியாளர் ஈடுபாடு "
+"மற்றும் செயல்திறனை கணிசமாக மேம்படுத்தியுள்ளன. படிப்பை முடிக்கும் "
+"விகிதங்களில் 40% அதிகரிப்பையும் அறிவைத் தக்கவைத்துக்கொள்வதில் 25% "
+"முன்னேற்றத்தையும் நாங்கள் கண்டிருக்கிறோம்."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "மார்க் தாம்சன்"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "L&D மேலாளர், InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"NextGen AI LMS வழங்கிய AI-இயங்கும் நுண்ணறிவு பணியாளர் மேம்பாட்டிற்கான எங்கள்"
+" அணுகுமுறையில் புரட்சியை ஏற்படுத்தியுள்ளது. நாம் இப்போது திறன் இடைவெளிகளை "
+"முன்கூட்டியே கண்டறிந்து, முன்னெப்போதும் இல்லாத துல்லியத்துடன் எங்கள் "
+"பயிற்சித் திட்டங்களை வடிவமைக்க முடியும். இந்த அதிநவீன முறையை "
+"செயல்படுத்தியதில் இருந்து எங்கள் குழுவின் உற்பத்தித்திறன் 30% "
+"அதிகரித்துள்ளது."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "நெகிழ்வான சந்தா திட்டங்கள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "தொடங்கு"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "மாதம்"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "500 பயனர்கள் வரை"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "அடிப்படை விவரங்கள்"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "தனிப்பயனாக்கப்பட்ட கற்றல் பாதைகள்"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "24/7 சாட்போட் ஆதரவு"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "தொடங்குதல் வழிகாட்டி"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "மிகவும் பிரபலமான படிப்புகள்"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "தொழில்முறை"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "2,000 பயனர்கள் வரை"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "மேம்பட்ட பகுப்பாய்வு மற்றும் கணிப்புகள்"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "தானியங்கு உள்ளடக்கப் பரிந்துரைகள்"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "VR பயிற்சி தொகுதிகள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "அச்சு அறிக்கை"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "Pro ஆக மேம்படுத்தவும்"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "நிறுவன"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "தனிப்பயன் அறிக்கைகள்"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "வரம்பற்ற பயனர்கள்"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "முழு LMS சுற்றுச்சூழல் ஒருங்கிணைப்பு"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "தனிப்பயன் மாதிரி வளர்ச்சி"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "மேம்பட்ட VR & AR திறன்கள்"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "பிரத்யேக கணக்கு மேலாளர்"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "விற்பனையைத் தொடர்பு கொள்ளவும்"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "உங்கள் கற்றல் அனுபவத்தை மாற்றத் தயாரா?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"எங்களின் புதுமையான கற்றல் மேலாண்மை அமைப்பு மூலம் உங்கள் நிறுவனத்தின் "
+"திறமையின் முழு திறனையும் திறக்கவும்."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "டெமோவைக் கோரவும்"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "புதுமையான தொழில்நுட்பத்துடன் கற்றலின் எதிர்காலத்தை மேம்படுத்துதல்."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 டெக் ஸ்ட்ரீட், சான் பிரான்சிஸ்கோ, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "தொலைபேசி: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "மின்னஞ்சல்: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "விரைவு இணைப்புகள்"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "வீடு"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "தொடர்பு கொள்ளவும்"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "எங்களைப் பற்றி"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "வலைப்பதிவு"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "உதவி & ஆதரவு"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "கடவுச்சொல் கொள்கை"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "சேவை விதிமுறைகள்"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "குக்கீ கொள்கை"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "அடிக்கடி கேட்கப்படும் கேள்விகள்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "உதவி மற்றும் ஆதரவு மையம்"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "கணினி மேம்படுத்தல்கள்"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "எங்களுடன் இணைக்கவும்"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "செய்திமடல்"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "உங்கள் மின்னஞ்சல்"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "குழுசேர்"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "நீங்கள் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள்."
@@ -3409,3 +6192,9 @@ msgstr "நீங்கள் வெற்றிகரமாக உள்நு�
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "உள்நுழைவு தோல்வியடைந்தது. கீழே உள்ள பிழைகளைச் சரிபார்க்கவும்."
+
+#~ msgid "Norwegian"
+#~ msgstr "நார்வேஜியன்"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "படிப்பு விவரங்கள் - லஞ்சம் மற்றும் ஊழல் எதிர்ப்பு கொள்கை"

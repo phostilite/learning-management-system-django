@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 14:44+0530\n"
+"POT-Creation-Date: 2024-08-18 23:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -332,6 +332,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Khoảng thời gian"
 
@@ -618,12 +619,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Đặt hàng"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Xóa bỏ"
 
@@ -791,36 +795,43 @@ msgstr "Chủ nhật"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "Của tôi"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "thứ ba"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "Thứ tư"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "Thu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "Thứ Sáu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "Đã ngồi"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "Mặt trời"
 
@@ -841,6 +852,12 @@ msgid "April"
 msgstr "Tháng tư"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "Có thể"
 
@@ -1363,10 +1380,6 @@ msgid "Finnish"
 msgstr "tiếng Phần Lan"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "người Na Uy"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "tiếng Hy Lạp"
 
@@ -1377,6 +1390,42 @@ msgstr "tiếng Do Thái"
 #: lms/settings.py
 msgid "Thai"
 msgstr "Thai"
+
+#: lms/settings.py
+msgid "Vietnamese"
+msgstr "Tiếng Việt"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "tiếng Indonesia"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "tiếng Bengali"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "Tiếng Tamil"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "tiếng Telugu"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "tiếng Kannada"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "Tiếng Punjab"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "Tiếng Marathi"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "Mã Lai"
 
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
@@ -1395,6 +1444,8 @@ msgstr "Tạo và quản lý thông báo trên toàn hệ thống"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1458,12 +1509,14 @@ msgstr "BẢO TRÌ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Tất cả trạng thái"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "Tích cực"
 
@@ -1480,16 +1533,22 @@ msgid "Export Report"
 msgstr "Xuất báo cáo"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Tiêu đề"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "Loại"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "Trạng thái"
@@ -1509,8 +1568,16 @@ msgstr "Hôn ước"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "hành động"
 
@@ -1534,6 +1601,7 @@ msgstr "Xóa thông báo"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Trước"
@@ -1542,6 +1610,7 @@ msgstr "Trước"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "Kế tiếp"
@@ -1606,6 +1675,7 @@ msgid "Workshop"
 msgstr "Xưởng"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "Bài thi"
 
@@ -1664,6 +1734,7 @@ msgid "Certificates This Month"
 msgstr "Giấy chứng nhận tháng này"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Đang chờ phê duyệt"
 
@@ -1672,6 +1743,9 @@ msgid "Courses with Certificates"
 msgstr "Các khóa học có chứng chỉ"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "Tất cả các khóa học"
@@ -1683,6 +1757,9 @@ msgstr "CNTT & Lập trình"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "Việc kinh doanh"
 
@@ -1716,6 +1793,8 @@ msgid "All Time"
 msgstr "mọi lúc"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Tạo báo cáo"
 
@@ -1728,11 +1807,16 @@ msgid "Certificate ID"
 msgstr "ID chứng chỉ"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "Người học"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "Khóa học"
 
@@ -1742,6 +1826,9 @@ msgstr "Ngày phát hành"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "John Doe"
 
@@ -1788,6 +1875,7 @@ msgstr "vụn bánh mì"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1799,6 +1887,7 @@ msgid "Create Delivery"
 msgstr "Tạo giao hàng"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "Tiến triển"
@@ -1865,6 +1954,7 @@ msgstr "Chọn ngày bắt đầu"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "ĐẾN"
 
@@ -1957,12 +2047,19 @@ msgid "Search deliveries..."
 msgstr "Tìm kiếm giao hàng..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "Đang tiến hành"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "Hoàn thành"
@@ -1981,7 +2078,7 @@ msgstr "Giảng viên 1"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Instructor 2"
-msgstr ""
+msgstr "Giảng viên 2"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Instructor 3"
@@ -1996,6 +2093,7 @@ msgid "Delivery ID"
 msgstr "ID giao hàng"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "Ngày bắt đầu"
 
@@ -2004,6 +2102,7 @@ msgid "End Date"
 msgstr "Ngày kết thúc"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "Người hướng dẫn"
 
@@ -2013,10 +2112,15 @@ msgid "Students"
 msgstr "Sinh viên"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "Xem chi tiết"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "Biên tập"
@@ -2026,14 +2130,17 @@ msgid "Manage Students"
 msgstr "Quản lý sinh viên"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "Đang hiển thị"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "của"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "kết quả"
 
@@ -2042,9 +2149,799 @@ msgid "Delete Delivery"
 msgstr "Xóa giao hàng"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "Hủy bỏ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "Khóa học"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "Không có ảnh bìa"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "Khóa học"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "Hủy xuất bản"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Trước"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "Tiếng Ả Rập nâng cao"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "Hành động hàng loạt"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "Sinh viên"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "Phiên hoạt động"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "Chỉnh sửa thông báo"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "Tổng quan về khóa học"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "Loại"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "Tạo giao hàng"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "Cập nhật lần cuối"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "Xuất khẩu giao hàng"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "Bìa khóa học"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "Xuất khẩu giao hàng"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "Thêm tài nguyên mới"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Kiểu"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "Cập nhật lần cuối"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "người dùng"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "ID giao hàng"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "Chọn ngày"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "Băng hình"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "Tài liệu"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "Bài thuyết trình"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "liên kết"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "Câu đố"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "Khoảng thời gian"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "Liên hệ bán hàng"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "Nhập một URL hợp lệ."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "Lộ trình học tập"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "Tổng quan về khóa học"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "Tạo khóa học"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "Đường dẫn tệp"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "Lời chứng thực"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "Tài nguyên học tập"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "Không có tập tin video có sẵn."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "Tài liệu"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "Đây là bản xem trước của tài liệu."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "Xem đầy đủ tài liệu"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "Tài liệu"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "Không có tập tin tài liệu có sẵn."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "Xem trước bài kiểm tra"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "Bài kiểm tra này có sẵn trong khóa học. Bấm vào để thử."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "Đây là gói SCORM. Nhấp vào nút bên dưới để khởi chạy nó."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "Gói SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "Bài thuyết trình"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "Bài thuyết trình"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "Bài thuyết trình"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "Bài thuyết trình"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "Không có tập tin trình bày có sẵn."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "Tài nguyên học tập"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"Nhấp vào liên kết ở trên để truy cập tài nguyên bên ngoài. Xin lưu ý rằng "
+"điều này sẽ mở trong một tab mới."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "Không có URL bên ngoài được cung cấp."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "Bản xem trước không có sẵn cho loại tài nguyên này."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "Thông báo - LMS Admin"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "Quản lý thông báo"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "Tạo và quản lý thông báo trên toàn hệ thống"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "Tìm kiếm khóa học..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Nguyên tắc cơ bản về phát triển web"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Khái niệm cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Tiếp thị kỹ thuật số"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "Chưa giải quyết"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "Đã rút"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "Xuất dữ liệu"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "Tên trang web"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Nguyên tắc cơ bản về phát triển web"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "Xem"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "Rút"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "Chấp thuận"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "Chủ thể"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Tiếp thị kỹ thuật số"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "Chứng chỉ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "Lộ trình học tập"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"Thiết kế, giám sát và tối ưu hóa hành trình học tập cho người học của bạn"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "Lộ trình học tập"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "Tổng số người học đã đăng ký"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "Sự hài lòng của người dùng"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "Lộ trình học tập"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "Tạo vé mới"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "Chỉnh sửa đường dẫn hiện có"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "Người học"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Tạo báo cáo"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "Tên trang web"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "Đã đăng ký khóa học"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "Phát triển mô hình tùy chỉnh"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "Công nghệ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "Khái niệm cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "Báo cáo & Phân tích"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "Trực quan hóa lộ trình học tập: Phát triển web toàn diện"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "Khái niệm cơ bản về HTML & CSS"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 tuần"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 tuần"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Phần cuối với Node.js"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 tuần"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "Khung giao diện người dùng"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "Dự án cuối cùng về JavaScript"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "Trực quan hóa lộ trình học tập: Làm chủ khoa học dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "Giới thiệu về AI"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "Thống kê và xác suất"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "Python cho khoa học dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "Bài kiểm tra trực quan hóa dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 tuần"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "Cách mạng hóa việc học"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "Công nghệ dữ liệu lớn"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "Tiến độ học tập"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "Phản hồi của người học"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"Lộ trình học tập có cấu trúc rõ ràng và cung cấp lộ trình rõ ràng để trở "
+"thành nhà phát triển full stack. Các dự án đặc biệt hữu ích trong việc áp "
+"dụng các khái niệm đã học."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"Nội dung tuyệt vời và tiến triển. Tôi sẽ đánh giá cao nhiều bài tập thực "
+"hành hơn trong phần học máy, nhưng nhìn chung, đó là một lộ trình học tập "
+"tuyệt vời."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "Hướng dẫn bắt đầu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "3 tháng qua"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "Tháng"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "Tháng"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 tháng"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 tháng"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Số lượng khóa học"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2093,24 +2990,11 @@ msgstr "Tạo danh mục"
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "Course Cover"
-msgstr ""
-
-#: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "Xem"
+msgstr "Bìa khóa học"
 
 #: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "Quản lý việc giao hàng"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "Xuất dữ liệu"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "Hủy xuất bản"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2161,16 +3045,13 @@ msgid "12%% from last month"
 msgstr "12%% so với tháng trước"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "Các khóa học đang hoạt động"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "3 mới trong tuần này"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "Tỷ lệ hoàn thành"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2211,16 +3092,8 @@ msgid "987 enrolled"
 msgstr "987 người đăng ký"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 người đã đăng ký"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "Tiếp thị kỹ thuật số"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2237,11 +3110,6 @@ msgstr "621 người đã đăng ký"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "Hoạt động gần đây"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "người dùng"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2392,6 +3260,7 @@ msgid "Resolved This Week"
 msgstr "Đã giải quyết trong tuần này"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "Sự hài lòng của người dùng"
 
@@ -2417,15 +3286,11 @@ msgstr "Mã vé"
 
 #: templates/users/administrator/help_support.html
 msgid "Subject"
-msgstr ""
+msgstr "Chủ thể"
 
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "Gửi bởi"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "Cập nhật lần cuối"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2569,11 +3434,13 @@ msgid "Rank"
 msgstr "Thứ hạng"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "Khóa học đã hoàn thành"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "Trung bình Điểm"
 
@@ -2696,6 +3563,8 @@ msgid "Search messages..."
 msgstr "Tìm kiếm tin nhắn..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "Áp dụng bộ lọc"
 
@@ -2720,6 +3589,7 @@ msgid "Export Selected"
 msgstr "Xuất đã chọn"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2729,7 +3599,7 @@ msgstr "AI Search"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 Hãy hỏi AI bất cứ điều gì..."
+msgstr "🤖 Hãy hỏi AI bất cứ điều gì..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2744,6 +3614,7 @@ msgid "user photo"
 msgstr "ảnh người dùng"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "Search language..."
 msgstr "Tìm kiếm ngôn ngữ..."
 
@@ -2762,6 +3633,1353 @@ msgstr "Đã mở menu thông báo!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "Thực hiện tìm kiếm AI cho:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr ""
+"Phân tích toàn diện về hiệu quả đánh giá giữa các khóa học và sinh viên"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "Tổng số thông báo"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "Tỷ lệ đậu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "Tìm kiếm tin nhắn..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "mọi lúc"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "Dự án"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "Đánh giá tổng quan về hiệu suất"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "Người biểu diễn hàng đầu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "Trung bình Điểm"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "Bài kiểm tra trực quan hóa dữ liệu"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "Kỳ thi chiến lược SEO"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "Sinh viên"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "Kỳ thi phân tích tiếp thị"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "Dự án thiết kế UX"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 ngày trước"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "Nỗ lực"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "Dự án cuối cùng về JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "Tháng một."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "Tháng Hai."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "Bước đều"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "Tháng tư"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "Tháng sáu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "Trung bình Điểm"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "Câu đố"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "Bài thi"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "Dự án"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "Ngày đến hạn nộp bài tập"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "Theo dõi chứng nhận"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr ""
+"Giám sát các chương trình chứng nhận, tiến độ và thành tích của người học"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "Tổng số chứng chỉ"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "Người học"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "Chứng chỉ đạt được"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "Theo dõi chứng nhận"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "Tổng số chứng chỉ"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "Khái niệm cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "Đã phát hành"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "Nhà phát triển web toàn diện"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "Tiếp thị kỹ thuật số"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "Ra mắt khóa học máy học nâng cao"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "Nhà phân tích an ninh mạng"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "Thu hồi chứng chỉ"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 ngày trước"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "Theo dõi chứng nhận"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "Theo dõi chứng nhận"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "Trung bình Thời gian hoàn thành"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI & ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "Bảo vệ"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "Hoàn thành khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr ""
+"Thông tin chi tiết toàn diện về tỷ lệ hoàn thành khóa học và tiến độ của "
+"sinh viên"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Tất cả các khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "Giấy chứng nhận tháng này"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "Hoàn thành khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "Người biểu diễn hàng đầu"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "Nguyên tắc thiết kế UX/UI"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "Ra mắt khóa học máy học nâng cao"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "Tỷ lệ hoàn thành"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "Hoàn thành khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "Hoàn thành khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "Khóa học"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "CNTT & Lập trình"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "Tiếp thị kỹ thuật số"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "Thiết kế"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "Báo cáo tùy chỉnh"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr "Tạo, xem và quản lý báo cáo tùy chỉnh để phân tích LMS chuyên sâu"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "Trình tạo báo cáo"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "Tên sự kiện"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "Nguồn dữ liệu"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "tuyển sinh"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "Tiến trình của người dùng"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "Kết quả đánh giá"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "Sự tham gia của người dùng"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "Số liệu"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "Múi giờ"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "Ngày ngoài phạm vi"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "30 ngày qua"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "30 ngày qua"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "3 tháng qua"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "3 tháng qua"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "Năm ngoái"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "Báo cáo tùy chỉnh"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "Loại sự kiện"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "Biểu đồ thanh"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "Hỗ trợ trò chuyện trực tiếp"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "Hỗ trợ trò chuyện trực tiếp"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "Bàn"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "Tạo báo cáo"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "Lần chạy cuối cùng"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "Hoàn thành khóa học"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "Đánh giá Phân tích Hiệu suất"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "Báo cáo tùy chỉnh mẫu: Xu hướng hoàn thành khóa học"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "Thông tin chi tiết quan trọng 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "Tỷ lệ hoàn thành đã tăng 15%% trong 3 tháng qua."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "Thông tin chi tiết quan trọng 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr ""
+"Các khóa học Phát triển Web cho thấy tỷ lệ hoàn thành cao nhất ở mức 78%."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "Thông tin chi tiết quan trọng 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "Thời gian trung bình để hoàn thành đã giảm từ 45 xuống còn 38 ngày."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "Phản hồi của người học"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"Hiểu biết sâu sắc về sự hài lòng của người học, xếp hạng khóa học và xu "
+"hướng phản hồi"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "Sự hài lòng của người dùng"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "Tổng doanh thu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "Thời gian phản hồi trung bình"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "Cài đặt khóa học"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "Sự hài lòng của người dùng"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "Phân phối xếp hạng"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "Đánh giá"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "Đánh giá"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "Ra mắt khóa học máy học nâng cao"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "Tiến sĩ Jane Smith"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "Phản hồi của người học"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"Khóa học tuyệt vời! Nội dung có cấu trúc tốt và người hướng dẫn giải thích "
+"rõ ràng các khái niệm phức tạp."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"Khóa học rất thực tế với các ví dụ thực tế. Tôi đã bắt đầu áp dụng các chiến"
+" lược này vào công việc của mình."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "Tiếng Ả Rập nâng cao"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "Chủ đề chung trong phản hồi"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "số nguyên dương"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "Giải thích rõ ràng về các chủ đề phức tạp"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "Ví dụ thực tế, thực tế"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "Giảng viên"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "Nội dung khóa học có cấu trúc tốt"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "Câu đố và bài tập hữu ích"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "Các lĩnh vực cần cải thiện"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "Nhiều yếu tố tương tác hơn"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "Bài tập thực hành bổ sung"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "Trả lời câu hỏi nhanh hơn"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "Không thể truy cập tài liệu khóa học"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "Tiếng Ả Rập nâng cao"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "Bắt đầu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "Bắt đầu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "Bắt đầu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "Bắt đầu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "Bắt đầu"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "Số lượng khóa học"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr ""
+"Những hiểu biết toàn diện về việc sử dụng tài nguyên hệ thống và mức độ phổ "
+"biến của nội dung"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "Tổng số tin nhắn"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "Tổng doanh thu"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "Trung bình Thời gian đáp ứng"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "Xu hướng sử dụng bộ nhớ"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "Quản lý vé hỗ trợ và truy cập tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "Số lượng truy cập"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "Truy cập lần cuối"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "Giới thiệu về AI"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "Bảng tóm tắt cấu trúc dữ liệu"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "Tiếng Ả Rập nâng cao"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "Nguyên tắc cơ bản về phát triển web"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "Kích cỡ"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "Tải lên biểu trưng"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "Tải xuống"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "Nguyên tắc cơ bản về khoa học dữ liệu"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "Chỉ định người tham gia"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "Thiết kế UI/UX"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "Dung lượng đã sử dụng (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "Ngày đến hạn nộp bài tập"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "Khác"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "Sử dụng tài nguyên"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "Sự tham gia của người dùng"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr ""
+"Thông tin chi tiết toàn diện về hoạt động của người dùng và tương tác nền "
+"tảng"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "30 ngày qua"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "Trung bình Người dùng hoạt động hàng ngày"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "Trung bình Thời lượng phiên"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "Tỷ lệ giữ chân người dùng"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "Xu hướng người dùng hoạt động hàng ngày"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "Tổng số người dùng"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "45 giờ trong tháng này"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "Jane Smith"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "38 giờ trong tháng này"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "Phân phối sử dụng tính năng"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "Sự tham gia của người dùng"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "Hoạt động gần đây"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "Emily Brown"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "Đã hoàn thành bài học: Giới thiệu về JavaScript"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "Alex Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "Bắt đầu khóa học mới 'Phân tích dữ liệu nâng cao'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 ngày trước"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "Sarah Lee"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "Đăng trong diễn đàn thảo luận 'Chiến lược tiếp thị'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 giờ trước"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "Sự tham gia của người dùng"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "Tổng số điểm"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "Hoạt động gần đây"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "Bài viết trên diễn đàn"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "Tích cực"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "Hôn ước"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "David Miller"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "Emma Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "Các khóa học đang hoạt động"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "Ghé thăm diễn đàn"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "Phiên hoạt động"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "Trung bình Tỷ lệ tương tác"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "Tiến trình của người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr "Thông tin chi tiết về tiến độ và hiệu suất của từng người học"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "Tổng số người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "Trung bình Các khóa học cho mỗi người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "Trung bình Thời gian đáp ứng"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "Tìm kiếm khóa học..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "Tiến triển"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "Tiến trình của người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "Người biểu diễn hàng đầu"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "Hoạt động gần đây"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "Đã hoàn thành bài học: Giới thiệu về JavaScript"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "Khóa học đã bắt đầu: Phân tích dữ liệu nâng cao"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "Bài tập đã gửi"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "Sự tham gia của người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "Tiến trình của người dùng"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "Khóa học đã hoàn thành"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "Tiến triển"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "Thời gian học (7 ngày qua)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "Số lượng khóa học"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "Bài học video"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2970,6 +5188,7 @@ msgid "API Key"
 msgstr "Khóa API"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "Tích hợp hội nghị truyền hình"
 
@@ -2988,14 +5207,6 @@ msgstr "Thanh bên"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "Thể loại"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "tuyển sinh"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "Lộ trình học tập"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -3018,32 +5229,8 @@ msgid "Course Completion"
 msgstr "Hoàn thành khóa học"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "Tiến trình của người dùng"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "Kết quả đánh giá"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "Sự tham gia của người dùng"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "Sử dụng tài nguyên"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "Theo dõi chứng nhận"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "Phản hồi của người học"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "Báo cáo tùy chỉnh"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3053,9 +5240,65 @@ msgstr "Thanh toán"
 msgid "Logout"
 msgstr "Đăng xuất"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "LMS thế hệ tiếp theo"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "Chào mừng trở lại"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "Đăng nhập vào tài khoản NextGen LMS của bạn"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "Địa chỉ email"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "Chính sách mật khẩu"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "Tháng 12"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "Quên mật khẩu?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "Đăng nhập"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "Bạn chưa có tài khoản?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "Quản trị viên"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "Quay lại trang chủ"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "Chi tiết khóa học - Chính sách chống hối lộ và chống tham nhũng"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "Cài đặt khóa học"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3070,10 +5313,6 @@ msgstr "Đào tạo tuân thủ cần thiết cho tất cả nhân viên"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Khóa học của tôi"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "Tổng quan về khóa học"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3126,20 +5365,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "Nhận biết rủi ro về hối lộ"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "Băng hình"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "Đồng hồ"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "Chính sách chống tham nhũng của công ty"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "Tài liệu"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3150,16 +5381,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "Nghiên cứu điển hình: Ra quyết định có đạo đức"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "Bài thuyết trình"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "Đánh giá chống hối lộ và chống tham nhũng"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "Câu đố"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3225,10 +5448,6 @@ msgid "Courses in Progress"
 msgstr "Các khóa học đang tiến hành"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "Khóa học đã hoàn thành"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "Chứng chỉ đạt được"
 
@@ -3285,16 +5504,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Đã hoàn thành bài học: Giới thiệu về JavaScript"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 giờ trước"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "Chứng chỉ đã đạt được: Nguyên tắc cơ bản về HTML và CSS"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 ngày trước"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3368,6 +5579,585 @@ msgstr "2,5 giờ"
 msgid "4 modules"
 msgstr "4 mô-đun"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - Cách mạng hóa việc học của bạn"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "Kế tiếp"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "Đặc trưng"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "Tích hợp"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "Lời chứng thực"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "Định giá"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "Cách mạng hóa việc học"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "với"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "LMS thế hệ tiếp theo"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"Khai thác sức mạnh của công nghệ tiên tiến để tạo ra trải nghiệm học tập "
+"được cá nhân hóa, tối ưu hóa việc phân phối nội dung và thúc đẩy sự tham gia"
+" chưa từng có vào hoạt động đào tạo của doanh nghiệp."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "Trải nghiệm tương lai"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "Tính năng tiên tiến"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "Lộ trình học tập"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"Các thuật toán của chúng tôi phân tích hành vi và hiệu suất của người học để"
+" tạo ra hành trình học tập được cá nhân hóa, đảm bảo phát triển kỹ năng tối "
+"ưu."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "Tiếng Ả Rập nâng cao"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"Tận dụng những hiểu biết dựa trên dữ liệu để dự đoán kết quả của người học, "
+"xác định những thách thức tiềm ẩn và chủ động can thiệp để có kết quả tốt "
+"hơn."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "Đào tạo VR nhập vai"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"Tích hợp trải nghiệm thực tế ảo để đào tạo thực hành, không rủi ro trong các"
+" tình huống phức tạp hoặc có tính rủi ro cao."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "Tính năng doanh nghiệp nâng cao"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "Triển khai linh hoạt"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Triển khai trên mọi nền tảng đám mây (AWS, Azure, DigitalOcean) hoặc tại "
+"chỗ, bao gồm hỗ trợ Windows Server."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "Kiến trúc nhiều người thuê"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"Quản lý an toàn nhiều tổ chức trong một phiên bản duy nhất, đảm bảo cách ly "
+"và tùy chỉnh dữ liệu."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "Hỗ trợ đa ngôn ngữ"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "Có sẵn trong hơn 30 ngôn ngữ, bao gồm:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "Tiếng Ả Rập - Xin chào"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "Tiếng Anh - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "Tiếng Tây Ban Nha - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "Tiếng Pháp - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "Tiếng Đức - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "Tiếng Trung - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "Tiếng Nhật - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "Tiếng Ý - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "Tiếng Nga - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "Tiếng Bồ Đào Nha - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "tiếng Hin-ddi - chào mừng"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "Tiếng Hàn - Chào mừng"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "Tích hợp liền mạch với các nền tảng phổ biến:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "Phóng"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "ID khách hàng của Google"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "Nhóm Microsoft"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "Lộ trình học tập"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"Tạo hành trình học tập tùy chỉnh với các khóa học tuần tự, điều kiện tiên "
+"quyết và lộ trình phân nhánh."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "Quản lý thông báo"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"CMS mạnh mẽ có hỗ trợ SCORM, nhiều loại phương tiện và trình quản lý tệp "
+"trực quan."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "Ngăn xếp công nghệ tiên tiến"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "Python"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "Django"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "Docker"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "gió giật"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "WebSockets"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "Cài đặt nâng cao"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "Phương pháp học tập đổi mới"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "Tạo khóa học phân phối"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"Công cụ thông minh của chúng tôi tự động điều chỉnh độ khó và cách trình bày"
+" nội dung dựa trên hiệu suất của người học trong thời gian thực, đảm bảo mức"
+" độ thử thách tối ưu cho mỗi cá nhân."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "Tốc độ học tập được cá nhân hóa"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "Kỹ thuật đánh giá thích ứng"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "Đề xuất nội dung thông minh"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "Trực quan hóa học tập thích ứng"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "Câu chuyện thành công"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "Hình đại diện của khách hàng"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "HR Director, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS đã thay đổi hoạt động đào tạo doanh nghiệp của chúng tôi. Lộ "
+"trình học tập được cá nhân hóa và phân tích dự đoán đã cải thiện đáng kể mức"
+" độ tương tác và hiệu suất của nhân viên. Chúng tôi nhận thấy tỷ lệ hoàn "
+"thành khóa học tăng 40% và khả năng ghi nhớ kiến ​​thức được cải thiện 25%."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "Mark Thompson"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "Giám đốc L&D, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"Những hiểu biết sâu sắc được hỗ trợ bởi AI do NextGen AI LMS cung cấp đã "
+"cách mạng hóa cách tiếp cận của chúng tôi trong việc phát triển nhân viên. "
+"Giờ đây, chúng tôi có thể chủ động xác định những thiếu sót về kỹ năng và "
+"điều chỉnh các chương trình đào tạo của mình với độ chính xác chưa từng có. "
+"Năng suất của nhóm chúng tôi đã tăng 30% kể từ khi triển khai hệ thống tiên "
+"tiến này."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "Gói đăng ký linh hoạt"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "Bắt đầu"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "Tháng"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "Lên tới 500 người dùng"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "Chi tiết cơ bản"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "Lộ trình học tập được cá nhân hóa"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "Hỗ trợ chatbot 24/7"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "Hướng dẫn bắt đầu"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "Các khóa học phổ biến nhất"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Chuyên nghiệp"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "Lên tới 2.000 người dùng"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "Phân tích và dự đoán nâng cao"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "Đề xuất nội dung tự động"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "Mô-đun đào tạo VR"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "In báo cáo"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên Pro"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "Doanh nghiệp"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "Báo cáo tùy chỉnh"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "Người dùng không giới hạn"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "Tích hợp hệ sinh thái LMS đầy đủ"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "Phát triển mô hình tùy chỉnh"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "Khả năng VR & AR nâng cao"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "Người quản lý tài khoản chuyên dụng"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "Liên hệ bán hàng"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "Sẵn sàng để thay đổi trải nghiệm học tập của bạn?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"Khai thác toàn bộ tiềm năng tài năng của tổ chức bạn bằng hệ thống quản lý "
+"học tập sáng tạo của chúng tôi."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "Yêu cầu bản demo"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "Trao quyền cho tương lai của việc học tập với công nghệ tiên tiến."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 Đường Công nghệ, San Francisco, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "Điện thoại: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "Email: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Liên kết nhanh"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "Trang chủ"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "Liên hệ"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "Về chúng tôi"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "Trợ giúp & Hỗ trợ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "Chính sách mật khẩu"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "Điều khoản dịch vụ"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "Chính sách cookie"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "Câu hỏi thường gặp"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "Trung tâm trợ giúp & hỗ trợ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Cập nhật hệ thống"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "Kết nối với chúng tôi"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "Bản tin"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "Email của bạn"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "Đặt mua"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. Mọi quyền được bảo lưu."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "Bạn đã đăng nhập thành công."
@@ -3375,3 +6165,9 @@ msgstr "Bạn đã đăng nhập thành công."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Đăng nhập không thành công. Vui lòng kiểm tra các lỗi dưới đây."
+
+#~ msgid "Norwegian"
+#~ msgstr "người Na Uy"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Chi tiết khóa học - Chính sách chống hối lộ và chống tham nhũng"

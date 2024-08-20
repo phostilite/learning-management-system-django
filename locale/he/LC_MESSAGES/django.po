@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 14:20+0530\n"
+"POT-Creation-Date: 2024-08-18 23:55+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,6 +326,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "מֶשֶׁך"
 
@@ -607,12 +608,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "לְהַזמִין"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "לִמְחוֹק"
 
@@ -777,36 +781,43 @@ msgstr "יוֹם רִאשׁוֹן"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "שֶׁלִי"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "ג'"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "לְהִתְחַתֵן"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "לֶאֱסוֹף"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "שישי"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "שבת"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "שֶׁמֶש"
 
@@ -827,6 +838,12 @@ msgid "April"
 msgstr "אַפּרִיל"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "מַאִי"
 
@@ -1343,12 +1360,52 @@ msgid "Finnish"
 msgstr "פִינִית"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "נורבגית"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "יוונית"
+
+#: lms/settings.py
+msgid "Hebrew"
+msgstr "עִברִית"
+
+#: lms/settings.py
+msgid "Thai"
+msgstr "תאילנדית"
+
+#: lms/settings.py
+msgid "Vietnamese"
+msgstr "וייטנאמית"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "אינדונזית"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "בנגלית"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "טמילית"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "טלוגו"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "קנאדה"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "פנג'בי"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "מראטי"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "מלאיאלאם"
 
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
@@ -1367,6 +1424,8 @@ msgstr "צור ונהל הודעות כלל-מערכתיות"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1430,12 +1489,14 @@ msgstr "תַחזוּקָה"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "כל הסטטוסים"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "פָּעִיל"
 
@@ -1452,16 +1513,22 @@ msgid "Export Report"
 msgstr "ייצוא דוח"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "כּוֹתֶרֶת"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "קָטֵגוֹרִיָה"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "סטָטוּס"
@@ -1481,8 +1548,16 @@ msgstr "אירוסין"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "פעולות"
 
@@ -1506,6 +1581,7 @@ msgstr "מחק הודעה"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "קוֹדֵם"
@@ -1514,6 +1590,7 @@ msgstr "קוֹדֵם"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "הַבָּא"
@@ -1578,6 +1655,7 @@ msgid "Workshop"
 msgstr "סַדנָה"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "בְּחִינָה"
 
@@ -1636,6 +1714,7 @@ msgid "Certificates This Month"
 msgstr "תעודות החודש"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "ממתינים לאישורים"
 
@@ -1644,6 +1723,9 @@ msgid "Courses with Certificates"
 msgstr "קורסים עם תעודות"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "כל הקורסים"
@@ -1655,6 +1737,9 @@ msgstr "IT ותכנות"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "עֵסֶק"
 
@@ -1688,6 +1773,8 @@ msgid "All Time"
 msgstr "כל הזמן"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "הפקת דוח"
 
@@ -1700,11 +1787,16 @@ msgid "Certificate ID"
 msgstr "מזהה תעודה"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "לומד"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "קוּרס"
 
@@ -1714,6 +1806,9 @@ msgstr "תאריך הנפקה"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "פְּלוֹנִי אַלמוֹנִי"
 
@@ -1760,6 +1855,7 @@ msgstr "פירורי לחם"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1771,6 +1867,7 @@ msgid "Create Delivery"
 msgstr "צור משלוח"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "הִתקַדְמוּת"
@@ -1835,6 +1932,7 @@ msgstr "בחר תאריך התחלה"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "אֶל"
 
@@ -1923,12 +2021,19 @@ msgid "Search deliveries..."
 msgstr "חפש משלוחים..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "בתהליך"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "הושלם"
@@ -1962,6 +2067,7 @@ msgid "Delivery ID"
 msgstr "מזהה מסירה"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "תאריך התחלה"
 
@@ -1970,6 +2076,7 @@ msgid "End Date"
 msgstr "תאריך סיום"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "מַדְרִיך"
 
@@ -1979,10 +2086,15 @@ msgid "Students"
 msgstr "סטודנטים"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "הצג פרטים"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "לַעֲרוֹך"
@@ -1992,14 +2104,17 @@ msgid "Manage Students"
 msgstr "ניהול תלמידים"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "הַצָגָה"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "שֶׁל"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "תוצאות"
 
@@ -2008,9 +2123,795 @@ msgid "Delete Delivery"
 msgstr "מחק משלוח"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "לְבַטֵל"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "קוּרס"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "אין תמונת שער"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "קוּרס"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "בטל את הפרסום"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "קוֹדֵם"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "ערבית מתקדמת"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "פעולות בכמות גדולה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "סטודנטים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "הפעלות פעילות"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "ערוך הודעה"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "סקירת הקורס"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "קָטֵגוֹרִיָה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "צור משלוח"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "עודכן לאחרונה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "יצוא משלוחים"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "כיסוי הקורס"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "יצוא משלוחים"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "הוסף משאב חדש"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "סוּג"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "עודכן לאחרונה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "מִשׁתַמֵשׁ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "מזהה מסירה"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "בחר תאריך"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "וִידֵאוֹ"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "מִסְמָך"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "הַצָגָה"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "לְקַשֵׁר"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "חִידוֹן"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "מֶשֶׁך"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "צור קשר עם מכירות"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "הזן כתובת אתר חוקית."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "נתיב למידה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "סקירת הקורס"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "צור קורס"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "נתיב הקובץ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "המלצות"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "משאבי למידה"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "אין קובץ וידאו זמין."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "מִסְמָך"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "זוהי תצוגה מקדימה של המסמך."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "צפה במסמך המלא"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "מִסְמָך"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "אין קובץ מסמך זמין."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "תצוגה מקדימה של חידון"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "חידון זה זמין בקורס. לחץ כדי לנסות."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "זוהי חבילת SCORM. לחץ על הכפתור למטה כדי להפעיל אותו."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "חבילת SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "הַצָגָה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "הַצָגָה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "הַצָגָה"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "הַצָגָה"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "אין קובץ מצגת זמין."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "משאבי למידה"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"לחץ על הקישור למעלה כדי לגשת למשאב החיצוני. שימו לב שזה ייפתח בלשונית חדשה."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "לא סופקה כתובת אתר חיצונית."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "תצוגה מקדימה אינה זמינה עבור סוג משאב זה."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "הודעות - LMS Admin"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "ניהול הודעות"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "צור ונהל הודעות כלל-מערכתיות"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "קורסים שהושלמו"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "חפש קורסים..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "יסודות פיתוח אתרים"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "שיווק דיגיטלי"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "תָלוּי וְעוֹמֵד"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "נסוג"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "נרשמים"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "ייצוא נתונים"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "שם האתר"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "יסודות פיתוח אתרים"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "נוֹף"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "לָסֶגֶת"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "לְאַשֵׁר"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "נוֹשֵׂא"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "שיווק דיגיטלי"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "תעודות"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "נתיב למידה"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr "עצב, ניטור וייעול מסעות למידה עבור הלומדים שלך"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "נתיב למידה"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "סך כל הלומדים הרשומים"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "שביעות רצון המשתמש"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "נתיב למידה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "צור כרטיס חדש"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "ערוך נתיב קיים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "לומדים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "הפקת דוח"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "שם האתר"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "נרשם לקורס"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "פיתוח מודלים בהתאמה אישית"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "טֶכנוֹלוֹגִיָה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "דוחות וניתוחים"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "ויזואליזציה של נתיב למידה: פיתוח אינטרנט מלא"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "יסודות HTML ו-CSS"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 שבועות"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 שבועות"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "אחורי עם Node.js"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 שבועות"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "מסגרות חזיתיות"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "פרויקט גמר של JavaScript"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "ויזואליזציה של נתיב למידה: שליטה במדעי הנתונים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "מבוא ל-AI"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "סטטיסטיקה והסתברות"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "Python for Data Science"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "חידון הדמיית נתונים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 שבועות"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "לעשות מהפכה בלמידה"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "טכנולוגיות ביג דאטה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "התקדמות הלמידה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "משוב לומד"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"מסלול הלמידה היה מובנה היטב וסיפק מפת דרכים ברורה להפוך למפתח מלא. הפרויקטים"
+" עזרו במיוחד ביישום המושגים שנלמדו."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"תוכן והתקדמות נהדרים. אשמח לעוד תרגילים מעשיים בסעיף למידת מכונה, אבל בסך "
+"הכל, זה מסלול למידה מצוין."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "מדריך לתחילת העבודה"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "3 חודשים אחרונים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "חוֹדֶשׁ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "חוֹדֶשׁ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 חודשים"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 חודשים"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "מספר קורסים"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2062,21 +2963,8 @@ msgid "Course Cover"
 msgstr "כיסוי הקורס"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "נוֹף"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "ניהול משלוחים"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "ייצוא נתונים"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "בטל את הפרסום"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2126,16 +3014,13 @@ msgid "12%% from last month"
 msgstr "12%% מהחודש שעבר"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "קורסים פעילים"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "3 חדשים השבוע"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "שיעור השלמה"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2176,16 +3061,8 @@ msgid "987 enrolled"
 msgstr "987 נרשמו"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "יסודות מדעי הנתונים"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 נרשמו"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "שיווק דיגיטלי"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2202,11 +3079,6 @@ msgstr "621 נרשמו"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "פעילויות אחרונות"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "מִשׁתַמֵשׁ"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2357,6 +3229,7 @@ msgid "Resolved This Week"
 msgstr "נפתר השבוע"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "שביעות רצון המשתמש"
 
@@ -2387,10 +3260,6 @@ msgstr "נוֹשֵׂא"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "נשלח על ידי"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "עודכן לאחרונה"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2533,11 +3402,13 @@ msgid "Rank"
 msgstr "דַרגָה"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "הקורסים הסתיימו"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "ממוצע צִיוּן"
 
@@ -2659,12 +3530,14 @@ msgid "Search messages..."
 msgstr "חפש הודעות..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "החל מסננים"
 
 #: templates/users/administrator/messages.html
 msgid "Bulk Actions"
-msgstr ""
+msgstr "פעולות בכמות גדולה"
 
 #: templates/users/administrator/messages.html
 msgid "Mark as Read"
@@ -2683,6 +3556,7 @@ msgid "Export Selected"
 msgstr "ייצוא נבחרים"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2692,7 +3566,7 @@ msgstr "חיפוש בינה מלאכותית"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 שאל AI כל דבר..."
+msgstr "🤖 שאל AI כל דבר..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2707,12 +3581,15 @@ msgid "user photo"
 msgstr "תמונת משתמש"
 
 #: templates/users/administrator/navbar.html
-msgid "Voice search activated!"
-msgstr "חיפוש קולי הופעל!"
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search language..."
+msgstr "חפש הודעות..."
 
 #: templates/users/administrator/navbar.html
-msgid "Language menu opened!"
-msgstr "תפריט השפה נפתח!"
+msgid "Voice search activated!"
+msgstr "חיפוש קולי הופעל!"
 
 #: templates/users/administrator/navbar.html
 msgid "User menu opened!"
@@ -2725,6 +3602,1341 @@ msgstr "תפריט הודעות נפתח!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "ביצוע חיפוש בינה מלאכותית עבור:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr "ניתוח מקיף של ביצועי הערכה בין קורסים וסטודנטים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "סך ההודעות"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "שיעור מעבר"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "חפש הודעות..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "כל הזמן"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "פּרוֹיֶקט"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "סקירת ביצועי הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "מבצעים מובילים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "ממוצע צִיוּן"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "חידון הדמיית נתונים"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "בחינת אסטרטגיות SEO"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "סטודנטים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "בחינת Marketing Analytics"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "פרויקט עיצוב UX"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "לפני יום אחד"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "ניסיונות"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "פרויקט גמר של JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "ינואר"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "פברואר"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "מַרס"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "אַפּרִיל"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "יוּנִי"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "ממוצע צִיוּן"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "חִידוֹן"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "בְּחִינָה"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "פרויקטים"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "תאריכי יעד למשימה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "מעקב אחר הסמכה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr "עקוב אחר תוכניות ההסמכה, ההתקדמות והישגי הלומדים"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "סך כל תעודות"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "לומדים"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "תעודות שהושגו"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "מעקב אחר הסמכה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "סך כל תעודות"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "הונפק"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "מפתח אתרים Full Stack"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "שיווק דיגיטלי"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "השקת קורס למידת מכונה מתקדמת"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "אנליסט אבטחת סייבר"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "בטל אישור"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "לפני יום אחד"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "מעקב אחר הסמכה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "מעקב אחר הסמכה"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "ממוצע זמן להשלים"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI ו-ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "בִּטָחוֹן"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "סיום הקורס"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr "תובנות מקיפות לגבי שיעורי סיום הקורס והתקדמות התלמידים"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "כל הקורסים"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "תעודות החודש"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "סיום הקורס"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "מבצעים מובילים"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "עקרונות עיצוב UX/UI"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "השקת קורס למידת מכונה מתקדמת"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "שיעור השלמה"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "סיום הקורס"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "סיום הקורס"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "קוּרס"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "נרשמים"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "IT ותכנות"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "שיווק דיגיטלי"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "לְעַצֵב"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "דוחות מותאמים אישית"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr "צור, הצג ונהל דוחות מותאמים אישית לניתוח LMS מעמיק"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "בונה דוחות"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "שם האירוע"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "מקור נתונים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "נרשמים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "התקדמות המשתמש"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "תוצאות הערכה"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "מעורבות משתמשים"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "מדדים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "אזור זמן"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "תאריך מחוץ לטווח"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "30 הימים האחרונים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "30 הימים האחרונים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "3 חודשים אחרונים"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "3 חודשים אחרונים"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "אֶשׁתָקַד"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "דוחות מותאמים אישית"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "סוג אירוע"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "תרשים עמודות"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "תמיכה בצ'אט חי"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "תמיכה בצ'אט חי"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "לוּחַ"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "הפקת דוח"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "ריצה אחרונה"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "סיום הקורס"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "ניתוח ביצועי הערכה"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "דוח מותאם אישית לדוגמה: מגמות סיום קורסים"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "תובנות מפתח 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "שיעורי ההשלמה עלו ב-15%% במהלך 3 החודשים האחרונים."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "תובנות מפתח 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr "קורסי בניית אתרים מציגים את שיעורי ההשלמה הגבוהים ביותר של 78%%."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "תובנות מפתח 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "הזמן הממוצע לסיום ירד מ-45 ל-38 ימים."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "משוב לומד"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr "תובנות לגבי שביעות רצון הלומדים, דירוגי קורסים ומגמות משוב"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "שביעות רצון המשתמש"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "סך ההכנסות"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "זמן תגובה ממוצע"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "הגדרות הקורס"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "שביעות רצון המשתמש"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "חלוקת דירוג"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "קורסים שהושלמו"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "דֵרוּג"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "ביקורות"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "השקת קורס למידת מכונה מתקדמת"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "ד\"ר ג'יין סמית'"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "משוב לומד"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"קורס מעולה! התוכן היה מובנה היטב והמדריך הסביר מושגים מורכבים בצורה ברורה."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"קורס מעשי מאוד עם דוגמאות מהעולם האמיתי. כבר התחלתי ליישם את האסטרטגיות "
+"בעבודה שלי."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "ערבית מתקדמת"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "ערכות נושא נפוצות במשוב"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "מספר שלם חיובי"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "הסברים ברורים של נושאים מורכבים"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "דוגמאות מעשיות מהעולם האמיתי"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "מדריכים"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "תוכן קורס מובנה היטב"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "חידונים ומטלות מועילות"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "תחומים לשיפור"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "אלמנטים אינטראקטיביים יותר"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "תרגילי תרגול נוספים"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "תגובה מהירה יותר לשאלות"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "אין אפשרות לגשת לחומרי הקורס"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "ערבית מתקדמת"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "הַתחָלָה"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "הַתחָלָה"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "הַתחָלָה"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "הַתחָלָה"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "הַתחָלָה"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "מספר קורסים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr "תובנות מקיפות לגבי ניצול משאבי המערכת ופופולריות התוכן"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "סך הכל הודעות"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "סך ההכנסות"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "ממוצע זמן תגובה"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "מגמת השימוש באחסון"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "ניהול כרטיסי תמיכה ומשאבי גישה"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "ספירת גישה"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "הגישה האחרונה"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "מבוא ל-AI"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "גיליון תרמית של מבני נתונים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "ערבית מתקדמת"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "יסודות פיתוח אתרים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "גוֹדֶל"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "העלה לוגו"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "הורדות"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "יסודות מדעי הנתונים"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "הקצאת משתתפים"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "עיצוב UI/UX"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "אחסון בשימוש (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "תאריכי יעד למשימה"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "אַחֵר"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "שימוש במשאבים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "מעורבות משתמשים"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr "תובנות מקיפות לגבי פעילות המשתמש ואינטראקציה בפלטפורמה"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "30 הימים האחרונים"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "ממוצע משתמשים פעילים מדי יום"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "ממוצע משך הפעלה"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "שיעור שימור משתמשים"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "מגמת משתמשים פעילים יומית"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "סך כל המשתמשים"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "45 שעות החודש"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "פְּלוֹנִית אַלמוֹנִית"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "שרה ג'ונסון"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "38 שעות החודש"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "הפצת שימוש בתכונות"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "מעורבות משתמשים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "פעילויות אחרונות"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "אמילי בראון"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "שיעור שהושלם: מבוא ל-JavaScript"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "אלכס ווילסון"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "התחיל קורס חדש 'ניתוח נתונים מתקדם'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "לפני יום אחד"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "שרה לי"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "פורסם בפורום דיונים 'אסטרטגיות שיווק'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "לפני שעתיים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "מעורבות משתמשים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "סך הכל נקודות"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "הקורסים הסתיימו"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "פעילויות אחרונות"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "הודעות בפורום"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "פָּעִיל"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "אירוסין"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "דיוויד מילר"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "אמה ווילסון"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "קורסים פעילים"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "בקר בפורום"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "הפעלות פעילות"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "ממוצע שיעור מעורבות"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "התקדמות המשתמש"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr "תובנות מפורטות לגבי ההתקדמות והביצועים של הלומד האישי"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "סך כל המשתמשים"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "ממוצע קורסים לכל משתמש"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "ממוצע זמן תגובה"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "חפש קורסים..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "הִתקַדְמוּת"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "התקדמות המשתמש"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "מבצעים מובילים"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "הקורסים הסתיימו"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "הקורסים הסתיימו"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "הקורסים הסתיימו"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "פעילות אחרונה"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "שיעור שהושלם: מבוא ל-JavaScript"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "קורס התחיל: ניתוח נתונים מתקדם"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "מטלה שהוגשה"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "מעורבות משתמשים"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "התקדמות המשתמש"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "הקורסים הסתיימו"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "הִתקַדְמוּת"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "זמן לימוד (7 ימים אחרונים)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "מספר קורסים"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "שיעורי וידאו"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2933,6 +5145,7 @@ msgid "API Key"
 msgstr "מפתח API"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "שילוב ועידות וידאו"
 
@@ -2951,14 +5164,6 @@ msgstr "סרגל צד"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "קטגוריות"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "נרשמים"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "נתיב למידה"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -2981,32 +5186,8 @@ msgid "Course Completion"
 msgstr "סיום הקורס"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "התקדמות המשתמש"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "תוצאות הערכה"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "מעורבות משתמשים"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "שימוש במשאבים"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "מעקב אחר הסמכה"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "משוב לומד"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "דוחות מותאמים אישית"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3016,9 +5197,65 @@ msgstr "חיוב"
 msgid "Logout"
 msgstr "התנתק"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "NextGen LMS"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "ברוך הבא חזרה"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "היכנס לחשבון NextGen LMS שלך"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "כתובת אימייל"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "מדיניות סיסמאות"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "דֵצֶמבֶּר"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "שכחת סיסמה?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "התחבר"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "אין לך חשבון?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "מנהלים"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "חזרה לבית"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "פרטי הקורס - מדיניות נגד שוחד ושחיתות"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "הגדרות הקורס"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3033,10 +5270,6 @@ msgstr "הדרכת ציות חיונית לכל העובדים"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "הקורסים שלי"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "סקירת הקורס"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3085,11 +5318,7 @@ msgstr "הַתחָלָה"
 
 #: templates/users/learner/course_detail.html
 msgid "Recognizing Bribery Risks"
-msgstr ""
-
-#: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "וִידֵאוֹ"
+msgstr "הכרה בסיכוני שוחד"
 
 #: templates/users/learner/course_detail.html
 msgid "Watch"
@@ -3100,10 +5329,6 @@ msgid "Company Anti-Corruption Policy"
 msgstr "מדיניות החברה נגד שחיתות"
 
 #: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "מִסְמָך"
-
-#: templates/users/learner/course_detail.html
 msgid "Read"
 msgstr "לִקְרוֹא"
 
@@ -3112,16 +5337,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "תיאורי מקרה: קבלת החלטות אתיות"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "הַצָגָה"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "הערכה נגד שוחד ושחיתות"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "חִידוֹן"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3185,10 +5402,6 @@ msgid "Courses in Progress"
 msgstr "קורסים בהתקדמות"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "קורסים שהושלמו"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "תעודות שהושגו"
 
@@ -3245,16 +5458,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "שיעור שהושלם: מבוא ל-JavaScript"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "לפני שעתיים"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "תעודה שהושגה: HTML ו-CSS Fundamentals"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "לפני יום אחד"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3328,6 +5533,577 @@ msgstr "2.5 שעות"
 msgid "4 modules"
 msgstr "4 מודולים"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - מהפכה בלמידה שלך"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "הַבָּא"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "תכונות"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "אינטגרציות"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "המלצות"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "תמחור"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "כְּנִיסָה לַמַעֲרֶכֶת"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "לעשות מהפכה בלמידה"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "עִם"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "NextGen LMS"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"רתום את כוחה של טכנולוגיה חדשנית כדי ליצור חוויות למידה מותאמות אישית, לייעל"
+" את העברת התוכן ולהניע מעורבות חסרת תקדים בהדרכה ארגונית."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "לחוות את העתיד"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "תכונות חדשניות"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "נתיב למידה"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"האלגוריתמים שלנו מנתחים את ההתנהגות והביצועים של הלומד כדי ליצור מסעות למידה"
+" מותאמים אישית, תוך הבטחת פיתוח מיומנויות מיטביות."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "ערבית מתקדמת"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"מנף תובנות מונעות נתונים כדי לחזות את תוצאות הלומדים, לזהות אתגרים "
+"פוטנציאליים ולהתערב באופן יזום לתוצאות טובות יותר."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "אימון VR סוחף"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"שלב חוויות מציאות מדומה לאימון מעשי ללא סיכונים בתרחישים מורכבים או בעלי "
+"סיכון גבוה."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "תכונות ארגוניות מתקדמות"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "פריסה גמישה"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"פריסה בכל פלטפורמת ענן (AWS, Azure, DigitalOcean) או מקומית, כולל תמיכה "
+"ב-Windows Server."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "אדריכלות מרובת דיירים"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"נהל בצורה מאובטחת מספר ארגונים בתוך מופע אחד, תוך הבטחת בידוד נתונים והתאמה "
+"אישית."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "תמיכה רב לשונית"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "זמין ב-30+ שפות, כולל:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "ערבית - שלום"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "אנגלית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "ספרדית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "צרפתית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "גרמנית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "סינית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "יפני - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "איטלקית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "רוסית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "פורטוגזית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "הינדי - ברוכים הבאים"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "קוריאנית - ברוך הבא"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "אינטגרציה חלקה עם פלטפורמות פופולריות:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "זום"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "מזהה לקוח של Google"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "צוותי מיקרוסופט"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "נתיב למידה"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"צור מסעות למידה מותאמים אישית עם קורסים עוקבים, דרישות מוקדמות ומסלולים "
+"מסועפים."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "ניהול הודעות"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"מערכת ניהול חזקה עם תמיכת SCORM, סוגי מדיה מרובים ומנהל קבצים אינטואיטיבי."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "ערימת טכנולוגיה מתקדמת"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "פִּיתוֹן"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "ג'נגו"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "דוקר"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "רוח גב"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "WebSockets"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "הגדרות מתקדמות"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "גישת למידה חדשנית"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "צור מסירת קורסים"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"המנוע החכם שלנו מתאים באופן דינמי את קושי התוכן וההצגה בהתבסס על ביצועי לומד"
+" בזמן אמת, ומבטיח רמת אתגר אופטימלית עבור כל אדם."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "מהירות למידה אישית"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "טכניקות הערכה אדפטיביות"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "המלצות תוכן חכמות"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "הדמיית למידה אדפטיבית"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "סיפורי הצלחה"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "אוואטר לקוח"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "שרה ג'ונסון"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "מנהל משאבי אנוש, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS שינה את ההדרכה הארגונית שלנו. מסלולי הלמידה המותאמים אישית "
+"והניתוח החזוי שיפרו משמעותית את מעורבות וביצועי העובדים. ראינו עלייה של 40%%"
+" בשיעורי סיום הקורס ושיפור של 25%% בשמירת הידע."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "מארק תומפסון"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "מנהל L&D, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"התובנות המופעלות על ידי AI שמספקות NextGen AI LMS חוללו מהפכה בגישה שלנו "
+"לפיתוח עובדים. כעת אנו יכולים לזהות פערי מיומנויות באופן יזום ולהתאים את "
+"תוכניות האימון שלנו בדיוק חסר תקדים. הפרודוקטיביות של הצוות שלנו עלתה ב-30%%"
+" מאז הטמעת מערכת חדשנית זו."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "תוכניות מנוי גמישות"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "הַתחָלָה"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "חוֹדֶשׁ"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "עד 500 משתמשים"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "פרטים בסיסיים"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "מסלולי למידה מותאמים אישית"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "תמיכה בצ'אטבוט 24/7"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "מדריך לתחילת העבודה"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "הקורסים הפופולריים ביותר"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "מִקצוֹעִי"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "עד 2,000 משתמשים"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "ניתוחים ותחזיות מתקדמים"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "המלצות תוכן אוטומטיות"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "מודולי אימון VR"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "הדפס דוח"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "שדרג ל-Pro"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "מִפְעָל"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "דוחות מותאמים אישית"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "משתמשים ללא הגבלה"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "אינטגרציה מלאה של מערכת LMS"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "פיתוח מודלים בהתאמה אישית"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "יכולות VR ו-AR מתקדמות"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "מנהל חשבונות מסור"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "צור קשר עם מכירות"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "מוכן לשנות את חווית הלמידה שלך?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"גלה את מלוא הפוטנציאל של הכישרון של הארגון שלך עם מערכת ניהול הלמידה החדשנית"
+" שלנו."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "בקש הדגמה"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "העצמת עתיד הלמידה באמצעות טכנולוגיה חדשנית."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 Tech Street, San Francisco, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "טלפון: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "דוא\"ל: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "קישורים מהירים"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "בַּיִת"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "מַגָע"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "אודותינו"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "בלוג"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "עזרה ותמיכה"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "מדיניות סיסמאות"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "תנאים והגבלות"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "מדיניות קובצי Cookie"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "שאלות נפוצות"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "מרכז עזרה ותמיכה"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "עדכוני מערכת"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "התחבר אלינו"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "ניוזלטר"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "המייל שלך"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "הירשם"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "התחברת בהצלחה."
@@ -3335,3 +6111,12 @@ msgstr "התחברת בהצלחה."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "הכניסה נכשלה. אנא בדוק את השגיאות למטה."
+
+#~ msgid "Norwegian"
+#~ msgstr "נורבגית"
+
+#~ msgid "Language menu opened!"
+#~ msgstr "תפריט השפה נפתח!"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "פרטי הקורס - מדיניות נגד שוחד ושחיתות"

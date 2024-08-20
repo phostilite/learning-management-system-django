@@ -5,7 +5,6 @@
 {% block title %}{% trans "Courses - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/administrator/courses.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -167,8 +166,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+{% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.delete-course');

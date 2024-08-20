@@ -2,25 +2,10 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Course Details - Anti-Bribery and Anti-Corruption Policy" %}{% endblock %}
+{% block title %}{% trans "Course Details" %}{% endblock %}
 
 {% block extra_css %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f0f4f8;
-    }
-
-    .gradient-bg {
-        background: linear-gradient(135deg, #4f46e5, #818cf8);
-    }
-
-    .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
     .resource-card {
         transition: all 0.3s ease;
     }
@@ -223,8 +208,9 @@
     <!-- SCORM Content Container -->
     <div id="resourceContent" class="mt-8 bg-white rounded-lg p-6 card-shadow hidden"></div>
 </div>
+{% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+{% block extra_js %}
 <script>
     function launchScorm(url) {
         const contentDiv = document.getElementById('resourceContent');

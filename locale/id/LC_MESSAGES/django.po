@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 14:51+0530\n"
+"POT-Creation-Date: 2024-08-18 23:58+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,6 +334,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Lamanya"
 
@@ -620,12 +621,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Memesan"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Menghapus"
 
@@ -792,36 +796,43 @@ msgstr "Minggu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "-ku"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "Selasa"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "Menikahi"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "Mengumpulkan"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "Jumat"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "Duduk"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "Matahari"
 
@@ -842,6 +853,12 @@ msgid "April"
 msgstr "April"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "Mungkin"
 
@@ -1305,7 +1322,7 @@ msgstr "Arab"
 
 #: lms/settings.py
 msgid "French"
-msgstr ""
+msgstr "Perancis"
 
 #: lms/settings.py
 msgid "German"
@@ -1364,10 +1381,6 @@ msgid "Finnish"
 msgstr "Finlandia"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "Norwegia"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "Orang yunani"
 
@@ -1382,6 +1395,38 @@ msgstr "Thai"
 #: lms/settings.py
 msgid "Vietnamese"
 msgstr "Vietnam"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "Indonesia"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "Benggala"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "Tamil"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "Telugu"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "Kannada"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "Marathi"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "Malayalam"
 
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
@@ -1400,6 +1445,8 @@ msgstr "Membuat dan Mengelola Pengumuman Seluruh Sistem"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1463,12 +1510,14 @@ msgstr "Pemeliharaan"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Semua Status"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "Aktif"
 
@@ -1485,16 +1534,22 @@ msgid "Export Report"
 msgstr "Ekspor Laporan"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Judul"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "Kategori"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "Status"
@@ -1514,8 +1569,16 @@ msgstr "Pertunangan"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "Tindakan"
 
@@ -1539,6 +1602,7 @@ msgstr "Hapus Pengumuman"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Sebelumnya"
@@ -1547,6 +1611,7 @@ msgstr "Sebelumnya"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "Berikutnya"
@@ -1611,6 +1676,7 @@ msgid "Workshop"
 msgstr "Bengkel"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "Ujian"
 
@@ -1669,6 +1735,7 @@ msgid "Certificates This Month"
 msgstr "Sertifikat Bulan Ini"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Persetujuan yang Menunggu Keputusan"
 
@@ -1677,6 +1744,9 @@ msgid "Courses with Certificates"
 msgstr "Kursus dengan Sertifikat"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "Semua Kursus"
@@ -1688,6 +1758,9 @@ msgstr "TI & Pemrograman"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "Bisnis"
 
@@ -1721,6 +1794,8 @@ msgid "All Time"
 msgstr "Sepanjang Waktu"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Hasilkan Laporan"
 
@@ -1733,11 +1808,16 @@ msgid "Certificate ID"
 msgstr "ID Sertifikat"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "Pelajar"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "Kursus"
 
@@ -1747,6 +1827,9 @@ msgstr "Tanggal Penerbitan"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "John Doe"
 
@@ -1793,6 +1876,7 @@ msgstr "Remah roti"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1804,6 +1888,7 @@ msgid "Create Delivery"
 msgstr "Buat Pengiriman"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "Kemajuan"
@@ -1870,6 +1955,7 @@ msgstr "Pilih tanggal mulai"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "ke"
 
@@ -1959,12 +2045,19 @@ msgid "Search deliveries..."
 msgstr "Cari pengiriman..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "Sedang Berlangsung"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "Selesai"
@@ -1998,6 +2091,7 @@ msgid "Delivery ID"
 msgstr "ID Pengiriman"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "Tanggal Mulai"
 
@@ -2006,6 +2100,7 @@ msgid "End Date"
 msgstr "Tanggal Berakhir"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "Pengajar"
 
@@ -2015,10 +2110,15 @@ msgid "Students"
 msgstr "Siswa"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "Lihat Detail"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "Sunting"
@@ -2028,14 +2128,17 @@ msgid "Manage Students"
 msgstr "Kelola Siswa"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "Menampilkan"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "dari"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "hasil"
 
@@ -2044,9 +2147,799 @@ msgid "Delete Delivery"
 msgstr "Hapus Pengiriman"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "Membatalkan"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "Kursus"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "Tidak Ada Gambar Sampul"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "Kursus"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "Batalkan publikasi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Sebelumnya"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "bahasa Arab tingkat lanjut"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "Tindakan Massal"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "Siswa"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "Sesi Aktif"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "Sunting Pengumuman"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "Ikhtisar Kursus"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "Kategori"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "Buat Pengiriman"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "Terakhir Diperbarui"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "Ekspor Pengiriman"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "Sampul Kursus"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "Ekspor Pengiriman"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "Tambahkan Sumber Daya Baru"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Jenis"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "Terakhir Diperbarui"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "Pengguna"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "ID Pengiriman"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "Pilih tanggal"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "Video"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "Dokumen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "Presentasi"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "Link"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "Kuis"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "Lamanya"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "Hubungi Penjualan"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "Masukkan URL yang valid."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "Jalur Pembelajaran"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "Ikhtisar Kursus"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "Buat Kursus"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "Jalur berkas"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "Testimonial"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "Sumber Belajar"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "Tidak ada file video yang tersedia."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "Dokumen"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "Ini adalah pratinjau dokumen."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "Lihat dokumen lengkap"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "Dokumen"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "Tidak ada file dokumen yang tersedia."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "Pratinjau Kuis"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "Kuis ini tersedia dalam kursus. Klik untuk mencoba."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "Ini adalah paket SCORM. Klik tombol di bawah untuk meluncurkannya."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "Paket SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "Presentasi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "Presentasi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "Presentasi"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "Presentasi"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "Tidak ada file presentasi yang tersedia."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "Sumber Belajar"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"Klik tautan di atas untuk mengakses sumber daya eksternal. Harap dicatat "
+"bahwa ini akan terbuka di tab baru."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "Tidak ada URL eksternal yang disediakan."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "Pratinjau tidak tersedia untuk jenis sumber daya ini."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "Pengumuman - Admin LMS"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "Manajemen Pengumuman"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "Membuat dan Mengelola Pengumuman Seluruh Sistem"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "Kursus yang Selesai"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "Cari kursus..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Dasar-dasar Pengembangan Web"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Pemasaran Digital"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "Tertunda"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "Ditarik"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "Ekspor Data"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "Nama Situs"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Dasar-dasar Pengembangan Web"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "Melihat"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "Menarik"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "Menyetujui"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "Subjek"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Pemasaran Digital"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "Sertifikat"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "Jalur Pembelajaran"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"Rancang, pantau, dan optimalkan perjalanan pembelajaran bagi pelajar Anda"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "Jalur Pembelajaran"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "Jumlah Peserta Didik yang Terdaftar"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "Kepuasan Pengguna"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "Jalur Pembelajaran"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "Buat Tiket Baru"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "Edit Jalur yang Ada"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "Pelajar"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Hasilkan Laporan"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "Nama Situs"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "Terdaftar dalam kursus"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "Pengembangan model khusus"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "Teknologi"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "Laporan & Analisis"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "Visualisasi Jalur Pembelajaran: Pengembangan Web Full Stack"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "Dasar-dasar HTML & CSS"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 minggu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 minggu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Backend dengan Node.js"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 minggu"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "Kerangka Frontend"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "Proyek Akhir JavaScript"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "Visualisasi Jalur Pembelajaran: Penguasaan Ilmu Data"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "Pengantar AI"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "Statistik dan Probabilitas"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "Python untuk Ilmu Data"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "Kuis Visualisasi Data"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 minggu"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "Merevolusi Pembelajaran"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "Teknologi Data Besar"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "Kemajuan Pembelajaran"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "Umpan Balik Pelajar"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"Jalur pembelajaran terstruktur dengan baik dan memberikan peta jalan yang "
+"jelas untuk menjadi full stack developer. Proyek-proyek ini sangat membantu "
+"dalam menerapkan konsep-konsep yang dipelajari."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"Konten dan kemajuan yang luar biasa. Saya akan menghargai lebih banyak "
+"latihan langsung di bagian pembelajaran mesin, namun secara keseluruhan, ini"
+" adalah jalur pembelajaran yang sangat baik."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "Panduan Memulai"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "3 Bulan Terakhir"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "Bulan"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "Bulan"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 bulan"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 bulan"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Jumlah Mata Kuliah"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2098,21 +2991,8 @@ msgid "Course Cover"
 msgstr "Sampul Kursus"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "Melihat"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "Kelola Pengiriman"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "Ekspor Data"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "Batalkan publikasi"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2128,7 +3008,7 @@ msgstr "Hapus Kursus"
 
 #: templates/users/administrator/course/list.html
 msgid "You need to be logged in to perform this action."
-msgstr ""
+msgstr "Anda harus masuk untuk melakukan tindakan ini."
 
 #: templates/users/administrator/course/list.html
 msgid ""
@@ -2164,16 +3044,13 @@ msgid "12%% from last month"
 msgstr "12%% dari bulan lalu"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "Kursus Aktif"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "3 baru minggu ini"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "Tingkat Penyelesaian"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2214,16 +3091,8 @@ msgid "987 enrolled"
 msgstr "987 mendaftar"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "Dasar-dasar Ilmu Data"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 terdaftar"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "Pemasaran Digital"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2240,11 +3109,6 @@ msgstr "621 terdaftar"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "Aktivitas Terkini"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "Pengguna"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2395,6 +3259,7 @@ msgid "Resolved This Week"
 msgstr "Terselesaikan Minggu Ini"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "Kepuasan Pengguna"
 
@@ -2425,10 +3290,6 @@ msgstr "Subjek"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "Dikirim Oleh"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "Terakhir Diperbarui"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2573,11 +3434,13 @@ msgid "Rank"
 msgstr "Pangkat"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "Kursus Selesai"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "Rata-rata Skor"
 
@@ -2700,6 +3563,8 @@ msgid "Search messages..."
 msgstr "Telusuri pesan..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "Terapkan Filter"
 
@@ -2724,6 +3589,7 @@ msgid "Export Selected"
 msgstr "Ekspor yang Dipilih"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2733,7 +3599,7 @@ msgstr "Pencarian AI"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 Tanya AI apa saja..."
+msgstr "🤖 Tanya AI apa saja..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2748,6 +3614,7 @@ msgid "user photo"
 msgstr "foto pengguna"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "Search language..."
 msgstr "Bahasa penelusuran..."
 
@@ -2766,6 +3633,1351 @@ msgstr "Menu notifikasi terbuka!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "Melakukan pencarian AI untuk:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr "Analisis komprehensif kinerja penilaian di seluruh kursus dan siswa"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "Jumlah Pengumuman"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "Tingkat Kelulusan"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "Telusuri pesan..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "Sepanjang Waktu"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "Proyek"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "Ikhtisar Kinerja Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "Berkinerja Terbaik"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "Rata-rata Skor"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "Kuis Visualisasi Data"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "Ujian Strategi SEO"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "Siswa"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "Ujian Analisis Pemasaran"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "Proyek Desain UX"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 hari yang lalu"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "Upaya"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "Proyek Akhir JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "Januari."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "Februari"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "Berbaris"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "April"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "Juni"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "Rata-rata Skor"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "Kuis"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "Ujian"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "Proyek"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "Tanggal jatuh tempo tugas"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "Pelacakan Sertifikasi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr "Pantau program sertifikasi, kemajuan, dan pencapaian peserta didik"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "Jumlah Sertifikat"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "Pelajar"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "Sertifikat Diperoleh"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "Pelacakan Sertifikasi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "Jumlah Sertifikat"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "Diterbitkan"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "Pengembang Web Tumpukan Penuh"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "Pemasaran Digital"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "Peluncuran Kursus Pembelajaran Mesin Tingkat Lanjut"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "Analis Keamanan Siber"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "Cabut Sertifikat"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 hari yang lalu"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "Pelacakan Sertifikasi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "Pelacakan Sertifikasi"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "Rata-rata Saatnya Menyelesaikan"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI dan ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "Keamanan"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr ""
+"Wawasan komprehensif tentang tingkat penyelesaian kursus dan kemajuan siswa"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Semua Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "Sertifikat Bulan Ini"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "Berkinerja Terbaik"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "Prinsip Desain UX/UI"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "Peluncuran Kursus Pembelajaran Mesin Tingkat Lanjut"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "Tingkat Penyelesaian"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "Kursus"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "TI & Pemrograman"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "Pemasaran Digital"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "Desain"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "Laporan Khusus"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"Buat, lihat, dan kelola laporan khusus untuk analisis LMS yang mendalam"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "Pembuat Laporan"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "Nama Acara"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "Sumber Data"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "Pendaftaran"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "Kemajuan Pengguna"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "Hasil Penilaian"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "Keterlibatan Pengguna"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "Metrik"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "Zona Waktu"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "Tanggal di luar jangkauan"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "30 Hari Terakhir"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "30 Hari Terakhir"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "3 Bulan Terakhir"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "3 Bulan Terakhir"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "Tahun lalu"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "Laporan Khusus"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "Jenis Acara"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "Bagan Batang"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "Dukungan Obrolan Langsung"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "Dukungan Obrolan Langsung"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "Meja"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "Hasilkan Laporan"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "Jalankan Terakhir"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "Analisis Kinerja Penilaian"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "Contoh Laporan Khusus: Tren Penyelesaian Kursus"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "Wawasan Utama 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr ""
+"Tingkat penyelesaian telah meningkat sebesar 15%% selama 3 bulan terakhir."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "Wawasan Utama 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr ""
+"Kursus Pengembangan Web menunjukkan tingkat penyelesaian tertinggi sebesar "
+"78%%."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "Wawasan Utama 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "Rata-rata waktu penyelesaian telah menurun dari 45 menjadi 38 hari."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "Umpan Balik Pelajar"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"Wawasan tentang kepuasan pelajar, peringkat kursus, dan tren umpan balik"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "Kepuasan Pengguna"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "Pendapatan Total"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "Waktu Respons Rata-rata"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "Pengaturan Kursus"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "Kepuasan Pengguna"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "Distribusi Peringkat"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "Kursus yang Selesai"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "Peringkat"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "Ulasan"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "Peluncuran Kursus Pembelajaran Mesin Tingkat Lanjut"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "Dr.Jane Smith"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "Umpan Balik Pelajar"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"Kursus yang bagus! Kontennya terstruktur dengan baik dan instruktur "
+"menjelaskan konsep-konsep kompleks dengan jelas."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"Kursus yang sangat praktis dengan contoh dunia nyata. Saya sudah mulai "
+"menerapkan strategi dalam pekerjaan saya."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "bahasa Arab tingkat lanjut"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "Tema Umum dalam Umpan Balik"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "Bilangan bulat positif"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "Penjelasan yang jelas tentang topik yang kompleks"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "Contoh praktis dan nyata"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "Instruktur"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "Konten kursus yang terstruktur dengan baik"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "Kuis dan tugas yang bermanfaat"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "Area yang Perlu Diperbaiki"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "Elemen yang lebih interaktif"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "Latihan latihan tambahan"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "Respons lebih cepat terhadap pertanyaan"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "Tidak dapat mengakses materi kursus"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "bahasa Arab tingkat lanjut"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "Awal"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "Awal"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "Awal"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "Awal"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "Awal"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "Jumlah Mata Kuliah"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr ""
+"Wawasan komprehensif tentang pemanfaatan sumber daya sistem dan popularitas "
+"konten"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "Jumlah Pesan"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "Pendapatan Total"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "Rata-rata Waktu Respons"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "Tren Penggunaan Penyimpanan"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "Kelola Tiket Dukungan dan Akses Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "Jumlah Akses"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "Terakhir Diakses"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "Pengantar AI"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "Lembar Cheat Struktur Data"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "bahasa Arab tingkat lanjut"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "Dasar-dasar Pengembangan Web"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "Ukuran"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "Unggah Logo"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "Unduhan"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "Dasar-dasar Ilmu Data"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "Tetapkan Peserta"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "Desain UI/UX"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "Penyimpanan yang Digunakan (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "Tanggal jatuh tempo tugas"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "Lainnya"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "Penggunaan Sumber Daya"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "Keterlibatan Pengguna"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr ""
+"Wawasan komprehensif tentang aktivitas pengguna dan interaksi platform"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "30 Hari Terakhir"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "Rata-rata Pengguna Aktif Harian"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "Rata-rata Durasi Sesi"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "Tingkat Retensi Pengguna"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "Tren Pengguna Aktif Harian"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "Jumlah Pengguna"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "45 jam bulan ini"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "Jane Smith"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "38 jam bulan ini"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "Distribusi Penggunaan Fitur"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "Keterlibatan Pengguna"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "Aktivitas Terkini"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "Emily Brown"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "Pelajaran yang telah selesai: Pengantar JavaScript"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "Alex Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "Memulai kursus baru 'Analisis Data Tingkat Lanjut'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 hari yang lalu"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "Sarah Lee"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "Diposting di forum diskusi 'Strategi Pemasaran'"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 jam yang lalu"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "Keterlibatan Pengguna"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "Jumlah Poin"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "Kursus Selesai"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "Aktivitas Terkini"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "Postingan Forum"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "Aktif"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "Pertunangan"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "David Miller"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "Emma Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "Kursus Aktif"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "Kunjungi Forum"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "Sesi Aktif"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "Rata-rata Tingkat Keterlibatan"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "Kemajuan Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr "Wawasan terperinci mengenai kemajuan dan kinerja pelajar individu"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "Jumlah Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "Rata-rata Kursus per Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "Rata-rata Waktu Respons"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "Cari kursus..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "Kemajuan"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "Kemajuan Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "Berkinerja Terbaik"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "Kursus Selesai"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "Kursus Selesai"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "Kursus Selesai"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "Aktivitas Terkini"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "Pelajaran yang telah selesai: Pengantar JavaScript"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "Kursus dimulai: Analisis Data Tingkat Lanjut"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "Tugas yang diserahkan"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "Keterlibatan Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "Kemajuan Pengguna"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "Kursus Selesai"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "Kemajuan"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "Waktu Belajar (7 hari terakhir)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "Jumlah Mata Kuliah"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "Pelajaran Video"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2974,6 +5186,7 @@ msgid "API Key"
 msgstr "API Key"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "Integrasi Konferensi Video"
 
@@ -2992,14 +5205,6 @@ msgstr "Bilah samping"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "Kategori"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Pendaftaran"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "Jalur Pembelajaran"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -3022,32 +5227,8 @@ msgid "Course Completion"
 msgstr "Penyelesaian Kursus"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "Kemajuan Pengguna"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "Hasil Penilaian"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "Keterlibatan Pengguna"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "Penggunaan Sumber Daya"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "Pelacakan Sertifikasi"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "Umpan Balik Pelajar"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "Laporan Khusus"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3057,9 +5238,65 @@ msgstr "Penagihan"
 msgid "Logout"
 msgstr "Keluar"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "LMS Generasi Berikutnya"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "Selamat Datang kembali"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "Masuk ke akun LMS NextGen Anda"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "Alamat email"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "Kebijakan Kata Sandi"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "Desember"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "Lupa kata sandi?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "Masuk"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "Belum punya akun?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "Administrator"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "Kembali ke Rumah"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "Detail Kursus - Kebijakan Anti-Suap dan Anti-Korupsi"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "Pengaturan Kursus"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3074,10 +5311,6 @@ msgstr "Pelatihan kepatuhan yang penting bagi seluruh karyawan"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Kursus Saya"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "Ikhtisar Kursus"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3130,20 +5363,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "Mengenali Risiko Suap"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "Video"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "Jam tangan"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "Kebijakan Anti Korupsi Perusahaan"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "Dokumen"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3154,16 +5379,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "Studi Kasus: Pengambilan Keputusan yang Etis"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "Presentasi"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "Penilaian Anti Suap dan Anti Korupsi"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "Kuis"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3228,10 +5445,6 @@ msgid "Courses in Progress"
 msgstr "Kursus yang Sedang Berlangsung"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "Kursus yang Selesai"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "Sertifikat Diperoleh"
 
@@ -3288,16 +5501,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Pelajaran yang telah selesai: Pengantar JavaScript"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 jam yang lalu"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "Sertifikat yang diperoleh: Dasar-dasar HTML dan CSS"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 hari yang lalu"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3371,6 +5576,587 @@ msgstr "2,5 jam"
 msgid "4 modules"
 msgstr "4 modul"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "LMS AI Generasi Berikutnya - Merevolusi Pembelajaran Anda"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "Berikutnya"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "Fitur"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "Integrasi"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "Testimonial"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "Harga"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "Login"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "Merevolusi Pembelajaran"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "dengan"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "LMS Generasi Berikutnya"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"Manfaatkan kekuatan teknologi inovatif untuk menciptakan pengalaman "
+"pembelajaran yang dipersonalisasi, mengoptimalkan penyampaian konten, dan "
+"mendorong keterlibatan yang belum pernah terjadi sebelumnya dalam pelatihan "
+"perusahaan."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "Rasakan Masa Depan"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "Fitur Mutakhir"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "Jalur Pembelajaran"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"Algoritme kami menganalisis perilaku dan kinerja pelajar untuk menciptakan "
+"perjalanan pembelajaran yang dipersonalisasi, memastikan pengembangan "
+"keterampilan yang optimal."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "bahasa Arab tingkat lanjut"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"Manfaatkan wawasan berbasis data untuk memperkirakan hasil peserta didik, "
+"mengidentifikasi potensi tantangan, dan melakukan intervensi secara proaktif"
+" untuk mendapatkan hasil yang lebih baik."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "Pelatihan VR yang mendalam"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"Integrasikan pengalaman realitas virtual untuk pelatihan langsung dan bebas "
+"risiko dalam skenario yang kompleks atau berisiko tinggi."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "Fitur Perusahaan Tingkat Lanjut"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "Penerapan Fleksibel"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Terapkan pada platform cloud apa pun (AWS, Azure, DigitalOcean) atau lokal, "
+"termasuk dukungan Windows Server."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "Arsitektur Multi-Penyewa"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"Kelola beberapa organisasi dengan aman dalam satu instans, pastikan isolasi "
+"dan penyesuaian data."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "Dukungan Multibahasa"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "Tersedia dalam 30+ bahasa, termasuk:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "Arab - Halo"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "Bahasa Inggris - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "Spanyol - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "Perancis - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "Jerman - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "Cina - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "Jepang - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "Italia - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "Rusia - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "Portugis - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "Hindi - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "Korea - Selamat datang"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "Integrasi yang mulus dengan platform populer:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "Perbesar"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "ID Klien Google"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "Tim Microsoft"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "Jalur Pembelajaran"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"Buat perjalanan pembelajaran yang disesuaikan dengan kursus berurutan, "
+"prasyarat, dan jalur percabangan."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "Manajemen Pengumuman"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"CMS tangguh dengan dukungan SCORM, berbagai jenis media, dan pengelola file "
+"intuitif."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "Tumpukan Teknologi Mutakhir"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "ular piton"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "Django"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "Buruh pelabuhan"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "Tailwindcss"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "soket web"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "Pengaturan Lanjutan"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "Pendekatan Pembelajaran Inovatif"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "Buat Pengiriman Kursus"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"Mesin pintar kami secara dinamis menyesuaikan kesulitan konten dan "
+"presentasi berdasarkan kinerja pelajar secara real-time, memastikan tingkat "
+"tantangan yang optimal untuk setiap individu."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "Kecepatan belajar yang dipersonalisasi"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "Teknik penilaian adaptif"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "Rekomendasi konten yang cerdas"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "Visualisasi pembelajaran adaptif"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "Kisah Sukses"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "Avatar Klien"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "Direktur SDM, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"LMS AI Generasi Berikutnya telah mengubah pelatihan perusahaan kami. Jalur "
+"pembelajaran yang dipersonalisasi dan analisis prediktif telah meningkatkan "
+"keterlibatan dan kinerja karyawan secara signifikan. Kami telah melihat "
+"peningkatan sebesar 40%% dalam tingkat penyelesaian kursus dan peningkatan "
+"sebesar 25%% dalam retensi pengetahuan."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "Tandai Thompson"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "Manajer L&D, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"Wawasan bertenaga AI yang disediakan oleh NextGen AI LMS telah merevolusi "
+"pendekatan kami terhadap pengembangan karyawan. Kami sekarang dapat "
+"mengidentifikasi kesenjangan keterampilan secara proaktif dan menyesuaikan "
+"program pelatihan kami dengan ketepatan yang belum pernah terjadi "
+"sebelumnya. Produktivitas tim kami meningkat sebesar 30%% sejak menerapkan "
+"sistem mutakhir ini."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "Paket Berlangganan Fleksibel"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "Awal"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "Bulan"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "Hingga 500 pengguna"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "Detail Dasar"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "Jalur pembelajaran yang dipersonalisasi"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "Dukungan chatbot 24/7"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "Panduan Memulai"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "Kursus Paling Populer"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Profesional"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "Hingga 2.000 pengguna"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "Analisis & prediksi tingkat lanjut"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "Rekomendasi konten otomatis"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "Modul pelatihan VR"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "Cetak Laporan"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "Tingkatkan ke Pro"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "Perusahaan"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "Laporan Khusus"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "Pengguna tidak terbatas"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "Integrasi ekosistem LMS penuh"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "Pengembangan model khusus"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "Kemampuan VR & AR tingkat lanjut"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "Manajer akun khusus"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "Hubungi Penjualan"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "Siap Mengubah Pengalaman Belajar Anda?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"Buka potensi penuh dari bakat organisasi Anda dengan sistem manajemen "
+"pembelajaran inovatif kami."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "Minta Demo"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "Memberdayakan masa depan pembelajaran dengan teknologi inovatif."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 Tech Street, San Francisco, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "Telepon: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "Surel: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Tautan Cepat"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "Rumah"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "Tentang Kami"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "blog"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "Bantuan & Dukungan"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "Kebijakan Kata Sandi"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "Ketentuan Layanan"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "Kebijakan Cookie"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "Pertanyaan Umum"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "Pusat Bantuan & Dukungan"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Pembaruan Sistem"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "Terhubung Dengan Kami"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "Buletin"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "email Anda"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "Berlangganan"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 LMS Generasi Berikutnya. Semua hak dilindungi undang-undang."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "Anda telah berhasil login."
@@ -3378,3 +6164,9 @@ msgstr "Anda telah berhasil login."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Gagal masuk. Silakan periksa kesalahan di bawah ini."
+
+#~ msgid "Norwegian"
+#~ msgstr "Norwegia"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Detail Kursus - Kebijakan Anti-Suap dan Anti-Korupsi"

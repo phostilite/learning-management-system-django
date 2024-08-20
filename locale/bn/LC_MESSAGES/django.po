@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 15:02+0530\n"
+"POT-Creation-Date: 2024-08-19 00:00+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,6 +331,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu] ফর্ম্যাটে হতে হবে।"
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "সময়কাল"
 
@@ -617,12 +618,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "অর্ডার"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "মুছে দিন"
 
@@ -789,36 +793,43 @@ msgstr "রবিবার"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "আমার"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "মঙ্গল"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "বুধ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "সংগ্রহ করুন"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "শুক্র"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "শনি"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "সূর্য"
 
@@ -839,6 +850,12 @@ msgid "April"
 msgstr "এপ্রিল"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "মে"
 
@@ -912,7 +929,7 @@ msgstr "অক্টোবর"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 msgid "nov"
-msgstr ""
+msgstr "নভেম্বর"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 msgid "dec"
@@ -1361,10 +1378,6 @@ msgid "Finnish"
 msgstr "ফিনিশ"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "নরওয়েজিয়ান"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "গ্রীক"
 
@@ -1384,6 +1397,34 @@ msgstr "ভিয়েতনামী"
 msgid "Indonesian"
 msgstr "ইন্দোনেশিয়ান"
 
+#: lms/settings.py
+msgid "Bengali"
+msgstr "বাংলা"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "তামিল"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "তেলেগু"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "কন্নড়"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "পাঞ্জাবি"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "মারাঠি"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "মালায়লাম"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "ঘোষণা - LMS অ্যাডমিন"
@@ -1401,6 +1442,8 @@ msgstr "সিস্টেম-ব্যাপী ঘোষণা তৈরি �
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1464,12 +1507,14 @@ msgstr "রক্ষণাবেক্ষণ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "সমস্ত স্ট্যাটাস"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "সক্রিয়"
 
@@ -1486,16 +1531,22 @@ msgid "Export Report"
 msgstr "রপ্তানি প্রতিবেদন"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "শিরোনাম"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "শ্রেণী"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "স্ট্যাটাস"
@@ -1515,8 +1566,16 @@ msgstr "ব্যস্ততা"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "কর্ম"
 
@@ -1540,6 +1599,7 @@ msgstr "ঘোষণা মুছুন"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "আগের"
@@ -1548,6 +1608,7 @@ msgstr "আগের"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "পরবর্তী"
@@ -1612,6 +1673,7 @@ msgid "Workshop"
 msgstr "কর্মশালা"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "পরীক্ষা"
 
@@ -1670,6 +1732,7 @@ msgid "Certificates This Month"
 msgstr "এই মাসে সার্টিফিকেট"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "মুলতুবি অনুমোদন"
 
@@ -1678,6 +1741,9 @@ msgid "Courses with Certificates"
 msgstr "সার্টিফিকেট সহ কোর্স"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "সব কোর্স"
@@ -1689,6 +1755,9 @@ msgstr "আইটি এবং প্রোগ্রামিং"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "ব্যবসা"
 
@@ -1722,6 +1791,8 @@ msgid "All Time"
 msgstr "সব সময়"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "প্রতিবেদন তৈরি করুন"
 
@@ -1734,11 +1805,16 @@ msgid "Certificate ID"
 msgstr "সার্টিফিকেট আইডি"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "শিক্ষিকা"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "কোর্স"
 
@@ -1748,6 +1824,9 @@ msgstr "ইস্যু তারিখ"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "জন ডো"
 
@@ -1794,6 +1873,7 @@ msgstr "ব্রেডক্রাম্ব"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1805,6 +1885,7 @@ msgid "Create Delivery"
 msgstr "ডেলিভারি তৈরি করুন"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "অগ্রগতি"
@@ -1852,7 +1933,7 @@ msgstr "অংশগ্রহণকারীরা"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Advanced Settings"
-msgstr ""
+msgstr "উন্নত সেটিংস"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid ""
@@ -1871,6 +1952,7 @@ msgstr "শুরুর তারিখ নির্বাচন করুন"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "থেকে"
 
@@ -1961,12 +2043,19 @@ msgid "Search deliveries..."
 msgstr "বিতরণ অনুসন্ধান করুন..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "চলছে"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "সম্পন্ন"
@@ -2000,6 +2089,7 @@ msgid "Delivery ID"
 msgstr "ডেলিভারি আইডি"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "শুরুর তারিখ"
 
@@ -2008,6 +2098,7 @@ msgid "End Date"
 msgstr "শেষ তারিখ"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "প্রশিক্ষক"
 
@@ -2017,10 +2108,15 @@ msgid "Students"
 msgstr "ছাত্ররা"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "বিস্তারিত দেখুন"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "সম্পাদনা করুন"
@@ -2030,14 +2126,17 @@ msgid "Manage Students"
 msgstr "ছাত্রদের পরিচালনা করুন"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "দেখাচ্ছে"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "এর"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "ফলাফল"
 
@@ -2046,9 +2145,798 @@ msgid "Delete Delivery"
 msgstr "ডেলিভারি মুছুন"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "বাতিল করুন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "কোর্স"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "কোন কভার ইমেজ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "কোর্স"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "অপ্রকাশিত করুন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "আগের"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "উন্নত আরবি"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "বাল্ক অ্যাকশন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "ছাত্ররা"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "সক্রিয় সেশন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "ঘোষণা সম্পাদনা করুন"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "কোর্স ওভারভিউ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "শ্রেণী"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "ডেলিভারি তৈরি করুন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "সর্বশেষ আপডেট"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "রপ্তানি বিতরণ"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "কোর্স কভার"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "রপ্তানি বিতরণ"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "নতুন সম্পদ যোগ করুন"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "টাইপ"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "সর্বশেষ আপডেট"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "ব্যবহারকারী"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "ডেলিভারি আইডি"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "তারিখ নির্বাচন করুন"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "ভিডিও"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "দলিল"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "উপস্থাপনা"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "লিঙ্ক"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "কুইজ"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "সময়কাল"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "যোগাযোগ বিক্রয়"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "একটি বৈধ URL লিখুন."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "শেখার পথ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "কোর্স ওভারভিউ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "কোর্স তৈরি করুন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "ফাইল পাথ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "প্রশংসাপত্র"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "শেখার সম্পদ"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "কোন ভিডিও ফাইল উপলব্ধ নেই."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "দলিল"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "এটি নথির একটি পূর্বরূপ।"
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "সম্পূর্ণ নথি দেখুন"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "দলিল"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "কোন নথি ফাইল উপলব্ধ নেই."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "কুইজের পূর্বরূপ"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "এই কুইজ কোর্সে উপলব্ধ. চেষ্টা করতে ক্লিক করুন."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr "এটি একটি SCORM প্যাকেজ। এটি চালু করতে নীচের বোতামে ক্লিক করুন।"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM প্যাকেজ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "উপস্থাপনা"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "উপস্থাপনা"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "উপস্থাপনা"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "উপস্থাপনা"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "কোন উপস্থাপনা ফাইল উপলব্ধ."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "শেখার সম্পদ"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"বাহ্যিক সম্পদ অ্যাক্সেস করতে উপরের লিঙ্কে ক্লিক করুন. দয়া করে মনে রাখবেন "
+"এটি একটি নতুন ট্যাবে খুলবে৷"
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "কোন বহিরাগত URL প্রদান করা হয়."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "এই সম্পদ প্রকারের জন্য পূর্বরূপ উপলব্ধ নয়।"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "ঘোষণা - LMS অ্যাডমিন"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "ঘোষণা ব্যবস্থাপনা"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "সিস্টেম-ব্যাপী ঘোষণা তৈরি করুন এবং পরিচালনা করুন"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "কোর্স সম্পন্ন"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "কোর্স খুঁজুন..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "ওয়েব ডেভেলপমেন্ট ফান্ডামেন্টালস"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "ডেটা সায়েন্স বেসিক"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "ডিজিটাল মার্কেটিং"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "মুলতুবি"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "প্রত্যাহার করা হয়েছে"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "ডেটা রপ্তানি করুন"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "সাইটের নাম"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "ওয়েব ডেভেলপমেন্ট ফান্ডামেন্টালস"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "দেখুন"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "প্রত্যাহার করুন"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "অনুমোদন করুন"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "বিষয়"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "ডিজিটাল মার্কেটিং"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "সার্টিফিকেট"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "শেখার পথ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"আপনার শিক্ষার্থীদের জন্য শেখার যাত্রা ডিজাইন, নিরীক্ষণ এবং অপ্টিমাইজ করুন"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "শেখার পথ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "মোট নথিভুক্ত শিক্ষার্থী"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "ব্যবহারকারীর সন্তুষ্টি"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "শেখার পথ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "নতুন টিকিট তৈরি করুন"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "বিদ্যমান পথ সম্পাদনা করুন"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "শিক্ষার্থীরা"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "প্রতিবেদন তৈরি করুন"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "সাইটের নাম"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "কোর্সে ভর্তি হয়েছে"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "কাস্টম মডেল উন্নয়ন"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "প্রযুক্তি"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "ডেটা সায়েন্স বেসিক"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "প্রতিবেদন এবং বিশ্লেষণ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "লার্নিং পাথ ভিজ্যুয়ালাইজেশন: ফুল স্ট্যাক ওয়েব ডেভেলপমেন্ট"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML এবং CSS বেসিক"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 সপ্তাহ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 সপ্তাহ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Node.js এর সাথে ব্যাকএন্ড"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 সপ্তাহ"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "ফ্রন্টএন্ড ফ্রেমওয়ার্ক"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "জাভাস্ক্রিপ্ট চূড়ান্ত প্রকল্প"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "শেখার পথ ভিজ্যুয়ালাইজেশন: ডেটা সায়েন্স মাস্টারি"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "AI এর পরিচিতি"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "পরিসংখ্যান এবং সম্ভাব্যতা"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "ডেটা সায়েন্সের জন্য পাইথন"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "ডেটা ভিজ্যুয়ালাইজেশন কুইজ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 সপ্তাহ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "শিক্ষার বিপ্লব ঘটান"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "বিগ ডেটা টেকনোলজিস"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "শেখার অগ্রগতি"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "শিক্ষার্থীর প্রতিক্রিয়া"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"শেখার পথটি সুগঠিত ছিল এবং একটি সম্পূর্ণ স্ট্যাক ডেভেলপার হওয়ার জন্য একটি "
+"পরিষ্কার রোডম্যাপ প্রদান করে। প্রকল্পগুলি শেখা ধারণাগুলি প্রয়োগ করতে "
+"বিশেষভাবে সহায়ক ছিল।"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"মহান বিষয়বস্তু এবং অগ্রগতি. আমি মেশিন লার্নিং বিভাগে আরও হ্যান্ডস-অন "
+"ব্যায়ামের প্রশংসা করব, তবে সামগ্রিকভাবে, এটি একটি দুর্দান্ত শেখার পথ।"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "শুরু করার নির্দেশিকা"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "গত ৩ মাস"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "মাস"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "মাস"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 মাস"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 মাস"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "কোর্সের সংখ্যা"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2088,7 +2976,7 @@ msgstr "অপ্রকাশিত"
 
 #: templates/users/administrator/course/list.html
 msgid "Create Course"
-msgstr ""
+msgstr "কোর্স তৈরি করুন"
 
 #: templates/users/administrator/course/list.html
 msgid "Create Category"
@@ -2100,21 +2988,8 @@ msgid "Course Cover"
 msgstr "কোর্স কভার"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "দেখুন"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "ডেলিভারি পরিচালনা করুন"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "ডেটা রপ্তানি করুন"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "অপ্রকাশিত করুন"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2166,16 +3041,13 @@ msgid "12%% from last month"
 msgstr "গত মাসের থেকে 12%%"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "সক্রিয় কোর্স"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "এই সপ্তাহে 3টি নতুন"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "সমাপ্তির হার"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2216,16 +3088,8 @@ msgid "987 enrolled"
 msgstr "987 নথিভুক্ত"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 নথিভুক্ত"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "ডিজিটাল মার্কেটিং"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2242,11 +3106,6 @@ msgstr "621 নথিভুক্ত"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "সাম্প্রতিক কার্যক্রম"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "ব্যবহারকারী"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2397,6 +3256,7 @@ msgid "Resolved This Week"
 msgstr "এই সপ্তাহে সমাধান করা হয়েছে"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "ব্যবহারকারীর সন্তুষ্টি"
 
@@ -2427,10 +3287,6 @@ msgstr "বিষয়"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "দ্বারা জমা দেওয়া"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "সর্বশেষ আপডেট"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2574,11 +3430,13 @@ msgid "Rank"
 msgstr "পদমর্যাদা"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "কোর্স সমাপ্ত"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "গড় স্কোর"
 
@@ -2701,6 +3559,8 @@ msgid "Search messages..."
 msgstr "বার্তা অনুসন্ধান করুন..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "ফিল্টার প্রয়োগ করুন"
 
@@ -2725,6 +3585,7 @@ msgid "Export Selected"
 msgstr "রপ্তানি নির্বাচিত"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "এলএমএস"
 
@@ -2734,7 +3595,7 @@ msgstr "এআই অনুসন্ধান"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 AI কে কিছু জিজ্ঞাসা করুন..."
+msgstr "🤖 AI কে কিছু জিজ্ঞাসা করুন..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2749,6 +3610,7 @@ msgid "user photo"
 msgstr "ব্যবহারকারীর ছবি"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "Search language..."
 msgstr "ভাষা অনুসন্ধান করুন..."
 
@@ -2767,6 +3629,1349 @@ msgstr "বিজ্ঞপ্তি মেনু খোলা!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "এর জন্য এআই অনুসন্ধান করা হচ্ছে:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr "কোর্স এবং ছাত্র জুড়ে মূল্যায়ন কর্মক্ষমতা ব্যাপক বিশ্লেষণ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "মোট ঘোষণা"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "পাসের হার"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "বার্তা অনুসন্ধান করুন..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "সব সময়"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "প্রকল্প"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "মূল্যায়ন কর্মক্ষমতা ওভারভিউ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "শীর্ষ পারফর্মার"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "জাভাস্ক্রিপ্ট"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "গড় স্কোর"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "ডেটা ভিজ্যুয়ালাইজেশন কুইজ"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "এসইও কৌশল পরীক্ষা"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "ছাত্ররা"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "মার্কেটিং অ্যানালিটিক্স পরীক্ষা"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "ইউএক্স ডিজাইন প্রকল্প"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 দিন আগে"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "প্রচেষ্টা"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "জাভাস্ক্রিপ্ট চূড়ান্ত প্রকল্প"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "জান."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "ফেব্রুয়ারী"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "মার্চ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "এপ্রিল"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "জুন"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "গড় স্কোর"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "কুইজ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "পরীক্ষা"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "প্রকল্প"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "অ্যাসাইনমেন্টের শেষ তারিখ"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "সার্টিফিকেশন ট্র্যাকিং"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr ""
+"সার্টিফিকেশন প্রোগ্রাম, অগ্রগতি, এবং শিক্ষার্থীদের কৃতিত্ব নিরীক্ষণ করুন"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "মোট সার্টিফিকেট"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "শিক্ষার্থীরা"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "সার্টিফিকেট অর্জিত"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "সার্টিফিকেশন ট্র্যাকিং"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "মোট সার্টিফিকেট"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "ডেটা সায়েন্স বেসিক"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "জারি"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "ফুল স্ট্যাক ওয়েব ডেভেলপার"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "ডিজিটাল মার্কেটিং"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "অ্যাডভান্সড মেশিন লার্নিং কোর্স চালু"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "সাইবার নিরাপত্তা বিশ্লেষক"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "শংসাপত্র প্রত্যাহার করুন"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 দিন আগে"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "সার্টিফিকেশন ট্র্যাকিং"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "সার্টিফিকেশন ট্র্যাকিং"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "গড় সম্পূর্ণ করার সময়"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "এআই এবং এমএল"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "নিরাপত্তা"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "কোর্স সমাপ্তি"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr "কোর্স সমাপ্তির হার এবং শিক্ষার্থীর অগ্রগতির ব্যাপক অন্তর্দৃষ্টি"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "সব কোর্স"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "এই মাসে সার্টিফিকেট"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "কোর্স সমাপ্তি"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "শীর্ষ পারফর্মার"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI ডিজাইনের নীতি"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "অ্যাডভান্সড মেশিন লার্নিং কোর্স চালু"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "সমাপ্তির হার"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "কোর্স সমাপ্তি"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "কোর্স সমাপ্তি"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "কোর্স"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "আইটি এবং প্রোগ্রামিং"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "ডিজিটাল মার্কেটিং"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "ডিজাইন"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "কাস্টম রিপোর্ট"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"গভীরভাবে LMS বিশ্লেষণের জন্য কাস্টম রিপোর্ট তৈরি করুন, দেখুন এবং পরিচালনা "
+"করুন"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "প্রতিবেদন নির্মাতা"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "ইভেন্টের নাম"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "ডাটা সোর্স"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "তালিকাভুক্তি"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "ব্যবহারকারীর অগ্রগতি"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "মূল্যায়ন ফলাফল"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "ব্যবহারকারীর ব্যস্ততা"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "মেট্রিক্স"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "টাইম জোন"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "তারিখ সীমার বাইরে"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "গত 30 দিন"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "গত 30 দিন"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "গত ৩ মাস"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "গত ৩ মাস"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "গত বছর"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "কাস্টম রিপোর্ট"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "ইভেন্টের ধরন"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "বার চার্ট"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "লাইভ চ্যাট সমর্থন"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "লাইভ চ্যাট সমর্থন"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "টেবিল"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "প্রতিবেদন তৈরি করুন"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "শেষ রান"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "কোর্স সমাপ্তি"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "মূল্যায়ন কর্মক্ষমতা বিশ্লেষণ"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "নমুনা কাস্টম রিপোর্ট: কোর্স সমাপ্তির প্রবণতা"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "মূল অন্তর্দৃষ্টি 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "শেষ 3 মাসে সমাপ্তির হার 15%% বৃদ্ধি পেয়েছে।"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "মূল অন্তর্দৃষ্টি 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr "ওয়েব ডেভেলপমেন্ট কোর্স 78%% এ সর্বোচ্চ সমাপ্তির হার দেখায়।"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "মূল অন্তর্দৃষ্টি 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "সমাপ্তির গড় সময় 45 থেকে 38 দিনে কমেছে।"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "শিক্ষার্থীর প্রতিক্রিয়া"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"শিক্ষার্থীর সন্তুষ্টি, কোর্স রেটিং এবং প্রতিক্রিয়া প্রবণতার অন্তর্দৃষ্টি"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "ব্যবহারকারীর সন্তুষ্টি"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "মোট রাজস্ব"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "গড় প্রতিক্রিয়া সময়"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "কোর্স সেটিংস"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "ব্যবহারকারীর সন্তুষ্টি"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "রেটিং বিতরণ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "কোর্স সম্পন্ন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "রেটিং"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "রিভিউ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "অ্যাডভান্সড মেশিন লার্নিং কোর্স চালু"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "ডঃ জেন স্মিথ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "শিক্ষার্থীর প্রতিক্রিয়া"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"দারুণ কোর্স! বিষয়বস্তু সুগঠিত ছিল এবং প্রশিক্ষক জটিল ধারণাগুলি স্পষ্টভাবে "
+"ব্যাখ্যা করেছেন।"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"বাস্তব বিশ্বের উদাহরণ সহ খুব ব্যবহারিক কোর্স। আমি ইতিমধ্যে আমার কাজে কৌশল "
+"প্রয়োগ করা শুরু করেছি।"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "উন্নত আরবি"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "প্রতিক্রিয়া সাধারণ থিম"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "ধনাত্মক পূর্ণসংখ্যা"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "জটিল বিষয়ের স্পষ্ট ব্যাখ্যা"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "ব্যবহারিক, বাস্তব বিশ্বের উদাহরণ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "প্রশিক্ষক"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "ভাল-গঠিত কোর্স বিষয়বস্তু"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "সহায়ক কুইজ এবং অ্যাসাইনমেন্ট"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "উন্নতির জন্য এলাকা"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "আরো ইন্টারেক্টিভ উপাদান"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "অতিরিক্ত অনুশীলন ব্যায়াম"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "প্রশ্নের দ্রুত উত্তর"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "কোর্স উপকরণ অ্যাক্সেস করতে অক্ষম"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "উন্নত আরবি"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "শুরু করুন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "শুরু করুন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "শুরু করুন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "শুরু করুন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "শুরু করুন"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "কোর্সের সংখ্যা"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr ""
+"সিস্টেম রিসোর্স ব্যবহার এবং বিষয়বস্তু জনপ্রিয়তার ব্যাপক অন্তর্দৃষ্টি"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "মোট বার্তা"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "মোট রাজস্ব"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "গড় প্রতিক্রিয়া সময়"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "স্টোরেজ ব্যবহারের প্রবণতা"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "সাপোর্ট টিকেট এবং অ্যাক্সেস রিসোর্স পরিচালনা করুন"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "অ্যাক্সেস গণনা"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "সর্বশেষ অ্যাক্সেস করা হয়েছে"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "AI এর পরিচিতি"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "ডেটা স্ট্রাকচার চিট শীট"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "উন্নত আরবি"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "ওয়েব ডেভেলপমেন্ট ফান্ডামেন্টালস"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "আকার"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "লোগো আপলোড করুন"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "ডাউনলোড"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "ডেটা সায়েন্স ফান্ডামেন্টালস"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "অংশগ্রহণকারীদের বরাদ্দ করুন"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "UI/UX ডিজাইন"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "ব্যবহৃত স্টোরেজ (টিবি)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "অ্যাসাইনমেন্টের শেষ তারিখ"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "অন্যান্য"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "সম্পদ ব্যবহার"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "ব্যবহারকারীর ব্যস্ততা"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr ""
+"ব্যবহারকারী কার্যকলাপ এবং প্ল্যাটফর্ম মিথস্ক্রিয়া মধ্যে ব্যাপক অন্তর্দৃষ্টি"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "গত 30 দিন"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "গড় দৈনিক সক্রিয় ব্যবহারকারী"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "গড় সেশনের সময়কাল"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "ব্যবহারকারী ধরে রাখার হার"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "দৈনিক সক্রিয় ব্যবহারকারীদের প্রবণতা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "মোট ব্যবহারকারী"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "এই মাসে 45 ঘন্টা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "জেন স্মিথ"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "সারাহ জনসন"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "এই মাসে 38 ঘন্টা"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "বৈশিষ্ট্য ব্যবহার বিতরণ"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "ব্যবহারকারীর ব্যস্ততা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "সাম্প্রতিক কার্যক্রম"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "এমিলি ব্রাউন"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "সমাপ্ত পাঠ: জাভাস্ক্রিপ্টের ভূমিকা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "অ্যালেক্স উইলসন"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "একটি নতুন কোর্স 'অ্যাডভান্সড ডেটা অ্যানালাইসিস' শুরু হয়েছে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 দিন আগে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "সারাহ লি"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "আলোচনা ফোরাম 'বিপণন কৌশল' পোস্ট করা হয়েছে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 ঘন্টা আগে"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "ব্যবহারকারীর ব্যস্ততা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "মোট পয়েন্ট"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "কোর্স সমাপ্ত"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "সাম্প্রতিক কার্যক্রম"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "ফোরাম পোস্ট"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "সক্রিয়"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "ব্যস্ততা"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "ডেভিড মিলার"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "এমা উইলসন"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "সক্রিয় কোর্স"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "ফোরামে যান"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "সক্রিয় সেশন"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "গড় এনগেজমেন্ট রেট"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "ব্যবহারকারীর অগ্রগতি"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr ""
+"স্বতন্ত্র শিক্ষার্থীর অগ্রগতি এবং কর্মক্ষমতা সম্পর্কে বিস্তারিত অন্তর্দৃষ্টি"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "মোট ব্যবহারকারী"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "গড় ব্যবহারকারী প্রতি কোর্স"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "গড় প্রতিক্রিয়া সময়"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "কোর্স খুঁজুন..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "অগ্রগতি"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "ব্যবহারকারীর অগ্রগতি"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "শীর্ষ পারফর্মার"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "কোর্স সমাপ্ত"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "কোর্স সমাপ্ত"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "কোর্স সমাপ্ত"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "সাম্প্রতিক কার্যকলাপ"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "সমাপ্ত পাঠ: জাভাস্ক্রিপ্টের ভূমিকা"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "শুরু করা কোর্স: অ্যাডভান্সড ডেটা অ্যানালাইসিস"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "জমা দেওয়া অ্যাসাইনমেন্ট"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "ব্যবহারকারীর ব্যস্ততা"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "ব্যবহারকারীর অগ্রগতি"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "কোর্স সমাপ্ত"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "অগ্রগতি"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "অধ্যয়নের সময় (শেষ ৭ দিন)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "কোর্সের সংখ্যা"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "ভিডিও পাঠ"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2975,6 +5180,7 @@ msgid "API Key"
 msgstr "API কী"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "ভিডিও কনফারেন্সিং ইন্টিগ্রেশন"
 
@@ -2993,14 +5199,6 @@ msgstr "সাইডবার"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "ক্যাটাগরি"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "তালিকাভুক্তি"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "শেখার পথ"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -3023,32 +5221,8 @@ msgid "Course Completion"
 msgstr "কোর্স সমাপ্তি"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "ব্যবহারকারীর অগ্রগতি"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "মূল্যায়ন ফলাফল"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "ব্যবহারকারীর ব্যস্ততা"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "সম্পদ ব্যবহার"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "সার্টিফিকেশন ট্র্যাকিং"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "শিক্ষার্থীর প্রতিক্রিয়া"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "কাস্টম রিপোর্ট"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3058,9 +5232,65 @@ msgstr "বিলিং"
 msgid "Logout"
 msgstr "লগআউট"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "নেক্সটজেন এলএমএস"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "স্বাগত ফিরে"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "আপনার NextGen LMS অ্যাকাউন্টে লগ ইন করুন"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "ইমেইল ঠিকানা"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "পাসওয়ার্ড নীতি"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "ডিসেম্বর"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "পাসওয়ার্ড ভুলে গেছেন?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "লগ ইন করুন"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "একটি অ্যাকাউন্ট নেই?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "প্রশাসক"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "হোমে ফিরে যান"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "কোর্সের বিবরণ - ঘুষ বিরোধী এবং দুর্নীতি বিরোধী নীতি"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "কোর্স সেটিংস"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3075,10 +5305,6 @@ msgstr "সমস্ত কর্মচারীদের জন্য প্র
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "আমার কোর্স"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "কোর্স ওভারভিউ"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3131,20 +5357,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "ঘুষ ঝুঁকি স্বীকৃতি"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "ভিডিও"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "ঘড়ি"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "কোম্পানির দুর্নীতি দমন নীতি"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "দলিল"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3155,16 +5373,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "কেস স্টাডিজ: নৈতিক সিদ্ধান্ত গ্রহণ"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "উপস্থাপনা"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "ঘুষ বিরোধী এবং দুর্নীতি বিরোধী মূল্যায়ন"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "কুইজ"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3228,10 +5438,6 @@ msgid "Courses in Progress"
 msgstr "কোর্স চলছে"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "কোর্স সম্পন্ন"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "সার্টিফিকেট অর্জিত"
 
@@ -3288,16 +5494,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "সমাপ্ত পাঠ: জাভাস্ক্রিপ্টের ভূমিকা"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 ঘন্টা আগে"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "অর্জিত শংসাপত্র: HTML এবং CSS মৌলিক"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 দিন আগে"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3371,6 +5569,583 @@ msgstr "2.5 ঘন্টা"
 msgid "4 modules"
 msgstr "4টি মডিউল"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - আপনার শেখার বিপ্লব ঘটান"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "পরবর্তী"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "বৈশিষ্ট্য"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "ইন্টিগ্রেশন"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "প্রশংসাপত্র"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "মূল্য নির্ধারণ"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "লগইন করুন"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "শিক্ষার বিপ্লব ঘটান"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "সঙ্গে"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "নেক্সটজেন এলএমএস"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"ব্যক্তিগতকৃত শেখার অভিজ্ঞতা তৈরি করতে, কন্টেন্ট ডেলিভারি অপ্টিমাইজ করতে এবং "
+"কর্পোরেট প্রশিক্ষণে অভূতপূর্ব ব্যস্ততা তৈরি করতে উদ্ভাবনী প্রযুক্তির শক্তিকে"
+" কাজে লাগান।"
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "ভবিষ্যত অভিজ্ঞতা"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "কাটিং-এজ বৈশিষ্ট্য"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "শেখার পথ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"আমাদের অ্যালগরিদমগুলি সর্বোত্তম দক্ষতা বিকাশ নিশ্চিত করে ব্যক্তিগতকৃত শেখার "
+"যাত্রা তৈরি করতে শিক্ষার্থীদের আচরণ এবং কর্মক্ষমতা বিশ্লেষণ করে।"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "উন্নত আরবি"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"শিক্ষার্থীর ফলাফলের পূর্বাভাস দিতে, সম্ভাব্য চ্যালেঞ্জ শনাক্ত করতে এবং আরও "
+"ভাল ফলাফলের জন্য সক্রিয়ভাবে হস্তক্ষেপ করতে ডেটা-চালিত অন্তর্দৃষ্টির সুবিধা "
+"নিন।"
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "ইমারসিভ ভিআর প্রশিক্ষণ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"জটিল বা উচ্চ-স্টেকের পরিস্থিতিতে হ্যান্ডস-অন, ঝুঁকি-মুক্ত প্রশিক্ষণের জন্য "
+"ভার্চুয়াল বাস্তবতার অভিজ্ঞতা একীভূত করুন।"
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "উন্নত এন্টারপ্রাইজ বৈশিষ্ট্য"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "নমনীয় স্থাপনা"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"যেকোন ক্লাউড প্ল্যাটফর্মে (AWS, Azure, DigitalOcean) বা অন-প্রাঙ্গনে স্থাপন "
+"করুন, Windows সার্ভার সমর্থন সহ।"
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "মাল্টি-টেন্যান্ট আর্কিটেকচার"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"ডেটা বিচ্ছিন্নতা এবং কাস্টমাইজেশন নিশ্চিত করে, একটি একক উদাহরণের মধ্যে "
+"একাধিক সংস্থাকে নিরাপদে পরিচালনা করুন।"
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "বহুভাষিক সমর্থন"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "30+ ভাষায় উপলব্ধ, সহ:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "আরবি - হ্যালো"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "ইংরেজি - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "স্প্যানিশ - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "ফরাসি - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "জার্মান - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "চাইনিজ - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "জাপানি - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "ইতালীয় - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "রাশিয়ান - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "পর্তুগিজ - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "হিন্দি - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "কোরিয়ান - স্বাগতম"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "জনপ্রিয় প্ল্যাটফর্মের সাথে বিরামহীন একীকরণ:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "জুম"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "গুগল ক্লায়েন্ট আইডি"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "মাইক্রোসফট টিম"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "শেখার পথ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"অনুক্রমিক কোর্স, পূর্বশর্ত এবং শাখার পথ সহ কাস্টমাইজড শেখার যাত্রা তৈরি "
+"করুন।"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "ঘোষণা ব্যবস্থাপনা"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"SCORM সমর্থন, একাধিক মিডিয়া প্রকার, এবং একটি স্বজ্ঞাত ফাইল ম্যানেজার সহ "
+"শক্তিশালী CMS।"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "কাটিং-এজ প্রযুক্তি স্ট্যাক"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "পাইথন"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "জ্যাঙ্গো"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "পোস্টগ্রেএসকিউএল"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "ডকার"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "Tailwindcss"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "জাভাস্ক্রিপ্ট"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "ওয়েবসকেট"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Security"
+msgstr "উন্নত আরবি"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "উদ্ভাবনী শেখার পদ্ধতি"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "কোর্স ডেলিভারি তৈরি করুন"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"আমাদের স্মার্ট ইঞ্জিন রিয়েল-টাইম লার্নার পারফরম্যান্সের উপর ভিত্তি করে "
+"বিষয়বস্তুর অসুবিধা এবং উপস্থাপনাকে গতিশীলভাবে সামঞ্জস্য করে, প্রতিটি "
+"ব্যক্তির জন্য একটি সর্বোত্তম চ্যালেঞ্জ স্তর নিশ্চিত করে।"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "ব্যক্তিগতকৃত শেখার গতি"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "অভিযোজিত মূল্যায়ন কৌশল"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "বুদ্ধিমান কন্টেন্ট সুপারিশ"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "অভিযোজিত লার্নিং ভিজ্যুয়ালাইজেশন"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "সাফল্যের গল্প"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "ক্লায়েন্ট অবতার"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "সারাহ জনসন"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "এইচআর ডিরেক্টর, টেককর্প"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS আমাদের কর্পোরেট প্রশিক্ষণকে বদলে দিয়েছে। ব্যক্তিগতকৃত শেখার "
+"পথ এবং ভবিষ্যদ্বাণীমূলক বিশ্লেষণগুলি কর্মচারীদের ব্যস্ততা এবং কর্মক্ষমতাকে "
+"উল্লেখযোগ্যভাবে উন্নত করেছে। আমরা কোর্স সমাপ্তির হারে 40%% বৃদ্ধি এবং জ্ঞান "
+"ধরে রাখার ক্ষেত্রে 25%% উন্নতি দেখেছি।"
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "মার্ক থম্পসন"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "এল অ্যান্ড ডি ম্যানেজার, ইনোভেট নাও"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"নেক্সটজেন এআই এলএমএস দ্বারা প্রদত্ত এআই-চালিত অন্তর্দৃষ্টিগুলি কর্মচারী "
+"উন্নয়নে আমাদের দৃষ্টিভঙ্গিতে বৈপ্লবিক পরিবর্তন এনেছে। আমরা এখন দক্ষতার "
+"ফাঁকগুলি সক্রিয়ভাবে চিহ্নিত করতে পারি এবং আমাদের প্রশিক্ষণ প্রোগ্রামগুলিকে "
+"অভূতপূর্ব নির্ভুলতার সাথে তৈরি করতে পারি। এই অত্যাধুনিক সিস্টেম বাস্তবায়নের"
+" পর থেকে আমাদের দলের উৎপাদনশীলতা 30%% বৃদ্ধি পেয়েছে।"
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "নমনীয় সাবস্ক্রিপশন প্ল্যান"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "শুরু করুন"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "মাস"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "500 জন ব্যবহারকারী পর্যন্ত"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "মৌলিক বিবরণ"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "ব্যক্তিগতকৃত শেখার পথ"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "24/7 চ্যাটবট সমর্থন"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "শুরু করার নির্দেশিকা"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "সর্বাধিক জনপ্রিয় কোর্স"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "প্রফেশনাল"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "2,000 ব্যবহারকারী পর্যন্ত"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "উন্নত বিশ্লেষণ এবং ভবিষ্যদ্বাণী"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "স্বয়ংক্রিয় বিষয়বস্তুর সুপারিশ"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "ভিআর প্রশিক্ষণ মডিউল"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "প্রিন্ট রিপোর্ট"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "প্রো-তে আপগ্রেড করুন"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "এন্টারপ্রাইজ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "কাস্টম রিপোর্ট"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "সীমাহীন ব্যবহারকারী"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "সম্পূর্ণ LMS ইকোসিস্টেম ইন্টিগ্রেশন"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "কাস্টম মডেল উন্নয়ন"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "উন্নত ভিআর এবং এআর ক্ষমতা"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "যোগাযোগ বিক্রয়"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "আপনার শেখার অভিজ্ঞতা রূপান্তর করতে প্রস্তুত?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"আমাদের উদ্ভাবনী লার্নিং ম্যানেজমেন্ট সিস্টেমের মাধ্যমে আপনার প্রতিষ্ঠানের "
+"প্রতিভার পূর্ণ সম্ভাবনাকে আনলক করুন।"
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "একটি ডেমো অনুরোধ"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "উদ্ভাবনী প্রযুক্তির মাধ্যমে শেখার ভবিষ্যৎকে শক্তিশালী করা।"
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 টেক স্ট্রিট, সান ফ্রান্সিসকো, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "ফোন: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "ইমেইল: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "দ্রুত লিঙ্ক"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "বাড়ি"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "যোগাযোগ"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "আমাদের সম্পর্কে"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "ব্লগ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "সাহায্য এবং সমর্থন"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "পাসওয়ার্ড নীতি"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "পরিষেবার শর্তাবলী"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "কুকি নীতি"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "সহায়তা ও সহায়তা কেন্দ্র"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "সিস্টেম আপডেট"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "আমাদের সাথে সংযোগ করুন"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "নিউজলেটার"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "আপনার ইমেইল"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "সদস্যতা"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS। সর্বস্বত্ব সংরক্ষিত"
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "আপনি সফলভাবে লগ ইন করেছেন।"
@@ -3378,3 +6153,9 @@ msgstr "আপনি সফলভাবে লগ ইন করেছেন।"
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "লগইন ব্যর্থ হয়েছে. নীচের ত্রুটি চেক করুন."
+
+#~ msgid "Norwegian"
+#~ msgstr "নরওয়েজিয়ান"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "কোর্সের বিবরণ - ঘুষ বিরোধী এবং দুর্নীতি বিরোধী নীতি"

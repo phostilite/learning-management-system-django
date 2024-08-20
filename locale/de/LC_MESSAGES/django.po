@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 11:37+0530\n"
+"POT-Creation-Date: 2024-08-18 23:31+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,6 +342,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu] vorliegen."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Dauer"
 
@@ -632,12 +633,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Befehl"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Löschen"
 
@@ -806,36 +810,43 @@ msgstr "Sonntag"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "Mein"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "Di"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "Heiraten"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "Sammeln"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "Fr"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "Sa"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "Sonne"
 
@@ -856,6 +867,12 @@ msgid "April"
 msgstr "April"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "Mai"
 
@@ -1328,6 +1345,112 @@ msgstr "Arabisch"
 msgid "French"
 msgstr "Französisch"
 
+#: lms/settings.py
+msgid "German"
+msgstr "Deutsch"
+
+#: lms/settings.py
+msgid "Japanese"
+msgstr "japanisch"
+
+#: lms/settings.py
+msgid "Hindi"
+msgstr "Nein"
+
+#: lms/settings.py
+msgid "Spanish"
+msgstr "Spanisch"
+
+#: lms/settings.py
+msgid "Portuguese"
+msgstr "Portugiesisch"
+
+#: lms/settings.py
+msgid "Russian"
+msgstr "Russisch"
+
+#: lms/settings.py
+msgid "Italian"
+msgstr "Italienisch"
+
+#: lms/settings.py
+msgid "Korean"
+msgstr "Koreanisch"
+
+#: lms/settings.py
+msgid "Dutch"
+msgstr "Niederländisch"
+
+#: lms/settings.py
+msgid "Turkish"
+msgstr "Türkisch"
+
+#: lms/settings.py
+#, fuzzy
+#| msgid "Publish"
+msgid "Polish"
+msgstr "Veröffentlichen"
+
+#: lms/settings.py
+msgid "Swedish"
+msgstr "Schwedisch"
+
+#: lms/settings.py
+msgid "Danish"
+msgstr "dänisch"
+
+#: lms/settings.py
+msgid "Finnish"
+msgstr "finnisch"
+
+#: lms/settings.py
+msgid "Greek"
+msgstr "griechisch"
+
+#: lms/settings.py
+msgid "Hebrew"
+msgstr "hebräisch"
+
+#: lms/settings.py
+msgid "Thai"
+msgstr "Thailändisch"
+
+#: lms/settings.py
+msgid "Vietnamese"
+msgstr "Vietnamesisch"
+
+#: lms/settings.py
+msgid "Indonesian"
+msgstr "Indonesisch"
+
+#: lms/settings.py
+msgid "Bengali"
+msgstr "Bengali"
+
+#: lms/settings.py
+msgid "Tamil"
+msgstr "Tamilisch"
+
+#: lms/settings.py
+msgid "Telugu"
+msgstr "Telugu"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "Kannada"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "Marathi"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "Malayalam"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "Ankündigungen – LMS Admin"
@@ -1345,6 +1468,8 @@ msgstr "Erstellen und verwalten Sie systemweite Ankündigungen"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1408,12 +1533,14 @@ msgstr "Wartung"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Alle Status"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "Aktiv"
 
@@ -1430,16 +1557,22 @@ msgid "Export Report"
 msgstr "Bericht exportieren"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Titel"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "Kategorie"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "Status"
@@ -1459,8 +1592,16 @@ msgstr "Engagement"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -1484,6 +1625,7 @@ msgstr "Ankündigung löschen"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Vorherige"
@@ -1492,6 +1634,7 @@ msgstr "Vorherige"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "Nächste"
@@ -1556,6 +1699,7 @@ msgid "Workshop"
 msgstr "Werkstatt"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "Prüfung"
 
@@ -1614,6 +1758,7 @@ msgid "Certificates This Month"
 msgstr "Zertifikate diesen Monat"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Ausstehende Genehmigungen"
 
@@ -1622,6 +1767,9 @@ msgid "Courses with Certificates"
 msgstr "Kurse mit Zertifikaten"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "Alle Kurse"
@@ -1633,6 +1781,9 @@ msgstr "IT & Programmierung"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "Geschäft"
 
@@ -1666,6 +1817,8 @@ msgid "All Time"
 msgstr "Alle Zeit"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Bericht erstellen"
 
@@ -1678,11 +1831,16 @@ msgid "Certificate ID"
 msgstr "Zertifikats-ID"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "Lerner"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "Kurs"
 
@@ -1692,6 +1850,9 @@ msgstr "Ausgabedatum"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "John Doe"
 
@@ -1738,6 +1899,7 @@ msgstr "Semmelbrösel"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1749,6 +1911,7 @@ msgid "Create Delivery"
 msgstr "Lieferung erstellen"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "Fortschritt"
@@ -1815,6 +1978,7 @@ msgstr "Wählen Sie das Startdatum"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "Zu"
 
@@ -1904,12 +2068,19 @@ msgid "Search deliveries..."
 msgstr "Lieferungen suchen..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "Im Gange"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "Vollendet"
@@ -1943,6 +2114,7 @@ msgid "Delivery ID"
 msgstr "Liefer-ID"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "Startdatum"
 
@@ -1951,6 +2123,7 @@ msgid "End Date"
 msgstr "Enddatum"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "Lehrer"
 
@@ -1960,10 +2133,15 @@ msgid "Students"
 msgstr "Studenten"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "Details anzeigen"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -1973,14 +2151,17 @@ msgid "Manage Students"
 msgstr "Studenten verwalten"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "Zeigt"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "von"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "Ergebnisse"
 
@@ -1989,9 +2170,801 @@ msgid "Delete Delivery"
 msgstr "Lieferung löschen"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "Stornieren"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "Kurs"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "Kein Titelbild"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "Kurs"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "Veröffentlichung aufheben"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Vorherige"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "Fortgeschrittenes Arabisch"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "Massenaktionen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "Studenten"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "Aktive Sitzungen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "Ankündigung bearbeiten"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "Kursübersicht"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "Kategorie"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "Lieferung erstellen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "Zuletzt aktualisiert"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "Lieferungen exportieren"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "Kurscover"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "Lieferungen exportieren"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "Neue Ressource hinzufügen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Typ"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "Zuletzt aktualisiert"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "Benutzer"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "Liefer-ID"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "Datum auswählen"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "Video"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "Dokumentieren"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "Präsentation"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "Link"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "Quiz"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "Dauer"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "Kontaktieren Sie den Vertrieb"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "Geben Sie eine gültige URL ein."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "Lernpfad"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "Kursübersicht"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "Kurs erstellen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "Dateipfad"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "Erfahrungsberichte"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "Lernressourcen"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "Keine Videodatei verfügbar."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "Dokumentieren"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "Dies ist eine Vorschau des Dokuments."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "Vollständiges Dokument anzeigen"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "Dokumentieren"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "Keine Dokumentdatei verfügbar."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "Quizvorschau"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "Dieses Quiz ist im Kurs verfügbar. Klicken Sie, um es zu versuchen."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr ""
+"Dies ist ein SCORM-Paket. Klicken Sie auf die Schaltfläche unten, um es zu "
+"starten."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM-Paket"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "Präsentation"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "Präsentation"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "Präsentation"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "Präsentation"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "Keine Präsentationsdatei verfügbar."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "Lernressourcen"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"Klicken Sie auf den Link oben, um auf die externe Ressource zuzugreifen. "
+"Bitte beachten Sie, dass dies in einem neuen Tab geöffnet wird."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "Keine externe URL angegeben."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "Für diesen Ressourcentyp ist keine Vorschau verfügbar."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "Ankündigungen – LMS Admin"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "Ankündigungsmanagement"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "Erstellen und verwalten Sie systemweite Ankündigungen"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "Kurse suchen..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Grundlagen der Webentwicklung"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Digitales Marketing"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "Ausstehend"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "Zurückgezogen"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "Daten exportieren"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "Site-Name"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Grundlagen der Webentwicklung"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "Sicht"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "Zurückziehen"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "Genehmigen"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "Thema"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Digitales Marketing"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "Zertifikate"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "Lernpfad"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"Entwerfen, überwachen und optimieren Sie Lernreisen für Ihre Lernenden"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "Lernpfad"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "Gesamtzahl der eingeschriebenen Lernenden"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "Benutzerzufriedenheit"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "Lernpfad"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "Neues Ticket erstellen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "Vorhandenen Pfad bearbeiten"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "Lernende"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Bericht erstellen"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "Site-Name"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "Im Kurs eingeschrieben"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "Individuelle Modellentwicklung"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "Technologie"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "Berichte und Analysen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "Visualisierung des Lernpfads: Full-Stack-Webentwicklung"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML- und CSS-Grundlagen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 Wochen"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 Wochen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Backend mit Node.js"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 Wochen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "Frontend-Frameworks"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "JavaScript-Abschlussprojekt"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "Visualisierung des Lernpfads: Beherrschung der Datenwissenschaft"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "Einführung in die KI"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "Statistik und Wahrscheinlichkeit"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "Python für Data Science"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "Quiz zur Datenvisualisierung"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 Wochen"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "Revolutionieren Sie das Lernen"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "Big-Data-Technologien"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "Lernfortschritt"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "Feedback der Lernenden"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"Der Lernpfad war gut strukturiert und bot einen klaren Weg zum Full-Stack-"
+"Entwickler. Die Projekte waren besonders hilfreich bei der Anwendung der "
+"erlernten Konzepte."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"Toller Inhalt und Fortschritt. Ich würde mich über mehr praktische Übungen "
+"im Bereich maschinelles Lernen freuen, aber insgesamt ist es ein "
+"ausgezeichneter Lernpfad."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "Leitfaden „Erste Schritte“."
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "Letzte 3 Monate"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "Monat"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "Monat"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 Monate"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 Monate"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Anzahl der Kurse"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2043,21 +3016,8 @@ msgid "Course Cover"
 msgstr "Kurscover"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "Sicht"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "Lieferungen verwalten"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "Daten exportieren"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "Veröffentlichung aufheben"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2109,16 +3069,13 @@ msgid "12%% from last month"
 msgstr "12 % % gegenüber dem letzten Monat"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "Aktive Kurse"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "3 neue diese Woche"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "Abschlussrate"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2159,16 +3116,8 @@ msgid "987 enrolled"
 msgstr "987 eingeschrieben"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "Grundlagen der Datenwissenschaft"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 eingeschrieben"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "Digitales Marketing"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2185,11 +3134,6 @@ msgstr "621 eingeschrieben"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "Aktuelle Aktivitäten"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "Benutzer"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2340,6 +3284,7 @@ msgid "Resolved This Week"
 msgstr "Diese Woche gelöst"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "Benutzerzufriedenheit"
 
@@ -2370,10 +3315,6 @@ msgstr "Thema"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "Eingereicht von"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "Zuletzt aktualisiert"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2520,11 +3461,13 @@ msgid "Rank"
 msgstr "Rang"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "Abgeschlossene Kurse"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "Durchschn. Punktzahl"
 
@@ -2647,6 +3590,8 @@ msgid "Search messages..."
 msgstr "Nachrichten durchsuchen..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "Filter anwenden"
 
@@ -2671,6 +3616,7 @@ msgid "Export Selected"
 msgstr "Ausgewählte exportieren"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2680,7 +3626,7 @@ msgstr "KI-Suche"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 Fragen Sie AI alles ..."
+msgstr "🤖 Fragen Sie AI alles ..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2695,12 +3641,15 @@ msgid "user photo"
 msgstr "Benutzerfoto"
 
 #: templates/users/administrator/navbar.html
-msgid "Voice search activated!"
-msgstr "Sprachsuche aktiviert!"
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search language..."
+msgstr "Nachrichten durchsuchen..."
 
 #: templates/users/administrator/navbar.html
-msgid "Language menu opened!"
-msgstr "Sprachmenü geöffnet!"
+msgid "Voice search activated!"
+msgstr "Sprachsuche aktiviert!"
 
 #: templates/users/administrator/navbar.html
 msgid "User menu opened!"
@@ -2713,6 +3662,1360 @@ msgstr "Benachrichtigungsmenü geöffnet!"
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "Durchführen einer KI-Suche nach:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr ""
+"Umfassende Analyse der Leistungsbewertung über Studiengänge und Studierende "
+"hinweg"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "Gesamtzahl der Ankündigungen"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "Erfolgsquote"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "Nachrichten durchsuchen..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "Alle Zeit"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "Projekt"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "Übersicht über die Bewertungsleistung"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "Top-Performer"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "JavaScript"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "Durchschn. Punktzahl"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "Quiz zur Datenvisualisierung"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "Prüfung zu SEO-Strategien"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "Studenten"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "Prüfung zur Marketinganalyse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "UX-Designprojekt"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "Vor 1 Tag"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "Versuche"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "JavaScript-Abschlussprojekt"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "Jan."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "Febr."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "Marsch"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "April"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "Juni"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "Durchschn. Punktzahl"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "Quiz"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "Prüfung"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "Projekte"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "Fälligkeitstermine der Aufgaben"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "Zertifizierungsverfolgung"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr ""
+"Überwachen Sie Zertifizierungsprogramme, Fortschritte und Erfolge der "
+"Lernenden"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "Gesamtzahl der Zertifikate"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "Lernende"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "Erhaltene Zertifikate"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "Zertifizierungsverfolgung"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "Gesamtzahl der Zertifikate"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "Ausgegeben"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "Full-Stack-Webentwickler"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "Digitales Marketing"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "Start des Kurses für fortgeschrittenes maschinelles Lernen"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "Cybersicherheitsanalyst"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "Zertifikat widerrufen"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "Vor 1 Tag"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "Zertifizierungsverfolgung"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "Zertifizierungsverfolgung"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "Durchschn. Zeit zum Abschluss"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "KI und ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "Sicherheit"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "Kursabschluss"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr ""
+"Umfassende Einblicke in die Kursabschlussquoten und den Fortschritt der "
+"Studierenden"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Alle Kurse"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "Zertifikate diesen Monat"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "Kursabschluss"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "Top-Performer"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI-Designprinzipien"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "Start des Kurses für fortgeschrittenes maschinelles Lernen"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "Abschlussrate"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "Kursabschluss"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "Kursabschluss"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "Kurs"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "IT & Programmierung"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "Digitales Marketing"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "Design"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "Benutzerdefinierte Berichte"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"Erstellen, anzeigen und verwalten Sie benutzerdefinierte Berichte für eine "
+"detaillierte LMS-Analyse"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "Berichtsersteller"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "Ereignisname"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "Datenquelle"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "Anmeldungen"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "Benutzerfortschritt"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "Bewertungsergebnisse"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "Benutzerinteraktion"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "Metriken"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "Zeitzone"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "Datum außerhalb des gültigen Bereichs"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "Letzte 30 Tage"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "Letzte 30 Tage"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "Letzte 3 Monate"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "Letzte 3 Monate"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "Letztes Jahr"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "Benutzerdefinierte Berichte"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "Ereignistyp"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "Balkendiagramm"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "Live-Chat-Unterstützung"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "Live-Chat-Unterstützung"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "Tisch"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "Bericht erstellen"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "Letzter Lauf"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "Kursabschluss"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "Bewertungsleistungsanalyse"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "Beispiel für einen benutzerdefinierten Bericht: Kursabschlusstrends"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "Wichtige Erkenntnis 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr ""
+"Die Fertigstellungsraten sind in den letzten drei Monaten um 15 % gestiegen."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "Schlüsselerkenntnis 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr ""
+"Webentwicklungskurse weisen mit 78 % die höchsten Abschlussquoten auf."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "Wichtige Erkenntnis 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr ""
+"Die durchschnittliche Zeit bis zur Fertigstellung ist von 45 auf 38 Tage "
+"gesunken."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "Feedback der Lernenden"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"Einblicke in die Zufriedenheit der Lernenden, Kursbewertungen und Feedback-"
+"Trends"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "Benutzerzufriedenheit"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "Gesamtumsatz"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "Durchschnittliche Reaktionszeit"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "Kurseinstellungen"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "Benutzerzufriedenheit"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "Bewertungsverteilung"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "Bewertung"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "Rezensionen"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "Start des Kurses für fortgeschrittenes maschinelles Lernen"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "Dr. Jane Smith"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "Feedback der Lernenden"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"Toller Kurs! Der Inhalt war gut strukturiert und der Dozent erklärte "
+"komplexe Konzepte klar und deutlich."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"Sehr praxisorientierter Kurs mit Beispielen aus der Praxis. Ich habe bereits"
+" begonnen, die Strategien in meiner Arbeit anzuwenden."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "Fortgeschrittenes Arabisch"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "Häufige Themen im Feedback"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "Positive ganze Zahl"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "Anschauliche Erklärungen zu komplexen Themen"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "Praktische Beispiele aus der Praxis"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "Ausbilder"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "Gut strukturierte Kursinhalte"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "Hilfreiche Tests und Aufgaben"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "Bereiche mit Verbesserungspotenzial"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "Weitere interaktive Elemente"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "Zusätzliche Übungsaufgaben"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "Schnellere Antwort auf Fragen"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "Auf Kursmaterialien kann nicht zugegriffen werden"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "Fortgeschrittenes Arabisch"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "Start"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "Start"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "Start"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "Start"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "Start"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "Anzahl der Kurse"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr ""
+"Umfassende Einblicke in die Systemressourcennutzung und die Beliebtheit von "
+"Inhalten"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "Gesamtnachrichten"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "Gesamtumsatz"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "Durchschn. Ansprechzeit"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "Trend zur Speichernutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "Verwalten Sie Support-Tickets und greifen Sie auf Ressourcen zu"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "Zugriffsanzahl"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "Letzter Zugriff"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "Einführung in die KI"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "Spickzettel für Datenstrukturen"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "Fortgeschrittenes Arabisch"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "Grundlagen der Webentwicklung"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "Größe"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "Logo hochladen"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "Downloads"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "Grundlagen der Datenwissenschaft"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "Teilnehmer zuweisen"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "UI/UX-Design"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "Verwendeter Speicher (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "Fälligkeitstermine der Aufgaben"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "Andere"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "Ressourcennutzung"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "Benutzerinteraktion"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr "Umfassende Einblicke in Benutzeraktivität und Plattforminteraktion"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "Letzte 30 Tage"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "Durchschn. Täglich aktive Benutzer"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "Durchschn. Sitzungsdauer"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "Benutzerbindungsrate"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "Täglicher Trend zu aktiven Benutzern"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "Gesamtzahl der Benutzer"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "45 Stunden diesen Monat"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "Jane Smith"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "38 Stunden diesen Monat"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "Verteilung der Funktionsnutzung"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "Benutzerinteraktion"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "Aktuelle Aktivitäten"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "Emily Brown"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "Abgeschlossene Lektion: Einführung in JavaScript"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "Alex Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "Beginn eines neuen Kurses „Erweiterte Datenanalyse“"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "Vor 1 Tag"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "Sarah Lee"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "Gepostet im Diskussionsforum „Marketingstrategien“"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "Vor 2 Stunden"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "Benutzerinteraktion"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "Gesamtpunktzahl"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "Aktuelle Aktivitäten"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "Forumbeiträge"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "Aktiv"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "Engagement"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "David Miller"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "Emma Wilson"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "Aktive Kurse"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "Besuchen Sie das Forum"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "Aktive Sitzungen"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "Durchschn. Engagement-Rate"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "Benutzerfortschritt"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr ""
+"Detaillierte Einblicke in den Fortschritt und die Leistung einzelner "
+"Lernender"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "Gesamtzahl der Benutzer"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "Durchschn. Kurse pro Benutzer"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "Durchschn. Ansprechzeit"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "Kurse suchen..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "Fortschritt"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "Benutzerfortschritt"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "Top-Performer"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "Letzte Aktivität"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "Abgeschlossene Lektion: Einführung in JavaScript"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "Begonnener Kurs: Fortgeschrittene Datenanalyse"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "Aufgabe eingereicht"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "Benutzerinteraktion"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "Benutzerfortschritt"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "Abgeschlossene Kurse"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "Fortschritt"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "Lernzeit (letzte 7 Tage)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "Anzahl der Kurse"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "Video-Lektionen"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2922,6 +5225,7 @@ msgid "API Key"
 msgstr "API-Schlüssel"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "Videokonferenzintegration"
 
@@ -2940,14 +5244,6 @@ msgstr "Seitenleiste"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "Kategorien"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Anmeldungen"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "Lernpfad"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -2970,32 +5266,8 @@ msgid "Course Completion"
 msgstr "Kursabschluss"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "Benutzerfortschritt"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "Bewertungsergebnisse"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "Benutzerinteraktion"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "Ressourcennutzung"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "Zertifizierungsverfolgung"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "Feedback der Lernenden"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "Benutzerdefinierte Berichte"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3005,9 +5277,65 @@ msgstr "Abrechnung"
 msgid "Logout"
 msgstr "Abmelden"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "LMS der nächsten Generation"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "Willkommen zurück"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "Melden Sie sich bei Ihrem NextGen LMS-Konto an"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "E-Mail-Adresse"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "Passwortrichtlinie"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "Dezember"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "Passwort vergessen?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "Einloggen"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "Sie haben kein Konto?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "Administratoren"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "Zurück nach Hause"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "Kursdetails – Richtlinie zur Bekämpfung von Bestechung und Korruption"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "Kurseinstellungen"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3022,10 +5350,6 @@ msgstr "Unverzichtbare Compliance-Schulung für alle Mitarbeiter"
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Meine Kurse"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "Kursübersicht"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3079,20 +5403,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "Bestechungsrisiken erkennen"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "Video"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "Betrachten"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "Antikorruptionsrichtlinie des Unternehmens"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "Dokumentieren"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3103,16 +5419,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "Fallstudien: Ethische Entscheidungsfindung"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "Präsentation"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "Bewertung der Bekämpfung von Bestechung und Korruption"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "Quiz"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3179,10 +5487,6 @@ msgid "Courses in Progress"
 msgstr "Laufende Kurse"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "Abgeschlossene Kurse"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "Erhaltene Zertifikate"
 
@@ -3239,16 +5543,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Abgeschlossene Lektion: Einführung in JavaScript"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "Vor 2 Stunden"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "Erworbenes Zertifikat: HTML- und CSS-Grundlagen"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "Vor 1 Tag"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3322,6 +5618,585 @@ msgstr "2,5 Stunden"
 msgid "4 modules"
 msgstr "4 Module"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS – Revolutionieren Sie Ihr Lernen"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "Nächste"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "Merkmale"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "Integrationen"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "Erfahrungsberichte"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "Preise"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "Login"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "Revolutionieren Sie das Lernen"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "mit"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "LMS der nächsten Generation"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"Nutzen Sie die Kraft innovativer Technologie, um personalisierte "
+"Lernerlebnisse zu schaffen, die Bereitstellung von Inhalten zu optimieren "
+"und ein beispielloses Engagement in der Unternehmensschulung zu fördern."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "Erleben Sie die Zukunft"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "Modernste Funktionen"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "Lernpfad"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"Unsere Algorithmen analysieren das Verhalten und die Leistung der Lernenden,"
+" um personalisierte Lernreisen zu erstellen und so eine optimale "
+"Kompetenzentwicklung sicherzustellen."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "Fortgeschrittenes Arabisch"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"Nutzen Sie datengesteuerte Erkenntnisse, um Lernergebnisse vorherzusagen, "
+"potenzielle Herausforderungen zu identifizieren und proaktiv einzugreifen, "
+"um bessere Ergebnisse zu erzielen."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "Immersives VR-Training"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"Integrieren Sie Virtual-Reality-Erlebnisse für praxisnahe, risikofreie "
+"Schulungen in komplexen oder anspruchsvollen Szenarien."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "Erweiterte Unternehmensfunktionen"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "Flexible Bereitstellung"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Bereitstellung auf jeder Cloud-Plattform (AWS, Azure, DigitalOcean) oder vor"
+" Ort, einschließlich Windows Server-Unterstützung."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "Multi-Tenant-Architektur"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"Verwalten Sie mehrere Organisationen sicher in einer einzigen Instanz und "
+"stellen Sie dabei Datenisolation und -anpassung sicher."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "Mehrsprachiger Support"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "Verfügbar in über 30 Sprachen, darunter:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "Arabisch - Hallo"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "Englisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "Spanisch - Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "Französisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "Deutsch - Willkommen"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "Chinesisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "Japanisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "Italienisch - Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "Russisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "Portugiesisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "Hindi – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "Koreanisch – Willkommen"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "Nahtlose Integration mit gängigen Plattformen:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "Zoom"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "Google-Client-ID"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "Microsoft-Teams"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "Lernpfad"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"Erstellen Sie individuelle Lernreisen mit aufeinanderfolgenden Kursen, "
+"Voraussetzungen und verzweigten Pfaden."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "Ankündigungsmanagement"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"Robustes CMS mit SCORM-Unterstützung, mehreren Medientypen und einem "
+"intuitiven Dateimanager."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "Modernster Technologie-Stack"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "Python"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "Django"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "Docker"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "Rückenwindcss"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "WebSockets"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "Erweiterte Einstellungen"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "Innovativer Lernansatz"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "Erstellen Sie eine Kurslieferung"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"Unsere intelligente Engine passt den Schwierigkeitsgrad und die Präsentation"
+" des Inhalts dynamisch an die Echtzeitleistung der Lernenden an und sorgt so"
+" für ein optimales Herausforderungsniveau für jeden Einzelnen."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "Personalisierte Lerngeschwindigkeit"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "Adaptive Bewertungstechniken"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "Intelligente Inhaltsempfehlungen"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "Adaptive Lernvisualisierung"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "Erfolgsgeschichten"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "Kunden-Avatar"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "Sarah Johnson"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "HR-Direktor, TechCorp"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS hat unsere Unternehmensschulung verändert. Die "
+"personalisierten Lernpfade und prädiktiven Analysen haben das Engagement und"
+" die Leistung der Mitarbeiter deutlich verbessert. Wir haben eine Steigerung"
+" der Kursabschlussquoten um 40 % und eine Verbesserung der Wissenserhaltung "
+"um 25 % festgestellt."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "Mark Thompson"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "L&D-Manager, InnovateNow"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"Die KI-gestützten Erkenntnisse von NextGen AI LMS haben unseren Ansatz zur "
+"Mitarbeiterentwicklung revolutioniert. Wir können jetzt Qualifikationslücken"
+" proaktiv identifizieren und unsere Schulungsprogramme mit beispielloser "
+"Präzision anpassen. Die Produktivität unseres Teams ist seit der "
+"Implementierung dieses hochmodernen Systems um 30 % gestiegen."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "Flexible Abonnementpläne"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "Start"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "Monat"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "Bis zu 500 Benutzer"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "Grundlegende Details"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "Personalisierte Lernpfade"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "Chatbot-Support rund um die Uhr"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "Leitfaden „Erste Schritte“."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "Die beliebtesten Kurse"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Professional"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "Bis zu 2.000 Benutzer"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "Erweiterte Analysen und Vorhersagen"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "Automatisierte Inhaltsempfehlungen"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "VR-Trainingsmodule"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "Bericht drucken"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "Upgrade auf Pro"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "Unternehmen"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "Benutzerdefinierte Berichte"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "Unbegrenzte Benutzer"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "Vollständige Integration des LMS-Ökosystems"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "Individuelle Modellentwicklung"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "Erweiterte VR- und AR-Funktionen"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "Dedizierter Account Manager"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "Kontaktieren Sie den Vertrieb"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "Sind Sie bereit, Ihre Lernerfahrung zu verändern?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"Schöpfen Sie mit unserem innovativen Lernmanagementsystem das volle "
+"Potenzial der Talente Ihres Unternehmens aus."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "Fordern Sie eine Demo an"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "Mit innovativer Technologie die Zukunft des Lernens stärken."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 Tech Street, San Francisco, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "Telefon: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "E-Mail: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Quicklinks"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "Heim"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "Kontakt"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "Über uns"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "Hilfe und Support"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "Passwortrichtlinie"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "Nutzungsbedingungen"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "Cookie-Richtlinie"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "Hilfe- und Supportcenter"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Systemaktualisierungen"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "Verbinden Sie sich mit uns"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "Ihre E-Mail"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. Alle Rechte vorbehalten."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "Sie haben sich erfolgreich angemeldet."
@@ -3329,3 +6204,9 @@ msgstr "Sie haben sich erfolgreich angemeldet."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Fehler bei der Anmeldung. Bitte überprüfen Sie die Fehler unten."
+
+#~ msgid "Language menu opened!"
+#~ msgstr "Sprachmenü geöffnet!"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Kursdetails – Richtlinie zur Bekämpfung von Bestechung und Korruption"

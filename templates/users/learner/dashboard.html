@@ -6,17 +6,6 @@
 
 {% block extra_css %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f0f4f8;
-    }
-
-    .gradient-bg {
-        background: linear-gradient(135deg, #3b82f6, #60a5fa);
-    }
-
     .card-shadow {
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
@@ -241,8 +230,9 @@
         </ul>
     </div>
 </div>
+{% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+{% block extra_js %}
 <script>
     // Learning Progress Chart
     var ctx = document.getElementById('learningProgressChart').getContext('2d');

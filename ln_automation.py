@@ -6,10 +6,14 @@ import re
 import chardet
 import unicodedata
 import codecs
-from langdetect import detect
+
+# List of language codes
+languages = [
+    'en', 'ar', 'fr', 'de', 'ja', 'hi', 'es', 'pt', 'ru', 'it', 'ko', 'nl', 'tr', 'pl', 'sv', 'da', 'fi', 'el', 'he', 'th', 'vi', 'id', 'bn', 'ta', 'te', 'kn', 'pa', 'mr', 'ml'
+]
 
 def detect_encoding(file_path):
-    encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii', 'big5', 'gb2312', 'gbk']
+    encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii']
     for enc in encodings:
         try:
             with codecs.open(file_path, 'r', encoding=enc) as file:
@@ -27,7 +31,7 @@ def sanitize_string(s):
     return ''.join(ch for ch in s if unicodedata.category(ch)[0] != 'C')
 
 def unicode_escape(s):
-    return s.encode('unicode-escape').decode('ascii')
+    return ''.join('\\U{:08x}'.format(ord(c)) if ord(c) > 0xFFFF else c for c in s)
 
 def translate_po_file(input_file, target_lang):
     encoding = detect_encoding(input_file)
@@ -50,17 +54,13 @@ def translate_po_file(input_file, target_lang):
                 # Preserve format specifiers
                 placeholders = re.findall(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', entry.msgid)
                 sanitized_msgid = sanitize_string(re.sub(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', '{}', entry.msgid))
-                
-                # Detect source language
-                source_lang = detect(sanitized_msgid)
-                
-                translated = translator.translate(sanitized_msgid, src=source_lang, dest=target_lang).text
+                translated = translator.translate(sanitized_msgid, dest=target_lang).text
                 
                 # Reinsert placeholders
                 for i, placeholder in enumerate(placeholders):
                     translated = translated.replace('{}', placeholder, 1)
                 
-                entry.msgstr = translated
+                entry.msgstr = unicode_escape(translated)
                 print(f"Translated '{entry.msgid}' to '{entry.msgstr}'")
             except Exception as e:
                 print(f"Error translating '{entry.msgid}': {str(e)}")
@@ -76,21 +76,22 @@ def compile_messages():
         print(f"Error compiling messages: {e}")
         print(e.output)
 
-def main(target_lang):
-    locale_path = os.path.join('locale', target_lang, 'LC_MESSAGES')
-    os.makedirs(locale_path, exist_ok=True)
+def main():
+    for target_lang in languages:
+        locale_path = os.path.join('locale', target_lang, 'LC_MESSAGES')
+        os.makedirs(locale_path, exist_ok=True)
 
-    try:
-        subprocess.run(["django-admin", "makemessages", "-l", target_lang, "--add-location", "file"], check=True)
-        print(f"Message file for {target_lang} created/updated successfully.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error creating/updating message file: {e}")
-        return
+        try:
+            subprocess.run(["django-admin", "makemessages", "-l", target_lang, "--add-location", "file"], check=True)
+            print(f"Message file for {target_lang} created/updated successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Error creating/updating message file: {e}")
+            continue
 
-    po_file = os.path.join(locale_path, 'django.po')
-    translate_po_file(po_file, target_lang)
+        po_file = os.path.join(locale_path, 'django.po')
+        translate_po_file(po_file, target_lang)
+    
     compile_messages()
 
 if __name__ == "__main__":
-    target_language = 'zh-tw'  # Changed to lowercase with hyphen
-    main(target_language)
+    main()

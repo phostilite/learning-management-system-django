@@ -4,11 +4,9 @@
 {% block title %}Dashboard - LMS Supervisor{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/supervisor/dashboard.css' %}">
 {% endblock %}
 
 {% block content %}
-
 <div class="">
     <h1 class="text-3xl font-bold mb-6 text-purple-800">Supervisor Dashboard</h1>
     
@@ -112,7 +110,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
     // Department Performance Chart
     const deptCtx = document.getElementById('departmentChart').getContext('2d');
@@ -190,5 +190,4 @@
         }
     });
 </script>
-
 {% endblock %}

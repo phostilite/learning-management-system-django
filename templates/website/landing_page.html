@@ -1,0 +1,721 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "NextGen AI LMS - Revolutionize Your Learning" %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(45deg, #00f2fe, #4facfe);
+        }
+        .full-screen {
+            min-height: 100vh;
+            width: 100%;
+        }
+        #particles-js, #feature-particles, #tech-particles, #ai-particles, #pricing-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        
+        .language-scroll {
+            animation: scroll 20s linear infinite;
+        }
+        
+        .language-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        .language-dropdown {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .language-dropdown::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .language-dropdown::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .language-dropdown::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        .language-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 bg-gray-900">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gradient">
+                    {% trans "NextGen" %}<span class="text-blue-500">{% trans "LMS" %}</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-gray-300 hover:text-blue-500 transition duration-300">{% trans "Features" %}</a>
+                    <a href="#innovation" class="text-gray-300 hover:text-blue-500 transition duration-300">{% trans "Innovation" %}</a>
+                    <a href="#testimonials" class="text-gray-300 hover:text-blue-500 transition duration-300">{% trans "Testimonials" %}</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-blue-500 transition duration-300">{% trans "Pricing" %}</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'login' %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">{% trans "Login" %}</a>
+                    <div class="relative">
+                        <button type="button" class="flex items-center text-sm bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white px-3 py-2" id="language-menu-button" aria-expanded="false">
+                            <span class="mr-2">{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}</span>
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="p-2">
+                                <input type="text" id="language-search" class="w-full px-3 py-2 border rounded-md" placeholder="{% trans 'Search language...' %}">
+                            </div>
+                            <form action="{% url 'set_language' %}" method="post" id="language-form">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}">
+                                <ul class="py-1 max-h-60 overflow-y-auto" id="language-list">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <li>
+                                            <button type="submit" name="language" value="{{ language.code }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {% if language.code == LANGUAGE_CODE %}bg-gray-200{% endif %}">
+                                                {{ language.name_local }} ({{ language.code }})
+                                            </button>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="full-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+            <div id="particles-js"></div>
+            <div class="content-wrapper text-center px-4">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight" data-aos="fade-up">
+                    {% trans "Revolutionize Learning" %}<br>{% trans "with" %} <span class="text-gradient">{% trans "NextGen LMS" %}</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    {% trans "Harness the power of innovative technology to create personalized learning experiences, optimize content delivery, and drive unprecedented engagement in corporate training." %}
+                </p>
+                <a href="#demo" class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 inline-block" data-aos="fade-up" data-aos-delay="400">
+                    {% trans "Experience the Future" %}
+                </a>
+            </div>
+        </section>
+
+        <section id="features" class="full-screen bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Cutting-Edge Features" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up">
+                        <i class="fas fa-route text-6xl text-blue-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "Adaptive Learning Paths" %}</h3>
+                        <p class="text-gray-300">{% trans "Create personalized learning journeys based on user performance and goals, ensuring optimal skill development for each learner." %}</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-chart-bar text-6xl text-green-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "Comprehensive Analytics" %}</h3>
+                        <p class="text-gray-300">{% trans "Gain valuable insights into learner progress, course effectiveness, and overall training impact with our powerful reporting tools." %}</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-robot text-6xl text-purple-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "AI-Powered Recommendations" %}</h3>
+                        <p class="text-gray-300">{% trans "Leverage machine learning algorithms to suggest relevant courses and resources based on learner interests and performance." %}</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up">
+                        <i class="fas fa-comments text-6xl text-yellow-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "Interactive Discussions" %}</h3>
+                        <p class="text-gray-300">{% trans "Foster collaboration and knowledge sharing through built-in forums, chat rooms, and group projects." %}</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-mobile-alt text-6xl text-red-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "Mobile Learning" %}</h3>
+                        <p class="text-gray-300">{% trans "Access courses and materials on-the-go with our responsive design and dedicated mobile app for iOS and Android." %}</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 p-8 rounded-lg shadow-xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-certificate text-6xl text-teal-400 mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">{% trans "Gamification & Certificates" %}</h3>
+                        <p class="text-gray-300">{% trans "Increase engagement with achievement badges, leaderboards, and automated certificate generation upon course completion." %}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced-features" class="full-screen bg-gray-900 flex items-center justify-center relative overflow-hidden">
+            <div id="feature-particles"></div>
+            <div class="content-wrapper container mx-auto px-6 z-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Advanced Enterprise Features" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-server text-4xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Flexible Deployment" %}</h3>
+                            <p class="text-gray-300">{% trans "Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, including Windows Server support." %}</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-building text-4xl text-green-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Multi-Tenant Architecture" %}</h3>
+                            <p class="text-gray-300">{% trans "Securely manage multiple organizations within a single instance, ensuring data isolation and customization." %}</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-language text-4xl text-purple-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Multilingual Support" %}</h3>
+                            <p class="text-gray-300 mb-4">{% trans "Available in 30+ languages, including:" %}</p>
+                            <div class="w-full h-24 overflow-hidden relative">
+                                <ul class="language-scroll absolute w-full text-gray-400 space-y-2" id="languageList">
+                                    <li>🇸🇦 {% trans "العربية - مرحبا" %}</li>
+                                    <li>🇺🇸 {% trans "English - Welcome" %}</li>
+                                    <li>🇪🇸 {% trans "Español - Bienvenido" %}</li>
+                                    <li>🇫🇷 {% trans "Français - Bienvenue" %}</li>
+                                    <li>🇩🇪 {% trans "Deutsch - Willkommen" %}</li>
+                                    <li>🇨🇳 {% trans "中文 - 欢迎" %}</li>
+                                    <li>🇯🇵 {% trans "日本語 - ようこそ" %}</li>
+                                    <li>🇮🇹 {% trans "Italiano - Benvenuto" %}</li>
+                                    <li>🇷🇺 {% trans "Русский - Добро пожаловать" %}</li>
+                                    <li>🇵🇹 {% trans "Português - Bem-vindo" %}</li>
+                                    <li>🇮🇳 {% trans "हिंदी - स्वागत है" %}</li>
+                                    <li>🇰🇷 {% trans "한국어 - 환영합니다" %}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-video text-4xl text-red-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Video Conferencing Integration" %}</h3>
+                            <p class="text-gray-300">{% trans "Seamless integration with popular platforms:" %}</p>
+                            <ul class="text-gray-300 mt-2 space-y-2">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>{% trans "Zoom" %}</li>
+                                <li><i class="fas fa-check text-blue-500 mr-2"></i>{% trans "Google Meet" %}</li>
+                                <li><i class="fas fa-check text-purple-500 mr-2"></i>{% trans "Microsoft Teams" %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-route text-4xl text-yellow-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Learning Paths" %}</h3>
+                            <p class="text-gray-300">{% trans "Create customized learning journeys with sequential courses, prerequisites, and branching paths." %}</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm h-full" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex flex-col items-center text-center h-full justify-between">
+                            <i class="fas fa-cube text-4xl text-red-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Content Management System" %}</h3>
+                            <p class="text-gray-300">{% trans "Robust CMS with SCORM support, multiple media types, and an intuitive file manager." %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tech-stack" class="full-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+            <div id="tech-particles"></div>
+            <div class="content-wrapper container mx-auto px-6 z-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Cutting-Edge Technology Stack" %}</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in">
+                        <i class="fab fa-python text-6xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "Python" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="{% static 'img/dj.png' %}" alt="{% trans 'Django' %}" class="mb-4" style="width: 60px; height: 60px; object-fit: contain;">
+                        <h3 class="text-xl font-semibold">{% trans "Django" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-database text-6xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "PostgreSQL" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fab fa-docker text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "Docker" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="400">
+                        <svg class="mx-auto mb-4" width="60" height="60" viewBox="0 0 256 154" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                            <defs>
+                                <linearGradient x1="-2.778%" y1="32%" x2="100%" y2="67.556%" id="a">
+                                    <stop stop-color="#2298BD" offset="0%"/>
+                                    <stop stop-color="#0ED7B5" offset="100%"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M128 0C93.867 0 72.533 17.067 64 51.2 76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0zM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2 9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2-12.8 17.067-27.733 23.467-44.8 19.2-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8z" fill="url(#a)"/>
+                        </svg>
+                        <h3 class="text-xl font-semibold">{% trans "Tailwindcss" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="500">
+                        <i class="fab fa-js text-6xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "JavaScript" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="600">
+                        <i class="fas fa-network-wired text-6xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "WebSockets" %}</h3>
+                    </div>
+                    <div class="p-4 flex flex-col items-center" data-aos="zoom-in" data-aos-delay="700">
+                        <i class="fas fa-shield-alt text-6xl text-red-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold">{% trans "Advanced Security" %}</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="innovation" class="full-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+            <div id="innovation-particles"></div>
+            <div class="content-wrapper container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Innovative Learning Approach" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <h3 class="text-3xl font-semibold mb-6">{% trans "Adaptive Content Delivery" %}</h3>
+                        <p class="text-xl text-gray-300 mb-8">{% trans "Our smart engine dynamically adjusts content difficulty and presentation based on real-time learner performance, ensuring an optimal challenge level for each individual." %}</p>
+                        <ul class="text-gray-300 space-y-4">
+                            <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> {% trans "Personalized learning speed" %}</li>
+                            <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> {% trans "Adaptive assessment techniques" %}</li>
+                            <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> {% trans "Intelligent content recommendations" %}</li>
+                        </ul>
+                    </div>
+                    <div class="relative" data-aos="fade-left">
+                        <div id="image-carousel" class="w-full h-96 bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
+                            <img src="{% static 'images/innovation/one.jpg' %}" alt="{% trans 'Innovative learning visualization' %}" class="w-full h-full object-cover opacity-50 transition-opacity duration-500">
+                        </div>
+                        <div id="carousel-indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials" class="full-screen bg-gray-900 flex items-center justify-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Success Stories" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl" data-aos="fade-up">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-circle text-4xl text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold">{% trans "Sarah Johnson" %}</h4>
+                                <p class="text-gray-400">{% trans "HR Director, TechCorp" %}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">{% trans "NextGen LMS has streamlined our corporate training process. The intuitive interface and customizable learning paths have made it easy for our employees to engage with the content. We've seen a noticeable improvement in course completion rates and positive feedback from our team." %}</p>
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-tie text-4xl text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold">{% trans "Mark Thompson" %}</h4>
+                                <p class="text-gray-400">{% trans "L&D Manager, InnovateNow" %}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">{% trans "Implementing NextGen LMS has transformed our approach to employee development. The platform's robust reporting tools have given us valuable insights into our training programs' effectiveness. We can now make data-driven decisions to improve our content and delivery methods." %}</p>
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pricing" class="full-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+            <div id="pricing-particles"></div>
+            <div class="content-wrapper container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">{% trans "Flexible Subscription Plans" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+                    <div class="bg-gray-800 p-8 rounded-lg text-center relative overflow-hidden" data-aos="fade-up">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-blue-500"></div>
+                        <h3 class="text-2xl font-semibold mb-4">{% trans "Starter" %}</h3>
+                        <p class="text-xl mb-6">{% trans "Perfect for small teams" %}</p>
+                        <ul class="text-gray-300 mb-8 text-left">
+                            <li class="mb-2"><i class="fas fa-check text-blue-500 mr-2"></i> {% trans "Up to 500 users" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-blue-500 mr-2"></i> {% trans "Basic analytics" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-blue-500 mr-2"></i> {% trans "Personalized learning paths" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-blue-500 mr-2"></i> {% trans "24/7 chatbot support" %}</li>
+                        </ul>
+                        <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-full inline-block hover:bg-blue-700 transition duration-300">{% trans "Contact Sales" %}</a>
+                    </div>
+                    <div class="bg-blue-600 p-8 rounded-lg text-center relative overflow-hidden transform scale-105 shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-yellow-400"></div>
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase">{% trans "Most Popular" %}</span>
+                        <h3 class="text-2xl font-semibold mb-4">{% trans "Professional" %}</h3>
+                        <p class="text-xl mb-6">{% trans "Ideal for growing organizations" %}</p>
+                        <ul class="text-gray-100 mb-8 text-left">
+                            <li class="mb-2"><i class="fas fa-check text-yellow-400 mr-2"></i> {% trans "Up to 2,000 users" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-yellow-400 mr-2"></i> {% trans "Advanced analytics & predictions" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-yellow-400 mr-2"></i> {% trans "Automated content recommendations" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-yellow-400 mr-2"></i> {% trans "Priority support" %}</li>
+                        </ul>
+                        <a href="#contact" class="bg-yellow-400 text-blue-900 px-6 py-3 rounded-full inline-block hover:bg-yellow-300 transition duration-300 font-semibold">{% trans "Contact Sales" %}</a>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg text-center relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-purple-500"></div>
+                        <h3 class="text-2xl font-semibold mb-4">{% trans "Enterprise" %}</h3>
+                        <p class="text-xl mb-6">{% trans "Tailored for large enterprises" %}</p>
+                        <ul class="text-gray-300 mb-8 text-left">
+                            <li class="mb-2"><i class="fas fa-check text-purple-500 mr-2"></i> {% trans "Unlimited users" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-purple-500 mr-2"></i> {% trans "Full LMS ecosystem integration" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-purple-500 mr-2"></i> {% trans "Custom model development" %}</li>
+                            <li class="mb-2"><i class="fas fa-check text-purple-500 mr-2"></i> {% trans "Dedicated account manager" %}</li>
+                        </ul>
+                        <a href="#contact" class="bg-purple-600 text-white px-6 py-3 rounded-full inline-block hover:bg-purple-700 transition duration-300">{% trans "Contact Sales" %}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cta" class="py-20 bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center text-center relative">
+            <div class="container mx-auto px-6 relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8 text-gradient" data-aos="fade-up">{% trans "Ready to Transform Your Learning Experience?" %}</h2>
+                <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-gray-300" data-aos="fade-up" data-aos-delay="200">
+                    {% trans "Unlock the full potential of your organization's talent with our innovative learning management system." %}
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#demo" class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-laptop-code mr-2"></i> {% trans "Request a Demo" %}
+                    </a>
+                    <a href="#contact" class="bg-transparent border-2 border-blue-500 text-blue-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-500 hover:text-white transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-headset mr-2"></i> {% trans "Contact Sales" %}
+                    </a>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-gray-900"></div>
+        </section>
+        </main>
+        
+        <footer class="bg-gray-900 text-white py-16">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">{% trans "NextGen" %}<span class="text-blue-500">{% trans "LMS" %}</span></h3>
+                        <p class="text-gray-400 mb-4">{% trans "Empowering the future of learning with innovative technology." %}</p>
+                        <p class="text-gray-400">{% trans "123 Tech Street, San Francisco, CA 94105" %}</p>
+                        <p class="text-gray-400">{% trans "Phone: (555) 123-4567" %}</p>
+                        <p class="text-gray-400">{% trans "Email: info@lms.com" %}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">{% trans "Quick Links" %}</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Home" %}</a></li>
+                            <li><a href="#features" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Features" %}</a></li>
+                            <li><a href="#pricing" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Pricing" %}</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Contact" %}</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "About Us" %}</a></li>
+                            <li><a href="#blog" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Blog" %}</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">{% trans "Legal & Support" %}</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Privacy Policy" %}</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Terms of Service" %}</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Cookie Policy" %}</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "FAQ" %}</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "Support Center" %}</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300">{% trans "System Status" %}</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">{% trans "Connect With Us" %}</h4>
+                        <div class="flex space-x-4 mb-4">
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-blue-500 transition duration-300"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-4">{% trans "Newsletter" %}</h4>
+                        <form class="flex flex-col space-y-2">
+                            <input type="email" placeholder="{% trans 'Your email' %}" class="bg-gray-800 text-white px-4 py-2 rounded">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">{% trans "Subscribe" %}</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                    <p class="text-gray-400">{% trans "© 2024 NextGen LMS. All rights reserved." %}</p>
+                </div>
+            </div>
+        </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Particles.js configurations
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        particlesJS("ai-particles", {
+            // Similar configuration as above, but with different colors and settings
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f2fe" },
+                shape: { type: "triangle" },
+                opacity: { value: 0.7, random: true },
+                size: { value: 4, random: true },
+                line_linked: { enable: true, distance: 150, color: "#4facfe", opacity: 0.6, width: 1 },
+                move: { enable: true, speed: 4, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+                modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        particlesJS("feature-particles", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        particlesJS("tech-particles", {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f2fe" },
+                shape: { type: "triangle" },
+                opacity: { value: 0.7, random: true },
+                size: { value: 4, random: true },
+                line_linked: { enable: true, distance: 150, color: "#4facfe", opacity: 0.6, width: 1 },
+                move: { enable: true, speed: 4, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+                modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        particlesJS("pricing-particles", {
+            // Another variation for the pricing section
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 2, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2, direction: "top", random: true, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "repulse" } },
+                modes: { bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 }, repulse: { distance: 400, duration: 0.4 } }
+            },
+            retina_detect: true
+        });
+
+        // Anime.js animations
+        anime({
+            targets: '.text-gradient',
+            backgroundPosition: ['0% 50%', '100% 50%'],
+            easing: 'easeInOutQuad',
+            duration: 5000,
+            loop: true,
+            direction: 'alternate'
+        });
+
+        // Scroll animations
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            anime({
+                targets: '#particles-js',
+                translateY: scrollPosition * 0.3,
+                duration: 0,
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const languageList = document.getElementById('languageList');
+            const clonedList = languageList.cloneNode(true);
+            languageList.appendChild(clonedList.childNodes);
+        });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+    
+        const languageButton = document.getElementById('language-menu-button');
+        const languageDropdown = document.getElementById('language-dropdown');
+        const languageSearch = document.getElementById('language-search');
+        const languageList = document.getElementById('language-list');
+        
+        if (!languageButton || !languageDropdown) {
+            console.error('Language button or dropdown not found');
+            return;
+        }
+    
+        console.log('Language elements found');
+    
+        languageButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            console.log('Language button clicked');
+            languageDropdown.classList.toggle('hidden');
+            console.log('Dropdown visibility toggled');
+        });
+    
+        document.addEventListener('click', function(event) {
+            if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+                languageDropdown.classList.add('hidden');
+            }
+        });
+    
+        if (languageSearch) {
+            languageSearch.addEventListener('input', function() {
+                const searchValue = this.value.toLowerCase();
+                const languageItems = languageList.querySelectorAll('button');
+                languageItems.forEach(function(item) {
+                    const languageName = item.textContent.toLowerCase();
+                    item.parentElement.style.display = languageName.includes(searchValue) ? 'block' : 'none';
+                });
+            });
+        }
+    
+        if (languageList) {
+            languageList.addEventListener('click', function(event) {
+                if (event.target.tagName === 'BUTTON') {
+                    document.getElementById('language-form').submit();
+                }
+            });
+        }
+    });
+    </script>
+    <script>
+        const images = [
+            "{% static 'img/innovation/two.jpg' %}",
+            "{% static 'img/innovation/three.jpg' %}",
+            "{% static 'img/innovation/four.jpg' %}",
+            "{% static 'img/innovation/five.jpg' %}",
+            "{% static 'img/innovation/six.jpg' %}",
+            "{% static 'img/innovation/seven.jpg' %}",
+            "{% static 'img/innovation/eight.jpg' %}",
+            "{% static 'img/innovation/nine.jpg' %}",
+        ];
+        
+        const carousel = document.getElementById('image-carousel');
+        const indicators = document.getElementById('carousel-indicators');
+        let currentIndex = 0;
+    
+        function createIndicators() {
+            images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('w-2', 'h-2', 'rounded-full', 'bg-gray-400', 'cursor-pointer');
+                dot.addEventListener('click', () => setImage(index));
+                indicators.appendChild(dot);
+            });
+        }
+    
+        function setImage(index) {
+            const img = carousel.querySelector('img');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = images[index];
+                img.style.opacity = '0.5';
+            }, 500);
+            
+            indicators.children[currentIndex].classList.remove('bg-blue-500');
+            indicators.children[index].classList.add('bg-blue-500');
+            currentIndex = index;
+        }
+    
+        function nextImage() {
+            setImage((currentIndex + 1) % images.length);
+        }
+    
+        createIndicators();
+        setImage(0);
+        setInterval(nextImage, 5000);
+    
+        // Initialize AOS (if you're using it)
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true,
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,9 +1,8 @@
 {% extends '../_base.html' %}
-{% block content %}
 {% load static %}
 {% load custom_filters %}
 
-
+{% block extra_css %}
 <style>
     .loader {
         border: 5px solid #f3f3f3;
@@ -18,8 +17,10 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-    </style>
-    
+</style>
+{% endblock %}
+
+{% block content %}
 <div class="bg-white rounded-lg card-shadow p-8">
     <h1 class="text-4xl font-bold text-primary mb-8">Create a New Course</h1>
     <form method="post" enctype="multipart/form-data" id="course-form">
@@ -175,8 +176,9 @@
         <div class="text-gray-300 text-lg mt-2">This may take a moment</div>
     </div>
 </div>
+{% endblock %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+{% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const container = document.getElementById('learning-resources-container');

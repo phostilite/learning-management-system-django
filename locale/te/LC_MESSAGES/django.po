@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-16 15:22+0530\n"
+"POT-Creation-Date: 2024-08-19 00:03+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,6 +334,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuu] ఆకృతిలో ఉండాలి."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "వ్యవధి"
 
@@ -622,12 +623,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "ఆర్డర్ చేయండి"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "తొలగించు"
 
@@ -796,36 +800,43 @@ msgstr "ఆదివారం"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Mon"
 msgstr "నా"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Tue"
 msgstr "మంగళ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Wed"
 msgstr "బుధ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Thu"
 msgstr "సేకరించండి"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Fri"
 msgstr "శుక్ర"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sat"
 msgstr "శని"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Sun"
 msgstr "సూర్యుడు"
 
@@ -846,6 +857,12 @@ msgid "April"
 msgstr "ఏప్రిల్"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "May"
 msgstr "మే"
 
@@ -1366,10 +1383,6 @@ msgid "Finnish"
 msgstr "ఫిన్నిష్"
 
 #: lms/settings.py
-msgid "Norwegian"
-msgstr "నార్వేజియన్"
-
-#: lms/settings.py
 msgid "Greek"
 msgstr "గ్రీకు"
 
@@ -1397,6 +1410,26 @@ msgstr "బెంగాలీ"
 msgid "Tamil"
 msgstr "తమిళం"
 
+#: lms/settings.py
+msgid "Telugu"
+msgstr "తెలుగు"
+
+#: lms/settings.py
+msgid "Kannada"
+msgstr "కన్నడ"
+
+#: lms/settings.py
+msgid "Punjabi"
+msgstr "పంజాబీ"
+
+#: lms/settings.py
+msgid "Marathi"
+msgstr "మరాఠీ"
+
+#: lms/settings.py
+msgid "Malayalam"
+msgstr "మలయాళం"
+
 #: templates/users/administrator/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "ప్రకటనలు - LMS అడ్మిన్"
@@ -1414,6 +1447,8 @@ msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటన�
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
@@ -1477,12 +1512,14 @@ msgstr "నిర్వహణ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "అన్ని స్థితిగతులు"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Active"
 msgstr "చురుకుగా"
 
@@ -1499,16 +1536,22 @@ msgid "Export Report"
 msgstr "ఎగుమతి నివేదిక"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "శీర్షిక"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
 msgid "Category"
 msgstr "వర్గం"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
 msgstr "స్థితి"
@@ -1528,8 +1571,16 @@ msgstr "నిశ్చితార్థం"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Actions"
 msgstr "చర్యలు"
 
@@ -1553,6 +1604,7 @@ msgstr "ప్రకటనను తొలగించండి"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "మునుపటి"
@@ -1561,6 +1613,7 @@ msgstr "మునుపటి"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/leaderboard.html
 msgid "Next"
 msgstr "తదుపరి"
@@ -1626,6 +1679,7 @@ msgid "Workshop"
 msgstr "వర్క్‌షాప్"
 
 #: templates/users/administrator/calendar.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Exam"
 msgstr "పరీక్ష"
 
@@ -1684,6 +1738,7 @@ msgid "Certificates This Month"
 msgstr "ఈ నెల సర్టిఫికెట్లు"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "పెండింగ్‌లో ఉన్న ఆమోదాలు"
 
@@ -1692,6 +1747,9 @@ msgid "Courses with Certificates"
 msgstr "సర్టిఫికేట్‌లతో కూడిన కోర్సులు"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
 msgid "All Courses"
 msgstr "అన్ని కోర్సులు"
@@ -1703,6 +1761,9 @@ msgstr "IT & ప్రోగ్రామింగ్"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
 msgid "Business"
 msgstr "వ్యాపారం"
 
@@ -1736,6 +1797,8 @@ msgid "All Time"
 msgstr "ఆల్ టైమ్"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "నివేదికను రూపొందించండి"
 
@@ -1748,11 +1811,16 @@ msgid "Certificate ID"
 msgstr "సర్టిఫికేట్ ID"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
 msgid "Learner"
 msgstr "అభ్యాసకుడు"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Course"
 msgstr "కోర్సు"
 
@@ -1762,6 +1830,9 @@ msgstr "జారీ తేదీ"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "John Doe"
 msgstr "జాన్ డో"
 
@@ -1808,6 +1879,7 @@ msgstr "బ్రెడ్ క్రంబ్"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
@@ -1819,6 +1891,7 @@ msgid "Create Delivery"
 msgstr "డెలివరీని సృష్టించండి"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/enrollments.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "పురోగతి"
@@ -1885,6 +1958,7 @@ msgstr "ప్రారంభ తేదీని ఎంచుకోండి"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "to"
 msgstr "కు"
 
@@ -1975,12 +2049,19 @@ msgid "Search deliveries..."
 msgstr "డెలివరీలను శోధించండి..."
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "In Progress"
 msgstr "పురోగతిలో ఉంది"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/my_courses.html
 msgid "Completed"
 msgstr "పూర్తయింది"
@@ -2014,6 +2095,7 @@ msgid "Delivery ID"
 msgstr "డెలివరీ ID"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 msgid "Start Date"
 msgstr "ప్రారంభ తేదీ"
 
@@ -2022,6 +2104,7 @@ msgid "End Date"
 msgstr "ముగింపు తేదీ"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/learner_feedback.html
 msgid "Instructor"
 msgstr "బోధకుడు"
 
@@ -2031,10 +2114,15 @@ msgid "Students"
 msgstr "విద్యార్థులు"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "View Details"
 msgstr "వివరాలను వీక్షించండి"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 msgid "Edit"
 msgstr "సవరించు"
@@ -2044,14 +2132,17 @@ msgid "Manage Students"
 msgstr "విద్యార్థులను నిర్వహించండి"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Showing"
 msgstr "చూపిస్తున్నారు"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "of"
 msgstr "యొక్క"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "ఫలితాలు"
 
@@ -2060,9 +2151,800 @@ msgid "Delete Delivery"
 msgstr "డెలివరీని తొలగించండి"
 
 #: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 msgid "Cancel"
 msgstr "రద్దు చేయి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course ID:"
+msgstr "కోర్సు"
+
+#: templates/users/administrator/course/detail.html
+msgid "No Cover Image"
+msgstr "కవర్ చిత్రం లేదు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course"
+msgid "Edit Course"
+msgstr "కోర్సు"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/list.html
+msgid "Unpublish"
+msgstr "పబ్లిష్ చేయవద్దు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "మునుపటి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Analytics"
+msgstr "అధునాతన అరబిక్"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Actions"
+msgstr "బల్క్ చర్యలు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Students"
+msgid "Add New Student"
+msgstr "విద్యార్థులు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Schedule Live Session"
+msgstr "క్రియాశీల సెషన్లు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Edit Announcement"
+msgid "Send Announcement"
+msgstr "ప్రకటనను సవరించండి"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Course Overview"
+msgstr "కోర్సు అవలోకనం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Category"
+msgid "Category:"
+msgstr "వర్గం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Delivery"
+msgid "Created by:"
+msgstr "డెలివరీని సృష్టించండి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Last Updated"
+msgid "Last Updated:"
+msgstr "చివరిగా నవీకరించబడింది"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments:"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments:"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries:"
+msgstr "ఎగుమతి డెలివరీలు"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Course Content"
+msgstr "కోర్సు కవర్"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Deliveries"
+msgstr "ఎగుమతి డెలివరీలు"
+
+#: templates/users/administrator/course/detail.html
+msgid "Add New Resource"
+msgstr "కొత్త వనరును జోడించండి"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "టైప్ చేయండి"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Updated"
+msgstr "చివరిగా నవీకరించబడింది"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Enrollments"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "User"
+msgstr "వినియోగదారు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Delivery"
+msgstr "డెలివరీ ID"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Active Enrollments"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Type"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select a type"
+msgstr "తేదీని ఎంచుకోండి"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Video"
+msgstr "వీడియో"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Document"
+msgstr "పత్రం"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/learner/course_detail.html
+msgid "Presentation"
+msgstr "ప్రెజెంటేషన్"
+
+#: templates/users/administrator/course/detail.html
+msgid "Link"
+msgstr "లింక్"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/course_detail.html
+msgid "Quiz"
+msgstr "క్విజ్"
+
+#: templates/users/administrator/course/detail.html
+msgid "SCORM"
+msgstr "SCORM"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Duration"
+msgid "Description"
+msgstr "వ్యవధి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Contact Sales"
+msgid "Content File"
+msgstr "విక్రయాలను సంప్రదించండి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Enter a valid URL."
+msgid "External URL"
+msgstr "చెల్లుబాటు అయ్యే URLని నమోదు చేయండి."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Add Resource"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/sidebar.html
+msgid "Learning Path"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Course Resource Preview"
+msgstr "కోర్సు అవలోకనం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Metadata"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Created"
+msgstr "కోర్సును సృష్టించండి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "File path"
+msgid "File Type"
+msgstr "ఫైల్ మార్గం"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Testimonials"
+msgid "Questions"
+msgstr "టెస్టిమోనియల్స్"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "Video Resource"
+msgstr "అభ్యాస వనరులు"
+
+#: templates/users/administrator/course/detail.html
+msgid "No video file available."
+msgstr "వీడియో ఫైల్ అందుబాటులో లేదు."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Preview"
+msgstr "పత్రం"
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a preview of the document."
+msgstr "ఇది పత్రం యొక్క ప్రివ్యూ."
+
+#: templates/users/administrator/course/detail.html
+msgid "View full document"
+msgstr "పూర్తి పత్రాన్ని వీక్షించండి"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Document"
+msgid "Document Resource"
+msgstr "పత్రం"
+
+#: templates/users/administrator/course/detail.html
+msgid "No document file available."
+msgstr "డాక్యుమెంట్ ఫైల్ అందుబాటులో లేదు."
+
+#: templates/users/administrator/course/detail.html
+msgid "Quiz Preview"
+msgstr "క్విజ్ ప్రివ్యూ"
+
+#: templates/users/administrator/course/detail.html
+msgid "This quiz is available in the course. Click to attempt."
+msgstr "ఈ క్విజ్ కోర్సులో అందుబాటులో ఉంది. ప్రయత్నించడానికి క్లిక్ చేయండి."
+
+#: templates/users/administrator/course/detail.html
+msgid "This is a SCORM package. Click the button below to launch it."
+msgstr ""
+"ఇది SCORM ప్యాకేజీ. దీన్ని ప్రారంభించడానికి దిగువ బటన్‌ను క్లిక్ చేయండి."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "SCORM Package"
+msgid "Launch SCORM Package"
+msgstr "SCORM ప్యాకేజీ"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Preview"
+msgstr "ప్రెజెంటేషన్"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "This is a presentation."
+msgstr "ప్రెజెంటేషన్"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "View presentation"
+msgstr "ప్రెజెంటేషన్"
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Presentation"
+msgid "Presentation Resource"
+msgstr "ప్రెజెంటేషన్"
+
+#: templates/users/administrator/course/detail.html
+msgid "No presentation file available."
+msgstr "ప్రెజెంటేషన్ ఫైల్ అందుబాటులో లేదు."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resource"
+msgstr "అభ్యాస వనరులు"
+
+#: templates/users/administrator/course/detail.html
+msgid ""
+"Click the link above to access the external resource. Please note that this "
+"will open in a new tab."
+msgstr ""
+"బాహ్య వనరును యాక్సెస్ చేయడానికి పై లింక్‌ని క్లిక్ చేయండి. ఇది కొత్త "
+"ట్యాబ్‌లో తెరవబడుతుందని దయచేసి గమనించండి."
+
+#: templates/users/administrator/course/detail.html
+msgid "No external URL provided."
+msgstr "బాహ్య URL అందించబడలేదు."
+
+#: templates/users/administrator/course/detail.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Preview"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/course/detail.html
+msgid "Preview not available for this resource type."
+msgstr "ఈ వనరు రకానికి ప్రివ్యూ అందుబాటులో లేదు."
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enrollments - LMS Admin"
+msgstr "ప్రకటనలు - LMS అడ్మిన్"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Enrollment Management"
+msgstr "ప్రకటనల నిర్వహణ"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Create and Manage System-wide Announcements"
+msgid "Monitor and Manage Student Enrollments"
+msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటనలను సృష్టించండి మరియు నిర్వహించండి"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/learner/dashboard.html
+msgid "Completed Courses"
+msgstr "పూర్తి చేసిన కోర్సులు"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search enrollments..."
+msgstr "కోర్సులను శోధించండి..."
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "వెబ్ డెవలప్‌మెంట్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "డేటా సైన్స్ బేసిక్స్"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "డిజిటల్ మార్కెటింగ్"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Pending"
+msgstr "పెండింగ్‌లో ఉంది"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "ఉపసంహరించుకుంది"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "New Enrollment"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/list.html
+msgid "Export Data"
+msgstr "డేటాను ఎగుమతి చేయండి"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Name"
+msgstr "సైట్ పేరు"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "వెబ్ డెవలప్‌మెంట్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/learner/course_detail.html
+msgid "View"
+msgstr "చూడండి"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdraw"
+msgstr "ఉపసంహరించుకోండి"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/course/enrollments.html
+msgid "Approve"
+msgstr "ఆమోదించండి"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Subject"
+msgid "Reject"
+msgstr "విషయం"
+
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "డిజిటల్ మార్కెటింగ్"
+
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "సర్టిఫికెట్లు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Design, monitor, and optimize learning journeys for your learners"
+msgstr ""
+"మీ అభ్యాసకుల కోసం అభ్యాస ప్రయాణాలను డిజైన్ చేయండి, పర్యవేక్షించండి మరియు "
+"ఆప్టిమైజ్ చేయండి"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Active Learning Paths"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Total Enrolled Learners"
+msgstr "మొత్తం నమోదు చేసుకున్న అభ్యాసకులు"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Rate"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Avg. Learner Satisfaction"
+msgstr "వినియోగదారు సంతృప్తి"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Path Management Tools"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Path"
+msgstr "కొత్త టిక్కెట్‌ని సృష్టించండి"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Edit Existing Path"
+msgstr "ఇప్పటికే ఉన్న మార్గాన్ని సవరించండి"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assign Learners"
+msgstr "అభ్యాసకులు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "నివేదికను రూపొందించండి"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Path Name"
+msgstr "సైట్ పేరు"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enrolled Learners"
+msgstr "కోర్సులో నమోదు చేసుకున్నారు"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Custom model development"
+msgid "Full Stack Web Development"
+msgstr "కస్టమ్ మోడల్ అభివృద్ధి"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Technology"
+msgstr "సాంకేతికత"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Mastery"
+msgstr "డేటా సైన్స్ బేసిక్స్"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Reports & Analytics"
+msgid "Data & Analytics"
+msgstr "నివేదికలు & విశ్లేషణలు"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Full Stack Web Development"
+msgstr "అభ్యాస మార్గం విజువలైజేషన్: పూర్తి స్టాక్ వెబ్ అభివృద్ధి"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "HTML & CSS Basics"
+msgstr "HTML & CSS బేసిక్స్"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "4 weeks"
+msgstr "4 వారాలు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "6 weeks"
+msgstr "6 వారాలు"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Backend with Node.js"
+msgstr "Node.jsతో బ్యాకెండ్"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "8 weeks"
+msgstr "8 వారాలు"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Frontend Frameworks"
+msgstr "ఫ్రంటెండ్ ఫ్రేమ్‌వర్క్‌లు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Capstone Project"
+msgstr "జావాస్క్రిప్ట్ ఫైనల్ ప్రాజెక్ట్"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Learning Path Visualization: Data Science Mastery"
+msgstr "లెర్నింగ్ పాత్ విజువలైజేషన్: డేటా సైన్స్ మాస్టరీ"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Data Science"
+msgstr "AIకి పరిచయం"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Statistics and Probability"
+msgstr "గణాంకాలు మరియు సంభావ్యత"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Python for Data Science"
+msgstr "డేటా సైన్స్ కోసం పైథాన్"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization"
+msgstr "డేటా విజువలైజేషన్ క్విజ్"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Machine Learning Fundamentals"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "10 weeks"
+msgstr "10 వారాలు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Deep Learning"
+msgstr "అభ్యాసాన్ని విప్లవాత్మకంగా మార్చండి"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "Big Data Technologies"
+msgstr "బిగ్ డేటా టెక్నాలజీస్"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learner Progress Distribution"
+msgstr "లెర్నింగ్ ప్రోగ్రెస్"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Time Analysis"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/sidebar.html
+msgid "Learner Feedback"
+msgstr "అభ్యాసకుల అభిప్రాయం"
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"The learning path was well-structured and provided a clear roadmap to "
+"becoming a full stack developer. The projects were particularly helpful in "
+"applying the concepts learned."
+msgstr ""
+"అభ్యాస మార్గం బాగా నిర్మాణాత్మకంగా ఉంది మరియు పూర్తి స్టాక్ డెవలపర్‌గా "
+"మారడానికి స్పష్టమైన రోడ్‌మ్యాప్‌ను అందించింది. నేర్చుకున్న భావనలను "
+"వర్తింపజేయడంలో ప్రాజెక్ట్‌లు ప్రత్యేకంగా సహాయపడతాయి."
+
+#: templates/users/administrator/course/learning_path.html
+msgid ""
+"Great content and progression. I would appreciate more hands-on exercises in"
+" the machine learning section, but overall, it's an excellent learning path."
+msgstr ""
+"గొప్ప కంటెంట్ మరియు పురోగతి. మెషిన్ లెర్నింగ్ విభాగంలో మరిన్ని ప్రయోగాత్మక "
+"వ్యాయామాలను నేను అభినందిస్తాను, కానీ మొత్తంమీద, ఇది అద్భుతమైన అభ్యాస మార్గం."
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Not Started"
+msgstr "గైడ్ ప్రారంభించడం"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "< 3 months"
+msgstr "గత 3 నెలలు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "3-6 months"
+msgstr "నెల"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Month"
+msgid "6-9 months"
+msgstr "నెల"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "9-12 months"
+msgstr "9-12 నెలలు"
+
+#: templates/users/administrator/course/learning_path.html
+msgid "> 12 months"
+msgstr "> 12 నెలలు"
+
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "కోర్సుల సంఖ్య"
 
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
@@ -2114,21 +2996,8 @@ msgid "Course Cover"
 msgstr "కోర్సు కవర్"
 
 #: templates/users/administrator/course/list.html
-#: templates/users/learner/course_detail.html
-msgid "View"
-msgstr "చూడండి"
-
-#: templates/users/administrator/course/list.html
 msgid "Manage Deliveries"
 msgstr "డెలివరీలను నిర్వహించండి"
-
-#: templates/users/administrator/course/list.html
-msgid "Export Data"
-msgstr "డేటాను ఎగుమతి చేయండి"
-
-#: templates/users/administrator/course/list.html
-msgid "Unpublish"
-msgstr "పబ్లిష్ చేయవద్దు"
 
 #: templates/users/administrator/course/list.html
 msgid "Publish"
@@ -2180,16 +3049,13 @@ msgid "12%% from last month"
 msgstr "గత నెల నుండి 12%%"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/resource_usage.html
 msgid "Active Courses"
 msgstr "యాక్టివ్ కోర్సులు"
 
 #: templates/users/administrator/dashboard.html
 msgid "3 new this week"
 msgstr "ఈ వారం 3 కొత్తవి"
-
-#: templates/users/administrator/dashboard.html
-msgid "Completion Rate"
-msgstr "పూర్తి రేటు"
 
 #: templates/users/administrator/dashboard.html
 #, python-format
@@ -2230,16 +3096,8 @@ msgid "987 enrolled"
 msgstr "987 మంది నమోదు చేసుకున్నారు"
 
 #: templates/users/administrator/dashboard.html
-msgid "Data Science Fundamentals"
-msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
-
-#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 మంది నమోదు చేసుకున్నారు"
-
-#: templates/users/administrator/dashboard.html
-msgid "Digital Marketing"
-msgstr "డిజిటల్ మార్కెటింగ్"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -2256,11 +3114,6 @@ msgstr "621 మంది నమోదు చేసుకున్నారు"
 #: templates/users/administrator/dashboard.html
 msgid "Recent Activities"
 msgstr "ఇటీవలి కార్యకలాపాలు"
-
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/leaderboard.html
-msgid "User"
-msgstr "వినియోగదారు"
 
 #: templates/users/administrator/dashboard.html
 msgid "Activity"
@@ -2411,6 +3264,7 @@ msgid "Resolved This Week"
 msgstr "ఈ వారం పరిష్కరించబడింది"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/custom_reports.html
 msgid "User Satisfaction"
 msgstr "వినియోగదారు సంతృప్తి"
 
@@ -2441,10 +3295,6 @@ msgstr "విషయం"
 #: templates/users/administrator/help_support.html
 msgid "Submitted By"
 msgstr "సమర్పించినది"
-
-#: templates/users/administrator/help_support.html
-msgid "Last Updated"
-msgstr "చివరిగా నవీకరించబడింది"
 
 #: templates/users/administrator/help_support.html
 msgid "Unable to access course materials"
@@ -2589,11 +3439,13 @@ msgid "Rank"
 msgstr "ర్యాంక్"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/user_progress.html
 #: templates/users/learner/dashboard.html
 msgid "Courses Completed"
 msgstr "కోర్సులు పూర్తయ్యాయి"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/assessment_results.html
 msgid "Avg. Score"
 msgstr "సగటు స్కోర్"
 
@@ -2716,6 +3568,8 @@ msgid "Search messages..."
 msgstr "సందేశాలను శోధించండి..."
 
 #: templates/users/administrator/messages.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_progress.html
 msgid "Apply Filters"
 msgstr "ఫిల్టర్‌లను వర్తింపజేయండి"
 
@@ -2740,6 +3594,7 @@ msgid "Export Selected"
 msgstr "ఎగుమతి ఎంచుకోబడింది"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "LMS"
 msgstr "LMS"
 
@@ -2749,7 +3604,7 @@ msgstr "AI శోధన"
 
 #: templates/users/administrator/navbar.html
 msgid "🤖 Ask AI anything..."
-msgstr "\\U0001f916 ఏదైనా AIని అడగండి..."
+msgstr "🤖 ఏదైనా AIని అడగండి..."
 
 #: templates/users/administrator/navbar.html
 msgid "View notifications"
@@ -2764,6 +3619,7 @@ msgid "user photo"
 msgstr "వినియోగదారు ఫోటో"
 
 #: templates/users/administrator/navbar.html
+#: templates/website/landing_page.html
 msgid "Search language..."
 msgstr "శోధన భాష..."
 
@@ -2782,6 +3638,1348 @@ msgstr "నోటిఫికేషన్ మెను తెరవబడిం�
 #: templates/users/administrator/navbar.html
 msgid "Performing AI search for:"
 msgstr "దీని కోసం AI శోధనను అమలు చేస్తోంది:"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report - LMS Admin"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Results Report"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid ""
+"Comprehensive analysis of assessment performance across courses and students"
+msgstr "కోర్సులు మరియు విద్యార్థులలో అంచనా పనితీరు యొక్క సమగ్ర విశ్లేషణ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Total Assessments"
+msgstr "మొత్తం ప్రకటనలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Pass Rate"
+msgstr "ఉత్తీర్ణత రేటు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessments This Month"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Search messages..."
+msgid "Search assessments..."
+msgstr "సందేశాలను శోధించండి..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "All Time"
+msgid "All Types"
+msgstr "ఆల్ టైమ్"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Project"
+msgstr "ప్రాజెక్ట్"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Assessment Performance Overview"
+msgstr "అసెస్‌మెంట్ పనితీరు స్థూలదృష్టి"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Assessments"
+msgstr "టాప్ పెర్ఫార్మర్స్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "JavaScript"
+msgid "JavaScript Basics Quiz"
+msgstr "జావాస్క్రిప్ట్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "avg. score"
+msgstr "సగటు స్కోర్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data Visualization Project"
+msgstr "డేటా విజువలైజేషన్ క్విజ్"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "SEO Strategies Exam"
+msgstr "SEO వ్యూహాల పరీక్ష"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Type Distribution"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Recent Assessment Results"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Students"
+msgid "Student"
+msgstr "విద్యార్థులు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals Quiz"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "2 hours ago"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Marketing Analytics Exam"
+msgstr "మార్కెటింగ్ అనలిటిక్స్ పరీక్ష"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "5 hours ago"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "UX Design Project"
+msgstr "UX డిజైన్ ప్రాజెక్ట్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/dashboard.html
+msgid "1 day ago"
+msgstr "1 రోజు క్రితం"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Detailed Assessment Results"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Assessment Results"
+msgid "Assessment Name"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Attempts"
+msgstr "ప్రయత్నాలు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "JavaScript Fundamentals Quiz"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "JavaScript Final Project"
+msgid "Data Analysis Final Project"
+msgstr "జావాస్క్రిప్ట్ ఫైనల్ ప్రాజెక్ట్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Jan."
+msgid "Jan"
+msgstr "జనవరి"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgctxt "abbrev. month"
+#| msgid "Feb."
+msgid "Feb"
+msgstr "ఫిబ్రవరి."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "March"
+msgid "Mar"
+msgstr "మార్చి"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "April"
+msgid "Apr"
+msgstr "ఏప్రిల్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "June"
+msgid "Jun"
+msgstr "జూన్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Average Score"
+msgstr "సగటు స్కోర్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Quiz"
+msgid "Quizzes"
+msgstr "క్విజ్"
+
+#: templates/users/administrator/reports/assessment_results.html
+#, fuzzy
+#| msgid "Exam"
+msgid "Exams"
+msgstr "పరీక్ష"
+
+#: templates/users/administrator/reports/assessment_results.html
+msgid "Projects"
+msgstr "ప్రాజెక్టులు"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignments"
+msgstr "అసైన్‌మెంట్ గడువు తేదీలు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Certification Tracking"
+msgstr "సర్టిఫికేషన్ ట్రాకింగ్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Monitor certification programs, progress, and learner achievements"
+msgstr ""
+"ధృవీకరణ కార్యక్రమాలు, పురోగతి మరియు అభ్యాసకుల విజయాలను పర్యవేక్షించండి"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Total Certifications"
+msgstr "మొత్తం సర్టిఫికెట్లు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Active Learners"
+msgstr "అభ్యాసకులు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certifications Issued"
+msgstr "సర్టిఫికెట్లు సంపాదించారు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Avg. Completion Time"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Issuance Trend"
+msgstr "సర్టిఫికేషన్ ట్రాకింగ్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Top Certifications"
+msgstr "మొత్తం సర్టిఫికెట్లు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science Professional"
+msgstr "డేటా సైన్స్ బేసిక్స్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Issued"
+msgid "issued"
+msgstr "జారీ చేయబడింది"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Full Stack Web Developer"
+msgstr "పూర్తి స్టాక్ వెబ్ డెవలపర్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Specialist"
+msgstr "డిజిటల్ మార్కెటింగ్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "AI and Machine Learning Expert"
+msgstr "అధునాతన మెషిన్ లెర్నింగ్ కోర్సు ప్రారంభం"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "Cybersecurity Analyst"
+msgstr "సైబర్ సెక్యూరిటీ అనలిస్ట్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Certification Completion Rates"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Revoke Certificate"
+msgid "Recent Certifications"
+msgstr "రద్దు సర్టిఫికెట్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "2 days ago"
+msgstr "1 రోజు క్రితం"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Detailed Certification Tracking"
+msgstr "సర్టిఫికేషన్ ట్రాకింగ్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Certification Tracking"
+msgid "Certification Name"
+msgstr "సర్టిఫికేషన్ ట్రాకింగ్"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Avg. Time to Complete"
+msgstr "సగటు పూర్తి చేయడానికి సమయం"
+
+#: templates/users/administrator/reports/certification_tracking.html
+msgid "AI & ML"
+msgstr "AI మరియు ML"
+
+#: templates/users/administrator/reports/certification_tracking.html
+#, fuzzy
+#| msgid "Security"
+msgid "Cybersecurity"
+msgstr "భద్రత"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Analytics"
+msgstr "కోర్సు పూర్తి"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid ""
+"Comprehensive insights into course completion rates and student progress"
+msgstr "కోర్సు పూర్తి రేట్లు మరియు విద్యార్థుల పురోగతిపై సమగ్ర అంతర్దృష్టులు"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "అన్ని కోర్సులు"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Certificates This Month"
+msgid "Completed This Month"
+msgstr "ఈ నెల సర్టిఫికెట్లు"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trend"
+msgstr "కోర్సు పూర్తి"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Courses"
+msgstr "టాప్ పెర్ఫార్మర్స్"
+
+#: templates/users/administrator/reports/course_completion.html
+msgid "UX/UI Design Principles"
+msgstr "UX/UI డిజైన్ సూత్రాలు"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Machine Learning Basics"
+msgstr "అధునాతన మెషిన్ లెర్నింగ్ కోర్సు ప్రారంభం"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion by Category"
+msgstr "పూర్తి రేటు"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Completions"
+msgstr "కోర్సు పూర్తి"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Detailed Course Completion"
+msgstr "కోర్సు పూర్తి"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Name"
+msgstr "కోర్సు"
+
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "IT & Programming"
+msgid "Programming"
+msgstr "IT & ప్రోగ్రామింగ్"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Marketing"
+msgstr "డిజిటల్ మార్కెటింగ్"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Design"
+msgstr "డిజైన్"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Custom Reports"
+msgstr "అనుకూల నివేదికలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Create, view, and manage custom reports for in-depth LMS analysis"
+msgstr ""
+"లోతైన LMS విశ్లేషణ కోసం అనుకూల నివేదికలను సృష్టించండి, వీక్షించండి మరియు "
+"నిర్వహించండి"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Report Builder"
+msgstr "నివేదిక బిల్డర్"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Name"
+msgid "Report Name"
+msgstr "ఈవెంట్ పేరు"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Data Source"
+msgstr "డేటా మూలం"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Course Enrollments"
+msgstr "నమోదులు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Progress"
+msgstr "వినియోగదారు పురోగతి"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "Assessment Results"
+msgstr "మూల్యాంకన ఫలితాలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/sidebar.html
+msgid "User Engagement"
+msgstr "వినియోగదారు నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Metrics"
+msgstr "కొలమానాలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Time Zone"
+msgid "Time Spent"
+msgstr "టైమ్ జోన్"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Date out of range"
+msgid "Date Range"
+msgstr "తేదీ పరిధి దాటిపోయింది"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 7 days"
+msgstr "గత 30 రోజులు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last 30 days"
+msgstr "గత 30 రోజులు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 3 months"
+msgstr "గత 3 నెలలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Last 6 months"
+msgstr "గత 3 నెలలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last year"
+msgstr "గత సంవత్సరం"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom range"
+msgstr "అనుకూల నివేదికలు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Event Type"
+msgid "Chart Type"
+msgstr "ఈవెంట్ రకం"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Bar Chart"
+msgstr "బార్ చార్ట్"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Line Chart"
+msgstr "ప్రత్యక్ష చాట్ మద్దతు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Pie Chart"
+msgstr "ప్రత్యక్ష చాట్ మద్దతు"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Table"
+msgstr "పట్టిక"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Saved Reports"
+msgstr "నివేదికను రూపొందించండి"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Last Run"
+msgstr "చివరి పరుగు"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Course Completion Trends"
+msgstr "కోర్సు పూర్తి"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Assessment Performance Analysis"
+msgstr "అసెస్‌మెంట్ పనితీరు విశ్లేషణ"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Sample Custom Report: Course Completion Trends"
+msgstr "నమూనా అనుకూల నివేదిక: కోర్సు పూర్తి ట్రెండ్‌లు"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 1"
+msgstr "ముఖ్య అంతర్దృష్టి 1"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Completion rates have increased by 15%% over the last 3 months."
+msgstr "గత 3 నెలల్లో పూర్తి రేట్లు 15%% పెరిగాయి."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 2"
+msgstr "ముఖ్య అంతర్దృష్టి 2"
+
+#: templates/users/administrator/reports/custom_reports.html
+#, python-format
+msgid "Web Development courses show the highest completion rates at 78%%."
+msgstr "వెబ్ డెవలప్‌మెంట్ కోర్సులు అత్యధికంగా 78% పూర్తి రేట్లను చూపుతాయి."
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Key Insight 3"
+msgstr "ముఖ్య అంతర్దృష్టి 3"
+
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Average time to completion has decreased from 45 to 38 days."
+msgstr "పూర్తి చేయడానికి సగటు సమయం 45 నుండి 38 రోజులకు తగ్గింది."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Learner Feedback Analytics"
+msgstr "అభ్యాసకుల అభిప్రాయం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Insights into learner satisfaction, course ratings, and feedback trends"
+msgstr ""
+"అభ్యాసకుల సంతృప్తి, కోర్సు రేటింగ్‌లు మరియు ఫీడ్‌బ్యాక్ ట్రెండ్‌లలో "
+"అంతర్దృష్టులు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Overall Satisfaction"
+msgstr "వినియోగదారు సంతృప్తి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Reviews"
+msgstr "మొత్తం ఆదాయం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Average Response Time"
+msgid "Feedback Response Rate"
+msgstr "సగటు ప్రతిస్పందన సమయం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Avg. Course Rating"
+msgstr "కోర్సు సెట్టింగ్‌లు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "User Satisfaction"
+msgid "Satisfaction Trend"
+msgstr "వినియోగదారు సంతృప్తి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating Distribution"
+msgstr "రేటింగ్ పంపిణీ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Completed Courses"
+msgid "Top Rated Courses"
+msgstr "పూర్తి చేసిన కోర్సులు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Rating"
+msgstr "రేటింగ్"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Reviews"
+msgstr "సమీక్షలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Machine Learning Course Launch"
+msgid "Advanced Machine Learning"
+msgstr "అధునాతన మెషిన్ లెర్నింగ్ కోర్సు ప్రారంభం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Dr. Jane Smith"
+msgstr "డాక్టర్ జేన్ స్మిత్"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "Recent Feedback"
+msgstr "అభ్యాసకుల అభిప్రాయం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Great course! The content was well-structured and the instructor explained "
+"complex concepts clearly."
+msgstr ""
+"గొప్ప కోర్సు! కంటెంట్ చక్కగా రూపొందించబడింది మరియు బోధకుడు సంక్లిష్ట భావనలను"
+" స్పష్టంగా వివరించాడు."
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid ""
+"Very practical course with real-world examples. I've already started "
+"applying the strategies in my work."
+msgstr ""
+"వాస్తవ ప్రపంచ ఉదాహరణలతో చాలా ఆచరణాత్మక కోర్సు. నేను ఇప్పటికే నా పనిలో "
+"వ్యూహాలను అమలు చేయడం ప్రారంభించాను."
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Feedback Analysis"
+msgstr "అధునాతన అరబిక్"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Common Themes in Feedback"
+msgstr "అభిప్రాయంలో సాధారణ థీమ్‌లు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Positive integer"
+msgid "Positive Themes"
+msgstr "సానుకూల పూర్ణాంకం"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Clear explanations of complex topics"
+msgstr "సంక్లిష్ట అంశాలకు స్పష్టమైన వివరణలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Practical, real-world examples"
+msgstr "ఆచరణాత్మక, వాస్తవ ప్రపంచ ఉదాహరణలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Engaging instructors"
+msgstr "బోధకులు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Well-structured course content"
+msgstr "చక్కగా నిర్మాణాత్మకమైన కోర్సు కంటెంట్"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Helpful quizzes and assignments"
+msgstr "సహాయకరమైన క్విజ్‌లు మరియు అసైన్‌మెంట్‌లు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Areas for Improvement"
+msgstr "అభివృద్ధి కోసం ప్రాంతాలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "More interactive elements"
+msgstr "మరిన్ని ఇంటరాక్టివ్ అంశాలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Additional practice exercises"
+msgstr "అదనపు అభ్యాస వ్యాయామాలు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Faster response to questions"
+msgstr "ప్రశ్నలకు వేగంగా ప్రతిస్పందన"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Unable to access course materials"
+msgid "Updated course materials"
+msgstr "కోర్సు మెటీరియల్‌లను యాక్సెస్ చేయడం సాధ్యపడలేదు"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "More advanced topics"
+msgstr "అధునాతన అరబిక్"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "1 Star"
+msgstr "ప్రారంభించండి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "2 Stars"
+msgstr "ప్రారంభించండి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "3 Stars"
+msgstr "ప్రారంభించండి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "4 Stars"
+msgstr "ప్రారంభించండి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Start"
+msgid "5 Stars"
+msgstr "ప్రారంభించండి"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Ratings"
+msgstr "కోర్సుల సంఖ్య"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage Analytics"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid ""
+"Comprehensive insights into system resource utilization and content "
+"popularity"
+msgstr "సిస్టమ్ వనరుల వినియోగం మరియు కంటెంట్ ప్రజాదరణపై సమగ్ర అంతర్దృష్టులు"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Storage Used"
+msgstr "మొత్తం సందేశాలు"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Total Resources"
+msgstr "మొత్తం ఆదాయం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Resource Size"
+msgstr "సగటు ప్రతిస్పందన సమయం"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Usage Trend"
+msgstr "నిల్వ వినియోగ ట్రెండ్"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Top Resource Types"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Manage Support Tickets and Access Resources"
+msgid "Most Accessed Resources"
+msgstr "మద్దతు టిక్కెట్లు మరియు యాక్సెస్ వనరులను నిర్వహించండి"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Name"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Access Count"
+msgstr "యాక్సెస్ కౌంట్"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Last Accessed"
+msgstr "చివరిగా యాక్సెస్ చేయబడింది"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Python"
+msgstr "AIకి పరిచయం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "Python Fundamentals"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Data Structures Cheat Sheet"
+msgstr "డేటా స్ట్రక్చర్స్ చీట్ షీట్"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "PDF"
+msgstr "PDF"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Algorithms"
+msgstr "అధునాతన అరబిక్"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development 101"
+msgstr "వెబ్ డెవలప్‌మెంట్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "3 hours ago"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage by Category"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Detailed Resource Usage"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Size"
+msgstr "పరిమాణం"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Upload Logo"
+msgid "Uploads"
+msgstr "లోగోను అప్‌లోడ్ చేయండి"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Downloads"
+msgstr "డౌన్‌లోడ్‌లు"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Data Science Fundamentals"
+msgid "AI Fundamentals"
+msgstr "డేటా సైన్స్ ఫండమెంటల్స్"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assign Participants"
+msgid "UX Design Principles"
+msgstr "పాల్గొనేవారిని కేటాయించండి"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "UI/UX Design"
+msgstr "UI/UX డిజైన్"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Storage Used (TB)"
+msgstr "ఉపయోగించిన నిల్వ (TB)"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment"
+msgstr "అసైన్‌మెంట్ గడువు తేదీలు"
+
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Other"
+msgstr "ఇతర"
+
+#: templates/users/administrator/reports/resource_usage.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "Resource Usage (GB)"
+msgstr "వనరుల వినియోగం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Analytics"
+msgstr "వినియోగదారు నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Comprehensive insights into user activity and platform interaction"
+msgstr ""
+"వినియోగదారు కార్యాచరణ మరియు ప్లాట్‌ఫారమ్ పరస్పర చర్యపై సమగ్ర అంతర్దృష్టులు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Active Users (Last 30 Days)"
+msgstr "గత 30 రోజులు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Daily Active Users"
+msgstr "సగటు రోజువారీ క్రియాశీల వినియోగదారులు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Avg. Session Duration"
+msgstr "సగటు సెషన్ వ్యవధి"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "User Retention Rate"
+msgstr "వినియోగదారు నిలుపుదల రేటు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Daily Active Users Trend"
+msgstr "రోజువారీ యాక్టివ్ యూజర్ల ట్రెండ్"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Top Engaged Users"
+msgstr "మొత్తం వినియోగదారులు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "45 hours this month"
+msgstr "ఈ నెల 45 గంటలు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Jane Smith"
+msgstr "జేన్ స్మిత్"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "42 hours this month"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Sarah Johnson"
+msgid "Mike Johnson"
+msgstr "సారా జాన్సన్"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "38 hours this month"
+msgstr "ఈ నెల 38 గంటలు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Feature Usage Distribution"
+msgstr "ఫీచర్ వినియోగ పంపిణీ"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement by Course Category"
+msgstr "వినియోగదారు నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent User Activities"
+msgstr "ఇటీవలి కార్యకలాపాలు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emily Brown"
+msgstr "ఎమిలీ బ్రౌన్"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed a quiz in 'JavaScript Basics'"
+msgstr "పూర్తి చేసిన పాఠం: జావాస్క్రిప్ట్‌తో పరిచయం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "2 min ago"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Alex Wilson"
+msgstr "అలెక్స్ విల్సన్"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Started a new course 'Advanced Data Analysis'"
+msgstr "'అడ్వాన్స్‌డ్ డేటా అనాలిసిస్' అనే కొత్త కోర్సును ప్రారంభించింది"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "15 min ago"
+msgstr "1 రోజు క్రితం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Sarah Lee"
+msgstr "సారా లీ"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Posted in discussion forum 'Marketing Strategies'"
+msgstr "చర్చా వేదిక 'మార్కెటింగ్ వ్యూహాలు'లో పోస్ట్ చేయబడింది"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "1 hour ago"
+msgstr "2 గంటల క్రితం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "Detailed User Engagement"
+msgstr "వినియోగదారు నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Total Points"
+msgid "Total Time Spent"
+msgstr "మొత్తం పాయింట్లు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Accessed"
+msgstr "కోర్సులు పూర్తయ్యాయి"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Completed Activities"
+msgstr "ఇటీవలి కార్యకలాపాలు"
+
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Forum Posts"
+msgstr "ఫోరమ్ పోస్ట్‌లు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active"
+msgid "Last Active"
+msgstr "చురుకుగా"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Engagement"
+msgid "Engagement Score"
+msgstr "నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "David Miller"
+msgstr "డేవిడ్ మిల్లర్"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Emma Wilson"
+msgstr "ఎమ్మా విల్సన్"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Daily Active Users"
+msgstr "యాక్టివ్ కోర్సులు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Discussion Forums"
+msgstr "ఫోరమ్‌ని సందర్శించండి"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Live Sessions"
+msgstr "క్రియాశీల సెషన్లు"
+
+#: templates/users/administrator/reports/user_engagement.html
+#, fuzzy
+#| msgid "Avg. Engagement Rate"
+msgid "Average Engagement Score"
+msgstr "సగటు నిశ్చితార్థం రేటు"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Analytics"
+msgstr "వినియోగదారు పురోగతి"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Detailed insights into individual learner progress and performance"
+msgstr "వ్యక్తిగత అభ్యాసకుల పురోగతి మరియు పనితీరుపై వివరణాత్మక అంతర్దృష్టులు"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total Active Users"
+msgstr "మొత్తం వినియోగదారులు"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Avg. Courses per User"
+msgstr "సగటు ఒక్కో వినియోగదారుకు కోర్సులు"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Avg. Weekly Study Time"
+msgstr "సగటు ప్రతిస్పందన సమయం"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search users..."
+msgstr "కోర్సులను శోధించండి..."
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "All Progress"
+msgstr "పురోగతి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "User Progress Overview"
+msgstr "వినియోగదారు పురోగతి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Top Performing Users"
+msgstr "టాప్ పెర్ఫార్మర్స్"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "5 courses completed"
+msgstr "కోర్సులు పూర్తయ్యాయి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "4 courses completed"
+msgstr "కోర్సులు పూర్తయ్యాయి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "3 courses completed"
+msgstr "కోర్సులు పూర్తయ్యాయి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Recent Activity"
+msgid "Recent User Activity"
+msgstr "ఇటీవలి కార్యాచరణ"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Completed module: Introduction to JavaScript"
+msgstr "పూర్తి చేసిన పాఠం: జావాస్క్రిప్ట్‌తో పరిచయం"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Started course: Advanced Data Analysis"
+msgstr "కోర్సు ప్రారంభించబడింది: అధునాతన డేటా విశ్లేషణ"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submitted assignment: Marketing Strategy Plan"
+msgstr "అసైన్‌మెంట్ సమర్పించబడింది"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Engagement"
+msgid "User Engagement Metrics"
+msgstr "వినియోగదారు నిశ్చితార్థం"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Detailed User Progress"
+msgstr "వినియోగదారు పురోగతి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Courses Completed"
+msgid "Courses Enrolled"
+msgstr "కోర్సులు పూర్తయ్యాయి"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Avg. Progress"
+msgstr "పురోగతి"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Study Time (Last 7 days)"
+msgstr "అధ్యయన సమయం (గత 7 రోజులు)"
+
+#: templates/users/administrator/reports/user_progress.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Users"
+msgstr "కోర్సుల సంఖ్య"
+
+#: templates/users/administrator/reports/user_progress.html
+msgid "Video Lessons"
+msgstr "వీడియో పాఠాలు"
 
 #: templates/users/administrator/settings.html
 msgid "Settings - LMS Admin"
@@ -2991,6 +5189,7 @@ msgid "API Key"
 msgstr "API కీ"
 
 #: templates/users/administrator/settings.html
+#: templates/website/landing_page.html
 msgid "Video Conferencing Integration"
 msgstr "వీడియో కాన్ఫరెన్సింగ్ ఇంటిగ్రేషన్"
 
@@ -3009,14 +5208,6 @@ msgstr "సైడ్‌బార్"
 #: templates/users/administrator/sidebar.html
 msgid "Categories"
 msgstr "వర్గాలు"
-
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "నమోదులు"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learning Path"
-msgstr "అభ్యాస మార్గం"
 
 #: templates/users/administrator/sidebar.html
 msgid "Users"
@@ -3039,32 +5230,8 @@ msgid "Course Completion"
 msgstr "కోర్సు పూర్తి"
 
 #: templates/users/administrator/sidebar.html
-msgid "User Progress"
-msgstr "వినియోగదారు పురోగతి"
-
-#: templates/users/administrator/sidebar.html
-msgid "Assessment Results"
-msgstr "మూల్యాంకన ఫలితాలు"
-
-#: templates/users/administrator/sidebar.html
-msgid "User Engagement"
-msgstr "వినియోగదారు నిశ్చితార్థం"
-
-#: templates/users/administrator/sidebar.html
 msgid "Resource Usage"
 msgstr "వనరుల వినియోగం"
-
-#: templates/users/administrator/sidebar.html
-msgid "Certification Tracking"
-msgstr "సర్టిఫికేషన్ ట్రాకింగ్"
-
-#: templates/users/administrator/sidebar.html
-msgid "Learner Feedback"
-msgstr "అభ్యాసకుల అభిప్రాయం"
-
-#: templates/users/administrator/sidebar.html
-msgid "Custom Reports"
-msgstr "అనుకూల నివేదికలు"
 
 #: templates/users/administrator/sidebar.html
 msgid "Billing"
@@ -3074,9 +5241,65 @@ msgstr "బిల్లింగ్"
 msgid "Logout"
 msgstr "లాగ్అవుట్"
 
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "NextGen LMS"
+msgid "Login - NextGenAI LMS"
+msgstr "NextGen LMS"
+
+#: templates/users/authentication/login.html
+msgid "Welcome Back"
+msgstr "తిరిగి స్వాగతం"
+
+#: templates/users/authentication/login.html
+msgid "Log in to your NextGen LMS account"
+msgstr "మీ NextGen LMS ఖాతాకు లాగిన్ చేయండి"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "ఇమెయిల్ చిరునామా"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Password"
+msgstr "పాస్‌వర్డ్ విధానం"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "December"
+msgid "Remember me"
+msgstr "డిసెంబర్"
+
+#: templates/users/authentication/login.html
+msgid "Forgot password?"
+msgstr "పాస్‌వర్డ్ మర్చిపోయారా?"
+
+#: templates/users/authentication/login.html
+msgid "Log In"
+msgstr "లాగిన్ చేయండి"
+
+#: templates/users/authentication/login.html
+msgid "Don't have an account?"
+msgstr "ఖాతా లేదా?"
+
+#: templates/users/authentication/login.html
+#, fuzzy
+#| msgid "Administrators"
+msgid "Contact your administrator"
+msgstr "నిర్వాహకులు"
+
+#: templates/users/authentication/login.html
+msgid "Back to Home"
+msgstr "ఇంటికి తిరిగి వెళ్ళు"
+
 #: templates/users/learner/course_detail.html
-msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
-msgstr "కోర్సు వివరాలు - లంచం మరియు అవినీతి నిరోధక విధానం"
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Details"
+msgstr "కోర్సు సెట్టింగ్‌లు"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -3091,10 +5314,6 @@ msgstr "ఉద్యోగులందరికీ అవసరమైన సమ�
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "నా కోర్సులు"
-
-#: templates/users/learner/course_detail.html
-msgid "Course Overview"
-msgstr "కోర్సు అవలోకనం"
 
 #: templates/users/learner/course_detail.html
 msgid ""
@@ -3147,20 +5366,12 @@ msgid "Recognizing Bribery Risks"
 msgstr "లంచం ప్రమాదాలను గుర్తించడం"
 
 #: templates/users/learner/course_detail.html
-msgid "Video"
-msgstr "వీడియో"
-
-#: templates/users/learner/course_detail.html
 msgid "Watch"
 msgstr "చూడండి"
 
 #: templates/users/learner/course_detail.html
 msgid "Company Anti-Corruption Policy"
 msgstr "కంపెనీ అవినీతి నిరోధక విధానం"
-
-#: templates/users/learner/course_detail.html
-msgid "Document"
-msgstr "పత్రం"
 
 #: templates/users/learner/course_detail.html
 msgid "Read"
@@ -3171,16 +5382,8 @@ msgid "Case Studies: Ethical Decision Making"
 msgstr "కేస్ స్టడీస్: ఎథికల్ డెసిషన్ మేకింగ్"
 
 #: templates/users/learner/course_detail.html
-msgid "Presentation"
-msgstr "ప్రెజెంటేషన్"
-
-#: templates/users/learner/course_detail.html
 msgid "Anti-Bribery and Anti-Corruption Assessment"
 msgstr "యాంటీ లంచం మరియు అవినీతి నిరోధక అంచనా"
-
-#: templates/users/learner/course_detail.html
-msgid "Quiz"
-msgstr "క్విజ్"
 
 #: templates/users/learner/course_detail.html
 msgid "Take Quiz"
@@ -3244,10 +5447,6 @@ msgid "Courses in Progress"
 msgstr "ప్రోగ్రెస్‌లో ఉన్న కోర్సులు"
 
 #: templates/users/learner/dashboard.html
-msgid "Completed Courses"
-msgstr "పూర్తి చేసిన కోర్సులు"
-
-#: templates/users/learner/dashboard.html
 msgid "Certificates Earned"
 msgstr "సర్టిఫికెట్లు సంపాదించారు"
 
@@ -3304,16 +5503,8 @@ msgid "Completed lesson: Introduction to JavaScript"
 msgstr "పూర్తి చేసిన పాఠం: జావాస్క్రిప్ట్‌తో పరిచయం"
 
 #: templates/users/learner/dashboard.html
-msgid "2 hours ago"
-msgstr "2 గంటల క్రితం"
-
-#: templates/users/learner/dashboard.html
 msgid "Earned certificate: HTML & CSS Fundamentals"
 msgstr "సంపాదించిన ప్రమాణపత్రం: HTML మరియు CSS ఫండమెంటల్స్"
-
-#: templates/users/learner/dashboard.html
-msgid "1 day ago"
-msgstr "1 రోజు క్రితం"
 
 #: templates/users/learner/dashboard.html
 msgid "Number of Courses"
@@ -3387,6 +5578,583 @@ msgstr "2.5 గంటలు"
 msgid "4 modules"
 msgstr "4 మాడ్యూల్స్"
 
+#: templates/website/landing_page.html
+msgid "NextGen AI LMS - Revolutionize Your Learning"
+msgstr "NextGen AI LMS - మీ అభ్యాసాన్ని విప్లవాత్మకంగా మార్చండి"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Next"
+msgid "NextGen"
+msgstr "తదుపరి"
+
+#: templates/website/landing_page.html
+msgid "Features"
+msgstr "ఫీచర్లు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Innovation"
+msgstr "ఇంటిగ్రేషన్లు"
+
+#: templates/website/landing_page.html
+msgid "Testimonials"
+msgstr "టెస్టిమోనియల్స్"
+
+#: templates/website/landing_page.html
+msgid "Pricing"
+msgstr "ధర నిర్ణయించడం"
+
+#: templates/website/landing_page.html
+msgid "Login"
+msgstr "లాగిన్ చేయండి"
+
+#: templates/website/landing_page.html
+msgid "Revolutionize Learning"
+msgstr "అభ్యాసాన్ని విప్లవాత్మకంగా మార్చండి"
+
+#: templates/website/landing_page.html
+msgid "with"
+msgstr "తో"
+
+#: templates/website/landing_page.html
+msgid "NextGen LMS"
+msgstr "NextGen LMS"
+
+#: templates/website/landing_page.html
+msgid ""
+"Harness the power of innovative technology to create personalized learning "
+"experiences, optimize content delivery, and drive unprecedented engagement "
+"in corporate training."
+msgstr ""
+"వ్యక్తిగతీకరించిన అభ్యాస అనుభవాలను సృష్టించడానికి, కంటెంట్ డెలివరీని "
+"ఆప్టిమైజ్ చేయడానికి మరియు కార్పొరేట్ శిక్షణలో అపూర్వమైన నిశ్చితార్థాన్ని "
+"నడపడానికి వినూత్న సాంకేతికత యొక్క శక్తిని ఉపయోగించుకోండి."
+
+#: templates/website/landing_page.html
+msgid "Experience the Future"
+msgstr "భవిష్యత్తును అనుభవించండి"
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Features"
+msgstr "కట్టింగ్-ఎడ్జ్ ఫీచర్లు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Smart Learning Paths"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our algorithms analyze learner behavior and performance to create "
+"personalized learning journeys, ensuring optimal skill development."
+msgstr ""
+"మా అల్గారిథమ్‌లు వ్యక్తిగతీకరించిన అభ్యాస ప్రయాణాలను రూపొందించడానికి "
+"అభ్యాసకుల ప్రవర్తన మరియు పనితీరును విశ్లేషిస్తాయి, సరైన నైపుణ్య అభివృద్ధికి "
+"భరోసా ఇస్తాయి."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Arabic"
+msgid "Advanced Analytics"
+msgstr "అధునాతన అరబిక్"
+
+#: templates/website/landing_page.html
+msgid ""
+"Leverage data-driven insights to forecast learner outcomes, identify "
+"potential challenges, and proactively intervene for better results."
+msgstr ""
+"అభ్యాసకుల ఫలితాలను అంచనా వేయడానికి, సంభావ్య సవాళ్లను గుర్తించడానికి మరియు "
+"మెరుగైన ఫలితాల కోసం ముందస్తుగా జోక్యం చేసుకోవడానికి డేటా-ఆధారిత "
+"అంతర్దృష్టులను ప్రభావితం చేయండి."
+
+#: templates/website/landing_page.html
+msgid "Immersive VR Training"
+msgstr "లీనమయ్యే VR శిక్షణ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Integrate virtual reality experiences for hands-on, risk-free training in "
+"complex or high-stakes scenarios."
+msgstr ""
+"సంక్లిష్టమైన లేదా అధిక-స్టేక్స్ దృశ్యాలలో ప్రమాద రహిత శిక్షణ కోసం వర్చువల్ "
+"రియాలిటీ అనుభవాలను ఏకీకృతం చేయండి."
+
+#: templates/website/landing_page.html
+msgid "Advanced Enterprise Features"
+msgstr "అధునాతన ఎంటర్‌ప్రైజ్ ఫీచర్‌లు"
+
+#: templates/website/landing_page.html
+msgid "Flexible Deployment"
+msgstr "సౌకర్యవంతమైన విస్తరణ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Deploy on any cloud platform (AWS, Azure, DigitalOcean) or on-premises, "
+"including Windows Server support."
+msgstr ""
+"Windows సర్వర్ మద్దతుతో సహా ఏదైనా క్లౌడ్ ప్లాట్‌ఫారమ్ (AWS, Azure, "
+"DigitalOcean) లేదా ఆన్-ప్రాంగణంలో అమర్చండి."
+
+#: templates/website/landing_page.html
+msgid "Multi-Tenant Architecture"
+msgstr "మల్టీ-టెనెంట్ ఆర్కిటెక్చర్"
+
+#: templates/website/landing_page.html
+msgid ""
+"Securely manage multiple organizations within a single instance, ensuring "
+"data isolation and customization."
+msgstr ""
+"ఒకే సందర్భంలో బహుళ సంస్థలను సురక్షితంగా నిర్వహించండి, డేటా ఐసోలేషన్ మరియు "
+"అనుకూలీకరణను నిర్ధారిస్తుంది."
+
+#: templates/website/landing_page.html
+msgid "Multilingual Support"
+msgstr "బహుభాషా మద్దతు"
+
+#: templates/website/landing_page.html
+msgid "Available in 30+ languages, including:"
+msgstr "30+ భాషల్లో అందుబాటులో ఉంది, వీటితో సహా:"
+
+#: templates/website/landing_page.html
+msgid "العربية - مرحبا"
+msgstr "అరబిక్ - హలో"
+
+#: templates/website/landing_page.html
+msgid "English - Welcome"
+msgstr "ఇంగ్లీష్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Español - Bienvenido"
+msgstr "స్పానిష్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Français - Bienvenue"
+msgstr "ఫ్రెంచ్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Deutsch - Willkommen"
+msgstr "జర్మన్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "中文 - 欢迎"
+msgstr "చైనీస్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "日本語 - ようこそ"
+msgstr "జపనీస్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Italiano - Benvenuto"
+msgstr "ఇటాలియన్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Русский - Добро пожаловать"
+msgstr "రష్యన్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Português - Bem-vindo"
+msgstr "పోర్చుగీస్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "हिंदी - स्वागत है"
+msgstr "హిందీ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "한국어 - 환영합니다"
+msgstr "కొరియన్ - స్వాగతం"
+
+#: templates/website/landing_page.html
+msgid "Seamless integration with popular platforms:"
+msgstr "జనాదరణ పొందిన ప్లాట్‌ఫారమ్‌లతో అతుకులు లేని ఏకీకరణ:"
+
+#: templates/website/landing_page.html
+msgid "Zoom"
+msgstr "జూమ్ చేయండి"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Google Client ID"
+msgid "Google Meet"
+msgstr "Google క్లయింట్ ID"
+
+#: templates/website/landing_page.html
+msgid "Microsoft Teams"
+msgstr "మైక్రోసాఫ్ట్ బృందాలు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Learning Paths"
+msgstr "అభ్యాస మార్గం"
+
+#: templates/website/landing_page.html
+msgid ""
+"Create customized learning journeys with sequential courses, prerequisites, "
+"and branching paths."
+msgstr ""
+"సీక్వెన్షియల్ కోర్సులు, ముందస్తు అవసరాలు మరియు శాఖల మార్గాలతో అనుకూలీకరించిన"
+" అభ్యాస ప్రయాణాలను సృష్టించండి."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Announcements Management"
+msgid "Content Management System"
+msgstr "ప్రకటనల నిర్వహణ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Robust CMS with SCORM support, multiple media types, and an intuitive file "
+"manager."
+msgstr ""
+"SCORM మద్దతు, బహుళ మీడియా రకాలు మరియు సహజమైన ఫైల్ మేనేజర్‌తో బలమైన CMS."
+
+#: templates/website/landing_page.html
+msgid "Cutting-Edge Technology Stack"
+msgstr "కట్టింగ్-ఎడ్జ్ టెక్నాలజీ స్టాక్"
+
+#: templates/website/landing_page.html
+msgid "Python"
+msgstr "కొండచిలువ"
+
+#: templates/website/landing_page.html
+msgid "Django"
+msgstr "జంగో"
+
+#: templates/website/landing_page.html
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: templates/website/landing_page.html
+msgid "Docker"
+msgstr "డాకర్"
+
+#: templates/website/landing_page.html
+msgid "Tailwindcss"
+msgstr "Tailwindcss"
+
+#: templates/website/landing_page.html
+msgid "JavaScript"
+msgstr "జావాస్క్రిప్ట్"
+
+#: templates/website/landing_page.html
+msgid "WebSockets"
+msgstr "WebSockets"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Advanced Settings"
+msgid "Advanced Security"
+msgstr "అధునాతన సెట్టింగ్‌లు"
+
+#: templates/website/landing_page.html
+msgid "Innovative Learning Approach"
+msgstr "ఇన్నోవేటివ్ లెర్నింగ్ అప్రోచ్"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Create Course Delivery"
+msgid "Adaptive Content Delivery"
+msgstr "కోర్సు డెలివరీని సృష్టించండి"
+
+#: templates/website/landing_page.html
+msgid ""
+"Our smart engine dynamically adjusts content difficulty and presentation "
+"based on real-time learner performance, ensuring an optimal challenge level "
+"for each individual."
+msgstr ""
+"మా స్మార్ట్ ఇంజిన్ నిజ-సమయ అభ్యాసకుల పనితీరు ఆధారంగా కంటెంట్ కష్టాలను మరియు "
+"ప్రదర్శనను డైనమిక్‌గా సర్దుబాటు చేస్తుంది, ప్రతి వ్యక్తికి సరైన సవాలు "
+"స్థాయిని నిర్ధారిస్తుంది."
+
+#: templates/website/landing_page.html
+msgid "Personalized learning speed"
+msgstr "వ్యక్తిగతీకరించిన అభ్యాస వేగం"
+
+#: templates/website/landing_page.html
+msgid "Adaptive assessment techniques"
+msgstr "అనుకూల అంచనా పద్ధతులు"
+
+#: templates/website/landing_page.html
+msgid "Intelligent content recommendations"
+msgstr "తెలివైన కంటెంట్ సిఫార్సులు"
+
+#: templates/website/landing_page.html
+msgid "Adaptive learning visualization"
+msgstr "అడాప్టివ్ లెర్నింగ్ విజువలైజేషన్"
+
+#: templates/website/landing_page.html
+msgid "Success Stories"
+msgstr "సక్సెస్ స్టోరీస్"
+
+#: templates/website/landing_page.html
+msgid "Client Avatar"
+msgstr "క్లయింట్ అవతార్"
+
+#: templates/website/landing_page.html
+msgid "Sarah Johnson"
+msgstr "సారా జాన్సన్"
+
+#: templates/website/landing_page.html
+msgid "HR Director, TechCorp"
+msgstr "HR డైరెక్టర్, టెక్కార్ప్"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"NextGen AI LMS has transformed our corporate training. The personalized "
+"learning paths and predictive analytics have significantly improved employee"
+" engagement and performance. We've seen a 40%% increase in course completion"
+" rates and a 25%% improvement in knowledge retention."
+msgstr ""
+"NextGen AI LMS మా కార్పొరేట్ శిక్షణను మార్చింది. వ్యక్తిగతీకరించిన అభ్యాస "
+"మార్గాలు మరియు ప్రిడిక్టివ్ అనలిటిక్స్ ఉద్యోగి నిశ్చితార్థం మరియు పనితీరును "
+"గణనీయంగా మెరుగుపరిచాయి. మేము కోర్సు పూర్తి రేట్లలో 40% పెరుగుదలను మరియు "
+"జ్ఞాన నిలుపుదలలో 25%% మెరుగుదలని చూశాము."
+
+#: templates/website/landing_page.html
+msgid "Mark Thompson"
+msgstr "మార్క్ థాంప్సన్"
+
+#: templates/website/landing_page.html
+msgid "L&D Manager, InnovateNow"
+msgstr "L&D మేనేజర్, ఇన్నోవేట్ నౌ"
+
+#: templates/website/landing_page.html
+#, python-format
+msgid ""
+"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+"approach to employee development. We can now identify skill gaps proactively"
+" and tailor our training programs with unprecedented precision. Our team's "
+"productivity has increased by 30%% since implementing this cutting-edge "
+"system."
+msgstr ""
+"NextGen AI LMS అందించిన AI-ఆధారిత అంతర్దృష్టులు ఉద్యోగుల అభివృద్ధికి మా "
+"విధానాన్ని విప్లవాత్మకంగా మార్చాయి. మేము ఇప్పుడు నైపుణ్య అంతరాలను ముందుగానే "
+"గుర్తించగలము మరియు అపూర్వమైన ఖచ్చితత్వంతో మా శిక్షణా కార్యక్రమాలను "
+"రూపొందించవచ్చు. ఈ అత్యాధునిక వ్యవస్థను అమలు చేసినప్పటి నుండి మా బృందం "
+"ఉత్పాదకత 30%% పెరిగింది."
+
+#: templates/website/landing_page.html
+msgid "Flexible Subscription Plans"
+msgstr "ఫ్లెక్సిబుల్ సబ్‌స్క్రిప్షన్ ప్లాన్‌లు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Start"
+msgid "Starter"
+msgstr "ప్రారంభించండి"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Month"
+msgid "/month"
+msgstr "నెల"
+
+#: templates/website/landing_page.html
+msgid "Up to 500 users"
+msgstr "గరిష్టంగా 500 మంది వినియోగదారులు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Basic Details"
+msgid "Basic analytics"
+msgstr "ప్రాథమిక వివరాలు"
+
+#: templates/website/landing_page.html
+msgid "Personalized learning paths"
+msgstr "వ్యక్తిగతీకరించిన అభ్యాస మార్గాలు"
+
+#: templates/website/landing_page.html
+msgid "24/7 chatbot support"
+msgstr "24/7 చాట్‌బాట్ మద్దతు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Getting Started Guide"
+msgid "Get Started"
+msgstr "గైడ్ ప్రారంభించడం"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Most Popular Courses"
+msgid "Most Popular"
+msgstr "అత్యంత ప్రజాదరణ పొందిన కోర్సులు"
+
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "వృత్తిపరమైన"
+
+#: templates/website/landing_page.html
+msgid "Up to 2,000 users"
+msgstr "2,000 మంది వరకు వినియోగదారులు"
+
+#: templates/website/landing_page.html
+msgid "Advanced analytics & predictions"
+msgstr "అధునాతన విశ్లేషణలు & అంచనాలు"
+
+#: templates/website/landing_page.html
+msgid "Automated content recommendations"
+msgstr "స్వయంచాలక కంటెంట్ సిఫార్సులు"
+
+#: templates/website/landing_page.html
+msgid "VR training modules"
+msgstr "VR శిక్షణ మాడ్యూల్స్"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Print Report"
+msgid "Priority support"
+msgstr "నివేదికను ముద్రించండి"
+
+#: templates/website/landing_page.html
+msgid "Upgrade to Pro"
+msgstr "ప్రోకి అప్‌గ్రేడ్ చేయండి"
+
+#: templates/website/landing_page.html
+msgid "Enterprise"
+msgstr "సంస్థ"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Custom Reports"
+msgid "Custom"
+msgstr "అనుకూల నివేదికలు"
+
+#: templates/website/landing_page.html
+msgid "Unlimited users"
+msgstr "అపరిమిత వినియోగదారులు"
+
+#: templates/website/landing_page.html
+msgid "Full LMS ecosystem integration"
+msgstr "పూర్తి LMS పర్యావరణ వ్యవస్థ ఏకీకరణ"
+
+#: templates/website/landing_page.html
+msgid "Custom model development"
+msgstr "కస్టమ్ మోడల్ అభివృద్ధి"
+
+#: templates/website/landing_page.html
+msgid "Advanced VR & AR capabilities"
+msgstr "అధునాతన VR & AR సామర్థ్యాలు"
+
+#: templates/website/landing_page.html
+msgid "Dedicated account manager"
+msgstr "అంకితమైన ఖాతా మేనేజర్"
+
+#: templates/website/landing_page.html
+msgid "Contact Sales"
+msgstr "విక్రయాలను సంప్రదించండి"
+
+#: templates/website/landing_page.html
+msgid "Ready to Transform Your Learning Experience?"
+msgstr "మీ అభ్యాస అనుభవాన్ని మార్చడానికి సిద్ధంగా ఉన్నారా?"
+
+#: templates/website/landing_page.html
+msgid ""
+"Unlock the full potential of your organization's talent with our innovative "
+"learning management system."
+msgstr ""
+"మా ఇన్నోవేటివ్ లెర్నింగ్ మేనేజ్‌మెంట్ సిస్టమ్‌తో మీ సంస్థ ప్రతిభ యొక్క "
+"పూర్తి సామర్థ్యాన్ని అన్‌లాక్ చేయండి."
+
+#: templates/website/landing_page.html
+msgid "Request a Demo"
+msgstr "డెమోను అభ్యర్థించండి"
+
+#: templates/website/landing_page.html
+msgid "Empowering the future of learning with innovative technology."
+msgstr "వినూత్న సాంకేతికతతో నేర్చుకునే భవిష్యత్తును శక్తివంతం చేయడం."
+
+#: templates/website/landing_page.html
+msgid "123 Tech Street, San Francisco, CA 94105"
+msgstr "123 టెక్ స్ట్రీట్, శాన్ ఫ్రాన్సిస్కో, CA 94105"
+
+#: templates/website/landing_page.html
+msgid "Phone: (555) 123-4567"
+msgstr "ఫోన్: (555) 123-4567"
+
+#: templates/website/landing_page.html
+msgid "Email: info@lms.com"
+msgstr "ఇమెయిల్: info@lms.com"
+
+#: templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "త్వరిత లింక్‌లు"
+
+#: templates/website/landing_page.html
+msgid "Home"
+msgstr "హోమ్"
+
+#: templates/website/landing_page.html
+msgid "Contact"
+msgstr "సంప్రదించండి"
+
+#: templates/website/landing_page.html
+msgid "About Us"
+msgstr "మా గురించి"
+
+#: templates/website/landing_page.html
+msgid "Blog"
+msgstr "బ్లాగు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Legal & Support"
+msgstr "సహాయం & మద్దతు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy Policy"
+msgstr "పాస్‌వర్డ్ విధానం"
+
+#: templates/website/landing_page.html
+msgid "Terms of Service"
+msgstr "సేవా నిబంధనలు"
+
+#: templates/website/landing_page.html
+msgid "Cookie Policy"
+msgstr "కుకీ విధానం"
+
+#: templates/website/landing_page.html
+msgid "FAQ"
+msgstr "తరచుగా అడిగే ప్రశ్నలు"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Help & Support Center"
+msgid "Support Center"
+msgstr "సహాయం & మద్దతు కేంద్రం"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "సిస్టమ్ నవీకరణలు"
+
+#: templates/website/landing_page.html
+msgid "Connect With Us"
+msgstr "మాతో కనెక్ట్ అవ్వండి"
+
+#: templates/website/landing_page.html
+msgid "Newsletter"
+msgstr "వార్తాలేఖ"
+
+#: templates/website/landing_page.html
+msgid "Your email"
+msgstr "మీ ఇమెయిల్"
+
+#: templates/website/landing_page.html
+msgid "Subscribe"
+msgstr "సభ్యత్వం పొందండి"
+
+#: templates/website/landing_page.html
+msgid "© 2024 NextGen LMS. All rights reserved."
+msgstr "© 2024 NextGen LMS. అన్ని హక్కులు ప్రత్యేకించబడ్డాయి."
+
 #: users/auth_views.py
 msgid "You have successfully logged in."
 msgstr "మీరు విజయవంతంగా లాగిన్ చేసారు."
@@ -3394,3 +6162,9 @@ msgstr "మీరు విజయవంతంగా లాగిన్ చేస
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "లాగిన్ విఫలమైంది. దయచేసి దిగువ లోపాలను తనిఖీ చేయండి."
+
+#~ msgid "Norwegian"
+#~ msgstr "నార్వేజియన్"
+
+#~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "కోర్సు వివరాలు - లంచం మరియు అవినీతి నిరోధక విధానం"
