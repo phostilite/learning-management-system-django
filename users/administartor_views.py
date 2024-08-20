@@ -423,7 +423,8 @@ class CourseCreationWizard(SessionWizardView):
                                 logger.info(f"SCORM course created successfully: {api_response['id']}")
                                 ScormResource.objects.create(
                                     learning_resource=resource,
-                                    scorm_course_id=api_response['id'],
+                                    scorm_course_id=api_response['course'],
+                                    scorm_package_id=api_response['id'],
                                     version=api_response.get('version', scorm_details['version']),
                                     web_path=api_response.get('launch_path', '')
                                 )

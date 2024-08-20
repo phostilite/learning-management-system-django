@@ -64,6 +64,7 @@ class LearningResource(models.Model):
 class ScormResource(models.Model):
     learning_resource = models.OneToOneField(LearningResource, on_delete=models.CASCADE, related_name='scorm_details')
     scorm_course_id = models.CharField(max_length=50, unique=True)
+    scorm_package_id = models.CharField(max_length=50, unique=True, null=True, blank=True)
     version = models.CharField(max_length=50)
     web_path = models.CharField(max_length=255)
 

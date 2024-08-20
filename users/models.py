@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
 import pytz
+from django.conf import settings
 
 class User(AbstractUser):
     """User model with extended fields."""
@@ -19,6 +20,18 @@ class User(AbstractUser):
         choices=[(tz, tz) for tz in pytz.common_timezones],
         default=timezone.get_current_timezone_name()
     )
+
+class SCORMUserProfile(models.Model):
+    """Model to store the link between LMS users and their SCORM player identities."""
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='scorm_profile')
+    scorm_player_id = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return f"SCORM Profile for {self.user.username} (SCORM Player ID: {self.scorm_player_id})"
+
+    class Meta:
+        verbose_name = "SCORM User Profile"
+        verbose_name_plural = "SCORM User Profiles"
 
 class Learner(models.Model):
     """Model representing a learner."""
