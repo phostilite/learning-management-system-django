@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ls#yq@w!$)_^yj^a!+2ljhow_x%+=n=z0xsw2lz#+vz8v)qda^'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,14 +87,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lms.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -193,11 +196,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
-
 AUTH_USER_MODEL = 'users.User'
 
 # CloudSCORM API settings
-
 CLOUDSCORM_APP_ID = os.getenv('CLOUDSCORM_APP_ID')
 CLOUDSCORM_SECRET_KEY = os.getenv('CLOUDSCORM_SECRET_KEY')
 CLOUDSCORM_API_URL = os.getenv('CLOUDSCORM_API_URL')
@@ -207,7 +208,6 @@ SCORM_API_BASE_URL = os.getenv('SCORM_API_BASE_URL')
 SCORM_API_TOKEN = os.getenv('SCORM_API_TOKEN')
 
 # Logging settings
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

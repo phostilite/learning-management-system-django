@@ -7,7 +7,7 @@ languages = [
 ]
 
 # Path to your Django project
-project_path = '/Users/apple/Documents/LMS'
+project_path = os.getenv('PROJECT_PATH')
 
 # Step 1: Extract strings
 def extract_strings():
