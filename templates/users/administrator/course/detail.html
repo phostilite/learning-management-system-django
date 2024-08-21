@@ -509,7 +509,8 @@
                 '{{ resource.resource_type }}', 
                 '{% if resource.content %}{{ resource.content.url|default:""|escapejs }}{% else %}{% endif %}',
                 '{{ resource.external_url|default:""|escapejs }}',
-                '{{ resource.launch_url|default:""|escapejs }}'
+                '{{ resource.launch_url|default:""|escapejs }}',
+                '{{ resource.scorm_details.scorm_package_id }}',
             ),
             metadata: {
                 '{% trans "Description" %}': '{{ resource.description|escapejs }}',
@@ -528,6 +529,7 @@
         }{% if not forloop.last %},{% endif %}
         {% endfor %}
     ];
+    console.log(resources);
 
     function getIconForResourceType(type) {
         const iconMap = {
@@ -541,7 +543,7 @@
         return iconMap[type] || 'fas fa-file';
     }
 
-    function getContentForResourceType(type, contentUrl, externalUrl, launchUrl) {
+    function getContentForResourceType(type, contentUrl, externalUrl, launchUrl, scormPackageId) {
         switch (type) {
             case 'VIDEO':
                 return contentUrl ? `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>` : 
@@ -552,7 +554,7 @@
             case 'QUIZ':
                 return `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Quiz Preview" %}</p><p>{% trans "This quiz is available in the course. Click to attempt." %}</p></div>`;
             case 'SCORM':
-                return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">{% trans "This is a SCORM package. Click the button below to launch it." %}</p><button onclick="launchScorm('${launchUrl}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">{% trans "Launch SCORM Package" %}</button></div>`;
+                return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">{% trans "This is a SCORM package. Click the button below to launch it." %}</p><button onclick="launchScorm('${scormPackageId}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">{% trans "Launch SCORM Package" %}</button></div>`;
             case 'PRESENTATION':
                 return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Preview" %}</p><p>{% trans "This is a presentation." %} <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "View presentation" %}</a></p></div>` :
                     `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Resource" %}</p><p>{% trans "No presentation file available." %}</p></div>`;
@@ -615,7 +617,39 @@
         AOS.refresh();
     }
 
-    function launchScorm(url) {
+    function launchScorm(packageId) {
+        const userId = '{{ SCORM_PLAYER_USER_ID }}';
+        const apiUrl = '{{ SCORM_API_BASE_URL }}/api/attempts/start_attempt/';
+        const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+    
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('package_id', packageId);
+    
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const launchUrl = `{{ SCORM_API_BASE_URL }}/launch/${data.id}/`;
+            launchScormPackage(launchUrl);
+        })
+        .catch(error => {
+            console.error('Error launching SCORM package:', error);
+            alert('Failed to launch SCORM package. Please try again.');
+        });
+    }
+    
+    function launchScormPackage(url) {
         const contentDiv = document.getElementById('resourceContent');
         const metadataDiv = document.getElementById('resourceMetadata');
         

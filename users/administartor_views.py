@@ -596,6 +596,11 @@ class CourseDetailView(DetailView):
         # Calculate some statistics
         context['total_resources'] = context['learning_resources'].count()
         context['total_deliveries'] = deliveries.count()
+
+        context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+        context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+        context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+        
         
         return context
         
