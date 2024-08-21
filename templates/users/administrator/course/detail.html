@@ -666,6 +666,21 @@
     function closeModal() {
         const modal = document.getElementById('previewModal');
         modal.classList.add('hidden');
+        
+        // Find and remove the SCORM iframe if it exists
+        const scormIframe = document.querySelector('#resourceContent iframe');
+        if (scormIframe) {
+            scormIframe.remove();
+        }
+        
+        // Reset the content div
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = '';
+        contentDiv.classList.remove('h-full');
+        
+        // Reset the metadata div
+        const metadataDiv = document.getElementById('resourceMetadata');
+        metadataDiv.innerHTML = '';
     }
 
     // Close modal when clicking outside
