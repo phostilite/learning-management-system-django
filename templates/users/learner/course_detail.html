@@ -45,8 +45,8 @@
 {% block content %}
 <div class="container mx-auto px-4 py-8">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Anti-Bribery and Anti-Corruption Policy" %}</h1>
-        <p class="text-lg text-white text-center">{% trans "Essential compliance training for all employees" %}</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{{ course.course.title }}</h1>
+        <p class="text-lg text-white text-center">{{ course.course.short_description }}</p>
     </header>
 
     <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
@@ -66,7 +66,7 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Anti-Bribery and Anti-Corruption Policy" %}</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ course.course.title }}</span>
                 </div>
             </li>
         </ol>
@@ -77,19 +77,19 @@
         <div class="md:col-span-2">
             <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
                 <h2 class="text-2xl font-bold mb-4">{% trans "Course Overview" %}</h2>
-                <p class="text-gray-700 mb-4">{% trans "This comprehensive course will educate you on our company's Anti-Bribery and Anti-Corruption Policy. You'll learn about the legal framework, recognize potential risks, and understand how to comply with the policy in various business situations." %}</p>
+                <p class="text-gray-700 mb-4">{{ course.course.description }}</p>
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {% trans "2 hours" %}</span>
+                    <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {% trans "30 minutes" %}</span>
                     <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {% trans "5 modules" %}</span>
                     <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> {% trans "All Employees" %}</span>
                 </div>
                 <div class="mb-4">
                     <div class="flex justify-between mb-1">
                         <span class="text-base font-medium text-indigo-700">{% trans "Overall Progress" %}</span>
-                        <span class="text-sm font-medium text-indigo-700">60%</span>
+                        <span class="text-sm font-medium text-indigo-700">0%</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 60%"></div>
+                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
                     </div>
                 </div>
             </div>
@@ -98,80 +98,24 @@
             <div class="bg-white rounded-lg p-6 card-shadow">
                 <h2 class="text-2xl font-bold mb-4">{% trans "Learning Resources" %}</h2>
                 <div class="space-y-4">
-                    <!-- SCORM Package -->
+
+                    {% for resource in course.course.resources.all %}
                     <div class="resource-card bg-gray-50 p-4 rounded-lg">
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-lg font-semibold">{% trans "Anti-Bribery and Anti-Corruption Basics" %}</h3>
-                                <p class="text-sm text-gray-600">{% trans "SCORM Package" %}</p>
+                                <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
+                                <p class="text-sm text-gray-600">{{ resource.resource_type }}</p>
                             </div>
                             <button onclick="launchScorm('https://scorm.learnknowdigital.com/launch/16/')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
                         </div>
                         <div class="mt-2">
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <!-- Video -->
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg font-semibold">{% trans "Recognizing Bribery Risks" %}</h3>
-                                <p class="text-sm text-gray-600">{% trans "Video" %}</p>
-                            </div>
-                            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Watch" %}</button>
-                        </div>
-                        <div class="mt-2">
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Document -->
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg font-semibold">{% trans "Company Anti-Corruption Policy" %}</h3>
-                                <p class="text-sm text-gray-600">{% trans "Document" %}</p>
-                            </div>
-                            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Read" %}</button>
-                        </div>
-                        <div class="mt-2">
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 50%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Presentation -->
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg font-semibold">{% trans "Case Studies: Ethical Decision Making" %}</h3>
-                                <p class="text-sm text-gray-600">{% trans "Presentation" %}</p>
-                            </div>
-                            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "View" %}</button>
-                        </div>
-                        <div class="mt-2">
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 25%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quiz -->
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg font-semibold">{% trans "Anti-Bribery and Anti-Corruption Assessment" %}</h3>
-                                <p class="text-sm text-gray-600">{% trans "Quiz" %}</p>
-                            </div>
-                            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Take Quiz" %}</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -181,9 +125,9 @@
             <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
                 <h2 class="text-xl font-bold mb-4">{% trans "Course Information" %}</h2>
                 <ul class="space-y-2">
-                    <li><strong>{% trans "Department:" %}</strong> Compliance</li>
-                    <li><strong>{% trans "Start Date:" %}</strong> June 1, 2024</li>
-                    <li><strong>{% trans "Due Date:" %}</strong> July 1, 2024</li>
+                    <li><strong>{% trans "Department:" %}</strong> {{ course.course.category }}</li>
+                    <li><strong>{% trans "Start Date:" %}</strong>{{ course.start_date }}</li>
+                    <li><strong>{% trans "Due Date:" %}</strong>{{ course.end_date }}</li>
                     <li><strong>{% trans "Language:" %}</strong> English</li>
                     <li><strong>{% trans "Certificate:" %}</strong> Yes</li>
                 </ul>

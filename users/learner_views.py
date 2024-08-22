@@ -13,6 +13,8 @@ from formtools.wizard.views import SessionWizardView
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+
 
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
@@ -37,7 +39,15 @@ class LearnerMyCoursesView(ListView):
     context_object_name = 'courses'
 
     def get_queryset(self):
-        pass
+        user = self.request.user
+        return CourseDelivery.objects.filter(enrollment__user=user)
 
-def learner_course_detail(request):
-    return render(request, 'users/learner/course_detail.html')
+@method_decorator(login_required, name='dispatch')
+class LearnerCourseDetailView(DetailView):
+    model = CourseDelivery
+    template_name = 'users/learner/course_detail.html'
+    context_object_name = 'course'
+
+    def get_object(self):
+        course_id = self.kwargs.get('course_id')
+        return get_object_or_404(CourseDelivery, id=course_id)
