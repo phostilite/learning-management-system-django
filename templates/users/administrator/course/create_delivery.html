@@ -4,9 +4,6 @@
 
 {% block title %}{% trans "Create Course Delivery - LMS Admin" %}{% endblock %}
 
-{% block extra_css %}
-{% endblock %}
-
 {% block content %}
 <div>
     <div>
@@ -44,235 +41,131 @@
             </ol>
         </nav>
 
-        <!-- Multi-step form -->
-        <form id="courseDeliveryForm" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            {% csrf_token %}
-            <!-- Progress bar -->
-            <div class="mb-8">
-                <div class="flex justify-between mb-1">
-                    <span class="text-base font-medium text-blue-700 dark:text-white">{% trans "Progress" %}</span>
-                    <span class="text-sm font-medium text-blue-700 dark:text-white" id="progress-text">20%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                    <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-500 ease-in-out" id="progress-bar" style="width: 20%"></div>
-                </div>
-            </div>
-
-            <!-- Step 1: Basic Details -->
-            <div class="step" id="step1">
-                <h3 class="text-2xl font-semibold mb-4">{% trans "Basic Details" %}</h3>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_delivery_code">
-                        {% trans "Delivery Code" %}
-                    </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_delivery_code" name="delivery_code" type="text" placeholder="{% trans 'Enter delivery code' %}" readonly value="{{ form.delivery_code.value }}">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_delivery_type">
-                        {% trans "How will the course be delivered?" %}
-                    </label>
-                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_delivery_type" name="delivery_type">
-                        <option value="SELF_PACED" {% if form.delivery_type.value == "SELF_PACED" %}selected{% endif %}>{% trans "Self Paced" %}</option>
-                        <option value="INSTRUCTOR_LED" {% if form.delivery_type.value == "INSTRUCTOR_LED" %}selected{% endif %}>{% trans "Instructor Led" %}</option>
-                    </select>
-                </div>
-                <!-- Add more fields from Step 1 here -->
-            </div>
-
-            <!-- Step 2: Assign Facilitators -->
-            <div class="step hidden" id="step2">
-                <h3 class="text-2xl font-semibold mb-4">{% trans "Assign Facilitators" %}</h3>
-                <div class="mb-4">
-                    <label for="facilitators" class="block text-sm font-medium text-gray-700">{% trans "Facilitators" %}</label>
-                    <select id="facilitators" name="facilitators" multiple class="form-multiselect mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        {% for facilitator in form.facilitators.field.queryset %}
-                            <option value="{{ facilitator.pk }}" {% if facilitator.pk in form.facilitators.value %}selected{% endif %}>{{ facilitator }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-
-            <!-- Step 3: Assign Participants -->
-            <div class="step hidden" id="step3">
-                <h3 class="text-2xl font-semibold mb-4">{% trans "Assign Participants" %}</h3>
-                <div class="mb-4">
-                    <label for="participants" class="block text-sm font-medium text-gray-700">{% trans "Participants" %}</label>
-                    <select id="participants" name="participants" multiple class="form-multiselect mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        {% for participant in form.participants.field.queryset %}
-                            <option value="{{ participant.pk }}" {% if participant.pk in form.participants.value %}selected{% endif %}>{{ participant }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-
-            <!-- Step 4: Advanced Settings -->
-            <div class="step hidden" id="step4">
-                <h3 class="text-2xl font-semibold mb-4">{% trans "Advanced Settings" %}</h3>
-
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="access_period_checkbox">
-                        {% trans "Would you like to add access period for Course content for this Delivery?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="access_period_checkbox">
-                    <span class="text-sm">{% trans "Yes, add access period" %}</span>
-                    
-                    <div id="date-range-picker" class="hidden mt-4">
-                        <div class="flex items-center">
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                    </svg>
-                                </div>
-                                <input id="datepicker-range-start" name="start_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select start date' %}" value="{{ form.start_date.value|date:'Y-m-d' }}">
-                            </div>
-                            <span class="mx-4 text-gray-500">{% trans "to" %}</span>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                    </svg>
-                                </div>
-                                <input id="datepicker-range-end" name="end_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select end date' %}" value="{{ form.end_date.value|date:'Y-m-d' }}">
-                            </div>
-                        </div>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Title -->
+                    <div class="space-y-2">
+                        <label for="title" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-heading mr-2"></i>{% trans "Title" %}
+                        </label>
+                        <input type="text" id="title" name="title" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                               placeholder="{% trans 'Enter delivery title' %}">
                     </div>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="deactivation_date_checkbox">
-                        {% trans "Would you like to add deactivation date for this Delivery?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="deactivation_date_checkbox">
-                    <span class="text-sm">{% trans "Yes, add deactivation date" %}</span>
-                
-                    <div id="datepicker-container" class="hidden mt-4">
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input id="default-datepicker" name="deactivation_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'Select date' %}" value="{{ form.deactivation_date.value|date:'Y-m-d' }}">
-                        </div>
+
+                    <!-- Delivery Code -->
+                    <div class="space-y-2">
+                        <label for="delivery_code" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-hashtag mr-2"></i>{% trans "Delivery Code" %}
+                        </label>
+                        <input type="text" id="delivery_code" name="delivery_code" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                               placeholder="{% trans 'Enter unique delivery code' %}">
+                    </div>
+
+                    <!-- Delivery Type -->
+                    <div class="space-y-2">
+                        <label for="delivery_type" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-laptop-house mr-2"></i>{% trans "Delivery Type" %}
+                        </label>
+                        <select id="delivery_type" name="delivery_type" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option value="SELF_PACED">{% trans "Self-Paced" %}</option>
+                            <option value="INSTRUCTOR_LED">{% trans "Instructor-Led" %}</option>
+                        </select>
+                    </div>
+
+                    <!-- Enrollment Type -->
+                    <div class="space-y-2">
+                        <label for="enrollment_type" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-user-plus mr-2"></i>{% trans "Enrollment Type" %}
+                        </label>
+                        <select id="enrollment_type" name="enrollment_type" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option value="OPEN">{% trans "Open Enrollment" %}</option>
+                            <option value="INVITE">{% trans "By Invitation" %}</option>
+                        </select>
+                    </div>
+
+                    <!-- Facilitators -->
+                    <div class="space-y-2">
+                        <label for="facilitators" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-users mr-2"></i>{% trans "Facilitators" %}
+                        </label>
+                        <select id="facilitators" name="facilitators" multiple
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            {% for user in form.facilitators.field.queryset %}
+                                <option value="{{ user.id }}">{{ user.get_full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="space-y-2">
+                        <label for="start_date" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2"></i>{% trans "Start Date" %}
+                        </label>
+                        <input type="datetime-local" id="start_date" name="start_date" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="space-y-2">
+                        <label for="end_date" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-calendar-check mr-2"></i>{% trans "End Date" %}
+                        </label>
+                        <input type="datetime-local" id="end_date" name="end_date" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Max Participants -->
+                    <div class="space-y-2">
+                        <label for="max_participants" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-users-cog mr-2"></i>{% trans "Max Participants" %}
+                        </label>
+                        <input type="number" id="max_participants" name="max_participants" min="1"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                               placeholder="{% trans 'Enter maximum participants' %}">
+                    </div>
+
+                    <!-- Status -->
+                    <div class="space-y-2">
+                        <label for="status" class="block text-sm font-medium text-gray-700">
+                            <i class="fas fa-info-circle mr-2"></i>{% trans "Status" %}
+                        </label>
+                        <select id="status" name="status" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option value="DRAFT">{% trans "Draft" %}</option>
+                            <option value="ACTIVE">{% trans "Active" %}</option>
+                            <option value="COMPLETED">{% trans "Completed" %}</option>
+                            <option value="ARCHIVED">{% trans "Archived" %}</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_feedback">
-                        {% trans "Would you like to get feedback from the Participant for this Delivery?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="id_feedback" name="feedback">
-                    <span class="text-sm">{% trans "Yes, collect feedback" %}</span>
+                <!-- Is Mandatory -->
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="is_mandatory" name="is_mandatory" type="checkbox"
+                               class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="is_mandatory" class="font-medium text-gray-700">{% trans "Is Mandatory" %}</label>
+                        <p class="text-gray-500">{% trans "Check if this course delivery is mandatory for enrolled participants." %}</p>
+                    </div>
                 </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_mandatory">
-                        {% trans "Would you like to mark this Delivery as Mandatory for the Participant?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="id_mandatory" name="mandatory">
-                    <span class="text-sm">{% trans "Yes, mark as mandatory" %}</span>
+                <!-- Submit Button -->
+                <div class="flex items-center justify-end mt-6">
+                    <button type="submit"
+                            class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                        <i class="fas fa-plus-circle mr-2"></i>{% trans "Create Delivery" %}
+                    </button>
                 </div>
-
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_attendance">
-                        {% trans "Do you want to capture the Participant attendance for this Course?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="id_attendance" name="attendance">
-                    <span class="text-sm">{% trans "Yes, capture attendance" %}</span>
-                </div>
-
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_completion_certificate">
-                        {% trans "Does this Course require a Completion Certificate?" %}
-                    </label>
-                    <input class="mr-2 leading-tight" type="checkbox" id="id_completion_certificate" name="completion_certificate">
-                    <span class="text-sm">{% trans "Yes, require completion certificate" %}</span>
-                </div>
-            </div>
-
-            <!-- Step 5: Email Settings -->
-            <div class="step hidden" id="step5">
-                <h3 class="text-2xl font-semibold mb-4">{% trans "Email Settings" %}</h3>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_invite_email">
-                        {% trans "Invite Email Template" %}
-                    </label>
-                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_invite_email" name="invite_email" rows="4"></textarea>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="id_completion_email">
-                        {% trans "Completion Email Template" %}
-                    </label>
-                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id_completion_email" name="completion_email" rows="4"></textarea>
-                </div>
-            </div>
-
-            <!-- Navigation buttons -->
-            <div class="flex justify-between mt-6">
-                <button type="button" id="prevBtn" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                    {% trans "Previous" %}
-                </button>
-                <button type="button" id="nextBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                    {% trans "Next" %}
-                </button>
-                <button type="submit" id="submitBtn" class="hidden bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                    {% trans "Submit" %}
-                </button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Add your JavaScript for form navigation and validation here
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('courseDeliveryForm');
-        const steps = document.querySelectorAll('.step');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const submitBtn = document.getElementById('submitBtn');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        let currentStep = 0;
-
-        function showStep(stepIndex) {
-            steps.forEach((step, index) => {
-                step.classList.toggle('hidden', index !== stepIndex);
-            });
-            prevBtn.classList.toggle('hidden', stepIndex === 0);
-            nextBtn.classList.toggle('hidden', stepIndex === steps.length - 1);
-            submitBtn.classList.toggle('hidden', stepIndex !== steps.length - 1);
-            
-            const progress = ((stepIndex + 1) / steps.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `${Math.round(progress)}%`;
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentStep < steps.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add form validation logic here
-            // If valid, submit the form
-            // form.submit();
-        });
-
-        showStep(currentStep);
-    });
-</script>
 {% endblock %}

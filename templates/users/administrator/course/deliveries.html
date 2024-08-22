@@ -89,8 +89,8 @@
                         <th scope="col" class="py-3 px-6">{% trans "Delivery ID" %}</th>
                         <th scope="col" class="py-3 px-6">{% trans "Start Date" %}</th>
                         <th scope="col" class="py-3 px-6">{% trans "End Date" %}</th>
-                        <th scope="col" class="py-3 px-6">{% trans "Instructor" %}</th>
-                        <th scope="col" class="py-3 px-6">{% trans "Students" %}</th>
+                        <th scope="col" class="py-3 px-6">{% trans "Facilitators" %}</th>
+                        <th scope="col" class="py-3 px-6">{% trans "Max Participants" %}</th>
                         <th scope="col" class="py-3 px-6">{% trans "Status" %}</th>
                         <th scope="col" class="py-3 px-6">{% trans "Actions" %}</th>
                     </tr>
@@ -99,12 +99,12 @@
                     {% for delivery in deliveries %}
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                            {{ delivery.id }}
+                            {{ delivery.delivery_code }}
                         </th>
                         <td class="py-4 px-6">{{ delivery.start_date }}</td>
                         <td class="py-4 px-6">{{ delivery.end_date }}</td>
-                        <td class="py-4 px-6">{{ delivery.instructor }}</td>
-                        <td class="py-4 px-6">{{ delivery.student_count }}</td>
+                        <td class="py-4 px-6"><a href="#"> View list</a></td>
+                        <td class="py-4 px-6">{{ delivery.max_participants }}</td>
                         <td class="py-4 px-6">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                 {% if delivery.status == 'Scheduled' %}bg-yellow-100 text-yellow-800

@@ -9,6 +9,7 @@ from django.forms import inlineformset_factory
 
 from .models import Course, CourseDelivery, LearningResource, ScormResource, CourseCategory
 from users.models import Facilitator, Learner
+from users.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -67,4 +68,32 @@ LearningResourceFormSet = inlineformset_factory(
 )
 
 class CourseDeliveryForm(forms.ModelForm):
-    pass
+    facilitators = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    
+    class Meta:
+        model = CourseDelivery
+        fields = ['title', 'delivery_code', 'delivery_type', 'enrollment_type', 
+                  'facilitators', 'start_date', 'end_date', 'max_participants', 
+                  'is_mandatory', 'status']
+        widgets = {
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.course = kwargs.pop('course', None)
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'})
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.course = self.course
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance

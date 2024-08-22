@@ -16,6 +16,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.db.models import Count, Q
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -29,6 +30,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
@@ -692,14 +695,24 @@ class AdministratorCourseDeleteView(APIView):
         except requests.RequestException as e:
             logger.error(f"Error deleting SCORM package {scorm_course_id} from SCORM player API: {str(e)}")
             raise
+    
 
-
-
-class AdministratorCourseDeliveryCreateView(TemplateView):
+class AdministratorCourseDeliveryCreateView(CreateView):
+    model = CourseDelivery
+    form_class = CourseDeliveryForm
     template_name = 'users/administrator/course/create_delivery.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        course_id = self.kwargs.get('course_id')
+        self.course = get_object_or_404(Course, id=course_id)
+        kwargs['course'] = self.course
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        course_id = self.kwargs['course_id']
-        context['course'] = get_object_or_404(Course, id=course_id)
+        context['course'] = self.course
         return context
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_course_delivery_list', kwargs={'course_id': self.course.id})

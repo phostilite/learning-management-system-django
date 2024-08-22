@@ -60,6 +60,14 @@ class LearningResource(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.get_resource_type_display()})"
+    
+    def get_learning_progress(self, user):
+        try:
+            enrollment = Enrollment.objects.get(user=user, course_delivery__course=self.course)
+            progress = LearningProgress.objects.get(enrollment=enrollment, resource=self)
+            return progress
+        except (Enrollment.DoesNotExist, LearningProgress.DoesNotExist):
+            return None
 
 class ScormResource(models.Model):
     learning_resource = models.OneToOneField(LearningResource, on_delete=models.CASCADE, related_name='scorm_details')
