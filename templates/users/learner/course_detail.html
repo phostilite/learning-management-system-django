@@ -106,7 +106,7 @@
                                 <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
                                 <p class="text-sm text-gray-600">{{ resource.resource_type }}</p>
                             </div>
-                            <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.id }}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
+                            <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.scorm_resource.scorm_package_id }}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
                         </div>
                         <div class="mt-2">
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
@@ -169,6 +169,11 @@
         const userId = '{{ SCORM_PLAYER_USER_ID }}';
         const apiUrl = '{{ SCORM_API_BASE_URL }}/api/attempts/start_attempt/';
         const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+
+        console.log('Launching SCORM package:', packageId);
+        console.log('User ID:', userId);
+        console.log('API URL:', apiUrl);
+        console.log('API Token:', token);
     
         const formData = new FormData();
         formData.append('user_id', userId);
