@@ -51,3 +51,10 @@ class LearnerCourseDetailView(DetailView):
     def get_object(self):
         course_id = self.kwargs.get('course_id')
         return get_object_or_404(CourseDelivery, id=course_id)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+        context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+        context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+        return context

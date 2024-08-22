@@ -106,7 +106,7 @@
                                 <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
                                 <p class="text-sm text-gray-600">{{ resource.resource_type }}</p>
                             </div>
-                            <button onclick="launchScorm('https://scorm.learnknowdigital.com/launch/16/')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
+                            <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.id }}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
                         </div>
                         <div class="mt-2">
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
@@ -155,8 +155,50 @@
 {% endblock %}
 
 {% block extra_js %}
+{% block extra_js %}
 <script>
-    function launchScorm(url) {
+    function launchResource(resourceType, resourceId) {
+        if (resourceType === 'SCORM') {
+            launchScorm(resourceId);
+        } else {
+            // Handle other resource types if needed
+            console.log('Launching non-SCORM resource:', resourceId);
+        }
+    }
+
+    function launchScorm(packageId) {
+        const userId = '{{ SCORM_PLAYER_USER_ID }}';
+        const apiUrl = '{{ SCORM_API_BASE_URL }}/api/attempts/start_attempt/';
+        const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+    
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('package_id', packageId);
+    
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const launchUrl = `{{ SCORM_API_BASE_URL }}/launch/${data.id}/`;
+            launchScormPackage(launchUrl);
+        })
+        .catch(error => {
+            console.error('Error launching SCORM package:', error);
+            alert('Failed to launch SCORM package. Please try again.');
+        });
+    }
+
+    function launchScormPackage(url) {
         const contentDiv = document.getElementById('resourceContent');
         
         // Show the content div
