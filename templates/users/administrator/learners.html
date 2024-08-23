@@ -56,7 +56,6 @@
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Name</th>
                             <th class="py-3 px-6 text-left">Email</th>
-                            <th class="py-3 px-6 text-center">Progress</th>
                             <th class="py-3 px-6 text-center">Status</th>
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
@@ -74,14 +73,6 @@
                             </td>
                             <td class="py-3 px-6 text-left">
                                 <span>{{ learner.user.email }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex items-center justify-center">
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 0%"></div>
-                                    </div>
-                                    <span class="ml-2">0%</span>
-                                </div>
                             </td>
                             <td class="py-3 px-6 text-center">
                                 {% if learner.user.is_active %}
