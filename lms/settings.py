@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'quizzes',
     'leaderboard',
     'support',
+    'announcements',
 
     # Third-party apps
     'formtools',
