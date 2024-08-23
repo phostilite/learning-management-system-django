@@ -789,4 +789,25 @@ class AdministratorEnrollmentListView(ListView):
     context_object_name = 'enrollments'
 
     def get_queryset(self):
-        return Enrollment.objects.all()
+        return Enrollment.objects.all().order_by('-enrollment_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Calculate metrics
+        total_enrollments = Enrollment.objects.count()
+        active_enrollments = Enrollment.objects.filter(
+            Q(status='ENROLLED') | Q(status='IN_PROGRESS')
+        ).count()
+        completed_courses = Enrollment.objects.filter(status='COMPLETED').count()
+
+        all_courses = Course.objects.all().order_by('title')
+        
+        context.update({
+            'total_enrollments': total_enrollments,
+            'active_enrollments': active_enrollments,
+            'completed_courses': completed_courses,
+            'all_courses': all_courses,
+        })
+        
+        return context

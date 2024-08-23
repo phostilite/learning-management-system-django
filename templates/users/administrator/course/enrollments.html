@@ -4,16 +4,12 @@
 
 {% block title %}{% trans "Enrollments - LMS Admin" %}{% endblock %}
 
-{% block extra_css %}
-{% endblock %}
-
 {% block content %}
 <div class="enrollments-page">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Enrollment Management" %}</h1>
         <p class="text-lg text-white text-center">{% trans "Monitor and Manage Student Enrollments" %}</p>
     </header>
-
 
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -33,22 +29,18 @@
     </nav>
 
     <!-- Enrollment Statistics -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Total Enrollments" %}</h3>
-            <p class="text-3xl font-bold text-primary">1,234</p>
+            <p class="text-3xl font-bold text-primary">{{ total_enrollments }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Active Enrollments" %}</h3>
-            <p class="text-3xl font-bold text-green-600">987</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Pending Approvals" %}</h3>
-            <p class="text-3xl font-bold text-yellow-500">56</p>
+            <p class="text-3xl font-bold text-green-600">{{ active_enrollments }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Completed Courses" %}</h3>
-            <p class="text-3xl font-bold text-blue-600">191</p>
+            <p class="text-3xl font-bold text-blue-600">{{ completed_courses }}</p>
         </div>
     </div>
 
@@ -64,15 +56,15 @@
         </div>
         <div class="flex gap-4">
             <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>{% trans "All Courses" %}</option>
-                <option>{% trans "Web Development" %}</option>
-                <option>{% trans "Data Science" %}</option>
-                <option>{% trans "Digital Marketing" %}</option>
+                <option selected value="">{% trans "All Courses" %}</option>
+                {% for course in all_courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endfor %}
             </select>
             <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                 <option selected>{% trans "All Statuses" %}</option>
-                <option>{% trans "Active" %}</option>
-                <option>{% trans "Pending" %}</option>
+                <option>{% trans "Enrolled" %}</option>
+                <option>{% trans "In Progress" %}</option>
                 <option>{% trans "Completed" %}</option>
                 <option>{% trans "Withdrawn" %}</option>
             </select>
@@ -96,7 +88,6 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">{% trans "Learner Name" %}</th>
-                    <th scope="col" class="px-6 py-3">{% trans "Course" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Course Delivery" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Enrollment Date" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
@@ -109,9 +100,8 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ enrollment.user.get_full_name }}
                     </th>
-                    <td class="px-6 py-4">{{ enrollment.course_delivery.course.title }}</td>
                     <td class="px-6 py-4">{{ enrollment.course_delivery.title }}</td>
-                    <td class="px-6 py-4">{{ enrollment.created_at }}</td>
+                    <td class="px-6 py-4">{{ enrollment.enrollment_date|date:"F d, Y" }}</td>
                     <td class="px-6 py-4">
                         {% if enrollment.status == 'COMPLETED' %}
                             <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">
@@ -137,50 +127,14 @@
                     </td>
                     <td class="px-6 py-4">
                         <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "View" %}</button>
-                        <button class="font-medium text-green-600 hover:underline">{% trans "Certificate" %}</button>
+                        {% if enrollment.status == 'COMPLETED' %}
+                            <button class="font-medium text-green-600 hover:underline">{% trans "Certificate" %}</button>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-
-    <!-- Pagination -->
-    <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4">
-        <div class="flex flex-1 justify-between sm:hidden">
-            <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">{% trans "Previous" %}</a>
-            <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">{% trans "Next" %}</a>
-        </div>
-        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div>
-                <p class="text-sm text-gray-700">
-                    {% trans "Showing" %} <span class="font-medium">1</span> {% trans "to" %} <span class="font-medium">10</span> {% trans "of" %} <span class="font-medium">97</span> {% trans "results" %}
-                </p>
-            </div>
-            <div>
-                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">{% trans "Previous" %}</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                    <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-                    <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-                    <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
-                    <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">{% trans "Next" %}</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </nav>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock %}
