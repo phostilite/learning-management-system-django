@@ -7,9 +7,10 @@ from django import forms
 from django.db.models import Max
 from django.forms import inlineformset_factory
 
-from .models import Course, CourseDelivery, LearningResource, ScormResource, CourseCategory
+from .models import Course, CourseDelivery, LearningResource, ScormResource, CourseCategory, Enrollment
 from users.models import Facilitator, Learner
 from users.models import User
+from django.contrib.auth.models import Group
 
 logger = logging.getLogger(__name__)
 
@@ -97,3 +98,44 @@ class CourseDeliveryForm(forms.ModelForm):
             instance.save()
             self.save_m2m()
         return instance
+    
+class EnrollmentForm(forms.Form):
+    learners = forms.ModelMultipleChoiceField(
+        queryset=Learner.objects.none(),
+        widget=forms.CheckboxSelectMultiple,
+        label="Select Learners to Enroll"
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.course_delivery = kwargs.pop('course_delivery', None)
+        super().__init__(*args, **kwargs)
+        
+        # Get the learner group
+        learner_group = Group.objects.get(name='learner')
+        
+        # Filter learners who are in the learner group and not already enrolled
+        enrolled_user_ids = Enrollment.objects.filter(course_delivery=self.course_delivery).values_list('user_id', flat=True)
+        self.fields['learners'].queryset = Learner.objects.filter(
+            user__groups=learner_group
+        ).exclude(
+            user__id__in=enrolled_user_ids
+        )
+
+    def clean_learners(self):
+        learners = self.cleaned_data['learners']
+        if not learners:
+            raise forms.ValidationError("Please select at least one learner to enroll.")
+        return learners
+
+    def save(self):
+        learners = self.cleaned_data['learners']
+        enrollments = []
+        for learner in learners:
+            enrollment, created = Enrollment.objects.get_or_create(
+                user=learner.user,
+                course_delivery=self.course_delivery,
+                defaults={'status': 'ENROLLED'}
+            )
+            if created:
+                enrollments.append(enrollment)
+        return enrollments

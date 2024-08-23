@@ -23,6 +23,10 @@ urlpatterns = [
 
     path('administrator/course/<uuid:course_id>/deliveries/', administartor_views.AdministratorCourseDeliveryListView.as_view(), name='administrator_course_delivery_list'),
     path('administrator/course/<uuid:course_id>/delivery/create/', administartor_views.AdministratorCourseDeliveryCreateView.as_view(), name='administrator_course_delivery_create'),
+    path('administrator/course/<uuid:course_id>/delivery/<uuid:delivery_id>/', administartor_views.AdministratorCourseDeliveryDetailView.as_view(), name='administrator_course_delivery_detail'),
+    path('administrator/course/<uuid:course_id>/delivery/<uuid:delivery_id>/enroll/', 
+         administartor_views.AdministratorCourseDeliveryEnrollView.as_view(), 
+         name='administrator_course_delivery_enroll'),
 
 
     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),

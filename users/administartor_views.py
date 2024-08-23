@@ -17,6 +17,7 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.db.models import Count, Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -32,8 +33,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.views.generic import FormView
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm
+from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm, EnrollmentForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
 from users.forms import LearnerCreationForm
@@ -716,3 +718,57 @@ class AdministratorCourseDeliveryCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('administrator_course_delivery_list', kwargs={'course_id': self.course.id})
+    
+
+class AdministratorCourseDeliveryDetailView(DetailView):
+    model = CourseDelivery
+    template_name = 'users/administrator/course/delivery_detail.html'
+
+    def get_object(self):
+        course_id = self.kwargs.get('course_id')
+        delivery_id = self.kwargs.get('delivery_id')
+        return CourseDelivery.objects.get(course_id=course_id, id=delivery_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = self.object.course
+        context['enrollments'] = Enrollment.objects.filter(course_delivery=self.object)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_course_delivery_list', kwargs={'course_id': self.object.course.id})
+    
+
+class AdministratorCourseDeliveryEnrollView(FormView):
+    template_name = 'users/administrator/course/enroll_learners.html'
+    form_class = EnrollmentForm
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_course_delivery_detail', kwargs={
+            'course_id': self.kwargs['course_id'],
+            'delivery_id': self.kwargs['delivery_id']
+        })
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['course_delivery'] = self.get_course_delivery()
+        return kwargs
+
+    def get_course_delivery(self):
+        course = get_object_or_404(Course, id=self.kwargs['course_id'])
+        return get_object_or_404(CourseDelivery, id=self.kwargs['delivery_id'], course=course)
+
+    def form_valid(self, form):
+        enrollments = form.save()
+        enrolled_count = len(enrollments)
+        if enrolled_count > 0:
+            messages.success(self.request, f'{enrolled_count} learner(s) have been enrolled in {self.get_course_delivery().title}')
+        else:
+            messages.info(self.request, "No new learners were enrolled. They may already be enrolled in this course delivery.")
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = get_object_or_404(Course, id=self.kwargs['course_id'])
+        context['course_delivery'] = self.get_course_delivery()
+        return context
