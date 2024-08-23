@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'courses',
     'authentication',
     'website',
+    'certificates',
 
     # Third-party apps
     'formtools',
