@@ -97,6 +97,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">{% trans "Student Name" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Course" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Course Delivery" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Enrollment Date" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Progress" %}</th>
@@ -104,55 +105,13 @@
                 </tr>
             </thead>
             <tbody>
+                {% for enrollment in enrollments %}
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        John Doe
+                        {{ enrollment.user.get_full_name }}
                     </th>
-                    <td class="px-6 py-4">{% trans "Web Development Bootcamp" %}</td>
-                    <td class="px-6 py-4">2023-05-15</td>
-                    <td class="px-6 py-4">
-                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
-                            {% trans "Active" %}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
-                        </div>
-                        <span class="text-sm text-gray-600">65%</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "View" %}</button>
-                        <button class="font-medium text-red-600 hover:underline">{% trans "Withdraw" %}</button>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        Jane Smith
-                    </th>
-                    <td class="px-6 py-4">{% trans "Data Science Fundamentals" %}</td>
-                    <td class="px-6 py-4">2023-06-01</td>
-                    <td class="px-6 py-4">
-                        <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
-                            {% trans "Pending" %}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                        </div>
-                        <span class="text-sm text-gray-600">0%</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "Approve" %}</button>
-                        <button class="font-medium text-red-600 hover:underline">{% trans "Reject" %}</button>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        Mike Johnson
-                    </th>
-                    <td class="px-6 py-4">{% trans "Digital Marketing Mastery" %}</td>
+                    <td class="px-6 py-4">{{ enrollment.course_delivery.course.title }}</td>
+                    <td class="px-6 py-4">{{ enrollment.course_delivery.title }}</td>
                     <td class="px-6 py-4">2023-04-20</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">
@@ -170,6 +129,7 @@
                         <button class="font-medium text-green-600 hover:underline">{% trans "Certificate" %}</button>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

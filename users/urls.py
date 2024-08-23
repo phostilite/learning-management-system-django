@@ -17,7 +17,6 @@ urlpatterns = [
     path('administrator/course/list/', administartor_views.list_courses, name='course_list'),
     path('administrator/course/<uuid:pk>/', administartor_views.CourseDetailView.as_view(), name='course_detail'),
     path('administrator/course/categories/', administartor_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
-    path('administrator/course/enrollments/', administartor_views.AdministratorCourseEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
     path('administrator/course/learning_paths/', administartor_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
     path('administrator/course/<uuid:course_id>/add-resource/', administartor_views.add_learning_resource, name='add_learning_resource'),
 
@@ -48,6 +47,9 @@ urlpatterns = [
     path('administrator/messages/', administartor_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administartor_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
     path('administrator/course/<uuid:course_id>/delete/', administartor_views.AdministratorCourseDeleteView.as_view(), name='administrator_delete_course'),
+
+
+    path('administrator/course/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
 
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),

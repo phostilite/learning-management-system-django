@@ -164,6 +164,7 @@ class Enrollment(models.Model):
         ('COMPLETED', 'Completed'),
         ('WITHDRAWN', 'Withdrawn'),
     ], default='ENROLLED')
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         unique_together = ('user', 'course_delivery')

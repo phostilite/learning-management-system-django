@@ -113,15 +113,7 @@ class AdministratorCourseCategoryListView(ListView):
 
     def get_queryset(self):
         return CourseCategory.objects.all()
-    
-@method_decorator(login_required, name='dispatch')
-class AdministratorCourseEnrollmentListView(ListView):
-    model = Enrollment
-    template_name = 'users/administrator/course/enrollments.html'
-    context_object_name = 'enrollments'
 
-    def get_queryset(self):
-        return Enrollment.objects.all()
     
 class AdministratorLearningPathListView(TemplateView):
     template_name = 'users/administrator/course/learning_path.html'
@@ -708,7 +700,10 @@ class AdministratorCourseDeleteView(APIView):
         except requests.RequestException as e:
             logger.error(f"Error deleting SCORM package {scorm_course_id} from SCORM player API: {str(e)}")
             raise
-    
+
+
+
+# Course Delivery Views    
 
 class AdministratorCourseDeliveryCreateView(CreateView):
     model = CourseDelivery
@@ -783,3 +778,15 @@ class AdministratorCourseDeliveryEnrollView(FormView):
         context['course'] = get_object_or_404(Course, id=self.kwargs['course_id'])
         context['course_delivery'] = self.get_course_delivery()
         return context
+    
+
+
+# Enrollment Views
+
+class AdministratorEnrollmentListView(ListView):
+    model = Enrollment
+    template_name = 'users/administrator/course/enrollments.html'
+    context_object_name = 'enrollments'
+
+    def get_queryset(self):
+        return Enrollment.objects.all()
