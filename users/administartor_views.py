@@ -239,7 +239,7 @@ class AdministratorLearnerListView(ListView):
                     scorm_player_id=scorm_data['user']['id'],
                     token=scorm_data['token']
                 )
-                logger.info(f"SCORMUserProfile created with SCORM player ID: {scorm_data['id']}")
+                logger.info(f"SCORMUserProfile created with SCORM player ID: {scorm_data['user']['id']}")
                 
                 # Create Learner (without token)
                 Learner.objects.create(user=user)
