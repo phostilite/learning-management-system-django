@@ -39,7 +39,7 @@ from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormRes
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
                             Enrollment, Feedback, LearningResource, ScormResource)
 from users.forms import LearnerCreationForm
-from users.models import Learner, Facilitator, Supervisor
+from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
 from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
 
 logger = logging.getLogger(__name__)
@@ -232,8 +232,19 @@ class AdministratorLearnerListView(ListView):
 
             if response.status_code == 201:
                 scorm_data = response.json()
-                learner = Learner.objects.create(user=user, token=scorm_data['token'])
-                logger.info(f"Learner created with SCORM token: {learner.token}")
+                
+                # Create SCORMUserProfile
+                SCORMUserProfile.objects.create(
+                    user=user,
+                    scorm_player_id=scorm_data['id'],
+                    token=scorm_data['token']
+                )
+                logger.info(f"SCORMUserProfile created with SCORM player ID: {scorm_data['id']}")
+                
+                # Create Learner (without token)
+                Learner.objects.create(user=user)
+                logger.info(f"Learner created for user: {user.username}")
+                
                 return redirect('administrator_learner_list')
             else:
                 user.delete()
