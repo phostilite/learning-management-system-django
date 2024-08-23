@@ -15,6 +15,30 @@
             <p class="text-lg text-white text-center">{% trans "Manage and Organize Your Courses" %}</p>
         </header>
 
+        <!-- Course Metrics -->
+        <div class="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Total Courses" %}</h3>
+                <p class="text-3xl font-bold text-primary">{{ total_courses }}</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Published Courses" %}</h3>
+                <p class="text-3xl font-bold text-green-600">{{ published_courses }}</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Unpublished Courses" %}</h3>
+                <p class="text-3xl font-bold text-yellow-600">{{ unpublished_courses }}</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Top Categories" %}</h3>
+                <ul class="text-sm">
+                    {% for category in top_categories %}
+                        <li class="mb-1">{{ category.name }} ({{ category.course_count }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
         <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -44,10 +68,10 @@
             </div>
             <div class="flex gap-4">
                 <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                    <option selected>{% trans "All Categories" %}</option>
-                    <option value="1">{% trans "Category 1" %}</option>
-                    <option value="2">{% trans "Category 2" %}</option>
-                    <option value="3">{% trans "Category 3" %}</option>
+                    <option selected value="">{% trans "All Categories" %}</option>
+                    {% for category in all_categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
                 </select>
                 <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                     <option selected>{% trans "All Statuses" %}</option>

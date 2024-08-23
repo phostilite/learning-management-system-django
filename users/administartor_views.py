@@ -488,15 +488,46 @@ def create_course(request):
     logger.info("create_course view called")
     return CourseCreationWizard.as_view()(request)
 
-def list_courses(request):
-    try:
-        courses = Course.objects.filter(created_by=request.user)
-        logger.info(f"Fetched {len(courses)} courses for user {request.user.id}")
-        return render(request, 'users/administrator/course/list.html', {'courses': courses})
-    except Exception as e:
-        logger.exception("Error fetching course list:")
-        messages.error(request, f"An error occurred while fetching the course list: {str(e)}")
-        return render(request, 'users/administrator/course/list.html', {'courses': []})
+class CourseListView(ListView):
+    template_name = 'users/administrator/course/list.html'
+    context_object_name = 'courses'
+
+    def get_queryset(self):
+        try:
+            courses = Course.objects.filter(created_by=self.request.user).select_related('category')
+            logger.info(f"Fetched {len(courses)} courses for user {self.request.user.id}")
+            return courses
+        except Exception as e:
+            logger.exception("Error fetching course list:")
+            messages.error(self.request, f"An error occurred while fetching the course list: {str(e)}")
+            return []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Fetch course metrics efficiently
+        course_metrics = Course.objects.filter(created_by=self.request.user).aggregate(
+            total_courses=Count('id'),
+            published_courses=Count('id', filter=Q(is_published=True)),
+            unpublished_courses=Count('id', filter=Q(is_published=False))
+        )
+        
+        # Fetch category metrics
+        category_metrics = CourseCategory.objects.filter(
+            course__created_by=self.request.user
+        ).annotate(course_count=Count('course')).order_by('-course_count')[:5]
+
+        all_categories = CourseCategory.objects.all().order_by('name')
+
+        context.update({
+            'total_courses': course_metrics['total_courses'],
+            'published_courses': course_metrics['published_courses'],
+            'unpublished_courses': course_metrics['unpublished_courses'],
+            'top_categories': category_metrics,
+            'all_categories': all_categories,
+        })
+        
+        return context
     
 @method_decorator(login_required, name='dispatch')
 class AdministratorCourseDeliveryListView(ListView):
