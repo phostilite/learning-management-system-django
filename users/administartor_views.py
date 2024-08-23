@@ -18,6 +18,11 @@ from django.http import Http404
 from django.db.models import Count, Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
+from courses.models import Course, CourseCategory
+from django.db.models.functions import TruncMonth
+from certificates.models import Certificate
+from django.utils import timezone
+from datetime import timedelta
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -70,11 +75,69 @@ class AdministratorLeaderboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorCertificateListView(TemplateView):
+class AdministratorCertificateListView(ListView):
     template_name = 'users/administrator/certificates.html'
+    model = Certificate
+    context_object_name = 'certificates'
+
+    def get_queryset(self):
+        queryset = Certificate.objects.select_related(
+            'learner__user', 'course', 'course_delivery'
+        ).order_by('-issue_date')
+
+        course_filter = self.request.GET.get('course')
+        if course_filter and course_filter != 'all':
+            queryset = queryset.filter(course__id=course_filter)
+
+        date_filter = self.request.GET.get('date_range', 'last_30_days')
+        if date_filter == 'last_30_days':
+            queryset = queryset.filter(issue_date__gte=timezone.now() - timedelta(days=30))
+        elif date_filter == 'last_3_months':
+            queryset = queryset.filter(issue_date__gte=timezone.now() - timedelta(days=90))
+        elif date_filter == 'this_year':
+            queryset = queryset.filter(issue_date__year=timezone.now().year)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        # Efficient certificate statistics
+        total_certificates = Certificate.objects.count()
+        certificates_this_month = Certificate.objects.filter(
+            issue_date__month=timezone.now().month,
+            issue_date__year=timezone.now().year
+        ).count()
+        pending_approvals = Certificate.objects.filter(is_valid=False).count()
+        courses_with_certificates = Course.objects.filter(certificates__isnull=False).distinct().count()
+
+        context.update({
+            'total_certificates': total_certificates,
+            'certificates_this_month': certificates_this_month,
+            'pending_approvals': pending_approvals,
+            'courses_with_certificates': courses_with_certificates,
+        })
+
+        # All courses with certificates
+        context['courses'] = Course.objects.filter(certificates__isnull=False).distinct().annotate(
+            certificate_count=Count('certificates')
+        ).order_by('title')
+
+        # Efficient course categories for filtering
+        context['course_categories'] = CourseCategory.objects.annotate(
+            certificate_count=Count('course__certificates')
+        ).filter(certificate_count__gt=0)
+
+        # Selected filters
+        context['selected_course'] = self.request.GET.get('course', 'all')
+        context['selected_date_range'] = self.request.GET.get('date_range', 'last_30_days')
+
+        # Generate report data (example: certificates per month)
+        report_data = Certificate.objects.annotate(
+            month=TruncMonth('issue_date')
+        ).values('month').annotate(count=Count('id')).order_by('month')
+        context['report_data'] = list(report_data)
+
         return context
     
 class AdministratorAnnouncementListView(TemplateView):

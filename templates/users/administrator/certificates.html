@@ -41,50 +41,49 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Total Certificates" %}</h3>
-            <p class="text-3xl font-bold text-primary">1,234</p>
+            <p class="text-3xl font-bold text-primary">{{ total_certificates }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Certificates This Month" %}</h3>
-            <p class="text-3xl font-bold text-accent">156</p>
+            <p class="text-3xl font-bold text-accent">{{ certificates_this_month }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Pending Approvals" %}</h3>
-            <p class="text-3xl font-bold text-yellow-500">23</p>
+            <p class="text-3xl font-bold text-yellow-500">{{ pending_approvals }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Courses with Certificates" %}</h3>
-            <p class="text-3xl font-bold text-green-600">45</p>
+            <p class="text-3xl font-bold text-green-600">{{ courses_with_certificates }}</p>
         </div>
     </div>
 
-    <!-- Certificate Actions -->
     <div class="flex flex-wrap justify-between items-center mb-6">
         <div class="flex space-x-4 rtl:space-x-reverse mb-4 sm:mb-0">
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
-                <option selected>{% trans "All Courses" %}</option>
-                <option>{% trans "IT & Programming" %}</option>
-                <option>{% trans "Business" %}</option>
-                <option>{% trans "Languages" %}</option>
-                <option>{% trans "Science & Math" %}</option>
+            <select name="course" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
+                <option value="all" {% if selected_course == 'all' %}selected{% endif %}>{% trans "All Courses" %}</option>
+                {% for course in courses %}
+                    <option value="{{ course.id }}" {% if selected_course == course.id|stringformat:"s" %}selected{% endif %}>
+                        {{ course.title }} ({{ course.certificate_count }})
+                    </option>
+                {% endfor %}
             </select>
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
-                <option selected>{% trans "Last 30 Days" %}</option>
-                <option>{% trans "Last 3 Months" %}</option>
-                <option>{% trans "This Year" %}</option>
-                <option>{% trans "All Time" %}</option>
+            <select name="date_range" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
+                <option value="last_30_days" {% if selected_date_range == 'last_30_days' %}selected{% endif %}>{% trans "Last 30 Days" %}</option>
+                <option value="last_3_months" {% if selected_date_range == 'last_3_months' %}selected{% endif %}>{% trans "Last 3 Months" %}</option>
+                <option value="this_year" {% if selected_date_range == 'this_year' %}selected{% endif %}>{% trans "This Year" %}</option>
+                <option value="all_time" {% if selected_date_range == 'all_time' %}selected{% endif %}>{% trans "All Time" %}</option>
             </select>
         </div>
         <div class="flex space-x-2 rtl:space-x-reverse">
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+            <button id="generateReport" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
                 {% trans "Generate Report" %}
             </button>
-            <button class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
+            <button id="manageTemplates" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50">
                 {% trans "Manage Templates" %}
             </button>
         </div>
     </div>
 
-    <!-- Certificates Table -->
     <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -98,20 +97,22 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Sample Data -->
+                {% for certificate in certificates %}
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        CERT-001234
+                        {{ certificate.certificate_number }}
                     </th>
                     <td class="px-6 py-4 flex items-center">
-                        <img class="w-8 h-8 rounded-full mr-3 rtl:ml-3 rtl:mr-0" src="https://i.pravatar.cc/150?img=1" alt="John Doe">
-                        {% trans "John Doe" %}
+                        <img class="w-8 h-8 rounded-full mr-3 rtl:ml-3 rtl:mr-0" 
+                            src="{% if certificate.learner.user.picture %}{{ certificate.learner.user.picture.url }}{% else %}https://via.placeholder.com/32{% endif %}" 
+                            alt="{{ certificate.learner.user.get_full_name }}">
+                        {{ certificate.learner.user.get_full_name }}
                     </td>
-                    <td class="px-6 py-4">{% trans "Advanced Python Programming" %}</td>
-                    <td class="px-6 py-4">2023-08-01</td>
+                    <td class="px-6 py-4">{{ certificate.course.title }}</td>
+                    <td class="px-6 py-4">{{ certificate.issue_date|date:"Y-m-d" }}</td>
                     <td class="px-6 py-4">
-                        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
-                            {% trans "Issued" %}
+                        <span class="px-2 py-1 font-semibold leading-tight {% if certificate.is_valid %}text-green-700 bg-green-100{% else %}text-red-700 bg-red-100{% endif %} rounded-full">
+                            {% if certificate.is_valid %}{% trans "Issued" %}{% else %}{% trans "Revoked" %}{% endif %}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -126,7 +127,7 @@
                         </button>
                     </td>
                 </tr>
-                <!-- Add more rows as needed -->
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -167,4 +168,35 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const courseSelect = document.querySelector('select[name="course"]');
+        const dateRangeSelect = document.querySelector('select[name="date_range"]');
+        const generateReportBtn = document.getElementById('generateReport');
+        const manageTemplatesBtn = document.getElementById('manageTemplates');
+
+        function applyFilters() {
+            const url = new URL(window.location);
+            url.searchParams.set('course', courseSelect.value);
+            url.searchParams.set('date_range', dateRangeSelect.value);
+            window.location = url;
+        }
+
+        courseSelect.addEventListener('change', applyFilters);
+        dateRangeSelect.addEventListener('change', applyFilters);
+
+        generateReportBtn.addEventListener('click', function() {
+            // Implement report generation logic here
+            alert('Report generation functionality to be implemented');
+        });
+
+        manageTemplatesBtn.addEventListener('click', function() {
+            // Implement template management logic here
+            alert('Template management functionality to be implemented');
+        });
+    });
+</script>
 {% endblock %}
