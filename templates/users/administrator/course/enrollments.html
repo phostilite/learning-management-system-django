@@ -100,7 +100,6 @@
                     <th scope="col" class="px-6 py-3">{% trans "Course Delivery" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Enrollment Date" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
-                    <th scope="col" class="px-6 py-3">{% trans "Progress" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
                 </tr>
             </thead>
@@ -112,17 +111,29 @@
                     </th>
                     <td class="px-6 py-4">{{ enrollment.course_delivery.course.title }}</td>
                     <td class="px-6 py-4">{{ enrollment.course_delivery.title }}</td>
-                    <td class="px-6 py-4">2023-04-20</td>
+                    <td class="px-6 py-4">{{ enrollment.created_at }}</td>
                     <td class="px-6 py-4">
-                        <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">
-                            {% trans "Completed" %}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                        </div>
-                        <span class="text-sm text-gray-600">100%</span>
+                        {% if enrollment.status == 'COMPLETED' %}
+                            <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">
+                                {% trans "Completed" %}
+                            </span>
+                        {% elif enrollment.status == 'IN_PROGRESS' %}
+                            <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">
+                                {% trans "In Progress" %}
+                            </span>
+                        {% elif enrollment.status == 'ENROLLED' %}
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
+                                {% trans "Enrolled" %}
+                            </span>
+                        {% elif enrollment.status == 'WITHDRAWN' %}
+                            <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">
+                                {% trans "Withdrawn" %}
+                            </span>
+                        {% else %}
+                            <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full">
+                                {% trans "Unknown" %}
+                            </span>
+                        {% endif %}
                     </td>
                     <td class="px-6 py-4">
                         <button class="font-medium text-blue-600 hover:underline mr-2">{% trans "View" %}</button>
