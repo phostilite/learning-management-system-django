@@ -105,6 +105,8 @@ class AdministratorSettingsView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
 
+# Course Category Views
+
 @method_decorator(login_required, name='dispatch')
 class AdministratorCourseCategoryListView(ListView):
     model = CourseCategory
@@ -112,7 +114,12 @@ class AdministratorCourseCategoryListView(ListView):
     context_object_name = 'categories'
 
     def get_queryset(self):
-        return CourseCategory.objects.all()
+        return CourseCategory.objects.annotate(course_count=Count('course')).order_by('name')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['status_choices'] = CourseCategory.STATUS_CHOICES
+        return context
 
     
 class AdministratorLearningPathListView(TemplateView):

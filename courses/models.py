@@ -27,11 +27,23 @@ class Course(models.Model):
         return self.title
 
 class CourseCategory(models.Model):
+    STATUS_CHOICES = (
+        ('ACTIVE', 'Active'),
+        ('INACTIVE', 'Inactive'),
+    )
+
     name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)  # Adding a description field
     parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ACTIVE')
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Course Categories"
 
 class LearningResource(models.Model):
     RESOURCE_TYPES = (
