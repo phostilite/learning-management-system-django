@@ -59,7 +59,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans "Search enrollments..." %}">
+                <input type="text" id="searchInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans "Search enrollments..." %}">
             </div>
         </div>
         <div class="flex gap-4">
@@ -92,10 +92,10 @@
 
     <!-- Enrollments Table -->
     <div class="bg-white rounded-lg overflow-hidden card-shadow">
-        <table class="w-full text-sm text-left text-gray-500">
+        <table id="enrollmentsTable" class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3">{% trans "Student Name" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Learner Name" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Course" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Course Delivery" %}</th>
                     <th scope="col" class="px-6 py-3">{% trans "Enrollment Date" %}</th>
@@ -186,4 +186,26 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input = document.getElementById('searchInput');
+        var filter = input.value.toLowerCase();
+        var table = document.getElementById('enrollmentsTable');
+        var tr = table.getElementsByTagName('tr');
+    
+        for (var i = 1; i < tr.length; i++) {
+            var tdName = tr[i].getElementsByTagName('th')[0];
+            var tdCourse = tr[i].getElementsByTagName('td')[0];
+            if (tdName || tdCourse) {
+                var txtValueName = tdName.textContent || tdName.innerText;
+                var txtValueCourse = tdCourse.textContent || tdCourse.innerText;
+                if (txtValueName.toLowerCase().indexOf(filter) > -1 || txtValueCourse.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    });
+</script>
 {% endblock %}
