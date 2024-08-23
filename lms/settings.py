@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'website',
     'certificates',
     'quizzes',
+    'leaderboard',
 
     # Third-party apps
     'formtools',
