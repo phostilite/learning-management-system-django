@@ -58,3 +58,107 @@ class LearnerCourseDetailView(DetailView):
         context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
         context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
         return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerCalendarView(TemplateView):
+    template_name = 'users/learner/calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerMessageListView(TemplateView):
+    template_name = 'users/learner/messages.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerAssigmentListView(TemplateView):
+    template_name = 'users/learner/assignments.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerGradesView(TemplateView):
+    template_name = 'users/learner/grades.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerResourceView(TemplateView):
+    template_name = 'users/learner/resource.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerProgressView(TemplateView):
+    template_name = 'users/learner/progress.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerForumView(TemplateView):
+    template_name = 'users/learner/forum.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerCertificateView(TemplateView):
+    template_name = 'users/learner/certificate.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerBadgeView(TemplateView):
+    template_name = 'users/learner/badge.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerLeaderboardView(TemplateView):
+    template_name = 'users/learner/leaderboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerProfileView(TemplateView):
+    template_name = 'users/learner/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerSettingsView(TemplateView):
+    template_name = 'users/learner/settings.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerHelpSupportView(TemplateView):
+    template_name = 'users/learner/help_support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

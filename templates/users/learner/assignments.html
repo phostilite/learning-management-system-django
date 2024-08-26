@@ -1,0 +1,254 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Assignments - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .assignment-list {
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
+
+    .status-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+    }
+
+    .status-pending {
+        background-color: #FEF3C7;
+        color: #92400E;
+    }
+
+    .status-submitted {
+        background-color: #DCFCE7;
+        color: #166534;
+    }
+
+    .status-graded {
+        background-color: #DBEAFE;
+        color: #1E40AF;
+    }
+
+    .status-overdue {
+        background-color: #FEE2E2;
+        color: #991B1B;
+    }
+
+    .progress-ring {
+        transform: rotate(-90deg);
+    }
+
+    .progress-ring__circle {
+        transition: stroke-dashoffset 0.35s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Assignments" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Manage and submit your course assignments" %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Assignment List -->
+        <div class="lg:col-span-2 bg-white rounded-lg p-4 card-shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-800">{% trans "Your Assignments" %}</h2>
+                <div class="flex items-center">
+                    <label for="courseFilter" class="mr-2 text-gray-700">{% trans "Filter by course:" %}</label>
+                    <select id="courseFilter" class="border border-gray-300 rounded-md p-1">
+                        <option value="all">{% trans "All Courses" %}</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="data-science">Data Science</option>
+                        <option value="mobile-app">Mobile App Development</option>
+                    </select>
+                </div>
+            </div>
+            <div class="assignment-list">
+                <!-- Sample assignments -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">JavaScript Final Project</h3>
+                        <span class="status-badge status-pending">{% trans "Pending" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Course:" %} Web Development</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-600">{% trans "Due:" %} July 23, 2024</p>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            {% trans "View Details" %}
+                        </button>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">Data Visualization Quiz</h3>
+                        <span class="status-badge status-submitted">{% trans "Submitted" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Course:" %} Data Science</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-600">{% trans "Due:" %} July 28, 2024</p>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                            {% trans "View Submission" %}
+                        </button>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">Mobile UI Design Project</h3>
+                        <span class="status-badge status-graded">{% trans "Graded" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Course:" %} Mobile App Development</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-600">{% trans "Due:" %} July 15, 2024</p>
+                        <button class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">
+                            {% trans "View Feedback" %}
+                        </button>
+                    </div>
+                </div>
+                <div class="py-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">Python Coding Challenge</h3>
+                        <span class="status-badge status-overdue">{% trans "Overdue" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Course:" %} Data Science</p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-600">{% trans "Due:" %} July 10, 2024</p>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                            {% trans "Submit Late" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assignment Overview -->
+        <div class="lg:col-span-1 bg-white rounded-lg p-4 card-shadow">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Assignment Overview" %}</h2>
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Completion Status" %}</h3>
+                <div class="flex items-center">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                        <circle class="progress-ring__circle" stroke="#3b82f6" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" stroke-dasharray="326.73" stroke-dashoffset="81.68"/>
+                    </svg>
+                    <div class="ml-4">
+                        <p class="text-3xl font-bold text-blue-600">75%</p>
+                        <p class="text-gray-600">{% trans "Completed" %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Upcoming Deadlines" %}</h3>
+                <ul class="space-y-2">
+                    <li class="flex justify-between items-center">
+                        <span class="text-gray-600">JavaScript Final Project</span>
+                        <span class="text-red-500 font-semibold">2 days left</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <span class="text-gray-600">Data Visualization Quiz</span>
+                        <span class="text-yellow-500 font-semibold">1 week left</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">{% trans "Recent Grades" %}</h3>
+                <ul class="space-y-2">
+                    <li class="flex justify-between items-center">
+                        <span class="text-gray-600">Mobile UI Design Project</span>
+                        <span class="text-green-500 font-semibold">95%</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <span class="text-gray-600">Web Accessibility Quiz</span>
+                        <span class="text-green-500 font-semibold">88%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assignment Details Modal -->
+<div id="assignmentModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    {% trans "Assignment Details" %}
+                </h3>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500">
+                        {% trans "Assignment details will be displayed here." %}
+                    </p>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    {% trans "Submit Assignment" %}
+                </button>
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="closeModalBtn">
+                    {% trans "Close" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const assignmentModal = document.getElementById('assignmentModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const viewDetailsButtons = document.querySelectorAll('button:contains("View Details")');
+
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                assignmentModal.classList.remove('hidden');
+            });
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            assignmentModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        assignmentModal.addEventListener('click', function(event) {
+            if (event.target === assignmentModal) {
+                assignmentModal.classList.add('hidden');
+            }
+        });
+
+        // Course filter functionality
+        const courseFilter = document.getElementById('courseFilter');
+        courseFilter.addEventListener('change', function() {
+            // Implement filtering logic here
+            console.log('Filter changed to:', this.value);
+        });
+
+        // Progress ring animation
+        function setProgress(percentage) {
+            const circle = document.querySelector('.progress-ring__circle:last-child');
+            const radius = circle.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = offset;
+        }
+
+        setProgress(75); // Set to 75% complete
+    });
+</script>
+{% endblock %}

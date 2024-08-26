@@ -1,0 +1,238 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Leaderboard - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .leaderboard-table {
+        border-collapse: separate;
+        border-spacing: 0 0.5rem;
+    }
+
+    .leaderboard-row {
+        transition: all 0.3s ease;
+    }
+
+    .leaderboard-row:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .rank-badge {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .rank-1 {
+        background-color: #FFD700;
+        color: #000;
+    }
+
+    .rank-2 {
+        background-color: #C0C0C0;
+        color: #000;
+    }
+
+    .rank-3 {
+        background-color: #CD7F32;
+        color: #000;
+    }
+
+    .progress-bar {
+        height: 8px;
+        border-radius: 4px;
+        background-color: #E5E7EB;
+        overflow: hidden;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s ease-in-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Leaderboard" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "See how you rank among your peers" %}</p>
+    </header>
+
+    <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Your Rankings" %}</h2>
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-trophy text-2xl text-indigo-600"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">{% trans "Your Overall Rank" %}</p>
+                    <p class="text-3xl font-bold text-indigo-600">#15</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">{% trans "Course Completion" %}</h3>
+                <p class="text-3xl font-bold text-blue-600 mb-1">#8</p>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill bg-blue-500" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">{% trans "Quiz Performance" %}</h3>
+                <p class="text-3xl font-bold text-green-600 mb-1">#12</p>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill bg-green-500" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">{% trans "Engagement" %}</h3>
+                <p class="text-3xl font-bold text-yellow-600 mb-1">#20</p>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill bg-yellow-500" style="width: 65%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6 card-shadow">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Top Performers" %}</h2>
+            <div class="flex items-center">
+                <label for="leaderboardFilter" class="mr-2 text-gray-700">{% trans "View:" %}</label>
+                <select id="leaderboardFilter" class="border border-gray-300 rounded-md p-1">
+                    <option value="overall">{% trans "Overall" %}</option>
+                    <option value="course-completion">{% trans "Course Completion" %}</option>
+                    <option value="quiz-performance">{% trans "Quiz Performance" %}</option>
+                    <option value="engagement">{% trans "Engagement" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <table class="w-full leaderboard-table">
+            <thead>
+                <tr class="text-left text-gray-600">
+                    <th class="px-4 py-2">{% trans "Rank" %}</th>
+                    <th class="px-4 py-2">{% trans "Learner" %}</th>
+                    <th class="px-4 py-2">{% trans "Score" %}</th>
+                    <th class="px-4 py-2">{% trans "Progress" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample leaderboard entries -->
+                <tr class="leaderboard-row bg-white">
+                    <td class="px-4 py-2">
+                        <div class="rank-badge rank-1">1</div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">Web Development</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <p class="font-semibold text-gray-800">980</p>
+                    </td>
+                    <td class="px-4 py-2 w-1/4">
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-green-500" style="width: 98%;"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="leaderboard-row bg-white">
+                    <td class="px-4 py-2">
+                        <div class="rank-badge rank-2">2</div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-800">Jane Smith</p>
+                                <p class="text-sm text-gray-600">Data Science</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <p class="font-semibold text-gray-800">965</p>
+                    </td>
+                    <td class="px-4 py-2 w-1/4">
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-blue-500" style="width: 96.5%;"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="leaderboard-row bg-white">
+                    <td class="px-4 py-2">
+                        <div class="rank-badge rank-3">3</div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-semibold text-gray-800">Robert Johnson</p>
+                                <p class="text-sm text-gray-600">Mobile Development</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-4 py-2">
+                        <p class="font-semibold text-gray-800">950</p>
+                    </td>
+                    <td class="px-4 py-2 w-1/4">
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill bg-yellow-500" style="width: 95%;"></div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Add more leaderboard entries here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const leaderboardFilter = document.getElementById('leaderboardFilter');
+
+    leaderboardFilter.addEventListener('change', function() {
+        // Implement filtering logic here
+        console.log('Filter changed to:', this.value);
+        // You would typically make an AJAX call here to fetch and update the leaderboard data
+    });
+
+    // Implement hover effects for leaderboard rows
+    const leaderboardRows = document.querySelectorAll('.leaderboard-row');
+    leaderboardRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#F3F4F6';
+        });
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#FFFFFF';
+        });
+    });
+
+    // You can add more interactivity here, such as:
+    // - Implementing pagination for the leaderboard
+    // - Adding tooltips to show more details about each learner
+    // - Creating animations for rank changes
+});
+</script>
+{% endblock %}

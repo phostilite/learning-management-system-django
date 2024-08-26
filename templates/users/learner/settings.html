@@ -1,0 +1,317 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Settings - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .settings-nav-item {
+        transition: all 0.3s ease;
+    }
+
+    .settings-nav-item:hover {
+        background-color: #F3F4F6;
+    }
+
+    .settings-nav-item.active {
+        background-color: #EFF6FF;
+        border-left: 4px solid #3B82F6;
+    }
+
+    .toggle-checkbox:checked {
+        right: 0;
+        border-color: #68D391;
+    }
+
+    .toggle-checkbox:checked + .toggle-label {
+        background-color: #68D391;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Account Settings" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Manage your account preferences and settings" %}</p>
+    </header>
+
+    <div class="flex flex-col md:flex-row gap-6">
+        <!-- Settings Navigation -->
+        <nav class="w-full md:w-1/4 bg-white rounded-lg p-4 card-shadow">
+            <ul>
+                <li class="settings-nav-item active p-2 rounded">
+                    <a href="#profile" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-user-circle mr-2"></i>{% trans "Profile" %}
+                    </a>
+                </li>
+                <li class="settings-nav-item p-2 rounded">
+                    <a href="#account" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-cog mr-2"></i>{% trans "Account" %}
+                    </a>
+                </li>
+                <li class="settings-nav-item p-2 rounded">
+                    <a href="#notifications" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-bell mr-2"></i>{% trans "Notifications" %}
+                    </a>
+                </li>
+                <li class="settings-nav-item p-2 rounded">
+                    <a href="#privacy" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-lock mr-2"></i>{% trans "Privacy" %}
+                    </a>
+                </li>
+                <li class="settings-nav-item p-2 rounded">
+                    <a href="#learning" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-graduation-cap mr-2"></i>{% trans "Learning Preferences" %}
+                    </a>
+                </li>
+                <li class="settings-nav-item p-2 rounded">
+                    <a href="#integrations" class="block text-gray-800 hover:text-blue-600">
+                        <i class="fas fa-plug mr-2"></i>{% trans "Integrations" %}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Settings Content -->
+        <div class="w-full md:w-3/4 bg-white rounded-lg p-6 card-shadow">
+            <!-- Profile Settings -->
+            <section id="profile" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Profile Settings" %}</h2>
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">{% trans "First Name" %}</label>
+                            <input type="text" id="firstName" name="firstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">{% trans "Last Name" %}</label>
+                            <input type="text" id="lastName" name="lastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">{% trans "Email" %}</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">{% trans "Phone Number" %}</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="bio" class="block text-sm font-medium text-gray-700">{% trans "Bio" %}</label>
+                        <textarea id="bio" name="bio" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            {% trans "Save Profile Changes" %}
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Account Settings -->
+            <section id="account" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Account Settings" %}</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="currentPassword" class="block text-sm font-medium text-gray-700">{% trans "Current Password" %}</label>
+                        <input type="password" id="currentPassword" name="currentPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </div>
+                    <div class="mb-4">
+                        <label for="newPassword" class="block text-sm font-medium text-gray-700">{% trans "New Password" %}</label>
+                        <input type="password" id="newPassword" name="newPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </div>
+                    <div class="mb-4">
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">{% trans "Confirm New Password" %}</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            {% trans "Change Password" %}
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Notification Settings -->
+            <section id="notifications" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Notification Settings" %}</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Email Notifications" %}</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="emailNotifications" id="emailNotifications" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="emailNotifications" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Push Notifications" %}</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="pushNotifications" id="pushNotifications" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="pushNotifications" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Course Reminders" %}</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="courseReminders" id="courseReminders" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="courseReminders" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Privacy Settings -->
+            <section id="privacy" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Privacy Settings" %}</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Profile Visibility" %}</span>
+                        <select class="block w-1/3 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option>{% trans "Public" %}</option>
+                            <option>{% trans "Friends Only" %}</option>
+                            <option>{% trans "Private" %}</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Show Learning Activity" %}</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="showLearningActivity" id="showLearningActivity" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="showLearningActivity" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Preferences -->
+            <section id="learning" class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Learning Preferences" %}</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="learningStyle" class="block text-sm font-medium text-gray-700">{% trans "Preferred Learning Style" %}</label>
+                        <select id="learningStyle" name="learningStyle" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option>{% trans "Visual" %}</option>
+                            <option>{% trans "Auditory" %}</option>
+                            <option>{% trans "Read/Write" %}</option>
+                            <option>{% trans "Kinesthetic" %}</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="studyTime" class="block text-sm font-medium text-gray-700">{% trans "Preferred Study Time" %}</label>
+                        <select id="studyTime" name="studyTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            <option>{% trans "Morning" %}</option>
+                            <option>{% trans "Afternoon" %}</option>
+                            <option>{% trans "Evening" %}</option>
+                            <option>{% trans "Late Night" %}</option>
+                        </select>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            {% trans "Save Learning Preferences" %}
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Integrations -->
+            <section id="integrations">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Integrations" %}</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Connect with LinkedIn"%}</span>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <i class="fab fa-linkedin mr-2"></i>{% trans "Connect" %}
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Connect with Google" %}</span>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                            <i class="fab fa-google mr-2"></i>{% trans "Connect" %}
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Connect with GitHub" %}</span>
+                        <button class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">
+                            <i class="fab fa-github mr-2"></i>{% trans "Connect" %}
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">{% trans "Connect with Slack" %}</span>
+                        <button class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                            <i class="fab fa-slack mr-2"></i>{% trans "Connect" %}
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </div>
+        </div>
+        
+        {% endblock %}
+        
+        {% block extra_js %}
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation highlighting
+            const navItems = document.querySelectorAll('.settings-nav-item');
+            const sections = document.querySelectorAll('section');
+        
+            function setActiveNavItem() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 50) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+        
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.querySelector('a').getAttribute('href').slice(1) === currentSection) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        
+            window.addEventListener('scroll', setActiveNavItem);
+            setActiveNavItem();
+        
+            // Form submission handling
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Here you would typically send the form data to your backend
+                    console.log('Form submitted:', this.id);
+                    // Show a success message to the user
+                    alert('Settings saved successfully!');
+                });
+            });
+        
+            // Toggle switches
+            const toggles = document.querySelectorAll('.toggle-checkbox');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    console.log(this.name, 'toggled:', this.checked);
+                    // Here you would typically update this setting in your backend
+                });
+            });
+        
+            // Integration buttons
+            const integrationButtons = document.querySelectorAll('#integrations button');
+            integrationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const integration = this.querySelector('i').className.split('-')[1];
+                    console.log('Connect with', integration);
+                    // Here you would typically initiate the OAuth flow for the selected integration
+                });
+            });
+        });
+        </script>
+        {% endblock %}

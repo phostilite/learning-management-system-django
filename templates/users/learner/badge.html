@@ -1,0 +1,279 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "My Badges - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .badge-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .badge-card {
+        transition: all 0.3s ease;
+    }
+
+    .badge-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .badge-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    .progress-ring {
+        transform: rotate(-90deg);
+    }
+
+    .progress-ring__circle {
+        transition: stroke-dashoffset 0.35s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+
+    .category-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+    }
+
+    .category-skill {
+        background-color: #DBEAFE;
+        color: #1E40AF;
+    }
+
+    .category-achievement {
+        background-color: #D1FAE5;
+        color: #065F46;
+    }
+
+    .category-milestone {
+        background-color: #FEF3C7;
+        color: #92400E;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "My Badges" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Showcase your skills and achievements" %}</p>
+    </header>
+
+    <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Badge Overview" %}</h2>
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-medal text-2xl text-indigo-600"></i>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-indigo-600">25</p>
+                    <p class="text-sm text-gray-600">{% trans "Total Badges" %}</p>
+                </div>
+            </div>
+        </div>
+        <p class="text-gray-600 mb-4">{% trans "You've earned badges in various categories. Keep learning and unlock more!" %}</p>
+        <div class="flex flex-wrap gap-4">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-cogs text-blue-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">15</p>
+                    <p class="text-sm text-gray-600">{% trans "Skill Badges" %}</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-trophy text-green-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">7</p>
+                    <p class="text-sm text-gray-600">{% trans "Achievement Badges" %}</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-flag-checkered text-yellow-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">3</p>
+                    <p class="text-sm text-gray-600">{% trans "Milestone Badges" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6 card-shadow">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Your Badges" %}</h2>
+            <div class="flex items-center">
+                <label for="badgeFilter" class="mr-2 text-gray-700">{% trans "Filter by:" %}</label>
+                <select id="badgeFilter" class="border border-gray-300 rounded-md p-1">
+                    <option value="all">{% trans "All Badges" %}</option>
+                    <option value="skill">{% trans "Skill Badges" %}</option>
+                    <option value="achievement">{% trans "Achievement Badges" %}</option>
+                    <option value="milestone">{% trans "Milestone Badges" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="badge-grid">
+            <!-- Sample badges -->
+            <div class="badge-card bg-white border border-gray-200 rounded-lg overflow-hidden p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="Python Mastery" class="badge-icon mb-2">
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Python Mastery</h3>
+                <span class="category-badge category-skill">{% trans "Skill" %}</span>
+                <p class="text-sm text-gray-600 mt-2">{% trans "Earned on:" %} {% now "F j, Y" %}</p>
+                <button class="mt-2 text-blue-600 hover:text-blue-800" onclick="showBadgeDetails('Python Mastery')">
+                    {% trans "View Details" %}
+                </button>
+            </div>
+
+            <div class="badge-card bg-white border border-gray-200 rounded-lg overflow-hidden p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="Course Completion" class="badge-icon mb-2">
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Course Champion</h3>
+                <span class="category-badge category-achievement">{% trans "Achievement" %}</span>
+                <p class="text-sm text-gray-600 mt-2">{% trans "Earned on:" %} {% now "F j, Y" %}</p>
+                <button class="mt-2 text-blue-600 hover:text-blue-800" onclick="showBadgeDetails('Course Champion')">
+                    {% trans "View Details" %}
+                </button>
+            </div>
+
+            <div class="badge-card bg-white border border-gray-200 rounded-lg overflow-hidden p-4 text-center">
+                <img src="https://via.placeholder.com/100" alt="100 Days Streak" class="badge-icon mb-2">
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">100 Days Streak</h3>
+                <span class="category-badge category-milestone">{% trans "Milestone" %}</span>
+                <p class="text-sm text-gray-600 mt-2">{% trans "Earned on:" %} {% now "F j, Y" %}</p>
+                <button class="mt-2 text-blue-600 hover:text-blue-800" onclick="showBadgeDetails('100 Days Streak')">
+                    {% trans "View Details" %}
+                </button>
+            </div>
+
+            <!-- Add more badge cards here -->
+        </div>
+    </div>
+</div>
+
+<!-- Badge Details Modal -->
+<div id="badgeModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    {% trans "Badge Details" %}
+                </h3>
+                <div class="mt-2 text-center">
+                    <img id="badgeImage" src="" alt="Badge" class="w-32 h-32 mx-auto mb-4">
+                    <h4 id="badgeName" class="text-xl font-semibold text-gray-800 mb-2"></h4>
+                    <p id="badgeDescription" class="text-gray-600 mb-4"></p>
+                    <div id="badgeCriteria" class="text-left mb-4">
+                        <h5 class="font-semibold text-gray-700 mb-2">{% trans "Earning Criteria:" %}</h5>
+                        <ul class="list-disc list-inside text-gray-600"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="closeModalBtn">
+                    {% trans "Close" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const badgeFilter = document.getElementById('badgeFilter');
+    const badgeModal = document.getElementById('badgeModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    badgeFilter.addEventListener('change', function() {
+        // Implement filtering logic here
+        console.log('Filter changed to:', this.value);
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        badgeModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    badgeModal.addEventListener('click', function(event) {
+        if (event.target === badgeModal) {
+            badgeModal.classList.add('hidden');
+        }
+    });
+});
+
+function showBadgeDetails(badgeName) {
+    const badgeModal = document.getElementById('badgeModal');
+    const badgeImage = document.getElementById('badgeImage');
+    const badgeNameElement = document.getElementById('badgeName');
+    const badgeDescription = document.getElementById('badgeDescription');
+    const badgeCriteria = document.getElementById('badgeCriteria').querySelector('ul');
+
+    // This is where you would typically fetch badge details from your backend
+    // For this example, we'll use hardcoded data
+    const badgeDetails = {
+        'Python Mastery': {
+            image: 'https://via.placeholder.com/100',
+            description: 'Awarded for demonstrating advanced proficiency in Python programming.',
+            criteria: [
+                'Complete the Advanced Python course',
+                'Score 90% or higher on the final assessment',
+                'Submit a complex Python project'
+            ]
+        },
+        'Course Champion': {
+            image: 'https://via.placeholder.com/100',
+            description: 'Earned for successfully completing a course with distinction.',
+            criteria: [
+                'Complete all course modules',
+                'Achieve an overall grade of 95% or higher',
+                'Participate actively in course discussions'
+            ]
+        },
+        '100 Days Streak': {
+            image: 'https://via.placeholder.com/100',
+            description: 'Recognizes your commitment to learning for 100 consecutive days.',
+            criteria: [
+                'Log in to the platform daily for 100 days',
+                'Complete at least one learning activity each day',
+                'Maintain a minimum daily learning time of 30 minutes'
+            ]
+        }
+    };
+
+    const details = badgeDetails[badgeName];
+    badgeImage.src = details.image;
+    badgeImage.alt = badgeName;
+    badgeNameElement.textContent = badgeName;
+    badgeDescription.textContent = details.description;
+    
+    badgeCriteria.innerHTML = '';
+    details.criteria.forEach(criterion => {
+        const li = document.createElement('li');
+        li.textContent = criterion;
+        badgeCriteria.appendChild(li);
+    });
+
+    badgeModal.classList.remove('hidden');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,263 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "My Certificates - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .certificate-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .certificate-card {
+        transition: all 0.3s ease;
+    }
+
+    .certificate-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+    }
+
+    .badge-blue {
+        background-color: #DBEAFE;
+        color: #1E40AF;
+    }
+
+    .badge-green {
+        background-color: #D1FAE5;
+        color: #065F46;
+    }
+
+    .badge-yellow {
+        background-color: #FEF3C7;
+        color: #92400E;
+    }
+
+    .badge-purple {
+        background-color: #EDE9FE;
+        color: #5B21B6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "My Certificates" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Showcase your achievements and skills" %}</p>
+    </header>
+
+    <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Certificate Overview" %}</h2>
+            <div class="flex space-x-2">
+                <span class="badge badge-blue">{% trans "Total: 6" %}</span>
+                <span class="badge badge-green">{% trans "This Year: 3" %}</span>
+            </div>
+        </div>
+        <p class="text-gray-600 mb-4">{% trans "You've earned certificates in various courses and specializations. Keep up the great work!" %}</p>
+        <div class="flex flex-wrap gap-4">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-award text-blue-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">3</p>
+                    <p class="text-sm text-gray-600">{% trans "Course Certificates" %}</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-certificate text-green-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">2</p>
+                    <p class="text-sm text-gray-600">{% trans "Specialization Certificates" %}</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-medal text-yellow-600"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-gray-800">1</p>
+                    <p class="text-sm text-gray-600">{% trans "Professional Certificate" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6 card-shadow">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-800">{% trans "Your Certificates" %}</h2>
+            <div class="flex items-center">
+                <label for="certificateFilter" class="mr-2 text-gray-700">{% trans "Filter by:" %}</label>
+                <select id="certificateFilter" class="border border-gray-300 rounded-md p-1">
+                    <option value="all">{% trans "All Certificates" %}</option>
+                    <option value="course">{% trans "Course Certificates" %}</option>
+                    <option value="specialization">{% trans "Specialization Certificates" %}</option>
+                    <option value="professional">{% trans "Professional Certificates" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="certificate-grid">
+            <!-- Sample certificates -->
+            <div class="certificate-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <img src="https://via.placeholder.com/300x200" alt="Web Development Certificate" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Web Development Fundamentals</h3>
+                    <p class="text-sm text-gray-600 mb-2">{% trans "Issued on:" %} {% now "F j, Y" %}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="badge badge-blue">{% trans "Course" %}</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2" title="{% trans 'View Certificate' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-green-600 hover:text-green-800 mr-2" title="{% trans 'Download Certificate' %}">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="text-purple-600 hover:text-purple-800" title="{% trans 'Share Certificate' %}">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <img src="https://via.placeholder.com/300x200" alt="Data Science Certificate" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Data Science Specialization</h3>
+                    <p class="text-sm text-gray-600 mb-2">{% trans "Issued on:" %} {% now "F j, Y" %}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="badge badge-green">{% trans "Specialization" %}</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2" title="{% trans 'View Certificate' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-green-600 hover:text-green-800 mr-2" title="{% trans 'Download Certificate' %}">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="text-purple-600 hover:text-purple-800" title="{% trans 'Share Certificate' %}">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-card bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <img src="https://via.placeholder.com/300x200" alt="AI Certificate" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">AI and Machine Learning Professional Certificate</h3>
+                    <p class="text-sm text-gray-600 mb-2">{% trans "Issued on:" %} {% now "F j, Y" %}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="badge badge-yellow">{% trans "Professional" %}</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2" title="{% trans 'View Certificate' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-green-600 hover:text-green-800 mr-2" title="{% trans 'Download Certificate' %}">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="text-purple-600 hover:text-purple-800" title="{% trans 'Share Certificate' %}">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more certificate cards here -->
+        </div>
+    </div>
+</div>
+
+<!-- Certificate View Modal -->
+<div id="certificateModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    {% trans "Certificate Details" %}
+                </h3>
+                <div class="mt-2">
+                    <img src="https://via.placeholder.com/600x400" alt="Certificate" class="w-full h-auto">
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="closeModalBtn">
+                    {% trans "Close" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const certificateFilter = document.getElementById('certificateFilter');
+    const certificateModal = document.getElementById('certificateModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const viewButtons = document.querySelectorAll('.fa-eye');
+
+    certificateFilter.addEventListener('change', function() {
+        // Implement filtering logic here
+        console.log('Filter changed to:', this.value);
+    });
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            certificateModal.classList.remove('hidden');
+        });
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        certificateModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    certificateModal.addEventListener('click', function(event) {
+        if (event.target === certificateModal) {
+            certificateModal.classList.add('hidden');
+        }
+    });
+
+    // Implement download functionality
+    const downloadButtons = document.querySelectorAll('.fa-download');
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Implement download logic here
+            console.log('Download certificate');
+        });
+    });
+
+    // Implement share functionality
+    const shareButtons = document.querySelectorAll('.fa-share-alt');
+    shareButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Implement share logic here
+            console.log('Share certificate');
+        });
+    });
+});
+</script>
+{% endblock %}

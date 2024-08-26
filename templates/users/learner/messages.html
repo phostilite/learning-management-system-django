@@ -1,0 +1,167 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Messages - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .conversation-list {
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
+
+    .message-list {
+        height: calc(100vh - 400px);
+        overflow-y: auto;
+    }
+
+    .message-bubble {
+        max-width: 80%;
+    }
+
+    .message-input {
+        height: 100px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Messages" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Communicate with instructors and peers" %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Conversation List -->
+        <div class="lg:col-span-1 bg-white rounded-lg p-4 card-shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-800">{% trans "Conversations" %}</h2>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" id="newMessageBtn">
+                    <i class="fas fa-plus mr-2"></i>{% trans "New Message" %}
+                </button>
+            </div>
+            <div class="conversation-list">
+                <!-- Sample conversations -->
+                <div class="flex items-center p-3 border-b border-gray-200 hover:bg-gray-100 cursor-pointer">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-gray-800">Prof. John Smith</h3>
+                        <p class="text-sm text-gray-600 truncate">Sure, I can help you with that question...</p>
+                    </div>
+                    <span class="text-xs text-gray-500">2h ago</span>
+                </div>
+                <div class="flex items-center p-3 border-b border-gray-200 hover:bg-gray-100 cursor-pointer">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-gray-800">Study Group</h3>
+                        <p class="text-sm text-gray-600 truncate">Alice: Does anyone want to meet up...</p>
+                    </div>
+                    <span class="text-xs text-gray-500">1d ago</span>
+                </div>
+                <!-- Add more conversation items here -->
+            </div>
+        </div>
+
+        <!-- Message View and Composition -->
+        <div class="lg:col-span-2 bg-white rounded-lg p-4 card-shadow">
+            <div class="flex items-center mb-4">
+                <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                <h2 class="text-xl font-semibold text-gray-800">Prof. John Smith</h2>
+            </div>
+            <div class="message-list mb-4">
+                <!-- Sample messages -->
+                <div class="flex justify-end mb-4">
+                    <div class="message-bubble bg-blue-100 p-3 rounded-lg">
+                        <p class="text-gray-800">Hi Professor, I have a question about the last lecture.</p>
+                        <span class="text-xs text-gray-500 mt-1 block">You - 2 hours ago</span>
+                    </div>
+                </div>
+                <div class="flex mb-4">
+                    <div class="message-bubble bg-gray-100 p-3 rounded-lg">
+                        <p class="text-gray-800">Sure, I'd be happy to help. What's your question?</p>
+                        <span class="text-xs text-gray-500 mt-1 block">Prof. John Smith - 1 hour ago</span>
+                    </div>
+                </div>
+                <!-- Add more message bubbles here -->
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+                <form>
+                    <textarea class="w-full border border-gray-300 rounded-lg p-2 message-input" placeholder="{% trans 'Type your message here...' %}"></textarea>
+                    <div class="flex justify-between items-center mt-2">
+                        <div>
+                            <button type="button" class="text-gray-500 hover:text-gray-700 mr-2">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button type="button" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-smile"></i>
+                            </button>
+                        </div>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            <i class="fas fa-paper-plane mr-2"></i>{% trans "Send" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Message Modal -->
+<div id="newMessageModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    {% trans "New Message" %}
+                </h3>
+                <div class="mt-2">
+                    <input type="text" placeholder="{% trans 'To:' %}" class="w-full border border-gray-300 rounded-lg p-2 mb-2">
+                    <input type="text" placeholder="{% trans 'Subject:' %}" class="w-full border border-gray-300 rounded-lg p-2 mb-2">
+                    <textarea placeholder="{% trans 'Message:' %}" class="w-full border border-gray-300 rounded-lg p-2 h-32"></textarea>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    {% trans "Send" %}
+                </button>
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="closeModalBtn">
+                    {% trans "Cancel" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const newMessageBtn = document.getElementById('newMessageBtn');
+        const newMessageModal = document.getElementById('newMessageModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        newMessageBtn.addEventListener('click', function() {
+            newMessageModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            newMessageModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        newMessageModal.addEventListener('click', function(event) {
+            if (event.target === newMessageModal) {
+                newMessageModal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+{% endblock %}

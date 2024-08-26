@@ -1,0 +1,282 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Forums - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .forum-list {
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
+
+    .topic-list {
+        height: calc(100vh - 300px);
+        overflow-y: auto;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+    }
+
+    .badge-blue {
+        background-color: #DBEAFE;
+        color: #1E40AF;
+    }
+
+    .badge-green {
+        background-color: #D1FAE5;
+        color: #065F46;
+    }
+
+    .badge-yellow {
+        background-color: #FEF3C7;
+        color: #92400E;
+    }
+
+    .badge-red {
+        background-color: #FEE2E2;
+        color: #991B1B;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "LMS Forums" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Engage, discuss, and learn together" %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Forum Categories -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Categories" %}</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-laptop-code text-blue-600"></i>
+                            </span>
+                            {% trans "Web Development" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-bar text-green-600"></i>
+                            </span>
+                            {% trans "Data Science" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-yellow-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-mobile-alt text-yellow-600"></i>
+                            </span>
+                            {% trans "Mobile Development" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot text-red-600"></i>
+                            </span>
+                            {% trans "Artificial Intelligence" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-comments text-purple-600"></i>
+                            </span>
+                            {% trans "General Discussion" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Forum Stats" %}</h3>
+                <ul class="space-y-2">
+                    <li class="flex justify-between">
+                        <span class="text-gray-600">{% trans "Total Topics:" %}</span>
+                        <span class="font-semibold text-gray-800">1,245</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span class="text-gray-600">{% trans "Total Posts:" %}</span>
+                        <span class="font-semibold text-gray-800">5,678</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span class="text-gray-600">{% trans "Active Users:" %}</span>
+                        <span class="font-semibold text-gray-800">324</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Forum Topics -->
+        <div class="lg:col-span-3 bg-white rounded-lg p-6 card-shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-gray-800">{% trans "Recent Topics" %}</h2>
+                <button id="newTopicBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <i class="fas fa-plus mr-2"></i>{% trans "New Topic" %}
+                </button>
+            </div>
+            <div class="topic-list">
+                <!-- Sample topics -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">
+                            <a href="#" class="hover:text-blue-600">{% trans "Best practices for responsive web design?" %}</a>
+                        </h3>
+                        <span class="badge badge-blue">{% trans "Web Development" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Started by" %} <a href="#" class="text-blue-600 hover:underline">JohnDoe</a> • {% trans "15 replies" %}</p>
+                    <p class="text-sm text-gray-500">{% trans "Last reply 2 hours ago" %}</p>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">
+                            <a href="#" class="hover:text-blue-600">{% trans "Python vs R for data analysis: Pros and cons?" %}</a>
+                        </h3>
+                        <span class="badge badge-green">{% trans "Data Science" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Started by" %} <a href="#" class="text-blue-600 hover:underline">DataExplorer</a> • {% trans "23 replies" %}</p>
+                    <p class="text-sm text-gray-500">{% trans "Last reply 1 day ago" %}</p>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">
+                            <a href="#" class="hover:text-blue-600">{% trans "Tips for optimizing mobile app performance?" %}</a>
+                        </h3>
+                        <span class="badge badge-yellow">{% trans "Mobile Development" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Started by" %} <a href="#" class="text-blue-600 hover:underline">MobileGuru</a> • {% trans "8 replies" %}</p>
+                    <p class="text-sm text-gray-500">{% trans "Last reply 3 days ago" %}</p>
+                </div>
+                <div class="py-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-semibold text-gray-800">
+                            <a href="#" class="hover:text-blue-600">{% trans "Ethical considerations in AI development" %}</a>
+                        </h3>
+                        <span class="badge badge-red">{% trans "Artificial Intelligence" %}</span>
+                    </div>
+                    <p class="text-gray-600 mb-2">{% trans "Started by" %} <a href="#" class="text-blue-600 hover:underline">AIEthicist</a> • {% trans "32 replies" %}</p>
+                    <p class="text-sm text-gray-500">{% trans "Last reply 5 days ago" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trending Topics -->
+    <div class="mt-6 bg-white rounded-lg p-6 card-shadow">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Trending Topics" %}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                    <a href="#" class="hover:text-blue-600">{% trans "Introduction to Machine Learning" %}</a>
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">{% trans "50 replies • 1.2k views" %}</p>
+                <span class="badge badge-red">{% trans "Artificial Intelligence" %}</span>
+            </div>
+            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                    <a href="#" class="hover:text-blue-600">{% trans "JavaScript frameworks comparison" %}</a>
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">{% trans "45 replies • 980 views" %}</p>
+                <span class="badge badge-blue">{% trans "Web Development" %}</span>
+            </div>
+            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                    <a href="#" class="hover:text-blue-600">{% trans "Data visualization techniques" %}</a>
+                </h3>
+                <p class="text-sm text-gray-600 mb-2">{% trans "38 replies • 850 views" %}</p>
+                <span class="badge badge-green">{% trans "Data Science" %}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Topic Modal -->
+<div id="newTopicModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    {% trans "Create New Topic" %}
+                </h3>
+                <div class="mt-2">
+                    <input type="text" placeholder="{% trans 'Topic Title' %}" class="w-full border border-gray-300 rounded-md p-2 mb-2">
+                    <select class="w-full border border-gray-300 rounded-md p-2 mb-2">
+                        <option value="">{% trans "Select Category" %}</option>
+                        <option value="web-dev">{% trans "Web Development" %}</option>
+                        <option value="data-science">{% trans "Data Science" %}</option>
+                        <option value="mobile-dev">{% trans "Mobile Development" %}</option>
+                        <option value="ai">{% trans "Artificial Intelligence" %}</option>
+                        <option value="general">{% trans "General Discussion" %}</option>
+                    </select>
+                    <textarea placeholder="{% trans 'Topic Content' %}" class="w-full border border-gray-300 rounded-md p-2 h-32"></textarea>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    {% trans "Create Topic" %}
+                </button>
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" id="closeModalBtn">
+                    {% trans "Cancel" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const newTopicBtn = document.getElementById('newTopicBtn');
+    const newTopicModal = document.getElementById('newTopicModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    newTopicBtn.addEventListener('click', function() {
+        newTopicModal.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        newTopicModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    newTopicModal.addEventListener('click', function(event) {
+        if (event.target === newTopicModal) {
+            newTopicModal.classList.add('hidden');
+        }
+    });
+
+    // Category filtering functionality
+    const categoryLinks = document.querySelectorAll('.lg\\:col-span-1 a');
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Implement category filtering logic here
+            console.log('Category clicked:', this.textContent.trim());
+        });
+    });
+
+    // Implement topic search functionality
+    // Add infinite scrolling for topics
+    // Implement real-time updates for new topics and replies
+    // Add user mention and notification system
+});
+</script>
+{% endblock %}

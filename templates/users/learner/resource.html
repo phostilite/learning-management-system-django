@@ -1,0 +1,225 @@
+{% extends './_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Resources - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .resource-list {
+        height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
+
+    .resource-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .resource-pdf {
+        background-color: #FEE2E2;
+        color: #991B1B;
+    }
+
+    .resource-video {
+        background-color: #DBEAFE;
+        color: #1E40AF;
+    }
+
+    .resource-link {
+        background-color: #D1FAE5;
+        color: #065F46;
+    }
+
+    .resource-doc {
+        background-color: #E0E7FF;
+        color: #3730A3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Learning Resources" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Access course materials and helpful content" %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Resource Categories -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Categories" %}</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-book text-red-600"></i>
+                            </span>
+                            {% trans "Course Materials" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-video text-blue-600"></i>
+                            </span>
+                            {% trans "Video Tutorials" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-link text-green-600"></i>
+                            </span>
+                            {% trans "External Resources" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-gray-700 hover:text-blue-600">
+                            <span class="w-6 h-6 mr-2 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-file-alt text-purple-600"></i>
+                            </span>
+                            {% trans "Additional Reading" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Quick Links" %}</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-blue-600 hover:underline">{% trans "Student Handbook" %}</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">{% trans "Academic Calendar" %}</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">{% trans "Library Portal" %}</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">{% trans "Tech Support" %}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Resource List -->
+        <div class="lg:col-span-3 bg-white rounded-lg p-6 card-shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-gray-800">{% trans "All Resources" %}</h2>
+                <div class="flex items-center">
+                    <label for="courseFilter" class="mr-2 text-gray-700">{% trans "Filter by course:" %}</label>
+                    <select id="courseFilter" class="border border-gray-300 rounded-md p-1">
+                        <option value="all">{% trans "All Courses" %}</option>
+                        <option value="webdev">Web Development</option>
+                        <option value="datascience">Data Science</option>
+                        <option value="mobileapp">Mobile App Development</option>
+                        <option value="ai">Artificial Intelligence</option>
+                    </select>
+                </div>
+            </div>
+            <div class="resource-list">
+                <!-- Sample resources -->
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex items-center">
+                        <div class="resource-icon resource-pdf mr-4">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-800">Introduction to HTML and CSS</h3>
+                            <p class="text-sm text-gray-600">Web Development Fundamentals</p>
+                        </div>
+                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            {% trans "Download" %}
+                        </a>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex items-center">
+                        <div class="resource-icon resource-video mr-4">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-800">Python for Data Analysis</h3>
+                            <p class="text-sm text-gray-600">Data Science Basics</p>
+                        </div>
+                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            {% trans "Watch" %}
+                        </a>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex items-center">
+                        <div class="resource-icon resource-link mr-4">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-800">iOS Development Documentation</h3>
+                            <p class="text-sm text-gray-600">Mobile App Development</p>
+                        </div>
+                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            {% trans "Visit" %}
+                        </a>
+                    </div>
+                </div>
+                <div class="py-4">
+                    <div class="flex items-center">
+                        <div class="resource-icon resource-doc mr-4">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-800">Machine Learning Algorithms: An Overview</h3>
+                            <p class="text-sm text-gray-600">Artificial Intelligence</p>
+                        </div>
+                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            {% trans "Read" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recently Accessed Resources -->
+    <div class="mt-6 bg-white rounded-lg p-6 card-shadow">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Recently Accessed" %}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="border border-gray-200 rounded p-4">
+                <div class="flex items-center mb-2">
+                    <div class="resource-icon resource-pdf mr-2">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">JavaScript Basics</h3>
+                </div>
+                <p class="text-sm text-gray-600">Web Development Fundamentals</p>
+                <p class="text-xs text-gray-500 mt-2">{% trans "Accessed:" %} {% now "F j, Y" %}</p>
+            </div>
+            <!-- Add more recently accessed resources here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Course filter functionality
+        const courseFilter = document.getElementById('courseFilter');
+        courseFilter.addEventListener('change', function() {
+            // Implement filtering logic here
+            console.log('Filter changed to:', this.value);
+        });
+
+        // Implement category filtering
+        const categoryLinks = document.querySelectorAll('.lg\\:col-span-1 a');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Implement category filtering logic here
+                console.log('Category clicked:', this.textContent.trim());
+            });
+        });
+    });
+</script>
+{% endblock %}
