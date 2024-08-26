@@ -1,3 +1,4 @@
+{% load i18n %}
 <style>
     .dark-mode {
         background-color: #1a202c;
@@ -104,6 +105,27 @@
             opacity: .5;
         }
     }
+    .language-dropdown {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .language-dropdown::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .language-dropdown::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    .language-dropdown::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+    
+    .language-dropdown::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 </style>
 
 <nav class="bg-white border-b border-gray-200 fixed z-30 w-full top-0 left-0 shadow-md">
@@ -162,6 +184,37 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="ml-3 relative">
+                    <div>
+                        <button type="button" class="flex items-center text-sm bg-gray-100 rounded-md focus:ring-4 focus:ring-gray-300 px-3 py-2" id="language-menu-button" aria-expanded="false">
+                            <span class="mr-2">{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}</span>
+                            <i class="fas fa-globe"></i>
+                        </button>
+                    </div>
+                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div class="p-2">
+                            <input type="text" id="language-search" class="w-full px-3 py-2 border rounded-md" placeholder="{% trans 'Search language...' %}">
+                        </div>
+                        <form action="{% url 'set_language' %}" method="post" id="language-form">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <ul class="py-1 max-h-60 overflow-y-auto" id="language-list">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <li>
+                                        <button type="submit" name="language" value="{{ language.code }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {% if language.code == LANGUAGE_CODE %}bg-gray-200{% endif %}">
+                                            {{ language.name_local }} ({{ language.code }})
+                                        </button>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -311,6 +364,41 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }, 1500);
     }
+
+
+    const languageButton = document.getElementById('language-menu-button');
+    const languageDropdown = document.getElementById('language-dropdown');
+    const languageSearch = document.getElementById('language-search');
+    const languageList = document.getElementById('language-list');
+    const languageItems = languageList.querySelectorAll('button');
+
+    languageButton.addEventListener('click', () => {
+        languageDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageDropdown.classList.add('hidden');
+        }
+    });
+
+    languageSearch.addEventListener('input', () => {
+        const searchValue = languageSearch.value.toLowerCase();
+        languageItems.forEach(item => {
+            const languageName = item.textContent.toLowerCase();
+            if (languageName.includes(searchValue)) {
+                item.parentElement.style.display = 'block';
+            } else {
+                item.parentElement.style.display = 'none';
+            }
+        });
+    });
+
+    languageItems.forEach(item => {
+        item.addEventListener('click', () => {
+            document.getElementById('language-form').submit();
+        });
+    });
 
     
 });
