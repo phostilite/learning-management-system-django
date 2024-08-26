@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-19 00:08+0530\n"
+"POT-Creation-Date: 2024-08-26 12:10+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "സന്ദേശങ്ങൾ"
 
@@ -336,6 +337,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu] ഫോർമാറ്റിൽ ആയിരിക്കണം."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "ദൈർഘ്യം"
@@ -626,12 +628,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "ഓർഡർ ചെയ്യുക"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -701,14 +703,18 @@ msgid "Change"
 msgstr "മാറ്റുക"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "അജ്ഞാതം"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "അതെ"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "ഇല്ല"
 
@@ -804,58 +810,69 @@ msgstr "ഞായറാഴ്ച"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "എൻ്റെ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "ചൊവ്വ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "ബുധൻ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "ശേഖരിക്കുക"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "വെള്ളി"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "ശനി"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "സൂര്യൻ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "ജനുവരി"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "ഫെബ്രുവരി"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "മാർച്ച്"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "ഏപ്രിൽ"
 
@@ -866,34 +883,42 @@ msgstr "ഏപ്രിൽ"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "മെയ്"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "ജൂൺ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "ജൂലൈ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "ഓഗസ്റ്റ്"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "സെപ്റ്റംബർ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "ഒക്ടോബർ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "നവംബർ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "ഡിസംബർ"
 
@@ -1324,6 +1349,14 @@ msgstr "ജാംഗോ കമ്മ്യൂണിറ്റി"
 msgid "Connect, get help, or contribute"
 msgstr "ബന്ധിപ്പിക്കുക, സഹായം നേടുക അല്ലെങ്കിൽ സംഭാവന ചെയ്യുക"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "x"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "ഒപ്പം"
+
 #: lms/settings.py
 msgid "English"
 msgstr "ഇംഗ്ലീഷ്"
@@ -1485,7 +1518,6 @@ msgid "Active Announcements"
 msgstr "സജീവമായ പ്രഖ്യാപനങ്ങൾ"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "ഷെഡ്യൂൾ ചെയ്തു"
 
@@ -1521,7 +1553,6 @@ msgid "Maintenance"
 msgstr "മെയിൻ്റനൻസ്"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1529,7 +1560,8 @@ msgid "All Statuses"
 msgstr "എല്ലാ നിലകളും"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "സജീവമാണ്"
 
@@ -1538,6 +1570,8 @@ msgid "Expired"
 msgstr "കാലഹരണപ്പെട്ടു"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "ഡ്രാഫ്റ്റ്"
 
@@ -1546,6 +1580,8 @@ msgid "Export Report"
 msgstr "കയറ്റുമതി റിപ്പോർട്ട്"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "തലക്കെട്ട്"
@@ -1559,7 +1595,8 @@ msgstr "വിഭാഗം"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1575,12 +1612,13 @@ msgid "Expiry Date"
 msgstr "കാലഹരണപ്പെടുന്ന തീയതി"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "ഇടപഴകൽ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1612,19 +1650,18 @@ msgstr "പ്രഖ്യാപനം ഇല്ലാതാക്കുക"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "മുമ്പത്തെ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "അടുത്തത്"
 
@@ -1696,6 +1733,7 @@ msgstr "പരീക്ഷ"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "വരാനിരിക്കുന്ന ഇവൻ്റുകൾ"
 
@@ -1737,6 +1775,7 @@ msgstr "സിസ്റ്റം സർട്ടിഫിക്കറ്റു�
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "സർട്ടിഫിക്കറ്റുകൾ"
 
@@ -1749,7 +1788,6 @@ msgid "Certificates This Month"
 msgstr "ഈ മാസം സർട്ടിഫിക്കറ്റുകൾ"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "തീർപ്പാക്കാത്ത അംഗീകാരങ്ങൾ"
 
@@ -1762,31 +1800,10 @@ msgstr "സർട്ടിഫിക്കറ്റുകളുള്ള കോ�
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "എല്ലാ കോഴ്സുകളും"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "ഐടി & പ്രോഗ്രാമിംഗ്"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "ബിസിനസ്സ്"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "ഭാഷകൾ"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "ശാസ്ത്രവും കണക്കും"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1822,16 +1839,18 @@ msgid "Certificate ID"
 msgstr "സർട്ടിഫിക്കറ്റ് ഐഡി"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "പഠിതാവ്"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "കോഴ്സ്"
 
@@ -1840,27 +1859,20 @@ msgid "Issue Date"
 msgstr "പുറപ്പെടുവിക്കുന്ന തീയതി"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "ജോൺ ഡോ"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "വിപുലമായ പൈത്തൺ പ്രോഗ്രാമിംഗ്"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "ഇഷ്യൂചെയ്തു"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "അസാധുവാക്കി"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "സർട്ടിഫിക്കറ്റ് കാണുക"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "സർട്ടിഫിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക"
 
@@ -1893,154 +1905,129 @@ msgstr "ബ്രെഡ്ക്രംബ്"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "കോഴ്സുകൾ"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "ഡെലിവറി സൃഷ്ടിക്കുക"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "പുരോഗതി"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "അടിസ്ഥാന വിശദാംശങ്ങൾ"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "ഡെലിവറി കോഡ് നൽകുക"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "ഡെലിവറി കോഡ്"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "ഡെലിവറി കോഡ് നൽകുക"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "കോഴ്‌സ് എങ്ങനെ വിതരണം ചെയ്യും?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "ഡെലിവറി കോഡ്"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "സെൽഫ് പേസ്ഡ്"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "ഇൻസ്ട്രക്ടർ നേതൃത്വം നൽകി"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "ഫെസിലിറ്റേറ്റർമാരെ നിയമിക്കുക"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "എൻറോൾമെൻ്റുകൾ"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "സംയോജനങ്ങൾ"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "ഫെസിലിറ്റേറ്റർമാർ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "പങ്കാളികളെ നിയോഗിക്കുക"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "ആരംഭിക്കുന്ന തീയതി"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "അവസാന തീയതി"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "പങ്കെടുക്കുന്നവർ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "വിപുലമായ ക്രമീകരണങ്ങൾ"
+msgid "Enter maximum participants"
+msgstr "പരമാവധി പങ്കാളികളെ നൽകുക"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr ""
-"ഈ ഡെലിവറിക്കായി കോഴ്‌സ് ഉള്ളടക്കത്തിനായി ആക്‌സസ് കാലയളവ് ചേർക്കാൻ നിങ്ങൾ "
-"ആഗ്രഹിക്കുന്നുണ്ടോ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "അതെ, ആക്സസ് കാലയളവ് ചേർക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "ആരംഭ തീയതി തിരഞ്ഞെടുക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "വരെ"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "പൂർത്തിയാക്കി"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "അവസാന തീയതി തിരഞ്ഞെടുക്കുക"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "ആർക്കൈവ് ചെയ്തു"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr ""
-"ഈ ഡെലിവറിക്ക് നിർജ്ജീവമാക്കൽ തീയതി ചേർക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "നിർബന്ധമാണ്"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "അതെ, നിർജ്ജീവമാക്കൽ തീയതി ചേർക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "തീയതി തിരഞ്ഞെടുക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr ""
-"ഈ ഡെലിവറിക്ക് പങ്കാളിയിൽ നിന്ന് ഫീഡ്‌ബാക്ക് ലഭിക്കാൻ നിങ്ങൾക്ക് "
-"താൽപ്പര്യമുണ്ടോ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "അതെ, ഫീഡ്‌ബാക്ക് ശേഖരിക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr ""
 "പങ്കെടുക്കുന്നവർക്ക് ഈ ഡെലിവറി നിർബന്ധമാണെന്ന് അടയാളപ്പെടുത്താൻ നിങ്ങൾ "
 "ആഗ്രഹിക്കുന്നുണ്ടോ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "അതെ, നിർബന്ധമാണെന്ന് അടയാളപ്പെടുത്തുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "ഈ കോഴ്‌സിനായി പങ്കെടുക്കുന്നയാളുടെ ഹാജർ രേഖപ്പെടുത്തണോ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "അതെ, ഹാജർ രേഖപ്പെടുത്തുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "ഈ കോഴ്‌സിന് ഒരു പൂർത്തീകരണ സർട്ടിഫിക്കറ്റ് ആവശ്യമുണ്ടോ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "അതെ, പൂർത്തീകരണ സർട്ടിഫിക്കറ്റ് ആവശ്യമാണ്"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "ഇമെയിൽ ക്രമീകരണങ്ങൾ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "ഇമെയിൽ ടെംപ്ലേറ്റ് ക്ഷണിക്കുക"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "പൂർത്തിയാക്കൽ ഇമെയിൽ ടെംപ്ലേറ്റ്"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "സമർപ്പിക്കുക"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2059,104 +2046,21 @@ msgid "Deliveries"
 msgstr "ഡെലിവറി"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "ഡെലിവറികൾ തിരയുക..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "പുരോഗതിയിൽ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "പൂർത്തിയാക്കി"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "റദ്ദാക്കി"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "എല്ലാ അദ്ധ്യാപകരും"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "അദ്ധ്യാപകൻ 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "അദ്ധ്യാപകൻ 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "അദ്ധ്യാപകൻ 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "കയറ്റുമതി ഡെലിവറികൾ"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "ഡെലിവറി ഐഡി"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "ആരംഭിക്കുന്ന തീയതി"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "അവസാന തീയതി"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "അദ്ധ്യാപകൻ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "വിദ്യാർത്ഥികൾ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "വിശദാംശങ്ങൾ കാണുക"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "എഡിറ്റ് ചെയ്യുക"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "വിദ്യാർത്ഥികളെ നിയന്ത്രിക്കുക"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "കാണിക്കുന്നു"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "വരെ"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "യുടെ"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "ഫലങ്ങൾ"
 
@@ -2167,8 +2071,194 @@ msgstr "ഡെലിവറി ഇല്ലാതാക്കുക"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "റദ്ദാക്കുക"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "കോഴ്‌സ് ഡെലിവറികൾ - എൽഎംഎസ് അഡ്മിൻ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "കോഴ്സ് വിവരങ്ങൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "ബൾക്ക് പ്രവർത്തനങ്ങൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "പൂർത്തീകരണ നിരക്ക്"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "പുരോഗതി"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "ഫെസിലിറ്റേറ്റർമാരെ ഇതുവരെ നിയോഗിച്ചിട്ടില്ല."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "പഠന വിഭവങ്ങൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "ടൈപ്പ് ചെയ്യുക"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "വീഡിയോ ഫയലുകളൊന്നും ലഭ്യമല്ല."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "പുരോഗതി"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "പുരോഗതിയിൽ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "പിൻവലിച്ചു"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "വിശദാംശങ്ങൾ കാണുക"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "കോഴ്‌സിൽ ചേർന്നു"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "എൻട്രികൾ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "ഡെലിവറി ഐഡി"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "കോഴ്‌സിൽ ചേർന്നു"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "റിപ്പോർട്ട് സൃഷ്ടിക്കുക"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "കോഴ്സുകളുടെ എണ്ണം"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "പുരോഗതി"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "പഠന പുരോഗതി"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2245,6 +2335,7 @@ msgid "Created by:"
 msgstr "ഡെലിവറി സൃഷ്ടിക്കുക"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2276,12 +2367,6 @@ msgid "Course Content"
 msgstr "കോഴ്‌സ് കവർ"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "എൻറോൾമെൻ്റുകൾ"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2290,12 +2375,6 @@ msgstr "കയറ്റുമതി ഡെലിവറികൾ"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "പുതിയ ഉറവിടം ചേർക്കുക"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "ടൈപ്പ് ചെയ്യുക"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2327,21 +2406,6 @@ msgstr "ഡെലിവറി ഐഡി"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "എൻറോൾമെൻ്റുകൾ"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "എൻറോൾമെൻ്റുകൾ"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "എൻറോൾമെൻ്റുകൾ"
 
@@ -2359,17 +2423,14 @@ msgstr "തീയതി തിരഞ്ഞെടുക്കുക"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "വീഡിയോ"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "പ്രമാണം"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "അവതരണം"
 
@@ -2380,7 +2441,6 @@ msgstr "ലിങ്ക്"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "ക്വിസ്"
 
@@ -2414,6 +2474,7 @@ msgstr "വിഭവങ്ങളുടെ ഉപയോഗം"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "പഠന പാത"
 
@@ -2557,6 +2618,38 @@ msgstr "വിഭവങ്ങളുടെ ഉപയോഗം"
 msgid "Preview not available for this resource type."
 msgstr "ഈ ഉറവിട തരത്തിന് പ്രിവ്യൂ ലഭ്യമല്ല."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "അറിയിപ്പുകൾ - LMS അഡ്മിൻ"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "എൻറോൾ ചെയ്യാൻ പഠിതാക്കളെ തിരഞ്ഞെടുക്കുക"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "പഠിതാക്കൾ"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "തീയതി തിരഞ്ഞെടുക്കുക"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "എല്ലാം തിരഞ്ഞെടുത്തത് മാറ്റുക"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "കോഴ്‌സിൽ ചേർന്നു"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2587,46 +2680,6 @@ msgid "Search enrollments..."
 msgstr "കോഴ്സുകൾ തിരയുക..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "വെബ് ഡെവലപ്മെൻ്റ് അടിസ്ഥാനങ്ങൾ"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "ഡാറ്റ സയൻസ് ബേസിക്സ്"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "ഡിജിറ്റൽ മാർക്കറ്റിംഗ്"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "തീർപ്പാക്കാത്തത്"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "പിൻവലിച്ചു"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2639,56 +2692,22 @@ msgstr "ഡാറ്റ കയറ്റുമതി ചെയ്യുക"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "സൈറ്റിൻ്റെ പേര്"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "പഠിതാവ്"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "വെബ് ഡെവലപ്മെൻ്റ് അടിസ്ഥാനങ്ങൾ"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "കയറ്റുമതി ഡെലിവറികൾ"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "കാണുക"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "പിൻവലിക്കുക"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "ഡാറ്റ സയൻസ് അടിസ്ഥാനങ്ങൾ"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "അംഗീകരിക്കുക"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "വിഷയം"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "ഡിജിറ്റൽ മാർക്കറ്റിംഗ്"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2756,12 +2775,6 @@ msgstr "പഠിതാക്കൾ"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "റിപ്പോർട്ട് സൃഷ്ടിക്കുക"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "സൈറ്റിൻ്റെ പേര്"
@@ -2774,14 +2787,6 @@ msgid "Enrolled Learners"
 msgstr "കോഴ്‌സിൽ ചേർന്നു"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "പൂർത്തീകരണ നിരക്ക്"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2790,6 +2795,11 @@ msgstr "ഇഷ്ടാനുസൃത മോഡൽ വികസനം"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "സാങ്കേതികവിദ്യ"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "എഡിറ്റ് ചെയ്യുക"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2925,6 +2935,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2956,12 +2967,6 @@ msgstr "9-12 മാസം"
 msgid "> 12 months"
 msgstr "> 12 മാസം"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "കോഴ്സുകളുടെ എണ്ണം"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "കോഴ്സുകൾ - LMS അഡ്മിൻ"
@@ -2975,20 +2980,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "നിങ്ങളുടെ കോഴ്സുകൾ നിയന്ത്രിക്കുകയും സംഘടിപ്പിക്കുകയും ചെയ്യുക"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "എല്ലാ കോഴ്സുകളും"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "പ്രസിദ്ധീകരിച്ച തീയതി"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "പ്രസിദ്ധീകരിക്കാത്തത്"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "വിഭാഗങ്ങൾ"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "കോഴ്സുകൾ തിരയുക..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "വിഭാഗം 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "വിഭാഗം 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "വിഭാഗം 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3112,8 +3130,23 @@ msgid "987 enrolled"
 msgstr "987 പേർ എൻറോൾ ചെയ്തു"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "ഡാറ്റ സയൻസ് അടിസ്ഥാനങ്ങൾ"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 പേർ രജിസ്റ്റർ ചെയ്തു"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "ഡിജിറ്റൽ മാർക്കറ്റിംഗ്"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3187,6 +3220,7 @@ msgid "July 12, 2024"
 msgstr "ജൂലൈ 12, 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "മികച്ച പ്രകടനം നടത്തുന്നവർ"
 
@@ -3263,6 +3297,7 @@ msgstr "പിന്തുണാ ടിക്കറ്റുകളും ആക�
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "സഹായവും പിന്തുണയും"
 
@@ -3329,6 +3364,7 @@ msgid "Close Ticket"
 msgstr "ടിക്കറ്റ് അടയ്ക്കുക"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ"
 
@@ -3363,6 +3399,8 @@ msgstr ""
 "കോഴ്സ് ഷെഡ്യൂൾ ക്രമീകരിക്കാനും മറക്കരുത്."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "വീഡിയോ ട്യൂട്ടോറിയലുകൾ"
 
@@ -3417,12 +3455,32 @@ msgstr "ലീഡർബോർഡ് - LMS അഡ്മിൻ"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "ലീഡർബോർഡ്"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "ഞങ്ങളുടെ മികച്ച വിജയികളെ ആഘോഷിക്കുന്നു"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "ഐടി & പ്രോഗ്രാമിംഗ്"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "ബിസിനസ്സ്"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "ഭാഷകൾ"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "ശാസ്ത്രവും കണക്കും"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3453,6 +3511,7 @@ msgid "3rd"
 msgstr "ഒരു ഓഫർ"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "റാങ്ക്"
 
@@ -3470,6 +3529,13 @@ msgstr "ശരാശരി സ്കോർ"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "ആകെ പോയിൻ്റുകൾ"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "ജോൺ ഡോ"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3521,6 +3587,7 @@ msgid "From:"
 msgstr "ഇതിൽ നിന്ന്:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "വിഷയം:"
 
@@ -3567,12 +3634,12 @@ msgid "Flagged"
 msgstr "കൊടിയേറ്റി"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "ആർക്കൈവ് ചെയ്തു"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "എല്ലാ ഉപയോക്താക്കളും"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "വിദ്യാർത്ഥികൾ"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3698,6 +3765,29 @@ msgstr "മൂല്യനിർണ്ണയ ഫലങ്ങൾ"
 #| msgid "Search messages..."
 msgid "Search assessments..."
 msgstr "സന്ദേശങ്ങൾ തിരയുക..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "വെബ് ഡെവലപ്മെൻ്റ് അടിസ്ഥാനങ്ങൾ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "ഡാറ്റ സയൻസ് ബേസിക്സ്"
 
 #: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
@@ -3826,6 +3916,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "ഡാറ്റ സയൻസ് അടിസ്ഥാനങ്ങൾ"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "വെബ് ഡെവലപ്മെൻ്റ് അടിസ്ഥാനങ്ങൾ"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3916,6 +4014,7 @@ msgstr "പദ്ധതികൾ"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4061,12 +4160,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "എല്ലാ കോഴ്സുകളും"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "ഈ മാസം സർട്ടിഫിക്കറ്റുകൾ"
@@ -4082,6 +4175,13 @@ msgstr "കോഴ്സ് പൂർത്തീകരണം"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "മികച്ച പ്രകടനം നടത്തുന്നവർ"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "ഡിജിറ്റൽ മാർക്കറ്റിംഗ്"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4118,12 +4218,6 @@ msgstr "കോഴ്സ് പൂർത്തീകരണം"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "കോഴ്സ്"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "എൻറോൾമെൻ്റുകൾ"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4373,6 +4467,10 @@ msgstr "റേറ്റിംഗ് വിതരണം"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "പൂർത്തിയാക്കിയ കോഴ്സുകൾ"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "അദ്ധ്യാപകൻ"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5044,10 +5142,12 @@ msgid "Appearance"
 msgstr "രൂപഭാവം"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "അറിയിപ്പുകൾ"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "സംയോജനങ്ങൾ"
 
@@ -5152,6 +5252,7 @@ msgid "Notifications Settings"
 msgstr "അറിയിപ്പ് ക്രമീകരണങ്ങൾ"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "ഇമെയിൽ അറിയിപ്പുകൾ"
 
@@ -5237,6 +5338,7 @@ msgid "Sidebar"
 msgstr "സൈഡ്‌ബാർ"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "വിഭാഗങ്ങൾ"
 
@@ -5257,6 +5359,7 @@ msgid "Reports & Analytics"
 msgstr "റിപ്പോർട്ടുകളും അനലിറ്റിക്‌സും"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "കോഴ്സ് പൂർത്തീകരണം"
 
@@ -5326,6 +5429,377 @@ msgstr "കാര്യനിർവാഹകർ"
 msgid "Back to Home"
 msgstr "വീട്ടിലേക്ക് മടങ്ങുക"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "പഠിതാക്കൾ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "നിങ്ങളുടെ കോഴ്സുകൾ നിയന്ത്രിക്കുകയും സംഘടിപ്പിക്കുകയും ചെയ്യുക"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "അസൈൻമെൻ്റ് അവസാന തീയതികൾ"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "കോഴ്‌സ് പൂർത്തിയാക്കി"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "തീർപ്പാക്കാത്തത്"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "കോഴ്സ്"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "കാരണം:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "സമർപ്പിച്ചത്"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "സജീവ സെഷനുകൾ"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "ഗ്രേഡ് ചെയ്തു"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "പഠിതാക്കളുടെ ഫീഡ്ബാക്ക്"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "കാലഹരണപ്പെട്ടു"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "സമർപ്പിക്കുക"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "അസൈൻമെൻ്റ് അവസാന തീയതികൾ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "പൂർത്തീകരണ നിരക്ക്"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "വരാനിരിക്കുന്ന സമയപരിധികൾ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "അസൈൻമെൻ്റ് അവസാന തീയതികൾ"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "അസൈൻമെൻ്റ് വിശദാംശങ്ങൾ ഇവിടെ പ്രദർശിപ്പിക്കും."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "അസൈൻമെൻ്റ് സമർപ്പിച്ചു"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "അടയ്ക്കുക"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "എൻ്റെ ബാഡ്ജുകൾ"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "നിങ്ങളുടെ കഴിവുകളും നേട്ടങ്ങളും പ്രദർശിപ്പിക്കുക"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "കോഴ്സ് അവലോകനം"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "മൊത്തം സന്ദേശങ്ങൾ"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr ""
+"നിങ്ങൾ വിവിധ വിഭാഗങ്ങളിൽ ബാഡ്ജുകൾ നേടിയിട്ടുണ്ട്. പഠിക്കുന്നത് തുടരുക, "
+"കൂടുതൽ അൺലോക്ക് ചെയ്യുക!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "നൈപുണ്യ ബാഡ്ജുകൾ"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "നേട്ടങ്ങളുടെ ബാഡ്ജുകൾ"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "നാഴികക്കല്ല് ബാഡ്ജുകൾ"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "നിങ്ങളുടെ ബാഡ്ജുകൾ"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "ഇതനുസരിച്ച് ഫിൽട്ടർ ചെയ്യുക:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "എല്ലാ സന്ദേശങ്ങളും"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "വൈദഗ്ധ്യം"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "സമ്പാദിച്ചത്:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "നാഴികക്കല്ല്"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "സന്ദേശ വിശദാംശങ്ങൾ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "ഇ-ലേണിംഗ് വെബിനാർ"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "ഡാഷ്ബോർഡ് - LMS ലേണർ"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "LMS കലണ്ടർ"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "നിങ്ങളുടെ പഠന ഷെഡ്യൂളും സമയപരിധിയും നിയന്ത്രിക്കുക"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "ബൾക്ക് പ്രവർത്തനങ്ങൾ"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "മുമ്പത്തെ"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "ഇന്ന്"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "കഴിഞ്ഞ 3 മാസം"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "JavaScript ഫൈനൽ പ്രോജക്റ്റ്"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "അടയ്‌ക്കേണ്ട തീയതി: ജൂലൈ 23, 2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "അടയ്‌ക്കേണ്ട തീയതി: ജൂലൈ 28, 2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "നിങ്ങളുടെ നേട്ടങ്ങളും കഴിവുകളും പ്രദർശിപ്പിക്കുക"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "നേടിയ സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "മൊത്തം ഉപയോക്താക്കൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "ഈ വര്ഷം"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"വിവിധ കോഴ്സുകളിലും സ്പെഷ്യലൈസേഷനുകളിലും നിങ്ങൾ സർട്ടിഫിക്കറ്റുകൾ "
+"നേടിയിട്ടുണ്ട്. മികച്ച പ്രവർത്തനം തുടരുക!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "സർട്ടിഫിക്കറ്റുകളുള്ള കോഴ്സുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "മൊത്തം സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "മൊത്തം സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "മൊത്തം സർട്ടിഫിക്കറ്റുകൾ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "ഇഷ്യൂചെയ്തു"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "സർട്ടിഫിക്കറ്റ് കാണുക"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "പ്രൊഫഷണൽ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "സർട്ടിഫിക്കറ്റ് ഐഡി"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5334,34 +5808,12 @@ msgstr "കോഴ്സ് ക്രമീകരണങ്ങൾ"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ നയം"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "എല്ലാ ജീവനക്കാർക്കും ആവശ്യമായ പാലിക്കൽ പരിശീലനം"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "എൻ്റെ കോഴ്സുകൾ"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"ഈ സമഗ്രമായ കോഴ്‌സ് ഞങ്ങളുടെ കമ്പനിയുടെ കൈക്കൂലി, അഴിമതി വിരുദ്ധ "
-"നയത്തെക്കുറിച്ച് നിങ്ങളെ പഠിപ്പിക്കും. നിങ്ങൾ നിയമപരമായ ചട്ടക്കൂടിനെ "
-"കുറിച്ച് പഠിക്കുകയും സാധ്യതയുള്ള അപകടസാധ്യതകൾ തിരിച്ചറിയുകയും വിവിധ ബിസിനസ് "
-"സാഹചര്യങ്ങളിൽ നയം എങ്ങനെ പാലിക്കണമെന്ന് മനസ്സിലാക്കുകയും ചെയ്യും."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 മണിക്കൂർ"
+msgid "30 minutes"
+msgstr "30 മിനിറ്റ്"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5373,52 +5825,13 @@ msgid "All Employees"
 msgstr "എല്ലാ ജീവനക്കാരും"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "മൊത്തത്തിലുള്ള പുരോഗതി"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "പഠന വിഭവങ്ങൾ"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ അടിസ്ഥാനങ്ങൾ"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "SCORM പാക്കേജ്"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "ആരംഭിക്കുക"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "കൈക്കൂലി അപകടസാധ്യതകൾ തിരിച്ചറിയുന്നു"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "കാണുക"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "കമ്പനി അഴിമതി വിരുദ്ധ നയം"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "വായിക്കുക"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "കേസ് സ്റ്റഡീസ്: നൈതിക തീരുമാനങ്ങൾ എടുക്കൽ"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ വിലയിരുത്തൽ"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "ക്വിസ് എടുക്കുക"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5483,7 +5896,8 @@ msgstr "കോഴ്‌സുകൾ പുരോഗമിക്കുന്ന�
 msgid "Certificates Earned"
 msgstr "നേടിയ സർട്ടിഫിക്കറ്റുകൾ"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "പഠന സ്ട്രീക്ക്"
 
@@ -5491,11 +5905,11 @@ msgstr "പഠന സ്ട്രീക്ക്"
 msgid "days"
 msgstr "ദിവസങ്ങൾ"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "പഠന പുരോഗതി"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "നിലവിലെ കോഴ്സുകൾ"
 
@@ -5508,30 +5922,12 @@ msgid "Data Science Basics"
 msgstr "ഡാറ്റ സയൻസ് ബേസിക്സ്"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "വരാനിരിക്കുന്ന സമയപരിധികൾ"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "JavaScript ഫൈനൽ പ്രോജക്റ്റ്"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "അടയ്‌ക്കേണ്ട തീയതി: ജൂലൈ 23, 2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "അടയ്‌ക്കേണ്ട തീയതി: ജൂലൈ 28, 2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "സമീപകാല പ്രവർത്തനം"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "പൂർത്തിയാക്കിയ പാഠം: ജാവാസ്ക്രിപ്റ്റിലേക്കുള്ള ആമുഖം"
 
@@ -5546,6 +5942,532 @@ msgstr "കോഴ്സുകളുടെ എണ്ണം"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "മാസം"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "LMS ഫോറങ്ങൾ"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "ഒരുമിച്ച് ഇടപെടുക, ചർച്ച ചെയ്യുക, പഠിക്കുക"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "വെബ് ഡെവലപ്മെൻ്റ് അടിസ്ഥാനങ്ങൾ"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "നിർമ്മിത ബുദ്ധി"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "പൊതു ചർച്ച"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "ഫോറം പോസ്റ്റുകൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "ആകെ പോയിൻ്റുകൾ:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "ആകെ പോയിൻ്റുകൾ:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "സജീവമായ കോഴ്സുകൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "കോഴ്സ് പൂർത്തീകരണം"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "ടിക്കറ്റ് കാണുക"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "പ്രതികരിക്കുന്ന വെബ് ഡിസൈനിനുള്ള മികച്ച സമ്പ്രദായങ്ങൾ?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "ആരംഭിക്കുക"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 മറുപടികൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 മണിക്കൂർ മുമ്പ്"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "ഡാറ്റ വിശകലനത്തിനായി പൈത്തൺ vs R: ഗുണങ്ങളും ദോഷങ്ങളും?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 മറുപടികൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 ദിവസം മുമ്പ്"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "മൊബൈൽ ആപ്പ് പ്രകടനം ഒപ്റ്റിമൈസ് ചെയ്യുന്നതിനുള്ള നുറുങ്ങുകൾ?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 മറുപടികൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "കഴിഞ്ഞ 30 ദിവസം"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "AI വികസനത്തിലെ ധാർമ്മിക പരിഗണനകൾ"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 മറുപടികൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "കഴിഞ്ഞ 30 ദിവസം"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "ട്രെൻഡിംഗ് വിഷയങ്ങൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "AI-യുടെ ആമുഖം"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 മറുപടികൾ • 1.2k കാഴ്‌ചകൾ"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "JavaScript ചട്ടക്കൂടുകളുടെ താരതമ്യം"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 മറുപടികൾ • 980 കാഴ്‌ചകൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 മറുപടികൾ • 850 കാഴ്‌ചകൾ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "പുതിയ ടിക്കറ്റ് സൃഷ്ടിക്കുക"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "തലക്കെട്ട്"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "തീയതി തിരഞ്ഞെടുക്കുക"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "കോഴ്‌സ് കവർ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "പുതിയ ടിക്കറ്റ് സൃഷ്ടിക്കുക"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "നിങ്ങളുടെ ഗ്രേഡുകൾ"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "നിങ്ങളുടെ അക്കാദമിക് പ്രകടനം കാണുക"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "ഗ്രേഡ് സംഗ്രഹം"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "മൊത്തത്തിലുള്ള പുരോഗതി"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "ഏറ്റവും ഉയർന്ന ഗ്രേഡ്:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "ഏറ്റവും കുറഞ്ഞ ഗ്രേഡ്:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "റേറ്റിംഗ് വിതരണം"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "കോഴ്സ്"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "നില"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "സംഭരണ ​​ഉപയോഗ പ്രവണത"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "കോഴ്സ് ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr ""
+"തിരഞ്ഞെടുത്ത കോഴ്സിൻ്റെ വിശദമായ ഗ്രേഡ് വിവരങ്ങൾ ഇവിടെ പ്രദർശിപ്പിക്കും."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "ഗ്രേഡ് (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "കോഴ്‌സുകളിലുടനീളം ഗ്രേഡ് ട്രെൻഡ്"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "സഹായവും പിന്തുണയും - LMS അഡ്മിൻ"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr ""
+"നിങ്ങളുടെ ചോദ്യങ്ങൾക്ക് ഉത്തരം കണ്ടെത്തുകയും നിങ്ങൾക്ക് ആവശ്യമായ പിന്തുണ "
+"നേടുകയും ചെയ്യുക"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "ഞങ്ങൾക്ക് നിങ്ങളെ എങ്ങനെ സഹായിക്കാനാകും?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "കോഴ്സുകൾ തിരയുക..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "AI തിരയൽ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "ഒരു വിദ്യാർത്ഥിയുടെ പാസ്‌വേഡ് എങ്ങനെ പുനഃസജ്ജമാക്കാം?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "നിങ്ങളുടെ പാസ്‌വേഡ് പുനഃസജ്ജമാക്കാൻ, ഈ ഘട്ടങ്ങൾ പാലിക്കുക:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "ലോഗിൻ പേജിലെ 'പാസ്‌വേഡ് മറന്നു' എന്ന ലിങ്കിൽ ക്ലിക്ക് ചെയ്യുക"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "പാസ്‌വേഡ് റീസെറ്റ് ലിങ്കിനായി നിങ്ങളുടെ ഇമെയിൽ പരിശോധിക്കുക"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr ""
+"ഒരു പുതിയ പാസ്‌വേഡ് സൃഷ്‌ടിക്കാൻ ലിങ്കിൽ ക്ലിക്ക് ചെയ്‌ത് നിർദ്ദേശങ്ങൾ "
+"പാലിക്കുക"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "കോഴ്‌സിൽ ചേർന്നു"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "കോഴ്‌സിൽ ചേർന്നു"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "കോഴ്‌സ് കാറ്റലോഗ് ബ്രൗസ് ചെയ്യുക"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "നിങ്ങൾക്ക് താൽപ്പര്യമുള്ള കോഴ്സ് തിരഞ്ഞെടുക്കുക"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "കോഴ്‌സ് പേജിലെ 'എൻറോൾ' ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുക"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "എൻറോൾമെൻ്റ് പൂർത്തിയാക്കാൻ നിർദ്ദേശങ്ങൾ പാലിക്കുക"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "എൻ്റെ പുരോഗതി എങ്ങനെ ട്രാക്ക് ചെയ്യാം?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "ഇതിലൂടെ നിങ്ങൾക്ക് നിങ്ങളുടെ പുരോഗതി ട്രാക്ക് ചെയ്യാം:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "പഠിതാവ് ഡാഷ്ബോർഡ്"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "ഓരോ കോഴ്സിലെയും പുരോഗതി ബാർ പരിശോധിക്കുന്നു"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "നിങ്ങളുടെ പൂർത്തിയാക്കിയ അസൈൻമെൻ്റുകളും ക്വിസുകളും അവലോകനം ചെയ്യുന്നു"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "'ഗ്രേഡുകൾ' വിഭാഗത്തിൽ നിങ്ങളുടെ ഗ്രേഡുകൾ പരിശോധിക്കുന്നു"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "തത്സമയ ചാറ്റ് പിന്തുണ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "സഹായവും പിന്തുണയും"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "തത്സമയ ചാറ്റ് പിന്തുണ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "സഹായവും പിന്തുണയും"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "മൊത്തം വരുമാനം"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "ഉപയോക്തൃ ഗൈഡ്"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "കമ്മ്യൂണിറ്റി ഫോറം"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "സിസ്റ്റം അപ്ഡേറ്റുകൾ"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "കൂടുതൽ സഹായം ആവശ്യമുണ്ടോ?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "നിങ്ങളെ സഹായിക്കാൻ ഞങ്ങളുടെ പിന്തുണാ ടീം ഇവിടെയുണ്ട്."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "അസൈൻമെൻ്റ് സമർപ്പിച്ചു"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "ഡാഷ്ബോർഡ് - LMS ലേണർ"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr ""
+"നിങ്ങളുടെ സമപ്രായക്കാർക്കിടയിൽ നിങ്ങൾ എങ്ങനെയാണ് റാങ്ക് ചെയ്യുന്നതെന്ന് "
+"കാണുക"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "നിങ്ങളുടെ ഇമെയിൽ"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "നിങ്ങളുടെ മൊത്തത്തിലുള്ള റാങ്ക്"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "മികച്ച പ്രകടനം നടത്തുന്നവർ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "കാണുക"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "മൊത്തത്തിലുള്ള പുരോഗതി"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "ശരാശരി സ്കോർ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "അധ്യാപകരുമായും സഹപാഠികളുമായും ആശയവിനിമയം നടത്തുക"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "സംയോജനങ്ങൾ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "സന്ദേശം അയയ്‌ക്കുക"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "നിങ്ങളുടെ മറുപടി ഇവിടെ ടൈപ്പ് ചെയ്യുക..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "അയക്കുക"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "സ്വീകർത്താവ്:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "സന്ദേശങ്ങൾ"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5572,44 +6494,567 @@ msgid "Ethics"
 msgstr "ധാർമ്മികത"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "ധാർമ്മിക ബിസിനസ്സ് രീതികളെക്കുറിച്ചും അനുസരണത്തെക്കുറിച്ചും അറിയുക"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "കോഴ്സ് തുടങ്ങി"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "പ്രൊഫൈൽ കാണുക"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "ഞങ്ങളേക്കുറിച്ച്"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "കോഴ്സ് വിവരങ്ങൾ"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "പൂർത്തിയാക്കി"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "എൻറോൾമെൻ്റുകൾ"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "ബാഡ്ജുകൾ"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "ദിവസങ്ങൾ"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "നിലനിർത്തുക!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "പുരോഗതിയിലാണ് - 60%% പൂർത്തിയായി"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "പുരോഗതിയിലാണ് - 30%% പൂർത്തിയായി"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "സമീപകാല പ്രവർത്തനങ്ങൾ"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "പഠന പുരോഗതി"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "പഠനത്തിൽ വിപ്ലവം സൃഷ്ടിക്കുക"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "പഠന സ്ട്രീക്ക്"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "തിരഞ്ഞെടുത്ത കോഴ്സ് ഫോർമാറ്റ്"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "ലക്ഷ്യം"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "പുരോഗതി"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "നിങ്ങളുടെ പഠന യാത്രയും നേട്ടങ്ങളും ട്രാക്ക് ചെയ്യുക"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "പഠിതാവ്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "കോഴ്സ്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "പഠന സ്ട്രീക്ക്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "കോഴ്‌സുകൾ പുരോഗമിക്കുന്നു"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "പുരോഗതി"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "പൂർത്തിയാക്കി"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "പുരോഗതിയിലാണ് - 75% പൂർത്തിയായി"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "ലോക്ക് ചെയ്തു - ആദ്യം മുൻവ്യവസ്ഥകൾ പൂർത്തിയാക്കുക"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 മണിക്കൂർ മുമ്പ്"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "നേടിയ ബാഡ്ജ്: CSS മാസ്റ്റർ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 ദിവസം മുമ്പ്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 ദിവസം മുമ്പ്"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "പൂർത്തിയാക്കിയ പാഠം: ജാവാസ്ക്രിപ്റ്റിലേക്കുള്ള ആമുഖം"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "ശുപാർശ ചെയ്ത അടുത്ത ഘട്ടങ്ങൾ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "പൂർത്തിയാക്കിയ പാഠം: ജാവാസ്ക്രിപ്റ്റിലേക്കുള്ള ആമുഖം"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "നിങ്ങളുടെ JS കഴിവുകൾ ഉറപ്പിക്കാൻ ശേഷിക്കുന്ന പാഠങ്ങൾ പൂർത്തിയാക്കുക."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "കോഴ്സ് തുടരുക"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "ഇൻഫർമേഷൻ സെക്യൂരിറ്റി മാനേജ്മെൻ്റ് സിസ്റ്റം (ഐഎസ്എംഎസ്)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "മൊത്തം പ്രഖ്യാപനങ്ങൾ"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "വിവര സുരക്ഷയുടെ പ്രധാന തത്വങ്ങൾ മനസ്സിലാക്കുക"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr ""
+"ഈ ദ്രുത വിലയിരുത്തൽ ഉപയോഗിച്ച് നിങ്ങളുടെ പൈത്തൺ പരിജ്ഞാനം പരിശോധിക്കുക."
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 മണിക്കൂർ"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "മൊത്തം പ്രഖ്യാപനങ്ങൾ"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 മൊഡ്യൂളുകൾ"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "ഡാറ്റ വിഷ്വലൈസേഷൻ ക്വിസ്"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "കള്ളപ്പണം വെളുപ്പിക്കൽ വിരുദ്ധം"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr ""
+"ഈ പുതിയ കോഴ്‌സ് ഉപയോഗിച്ച് നിങ്ങളുടെ ഡാറ്റാ സയൻസ് കഴിവുകൾ മെച്ചപ്പെടുത്തുക."
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "കള്ളപ്പണം വെളുപ്പിക്കൽ പ്രവർത്തനങ്ങൾ തിരിച്ചറിയാനും തടയാനും പഠിക്കുക"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "കോഴ്സ് സൃഷ്ടിക്കുക"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2.5 മണിക്കൂർ"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "എൻ്റെ കോഴ്സുകൾ - LMS ലേണർ"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 മൊഡ്യൂളുകൾ"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "കോഴ്‌സ് മെറ്റീരിയലുകളും സഹായകരമായ ഉള്ളടക്കവും ആക്‌സസ് ചെയ്യുക"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "കോഴ്സ് ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "പഠന വിഭവങ്ങൾ"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "അധിക വായന"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "ദ്രുത ലിങ്കുകൾ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "സൈറ്റിൻ്റെ പേര്"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "കലണ്ടർ"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "ലൈബ്രറി പോർട്ടൽ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "സഹായവും പിന്തുണയും"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "വിഭവങ്ങളുടെ ഉപയോഗം"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "ഡൗൺലോഡുകൾ"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "കാണുക"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "ഫോറം സന്ദർശിക്കുക"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "വായിക്കുക"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "അവസാനം ആക്സസ് ചെയ്തത്"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "അവസാനം ആക്സസ് ചെയ്തത്"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "ക്രമീകരണങ്ങൾ - LMS അഡ്മിൻ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "സുരക്ഷാ ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "നിങ്ങളുടെ അക്കൗണ്ട് മുൻഗണനകളും ക്രമീകരണങ്ങളും നിയന്ത്രിക്കുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "പ്രൊഫൈൽ കാണുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "ആക്സസ് എണ്ണം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "പാസ്‌വേഡ് നയം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "ഇമെയിൽ ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "സൈറ്റിൻ്റെ പേര്"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "സൈറ്റിൻ്റെ പേര്"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "അഡ്മിൻ ഇമെയിൽ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "നവംബർ"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "അവൻ ആയിരുന്നു"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "മാറ്റങ്ങൾ സംരക്ഷിക്കുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "പാസ്‌വേഡ് നയം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "പാസ്‌വേഡ് നയം"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "പുതിയ പാസ്‌വേഡ് സ്ഥിരീകരിക്കുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "പാസ്‌വേഡ് നയം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "അറിയിപ്പ് ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "അറിയിപ്പുകൾ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "കയറ്റുമതി ഡെലിവറികൾ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "സുരക്ഷാ ക്രമീകരണങ്ങൾ"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "പ്രൊഫൈൽ ദൃശ്യപരത"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "പ്രസിദ്ധീകരിക്കുക"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "സുഹൃത്തുക്കൾ മാത്രം"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "സ്വകാര്യം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "ഉപയോക്തൃ പ്രവർത്തനം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "പഠന സ്ട്രീക്ക്"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "വിഷ്വൽ"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "ഓഡിറ്ററി"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "വായിക്കുക/എഴുതുക"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "കൈനസ്തെറ്റിക്"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "ശരാശരി പ്രതികരണ സമയം"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "മുന്നറിയിപ്പ്"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "ഉച്ച"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "ഇവൻ്റുകൾ"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "രാത്രി വൈകി"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "പഠന പുരോഗതി"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5674,13 +7119,19 @@ msgid "Cutting-Edge Features"
 msgstr "കട്ടിംഗ്-എഡ്ജ് സവിശേഷതകൾ"
 
 #: templates/website/landing_page.html
-msgid "Smart Learning Paths"
-msgstr "സ്മാർട്ട് പഠന പാതകൾ"
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Adaptive Learning Paths"
+msgstr "പഠന പുരോഗതി"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "വ്യക്തിഗതമാക്കിയ പഠന യാത്രകൾ സൃഷ്ടിക്കുന്നതിനും ഒപ്റ്റിമൽ നൈപുണ്യ വികസനം "
 "ഉറപ്പാക്കുന്നതിനും ഞങ്ങളുടെ അൽഗോരിതങ്ങൾ പഠിതാക്കളുടെ പെരുമാറ്റവും പ്രകടനവും "
@@ -5688,30 +7139,74 @@ msgstr ""
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "വിപുലമായ അറബിക്"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "പൂർത്തീകരണ നിരക്ക്"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"പഠിതാക്കളുടെ ഫലങ്ങൾ പ്രവചിക്കാനും സാധ്യതയുള്ള വെല്ലുവിളികൾ തിരിച്ചറിയാനും "
-"മികച്ച ഫലങ്ങൾക്കായി സജീവമായി ഇടപെടാനും ഡാറ്റാധിഷ്ഠിത സ്ഥിതിവിവരക്കണക്കുകൾ "
-"പ്രയോജനപ്പെടുത്തുക."
+"ഞങ്ങളുടെ ശക്തമായ റിപ്പോർട്ടിംഗ് ടൂളുകൾ ഉപയോഗിച്ച് പഠിതാക്കളുടെ പുരോഗതി, "
+"കോഴ്‌സ് ഫലപ്രാപ്തി, മൊത്തത്തിലുള്ള പരിശീലന സ്വാധീനം എന്നിവയെക്കുറിച്ചുള്ള "
+"മൂല്യവത്തായ ഉൾക്കാഴ്ചകൾ നേടുക."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "ഇമ്മേഴ്‌സീവ് വിആർ പരിശീലനം"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "സ്വയമേവയുള്ള ഉള്ളടക്ക ശുപാർശകൾ"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"സങ്കീർണ്ണമായ അല്ലെങ്കിൽ ഉയർന്ന-പങ്കാളിത്തമുള്ള സാഹചര്യങ്ങളിൽ ഹാൻഡ്-ഓൺ, "
-"അപകടരഹിത പരിശീലനത്തിനായി വെർച്വൽ റിയാലിറ്റി അനുഭവങ്ങൾ സംയോജിപ്പിക്കുക."
+"പഠിതാക്കളുടെ താൽപ്പര്യങ്ങളും പ്രകടനവും അടിസ്ഥാനമാക്കി പ്രസക്തമായ കോഴ്സുകളും "
+"ഉറവിടങ്ങളും നിർദ്ദേശിക്കാൻ മെഷീൻ ലേണിംഗ് അൽഗോരിതങ്ങൾ പ്രയോജനപ്പെടുത്തുക."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "സജീവ സെഷനുകൾ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"ബിൽറ്റ്-ഇൻ ഫോറങ്ങൾ, ചാറ്റ് റൂമുകൾ, ഗ്രൂപ്പ് പ്രോജക്ടുകൾ എന്നിവയിലൂടെ "
+"സഹകരണവും അറിവ് പങ്കിടലും പ്രോത്സാഹിപ്പിക്കുക."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "പഠനത്തിൽ വിപ്ലവം സൃഷ്ടിക്കുക"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"ഞങ്ങളുടെ പ്രതികരണാത്മക രൂപകൽപ്പനയും iOS, Android എന്നിവയ്‌ക്കായുള്ള സമർപ്പിത"
+" മൊബൈൽ ആപ്പും ഉപയോഗിച്ച് കോഴ്‌സുകളും മെറ്റീരിയലുകളും ആക്‌സസ്സ് ചെയ്യുക."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "പൂർത്തീകരണ നിരക്ക്"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"കോഴ്‌സ് പൂർത്തിയാകുമ്പോൾ നേട്ട ബാഡ്‌ജുകൾ, ലീഡർബോർഡുകൾ, ഓട്ടോമേറ്റഡ് "
+"സർട്ടിഫിക്കറ്റ് സൃഷ്‌ടി എന്നിവയ്‌ക്കൊപ്പം ഇടപഴകൽ വർദ്ധിപ്പിക്കുക."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5914,16 +7409,14 @@ msgid "Intelligent content recommendations"
 msgstr "ഇൻ്റലിജൻ്റ് ഉള്ളടക്ക ശുപാർശകൾ"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "അഡാപ്റ്റീവ് ലേണിംഗ് വിഷ്വലൈസേഷൻ"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "വിജയകഥകൾ"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "ക്ലയൻ്റ് അവതാർ"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5934,12 +7427,17 @@ msgid "HR Director, TechCorp"
 msgstr "എച്ച്ആർ ഡയറക്ടർ, ടെക്കോർപ്പ്"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS ഞങ്ങളുടെ കോർപ്പറേറ്റ് പരിശീലനത്തെ മാറ്റിമറിച്ചു. "
 "വ്യക്തിഗതമാക്കിയ പഠന പാതകളും പ്രവചനാത്മക വിശകലനങ്ങളും ജീവനക്കാരുടെ ഇടപഴകലും "
@@ -5955,19 +7453,17 @@ msgid "L&D Manager, InnovateNow"
 msgstr "എൽ ആൻഡ് ഡി മാനേജർ, ഇന്നൊവേറ്റ് നൗ"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"NextGen AI LMS നൽകുന്ന AI-പവർ ഉൾക്കാഴ്ചകൾ ജീവനക്കാരുടെ വികസനത്തോടുള്ള "
-"ഞങ്ങളുടെ സമീപനത്തിൽ വിപ്ലവം സൃഷ്ടിച്ചു. നമുക്ക് ഇപ്പോൾ നൈപുണ്യ വിടവുകൾ "
-"മുൻകൂട്ടി തിരിച്ചറിയാനും അഭൂതപൂർവമായ കൃത്യതയോടെ ഞങ്ങളുടെ പരിശീലന പരിപാടികൾ "
-"ക്രമീകരിക്കാനും കഴിയും. ഈ അത്യാധുനിക സംവിധാനം നടപ്പിലാക്കിയതിന് ശേഷം "
-"ഞങ്ങളുടെ ടീമിൻ്റെ ഉൽപ്പാദനക്ഷമത 30% വർദ്ധിച്ചു."
+"NextGen LMS നടപ്പിലാക്കുന്നത് ജീവനക്കാരുടെ വികസനത്തോടുള്ള ഞങ്ങളുടെ സമീപനത്തെ"
+" മാറ്റിമറിച്ചു. പ്ലാറ്റ്‌ഫോമിൻ്റെ ശക്തമായ റിപ്പോർട്ടിംഗ് ടൂളുകൾ ഞങ്ങളുടെ "
+"പരിശീലന പരിപാടികളുടെ ഫലപ്രാപ്തിയെക്കുറിച്ചുള്ള വിലപ്പെട്ട ഉൾക്കാഴ്ചകൾ "
+"ഞങ്ങൾക്ക് നൽകി. ഞങ്ങളുടെ ഉള്ളടക്കവും ഡെലിവറി രീതികളും മെച്ചപ്പെടുത്താൻ "
+"ഞങ്ങൾക്ക് ഇപ്പോൾ ഡാറ്റാധിഷ്ഠിത തീരുമാനങ്ങൾ എടുക്കാം."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5980,10 +7476,8 @@ msgid "Starter"
 msgstr "ആരംഭിക്കുക"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "മാസം"
+msgid "Perfect for small teams"
+msgstr "ചെറിയ ടീമുകൾക്ക് അനുയോജ്യമാണ്"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -6004,10 +7498,8 @@ msgid "24/7 chatbot support"
 msgstr "24/7 ചാറ്റ്ബോട്ട് പിന്തുണ"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "ഗൈഡ് ആരംഭിക്കുന്നു"
+msgid "Contact Sales"
+msgstr "വിൽപ്പനയുമായി ബന്ധപ്പെടുക"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -6016,8 +7508,8 @@ msgid "Most Popular"
 msgstr "ഏറ്റവും ജനപ്രിയമായ കോഴ്സുകൾ"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "പ്രൊഫഷണൽ"
+msgid "Ideal for growing organizations"
+msgstr "വളരുന്ന സംഘടനകൾക്ക് അനുയോജ്യം"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -6032,28 +7524,18 @@ msgid "Automated content recommendations"
 msgstr "സ്വയമേവയുള്ള ഉള്ളടക്ക ശുപാർശകൾ"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "വിആർ പരിശീലന മൊഡ്യൂളുകൾ"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "പ്രിൻ്റ് റിപ്പോർട്ട്"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "പ്രോയിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "എൻ്റർപ്രൈസ്"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "കസ്റ്റം റിപ്പോർട്ടുകൾ"
+msgid "Tailored for large enterprises"
+msgstr "വൻകിട സംരംഭങ്ങൾക്ക് അനുയോജ്യം"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6068,16 +7550,8 @@ msgid "Custom model development"
 msgstr "ഇഷ്ടാനുസൃത മോഡൽ വികസനം"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "വിപുലമായ VR & AR കഴിവുകൾ"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "സമർപ്പിത അക്കൗണ്ട് മാനേജർ"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "വിൽപ്പനയുമായി ബന്ധപ്പെടുക"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6100,20 +7574,18 @@ msgid "Empowering the future of learning with innovative technology."
 msgstr "നൂതന സാങ്കേതികവിദ്യ ഉപയോഗിച്ച് പഠനത്തിൻ്റെ ഭാവി ശാക്തീകരിക്കുന്നു."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 ടെക് സ്ട്രീറ്റ്, സാൻ ഫ്രാൻസിസ്കോ, CA 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "ന്യൂടൗൺ, കൊൽക്കത്ത, പശ്ചിമ ബംഗാൾ, ഇന്ത്യ, 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "ഫോൺ: (555) 123-4567"
+msgid "Phone: __"
+msgstr "ഫോൺ:__"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "ഇമെയിൽ: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "ദ്രുത ലിങ്കുകൾ"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6162,12 +7634,6 @@ msgid "Support Center"
 msgstr "സഹായ പിന്തുണ കേന്ദ്രം"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "സിസ്റ്റം അപ്ഡേറ്റുകൾ"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "ഞങ്ങളുമായി ബന്ധപ്പെടുക"
 
@@ -6195,6 +7661,258 @@ msgstr "നിങ്ങൾ വിജയകരമായി ലോഗിൻ ചെ
 msgid "Login failed. Please check the errors below."
 msgstr ""
 "ലോഗിൻ ചെയ്യുന്നത് പരാജയപ്പെട്ടു. ദയവായി താഴെയുള്ള പിശകുകൾ പരിശോധിക്കുക."
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "വിപുലമായ പൈത്തൺ പ്രോഗ്രാമിംഗ്"
+
+#~ msgid "Basic Details"
+#~ msgstr "അടിസ്ഥാന വിശദാംശങ്ങൾ"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "കോഴ്‌സ് എങ്ങനെ വിതരണം ചെയ്യും?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "ഫെസിലിറ്റേറ്റർമാരെ നിയമിക്കുക"
+
+#~ msgid "Assign Participants"
+#~ msgstr "പങ്കാളികളെ നിയോഗിക്കുക"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "വിപുലമായ ക്രമീകരണങ്ങൾ"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr ""
+#~ "ഈ ഡെലിവറിക്കായി കോഴ്‌സ് ഉള്ളടക്കത്തിനായി ആക്‌സസ് കാലയളവ് ചേർക്കാൻ നിങ്ങൾ "
+#~ "ആഗ്രഹിക്കുന്നുണ്ടോ?"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "അതെ, ആക്സസ് കാലയളവ് ചേർക്കുക"
+
+#~ msgid "Select start date"
+#~ msgstr "ആരംഭ തീയതി തിരഞ്ഞെടുക്കുക"
+
+#~ msgid "Select end date"
+#~ msgstr "അവസാന തീയതി തിരഞ്ഞെടുക്കുക"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr ""
+#~ "ഈ ഡെലിവറിക്ക് നിർജ്ജീവമാക്കൽ തീയതി ചേർക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "അതെ, നിർജ്ജീവമാക്കൽ തീയതി ചേർക്കുക"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr ""
+#~ "ഈ ഡെലിവറിക്ക് പങ്കാളിയിൽ നിന്ന് ഫീഡ്‌ബാക്ക് ലഭിക്കാൻ നിങ്ങൾക്ക് "
+#~ "താൽപ്പര്യമുണ്ടോ?"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "അതെ, ഫീഡ്‌ബാക്ക് ശേഖരിക്കുക"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "അതെ, നിർബന്ധമാണെന്ന് അടയാളപ്പെടുത്തുക"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "ഈ കോഴ്‌സിനായി പങ്കെടുക്കുന്നയാളുടെ ഹാജർ രേഖപ്പെടുത്തണോ?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "അതെ, ഹാജർ രേഖപ്പെടുത്തുക"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "ഈ കോഴ്‌സിന് ഒരു പൂർത്തീകരണ സർട്ടിഫിക്കറ്റ് ആവശ്യമുണ്ടോ?"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "അതെ, പൂർത്തീകരണ സർട്ടിഫിക്കറ്റ് ആവശ്യമാണ്"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "ഇമെയിൽ ടെംപ്ലേറ്റ് ക്ഷണിക്കുക"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "പൂർത്തിയാക്കൽ ഇമെയിൽ ടെംപ്ലേറ്റ്"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "ഡെലിവറികൾ തിരയുക..."
+
+#~ msgid "Cancelled"
+#~ msgstr "റദ്ദാക്കി"
+
+#~ msgid "All Instructors"
+#~ msgstr "എല്ലാ അദ്ധ്യാപകരും"
+
+#~ msgid "Instructor 1"
+#~ msgstr "അദ്ധ്യാപകൻ 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "അദ്ധ്യാപകൻ 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "അദ്ധ്യാപകൻ 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "കയറ്റുമതി ഡെലിവറികൾ"
+
+#~ msgid "Delivery ID"
+#~ msgstr "ഡെലിവറി ഐഡി"
+
+#~ msgid "Manage Students"
+#~ msgstr "വിദ്യാർത്ഥികളെ നിയന്ത്രിക്കുക"
+
+#~ msgid "Withdraw"
+#~ msgstr "പിൻവലിക്കുക"
+
+#~ msgid "Approve"
+#~ msgstr "അംഗീകരിക്കുക"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "വിഷയം"
+
+#~ msgid "Category 1"
+#~ msgstr "വിഭാഗം 1"
+
+#~ msgid "Category 2"
+#~ msgstr "വിഭാഗം 2"
+
+#~ msgid "Category 3"
+#~ msgstr "വിഭാഗം 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ നയം"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "എല്ലാ ജീവനക്കാർക്കും ആവശ്യമായ പാലിക്കൽ പരിശീലനം"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "ഈ സമഗ്രമായ കോഴ്‌സ് ഞങ്ങളുടെ കമ്പനിയുടെ കൈക്കൂലി, അഴിമതി വിരുദ്ധ "
+#~ "നയത്തെക്കുറിച്ച് നിങ്ങളെ പഠിപ്പിക്കും. നിങ്ങൾ നിയമപരമായ ചട്ടക്കൂടിനെ "
+#~ "കുറിച്ച് പഠിക്കുകയും സാധ്യതയുള്ള അപകടസാധ്യതകൾ തിരിച്ചറിയുകയും വിവിധ ബിസിനസ് "
+#~ "സാഹചര്യങ്ങളിൽ നയം എങ്ങനെ പാലിക്കണമെന്ന് മനസ്സിലാക്കുകയും ചെയ്യും."
+
+#~ msgid "2 hours"
+#~ msgstr "2 മണിക്കൂർ"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ അടിസ്ഥാനങ്ങൾ"
+
+#~ msgid "SCORM Package"
+#~ msgstr "SCORM പാക്കേജ്"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "കൈക്കൂലി അപകടസാധ്യതകൾ തിരിച്ചറിയുന്നു"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "കമ്പനി അഴിമതി വിരുദ്ധ നയം"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "കേസ് സ്റ്റഡീസ്: നൈതിക തീരുമാനങ്ങൾ എടുക്കൽ"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "കൈക്കൂലി, അഴിമതി വിരുദ്ധ വിലയിരുത്തൽ"
+
+#~ msgid "Take Quiz"
+#~ msgstr "ക്വിസ് എടുക്കുക"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "ധാർമ്മിക ബിസിനസ്സ് രീതികളെക്കുറിച്ചും അനുസരണത്തെക്കുറിച്ചും അറിയുക"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "ഇൻഫർമേഷൻ സെക്യൂരിറ്റി മാനേജ്മെൻ്റ് സിസ്റ്റം (ഐഎസ്എംഎസ്)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "വിവര സുരക്ഷയുടെ പ്രധാന തത്വങ്ങൾ മനസ്സിലാക്കുക"
+
+#~ msgid "3 hours"
+#~ msgstr "3 മണിക്കൂർ"
+
+#~ msgid "6 modules"
+#~ msgstr "6 മൊഡ്യൂളുകൾ"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "കള്ളപ്പണം വെളുപ്പിക്കൽ വിരുദ്ധം"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "കള്ളപ്പണം വെളുപ്പിക്കൽ പ്രവർത്തനങ്ങൾ തിരിച്ചറിയാനും തടയാനും പഠിക്കുക"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2.5 മണിക്കൂർ"
+
+#~ msgid "4 modules"
+#~ msgstr "4 മൊഡ്യൂളുകൾ"
+
+#~ msgid "Smart Learning Paths"
+#~ msgstr "സ്മാർട്ട് പഠന പാതകൾ"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "വിപുലമായ അറബിക്"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "പഠിതാക്കളുടെ ഫലങ്ങൾ പ്രവചിക്കാനും സാധ്യതയുള്ള വെല്ലുവിളികൾ തിരിച്ചറിയാനും "
+#~ "മികച്ച ഫലങ്ങൾക്കായി സജീവമായി ഇടപെടാനും ഡാറ്റാധിഷ്ഠിത സ്ഥിതിവിവരക്കണക്കുകൾ "
+#~ "പ്രയോജനപ്പെടുത്തുക."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "ഇമ്മേഴ്‌സീവ് വിആർ പരിശീലനം"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "സങ്കീർണ്ണമായ അല്ലെങ്കിൽ ഉയർന്ന-പങ്കാളിത്തമുള്ള സാഹചര്യങ്ങളിൽ ഹാൻഡ്-ഓൺ, "
+#~ "അപകടരഹിത പരിശീലനത്തിനായി വെർച്വൽ റിയാലിറ്റി അനുഭവങ്ങൾ സംയോജിപ്പിക്കുക."
+
+#~ msgid "Client Avatar"
+#~ msgstr "ക്ലയൻ്റ് അവതാർ"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "NextGen AI LMS നൽകുന്ന AI-പവർ ഉൾക്കാഴ്ചകൾ ജീവനക്കാരുടെ വികസനത്തോടുള്ള "
+#~ "ഞങ്ങളുടെ സമീപനത്തിൽ വിപ്ലവം സൃഷ്ടിച്ചു. നമുക്ക് ഇപ്പോൾ നൈപുണ്യ വിടവുകൾ "
+#~ "മുൻകൂട്ടി തിരിച്ചറിയാനും അഭൂതപൂർവമായ കൃത്യതയോടെ ഞങ്ങളുടെ പരിശീലന പരിപാടികൾ "
+#~ "ക്രമീകരിക്കാനും കഴിയും. ഈ അത്യാധുനിക സംവിധാനം നടപ്പിലാക്കിയതിന് ശേഷം "
+#~ "ഞങ്ങളുടെ ടീമിൻ്റെ ഉൽപ്പാദനക്ഷമത 30% വർദ്ധിച്ചു."
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "മാസം"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "ഗൈഡ് ആരംഭിക്കുന്നു"
+
+#~ msgid "VR training modules"
+#~ msgstr "വിആർ പരിശീലന മൊഡ്യൂളുകൾ"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "പ്രോയിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "കസ്റ്റം റിപ്പോർട്ടുകൾ"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "വിപുലമായ VR & AR കഴിവുകൾ"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 ടെക് സ്ട്രീറ്റ്, സാൻ ഫ്രാൻസിസ്കോ, CA 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "ഫോൺ: (555) 123-4567"
 
 #~ msgid "Course Details - Anti-Bribery and Anti-Corruption Policy"
 #~ msgstr "കോഴ്‌സ് വിശദാംശങ്ങൾ - കൈക്കൂലി, അഴിമതി വിരുദ്ധ നയം"

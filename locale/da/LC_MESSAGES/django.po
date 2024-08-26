@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-18 23:50+0530\n"
+"POT-Creation-Date: 2024-08-26 11:41+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "Beskeder"
 
@@ -334,6 +335,7 @@ msgstr ""
 "[[TT:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Varighed"
@@ -621,12 +623,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Bestille"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -692,14 +694,18 @@ msgid "Change"
 msgstr "Forandring"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "Ukendt"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "Ja"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "Ingen"
 
@@ -795,58 +801,69 @@ msgstr "søndag"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "Mine"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "tir"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "ons"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "Samle"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "Fri"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "Sat"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "Sol"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "januar"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "februar"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "marts"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "april"
 
@@ -857,34 +874,42 @@ msgstr "april"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "maj"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "juni"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "juli"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "august"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "september"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "oktober"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "november"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "december"
 
@@ -1311,6 +1336,14 @@ msgstr "Django-fællesskabet"
 msgid "Connect, get help, or contribute"
 msgstr "Forbind, få hjælp eller bidrag"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "x"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "og"
+
 #: lms/settings.py
 msgid "English"
 msgstr "engelsk"
@@ -1474,7 +1507,6 @@ msgid "Active Announcements"
 msgstr "Aktive meddelelser"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "Planlagt"
 
@@ -1510,7 +1542,6 @@ msgid "Maintenance"
 msgstr "Opretholdelse"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1518,7 +1549,8 @@ msgid "All Statuses"
 msgstr "Alle statusser"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "Aktiv"
 
@@ -1527,6 +1559,8 @@ msgid "Expired"
 msgstr "Udløbet"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "Udkast"
 
@@ -1535,6 +1569,8 @@ msgid "Export Report"
 msgstr "Eksporter rapport"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Titel"
@@ -1548,7 +1584,8 @@ msgstr "Kategori"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1564,12 +1601,13 @@ msgid "Expiry Date"
 msgstr "Udløbsdato"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "Engagement"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1601,19 +1639,18 @@ msgstr "Slet meddelelse"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Tidligere"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "Næste"
 
@@ -1683,6 +1720,7 @@ msgstr "Eksamen"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "Kommende begivenheder"
 
@@ -1724,6 +1762,7 @@ msgstr "Spor og administrer systemcertifikater"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "Certifikater"
 
@@ -1736,7 +1775,6 @@ msgid "Certificates This Month"
 msgstr "Certifikater denne måned"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Afventer godkendelser"
 
@@ -1749,31 +1787,10 @@ msgstr "Kurser med certifikater"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "Alle kurser"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "IT & programmering"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "Forretning"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "Sprog"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "Naturvidenskab og matematik"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1809,16 +1826,18 @@ msgid "Certificate ID"
 msgstr "Certifikat ID"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "Lærer"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "Kursus"
 
@@ -1827,27 +1846,20 @@ msgid "Issue Date"
 msgstr "Udstedelsesdato"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "John Doe"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "Avanceret Python-programmering"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "Udstedt"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "Tilbagekaldt"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "Se certifikat"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "Download certifikat"
 
@@ -1880,147 +1892,127 @@ msgstr "Brødkrumme"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "Kurser"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "Opret levering"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "Fremskridt"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "Grundlæggende detaljer"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "Indtast leveringskode"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "Leveringskode"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "Indtast leveringskode"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "Hvordan afvikles kurset?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "Leveringskode"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "Selv tempo"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "Instruktør ledet"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "Tildel facilitatorer"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "Tilmeldinger"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "Integrationer"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "Facilitatorer"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "Tildel deltagere"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "Startdato"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "Slutdato"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "Deltagere"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "Avancerede indstillinger"
+msgid "Enter maximum participants"
+msgstr "Indtast maksimalt antal deltagere"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr "Vil du tilføje adgangsperiode for kursusindhold til denne levering?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "Ja, tilføj adgangsperiode"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "Vælg startdato"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "til"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "Færdiggjort"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "Vælg slutdato"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "Arkiveret"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "Vil du tilføje deaktiveringsdato for denne levering?"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "er obligatorisk"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "Ja, tilføj deaktiveringsdato"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "Vælg dato"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "Vil du gerne have feedback fra deltageren for denne levering?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "Ja, indsaml feedback"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr "Vil du markere denne levering som obligatorisk for deltageren?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "Ja, marker som obligatorisk"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "Ønsker du at fange deltagernes fremmøde til dette kursus?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "Ja, fange fremmødet"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "Kræver dette kursus et færdiggørelsesbevis?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "Ja, kræver færdiggørelsesattest"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "E-mail-indstillinger"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "Invitations e-mail skabelon"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "Fuldførelse e-mail skabelon"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "Indsend"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2039,104 +2031,21 @@ msgid "Deliveries"
 msgstr "Leverancer"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "Søg efter leveringer..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "Igangværende"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "Færdiggjort"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "Annulleret"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "Alle instruktører"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "Instruktør 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "Instruktør 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "Instruktør 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "Eksport leveringer"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "Leverings-id"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "Startdato"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "Slutdato"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "Instruktør"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "studerende"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "Se detaljer"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "Redigere"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "Administrer elever"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "Viser"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "til"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "af"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "resultater"
 
@@ -2147,8 +2056,194 @@ msgstr "Slet levering"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "Ophæve"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "Kursusleveringer - LMS Admin"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "Kursusinformation"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "Massehandlinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Gennemførelsesrate"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "Fremskridt"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "Ingen facilitatorer tildelt endnu."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "Læringsressourcer"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Type"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "Ingen videofil tilgængelig."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "Fremskridt"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "Igangværende"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "trukket tilbage"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "Se detaljer"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "Tilmeldt kursus"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "Tilmeldinger"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "indgange"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "Leverings-id"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "Tilmeldt kursus"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Generer rapport"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Antal kurser"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "Fremskridt"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "Læringsfremskridt"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2225,6 +2320,7 @@ msgid "Created by:"
 msgstr "Opret levering"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2256,12 +2352,6 @@ msgid "Course Content"
 msgstr "Kursusdækning"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Tilmeldinger"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2270,12 +2360,6 @@ msgstr "Eksport leveringer"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "Tilføj ny ressource"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "Type"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2307,21 +2391,6 @@ msgstr "Leverings-id"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "Tilmeldinger"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "Tilmeldinger"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "Tilmeldinger"
 
@@ -2339,17 +2408,14 @@ msgstr "Vælg dato"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "Video"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "Dokument"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "Præsentation"
 
@@ -2360,7 +2426,6 @@ msgstr "Forbindelse"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "Quiz"
 
@@ -2394,6 +2459,7 @@ msgstr "Ressourceforbrug"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "Læringsvej"
 
@@ -2535,6 +2601,38 @@ msgstr "Ressourceforbrug"
 msgid "Preview not available for this resource type."
 msgstr "Forhåndsvisning er ikke tilgængelig for denne ressourcetype."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "Meddelelser - LMS Admin"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "Vælg Elever at tilmelde"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "Elever"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "Vælg dato"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "Fravælg alle"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "Tilmeldt kursus"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2565,46 +2663,6 @@ msgid "Search enrollments..."
 msgstr "Søg efter kurser..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "Grundlæggende om webudvikling"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "Grundlæggende datavidenskab"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "Digital markedsføring"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "Indtil"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "trukket tilbage"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2617,56 +2675,22 @@ msgstr "Eksporter data"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "Webstedets navn"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "Lærer"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "Grundlæggende om webudvikling"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "Eksport leveringer"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "Udsigt"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "Træk tilbage"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "Data Science Fundamentals"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "Godkende"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "Emne"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "Digital markedsføring"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2732,12 +2756,6 @@ msgstr "Elever"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "Generer rapport"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "Webstedets navn"
@@ -2750,14 +2768,6 @@ msgid "Enrolled Learners"
 msgstr "Tilmeldt kursus"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "Gennemførelsesrate"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2766,6 +2776,11 @@ msgstr "Udvikling af skræddersyede modeller"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "Teknologi"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "Redigere"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2901,6 +2916,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2932,12 +2948,6 @@ msgstr "9-12 måneder"
 msgid "> 12 months"
 msgstr "> 12 måneder"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "Antal kurser"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "Kurser - LMS Admin"
@@ -2951,20 +2961,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "Administrer og organiser dine kurser"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Alle kurser"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "Udgivet dato"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "Upubliceret"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "Kategorier"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "Søg efter kurser..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "Kategori 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "Kategori 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "Kategori 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3088,8 +3111,23 @@ msgid "987 enrolled"
 msgstr "987 tilmeldte"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Data Science Fundamentals"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 tilmeldte"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Digital markedsføring"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3163,6 +3201,7 @@ msgid "July 12, 2024"
 msgstr "12. juli 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "Topkunstnere"
 
@@ -3239,6 +3278,7 @@ msgstr "Administrer supportbilletter og adgangsressourcer"
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "Hjælp & Support"
 
@@ -3305,6 +3345,7 @@ msgid "Close Ticket"
 msgstr "Luk billet"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "Ofte stillede spørgsmål"
 
@@ -3337,6 +3378,8 @@ msgstr ""
 "kursusmaterialer. Glem ikke at tildele instruktører og sætte kursplanen."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "Video tutorials"
 
@@ -3390,12 +3433,32 @@ msgstr "Leaderboard - LMS Admin"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "Leaderboard"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "Vi fejrer vores bedste præstationer"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "IT & programmering"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "Forretning"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "Sprog"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "Naturvidenskab og matematik"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3426,6 +3489,7 @@ msgid "3rd"
 msgstr "et tilbud"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "Rang"
 
@@ -3443,6 +3507,13 @@ msgstr "Gns. Score"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "Samlet antal point"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "John Doe"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3493,6 +3564,7 @@ msgid "From:"
 msgstr "Fra:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "Emne:"
 
@@ -3539,12 +3611,12 @@ msgid "Flagged"
 msgstr "Flagget"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "Arkiveret"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "Alle brugere"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "studerende"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3673,6 +3745,29 @@ msgid "Search assessments..."
 msgstr "Søg i beskeder..."
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Grundlæggende om webudvikling"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Grundlæggende datavidenskab"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "All Time"
 msgid "All Types"
@@ -3799,6 +3894,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "Data Science Fundamentals"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Grundlæggende om webudvikling"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3889,6 +3992,7 @@ msgstr "Projekter"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4031,12 +4135,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "Alle kurser"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "Certifikater denne måned"
@@ -4052,6 +4150,13 @@ msgstr "Kursusafslutning"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "Topkunstnere"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Digital markedsføring"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4088,12 +4193,6 @@ msgstr "Kursusafslutning"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "Kursus"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "Tilmeldinger"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4339,6 +4438,10 @@ msgstr "Rating Distribution"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "Gennemførte kurser"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "Instruktør"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5003,10 +5106,12 @@ msgid "Appearance"
 msgstr "Udseende"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "Meddelelser"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "Integrationer"
 
@@ -5111,6 +5216,7 @@ msgid "Notifications Settings"
 msgstr "Indstillinger for meddelelser"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "E-mail-meddelelser"
 
@@ -5196,6 +5302,7 @@ msgid "Sidebar"
 msgstr "Sidebjælke"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "Kategorier"
 
@@ -5216,6 +5323,7 @@ msgid "Reports & Analytics"
 msgstr "Rapporter og analyser"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "Kursusafslutning"
 
@@ -5285,6 +5393,377 @@ msgstr "Administratorer"
 msgid "Back to Home"
 msgstr "Tilbage til Hjemmet"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "Elever"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "Administrer og organiser dine kurser"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "Opgavens forfaldsdatoer"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "Gennemført kursus"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "Indtil"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "Kursus"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "Forfalder:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "Indsendt af"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "Aktive sessioner"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "Bedømt"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "Elevfeedback"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "Forsinket"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "Indsend"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "Opgavens forfaldsdatoer"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "Gennemførelsesrate"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "Kommende deadlines"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "Tilmeldinger"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "Opgavens forfaldsdatoer"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "Opgavedetaljer vil blive vist her."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "Afleveret opgave"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "Tæt"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "Mine badges"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "Vis dine færdigheder og præstationer"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "Kursusoversigt"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "Samlet beskeder"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr ""
+"Du har optjent badges i forskellige kategorier. Fortsæt med at lære og lås "
+"op for mere!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "Færdighedsmærker"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "Præstationsmærker"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "Milepælsmærker"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "Dine badges"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "Filtrer efter:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "Alle beskeder"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "Dygtighed"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "Optjent på:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "Tilmeldinger"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "Milepæl"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "Besked detaljer"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "E-læringswebinar"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "Dashboard - LMS Learner"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "LMS kalender"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "Administrer din læringsplan og deadlines"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "Massehandlinger"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "Tidligere"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "I dag"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "Sidste 3 måneder"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "JavaScript afsluttende projekt"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "Afleveringsfrist: 23. juli 2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "Datavisualiseringsquiz"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "Afleveringsfrist: 28. juli 2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "Certifikater"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "Vis dine præstationer og færdigheder"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "Optjente certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "Samlet antal brugere"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "I år"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"Du har opnået certifikater i forskellige kurser og specialiseringer. Fortsæt"
+" det store arbejde!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "Kurser med certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "Samlede certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "Samlede certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "Certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "Certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "Samlede certifikater"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "Udstedt"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "Se certifikat"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "Datavisualiseringsquiz"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Professionel"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "Certifikat ID"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5293,34 +5772,12 @@ msgstr "Kursusindstillinger"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "Anti-bestikkelse og anti-korruptionspolitik"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "Væsentlig compliance-træning for alle medarbejdere"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Mine kurser"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"Dette omfattende kursus vil uddanne dig om vores virksomheds anti-"
-"bestikkelse og anti-korruptionspolitik. Du lærer om de juridiske rammer, "
-"genkender potentielle risici og forstår, hvordan du overholder politikken i "
-"forskellige forretningssituationer."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 timer"
+msgid "30 minutes"
+msgstr "30 minutter"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5332,52 +5789,13 @@ msgid "All Employees"
 msgstr "Alle medarbejdere"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "Samlet fremskridt"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "Læringsressourcer"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "Anti-bestikkelse og anti-korruption grundlæggende"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "SCORM-pakke"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "Starte"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "Anerkendelse af bestikkelsesrisici"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "Ur"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "Virksomhedens anti-korruptionspolitik"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "Læse"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "Casestudier: Etisk beslutningstagning"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "Anti-bestikkelse og anti-korruption vurdering"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "Tag Quiz"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5440,7 +5858,8 @@ msgstr "Kurser i gang"
 msgid "Certificates Earned"
 msgstr "Optjente certifikater"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "Learning Streak"
 
@@ -5448,11 +5867,11 @@ msgstr "Learning Streak"
 msgid "days"
 msgstr "dage"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "Læringsfremskridt"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "Aktuelle kurser"
 
@@ -5465,30 +5884,12 @@ msgid "Data Science Basics"
 msgstr "Grundlæggende datavidenskab"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "Kommende deadlines"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "JavaScript afsluttende projekt"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "Afleveringsfrist: 23. juli 2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "Datavisualiseringsquiz"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "Afleveringsfrist: 28. juli 2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "Seneste aktivitet"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Afsluttet lektion: Introduktion til JavaScript"
 
@@ -5503,6 +5904,527 @@ msgstr "Antal kurser"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "Måned"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "LMS-fora"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "Engager, diskuter og lær sammen"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "Grundlæggende om webudvikling"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "Kunstig intelligens"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "Generel diskussion"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "Forum indlæg"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "Samlet antal point:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "Samlet antal point:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "Aktive kurser"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "Kursusafslutning"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "Se billet"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "Bedste praksis for responsivt webdesign?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "Starte"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 svar"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 timer siden"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "Python vs R til dataanalyse: Fordele og ulemper?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 svar"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 dag siden"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "Tips til optimering af mobilapps ydeevne?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 svar"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "Sidste 30 dage"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "Etiske overvejelser i AI-udvikling"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 svar"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "Sidste 30 dage"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "Populære emner"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "Introduktion til AI"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 svar • 1,2k visninger"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "Sammenligning af JavaScript-rammer"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 svar • 980 visninger"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "Datavisualiseringsquiz"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 svar • 850 visninger"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "Opret ny billet"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "Titel"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "Vælg dato"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "Kursusdækning"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "Opret ny billet"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "Dine karakterer"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "Se dine akademiske præstationer"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "Karakteroversigt"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "Samlet fremskridt"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "Højeste karakter:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "Laveste karakter:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "Rating Distribution"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "Kursus"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "Status"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "Trend for lagerforbrug"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "Kursusindstillinger"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr ""
+"Detaljerede karakteroplysninger for det valgte kursus vil blive vist her."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "Karakter (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "Karakterudvikling på tværs af kurser"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "Hjælp og support - LMS Admin"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr "Find svar på dine spørgsmål og få den støtte, du har brug for"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "Hvordan kan vi hjælpe dig?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "Søg efter kurser..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "AI-søgning"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "Hvordan nulstiller jeg en elevs adgangskode?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "Følg disse trin for at nulstille din adgangskode:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "Klik på linket 'Glemt adgangskode' på login-siden"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "Indtast en gyldig e-mailadresse."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "Tjek din e-mail for et link til nulstilling af adgangskode"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr ""
+"Klik på linket og følg instruktionerne for at oprette en ny adgangskode"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "Tilmeldt kursus"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "Tilmeldt kursus"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "Gennemse kursuskataloget"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "Vælg det kursus, du er interesseret i"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "Klik på knappen 'Tilmeld' på kursussiden"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "Følg vejledningen for at fuldføre tilmeldingen"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "Hvordan sporer jeg mine fremskridt?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "Du kan følge dine fremskridt ved at:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "Lærer Dashboard"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "Kontrol af statuslinjen i hvert kursus"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "Gennemgang af dine afsluttede opgaver og quizzer"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "Tjek dine karakterer i sektionen 'Karakterer'"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "Live Chat Support"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "Hjælp & Support"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "Live Chat Support"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "Hjælp & Support"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "Samlet omsætning"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "Brugervejledning"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "Fællesskabsforum"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Systemopdateringer"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "Har du brug for mere hjælp?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "Vores supportteam er her for at hjælpe dig."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "Afleveret opgave"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "Dashboard - LMS Learner"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "Se, hvordan du rangerer blandt dine jævnaldrende"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "Din e-mail"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "Din overordnede placering"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "Topkunstnere"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "Udsigt"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "Samlet fremskridt"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "Gns. Score"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "Kommuniker med instruktører og kammerater"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "Integrationer"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "Send besked"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "Skriv dit svar her..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "Sende"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "Til:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "Beskeder"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5529,44 +6451,565 @@ msgid "Ethics"
 msgstr "Etik"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "Lær om etisk forretningspraksis og overholdelse"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "Påbegyndt kursus"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "Se profil"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "Om os"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "Kursusinformation"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "Færdiggjort"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "Tilmeldinger"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "Badges"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "dage"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "Hold det op!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "Igangværende - 60 %% gennemført"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "Igangværende - 30 %% gennemført"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "Seneste aktiviteter"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "Læringsfremskridt"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "Revolutioner læring"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "Learning Streak"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "Foretrukket kursusformat"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "Mål"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "Fremskridt"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "Spor din læringsrejse og præstationer"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "Lærer"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "Kursus"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "Learning Streak"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "Kurser i gang"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "Fremskridt"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "Færdiggjort"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "Igangværende - 75 %% gennemført"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "Låst - Fuldfør forudsætningerne først"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 timer siden"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "Optjent badge: CSS Master"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 dag siden"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "Datavisualiseringsquiz"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 dag siden"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "Afsluttet lektion: Introduktion til JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "Anbefalede næste trin"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "Afsluttet lektion: Introduktion til JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "Afslut de resterende lektioner for at styrke dine JS-færdigheder."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "Fortsæt kursus"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "Information Security Management System (ISMS)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "Samlet meddelelser"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "Forstå centrale principper for informationssikkerhed"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "Test din Python viden med denne hurtige vurdering."
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 timer"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "Samlet meddelelser"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 moduler"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "Datavisualiseringsquiz"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "Anti-hvidvaskning af penge"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr "Forbedre dine datavidenskabelige færdigheder med dette nye kursus."
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "Lær at identificere og forhindre hvidvaskaktiviteter"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "Opret kursus"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2,5 timer"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "Mine kurser - LMS Learner"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 moduler"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "Få adgang til kursusmaterialer og nyttigt indhold"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "Kursusindstillinger"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "Læringsressourcer"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "Yderligere læsning"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Hurtige links"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "Webstedets navn"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "Kalender"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "Biblioteksportal"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "Hjælp & Support"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "Ressourceforbrug"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "Downloads"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "Ur"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "Besøg Forum"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "Læse"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "Sidst tilgået"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "Sidst tilgået"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "Indstillinger - LMS Admin"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "Sikkerhedsindstillinger"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "Administrer dine kontopræferencer og -indstillinger"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "Se profil"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "Antal adgang"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "Adgangskodepolitik"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "E-mail-indstillinger"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "Webstedets navn"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "Webstedets navn"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "Admin email"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "november"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "Det var han"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "Gem ændringer"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "Adgangskodepolitik"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "Adgangskodepolitik"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "Bekræft ny adgangskode"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "Adgangskodepolitik"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "Indstillinger for meddelelser"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "Meddelelser"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "Eksport leveringer"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "Sikkerhedsindstillinger"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "Profil synlighed"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "Offentliggøre"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "Kun venner"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "Privat"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "Brugeraktivitet"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "Learning Streak"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "Visuel"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "Auditiv"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "Læs/skriv"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "Kinæstetisk"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "Gns. Svartid"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "Advarsel"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "middag"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "Begivenheder"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "Sen aften"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "Læringsfremskridt"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "Forbind med os"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "Forbind med os"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "Forbind med os"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "Forbind med os"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "Forbind med os"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5633,43 +7076,90 @@ msgstr "Avancerede funktioner"
 #: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Learning Path"
-msgid "Smart Learning Paths"
+msgid "Adaptive Learning Paths"
 msgstr "Læringsvej"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "Vores algoritmer analyserer elevernes adfærd og præstationer for at skabe "
 "personlige læringsrejser, der sikrer optimal færdighedsudvikling."
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "Avanceret arabisk"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "Gennemførelsesrate"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"Udnyt datadrevet indsigt til at forudsige elevernes resultater, identificere"
-" potentielle udfordringer og intervenere proaktivt for at opnå bedre "
-"resultater."
+"Få værdifuld indsigt i elevernes fremskridt, kursets effektivitet og den "
+"overordnede træningseffekt med vores kraftfulde rapporteringsværktøjer."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "Fordybende VR-træning"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "Automatiserede indholdsanbefalinger"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"Integrer virtual reality-oplevelser til praktisk, risikofri træning i "
-"komplekse scenarier eller scenarier med høj indsats."
+"Udnyt maskinlæringsalgoritmer til at foreslå relevante kurser og ressourcer "
+"baseret på elevernes interesser og præstationer."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "Aktive sessioner"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"Fremme samarbejde og videndeling gennem indbyggede fora, chatrum og "
+"gruppeprojekter."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "Revolutioner læring"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"Få adgang til kurser og materialer på farten med vores responsive design og "
+"dedikerede mobilapp til iOS og Android."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "Gennemførelsesrate"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"Øg engagementet med præstationsbadges, leaderboards og automatiseret "
+"certifikatgenerering efter kursusafslutning."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5872,16 +7362,14 @@ msgid "Intelligent content recommendations"
 msgstr "Intelligente indholdsanbefalinger"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "Adaptiv læringsvisualisering"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "Succeshistorier"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "Klient-avatar"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5892,12 +7380,17 @@ msgid "HR Director, TechCorp"
 msgstr "HR-direktør, TechCorp"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS har transformeret vores virksomhedsuddannelse. De personlige "
 "læringsveje og prædiktive analyser har forbedret medarbejdernes engagement "
@@ -5913,19 +7406,17 @@ msgid "L&D Manager, InnovateNow"
 msgstr "L&D Manager, InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"Den AI-drevne indsigt leveret af NextGen AI LMS har revolutioneret vores "
-"tilgang til medarbejderudvikling. Vi kan nu identificere "
-"kvalifikationsmangler proaktivt og skræddersy vores træningsprogrammer med "
-"hidtil uset præcision. Vores teams produktivitet er steget med 30 %% siden "
-"implementeringen af ​​dette banebrydende system."
+"Implementering af NextGen LMS har ændret vores tilgang til "
+"medarbejderudvikling. Platformens robuste rapporteringsværktøjer har givet "
+"os værdifuld indsigt i vores træningsprogrammers effektivitet. Vi kan nu "
+"træffe datadrevne beslutninger for at forbedre vores indhold og "
+"leveringsmetoder."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5938,10 +7429,8 @@ msgid "Starter"
 msgstr "Starte"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "Måned"
+msgid "Perfect for small teams"
+msgstr "Perfekt til små teams"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -5962,10 +7451,8 @@ msgid "24/7 chatbot support"
 msgstr "24/7 chatbot support"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "Kom godt i gang Guide"
+msgid "Contact Sales"
+msgstr "Kontakt Salg"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -5974,8 +7461,8 @@ msgid "Most Popular"
 msgstr "Mest populære kurser"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "Professionel"
+msgid "Ideal for growing organizations"
+msgstr "Ideel til voksende organisationer"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -5990,28 +7477,18 @@ msgid "Automated content recommendations"
 msgstr "Automatiserede indholdsanbefalinger"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "VR træningsmoduler"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "Udskriv rapport"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "Opgrader til Pro"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "Enterprise"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "Brugerdefinerede rapporter"
+msgid "Tailored for large enterprises"
+msgstr "Skræddersyet til store virksomheder"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6026,16 +7503,8 @@ msgid "Custom model development"
 msgstr "Udvikling af skræddersyede modeller"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "Avancerede VR- og AR-funktioner"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "Dedikeret account manager"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "Kontakt Salg"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6058,20 +7527,18 @@ msgid "Empowering the future of learning with innovative technology."
 msgstr "Styrkelse af fremtidens læring med innovativ teknologi."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 Tech Street, San Francisco, CA 94105, USA"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "Newtown, Kolkata, Vestbengalen, Indien, 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "Telefon: (555) 123-4567"
+msgid "Phone: __"
+msgstr "Telefon: __"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "E-mail: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "Hurtige links"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6120,12 +7587,6 @@ msgid "Support Center"
 msgstr "Hjælp og supportcenter"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "Systemopdateringer"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "Forbind med os"
 
@@ -6152,6 +7613,254 @@ msgstr "Du har logget ind."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Login mislykkedes. Tjek venligst fejlene nedenfor."
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "Avanceret Python-programmering"
+
+#~ msgid "Basic Details"
+#~ msgstr "Grundlæggende detaljer"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "Hvordan afvikles kurset?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "Tildel facilitatorer"
+
+#~ msgid "Assign Participants"
+#~ msgstr "Tildel deltagere"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "Avancerede indstillinger"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr "Vil du tilføje adgangsperiode for kursusindhold til denne levering?"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "Ja, tilføj adgangsperiode"
+
+#~ msgid "Select start date"
+#~ msgstr "Vælg startdato"
+
+#~ msgid "Select end date"
+#~ msgstr "Vælg slutdato"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "Vil du tilføje deaktiveringsdato for denne levering?"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "Ja, tilføj deaktiveringsdato"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "Vil du gerne have feedback fra deltageren for denne levering?"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "Ja, indsaml feedback"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "Ja, marker som obligatorisk"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "Ønsker du at fange deltagernes fremmøde til dette kursus?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "Ja, fange fremmødet"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "Kræver dette kursus et færdiggørelsesbevis?"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "Ja, kræver færdiggørelsesattest"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "Invitations e-mail skabelon"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "Fuldførelse e-mail skabelon"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "Søg efter leveringer..."
+
+#~ msgid "Cancelled"
+#~ msgstr "Annulleret"
+
+#~ msgid "All Instructors"
+#~ msgstr "Alle instruktører"
+
+#~ msgid "Instructor 1"
+#~ msgstr "Instruktør 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "Instruktør 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "Instruktør 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "Eksport leveringer"
+
+#~ msgid "Delivery ID"
+#~ msgstr "Leverings-id"
+
+#~ msgid "Manage Students"
+#~ msgstr "Administrer elever"
+
+#~ msgid "Withdraw"
+#~ msgstr "Træk tilbage"
+
+#~ msgid "Approve"
+#~ msgstr "Godkende"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "Emne"
+
+#~ msgid "Category 1"
+#~ msgstr "Kategori 1"
+
+#~ msgid "Category 2"
+#~ msgstr "Kategori 2"
+
+#~ msgid "Category 3"
+#~ msgstr "Kategori 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Anti-bestikkelse og anti-korruptionspolitik"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "Væsentlig compliance-træning for alle medarbejdere"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "Dette omfattende kursus vil uddanne dig om vores virksomheds anti-"
+#~ "bestikkelse og anti-korruptionspolitik. Du lærer om de juridiske rammer, "
+#~ "genkender potentielle risici og forstår, hvordan du overholder politikken i "
+#~ "forskellige forretningssituationer."
+
+#~ msgid "2 hours"
+#~ msgstr "2 timer"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "Anti-bestikkelse og anti-korruption grundlæggende"
+
+#~ msgid "SCORM Package"
+#~ msgstr "SCORM-pakke"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "Anerkendelse af bestikkelsesrisici"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "Virksomhedens anti-korruptionspolitik"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "Casestudier: Etisk beslutningstagning"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "Anti-bestikkelse og anti-korruption vurdering"
+
+#~ msgid "Take Quiz"
+#~ msgstr "Tag Quiz"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "Lær om etisk forretningspraksis og overholdelse"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "Information Security Management System (ISMS)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "Forstå centrale principper for informationssikkerhed"
+
+#~ msgid "3 hours"
+#~ msgstr "3 timer"
+
+#~ msgid "6 modules"
+#~ msgstr "6 moduler"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "Anti-hvidvaskning af penge"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "Lær at identificere og forhindre hvidvaskaktiviteter"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2,5 timer"
+
+#~ msgid "4 modules"
+#~ msgstr "4 moduler"
+
+#, fuzzy
+#~ msgid "Smart Learning Paths"
+#~ msgstr "Læringsvej"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "Avanceret arabisk"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "Udnyt datadrevet indsigt til at forudsige elevernes resultater, identificere"
+#~ " potentielle udfordringer og intervenere proaktivt for at opnå bedre "
+#~ "resultater."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "Fordybende VR-træning"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "Integrer virtual reality-oplevelser til praktisk, risikofri træning i "
+#~ "komplekse scenarier eller scenarier med høj indsats."
+
+#~ msgid "Client Avatar"
+#~ msgstr "Klient-avatar"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "Den AI-drevne indsigt leveret af NextGen AI LMS har revolutioneret vores "
+#~ "tilgang til medarbejderudvikling. Vi kan nu identificere "
+#~ "kvalifikationsmangler proaktivt og skræddersy vores træningsprogrammer med "
+#~ "hidtil uset præcision. Vores teams produktivitet er steget med 30 %% siden "
+#~ "implementeringen af ​​dette banebrydende system."
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "Måned"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "Kom godt i gang Guide"
+
+#~ msgid "VR training modules"
+#~ msgstr "VR træningsmoduler"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "Opgrader til Pro"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "Brugerdefinerede rapporter"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "Avancerede VR- og AR-funktioner"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 Tech Street, San Francisco, CA 94105, USA"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "Telefon: (555) 123-4567"
 
 #~ msgid "Language menu opened!"
 #~ msgstr "Sprogmenu åbnet!"

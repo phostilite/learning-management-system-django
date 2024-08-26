@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-19 00:04+0530\n"
+"POT-Creation-Date: 2024-08-26 12:00+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "ಸಂದೇಶಗಳು"
 
@@ -337,6 +338,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuu] ಫಾರ್ಮ್ಯಾಟ್‌ನಲ್ಲಿರಬೇಕು."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "ಅವಧಿ"
@@ -626,12 +628,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "ಆದೇಶ"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -698,14 +700,18 @@ msgid "Change"
 msgstr "ಬದಲಾವಣೆ"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "ಅಜ್ಞಾತ"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "ಹೌದು"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "ಸಂ"
 
@@ -801,58 +807,69 @@ msgstr "ಭಾನುವಾರ"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "ನನ್ನ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "ಮಂಗಳವಾರ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "ಬುಧವಾರ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "ಸಂಗ್ರಹಿಸಿ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "ಶುಕ್ರ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "ಶನಿ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "ಸೂರ್ಯ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "ಜನವರಿ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "ಫೆಬ್ರವರಿ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "ಮಾರ್ಚ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "ಏಪ್ರಿಲ್"
 
@@ -863,34 +880,42 @@ msgstr "ಏಪ್ರಿಲ್"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "ಮೇ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "ಜೂನ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "ಜುಲೈ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "ಆಗಸ್ಟ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "ಸೆಪ್ಟೆಂಬರ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "ಅಕ್ಟೋಬರ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "ನವೆಂಬರ್"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "ಡಿಸೆಂಬರ್"
 
@@ -1316,6 +1341,14 @@ msgstr "ಜಾಂಗೊ ಸಮುದಾಯ"
 msgid "Connect, get help, or contribute"
 msgstr "ಸಂಪರ್ಕಿಸಿ, ಸಹಾಯ ಪಡೆಯಿರಿ ಅಥವಾ ಕೊಡುಗೆ ನೀಡಿ"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "x"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "ಮತ್ತು"
+
 #: lms/settings.py
 msgid "English"
 msgstr "ಇಂಗ್ಲೀಷ್"
@@ -1477,7 +1510,6 @@ msgid "Active Announcements"
 msgstr "ಸಕ್ರಿಯ ಪ್ರಕಟಣೆಗಳು"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "ನಿಗದಿಪಡಿಸಲಾಗಿದೆ"
 
@@ -1513,7 +1545,6 @@ msgid "Maintenance"
 msgstr "ನಿರ್ವಹಣೆ"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1521,7 +1552,8 @@ msgid "All Statuses"
 msgstr "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "ಸಕ್ರಿಯ"
 
@@ -1530,6 +1562,8 @@ msgid "Expired"
 msgstr "ಅವಧಿ ಮೀರಿದೆ"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "ಕರಡು"
 
@@ -1538,6 +1572,8 @@ msgid "Export Report"
 msgstr "ರಫ್ತು ವರದಿ"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "ಶೀರ್ಷಿಕೆ"
@@ -1551,7 +1587,8 @@ msgstr "ವರ್ಗ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1567,12 +1604,13 @@ msgid "Expiry Date"
 msgstr "ಮುಕ್ತಾಯ ದಿನಾಂಕ"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "ನಿಶ್ಚಿತಾರ್ಥ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1604,19 +1642,18 @@ msgstr "ಪ್ರಕಟಣೆಯನ್ನು ಅಳಿಸಿ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "ಹಿಂದಿನ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "ಮುಂದೆ"
 
@@ -1686,6 +1723,7 @@ msgstr "ಪರೀಕ್ಷೆ"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "ಮುಂಬರುವ ಈವೆಂಟ್‌ಗಳು"
 
@@ -1727,6 +1765,7 @@ msgstr "ಸಿಸ್ಟಮ್ ಪ್ರಮಾಣಪತ್ರಗಳನ್ನು �
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "ಪ್ರಮಾಣಪತ್ರಗಳು"
 
@@ -1739,7 +1778,6 @@ msgid "Certificates This Month"
 msgstr "ಈ ತಿಂಗಳು ಪ್ರಮಾಣಪತ್ರಗಳು"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "ಬಾಕಿ ಉಳಿದಿರುವ ಅನುಮೋದನೆಗಳು"
 
@@ -1752,31 +1790,10 @@ msgstr "ಪ್ರಮಾಣಪತ್ರಗಳೊಂದಿಗೆ ಕೋರ್ಸ�
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "ಎಲ್ಲಾ ಕೋರ್ಸ್‌ಗಳು"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "ಐಟಿ ಮತ್ತು ಪ್ರೋಗ್ರಾಮಿಂಗ್"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "ವ್ಯಾಪಾರ"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "ಭಾಷೆಗಳು"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "ವಿಜ್ಞಾನ ಮತ್ತು ಗಣಿತ"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1812,16 +1829,18 @@ msgid "Certificate ID"
 msgstr "ಪ್ರಮಾಣಪತ್ರ ID"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "ಕಲಿಯುವವರು"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "ಕೋರ್ಸ್"
 
@@ -1830,27 +1849,20 @@ msgid "Issue Date"
 msgstr "ಸಂಚಿಕೆ ದಿನಾಂಕ"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "ಜಾನ್ ಡೋ"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "ಸುಧಾರಿತ ಪೈಥಾನ್ ಪ್ರೋಗ್ರಾಮಿಂಗ್"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "ನೀಡಲಾಗಿದೆ"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "ಹಿಂಪಡೆಯಲಾಗಿದೆ"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "ಪ್ರಮಾಣಪತ್ರವನ್ನು ವೀಕ್ಷಿಸಿ"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "ಪ್ರಮಾಣಪತ್ರವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
 
@@ -1883,147 +1895,127 @@ msgstr "ಬ್ರೆಡ್ಕ್ರಂಬ್"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "ಕೋರ್ಸ್‌ಗಳು"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "ವಿತರಣೆಯನ್ನು ರಚಿಸಿ"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "ಪ್ರಗತಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "ಮೂಲ ವಿವರಗಳು"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "ವಿತರಣಾ ಕೋಡ್ ನಮೂದಿಸಿ"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "ವಿತರಣಾ ಕೋಡ್"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "ವಿತರಣಾ ಕೋಡ್ ನಮೂದಿಸಿ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "ಕೋರ್ಸ್ ಅನ್ನು ಹೇಗೆ ತಲುಪಿಸಲಾಗುತ್ತದೆ?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "ವಿತರಣಾ ಕೋಡ್"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "ಸ್ವಯಂ ಗತಿ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "ಬೋಧಕ ನೇತೃತ್ವದ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "ಫೆಸಿಲಿಟೇಟರ್‌ಗಳನ್ನು ನಿಯೋಜಿಸಿ"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "ದಾಖಲಾತಿಗಳು"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "ಏಕೀಕರಣಗಳು"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "ಅನುಕೂಲಕರು"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "ಭಾಗವಹಿಸುವವರನ್ನು ನಿಯೋಜಿಸಿ"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "ಪ್ರಾರಂಭ ದಿನಾಂಕ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "ಅಂತಿಮ ದಿನಾಂಕ"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "ಭಾಗವಹಿಸುವವರು"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+msgid "Enter maximum participants"
+msgstr "ಗರಿಷ್ಠ ಭಾಗವಹಿಸುವವರನ್ನು ನಮೂದಿಸಿ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr "ಈ ವಿತರಣೆಗಾಗಿ ಕೋರ್ಸ್ ವಿಷಯಕ್ಕೆ ಪ್ರವೇಶ ಅವಧಿಯನ್ನು ಸೇರಿಸಲು ನೀವು ಬಯಸುವಿರಾ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "ಹೌದು, ಪ್ರವೇಶ ಅವಧಿಯನ್ನು ಸೇರಿಸಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "ಪ್ರಾರಂಭ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "ಗೆ"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "ಪೂರ್ಣಗೊಂಡಿದೆ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "ಅಂತಿಮ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "ಈ ವಿತರಣೆಗಾಗಿ ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ದಿನಾಂಕವನ್ನು ಸೇರಿಸಲು ಬಯಸುವಿರಾ?"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "ಕಡ್ಡಾಯವಾಗಿದೆ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "ಹೌದು, ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "ಈ ವಿತರಣೆಗಾಗಿ ನೀವು ಭಾಗವಹಿಸುವವರಿಂದ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪಡೆಯಲು ಬಯಸುವಿರಾ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "ಹೌದು, ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸಂಗ್ರಹಿಸಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr "ಭಾಗವಹಿಸುವವರಿಗೆ ಈ ವಿತರಣೆಯನ್ನು ಕಡ್ಡಾಯವಾಗಿ ಗುರುತಿಸಲು ನೀವು ಬಯಸುವಿರಾ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "ಹೌದು, ಕಡ್ಡಾಯ ಎಂದು ಗುರುತಿಸಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "ಈ ಕೋರ್ಸ್‌ಗಾಗಿ ಭಾಗವಹಿಸುವವರ ಹಾಜರಾತಿಯನ್ನು ಸೆರೆಹಿಡಿಯಲು ನೀವು ಬಯಸುವಿರಾ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "ಹೌದು, ಹಾಜರಾತಿಯನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "ಈ ಕೋರ್ಸ್‌ಗೆ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆಯ ಪ್ರಮಾಣಪತ್ರದ ಅಗತ್ಯವಿದೆಯೇ?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "ಹೌದು, ಪೂರ್ಣಗೊಂಡ ಪ್ರಮಾಣಪತ್ರದ ಅಗತ್ಯವಿದೆ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "ಇಮೇಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "ಇಮೇಲ್ ಟೆಂಪ್ಲೇಟ್ ಅನ್ನು ಆಹ್ವಾನಿಸಿ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ಇಮೇಲ್ ಟೆಂಪ್ಲೇಟ್"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "ಸಲ್ಲಿಸಿ"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2042,104 +2034,21 @@ msgid "Deliveries"
 msgstr "ವಿತರಣೆಗಳು"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "ವಿತರಣೆಗಳನ್ನು ಹುಡುಕಿ..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "ಪೂರ್ಣಗೊಂಡಿದೆ"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "ಎಲ್ಲಾ ಬೋಧಕರು"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "ಬೋಧಕ 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "ಬೋಧಕ 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "ಬೋಧಕ 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "ರಫ್ತು ವಿತರಣೆಗಳು"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "ವಿತರಣಾ ID"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "ಪ್ರಾರಂಭ ದಿನಾಂಕ"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "ಅಂತಿಮ ದಿನಾಂಕ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "ಬೋಧಕ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "ವಿದ್ಯಾರ್ಥಿಗಳು"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "ಸಂಪಾದಿಸು"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "ತೋರಿಸಲಾಗುತ್ತಿದೆ"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "ಗೆ"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "ನ"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "ಫಲಿತಾಂಶಗಳು"
 
@@ -2150,8 +2059,194 @@ msgstr "ವಿತರಣೆಯನ್ನು ಅಳಿಸಿ"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "ರದ್ದುಮಾಡು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "ಕೋರ್ಸ್ ವಿತರಣೆಗಳು - LMS ನಿರ್ವಹಣೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "ಕೋರ್ಸ್ ಮಾಹಿತಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "ಬೃಹತ್ ಕ್ರಿಯೆಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ದರ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "ಇನ್ನೂ ಯಾವುದೇ ಅನುವುಗಾರರನ್ನು ನಿಯೋಜಿಸಲಾಗಿಲ್ಲ."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "ಕಲಿಕೆಯ ಸಂಪನ್ಮೂಲಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "ಟೈಪ್ ಮಾಡಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "ಯಾವುದೇ ವೀಡಿಯೊ ಫೈಲ್ ಲಭ್ಯವಿಲ್ಲ."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "ನಮೂದುಗಳು"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "ವಿತರಣಾ ID"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "ವರದಿಯನ್ನು ರಚಿಸಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "ಕೋರ್ಸ್‌ಗಳ ಸಂಖ್ಯೆ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "ಕಲಿಕೆಯ ಪ್ರಗತಿ"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2228,6 +2323,7 @@ msgid "Created by:"
 msgstr "ವಿತರಣೆಯನ್ನು ರಚಿಸಿ"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2259,12 +2355,6 @@ msgid "Course Content"
 msgstr "ಕೋರ್ಸ್ ಕವರ್"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "ದಾಖಲಾತಿಗಳು"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2273,12 +2363,6 @@ msgstr "ರಫ್ತು ವಿತರಣೆಗಳು"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "ಹೊಸ ಸಂಪನ್ಮೂಲವನ್ನು ಸೇರಿಸಿ"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "ಟೈಪ್ ಮಾಡಿ"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2310,21 +2394,6 @@ msgstr "ವಿತರಣಾ ID"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "ದಾಖಲಾತಿಗಳು"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "ದಾಖಲಾತಿಗಳು"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "ದಾಖಲಾತಿಗಳು"
 
@@ -2342,17 +2411,14 @@ msgstr "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "ವೀಡಿಯೊ"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "ಡಾಕ್ಯುಮೆಂಟ್"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "ಪ್ರಸ್ತುತಿ"
 
@@ -2363,7 +2429,6 @@ msgstr "ಲಿಂಕ್"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "ರಸಪ್ರಶ್ನೆ"
 
@@ -2397,6 +2462,7 @@ msgstr "ಸಂಪನ್ಮೂಲ ಬಳಕೆ"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "ಕಲಿಕೆಯ ಮಾರ್ಗ"
 
@@ -2539,6 +2605,38 @@ msgstr "ಸಂಪನ್ಮೂಲ ಬಳಕೆ"
 msgid "Preview not available for this resource type."
 msgstr "ಈ ಸಂಪನ್ಮೂಲ ಪ್ರಕಾರಕ್ಕೆ ಪೂರ್ವವೀಕ್ಷಣೆ ಲಭ್ಯವಿಲ್ಲ."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "ಪ್ರಕಟಣೆಗಳು - LMS ನಿರ್ವಹಣೆ"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "ನೋಂದಾಯಿಸಲು ಕಲಿಯುವವರನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "ಕಲಿಯುವವರು"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "ಎಲ್ಲವನ್ನೂ ಆಯ್ಕೆ ರದ್ದುಮಾಡಿ"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2569,46 +2667,6 @@ msgid "Search enrollments..."
 msgstr "ಕೋರ್ಸ್‌ಗಳನ್ನು ಹುಡುಕಿ..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "ವೆಬ್ ಡೆವಲಪ್ಮೆಂಟ್ ಫಂಡಮೆಂಟಲ್ಸ್"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಬೇಸಿಕ್ಸ್"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "ಡಿಜಿಟಲ್ ಮಾರ್ಕೆಟಿಂಗ್"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "ಬಾಕಿಯಿದೆ"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "ಹಿಂತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2621,56 +2679,22 @@ msgstr "ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಿ"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "ಸೈಟ್ ಹೆಸರು"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "ಕಲಿಯುವವರು"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "ವೆಬ್ ಡೆವಲಪ್ಮೆಂಟ್ ಫಂಡಮೆಂಟಲ್ಸ್"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "ರಫ್ತು ವಿತರಣೆಗಳು"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "ವೀಕ್ಷಿಸಿ"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "ಹಿಂತೆಗೆದುಕೊಳ್ಳಿ"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಫಂಡಮೆಂಟಲ್ಸ್"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "ಅನುಮೋದಿಸಿ"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "ವಿಷಯ"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "ಡಿಜಿಟಲ್ ಮಾರ್ಕೆಟಿಂಗ್"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2738,12 +2762,6 @@ msgstr "ಕಲಿಯುವವರು"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "ವರದಿಯನ್ನು ರಚಿಸಿ"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "ಸೈಟ್ ಹೆಸರು"
@@ -2756,14 +2774,6 @@ msgid "Enrolled Learners"
 msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ದರ"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2772,6 +2782,11 @@ msgstr "ಕಸ್ಟಮ್ ಮಾದರಿ ಅಭಿವೃದ್ಧಿ"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "ತಂತ್ರಜ್ಞಾನ"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "ಸಂಪಾದಿಸು"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2907,6 +2922,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2938,12 +2954,6 @@ msgstr "9-12 ತಿಂಗಳುಗಳು"
 msgid "> 12 months"
 msgstr "> 12 ತಿಂಗಳುಗಳು"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "ಕೋರ್ಸ್‌ಗಳ ಸಂಖ್ಯೆ"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "ಕೋರ್ಸ್‌ಗಳು - LMS ನಿರ್ವಹಣೆ"
@@ -2957,20 +2967,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "ನಿಮ್ಮ ಕೋರ್ಸ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಸಂಘಟಿಸಿ"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "ಎಲ್ಲಾ ಕೋರ್ಸ್‌ಗಳು"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "ಪ್ರಕಟಿಸಿದ ದಿನಾಂಕ"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "ಅಪ್ರಕಟಿತ"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "ವರ್ಗಗಳು"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "ಕೋರ್ಸ್‌ಗಳನ್ನು ಹುಡುಕಿ..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "ವರ್ಗ 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "ವರ್ಗ 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "ವರ್ಗ 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3094,8 +3117,23 @@ msgid "987 enrolled"
 msgstr "987 ದಾಖಲಾಗಿದೆ"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಫಂಡಮೆಂಟಲ್ಸ್"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 ದಾಖಲಾಗಿದೆ"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "ಡಿಜಿಟಲ್ ಮಾರ್ಕೆಟಿಂಗ್"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3169,6 +3207,7 @@ msgid "July 12, 2024"
 msgstr "ಜುಲೈ 12, 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "ಉನ್ನತ ಪ್ರದರ್ಶನಕಾರರು"
 
@@ -3245,6 +3284,7 @@ msgstr "ಬೆಂಬಲ ಟಿಕೆಟ್‌ಗಳು ಮತ್ತು ಪ್ರ
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ"
 
@@ -3311,6 +3351,7 @@ msgid "Close Ticket"
 msgstr "ಟಿಕೆಟ್ ಮುಚ್ಚಿ"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು"
 
@@ -3344,6 +3385,8 @@ msgstr ""
 " ಹೊಂದಿಸಲು ಮರೆಯಬೇಡಿ."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "ವೀಡಿಯೊ ಟ್ಯುಟೋರಿಯಲ್ಗಳು"
 
@@ -3397,12 +3440,32 @@ msgstr "ಲೀಡರ್‌ಬೋರ್ಡ್ - LMS ನಿರ್ವಾಹಕ"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "ಲೀಡರ್‌ಬೋರ್ಡ್"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "ನಮ್ಮ ಉನ್ನತ ಸಾಧಕರನ್ನು ಸ್ಮರಿಸುತ್ತಿದ್ದೇವೆ"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "ಐಟಿ ಮತ್ತು ಪ್ರೋಗ್ರಾಮಿಂಗ್"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "ವ್ಯಾಪಾರ"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "ಭಾಷೆಗಳು"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "ವಿಜ್ಞಾನ ಮತ್ತು ಗಣಿತ"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3433,6 +3496,7 @@ msgid "3rd"
 msgstr "ಒಂದು ಪ್ರಸ್ತಾಪ"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "ಶ್ರೇಣಿ"
 
@@ -3450,6 +3514,13 @@ msgstr "ಸರಾಸರಿ ಸ್ಕೋರ್"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "ಒಟ್ಟು ಅಂಕಗಳು"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "ಜಾನ್ ಡೋ"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3500,6 +3571,7 @@ msgid "From:"
 msgstr "ಇವರಿಂದ:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "ವಿಷಯ:"
 
@@ -3547,12 +3619,12 @@ msgid "Flagged"
 msgstr "ಧ್ವಜಾರೋಹಣ ಮಾಡಿದರು"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "ಎಲ್ಲಾ ಬಳಕೆದಾರರು"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "ವಿದ್ಯಾರ್ಥಿಗಳು"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3677,6 +3749,29 @@ msgstr "ಮೌಲ್ಯಮಾಪನ ಫಲಿತಾಂಶಗಳು"
 #| msgid "Search messages..."
 msgid "Search assessments..."
 msgstr "ಸಂದೇಶಗಳನ್ನು ಹುಡುಕಿ..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "ವೆಬ್ ಡೆವಲಪ್ಮೆಂಟ್ ಫಂಡಮೆಂಟಲ್ಸ್"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಬೇಸಿಕ್ಸ್"
 
 #: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
@@ -3805,6 +3900,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಫಂಡಮೆಂಟಲ್ಸ್"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "ವೆಬ್ ಡೆವಲಪ್ಮೆಂಟ್ ಫಂಡಮೆಂಟಲ್ಸ್"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3895,6 +3998,7 @@ msgstr "ಯೋಜನೆಗಳು"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4038,12 +4142,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "ಎಲ್ಲಾ ಕೋರ್ಸ್‌ಗಳು"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "ಈ ತಿಂಗಳು ಪ್ರಮಾಣಪತ್ರಗಳು"
@@ -4059,6 +4157,13 @@ msgstr "ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "ಉನ್ನತ ಪ್ರದರ್ಶನಕಾರರು"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "ಡಿಜಿಟಲ್ ಮಾರ್ಕೆಟಿಂಗ್"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4095,12 +4200,6 @@ msgstr "ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "ಕೋರ್ಸ್"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "ದಾಖಲಾತಿಗಳು"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4348,6 +4447,10 @@ msgstr "ರೇಟಿಂಗ್ ವಿತರಣೆ"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "ಪೂರ್ಣಗೊಳಿಸಿದ ಕೋರ್ಸ್‌ಗಳು"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "ಬೋಧಕ"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5012,10 +5115,12 @@ msgid "Appearance"
 msgstr "ಗೋಚರತೆ"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "ಅಧಿಸೂಚನೆಗಳು"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "ಏಕೀಕರಣಗಳು"
 
@@ -5120,6 +5225,7 @@ msgid "Notifications Settings"
 msgstr "ಅಧಿಸೂಚನೆಗಳ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "ಇಮೇಲ್ ಅಧಿಸೂಚನೆಗಳು"
 
@@ -5205,6 +5311,7 @@ msgid "Sidebar"
 msgstr "ಪಾರ್ಶ್ವಪಟ್ಟಿ"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "ವರ್ಗಗಳು"
 
@@ -5225,6 +5332,7 @@ msgid "Reports & Analytics"
 msgstr "ವರದಿಗಳು ಮತ್ತು ವಿಶ್ಲೇಷಣೆಗಳು"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ"
 
@@ -5294,6 +5402,377 @@ msgstr "ನಿರ್ವಾಹಕರು"
 msgid "Back to Home"
 msgstr "ಮನೆಗೆ ಹಿಂತಿರುಗಿ"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "ಕಲಿಯುವವರು"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "ನಿಮ್ಮ ಕೋರ್ಸ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಸಂಘಟಿಸಿ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "ನಿಯೋಜನೆ ಅಂತಿಮ ದಿನಾಂಕಗಳು"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "ಕೋರ್ಸ್ ಮುಗಿದಿದೆ"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "ಬಾಕಿಯಿದೆ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "ಕೋರ್ಸ್"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "ಬಾಕಿ:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "ಸಲ್ಲಿಸಿದವರು"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "ಸಕ್ರಿಯ ಅವಧಿಗಳು"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr ""
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "ಕಲಿಯುವವರ ಪ್ರತಿಕ್ರಿಯೆ"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "ಅವಧಿ ಮೀರಿದೆ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "ಸಲ್ಲಿಸಿ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "ನಿಯೋಜನೆ ಅಂತಿಮ ದಿನಾಂಕಗಳು"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ದರ"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "ಮುಂಬರುವ ಗಡುವುಗಳು"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "ನಿಯೋಜನೆ ಅಂತಿಮ ದಿನಾಂಕಗಳು"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "ನಿಯೋಜನೆ ವಿವರಗಳನ್ನು ಇಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "ನಿಯೋಜನೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "ಮುಚ್ಚಿ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "ನನ್ನ ಬ್ಯಾಡ್ಜ್‌ಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "ನಿಮ್ಮ ಕೌಶಲ್ಯ ಮತ್ತು ಸಾಧನೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "ಕೋರ್ಸ್ ಅವಲೋಕನ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "ಒಟ್ಟು ಸಂದೇಶಗಳು"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr ""
+"ನೀವು ವಿವಿಧ ವರ್ಗಗಳಲ್ಲಿ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ. ಕಲಿಯುತ್ತಿರಿ ಮತ್ತು "
+"ಇನ್ನಷ್ಟು ಅನ್‌ಲಾಕ್ ಮಾಡಿ!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "ಕೌಶಲ್ಯ ಬ್ಯಾಡ್ಜ್ಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "ಸಾಧನೆಯ ಬ್ಯಾಡ್ಜ್‌ಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "ಮೈಲಿಗಲ್ಲು ಬ್ಯಾಡ್ಜ್‌ಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್‌ಗಳು"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "ಇವರಿಂದ ಫಿಲ್ಟರ್ ಮಾಡಿ:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "ಎಲ್ಲಾ ಸಂದೇಶಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "ಕೌಶಲ್ಯ"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr ""
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "ಮೈಲಿಗಲ್ಲು"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "ಸಂದೇಶದ ವಿವರಗಳು"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "ಇ-ಲರ್ನಿಂಗ್ ವೆಬ್ನಾರ್"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "LMS ಕ್ಯಾಲೆಂಡರ್"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "ನಿಮ್ಮ ಕಲಿಕೆಯ ವೇಳಾಪಟ್ಟಿ ಮತ್ತು ಗಡುವನ್ನು ನಿರ್ವಹಿಸಿ"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "ಬೃಹತ್ ಕ್ರಿಯೆಗಳು"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "ಹಿಂದಿನ"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "ಇಂದು"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "ಕಳೆದ 3 ತಿಂಗಳುಗಳು"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ಅಂತಿಮ ಯೋಜನೆ"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "ಕಾರಣ: ಜುಲೈ 23, 2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "ಕಾರಣ: ಜುಲೈ 28, 2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "ನಿಮ್ಮ ಸಾಧನೆಗಳು ಮತ್ತು ಕೌಶಲ್ಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "ಗಳಿಸಿದ ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "ಒಟ್ಟು ಬಳಕೆದಾರರು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "ಈ ವರ್ಷ"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"ನೀವು ವಿವಿಧ ಕೋರ್ಸ್‌ಗಳು ಮತ್ತು ವಿಶೇಷತೆಗಳಲ್ಲಿ ಪ್ರಮಾಣಪತ್ರಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ. "
+"ಉತ್ತಮ ಕೆಲಸವನ್ನು ಮುಂದುವರಿಸಿ!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "ಪ್ರಮಾಣಪತ್ರಗಳೊಂದಿಗೆ ಕೋರ್ಸ್‌ಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "ಒಟ್ಟು ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "ಒಟ್ಟು ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "ಒಟ್ಟು ಪ್ರಮಾಣಪತ್ರಗಳು"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "ನೀಡಲಾಗಿದೆ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "ಪ್ರಮಾಣಪತ್ರವನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "ವೃತ್ತಿಪರ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "ಪ್ರಮಾಣಪತ್ರ ID"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5302,34 +5781,12 @@ msgstr "ಕೋರ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ನೀತಿ"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "ಎಲ್ಲಾ ಉದ್ಯೋಗಿಗಳಿಗೆ ಅಗತ್ಯ ಅನುಸರಣೆ ತರಬೇತಿ"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"ಈ ಸಮಗ್ರ ಕೋರ್ಸ್ ನಮ್ಮ ಕಂಪನಿಯ ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ನೀತಿಯ ಕುರಿತು "
-"ನಿಮಗೆ ಶಿಕ್ಷಣ ನೀಡುತ್ತದೆ. ನೀವು ಕಾನೂನು ಚೌಕಟ್ಟಿನ ಬಗ್ಗೆ ಕಲಿಯುವಿರಿ, ಸಂಭಾವ್ಯ "
-"ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸಿ ಮತ್ತು ವಿವಿಧ ವ್ಯವಹಾರ ಸಂದರ್ಭಗಳಲ್ಲಿ ನೀತಿಯನ್ನು ಹೇಗೆ "
-"ಅನುಸರಿಸಬೇಕು ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುತ್ತೀರಿ."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 ಗಂಟೆಗಳು"
+msgid "30 minutes"
+msgstr "30 ನಿಮಿಷಗಳು"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5341,52 +5798,13 @@ msgid "All Employees"
 msgstr "ಎಲ್ಲಾ ಉದ್ಯೋಗಿಗಳು"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "ಒಟ್ಟಾರೆ ಪ್ರಗತಿ"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "ಕಲಿಕೆಯ ಸಂಪನ್ಮೂಲಗಳು"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ಮೂಲಗಳು"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "SCORM ಪ್ಯಾಕೇಜ್"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "ಪ್ರಾರಂಭಿಸಿ"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "ಲಂಚದ ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸುವುದು"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "ವೀಕ್ಷಿಸಿ"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "ಕಂಪನಿಯ ಭ್ರಷ್ಟಾಚಾರ ವಿರೋಧಿ ನೀತಿ"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "ಓದು"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "ಕೇಸ್ ಸ್ಟಡೀಸ್: ಎಥಿಕಲ್ ಡಿಸಿಷನ್ ಮೇಕಿಂಗ್"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ಮೌಲ್ಯಮಾಪನ"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "ರಸಪ್ರಶ್ನೆ ತೆಗೆದುಕೊಳ್ಳಿ"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5451,7 +5869,8 @@ msgstr "ಕೋರ್ಸ್‌ಗಳು ಪ್ರಗತಿಯಲ್ಲಿವೆ"
 msgid "Certificates Earned"
 msgstr "ಗಳಿಸಿದ ಪ್ರಮಾಣಪತ್ರಗಳು"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "ಕಲಿಕೆಯ ಸ್ಟ್ರೀಕ್"
 
@@ -5459,11 +5878,11 @@ msgstr "ಕಲಿಕೆಯ ಸ್ಟ್ರೀಕ್"
 msgid "days"
 msgstr "ದಿನಗಳು"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "ಕಲಿಕೆಯ ಪ್ರಗತಿ"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "ಪ್ರಸ್ತುತ ಕೋರ್ಸ್‌ಗಳು"
 
@@ -5476,30 +5895,12 @@ msgid "Data Science Basics"
 msgstr "ಡೇಟಾ ಸೈನ್ಸ್ ಬೇಸಿಕ್ಸ್"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "ಮುಂಬರುವ ಗಡುವುಗಳು"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ಅಂತಿಮ ಯೋಜನೆ"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "ಕಾರಣ: ಜುಲೈ 23, 2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "ಕಾರಣ: ಜುಲೈ 28, 2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "ಪೂರ್ಣಗೊಂಡ ಪಾಠ: ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್‌ಗೆ ಪರಿಚಯ"
 
@@ -5514,6 +5915,529 @@ msgstr "ಕೋರ್ಸ್‌ಗಳ ಸಂಖ್ಯೆ"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "ತಿಂಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "LMS ವೇದಿಕೆಗಳು"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "ತೊಡಗಿಸಿಕೊಳ್ಳಿ, ಚರ್ಚಿಸಿ ಮತ್ತು ಒಟ್ಟಿಗೆ ಕಲಿಯಿರಿ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "ವೆಬ್ ಡೆವಲಪ್ಮೆಂಟ್ ಫಂಡಮೆಂಟಲ್ಸ್"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "ಸಾಮಾನ್ಯ ಚರ್ಚೆ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "ಫೋರಂ ಪೋಸ್ಟ್‌ಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "ಒಟ್ಟು ಅಂಕಗಳು:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "ಒಟ್ಟು ಅಂಕಗಳು:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "ಸಕ್ರಿಯ ಕೋರ್ಸ್‌ಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "ಟಿಕೆಟ್ ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "ಪ್ರತಿಕ್ರಿಯಾಶೀಲ ವೆಬ್ ವಿನ್ಯಾಸಕ್ಕಾಗಿ ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "ಪ್ರಾರಂಭಿಸಿ"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 ಪ್ರತ್ಯುತ್ತರಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 ಗಂಟೆಗಳ ಹಿಂದೆ"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "ಡೇಟಾ ವಿಶ್ಲೇಷಣೆಗಾಗಿ ಪೈಥಾನ್ vs R: ಸಾಧಕ-ಬಾಧಕಗಳು?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 ಪ್ರತ್ಯುತ್ತರಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 ದಿನದ ಹಿಂದೆ"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಅತ್ಯುತ್ತಮವಾಗಿಸಲು ಸಲಹೆಗಳು?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 ಪ್ರತ್ಯುತ್ತರಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "ಕಳೆದ 30 ದಿನಗಳು"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "AI ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ನೈತಿಕ ಪರಿಗಣನೆಗಳು"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 ಪ್ರತ್ಯುತ್ತರಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "ಕಳೆದ 30 ದಿನಗಳು"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "AI ಗೆ ಪರಿಚಯ"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 ಪ್ರತ್ಯುತ್ತರಗಳು • 1.2k ವೀಕ್ಷಣೆಗಳು"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ಚೌಕಟ್ಟುಗಳ ಹೋಲಿಕೆ"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 ಪ್ರತ್ಯುತ್ತರಗಳು • 980 ವೀಕ್ಷಣೆಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 ಪ್ರತ್ಯುತ್ತರಗಳು • 850 ವೀಕ್ಷಣೆಗಳು"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "ಹೊಸ ಟಿಕೆಟ್ ರಚಿಸಿ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "ಶೀರ್ಷಿಕೆ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "ಕೋರ್ಸ್ ಕವರ್"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "ಹೊಸ ಟಿಕೆಟ್ ರಚಿಸಿ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "ನಿಮ್ಮ ಶ್ರೇಣಿಗಳು"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "ನಿಮ್ಮ ಶೈಕ್ಷಣಿಕ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "ಗ್ರೇಡ್ ಸಾರಾಂಶ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "ಒಟ್ಟಾರೆ ಪ್ರಗತಿ"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "ಅತ್ಯುನ್ನತ ಶ್ರೇಣಿ:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "ಕಡಿಮೆ ದರ್ಜೆ:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "ರೇಟಿಂಗ್ ವಿತರಣೆ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "ಕೋರ್ಸ್"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "ಸ್ಥಿತಿ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "ಶೇಖರಣಾ ಬಳಕೆಯ ಪ್ರವೃತ್ತಿ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "ಕೋರ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr "ಆಯ್ದ ಕೋರ್ಸ್‌ಗೆ ವಿವರವಾದ ಗ್ರೇಡ್ ಮಾಹಿತಿಯನ್ನು ಇಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "ಗ್ರೇಡ್ (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "ಕೋರ್ಸ್‌ಗಳಾದ್ಯಂತ ಗ್ರೇಡ್ ಟ್ರೆಂಡ್"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ - LMS ನಿರ್ವಾಹಕ"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr ""
+"ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಗಳನ್ನು ಹುಡುಕಿ ಮತ್ತು ನಿಮಗೆ ಅಗತ್ಯವಿರುವ ಬೆಂಬಲವನ್ನು "
+"ಪಡೆಯಿರಿ"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "ನಾವು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "ಕೋರ್ಸ್‌ಗಳನ್ನು ಹುಡುಕಿ..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "AI ಹುಡುಕಾಟ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "ವಿದ್ಯಾರ್ಥಿಯ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಮರುಹೊಂದಿಸುವುದು ಹೇಗೆ?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು, ಈ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "ಲಾಗಿನ್ ಪುಟದಲ್ಲಿ 'ಪಾಸ್‌ವರ್ಡ್ ಮರೆತುಹೋಗಿದೆ' ಲಿಂಕ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "ಮಾನ್ಯವಾದ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "ಪಾಸ್ವರ್ಡ್ ಮರುಹೊಂದಿಸುವ ಲಿಂಕ್ಗಾಗಿ ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr ""
+"ಹೊಸ ಪಾಸ್‌ವರ್ಡ್ ರಚಿಸಲು ಲಿಂಕ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಸೂಚನೆಗಳನ್ನು ಅನುಸರಿಸಿ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "ಕೋರ್ಸ್‌ಗೆ ದಾಖಲಾಗಿದ್ದಾರೆ"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "ಕೋರ್ಸ್ ಕ್ಯಾಟಲಾಗ್ ಅನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "ನೀವು ಆಸಕ್ತಿ ಹೊಂದಿರುವ ಕೋರ್ಸ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "ಕೋರ್ಸ್ ಪುಟದಲ್ಲಿ 'ನೋಂದಣಿ' ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "ದಾಖಲಾತಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಪ್ರಾಂಪ್ಟ್‌ಗಳನ್ನು ಅನುಸರಿಸಿ"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "ನನ್ನ ಪ್ರಗತಿಯನ್ನು ನಾನು ಹೇಗೆ ಟ್ರ್ಯಾಕ್ ಮಾಡುವುದು?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "ನಿಮ್ಮ ಪ್ರಗತಿಯನ್ನು ನೀವು ಈ ಮೂಲಕ ಟ್ರ್ಯಾಕ್ ಮಾಡಬಹುದು:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "ಕಲಿಯುವವರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "ಪ್ರತಿ ಕೋರ್ಸ್‌ನಲ್ಲಿ ಪ್ರಗತಿ ಪಟ್ಟಿಯನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr ""
+"ನಿಮ್ಮ ಪೂರ್ಣಗೊಂಡ ಕಾರ್ಯಯೋಜನೆಗಳು ಮತ್ತು ರಸಪ್ರಶ್ನೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "'ಗ್ರೇಡ್‌ಗಳು' ವಿಭಾಗದಲ್ಲಿ ನಿಮ್ಮ ಗ್ರೇಡ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "ಲೈವ್ ಚಾಟ್ ಬೆಂಬಲ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "ಲೈವ್ ಚಾಟ್ ಬೆಂಬಲ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "ಒಟ್ಟು ಆದಾಯ"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "ಬಳಕೆದಾರ ಮಾರ್ಗದರ್ಶಿ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "ಸಮುದಾಯ ವೇದಿಕೆ"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "ಸಿಸ್ಟಮ್ ನವೀಕರಣಗಳು"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "ಹೆಚ್ಚಿನ ಸಹಾಯ ಬೇಕೇ?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ನಮ್ಮ ಬೆಂಬಲ ತಂಡ ಇಲ್ಲಿದೆ."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "ನಿಯೋಜನೆಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "ನಿಮ್ಮ ಗೆಳೆಯರಲ್ಲಿ ನೀವು ಹೇಗೆ ಸ್ಥಾನ ಪಡೆದಿದ್ದೀರಿ ಎಂಬುದನ್ನು ನೋಡಿ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "ನಿಮ್ಮ ಇಮೇಲ್"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "ನಿಮ್ಮ ಒಟ್ಟಾರೆ ಶ್ರೇಣಿ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "ಉನ್ನತ ಪ್ರದರ್ಶನಕಾರರು"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "ಒಟ್ಟಾರೆ ಪ್ರಗತಿ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "ಸರಾಸರಿ ಸ್ಕೋರ್"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "ಬೋಧಕರು ಮತ್ತು ಗೆಳೆಯರೊಂದಿಗೆ ಸಂವಹನ ನಡೆಸಿ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "ಏಕೀಕರಣಗಳು"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "ಸಂದೇಶ ಕಳುಹಿಸಿ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "ಕಳುಹಿಸು"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "ಇವರಿಗೆ:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "ಸಂದೇಶಗಳು"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5540,44 +6464,565 @@ msgid "Ethics"
 msgstr "ನೀತಿಶಾಸ್ತ್ರ"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "ನೈತಿಕ ವ್ಯಾಪಾರ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಅನುಸರಣೆ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "ಕೋರ್ಸ್ ಆರಂಭಿಸಿದೆ"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "ಪ್ರೊಫೈಲ್ ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "ನಮ್ಮ ಬಗ್ಗೆ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "ಕೋರ್ಸ್ ಮಾಹಿತಿ"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "ದಾಖಲಾತಿಗಳು"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "ಬ್ಯಾಡ್ಜ್‌ಗಳು"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "ದಿನಗಳು"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr ""
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ - 60%% ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ - 30%% ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆಗಳು"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "ಕಲಿಕೆಯ ಪ್ರಗತಿ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "ಕಲಿಕೆಯನ್ನು ಕ್ರಾಂತಿಗೊಳಿಸಿ"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "ಕಲಿಕೆಯ ಸ್ಟ್ರೀಕ್"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "ಆದ್ಯತೆಯ ಕೋರ್ಸ್ ಸ್ವರೂಪ"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "ಗುರಿ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "ನಿಮ್ಮ ಕಲಿಕೆಯ ಪ್ರಯಾಣ ಮತ್ತು ಸಾಧನೆಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "ಕಲಿಯುವವರು"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "ಕೋರ್ಸ್"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "ಕಲಿಕೆಯ ಸ್ಟ್ರೀಕ್"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "ಕೋರ್ಸ್‌ಗಳು ಪ್ರಗತಿಯಲ್ಲಿವೆ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ - 75% ರಷ್ಟು ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "ಲಾಕ್ ಮಾಡಲಾಗಿದೆ - ಮೊದಲು ಪೂರ್ವಾಪೇಕ್ಷಿತಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 ಗಂಟೆಗಳ ಹಿಂದೆ"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "ಗಳಿಸಿದ ಬ್ಯಾಡ್ಜ್: CSS ಮಾಸ್ಟರ್"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 ದಿನದ ಹಿಂದೆ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 ದಿನದ ಹಿಂದೆ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "ಪೂರ್ಣಗೊಂಡ ಪಾಠ: ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್‌ಗೆ ಪರಿಚಯ"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "ಮುಂದಿನ ಕ್ರಮಗಳನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "ಪೂರ್ಣಗೊಂಡ ಪಾಠ: ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್‌ಗೆ ಪರಿಚಯ"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "ನಿಮ್ಮ JS ಕೌಶಲ್ಯಗಳನ್ನು ಗಟ್ಟಿಗೊಳಿಸಲು ಉಳಿದ ಪಾಠಗಳನ್ನು ಮುಗಿಸಿ."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "ಕೋರ್ಸ್ ಮುಂದುವರಿಸಿ"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "ಮಾಹಿತಿ ಭದ್ರತಾ ನಿರ್ವಹಣಾ ವ್ಯವಸ್ಥೆ (ISMS)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "ಒಟ್ಟು ಪ್ರಕಟಣೆಗಳು"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "ಮಾಹಿತಿ ಸುರಕ್ಷತೆಯ ಪ್ರಮುಖ ತತ್ವಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "ಈ ತ್ವರಿತ ಮೌಲ್ಯಮಾಪನದೊಂದಿಗೆ ನಿಮ್ಮ ಪೈಥಾನ್ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ."
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 ಗಂಟೆಗಳು"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "ಒಟ್ಟು ಪ್ರಕಟಣೆಗಳು"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 ಮಾಡ್ಯೂಲ್‌ಗಳು"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "ಡೇಟಾ ದೃಶ್ಯೀಕರಣ ರಸಪ್ರಶ್ನೆ"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "ಮನಿ ಲಾಂಡರಿಂಗ್ ವಿರೋಧಿ"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr "ಈ ಹೊಸ ಕೋರ್ಸ್‌ನೊಂದಿಗೆ ನಿಮ್ಮ ಡೇಟಾ ಸೈನ್ಸ್ ಕೌಶಲ್ಯಗಳನ್ನು ಹೆಚ್ಚಿಸಿಕೊಳ್ಳಿ."
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "ಮನಿ ಲಾಂಡರಿಂಗ್ ಚಟುವಟಿಕೆಗಳನ್ನು ಗುರುತಿಸಲು ಮತ್ತು ತಡೆಯಲು ಕಲಿಯಿರಿ"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "ಕೋರ್ಸ್ ರಚಿಸಿ"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2.5 ಗಂಟೆಗಳು"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "ನನ್ನ ಕೋರ್ಸ್‌ಗಳು - LMS ಲರ್ನರ್"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 ಮಾಡ್ಯೂಲ್‌ಗಳು"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "ಕೋರ್ಸ್ ಸಾಮಗ್ರಿಗಳು ಮತ್ತು ಸಹಾಯಕವಾದ ವಿಷಯವನ್ನು ಪ್ರವೇಶಿಸಿ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "ಕೋರ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "ಕಲಿಕೆಯ ಸಂಪನ್ಮೂಲಗಳು"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "ಹೆಚ್ಚುವರಿ ಓದುವಿಕೆ"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "ಸೈಟ್ ಹೆಸರು"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "ಕ್ಯಾಲೆಂಡರ್"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "ಲೈಬ್ರರಿ ಪೋರ್ಟಲ್"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "ಸಂಪನ್ಮೂಲ ಬಳಕೆ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "ಡೌನ್‌ಲೋಡ್‌ಗಳು"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "ವೇದಿಕೆಗೆ ಭೇಟಿ ನೀಡಿ"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "ಓದು"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "ಕೊನೆಯದಾಗಿ ಪ್ರವೇಶಿಸಲಾಗಿದೆ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "ಕೊನೆಯದಾಗಿ ಪ್ರವೇಶಿಸಲಾಗಿದೆ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು - LMS ನಿರ್ವಾಹಕ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "ಭದ್ರತಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "ನಿಮ್ಮ ಖಾತೆಯ ಆದ್ಯತೆಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "ಪ್ರೊಫೈಲ್ ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "ಪ್ರವೇಶ ಎಣಿಕೆ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "ಪಾಸ್ವರ್ಡ್ ನೀತಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "ಇಮೇಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "ಸೈಟ್ ಹೆಸರು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "ಸೈಟ್ ಹೆಸರು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "ನಿರ್ವಾಹಕ ಇಮೇಲ್"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "ನವೆಂಬರ್"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "ಅವರು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "ಪಾಸ್ವರ್ಡ್ ನೀತಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "ಪಾಸ್ವರ್ಡ್ ನೀತಿ"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "ಹೊಸ ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "ಪಾಸ್ವರ್ಡ್ ನೀತಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "ಅಧಿಸೂಚನೆಗಳ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "ಅಧಿಸೂಚನೆಗಳು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "ರಫ್ತು ವಿತರಣೆಗಳು"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "ಭದ್ರತಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "ಪ್ರೊಫೈಲ್ ಗೋಚರತೆ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "ಪ್ರಕಟಿಸಿ"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "ಸ್ನೇಹಿತರು ಮಾತ್ರ"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "ಖಾಸಗಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "ಬಳಕೆದಾರರ ಚಟುವಟಿಕೆ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "ಕಲಿಕೆಯ ಸ್ಟ್ರೀಕ್"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "ದೃಶ್ಯ"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "ಶ್ರವಣೇಂದ್ರಿಯ"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "ಓದಿ/ಬರೆಯಿರಿ"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "ಕೈನೆಸ್ಥೆಟಿಕ್"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "ಸರಾಸರಿ ಪ್ರತಿಕ್ರಿಯೆ ಸಮಯ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "ಎಚ್ಚರಿಕೆ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "ಮಧ್ಯಾಹ್ನ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "ಘಟನೆಗಳು"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "ಲೇಟ್ ನೈಟ್"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "ಕಲಿಕೆಯ ಪ್ರಗತಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5644,13 +7089,17 @@ msgstr "ಕಟಿಂಗ್ ಎಡ್ಜ್ ವೈಶಿಷ್ಟ್ಯಗಳು"
 #: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Learning Path"
-msgid "Smart Learning Paths"
+msgid "Adaptive Learning Paths"
 msgstr "ಕಲಿಕೆಯ ಮಾರ್ಗ"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "ನಮ್ಮ ಅಲ್ಗಾರಿದಮ್‌ಗಳು ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಕಲಿಕೆಯ ಪ್ರಯಾಣಗಳನ್ನು ರಚಿಸಲು ಕಲಿಯುವವರ "
 "ನಡವಳಿಕೆ ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ವಿಶ್ಲೇಷಿಸುತ್ತದೆ, ಅತ್ಯುತ್ತಮ ಕೌಶಲ್ಯ "
@@ -5658,30 +7107,73 @@ msgstr ""
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "ಸುಧಾರಿತ ಅರೇಬಿಕ್"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ದರ"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"ಕಲಿಯುವವರ ಫಲಿತಾಂಶಗಳನ್ನು ಮುನ್ಸೂಚಿಸಲು, ಸಂಭಾವ್ಯ ಸವಾಲುಗಳನ್ನು ಗುರುತಿಸಲು ಮತ್ತು "
-"ಉತ್ತಮ ಫಲಿತಾಂಶಗಳಿಗಾಗಿ ಪೂರ್ವಭಾವಿಯಾಗಿ ಮಧ್ಯಪ್ರವೇಶಿಸಲು ಡೇಟಾ-ಚಾಲಿತ ಒಳನೋಟಗಳನ್ನು "
-"ನಿಯಂತ್ರಿಸಿ."
+"ನಮ್ಮ ಪ್ರಬಲ ವರದಿ ಮಾಡುವ ಪರಿಕರಗಳೊಂದಿಗೆ ಕಲಿಯುವವರ ಪ್ರಗತಿ, ಕೋರ್ಸ್ ಪರಿಣಾಮಕಾರಿತ್ವ "
+"ಮತ್ತು ಒಟ್ಟಾರೆ ತರಬೇತಿ ಪ್ರಭಾವದ ಬಗ್ಗೆ ಮೌಲ್ಯಯುತವಾದ ಒಳನೋಟಗಳನ್ನು ಪಡೆಯಿರಿ."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "ತಲ್ಲೀನಗೊಳಿಸುವ ವಿಆರ್ ತರಬೇತಿ"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "ಸ್ವಯಂಚಾಲಿತ ವಿಷಯ ಶಿಫಾರಸುಗಳು"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"ಸಂಕೀರ್ಣ ಅಥವಾ ಹೆಚ್ಚಿನ-ಹಣಕಾಸು ಸನ್ನಿವೇಶಗಳಲ್ಲಿ ಹ್ಯಾಂಡ್ಸ್-ಆನ್, ಅಪಾಯ-ಮುಕ್ತ "
-"ತರಬೇತಿಗಾಗಿ ವರ್ಚುವಲ್ ರಿಯಾಲಿಟಿ ಅನುಭವಗಳನ್ನು ಸಂಯೋಜಿಸಿ."
+"ಕಲಿಯುವವರ ಆಸಕ್ತಿಗಳು ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆಯ ಆಧಾರದ ಮೇಲೆ ಸಂಬಂಧಿತ ಕೋರ್ಸ್‌ಗಳು ಮತ್ತು "
+"ಸಂಪನ್ಮೂಲಗಳನ್ನು ಸೂಚಿಸಲು ಯಂತ್ರ ಕಲಿಕೆ ಅಲ್ಗಾರಿದಮ್‌ಗಳನ್ನು ನಿಯಂತ್ರಿಸಿ."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "ಸಕ್ರಿಯ ಅವಧಿಗಳು"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"ಅಂತರ್ನಿರ್ಮಿತ ವೇದಿಕೆಗಳು, ಚಾಟ್ ರೂಮ್‌ಗಳು ಮತ್ತು ಗುಂಪು ಯೋಜನೆಗಳ ಮೂಲಕ ಸಹಯೋಗ ಮತ್ತು "
+"ಜ್ಞಾನ ಹಂಚಿಕೆಯನ್ನು ಉತ್ತೇಜಿಸಿ."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "ಕಲಿಕೆಯನ್ನು ಕ್ರಾಂತಿಗೊಳಿಸಿ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"ನಮ್ಮ ಸ್ಪಂದಿಸುವ ವಿನ್ಯಾಸ ಮತ್ತು iOS ಮತ್ತು Android ಗಾಗಿ ಮೀಸಲಾದ ಮೊಬೈಲ್ "
+"ಅಪ್ಲಿಕೇಶನ್‌ನೊಂದಿಗೆ ಪ್ರಯಾಣದಲ್ಲಿರುವಾಗ ಕೋರ್ಸ್‌ಗಳು ಮತ್ತು ವಸ್ತುಗಳನ್ನು ಪ್ರವೇಶಿಸಿ."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ದರ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"ಕೋರ್ಸ್ ಪೂರ್ಣಗೊಂಡ ನಂತರ ಸಾಧನೆಯ ಬ್ಯಾಡ್ಜ್‌ಗಳು, ಲೀಡರ್‌ಬೋರ್ಡ್‌ಗಳು ಮತ್ತು ಸ್ವಯಂಚಾಲಿತ"
+" ಪ್ರಮಾಣಪತ್ರ ಉತ್ಪಾದನೆಯೊಂದಿಗೆ ತೊಡಗಿಸಿಕೊಳ್ಳುವಿಕೆಯನ್ನು ಹೆಚ್ಚಿಸಿ."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5884,16 +7376,14 @@ msgid "Intelligent content recommendations"
 msgstr "ಬುದ್ಧಿವಂತ ವಿಷಯ ಶಿಫಾರಸುಗಳು"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "ಹೊಂದಾಣಿಕೆಯ ಕಲಿಕೆಯ ದೃಶ್ಯೀಕರಣ"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "ಯಶಸ್ಸಿನ ಕಥೆಗಳು"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "ಕ್ಲೈಂಟ್ ಅವತಾರ"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5904,12 +7394,17 @@ msgid "HR Director, TechCorp"
 msgstr "ಮಾನವ ಸಂಪನ್ಮೂಲ ನಿರ್ದೇಶಕರು, ಟೆಕ್ಕಾರ್ಪ್"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS ನಮ್ಮ ಕಾರ್ಪೊರೇಟ್ ತರಬೇತಿಯನ್ನು ಮಾರ್ಪಡಿಸಿದೆ. ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ "
 "ಕಲಿಕೆಯ ಮಾರ್ಗಗಳು ಮತ್ತು ಭವಿಷ್ಯ ವಿಶ್ಲೇಷಣೆಗಳು ಉದ್ಯೋಗಿ ನಿಶ್ಚಿತಾರ್ಥ ಮತ್ತು "
@@ -5926,19 +7421,17 @@ msgid "L&D Manager, InnovateNow"
 msgstr "L&D ಮ್ಯಾನೇಜರ್, InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"NextGen AI LMS ಒದಗಿಸಿದ AI-ಚಾಲಿತ ಒಳನೋಟಗಳು ಉದ್ಯೋಗಿಗಳ ಅಭಿವೃದ್ಧಿಗೆ ನಮ್ಮ "
-"ವಿಧಾನವನ್ನು ಕ್ರಾಂತಿಗೊಳಿಸಿವೆ. ನಾವು ಈಗ ಕೌಶಲ್ಯದ ಅಂತರವನ್ನು ಪೂರ್ವಭಾವಿಯಾಗಿ "
-"ಗುರುತಿಸಬಹುದು ಮತ್ತು ನಮ್ಮ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಅಭೂತಪೂರ್ವ ನಿಖರತೆಯೊಂದಿಗೆ "
-"ಹೊಂದಿಸಬಹುದು. ಈ ಅತ್ಯಾಧುನಿಕ ವ್ಯವಸ್ಥೆಯನ್ನು ಅಳವಡಿಸಿದ ನಂತರ ನಮ್ಮ ತಂಡದ ಉತ್ಪಾದಕತೆ "
-"30% ರಷ್ಟು ಹೆಚ್ಚಾಗಿದೆ."
+"NextGen LMS ಅನ್ನು ಕಾರ್ಯಗತಗೊಳಿಸುವುದರಿಂದ ಉದ್ಯೋಗಿಗಳ ಅಭಿವೃದ್ಧಿಗೆ ನಮ್ಮ ವಿಧಾನವನ್ನು"
+" ಮಾರ್ಪಡಿಸಿದೆ. ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ನ ದೃಢವಾದ ವರದಿ ಮಾಡುವ ಪರಿಕರಗಳು ನಮ್ಮ ತರಬೇತಿ "
+"ಕಾರ್ಯಕ್ರಮಗಳ ಪರಿಣಾಮಕಾರಿತ್ವದ ಬಗ್ಗೆ ನಮಗೆ ಅಮೂಲ್ಯವಾದ ಒಳನೋಟಗಳನ್ನು ನೀಡಿವೆ. ನಮ್ಮ "
+"ವಿಷಯ ಮತ್ತು ವಿತರಣಾ ವಿಧಾನಗಳನ್ನು ಸುಧಾರಿಸಲು ನಾವು ಈಗ ಡೇಟಾ-ಚಾಲಿತ ನಿರ್ಧಾರಗಳನ್ನು "
+"ತೆಗೆದುಕೊಳ್ಳಬಹುದು."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5951,10 +7444,8 @@ msgid "Starter"
 msgstr "ಪ್ರಾರಂಭಿಸಿ"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "ತಿಂಗಳು"
+msgid "Perfect for small teams"
+msgstr "ಸಣ್ಣ ತಂಡಗಳಿಗೆ ಪರಿಪೂರ್ಣ"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -5975,10 +7466,8 @@ msgid "24/7 chatbot support"
 msgstr "24/7 ಚಾಟ್‌ಬಾಟ್ ಬೆಂಬಲ"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "ಪ್ರಾರಂಭಿಕ ಮಾರ್ಗದರ್ಶಿ"
+msgid "Contact Sales"
+msgstr "ಮಾರಾಟವನ್ನು ಸಂಪರ್ಕಿಸಿ"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -5987,8 +7476,8 @@ msgid "Most Popular"
 msgstr "ಅತ್ಯಂತ ಜನಪ್ರಿಯ ಕೋರ್ಸ್‌ಗಳು"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "ವೃತ್ತಿಪರ"
+msgid "Ideal for growing organizations"
+msgstr "ಬೆಳೆಯುತ್ತಿರುವ ಸಂಸ್ಥೆಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -6003,28 +7492,18 @@ msgid "Automated content recommendations"
 msgstr "ಸ್ವಯಂಚಾಲಿತ ವಿಷಯ ಶಿಫಾರಸುಗಳು"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "ವಿಆರ್ ತರಬೇತಿ ಮಾಡ್ಯೂಲ್‌ಗಳು"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "ಪ್ರಿಂಟ್ ವರದಿ"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "Pro ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "ಉದ್ಯಮ"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "ಕಸ್ಟಮ್ ವರದಿಗಳು"
+msgid "Tailored for large enterprises"
+msgstr "ದೊಡ್ಡ ಉದ್ಯಮಗಳಿಗೆ ತಕ್ಕಂತೆ"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6039,16 +7518,8 @@ msgid "Custom model development"
 msgstr "ಕಸ್ಟಮ್ ಮಾದರಿ ಅಭಿವೃದ್ಧಿ"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "ಸುಧಾರಿತ ವಿಆರ್ ಮತ್ತು ಎಆರ್ ಸಾಮರ್ಥ್ಯಗಳು"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "ಮೀಸಲಾದ ಖಾತೆ ವ್ಯವಸ್ಥಾಪಕ"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "ಮಾರಾಟವನ್ನು ಸಂಪರ್ಕಿಸಿ"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6071,20 +7542,18 @@ msgid "Empowering the future of learning with innovative technology."
 msgstr "ನವೀನ ತಂತ್ರಜ್ಞಾನದೊಂದಿಗೆ ಕಲಿಕೆಯ ಭವಿಷ್ಯವನ್ನು ಸಶಕ್ತಗೊಳಿಸುವುದು."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 ಟೆಕ್ ಸ್ಟ್ರೀಟ್, ಸ್ಯಾನ್ ಫ್ರಾನ್ಸಿಸ್ಕೋ, CA 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "ನ್ಯೂಟೌನ್, ಕೋಲ್ಕತ್ತಾ, ಪಶ್ಚಿಮ ಬಂಗಾಳ, ಭಾರತ, 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "ದೂರವಾಣಿ: (555) 123-4567"
+msgid "Phone: __"
+msgstr "ದೂರವಾಣಿ:__"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "ಇಮೇಲ್: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6133,12 +7602,6 @@ msgid "Support Center"
 msgstr "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ ಕೇಂದ್ರ"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "ಸಿಸ್ಟಮ್ ನವೀಕರಣಗಳು"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ"
 
@@ -6165,6 +7628,254 @@ msgstr "ನೀವು ಯಶಸ್ವಿಯಾಗಿ ಲಾಗ್ ಇನ್ ಆ�
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "ಲಾಗಿನ್ ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಕೆಳಗಿನ ದೋಷಗಳನ್ನು ಪರಿಶೀಲಿಸಿ."
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "ಸುಧಾರಿತ ಪೈಥಾನ್ ಪ್ರೋಗ್ರಾಮಿಂಗ್"
+
+#~ msgid "Basic Details"
+#~ msgstr "ಮೂಲ ವಿವರಗಳು"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "ಕೋರ್ಸ್ ಅನ್ನು ಹೇಗೆ ತಲುಪಿಸಲಾಗುತ್ತದೆ?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "ಫೆಸಿಲಿಟೇಟರ್‌ಗಳನ್ನು ನಿಯೋಜಿಸಿ"
+
+#~ msgid "Assign Participants"
+#~ msgstr "ಭಾಗವಹಿಸುವವರನ್ನು ನಿಯೋಜಿಸಿ"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr "ಈ ವಿತರಣೆಗಾಗಿ ಕೋರ್ಸ್ ವಿಷಯಕ್ಕೆ ಪ್ರವೇಶ ಅವಧಿಯನ್ನು ಸೇರಿಸಲು ನೀವು ಬಯಸುವಿರಾ?"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "ಹೌದು, ಪ್ರವೇಶ ಅವಧಿಯನ್ನು ಸೇರಿಸಿ"
+
+#~ msgid "Select start date"
+#~ msgstr "ಪ್ರಾರಂಭ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#~ msgid "Select end date"
+#~ msgstr "ಅಂತಿಮ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "ಈ ವಿತರಣೆಗಾಗಿ ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ದಿನಾಂಕವನ್ನು ಸೇರಿಸಲು ಬಯಸುವಿರಾ?"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "ಹೌದು, ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "ಈ ವಿತರಣೆಗಾಗಿ ನೀವು ಭಾಗವಹಿಸುವವರಿಂದ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಪಡೆಯಲು ಬಯಸುವಿರಾ?"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "ಹೌದು, ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸಂಗ್ರಹಿಸಿ"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "ಹೌದು, ಕಡ್ಡಾಯ ಎಂದು ಗುರುತಿಸಿ"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "ಈ ಕೋರ್ಸ್‌ಗಾಗಿ ಭಾಗವಹಿಸುವವರ ಹಾಜರಾತಿಯನ್ನು ಸೆರೆಹಿಡಿಯಲು ನೀವು ಬಯಸುವಿರಾ?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "ಹೌದು, ಹಾಜರಾತಿಯನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "ಈ ಕೋರ್ಸ್‌ಗೆ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆಯ ಪ್ರಮಾಣಪತ್ರದ ಅಗತ್ಯವಿದೆಯೇ?"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "ಹೌದು, ಪೂರ್ಣಗೊಂಡ ಪ್ರಮಾಣಪತ್ರದ ಅಗತ್ಯವಿದೆ"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "ಇಮೇಲ್ ಟೆಂಪ್ಲೇಟ್ ಅನ್ನು ಆಹ್ವಾನಿಸಿ"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ ಇಮೇಲ್ ಟೆಂಪ್ಲೇಟ್"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "ವಿತರಣೆಗಳನ್ನು ಹುಡುಕಿ..."
+
+#~ msgid "Cancelled"
+#~ msgstr "ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"
+
+#~ msgid "All Instructors"
+#~ msgstr "ಎಲ್ಲಾ ಬೋಧಕರು"
+
+#~ msgid "Instructor 1"
+#~ msgstr "ಬೋಧಕ 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "ಬೋಧಕ 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "ಬೋಧಕ 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "ರಫ್ತು ವಿತರಣೆಗಳು"
+
+#~ msgid "Delivery ID"
+#~ msgstr "ವಿತರಣಾ ID"
+
+#~ msgid "Manage Students"
+#~ msgstr "ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+
+#~ msgid "Withdraw"
+#~ msgstr "ಹಿಂತೆಗೆದುಕೊಳ್ಳಿ"
+
+#~ msgid "Approve"
+#~ msgstr "ಅನುಮೋದಿಸಿ"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "ವಿಷಯ"
+
+#~ msgid "Category 1"
+#~ msgstr "ವರ್ಗ 1"
+
+#~ msgid "Category 2"
+#~ msgstr "ವರ್ಗ 2"
+
+#~ msgid "Category 3"
+#~ msgstr "ವರ್ಗ 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ನೀತಿ"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "ಎಲ್ಲಾ ಉದ್ಯೋಗಿಗಳಿಗೆ ಅಗತ್ಯ ಅನುಸರಣೆ ತರಬೇತಿ"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "ಈ ಸಮಗ್ರ ಕೋರ್ಸ್ ನಮ್ಮ ಕಂಪನಿಯ ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ನೀತಿಯ ಕುರಿತು "
+#~ "ನಿಮಗೆ ಶಿಕ್ಷಣ ನೀಡುತ್ತದೆ. ನೀವು ಕಾನೂನು ಚೌಕಟ್ಟಿನ ಬಗ್ಗೆ ಕಲಿಯುವಿರಿ, ಸಂಭಾವ್ಯ "
+#~ "ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸಿ ಮತ್ತು ವಿವಿಧ ವ್ಯವಹಾರ ಸಂದರ್ಭಗಳಲ್ಲಿ ನೀತಿಯನ್ನು ಹೇಗೆ "
+#~ "ಅನುಸರಿಸಬೇಕು ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುತ್ತೀರಿ."
+
+#~ msgid "2 hours"
+#~ msgstr "2 ಗಂಟೆಗಳು"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ಮೂಲಗಳು"
+
+#~ msgid "SCORM Package"
+#~ msgstr "SCORM ಪ್ಯಾಕೇಜ್"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "ಲಂಚದ ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸುವುದು"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "ಕಂಪನಿಯ ಭ್ರಷ್ಟಾಚಾರ ವಿರೋಧಿ ನೀತಿ"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "ಕೇಸ್ ಸ್ಟಡೀಸ್: ಎಥಿಕಲ್ ಡಿಸಿಷನ್ ಮೇಕಿಂಗ್"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "ಲಂಚ-ವಿರೋಧಿ ಮತ್ತು ಭ್ರಷ್ಟಾಚಾರ-ವಿರೋಧಿ ಮೌಲ್ಯಮಾಪನ"
+
+#~ msgid "Take Quiz"
+#~ msgstr "ರಸಪ್ರಶ್ನೆ ತೆಗೆದುಕೊಳ್ಳಿ"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "ನೈತಿಕ ವ್ಯಾಪಾರ ಅಭ್ಯಾಸಗಳು ಮತ್ತು ಅನುಸರಣೆ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "ಮಾಹಿತಿ ಭದ್ರತಾ ನಿರ್ವಹಣಾ ವ್ಯವಸ್ಥೆ (ISMS)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "ಮಾಹಿತಿ ಸುರಕ್ಷತೆಯ ಪ್ರಮುಖ ತತ್ವಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ"
+
+#~ msgid "3 hours"
+#~ msgstr "3 ಗಂಟೆಗಳು"
+
+#~ msgid "6 modules"
+#~ msgstr "6 ಮಾಡ್ಯೂಲ್‌ಗಳು"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "ಮನಿ ಲಾಂಡರಿಂಗ್ ವಿರೋಧಿ"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "ಮನಿ ಲಾಂಡರಿಂಗ್ ಚಟುವಟಿಕೆಗಳನ್ನು ಗುರುತಿಸಲು ಮತ್ತು ತಡೆಯಲು ಕಲಿಯಿರಿ"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2.5 ಗಂಟೆಗಳು"
+
+#~ msgid "4 modules"
+#~ msgstr "4 ಮಾಡ್ಯೂಲ್‌ಗಳು"
+
+#, fuzzy
+#~ msgid "Smart Learning Paths"
+#~ msgstr "ಕಲಿಕೆಯ ಮಾರ್ಗ"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "ಸುಧಾರಿತ ಅರೇಬಿಕ್"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "ಕಲಿಯುವವರ ಫಲಿತಾಂಶಗಳನ್ನು ಮುನ್ಸೂಚಿಸಲು, ಸಂಭಾವ್ಯ ಸವಾಲುಗಳನ್ನು ಗುರುತಿಸಲು ಮತ್ತು "
+#~ "ಉತ್ತಮ ಫಲಿತಾಂಶಗಳಿಗಾಗಿ ಪೂರ್ವಭಾವಿಯಾಗಿ ಮಧ್ಯಪ್ರವೇಶಿಸಲು ಡೇಟಾ-ಚಾಲಿತ ಒಳನೋಟಗಳನ್ನು "
+#~ "ನಿಯಂತ್ರಿಸಿ."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "ತಲ್ಲೀನಗೊಳಿಸುವ ವಿಆರ್ ತರಬೇತಿ"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "ಸಂಕೀರ್ಣ ಅಥವಾ ಹೆಚ್ಚಿನ-ಹಣಕಾಸು ಸನ್ನಿವೇಶಗಳಲ್ಲಿ ಹ್ಯಾಂಡ್ಸ್-ಆನ್, ಅಪಾಯ-ಮುಕ್ತ "
+#~ "ತರಬೇತಿಗಾಗಿ ವರ್ಚುವಲ್ ರಿಯಾಲಿಟಿ ಅನುಭವಗಳನ್ನು ಸಂಯೋಜಿಸಿ."
+
+#~ msgid "Client Avatar"
+#~ msgstr "ಕ್ಲೈಂಟ್ ಅವತಾರ"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "NextGen AI LMS ಒದಗಿಸಿದ AI-ಚಾಲಿತ ಒಳನೋಟಗಳು ಉದ್ಯೋಗಿಗಳ ಅಭಿವೃದ್ಧಿಗೆ ನಮ್ಮ "
+#~ "ವಿಧಾನವನ್ನು ಕ್ರಾಂತಿಗೊಳಿಸಿವೆ. ನಾವು ಈಗ ಕೌಶಲ್ಯದ ಅಂತರವನ್ನು ಪೂರ್ವಭಾವಿಯಾಗಿ "
+#~ "ಗುರುತಿಸಬಹುದು ಮತ್ತು ನಮ್ಮ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಅಭೂತಪೂರ್ವ ನಿಖರತೆಯೊಂದಿಗೆ "
+#~ "ಹೊಂದಿಸಬಹುದು. ಈ ಅತ್ಯಾಧುನಿಕ ವ್ಯವಸ್ಥೆಯನ್ನು ಅಳವಡಿಸಿದ ನಂತರ ನಮ್ಮ ತಂಡದ ಉತ್ಪಾದಕತೆ "
+#~ "30% ರಷ್ಟು ಹೆಚ್ಚಾಗಿದೆ."
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "ತಿಂಗಳು"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "ಪ್ರಾರಂಭಿಕ ಮಾರ್ಗದರ್ಶಿ"
+
+#~ msgid "VR training modules"
+#~ msgstr "ವಿಆರ್ ತರಬೇತಿ ಮಾಡ್ಯೂಲ್‌ಗಳು"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "Pro ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "ಕಸ್ಟಮ್ ವರದಿಗಳು"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "ಸುಧಾರಿತ ವಿಆರ್ ಮತ್ತು ಎಆರ್ ಸಾಮರ್ಥ್ಯಗಳು"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 ಟೆಕ್ ಸ್ಟ್ರೀಟ್, ಸ್ಯಾನ್ ಫ್ರಾನ್ಸಿಸ್ಕೋ, CA 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "ದೂರವಾಣಿ: (555) 123-4567"
 
 #~ msgid "Norwegian"
 #~ msgstr "ನಾರ್ವೇಜಿಯನ್"

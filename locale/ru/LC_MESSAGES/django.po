@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-18 23:41+0530\n"
+"POT-Creation-Date: 2024-08-26 11:26+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "Сообщения"
 
@@ -335,6 +336,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Продолжительность"
@@ -624,12 +626,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Заказ"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -700,14 +702,18 @@ msgid "Change"
 msgstr "Изменять"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "Неизвестный"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "Да"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "Нет"
 
@@ -803,58 +809,69 @@ msgstr "Воскресенье"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "Мой"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "Вт"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "Обвенчались"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "Собирать"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "Пт"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "Суббота"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "Солнце"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "январь"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "февраль"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "Маршировать"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "апрель"
 
@@ -865,34 +882,42 @@ msgstr "апрель"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "Может"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "Июнь"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "Июль"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "Август"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "Сентябрь"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "Октябрь"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "ноябрь"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "декабрь"
 
@@ -1320,6 +1345,14 @@ msgstr "Джанго-сообщество"
 msgid "Connect, get help, or contribute"
 msgstr "Подключайтесь, получайте помощь или вносите свой вклад"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "х"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "и"
+
 #: lms/settings.py
 msgid "English"
 msgstr "Английский"
@@ -1485,7 +1518,6 @@ msgid "Active Announcements"
 msgstr "Активные объявления"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "Запланировано"
 
@@ -1521,7 +1553,6 @@ msgid "Maintenance"
 msgstr "Обслуживание"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1529,7 +1560,8 @@ msgid "All Statuses"
 msgstr "Все статусы"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "Активный"
 
@@ -1538,6 +1570,8 @@ msgid "Expired"
 msgstr "Истекший"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "Черновик"
 
@@ -1546,6 +1580,8 @@ msgid "Export Report"
 msgstr "Экспортный отчет"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Заголовок"
@@ -1559,7 +1595,8 @@ msgstr "Категория"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1575,12 +1612,13 @@ msgid "Expiry Date"
 msgstr "Дата истечения срока действия"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "Обручение"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1612,19 +1650,18 @@ msgstr "Удалить объявление"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Предыдущий"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "Следующий"
 
@@ -1695,6 +1732,7 @@ msgstr "Экзамен"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "Предстоящие события"
 
@@ -1736,6 +1774,7 @@ msgstr "Отслеживание и управление системными с
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "Сертификаты"
 
@@ -1748,7 +1787,6 @@ msgid "Certificates This Month"
 msgstr "Сертификаты в этом месяце"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Ожидающие одобрения"
 
@@ -1761,31 +1799,10 @@ msgstr "Курсы с сертификатами"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "Все курсы"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "ИТ и программирование"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "Бизнес"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "Языки"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "Наука и математика"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1821,16 +1838,18 @@ msgid "Certificate ID"
 msgstr "Идентификатор сертификата"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "Учащийся"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "Курс"
 
@@ -1839,27 +1858,20 @@ msgid "Issue Date"
 msgstr "Дата выпуска"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "Джон Доу"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "Продвинутое программирование на Python"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "Изданный"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "Отозван"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "Посмотреть сертификат"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "Скачать сертификат"
 
@@ -1892,147 +1904,127 @@ msgstr "хлебные крошки"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "Курсы"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "Создать доставку"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "Прогресс"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "Основные детали"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "Введите код доставки"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "Код доставки"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "Введите код доставки"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "Как будет проходить курс?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "Код доставки"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "Самостоятельный темп"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "Инструктор под руководством"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "Назначьте координаторов"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "Зачисления"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "Интеграции"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "Фасилитаторы"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "Назначить участников"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "Дата начала"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "Дата окончания"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "Участники"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "Расширенные настройки"
+msgid "Enter maximum participants"
+msgstr "Введите максимальное количество участников"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr "Хотите добавить период доступа к материалам курса для этой поставки?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "Да, добавить период доступа"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "Выберите дату начала"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "к"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "Завершенный"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "Выберите дату окончания"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "В архиве"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "Хотите добавить дату деактивации для этой поставки?"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "Является обязательным"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "Да, добавить дату деактивации"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "Выберите дату"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "Хотели бы вы получить отзыв от Участника по данной Поставке?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "Да, собирать отзывы"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr "Хотите пометить данную Поставку как Обязательную для Участника?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "Да, отметить как обязательное"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "Хотите фиксировать посещаемость этого курса участниками?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "Да, фиксировать посещаемость"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "Требуется ли для этого курса сертификат об окончании?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "Да, требуется сертификат об окончании"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "Настройки электронной почты"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "Шаблон электронного письма с приглашением"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "Шаблон электронного письма о завершении"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "Представлять на рассмотрение"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2051,104 +2043,21 @@ msgid "Deliveries"
 msgstr "Поставки"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "Поиск поставок..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "В ходе выполнения"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "Завершенный"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "Отменено"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "Все инструкторы"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "Инструктор 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "Инструктор 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "Инструктор 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "Экспортные поставки"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "Идентификатор доставки"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "Дата начала"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "Дата окончания"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "Инструктор"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "Студенты"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "Посмотреть детали"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "Редактировать"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "Управление студентами"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "Показаны"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "к"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "из"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "результаты"
 
@@ -2159,8 +2068,194 @@ msgstr "Удалить доставку"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "Отмена"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "Проведение курсов — администратор LMS"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "Информация о курсе"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "Массовые действия"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Скорость завершения"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "Прогресс"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "Фасилитаторы пока не назначены."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "Учебные ресурсы"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Тип"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "Нет доступных видеофайлов."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "Прогресс"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "В ходе выполнения"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "снято"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "Посмотреть детали"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "Записался на курс"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "Зачисления"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "записи"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "Идентификатор доставки"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "Записался на курс"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Создать отчет"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Количество курсов"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "Прогресс"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "Прогресс обучения"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2237,6 +2332,7 @@ msgid "Created by:"
 msgstr "Создать доставку"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2268,12 +2364,6 @@ msgid "Course Content"
 msgstr "Обложка курса"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Зачисления"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2282,12 +2372,6 @@ msgstr "Экспортные поставки"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "Добавить новый ресурс"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "Тип"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2319,21 +2403,6 @@ msgstr "Идентификатор доставки"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "Зачисления"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "Зачисления"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "Зачисления"
 
@@ -2351,17 +2420,14 @@ msgstr "Выберите дату"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "Видео"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "Документ"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "Презентация"
 
@@ -2372,7 +2438,6 @@ msgstr "Связь"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "Контрольный опрос"
 
@@ -2406,6 +2471,7 @@ msgstr "Использование ресурсов"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "Путь обучения"
 
@@ -2547,6 +2613,38 @@ msgstr "Использование ресурсов"
 msgid "Preview not available for this resource type."
 msgstr "Предварительный просмотр недоступен для этого типа ресурса."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "Объявления - Администратор LMS"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "Выберите учащихся для регистрации"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "Учащиеся"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "Выберите дату"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "Отменить выбор всех"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "Записался на курс"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2577,46 +2675,6 @@ msgid "Search enrollments..."
 msgstr "Искать курсы..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "Основы веб-разработки"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "Основы науки о данных"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "Цифровой маркетинг"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "В ожидании"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "снято"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2629,56 +2687,22 @@ msgstr "Экспортировать данные"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "Название сайта"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "Учащийся"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "Основы веб-разработки"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "Экспортные поставки"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "Вид"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "Отзывать"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "Основы науки о данных"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "Утвердить"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "Предмет"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "Цифровой маркетинг"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2746,12 +2770,6 @@ msgstr "Учащиеся"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "Создать отчет"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "Название сайта"
@@ -2764,14 +2782,6 @@ msgid "Enrolled Learners"
 msgstr "Записался на курс"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "Скорость завершения"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2780,6 +2790,11 @@ msgstr "Разработка индивидуальной модели"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "Технология"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "Редактировать"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2915,6 +2930,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2946,12 +2962,6 @@ msgstr "9-12 месяцев"
 msgid "> 12 months"
 msgstr "> 12 месяцев"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "Количество курсов"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "Курсы – Администратор LMS"
@@ -2965,20 +2975,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "Управляйте и организуйте свои курсы"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Все курсы"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "Дата публикации"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "Неопубликовано"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "Категории"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "Искать курсы..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "Категория 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "Категория 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "Категория 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3102,8 +3125,23 @@ msgid "987 enrolled"
 msgstr "987 зачислено"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Основы науки о данных"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 зачислено"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Цифровой маркетинг"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3177,6 +3215,7 @@ msgid "July 12, 2024"
 msgstr "12 июля 2024 г."
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "Лучшие исполнители"
 
@@ -3253,6 +3292,7 @@ msgstr "Управляйте заявками в службу поддержки
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "Помощь и поддержка"
 
@@ -3319,6 +3359,7 @@ msgid "Close Ticket"
 msgstr "Закрыть тикет"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
@@ -3351,6 +3392,8 @@ msgstr ""
 "Не забудьте назначить инструкторов и установить расписание курсов."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "Видеоуроки"
 
@@ -3404,12 +3447,32 @@ msgstr "Таблица лидеров – администратор LMS"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "Таблица лидеров"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "Чествование наших лучших достижений"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "ИТ и программирование"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "Бизнес"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "Языки"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "Наука и математика"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3440,6 +3503,7 @@ msgid "3rd"
 msgstr "предложение"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "Классифицировать"
 
@@ -3457,6 +3521,13 @@ msgstr "Среднее Счет"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "Всего очков"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "Джон Доу"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3507,6 +3578,7 @@ msgid "From:"
 msgstr "От:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "Предмет:"
 
@@ -3553,12 +3625,12 @@ msgid "Flagged"
 msgstr "Помечено"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "В архиве"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "Все пользователи"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "Студенты"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3684,6 +3756,29 @@ msgstr "Результаты оценки"
 #| msgid "Search messages..."
 msgid "Search assessments..."
 msgstr "Поиск сообщений..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Основы веб-разработки"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Основы науки о данных"
 
 #: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
@@ -3812,6 +3907,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "Основы науки о данных"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Основы веб-разработки"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3902,6 +4005,7 @@ msgstr "Проекты"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4045,12 +4149,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "Все курсы"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "Сертификаты в этом месяце"
@@ -4066,6 +4164,13 @@ msgstr "Завершение курса"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "Лучшие исполнители"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Цифровой маркетинг"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4102,12 +4207,6 @@ msgstr "Завершение курса"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "Курс"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "Зачисления"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4356,6 +4455,10 @@ msgstr "Распределение рейтингов"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "Завершенные курсы"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "Инструктор"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5025,10 +5128,12 @@ msgid "Appearance"
 msgstr "Появление"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "Уведомления"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "Интеграции"
 
@@ -5133,6 +5238,7 @@ msgid "Notifications Settings"
 msgstr "Настройки уведомлений"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "Уведомления по электронной почте"
 
@@ -5218,6 +5324,7 @@ msgid "Sidebar"
 msgstr "Боковая панель"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "Категории"
 
@@ -5238,6 +5345,7 @@ msgid "Reports & Analytics"
 msgstr "Отчеты и аналитика"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "Завершение курса"
 
@@ -5307,6 +5415,377 @@ msgstr "Администраторы"
 msgid "Back to Home"
 msgstr "Вернуться домой"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "Учащиеся"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "Управляйте и организуйте свои курсы"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "Сроки выполнения задания"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "Завершенный курс"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "В ожидании"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "Курс"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "Должный:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "Отправлено"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "Активные сессии"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "Оцененный"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "Отзывы учащихся"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "Просрочено"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "Представлять на рассмотрение"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "Сроки выполнения задания"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "Скорость завершения"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "Ближайшие сроки"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "Зачисления"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "Сроки выполнения задания"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "Здесь будут отображаться подробности задания."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "Отправленное задание"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "Закрывать"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "Мои значки"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "Продемонстрируйте свои навыки и достижения"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "Обзор курса"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "Всего сообщений"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr ""
+"Вы заработали значки в различных категориях. Продолжайте учиться и "
+"открывайте больше!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "Значки навыков"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "Значки достижений"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "Значки этапов"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "Ваши значки"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "Фильтровать по:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "Все сообщения"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "Навык"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "Заработано на:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "Зачисления"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "Веха"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "Подробности сообщения"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "Вебинар электронного обучения"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "Панель управления – LMS Learner"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "Календарь LMS"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "Управляйте графиком обучения и сроками"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "Массовые действия"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "Предыдущий"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "Сегодня"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "Последние 3 месяца"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "Финальный проект JavaScript"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "Срок сдачи: 23 июля 2024 г."
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "Викторина по визуализации данных"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "Срок сдачи: 28 июля 2024 г."
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "Сертификаты"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "Продемонстрируйте свои достижения и навыки"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "Получено сертификатов"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "Всего пользователей"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "В этом году"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"Вы получили сертификаты по различным курсам и специализациям. Продолжайте в "
+"том же духе!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "Курсы с сертификатами"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "Всего сертификатов"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "Всего сертификатов"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "Сертификаты"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "Сертификаты"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "Всего сертификатов"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "Изданный"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "Посмотреть сертификат"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "Викторина по визуализации данных"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Профессиональный"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "Идентификатор сертификата"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5315,34 +5794,12 @@ msgstr "Настройки курса"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "Политика по борьбе со взяточничеством и коррупцией"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "Обязательное обучение комплаенсу для всех сотрудников"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Мои курсы"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"Этот комплексный курс познакомит вас с политикой нашей компании по борьбе со"
-" взяточничеством и коррупцией. Вы узнаете о правовой базе, распознаете "
-"потенциальные риски и поймете, как соблюдать политику в различных деловых "
-"ситуациях."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 часа"
+msgid "30 minutes"
+msgstr "30 минут"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5354,52 +5811,13 @@ msgid "All Employees"
 msgstr "Все сотрудники"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "Общий прогресс"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "Учебные ресурсы"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "Основы борьбы со взяточничеством и коррупцией"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "Пакет SCORM"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "Начинать"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "Признание рисков взяточничества"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "Смотреть"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "Антикоррупционная политика компании"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "Читать"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "Тематические исследования: принятие этических решений"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "Антикоррупционная и антикоррупционная оценка"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "Пройти тест"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5464,7 +5882,8 @@ msgstr "Курсы в процессе"
 msgid "Certificates Earned"
 msgstr "Получено сертификатов"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "Стремление к обучению"
 
@@ -5472,11 +5891,11 @@ msgstr "Стремление к обучению"
 msgid "days"
 msgstr "дни"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "Прогресс обучения"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "Текущие курсы"
 
@@ -5489,30 +5908,12 @@ msgid "Data Science Basics"
 msgstr "Основы науки о данных"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "Ближайшие сроки"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "Финальный проект JavaScript"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "Срок сдачи: 23 июля 2024 г."
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "Викторина по визуализации данных"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "Срок сдачи: 28 июля 2024 г."
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "Недавняя активность"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Завершенный урок: Введение в JavaScript"
 
@@ -5527,6 +5928,527 @@ msgstr "Количество курсов"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "Месяц"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "Форумы LMS"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "Общайтесь, обсуждайте и учитесь вместе"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "Основы веб-разработки"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "Искусственный интеллект"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "Общая дискуссия"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "Сообщения на форуме"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "Всего очков:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "Всего очков:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "Активные курсы"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "Завершение курса"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "Посмотреть билет"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "Лучшие практики адаптивного веб-дизайна?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "Начинать"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 ответов"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 часа назад"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "Python против R для анализа данных: плюсы и минусы?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 ответа"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 день назад"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "Советы по оптимизации производительности мобильного приложения?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 ответов"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "Последние 30 дней"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "Этические соображения при разработке ИИ"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 ответа"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "Последние 30 дней"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "Актуальные темы"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "Введение в ИИ"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 ответов • 1,2 тыс. просмотров"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "Сравнение JavaScript-фреймворков"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 ответов • 980 просмотров"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "Викторина по визуализации данных"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 ответов • 850 просмотров"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "Создать новый билет"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "Заголовок"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "Выберите дату"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "Обложка курса"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "Создать новый билет"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "Ваши оценки"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "Посмотреть свою успеваемость"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "Сводка оценок"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "Общий прогресс"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "Высшая оценка:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "Самая низкая оценка:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "Распределение рейтингов"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "Курс"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "Статус"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "Тенденция использования хранилища"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "Настройки курса"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr ""
+"Здесь будет отображена подробная информация об оценках выбранного курса."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "Оценка (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "Тенденция оценок по курсам"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "Помощь и поддержка – администратор LMS"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr "Найдите ответы на свои вопросы и получите необходимую поддержку"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "Как мы можем вам помочь?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "Искать курсы..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "AI-поиск"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "Как сбросить пароль студента?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "Чтобы сбросить пароль, выполните следующие действия:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "Нажмите ссылку «Забыли пароль» на странице входа в систему."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "Введите действительный адрес электронной почты."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr ""
+"Проверьте свою электронную почту, чтобы найти ссылку для сброса пароля."
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr "Нажмите ссылку и следуйте инструкциям, чтобы создать новый пароль."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "Записался на курс"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "Записался на курс"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "Просмотрите каталог курсов"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "Выберите курс, который вас интересует"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "Нажмите кнопку «Записаться» на странице курса."
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "Следуйте инструкциям для завершения регистрации"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "Как мне отслеживать свой прогресс?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "Вы можете отслеживать свой прогресс:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "Панель учащегося"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "Проверка индикатора прогресса в каждом курсе"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "Проверка выполненных вами заданий и тестов."
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "Проверка своих оценок в разделе «Оценки»"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "Поддержка онлайн-чата"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "Помощь и поддержка"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "Поддержка онлайн-чата"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "Помощь и поддержка"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "Общий доход"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "Руководство пользователя"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "Форум сообщества"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Обновления системы"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "Нужна дополнительная помощь?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "Наша служба поддержки всегда готова помочь вам."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "Отправленное задание"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "Панель управления – LMS Learner"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "Посмотрите, какое место вы занимаете среди своих сверстников"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "Ваш адрес электронной почты"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "Ваш общий рейтинг"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "Лучшие исполнители"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "Вид"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "Общий прогресс"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "Среднее Счет"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "Общайтесь с преподавателями и коллегами"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "Интеграции"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "Отправить сообщение"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "Введите свой ответ здесь..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "Отправлять"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "К:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "Сообщения"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5553,44 +6475,567 @@ msgid "Ethics"
 msgstr "Этика"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "Узнайте об этической деловой практике и соблюдении требований"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "Начал курс"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "Посмотреть профиль"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "О нас"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "Информация о курсе"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "Завершенный"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "Зачисления"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "Значки"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "Дни"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "Так держать!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "В процессе - завершено на 60%%"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "В процессе - завершено на 30%%"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "Недавние действия"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "Прогресс обучения"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "Революционное обучение"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "Стремление к обучению"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "Предпочтительный формат курса"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "Цель"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "Прогресс"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "Отслеживайте свой путь обучения и достижения"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "Учащийся"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "Курс"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "Стремление к обучению"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "Курсы в процессе"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "Прогресс"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "Завершенный"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "В процессе - завершено на 75%%"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "Заблокировано – сначала выполните предварительные условия"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 часа назад"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "Заработанный значок: Мастер CSS."
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 день назад"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "Викторина по визуализации данных"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 день назад"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "Завершенный урок: Введение в JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "Рекомендуемые следующие шаги"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "Завершенный урок: Введение в JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "Пройдите оставшиеся уроки, чтобы закрепить свои навыки JS."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "Продолжить курс"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "Система управления информационной безопасностью (СУИБ)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "Всего объявлений"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "Понимание ключевых принципов информационной безопасности"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "Проверьте свои знания Python с помощью этого быстрого теста."
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 часа"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "Всего объявлений"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 модулей"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "Викторина по визуализации данных"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "Борьба с отмыванием денег"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr ""
+"Совершенствуйте свои навыки в области науки о данных с помощью этого нового "
+"курса."
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "Научитесь выявлять и предотвращать деятельность по отмыванию денег"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "Создать курс"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2,5 часа"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "Мои курсы - LMS Learner"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 модуля"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "Доступ к материалам курса и полезному контенту"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "Настройки курса"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "Учебные ресурсы"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "Дополнительное чтение"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Быстрые ссылки"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "Название сайта"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "Календарь"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "Библиотечный портал"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "Помощь и поддержка"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "Использование ресурсов"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "Загрузки"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "Смотреть"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "Посетите форум"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "Читать"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "Последний доступ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "Последний доступ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "Настройки – Администратор LMS"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "Настройки безопасности"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "Управляйте настройками и настройками своей учетной записи"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "Посмотреть профиль"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "Количество доступов"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "Политика паролей"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "Настройки электронной почты"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "Название сайта"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "Название сайта"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "Электронная почта администратора"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "ноябрь"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "Он был"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "Сохранить изменения"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "Политика паролей"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "Политика паролей"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "Подтвердите новый пароль"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "Политика паролей"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "Настройки уведомлений"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "Уведомления"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "Экспортные поставки"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "Настройки безопасности"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "Видимость профиля"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "Публиковать"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "Только друзья"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "Частный"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "Активность пользователя"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "Стремление к обучению"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "Визуальный"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "Слуховой"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "Чтение/запись"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "Кинестетический"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "Среднее Время ответа"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "Предупреждение"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "полдень"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "События"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "Поздняя ночь"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "Прогресс обучения"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "Свяжитесь с нами"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "Свяжитесь с нами"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "Свяжитесь с нами"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "Свяжитесь с нами"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "Свяжитесь с нами"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5657,43 +7102,90 @@ msgstr "Новейшие возможности"
 #: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Learning Path"
-msgid "Smart Learning Paths"
+msgid "Adaptive Learning Paths"
 msgstr "Путь обучения"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "Наши алгоритмы анализируют поведение и успеваемость учащихся, чтобы создать "
 "персонализированный путь обучения, гарантируя оптимальное развитие навыков."
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "Продвинутый арабский"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "Скорость завершения"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"Используйте информацию, основанную на данных, для прогнозирования "
-"результатов обучения, выявления потенциальных проблем и активного "
-"вмешательства для достижения лучших результатов."
+"Получите ценную информацию о прогрессе учащихся, эффективности курса и общем"
+" эффекте обучения с помощью наших мощных инструментов отчетности."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "Иммерсивное VR-обучение"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "Автоматические рекомендации контента"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"Интегрируйте опыт виртуальной реальности для практического и безопасного "
-"обучения в сложных сценариях или сценариях с высокими ставками."
+"Используйте алгоритмы машинного обучения, чтобы предлагать подходящие курсы "
+"и ресурсы с учетом интересов и успеваемости учащихся."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "Активные сессии"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"Содействуйте сотрудничеству и обмену знаниями с помощью встроенных форумов, "
+"чатов и групповых проектов."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "Революционное обучение"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"Доступ к курсам и материалам на ходу благодаря нашему адаптивному дизайну и "
+"специальному мобильному приложению для iOS и Android."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "Скорость завершения"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"Повысьте вовлеченность с помощью значков достижений, таблиц лидеров и "
+"автоматического создания сертификатов после завершения курса."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5896,16 +7388,14 @@ msgid "Intelligent content recommendations"
 msgstr "Интеллектуальные рекомендации по контенту"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "Адаптивная визуализация обучения"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "Истории успеха"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "Аватар клиента"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5916,12 +7406,17 @@ msgid "HR Director, TechCorp"
 msgstr "Директор по персоналу, TechCorp"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS изменил наше корпоративное обучение. Персонализированные пути"
 " обучения и прогнозная аналитика значительно повысили вовлеченность и "
@@ -5937,19 +7432,16 @@ msgid "L&D Manager, InnovateNow"
 msgstr "Менеджер по обучению и развитию, InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"Информация на основе искусственного интеллекта, предоставленная NextGen AI "
-"LMS, произвела революцию в нашем подходе к развитию сотрудников. Теперь мы "
-"можем заранее выявлять пробелы в навыках и адаптировать наши программы "
-"обучения с беспрецедентной точностью. Производительность нашей команды "
-"выросла на 30%% с момента внедрения этой передовой системы."
+"Внедрение NextGen LMS изменило наш подход к развитию сотрудников. Надежные "
+"инструменты отчетности платформы дали нам ценную информацию об эффективности"
+" наших программ обучения. Теперь мы можем принимать решения на основе данных"
+" для улучшения нашего контента и методов доставки."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5962,10 +7454,8 @@ msgid "Starter"
 msgstr "Начинать"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "Месяц"
+msgid "Perfect for small teams"
+msgstr "Идеально подходит для небольших команд"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -5986,10 +7476,8 @@ msgid "24/7 chatbot support"
 msgstr "Круглосуточная поддержка чат-бота"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "Руководство по началу работы"
+msgid "Contact Sales"
+msgstr "Свяжитесь с отделом продаж"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -5998,8 +7486,8 @@ msgid "Most Popular"
 msgstr "Самые популярные курсы"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "Профессиональный"
+msgid "Ideal for growing organizations"
+msgstr "Идеально подходит для растущих организаций"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -6014,28 +7502,18 @@ msgid "Automated content recommendations"
 msgstr "Автоматические рекомендации контента"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "Учебные модули VR"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "Распечатать отчет"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "Обновите до Pro"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "Предприятие"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "Пользовательские отчеты"
+msgid "Tailored for large enterprises"
+msgstr "Специально для крупных предприятий"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6050,16 +7528,8 @@ msgid "Custom model development"
 msgstr "Разработка индивидуальной модели"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "Расширенные возможности VR и AR"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "Выделенный менеджер по работе с клиентами"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "Свяжитесь с отделом продаж"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6084,20 +7554,18 @@ msgstr ""
 "технологий."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 Tech Street, Сан-Франциско, Калифорния 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "Ньютаун, Калькутта, Западная Бенгалия, Индия, 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "Телефон: (555) 123-4567"
+msgid "Phone: __"
+msgstr "Телефон: __"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "Электронная почта: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "Быстрые ссылки"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6146,12 +7614,6 @@ msgid "Support Center"
 msgstr "Центр помощи и поддержки"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "Обновления системы"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "Свяжитесь с нами"
 
@@ -6178,6 +7640,254 @@ msgstr "Вы успешно вошли в систему."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Ошибка входа. Пожалуйста, проверьте ошибки ниже."
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "Продвинутое программирование на Python"
+
+#~ msgid "Basic Details"
+#~ msgstr "Основные детали"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "Как будет проходить курс?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "Назначьте координаторов"
+
+#~ msgid "Assign Participants"
+#~ msgstr "Назначить участников"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "Расширенные настройки"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr "Хотите добавить период доступа к материалам курса для этой поставки?"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "Да, добавить период доступа"
+
+#~ msgid "Select start date"
+#~ msgstr "Выберите дату начала"
+
+#~ msgid "Select end date"
+#~ msgstr "Выберите дату окончания"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "Хотите добавить дату деактивации для этой поставки?"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "Да, добавить дату деактивации"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "Хотели бы вы получить отзыв от Участника по данной Поставке?"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "Да, собирать отзывы"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "Да, отметить как обязательное"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "Хотите фиксировать посещаемость этого курса участниками?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "Да, фиксировать посещаемость"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "Требуется ли для этого курса сертификат об окончании?"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "Да, требуется сертификат об окончании"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "Шаблон электронного письма с приглашением"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "Шаблон электронного письма о завершении"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "Поиск поставок..."
+
+#~ msgid "Cancelled"
+#~ msgstr "Отменено"
+
+#~ msgid "All Instructors"
+#~ msgstr "Все инструкторы"
+
+#~ msgid "Instructor 1"
+#~ msgstr "Инструктор 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "Инструктор 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "Инструктор 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "Экспортные поставки"
+
+#~ msgid "Delivery ID"
+#~ msgstr "Идентификатор доставки"
+
+#~ msgid "Manage Students"
+#~ msgstr "Управление студентами"
+
+#~ msgid "Withdraw"
+#~ msgstr "Отзывать"
+
+#~ msgid "Approve"
+#~ msgstr "Утвердить"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "Предмет"
+
+#~ msgid "Category 1"
+#~ msgstr "Категория 1"
+
+#~ msgid "Category 2"
+#~ msgstr "Категория 2"
+
+#~ msgid "Category 3"
+#~ msgstr "Категория 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Политика по борьбе со взяточничеством и коррупцией"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "Обязательное обучение комплаенсу для всех сотрудников"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "Этот комплексный курс познакомит вас с политикой нашей компании по борьбе со"
+#~ " взяточничеством и коррупцией. Вы узнаете о правовой базе, распознаете "
+#~ "потенциальные риски и поймете, как соблюдать политику в различных деловых "
+#~ "ситуациях."
+
+#~ msgid "2 hours"
+#~ msgstr "2 часа"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "Основы борьбы со взяточничеством и коррупцией"
+
+#~ msgid "SCORM Package"
+#~ msgstr "Пакет SCORM"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "Признание рисков взяточничества"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "Антикоррупционная политика компании"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "Тематические исследования: принятие этических решений"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "Антикоррупционная и антикоррупционная оценка"
+
+#~ msgid "Take Quiz"
+#~ msgstr "Пройти тест"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "Узнайте об этической деловой практике и соблюдении требований"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "Система управления информационной безопасностью (СУИБ)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "Понимание ключевых принципов информационной безопасности"
+
+#~ msgid "3 hours"
+#~ msgstr "3 часа"
+
+#~ msgid "6 modules"
+#~ msgstr "6 модулей"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "Борьба с отмыванием денег"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "Научитесь выявлять и предотвращать деятельность по отмыванию денег"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2,5 часа"
+
+#~ msgid "4 modules"
+#~ msgstr "4 модуля"
+
+#, fuzzy
+#~ msgid "Smart Learning Paths"
+#~ msgstr "Путь обучения"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "Продвинутый арабский"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "Используйте информацию, основанную на данных, для прогнозирования "
+#~ "результатов обучения, выявления потенциальных проблем и активного "
+#~ "вмешательства для достижения лучших результатов."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "Иммерсивное VR-обучение"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "Интегрируйте опыт виртуальной реальности для практического и безопасного "
+#~ "обучения в сложных сценариях или сценариях с высокими ставками."
+
+#~ msgid "Client Avatar"
+#~ msgstr "Аватар клиента"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "Информация на основе искусственного интеллекта, предоставленная NextGen AI "
+#~ "LMS, произвела революцию в нашем подходе к развитию сотрудников. Теперь мы "
+#~ "можем заранее выявлять пробелы в навыках и адаптировать наши программы "
+#~ "обучения с беспрецедентной точностью. Производительность нашей команды "
+#~ "выросла на 30%% с момента внедрения этой передовой системы."
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "Месяц"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "Руководство по началу работы"
+
+#~ msgid "VR training modules"
+#~ msgstr "Учебные модули VR"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "Обновите до Pro"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "Пользовательские отчеты"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "Расширенные возможности VR и AR"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 Tech Street, Сан-Франциско, Калифорния 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "Телефон: (555) 123-4567"
 
 #~ msgid "Language menu opened!"
 #~ msgstr "Языковое меню открыто!"

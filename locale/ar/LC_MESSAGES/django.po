@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-18 23:29+0530\n"
+"POT-Creation-Date: 2024-08-26 11:14+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "رسائل"
 
@@ -332,6 +333,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "مدة"
@@ -615,12 +617,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "طلب"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -686,14 +688,18 @@ msgid "Change"
 msgstr "يتغير"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "مجهول"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "نعم"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "لا"
 
@@ -789,58 +795,69 @@ msgstr "الأحد"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "لي"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "الثلاثاء"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "تزوج"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "يجمع"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "الجمعة"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "قعد"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "شمس"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "يناير"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "فبراير"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "يمشي"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "أبريل"
 
@@ -851,34 +868,42 @@ msgstr "أبريل"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "يمكن"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "يونيو"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "يوليو"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "أغسطس"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "سبتمبر"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "أكتوبر"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "نوفمبر"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "ديسمبر"
 
@@ -1299,6 +1324,14 @@ msgstr "مجتمع جانغو"
 msgid "Connect, get help, or contribute"
 msgstr "تواصل أو احصل على المساعدة أو ساهم"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "س"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "و"
+
 #: lms/settings.py
 msgid "English"
 msgstr "إنجليزي"
@@ -1462,7 +1495,6 @@ msgid "Active Announcements"
 msgstr "الإعلانات النشطة"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "المقرر"
 
@@ -1498,7 +1530,6 @@ msgid "Maintenance"
 msgstr "صيانة"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1506,7 +1537,8 @@ msgid "All Statuses"
 msgstr "جميع الحالات"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "نشيط"
 
@@ -1515,6 +1547,8 @@ msgid "Expired"
 msgstr "منتهي الصلاحية"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "مسودة"
 
@@ -1523,6 +1557,8 @@ msgid "Export Report"
 msgstr "تقرير التصدير"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "عنوان"
@@ -1536,7 +1572,8 @@ msgstr "فئة"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1552,12 +1589,13 @@ msgid "Expiry Date"
 msgstr "تاريخ انتهاء الصلاحية"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "ارتباط"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1589,19 +1627,18 @@ msgstr "إعلان حذف"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "سابق"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "التالي"
 
@@ -1671,6 +1708,7 @@ msgstr "امتحان"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "الأحداث القادمة"
 
@@ -1712,6 +1750,7 @@ msgstr "تتبع وإدارة شهادات النظام"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "الشهادات"
 
@@ -1724,7 +1763,6 @@ msgid "Certificates This Month"
 msgstr "الشهادات هذا الشهر"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "الموافقات المعلقة"
 
@@ -1737,31 +1775,10 @@ msgstr "الدورات مع الشهادات"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "جميع الدورات"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "تكنولوجيا المعلومات والبرمجة"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "عمل"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "اللغات"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "العلوم والرياضيات"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1797,16 +1814,18 @@ msgid "Certificate ID"
 msgstr "معرف الشهادة"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "المتعلم"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "دورة"
 
@@ -1815,27 +1834,20 @@ msgid "Issue Date"
 msgstr "تاريخ الإصدار"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "جون دو"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "برمجة بايثون المتقدمة"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "صادر"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "تم إبطاله"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "عرض الشهادة"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "تحميل الشهادة"
 
@@ -1872,171 +1884,131 @@ msgstr "مسار التنقل"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "الدورات"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 #, fuzzy
 #| msgid "Create Category"
 msgid "Create Delivery"
 msgstr "إنشاء فئة"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "تقدم"
-
-#: templates/users/administrator/course/create_delivery.html
 #, fuzzy
-#| msgid "Message Details"
-msgid "Basic Details"
-msgstr "تفاصيل الرسالة"
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "أدخل رمز التسليم"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "رمز التسليم"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "أدخل رمز التسليم"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "كيف سيتم تقديم الدورة؟"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "رمز التسليم"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "يسير بخطى ذاتية"
 
 #: templates/users/administrator/course/create_delivery.html
 #, fuzzy
 #| msgid "Instructors"
-msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "المدربين"
 
 #: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #, fuzzy
-#| msgid "Facilitators"
-msgid "Assign Facilitators"
-msgstr "الميسرون"
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "التسجيلات"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Innovation"
+msgid "By Invitation"
+msgstr "التكامل"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "الميسرون"
 
 #: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "UI Design Principles"
-msgid "Assign Participants"
-msgstr "مبادئ تصميم واجهة المستخدم"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "تاريخ البدء"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Date"
+msgid "End Date"
+msgstr "تاريخ"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "مشاركون"
 
 #: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "Appearance Settings"
-msgid "Advanced Settings"
-msgstr "إعدادات المظهر"
+msgid "Enter maximum participants"
+msgstr "أدخل الحد الأقصى للمشاركين"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr "هل ترغب في إضافة فترة وصول لمحتوى الدورة التدريبية لهذا التسليم؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "نعم، قم بإضافة فترة الوصول"
-
-#: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "Select a gateway"
-msgid "Select start date"
-msgstr "اختر بوابة"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "ل"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "مكتمل"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "مؤرشف"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "إلزامية"
 
 #: templates/users/administrator/course/create_delivery.html
 #, fuzzy
-#| msgid "Select a gateway"
-msgid "Select end date"
-msgstr "اختر بوابة"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "هل ترغب في إضافة تاريخ التعطيل لهذا التسليم؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "نعم، قم بإضافة تاريخ التعطيل"
-
-#: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "Select a gateway"
-msgid "Select date"
-msgstr "اختر بوابة"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "هل ترغب في الحصول على تعليقات من المشارك بشأن هذا التسليم؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "نعم، جمع ردود الفعل"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr "هل ترغب في وضع علامة على هذا التسليم باعتباره إلزاميًا للمشارك؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "نعم، ضع علامة إلزامية"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "هل تريد تسجيل حضور المشاركين لهذه الدورة؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "نعم سجل الحضور"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "هل تتطلب هذه الدورة شهادة إتمام؟"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "نعم، تتطلب شهادة الإنجاز"
-
-#: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "General Settings"
-msgid "Email Settings"
-msgstr "الإعدادات العامة"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "دعوة قالب البريد الإلكتروني"
-
-#: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "Completion Rate"
-msgid "Completion Email Template"
-msgstr "معدل الإنجاز"
-
-#: templates/users/administrator/course/create_delivery.html
-#, fuzzy
-#| msgid "Submitted By"
-msgid "Submit"
-msgstr "مقدم بواسطة"
 
 #: templates/users/administrator/course/deliveries.html
 #, fuzzy
@@ -2063,126 +2035,21 @@ msgid "Deliveries"
 msgstr "إدارة عمليات التسليم"
 
 #: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Search courses..."
-msgid "Search deliveries..."
-msgstr "بحث عن الدورات..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "في تَقَدم"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "مكتمل"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Cancel"
-msgid "Cancelled"
-msgstr "يلغي"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Instructors"
-msgid "All Instructors"
-msgstr "المدربين"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Instructors"
-msgid "Instructor 1"
-msgstr "المدربين"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Instructors"
-msgid "Instructor 2"
-msgstr "المدربين"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Instructors"
-msgid "Instructor 3"
-msgstr "المدربين"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Export Selected"
-msgid "Export Deliveries"
-msgstr "تصدير المحدد"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "معرف التسليم"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "تاريخ البدء"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Date"
-msgid "End Date"
-msgstr "تاريخ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Instructors"
-msgid "Instructor"
-msgstr "المدربين"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "طلاب"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Message Details"
-msgid "View Details"
-msgstr "تفاصيل الرسالة"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "يحرر"
-
-#: templates/users/administrator/course/deliveries.html
-#, fuzzy
-#| msgid "Students"
-msgid "Manage Students"
-msgstr "طلاب"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "عرض"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "ل"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "ل"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "نتائج"
 
@@ -2195,8 +2062,198 @@ msgstr "حذف المحدد"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "يلغي"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Courses - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "الدورات - إدارة LMS"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course completion"
+msgid "Delivery Information"
+msgstr "إكمال الدورة"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "الإجراءات السائبة"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "معدل الإنجاز"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "تقدم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "لم يتم تعيين الميسرين حتى الآن."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Resources"
+msgstr "التقدم في التعلم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "يكتب"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "لا يوجد ملف فيديو متاح."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "تقدم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "في تَقَدم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "انسحبت"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "View Details"
+msgstr "تفاصيل الرسالة"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "مسجل في الدورة"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "التسجيلات"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "إدخالات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "معرف التسليم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "مسجل في الدورة"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "إنشاء تقرير"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "عدد الدورات"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "تقدم"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "التقدم في التعلم"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2275,6 +2332,7 @@ msgid "Created by:"
 msgstr "إنشاء فئة"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2306,12 +2364,6 @@ msgid "Course Content"
 msgstr "غلاف الدورة"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "التسجيلات"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Selected"
 msgid "Course Deliveries"
@@ -2320,12 +2372,6 @@ msgstr "تصدير المحدد"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "إضافة مورد جديد"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "يكتب"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2357,21 +2403,6 @@ msgstr "معرف التسليم"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "التسجيلات"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "التسجيلات"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "التسجيلات"
 
@@ -2389,19 +2420,16 @@ msgstr "اختر بوابة"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "فيديو"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Documentation"
 msgid "Document"
 msgstr "التوثيق"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Documentation"
 msgid "Presentation"
@@ -2414,7 +2442,6 @@ msgstr "وصلة"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "لغز"
 
@@ -2448,6 +2475,7 @@ msgstr "استخدام الموارد"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "مسار التعلم"
 
@@ -2589,6 +2617,38 @@ msgstr "استخدام الموارد"
 msgid "Preview not available for this resource type."
 msgstr "المعاينة غير متاحة لهذا النوع من الموارد."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "الإعلانات - مسؤول LMS"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "حدد المتعلمين للتسجيل"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "المتعلمين"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select a gateway"
+msgid "Select All"
+msgstr "اختر بوابة"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "قم بإلغاء تحديد الكل"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "مسجل في الدورة"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2619,44 +2679,6 @@ msgid "Search enrollments..."
 msgstr "بحث عن الدورات..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "أساسيات تطوير الويب"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Data Science"
-msgstr "علم البيانات"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "التسويق الرقمي"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "قيد الانتظار"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "انسحبت"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2669,56 +2691,22 @@ msgstr "تصدير البيانات"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "اسم الموقع"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "المتعلم"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "أساسيات تطوير الويب"
+#| msgid "Export Selected"
+msgid "Course Delivery"
+msgstr "تصدير المحدد"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "منظر"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "ينسحب"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "أساسيات علم البيانات"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "يعتمد"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "موضوع"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "التسويق الرقمي"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2784,12 +2772,6 @@ msgstr "المتعلمين"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "إنشاء تقرير"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "اسم الموقع"
@@ -2802,14 +2784,6 @@ msgid "Enrolled Learners"
 msgstr "مسجل في الدورة"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "معدل الإنجاز"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Web Development"
 msgid "Full Stack Web Development"
@@ -2818,6 +2792,11 @@ msgstr "تطوير الويب"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "تكنولوجيا"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "يحرر"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2955,6 +2934,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2986,12 +2966,6 @@ msgstr "9-12 شهرا"
 msgid "> 12 months"
 msgstr "> 12 شهرا"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "عدد الدورات"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "الدورات - إدارة LMS"
@@ -3005,20 +2979,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "إدارة وتنظيم الدورات الخاصة بك"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "جميع الدورات"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "تاريخ النشر"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "غير منشورة"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "فئات"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "بحث عن الدورات..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "الفئة 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "الفئة 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "الفئة 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3140,8 +3127,23 @@ msgid "987 enrolled"
 msgstr "المسجلين 987"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "أساسيات علم البيانات"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "المسجلين 856"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "التسويق الرقمي"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3215,6 +3217,7 @@ msgid "July 12, 2024"
 msgstr "12 يوليو 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "أفضل المؤدين"
 
@@ -3291,6 +3294,7 @@ msgstr "إدارة تذاكر الدعم والوصول إلى الموارد"
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "المساعدة والدعم"
 
@@ -3357,6 +3361,7 @@ msgid "Close Ticket"
 msgstr "إغلاق التذكرة"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "الأسئلة المتداولة"
 
@@ -3389,6 +3394,8 @@ msgstr ""
 "المدربين وتحديد جدول الدورة."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "دروس الفيديو"
 
@@ -3442,12 +3449,32 @@ msgstr "لوحة المتصدرين - مسؤول LMS"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "المتصدرين"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "الاحتفال بالمتفوقين لدينا"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "تكنولوجيا المعلومات والبرمجة"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "عمل"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "اللغات"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "العلوم والرياضيات"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3478,6 +3505,7 @@ msgid "3rd"
 msgstr "عرض"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "رتبة"
 
@@ -3495,6 +3523,13 @@ msgstr "متوسط نتيجة"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "مجموع النقاط"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "جون دو"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3545,6 +3580,7 @@ msgid "From:"
 msgstr "من:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "موضوع:"
 
@@ -3590,12 +3626,12 @@ msgid "Flagged"
 msgstr "تم وضع علامة عليها"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "مؤرشف"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "كافة المستخدمين"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "طلاب"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3721,6 +3757,27 @@ msgstr "نتائج التقييم"
 #| msgid "Search messages..."
 msgid "Search assessments..."
 msgstr "بحث في الرسائل..."
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "أساسيات تطوير الويب"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+msgid "Data Science"
+msgstr "علم البيانات"
 
 #: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
@@ -3849,6 +3906,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "أساسيات علم البيانات"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "أساسيات تطوير الويب"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3939,6 +4004,7 @@ msgstr "المشاريع"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4080,12 +4146,6 @@ msgstr "رؤى شاملة حول معدلات إتمام الدورة وتقدم
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "جميع الدورات"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "الشهادات هذا الشهر"
@@ -4101,6 +4161,13 @@ msgstr "إكمال الدورة"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "أفضل المؤدين"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "التسويق الرقمي"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4137,12 +4204,6 @@ msgstr "إكمال الدورة"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "دورة"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "التسجيلات"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4390,6 +4451,12 @@ msgstr "توزيع التقييم"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "الدورات المكتملة"
+
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Instructors"
+msgid "Instructor"
+msgstr "المدربين"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5056,10 +5123,12 @@ msgid "Appearance"
 msgstr "مظهر"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "إشعارات"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "التكامل"
 
@@ -5164,6 +5233,7 @@ msgid "Notifications Settings"
 msgstr "إعدادات الإخطارات"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "إشعارات البريد الإلكتروني"
 
@@ -5249,6 +5319,7 @@ msgid "Sidebar"
 msgstr "الشريط الجانبي"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "فئات"
 
@@ -5269,6 +5340,7 @@ msgid "Reports & Analytics"
 msgstr "التقارير والتحليلات"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "إكمال الدورة"
 
@@ -5330,18 +5402,377 @@ msgstr "المسؤولين"
 msgid "Back to Home"
 msgstr "العودة إلى المنزل"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "المتعلمين"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "إدارة وتنظيم الدورات الخاصة بك"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "مواعيد استحقاق الواجب"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "دورة مكتملة"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "دورة"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "حق:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "مقدم بواسطة"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "الجلسات النشطة"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "متدرج"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "ردود فعل المتعلم"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "تأخرت"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submit Late"
+msgstr "مقدم بواسطة"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "مواعيد استحقاق الواجب"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "معدل الإنجاز"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "المواعيد النهائية القادمة"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "التسجيلات"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "مواعيد استحقاق الواجب"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "سيتم عرض تفاصيل المهمة هنا."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "المهمة المقدمة"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "يغلق"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "شاراتي"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "اعرض مهاراتك وإنجازاتك"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Badge Overview"
+msgstr "غلاف الدورة"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "إجمالي الرسائل"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr "لقد حصلت على شارات في فئات مختلفة. استمر في التعلم وافتح المزيد!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "شارات المهارة"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "شارات الإنجاز"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "شارات المعالم"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "شاراتك"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "التصفية حسب:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "جميع الرسائل"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "مهارة"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "حصل على:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "التسجيلات"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "منعطف"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "تفاصيل الرسالة"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "ندوة التعلم الإلكتروني"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "لوحة التحكم - متعلم LMS"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "تقويم LMS"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "إدارة جدول التعلم الخاص بك والمواعيد النهائية"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "الإجراءات السائبة"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "سابق"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "اليوم"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "آخر 3 أشهر"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "مشروع جافا سكريبت النهائي"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "تاريخ الاستحقاق: 23 يوليو 2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "مسابقة تصور البيانات"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "تاريخ الاستحقاق: 28 يوليو 2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "الشهادات"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "اعرض إنجازاتك ومهاراتك"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "الشهادات المكتسبة"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "إجمالي المستخدمين"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "هذا العام"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"لقد حصلت على شهادات في مختلف الدورات والتخصصات. استمروا في العمل العظيم!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "الدورات مع الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "إجمالي الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "إجمالي الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "إجمالي الشهادات"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "صادر"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "عرض الشهادة"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "مسابقة تصور البيانات"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "احترافي"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "معرف الشهادة"
+
 #: templates/users/learner/course_detail.html
 msgid "Course Details"
 msgstr "إعدادات الدورة"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "سياسة مكافحة الرشوة والفساد"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "التدريب الأساسي على الامتثال لجميع الموظفين"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5349,22 +5780,8 @@ msgid "My Courses"
 msgstr "دوراتي"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"ستعلمك هذه الدورة الشاملة بسياسة مكافحة الرشوة والفساد في شركتنا. ستتعرف على"
-" الإطار القانوني، وتتعرف على المخاطر المحتملة، وتفهم كيفية الالتزام بالسياسة"
-" في مواقف العمل المختلفة."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-#, fuzzy
-#| msgid "2 hours ago"
-msgid "2 hours"
-msgstr "منذ ساعتين"
+msgid "30 minutes"
+msgstr "30 دقيقة"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5378,56 +5795,15 @@ msgid "All Employees"
 msgstr "جميع الموظفين"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 #, fuzzy
 #| msgid "User Progress"
 msgid "Overall Progress"
 msgstr "تقدم المستخدم"
 
 #: templates/users/learner/course_detail.html
-#, fuzzy
-#| msgid "Learning Progress"
-msgid "Learning Resources"
-msgstr "التقدم في التعلم"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "أساسيات مكافحة الرشوة ومكافحة الفساد"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "حزمة سكورم"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "يبدأ"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "التعرف على مخاطر الرشوة"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "يشاهد"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "سياسة الشركة لمكافحة الفساد"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "يقرأ"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "دراسات الحالة: اتخاذ القرارات الأخلاقية"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "تقييم مكافحة الرشوة ومكافحة الفساد"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "خذ الاختبار"
 
 #: templates/users/learner/course_detail.html
 #, fuzzy
@@ -5500,7 +5876,8 @@ msgstr "الدورات قيد التقدم"
 msgid "Certificates Earned"
 msgstr "الشهادات المكتسبة"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "خط التعلم"
 
@@ -5508,11 +5885,11 @@ msgstr "خط التعلم"
 msgid "days"
 msgstr "أيام"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "التقدم في التعلم"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "الدورات الحالية"
 
@@ -5525,30 +5902,12 @@ msgid "Data Science Basics"
 msgstr "أساسيات علم البيانات"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "المواعيد النهائية القادمة"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "مشروع جافا سكريبت النهائي"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "تاريخ الاستحقاق: 23 يوليو 2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "مسابقة تصور البيانات"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "تاريخ الاستحقاق: 28 يوليو 2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "النشاط الأخير"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "الدرس المكتمل: مقدمة إلى JavaScript"
 
@@ -5563,6 +5922,523 @@ msgstr "عدد الدورات"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "شهر"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "منتديات نظام إدارة التعلم"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "المشاركة والمناقشة والتعلم معًا"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "أساسيات تطوير الويب"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "الذكاء الاصطناعي"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "مناقشة عامة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "مشاركات المنتدى"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "مجموع النقاط:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "مجموع النقاط:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "الدورات النشطة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "إكمال الدورة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "عرض التذكرة"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "أفضل الممارسات لتصميم الويب سريع الاستجابة؟"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Starter"
+msgid "Started by"
+msgstr "بدأت الدورة"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 ردود"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "منذ ساعتين"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "Python vs R لتحليل البيانات: إيجابيات وسلبيات؟"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 ردود"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "منذ يوم واحد"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "نصائح لتحسين أداء تطبيقات الجوال؟"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 ردود"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "آخر 30 يومًا"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "الاعتبارات الأخلاقية في تطوير الذكاء الاصطناعي"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 رد"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "آخر 30 يومًا"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "المواضيع الشائعة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "مقدمة إلى الذكاء الاصطناعي"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 ردود • 1.2 ألف مشاهدة"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "مقارنة أطر جافا سكريبت"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 ردود • 980 مشاهدة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "مسابقة تصور البيانات"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 ردود • 850 مشاهدة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "إنشاء تذكرة جديدة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "عنوان"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select a gateway"
+msgid "Select Category"
+msgstr "اختر بوابة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "غلاف الدورة"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "إنشاء تذكرة جديدة"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "درجاتك"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "عرض الأداء الأكاديمي الخاص بك"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "ملخص الصف"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Overall Average"
+msgstr "تقدم المستخدم"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "أعلى درجة:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "أدنى درجة:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "توزيع التقييم"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "دورة"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "حالة"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "اتجاه استخدام التخزين"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Details"
+msgid "Course Grade Details"
+msgstr "إعدادات الدورة"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr "سيتم عرض معلومات الدرجات التفصيلية للدورة المختارة هنا."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "درجة (٪٪)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "اتجاه التقدير عبر المقررات الدراسية"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "المساعدة والدعم - مسؤول LMS"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr "ابحث عن إجابات لأسئلتك واحصل على الدعم الذي تحتاجه"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "كيف يمكننا مساعدتك؟"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "بحث عن الدورات..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "بحث الذكاء الاصطناعي"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "كيف يمكنني إعادة تعيين كلمة المرور الخاصة بالطالب؟"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "لإعادة تعيين كلمة المرور الخاصة بك، اتبع الخطوات التالية:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "انقر على الرابط \"نسيت كلمة المرور\" في صفحة تسجيل الدخول"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "أدخل عنوان بريد إلكتروني صالحًا."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "تحقق من بريدك الإلكتروني بحثًا عن رابط إعادة تعيين كلمة المرور"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr "انقر على الرابط واتبع التعليمات لإنشاء كلمة مرور جديدة"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "مسجل في الدورة"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "مسجل في الدورة"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "تصفح كتالوج الدورة"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "اختر الدورة التي تهتم بها"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "انقر فوق الزر \"تسجيل\" في صفحة الدورة التدريبية"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "اتبع المطالبات لإكمال التسجيل"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "كيف يمكنني تتبع التقدم الذي أحرزته؟"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "يمكنك متابعة التقدم المحرز الخاص بك عن طريق:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "لوحة تحكم المتعلم"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "التحقق من شريط التقدم في كل دورة"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "مراجعة المهام والاختبارات المكتملة"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "التحقق من درجاتك في قسم \"الدرجات\"."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "دعم الدردشة الحية"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Legal & Support"
+msgid "Email Support"
+msgstr "المساعدة والدعم"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "دعم الدردشة الحية"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "المساعدة والدعم"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "إجمالي الإيرادات"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "دليل المستخدم"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "منتدى المجتمع"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+msgid "System Status"
+msgstr "تحديثات النظام"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "هل تحتاج إلى مزيد من المساعدة؟"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "فريق الدعم لدينا هنا لمساعدتك."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "المهمة المقدمة"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "لوحة التحكم - متعلم LMS"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "انظر كيف رتبتك بين أقرانك"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "البريد الإلكتروني الخاص بك"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "رتبتك العامة"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "أفضل المؤدين"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "منظر"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "User Progress"
+msgid "Overall"
+msgstr "تقدم المستخدم"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "متوسط نتيجة"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "التواصل مع المعلمين والأقران"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "التكامل"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "أرسل رسالة"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "اكتب ردك هنا..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "يرسل"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "ل:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "رسائل"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5593,52 +6469,567 @@ msgid "Ethics"
 msgstr "أخلاق مهنية"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "تعرف على الممارسات التجارية الأخلاقية والامتثال"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "بدأت الدورة"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "عرض الملف الشخصي"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "معلومات عنا"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course completion"
+msgid "Contact Information"
+msgstr "إكمال الدورة"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "مكتمل"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "التسجيلات"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "شارات"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "أيام"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "استمر!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "قيد التقدم - اكتمل بنسبة 60%"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "قيد التقدم - اكتمل بنسبة 30%"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "الأنشطة الأخيرة"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "التقدم في التعلم"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "إحداث ثورة في التعلم"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "خط التعلم"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "تنسيق الدورة المفضل"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "هدف"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "تقدم"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Track Your Learning Journey"
+msgid "Track your learning journey and achievements"
+msgstr "تتبع رحلتك التعليمية"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "المتعلم"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "دورة"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "خط التعلم"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "الدورات قيد التقدم"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "تقدم"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "مكتمل"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "قيد التقدم - اكتمل بنسبة 75%"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "مقفل - أكمل المتطلبات الأساسية أولاً"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "منذ ساعتين"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "الشارة المكتسبة: CSS Master"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "منذ يوم واحد"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "مسابقة تصور البيانات"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "منذ يوم واحد"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "الدرس المكتمل: مقدمة إلى JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "الخطوات التالية الموصى بها"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "الدرس المكتمل: مقدمة إلى JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "قم بإنهاء الدروس المتبقية لتعزيز مهاراتك في JS."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "مواصلة الدورة"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "نظام إدارة أمن المعلومات (ISMS)"
-
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "فهم المبادئ الأساسية لأمن المعلومات"
-
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
 #, fuzzy
-#| msgid "2 hours ago"
-msgid "3 hours"
-msgstr "منذ ساعتين"
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "إجمالي الإعلانات"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "اختبر معلوماتك في لغة بايثون من خلال هذا التقييم السريع."
+
+#: templates/users/learner/progress.html
 #, fuzzy
-#| msgid "8 modules"
-msgid "6 modules"
-msgstr "8 وحدات"
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "إجمالي الإعلانات"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "مكافحة غسيل الأموال"
-
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "تعلم كيفية التعرف على أنشطة غسيل الأموال ومنعها"
-
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
 #, fuzzy
-#| msgid "2 hours ago"
-msgid "2.5 hours"
-msgstr "منذ ساعتين"
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "مسابقة تصور البيانات"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr "عزز مهاراتك في علوم البيانات من خلال هذه الدورة التدريبية الجديدة."
+
+#: templates/users/learner/progress.html
 #, fuzzy
-#| msgid "8 modules"
-msgid "4 modules"
-msgstr "8 وحدات"
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "إنشاء دورة"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "دوراتي - LMS Learner"
+
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "الوصول إلى مواد الدورة التدريبية والمحتوى المفيد"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Details"
+msgid "Course Materials"
+msgstr "إعدادات الدورة"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "External Resources"
+msgstr "التقدم في التعلم"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "قراءة إضافية"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "روابط سريعة"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "اسم الموقع"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "تقويم"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "بوابة المكتبة"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "المساعدة والدعم"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "استخدام الموارد"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "التنزيلات"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "يشاهد"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "زيارة المنتدى"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "يقرأ"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "آخر دخول"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "آخر دخول"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "الإعدادات - مسؤول LMS"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "إعدادات الأمان"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "إدارة تفضيلات وإعدادات حسابك"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "عرض الملف الشخصي"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "عدد الوصول"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Privacy Policy"
+msgid "Privacy"
+msgstr "سياسة كلمة المرور"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "General Settings"
+msgid "Profile Settings"
+msgstr "الإعدادات العامة"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "اسم الموقع"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "اسم الموقع"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "البريد الإلكتروني المشرف"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "نوفمبر"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "لقد كان"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "حفظ التغييرات"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password"
+msgid "Current Password"
+msgstr "سياسة كلمة المرور"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password"
+msgid "New Password"
+msgstr "سياسة كلمة المرور"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password"
+msgid "Change Password"
+msgstr "سياسة كلمة المرور"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "إعدادات الإخطارات"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "إشعارات"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Selected"
+msgid "Course Reminders"
+msgstr "تصدير المحدد"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "إعدادات الأمان"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "رؤية الملف الشخصي"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "نشر"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "الأصدقاء فقط"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "خاص"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "نشاط المستخدم"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "خط التعلم"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "مرئي"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "سمعي"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "القراءة/الكتابة"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "الحركية"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "متوسط وقت الاستجابة"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "تحذير"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "ظهرا"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "الأحداث"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "وقت متأخر من الليل"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "التقدم في التعلم"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "تواصل معنا"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "تواصل معنا"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "تواصل معنا"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "تواصل معنا"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "تواصل معنا"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5700,40 +7091,92 @@ msgid "Cutting-Edge Features"
 msgstr "الميزات المتطورة"
 
 #: templates/website/landing_page.html
-msgid "Smart Learning Paths"
+#, fuzzy
+#| msgid "Learning Path"
+msgid "Adaptive Learning Paths"
 msgstr "مسار التعلم"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "تقوم خوارزمياتنا بتحليل سلوك وأداء المتعلم لإنشاء رحلات تعليمية مخصصة، مما "
 "يضمن التطوير الأمثل للمهارات."
 
 #: templates/website/landing_page.html
-msgid "Advanced Analytics"
-msgstr "اللغة العربية المتقدمة"
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "معدل الإنجاز"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"استفد من الرؤى المستندة إلى البيانات للتنبؤ بنتائج المتعلم، وتحديد التحديات "
-"المحتملة، والتدخل بشكل استباقي لتحقيق نتائج أفضل."
+"احصل على رؤى قيمة حول تقدم المتعلم وفعالية الدورة وتأثير التدريب الشامل "
+"باستخدام أدوات إعداد التقارير القوية لدينا."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "تدريب واقع افتراضي غامر"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "توصيات المحتوى الآلي"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"دمج تجارب الواقع الافتراضي للتدريب العملي الخالي من المخاطر في السيناريوهات "
-"المعقدة أو عالية المخاطر."
+"استفد من خوارزميات التعلم الآلي لاقتراح الدورات والموارد ذات الصلة بناءً على"
+" اهتمامات المتعلم وأدائه."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "الجلسات النشطة"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"تعزيز التعاون وتبادل المعرفة من خلال المنتديات وغرف الدردشة والمشاريع "
+"الجماعية المدمجة."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "إحداث ثورة في التعلم"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"يمكنك الوصول إلى الدورات التدريبية والمواد أثناء التنقل من خلال تصميمنا سريع"
+" الاستجابة وتطبيق الهاتف المحمول المخصص لنظامي التشغيل iOS وAndroid."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "معدل الإنجاز"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"قم بزيادة التفاعل مع شارات الإنجاز ولوحات المتصدرين وإنشاء الشهادات تلقائيًا"
+" عند إكمال الدورة التدريبية."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5924,16 +7367,14 @@ msgid "Intelligent content recommendations"
 msgstr "توصيات المحتوى الذكي"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "تصور التعلم التكيفي"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "قصص النجاح"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "الصورة الرمزية للعميل"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5944,12 +7385,17 @@ msgid "HR Director, TechCorp"
 msgstr "مدير الموارد البشرية، TechCorp"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "لقد أحدث NextGen AI LMS تحولًا كبيرًا في التدريب المؤسسي لدينا. لقد أدت "
 "مسارات التعلم الشخصية والتحليلات التنبؤية إلى تحسين مشاركة الموظفين وأدائهم "
@@ -5965,18 +7411,16 @@ msgid "L&D Manager, InnovateNow"
 msgstr "مدير التعلم والتطوير، InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"لقد أحدثت الرؤى المدعومة بالذكاء الاصطناعي التي تقدمها NextGen AI LMS ثورة "
-"في نهجنا في تطوير الموظفين. يمكننا الآن تحديد الفجوات في المهارات بشكل "
-"استباقي وتصميم برامجنا التدريبية بدقة غير مسبوقة. لقد زادت إنتاجية فريقنا "
-"بنسبة 30%% منذ تطبيق هذا النظام المتطور."
+"لقد أدى تطبيق NextGen LMS إلى تحويل نهجنا في تطوير الموظفين. لقد منحتنا "
+"أدوات إعداد التقارير القوية الخاصة بالمنصة رؤى قيمة حول فعالية برامجنا "
+"التدريبية. يمكننا الآن اتخاذ قرارات مبنية على البيانات لتحسين المحتوى وطرق "
+"التسليم لدينا."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5987,8 +7431,8 @@ msgid "Starter"
 msgstr "بدأت الدورة"
 
 #: templates/website/landing_page.html
-msgid "/month"
-msgstr "شهر"
+msgid "Perfect for small teams"
+msgstr "مثالية للفرق الصغيرة"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -6007,16 +7451,16 @@ msgid "24/7 chatbot support"
 msgstr "دعم لروبوتات الدردشة على مدار 24 ساعة طوال أيام الأسبوع"
 
 #: templates/website/landing_page.html
-msgid "Get Started"
-msgstr "دليل البدء"
+msgid "Contact Sales"
+msgstr "اتصل بالمبيعات"
 
 #: templates/website/landing_page.html
 msgid "Most Popular"
 msgstr "الدورات الأكثر شعبية"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "احترافي"
+msgid "Ideal for growing organizations"
+msgstr "مثالية للمنظمات المتنامية"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -6031,24 +7475,16 @@ msgid "Automated content recommendations"
 msgstr "توصيات المحتوى الآلي"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "وحدات التدريب على الواقع الافتراضي"
-
-#: templates/website/landing_page.html
 msgid "Priority support"
 msgstr "طباعة التقرير"
-
-#: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "الترقية إلى برو"
 
 #: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "مَشرُوع"
 
 #: templates/website/landing_page.html
-msgid "Custom"
-msgstr "التقارير المخصصة"
+msgid "Tailored for large enterprises"
+msgstr "مصممة للمؤسسات الكبيرة"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6063,16 +7499,8 @@ msgid "Custom model development"
 msgstr "تطوير الويب"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "قدرات الواقع الافتراضي والواقع المعزز المتقدمة"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "مدير حساب مخصص"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "اتصل بالمبيعات"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6095,20 +7523,18 @@ msgid "Empowering the future of learning with innovative technology."
 msgstr "تمكين مستقبل التعلم باستخدام التكنولوجيا المبتكرة."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 شارع التقنية، سان فرانسيسكو، كاليفورنيا 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "نيوتاون، كلكتا، البنغال الغربية، الهند، 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "الهاتف: (555) 123-4567"
+msgid "Phone: __"
+msgstr "هاتف: __"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "البريد الإلكتروني: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "روابط سريعة"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6151,10 +7577,6 @@ msgid "Support Center"
 msgstr "مركز المساعدة والدعم"
 
 #: templates/website/landing_page.html
-msgid "System Status"
-msgstr "تحديثات النظام"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "تواصل معنا"
 
@@ -6182,11 +7604,268 @@ msgstr "لقد قمت بتسجيل الدخول بنجاح."
 msgid "Login failed. Please check the errors below."
 msgstr "فشل تسجيل الدخول. يرجى التحقق من الأخطاء أدناه."
 
+#~ msgid "Advanced Python Programming"
+#~ msgstr "برمجة بايثون المتقدمة"
+
+#, fuzzy
+#~ msgid "Basic Details"
+#~ msgstr "تفاصيل الرسالة"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "كيف سيتم تقديم الدورة؟"
+
+#, fuzzy
+#~ msgid "Assign Facilitators"
+#~ msgstr "الميسرون"
+
+#, fuzzy
+#~ msgid "Assign Participants"
+#~ msgstr "مبادئ تصميم واجهة المستخدم"
+
+#, fuzzy
+#~ msgid "Advanced Settings"
+#~ msgstr "إعدادات المظهر"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr "هل ترغب في إضافة فترة وصول لمحتوى الدورة التدريبية لهذا التسليم؟"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "نعم، قم بإضافة فترة الوصول"
+
+#, fuzzy
+#~ msgid "Select start date"
+#~ msgstr "اختر بوابة"
+
+#, fuzzy
+#~ msgid "Select end date"
+#~ msgstr "اختر بوابة"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "هل ترغب في إضافة تاريخ التعطيل لهذا التسليم؟"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "نعم، قم بإضافة تاريخ التعطيل"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "هل ترغب في الحصول على تعليقات من المشارك بشأن هذا التسليم؟"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "نعم، جمع ردود الفعل"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "نعم، ضع علامة إلزامية"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "هل تريد تسجيل حضور المشاركين لهذه الدورة؟"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "نعم سجل الحضور"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "هل تتطلب هذه الدورة شهادة إتمام؟"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "نعم، تتطلب شهادة الإنجاز"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "دعوة قالب البريد الإلكتروني"
+
+#, fuzzy
+#~ msgid "Completion Email Template"
+#~ msgstr "معدل الإنجاز"
+
+#, fuzzy
+#~ msgid "Search deliveries..."
+#~ msgstr "بحث عن الدورات..."
+
+#, fuzzy
+#~ msgid "Cancelled"
+#~ msgstr "يلغي"
+
+#, fuzzy
+#~ msgid "All Instructors"
+#~ msgstr "المدربين"
+
+#, fuzzy
+#~ msgid "Instructor 1"
+#~ msgstr "المدربين"
+
+#, fuzzy
+#~ msgid "Instructor 2"
+#~ msgstr "المدربين"
+
+#, fuzzy
+#~ msgid "Instructor 3"
+#~ msgstr "المدربين"
+
+#, fuzzy
+#~ msgid "Export Deliveries"
+#~ msgstr "تصدير المحدد"
+
+#~ msgid "Delivery ID"
+#~ msgstr "معرف التسليم"
+
+#, fuzzy
+#~ msgid "Manage Students"
+#~ msgstr "طلاب"
+
+#~ msgid "Withdraw"
+#~ msgstr "ينسحب"
+
+#~ msgid "Approve"
+#~ msgstr "يعتمد"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "موضوع"
+
+#~ msgid "Category 1"
+#~ msgstr "الفئة 1"
+
+#~ msgid "Category 2"
+#~ msgstr "الفئة 2"
+
+#~ msgid "Category 3"
+#~ msgstr "الفئة 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "سياسة مكافحة الرشوة والفساد"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "التدريب الأساسي على الامتثال لجميع الموظفين"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "ستعلمك هذه الدورة الشاملة بسياسة مكافحة الرشوة والفساد في شركتنا. ستتعرف على"
+#~ " الإطار القانوني، وتتعرف على المخاطر المحتملة، وتفهم كيفية الالتزام بالسياسة"
+#~ " في مواقف العمل المختلفة."
+
+#, fuzzy
+#~ msgid "2 hours"
+#~ msgstr "منذ ساعتين"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "أساسيات مكافحة الرشوة ومكافحة الفساد"
+
+#~ msgid "SCORM Package"
+#~ msgstr "حزمة سكورم"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "التعرف على مخاطر الرشوة"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "سياسة الشركة لمكافحة الفساد"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "دراسات الحالة: اتخاذ القرارات الأخلاقية"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "تقييم مكافحة الرشوة ومكافحة الفساد"
+
+#~ msgid "Take Quiz"
+#~ msgstr "خذ الاختبار"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "تعرف على الممارسات التجارية الأخلاقية والامتثال"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "نظام إدارة أمن المعلومات (ISMS)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "فهم المبادئ الأساسية لأمن المعلومات"
+
+#, fuzzy
+#~ msgid "3 hours"
+#~ msgstr "منذ ساعتين"
+
+#, fuzzy
+#~ msgid "6 modules"
+#~ msgstr "8 وحدات"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "مكافحة غسيل الأموال"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "تعلم كيفية التعرف على أنشطة غسيل الأموال ومنعها"
+
+#, fuzzy
+#~ msgid "2.5 hours"
+#~ msgstr "منذ ساعتين"
+
+#, fuzzy
+#~ msgid "4 modules"
+#~ msgstr "8 وحدات"
+
+#~ msgid "Smart Learning Paths"
+#~ msgstr "مسار التعلم"
+
+#~ msgid "Advanced Analytics"
+#~ msgstr "اللغة العربية المتقدمة"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "استفد من الرؤى المستندة إلى البيانات للتنبؤ بنتائج المتعلم، وتحديد التحديات "
+#~ "المحتملة، والتدخل بشكل استباقي لتحقيق نتائج أفضل."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "تدريب واقع افتراضي غامر"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "دمج تجارب الواقع الافتراضي للتدريب العملي الخالي من المخاطر في السيناريوهات "
+#~ "المعقدة أو عالية المخاطر."
+
+#~ msgid "Client Avatar"
+#~ msgstr "الصورة الرمزية للعميل"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "لقد أحدثت الرؤى المدعومة بالذكاء الاصطناعي التي تقدمها NextGen AI LMS ثورة "
+#~ "في نهجنا في تطوير الموظفين. يمكننا الآن تحديد الفجوات في المهارات بشكل "
+#~ "استباقي وتصميم برامجنا التدريبية بدقة غير مسبوقة. لقد زادت إنتاجية فريقنا "
+#~ "بنسبة 30%% منذ تطبيق هذا النظام المتطور."
+
+#~ msgid "/month"
+#~ msgstr "شهر"
+
+#~ msgid "Get Started"
+#~ msgstr "دليل البدء"
+
+#~ msgid "VR training modules"
+#~ msgstr "وحدات التدريب على الواقع الافتراضي"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "الترقية إلى برو"
+
+#~ msgid "Custom"
+#~ msgstr "التقارير المخصصة"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "قدرات الواقع الافتراضي والواقع المعزز المتقدمة"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 شارع التقنية، سان فرانسيسكو، كاليفورنيا 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "الهاتف: (555) 123-4567"
+
 #~ msgid "Language menu opened!"
 #~ msgstr "تم فتح قائمة اللغة!"
-
-#~ msgid "Track Your Learning Journey"
-#~ msgstr "تتبع رحلتك التعليمية"
 
 #~ msgid "Learn the basics of HTML, CSS, and JavaScript"
 #~ msgstr "تعلم أساسيات HTML وCSS وJavaScript"

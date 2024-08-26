@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-18 23:53+0530\n"
+"POT-Creation-Date: 2024-08-26 11:43+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "Viestit"
 
@@ -336,6 +337,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "Kesto"
@@ -622,12 +624,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "Tilata"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -696,14 +698,18 @@ msgid "Change"
 msgstr "Muuttaa"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "Tuntematon"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "Kyllä"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "Ei"
 
@@ -799,58 +805,69 @@ msgstr "sunnuntai"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "Minun"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "ti"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "ke"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "Kerätä"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "pe"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "la"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "Aurinko"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "tammikuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "helmikuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "maaliskuuta"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "huhtikuu"
 
@@ -861,34 +878,42 @@ msgstr "huhtikuu"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "toukokuuta"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "kesäkuuta"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "heinäkuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "elokuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "syyskuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "lokakuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "marraskuu"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "joulukuu"
 
@@ -1315,6 +1340,14 @@ msgstr "Django-yhteisö"
 msgid "Connect, get help, or contribute"
 msgstr "Muodosta yhteys, hanki apua tai osallistu"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr "x"
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "ja"
+
 #: lms/settings.py
 msgid "English"
 msgstr "englanti"
@@ -1478,7 +1511,6 @@ msgid "Active Announcements"
 msgstr "Aktiiviset ilmoitukset"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "Aikataulutettu"
 
@@ -1514,7 +1546,6 @@ msgid "Maintenance"
 msgstr "Huolto"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1522,7 +1553,8 @@ msgid "All Statuses"
 msgstr "Kaikki tilat"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "Aktiivinen"
 
@@ -1531,6 +1563,8 @@ msgid "Expired"
 msgstr "Vanhentunut"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "Luonnos"
 
@@ -1539,6 +1573,8 @@ msgid "Export Report"
 msgstr "Vie raportti"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "Otsikko"
@@ -1552,7 +1588,8 @@ msgstr "Luokka"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1568,12 +1605,13 @@ msgid "Expiry Date"
 msgstr "Viimeinen voimassaolopäivä"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "Kihlaus"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1605,19 +1643,18 @@ msgstr "Poista ilmoitus"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Edellinen"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "Seuraavaksi"
 
@@ -1687,6 +1724,7 @@ msgstr "Tentti"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "Tulevat tapahtumat"
 
@@ -1728,6 +1766,7 @@ msgstr "Seuraa ja hallitse järjestelmävarmenteita"
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "Sertifikaatit"
 
@@ -1740,7 +1779,6 @@ msgid "Certificates This Month"
 msgstr "Todistukset tässä kuussa"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "Odottaa hyväksyntää"
 
@@ -1753,31 +1791,10 @@ msgstr "Kurssit sertifikaateilla"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "Kaikki kurssit"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "IT & Ohjelmointi"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "Business"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "Kielet"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "Tiede & Matematiikka"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1813,16 +1830,18 @@ msgid "Certificate ID"
 msgstr "Varmenteen tunnus"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "Oppija"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "Kurssi"
 
@@ -1831,27 +1850,20 @@ msgid "Issue Date"
 msgstr "Julkaisupäivämäärä"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "John Doe"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "Kehittynyt Python-ohjelmointi"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "Myönnetty"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "Peruutettu"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "Näytä sertifikaatti"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "Lataa sertifikaatti"
 
@@ -1884,147 +1896,127 @@ msgstr "Leipämuru"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "Kurssit"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "Luo toimitus"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "Edistyminen"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "Perustiedot"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "Syötä toimituskoodi"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "Toimituskoodi"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "Syötä toimituskoodi"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "Miten kurssi toimitetaan?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "Toimituskoodi"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "Oma tahti"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "Ohjaaja Led"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "Nimeä ohjaajia"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "Ilmoittautumiset"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "Integraatiot"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "Fasilitaattorit"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "Määritä osallistujat"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "Aloituspäivämäärä"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "Päättymispäivämäärä"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "Osallistujat"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "Lisäasetukset"
+msgid "Enter maximum participants"
+msgstr "Anna osallistujien enimmäismäärä"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr "Haluatko lisätä pääsyjakson kurssin sisältöön tälle toimitukselle?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "Kyllä, lisää käyttöoikeusaika"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "Valitse aloituspäivä"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "kohtaan"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "Valmis"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "Valitse lopetuspäivä"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "Arkistoitu"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "Haluatko lisätä deaktivointipäivän tälle toimitukselle?"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "On Pakollinen"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "Kyllä, lisää poistopäivämäärä"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "Valitse päivämäärä"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "Haluatko saada palautetta osallistujalta tätä toimitusta varten?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "Kyllä, kerää palautetta"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr "Haluatko merkitä tämän toimituksen osallistujalle pakolliseksi?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "Kyllä, merkitse pakolliseksi"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "Haluatko tallentaa osallistujan osallistumisen tälle kurssille?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "Kyllä, kerää läsnäolo"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "Edellyttääkö tämä kurssi suorittamistodistusta?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "Kyllä, vaadi suorittamistodistus"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "Sähköpostiasetukset"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "Kutsu sähköpostimalli"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "Täydennyksen sähköpostimalli"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "Lähetä"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2043,104 +2035,21 @@ msgid "Deliveries"
 msgstr "Toimitukset"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "Hae toimituksia..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "Käynnissä"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "Valmis"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "Peruutettu"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "Kaikki ohjaajat"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "Ohjaaja 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "Ohjaaja 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "Ohjaaja 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "Vientitoimitukset"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "Toimitustunnus"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "Aloituspäivämäärä"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "Päättymispäivämäärä"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "Ohjaaja"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "Opiskelijat"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "Näytä tiedot"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "Muokata"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "Hallinnoi opiskelijoita"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "Näytetään"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "kohtaan"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "/"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "tuloksia"
 
@@ -2151,8 +2060,194 @@ msgstr "Poista toimitus"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "Peruuttaa"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "Kurssien toimitukset - LMS Admin"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "Kurssin tiedot"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "Joukkotoiminnot"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "Valmistumisaste"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "Edistyminen"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "Ohjaajia ei ole vielä määrätty."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "Oppimisresurssit"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "Tyyppi"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "Videotiedostoa ei ole saatavilla."
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "Edistyminen"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "Käynnissä"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "Peruutettu"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "Näytä tiedot"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "Ilmoittautunut kurssille"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "Ilmoittautumiset"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "merkinnät"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "Toimitustunnus"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "Ilmoittautunut kurssille"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "Luo raportti"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "Kurssien määrä"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "Edistyminen"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "Oppimisen edistyminen"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2229,6 +2324,7 @@ msgid "Created by:"
 msgstr "Luo toimitus"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2260,12 +2356,6 @@ msgid "Course Content"
 msgstr "Kurssin kansi"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "Ilmoittautumiset"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2274,12 +2364,6 @@ msgstr "Vientitoimitukset"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "Lisää uusi resurssi"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "Tyyppi"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2311,21 +2395,6 @@ msgstr "Toimitustunnus"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "Ilmoittautumiset"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "Ilmoittautumiset"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "Ilmoittautumiset"
 
@@ -2343,17 +2412,14 @@ msgstr "Valitse päivämäärä"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "Video"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "Asiakirja"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "Esittely"
 
@@ -2364,7 +2430,6 @@ msgstr "Linkki"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "Tietokilpailu"
 
@@ -2398,6 +2463,7 @@ msgstr "Resurssien käyttö"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "Oppimispolku"
 
@@ -2540,6 +2606,38 @@ msgstr "Resurssien käyttö"
 msgid "Preview not available for this resource type."
 msgstr "Esikatselu ei ole käytettävissä tälle resurssityypille."
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "Ilmoitukset - LMS Admin"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "Valitse ilmoittautuvat oppilaat"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "Oppilaat"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "Valitse päivämäärä"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "Poista kaikki valinta"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "Ilmoittautunut kurssille"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2570,46 +2668,6 @@ msgid "Search enrollments..."
 msgstr "Hae kursseja..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "Verkkokehityksen perusteet"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "Tietojen perusteet"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "Digitaalinen markkinointi"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "Odottaa"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "Peruutettu"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2622,56 +2680,22 @@ msgstr "Vie tiedot"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "Sivuston nimi"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "Oppija"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "Verkkokehityksen perusteet"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "Vientitoimitukset"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "Näytä"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "Peruuttaa"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "Datatieteen perusteet"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "Hyväksyä"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "Aihe"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "Digitaalinen markkinointi"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2737,12 +2761,6 @@ msgstr "Oppilaat"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "Luo raportti"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "Sivuston nimi"
@@ -2755,14 +2773,6 @@ msgid "Enrolled Learners"
 msgstr "Ilmoittautunut kurssille"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "Valmistumisaste"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2771,6 +2781,11 @@ msgstr "Mukautetun mallin kehitys"
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "Tekniikka"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "Muokata"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2905,6 +2920,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2936,12 +2952,6 @@ msgstr "9-12 kuukautta"
 msgid "> 12 months"
 msgstr "> 12 kuukautta"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "Kurssien määrä"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "Kurssit - LMS Admin"
@@ -2955,20 +2965,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "Hallinnoi ja järjestä kurssejasi"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "Kaikki kurssit"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "Julkaisupäivämäärä"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "Julkaisematon"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "Luokat"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "Hae kursseja..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "Luokka 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "Luokka 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "Luokka 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3092,8 +3115,23 @@ msgid "987 enrolled"
 msgstr "987 ilmoittautunutta"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "Datatieteen perusteet"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "856 ilmoittautunutta"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "Digitaalinen markkinointi"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3167,6 +3205,7 @@ msgid "July 12, 2024"
 msgstr "12. heinäkuuta 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "Parhaat esiintyjät"
 
@@ -3243,6 +3282,7 @@ msgstr "Hallinnoi tukilippuja ja pääsyresursseja"
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "Apua ja tuki"
 
@@ -3309,6 +3349,7 @@ msgid "Close Ticket"
 msgstr "Sulje lippu"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "Usein kysytyt kysymykset"
 
@@ -3341,6 +3382,8 @@ msgstr ""
 "ohjaajia ja sopia kurssin aikataulu."
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "Video opetusohjelmat"
 
@@ -3394,12 +3437,32 @@ msgstr "Leaderboard - LMS Admin"
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "Tulostaulukko"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "Juhlistamme huippusuoritajiamme"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "IT & Ohjelmointi"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "Business"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "Kielet"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "Tiede & Matematiikka"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3430,6 +3493,7 @@ msgid "3rd"
 msgstr "tarjous"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "Sijoitus"
 
@@ -3447,6 +3511,13 @@ msgstr "Keskim. Pisteet"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "Pisteitä yhteensä"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "John Doe"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3497,6 +3568,7 @@ msgid "From:"
 msgstr "Lähettäjä:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "Aihe:"
 
@@ -3543,12 +3615,12 @@ msgid "Flagged"
 msgstr "Liputettu"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "Arkistoitu"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "Kaikki käyttäjät"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "Opiskelijat"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3678,6 +3750,29 @@ msgid "Search assessments..."
 msgstr "Hae viestejä..."
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "Verkkokehityksen perusteet"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "Tietojen perusteet"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "All Time"
 msgid "All Types"
@@ -3804,6 +3899,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "Datatieteen perusteet"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "Verkkokehityksen perusteet"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3894,6 +3997,7 @@ msgstr "Projektit"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4037,12 +4141,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "Kaikki kurssit"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "Todistukset tässä kuussa"
@@ -4058,6 +4156,13 @@ msgstr "Kurssin suorittaminen"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "Parhaat esiintyjät"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "Digitaalinen markkinointi"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4094,12 +4199,6 @@ msgstr "Kurssin suorittaminen"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "Kurssi"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "Ilmoittautumiset"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4348,6 +4447,10 @@ msgstr "Luokituksen jakelu"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "Suoritetut kurssit"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "Ohjaaja"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -5016,10 +5119,12 @@ msgid "Appearance"
 msgstr "Ulkonäkö"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "Ilmoitukset"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "Integraatiot"
 
@@ -5124,6 +5229,7 @@ msgid "Notifications Settings"
 msgstr "Ilmoitusasetukset"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "Sähköposti-ilmoitukset"
 
@@ -5209,6 +5315,7 @@ msgid "Sidebar"
 msgstr "Sivupalkki"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "Luokat"
 
@@ -5229,6 +5336,7 @@ msgid "Reports & Analytics"
 msgstr "Raportit ja analyysit"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "Kurssin suorittaminen"
 
@@ -5298,6 +5406,375 @@ msgstr "Järjestelmänvalvojat"
 msgid "Back to Home"
 msgstr "Takaisin etusivulle"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "Oppilaat"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "Hallinnoi ja järjestä kurssejasi"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "Toimeksiannon eräpäivät"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "Kurssi suoritettu"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "Odottaa"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "Kurssi"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "Eräpäivä:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "Lähettäjä"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "Aktiiviset istunnot"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "Arvosteltu"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "Oppijan palaute"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "Myöhässä"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "Lähetä"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "Toimeksiannon eräpäivät"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "Valmistumisaste"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "Tulevat määräajat"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "Toimeksiannon eräpäivät"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "Tehtävän tiedot näkyvät täällä."
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "Lähetetty tehtävä"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "Lähellä"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "Minun merkit"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "Esittele taitosi ja saavutuksesi"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "Kurssin yleiskatsaus"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "Viestejä yhteensä"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr "Olet ansainnut merkkejä eri luokista. Jatka oppimista ja avaa lisää!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "Taitomerkit"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "Saavutusmerkit"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "Milestone-merkit"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "Sinun merkit"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "Suodatusperuste:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "Kaikki viestit"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "Taito"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "Ansaittu:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "Virstanpylväs"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "Viestin tiedot"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "Verkko-oppimisen webinaari"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "Kojelauta – LMS-oppija"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "LMS kalenteri"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "Hallitse oppimisaikatauluasi ja määräaikojasi"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "Joukkotoiminnot"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "Edellinen"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "Tänään"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "Viimeiset 3 kuukautta"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "JavaScriptin lopullinen projekti"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "Eräpäivä: 23.7.2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "Tietojen visualisointikilpailu"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "Eräpäivä: 28.7.2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "Sertifikaatit"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "Esittele saavutuksesi ja taitosi"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "Ansaitut todistukset"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "Käyttäjiä yhteensä"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "Tänä vuonna"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"Olet ansainnut sertifikaatteja eri kursseista ja erikoisaloista. Jatka "
+"samaan malliin!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "Kurssit sertifikaateilla"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "Todistuksia yhteensä"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "Todistuksia yhteensä"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "Sertifikaatit"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "Sertifikaatit"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "Todistuksia yhteensä"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "Myönnetty"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "Näytä sertifikaatti"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "Tietojen visualisointikilpailu"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "Ammattilainen"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "Varmenteen tunnus"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5306,34 +5783,12 @@ msgstr "Kurssin asetukset"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "Lahjonnan ja korruption vastainen politiikka"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "Tärkeä vaatimustenmukaisuuskoulutus kaikille työntekijöille"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Omat kurssini"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"Tämä kattava kurssi kouluttaa sinut yrityksemme lahjonnan ja korruption "
-"vastaiseen politiikkaan. Opit oikeudellisista puitteista, tunnistat "
-"mahdolliset riskit ja ymmärrät kuinka noudattaa politiikkaa erilaisissa "
-"liiketoimintatilanteissa."
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 tuntia"
+msgid "30 minutes"
+msgstr "30 minuuttia"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5345,52 +5800,13 @@ msgid "All Employees"
 msgstr "Kaikki työntekijät"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "Kokonaiskehitys"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "Oppimisresurssit"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "Lahjon ja korruption vastaiset perusteet"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "SCORM-paketti"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "Aloita"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "Lahjonnan riskien tunnistaminen"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "Katsella"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "Yrityksen korruption vastainen politiikka"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "Lukea"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "Tapaustutkimukset: Eettinen päätöksenteko"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "Lahjonta ja korruption vastainen arviointi"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "Ota tietokilpailu"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5454,7 +5870,8 @@ msgstr "Kurssit meneillään"
 msgid "Certificates Earned"
 msgstr "Ansaitut todistukset"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "Oppimisputki"
 
@@ -5462,11 +5879,11 @@ msgstr "Oppimisputki"
 msgid "days"
 msgstr "päivää"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "Oppimisen edistyminen"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "Nykyiset kurssit"
 
@@ -5479,30 +5896,12 @@ msgid "Data Science Basics"
 msgstr "Tietojen perusteet"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "Tulevat määräajat"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "JavaScriptin lopullinen projekti"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "Eräpäivä: 23.7.2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "Tietojen visualisointikilpailu"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "Eräpäivä: 28.7.2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "Viimeaikainen toiminta"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "Suoritettu oppitunti: Johdatus JavaScriptiin"
 
@@ -5517,6 +5916,525 @@ msgstr "Kurssien määrä"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "Kuukausi"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "LMS-foorumit"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "Osallistu, keskustele ja opi yhdessä"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "Verkkokehityksen perusteet"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "Tekoäly"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "Yleinen keskustelu"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "Foorumin viestit"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "Pisteet yhteensä:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "Pisteet yhteensä:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "Aktiiviset kurssit"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "Kurssin suorittaminen"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "Näytä lippu"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "Parhaat käytännöt responsiiviseen verkkosuunnitteluun?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "Aloita"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 vastausta"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 tuntia sitten"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "Python vs R tietojen analysointiin: plussat ja miinukset?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 vastausta"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 päivä sitten"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "Vinkkejä mobiilisovellusten suorituskyvyn optimointiin?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 vastausta"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "Viimeiset 30 päivää"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "Eettiset näkökohdat tekoälyn kehittämisessä"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 vastausta"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "Viimeiset 30 päivää"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "Trendaavat aiheet"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "Johdatus tekoälyyn"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 vastausta • 1,2 000 näyttökertaa"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "JavaScript-kehysten vertailu"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 vastausta • 980 katselukertaa"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "Tietojen visualisointikilpailu"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 vastausta • 850 katselukertaa"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "Luo uusi lippu"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "Otsikko"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "Valitse päivämäärä"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "Kurssin kansi"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "Luo uusi lippu"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "Arvosanasi"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "Katso akateeminen suorituksesi"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "Arvosanan yhteenveto"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "Kokonaiskehitys"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "Korkein arvosana:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "Alin arvosana:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "Luokituksen jakelu"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "Kurssi"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "Status"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "Tallennustilan käyttötrendi"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "Kurssin asetukset"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr "Tässä näytetään valitun kurssin tarkemmat arvosanatiedot."
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "Arvosana (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "Arvosanatrendi eri kursseilla"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "Ohje ja tuki - LMS Admin"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr "Löydä vastauksia kysymyksiisi ja saat tarvitsemaasi tukea"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "Miten voimme auttaa sinua?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "Hae kursseja..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "AI-haku"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "Kuinka nollaan opiskelijan salasanan?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "Voit nollata salasanasi seuraavasti:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "Napsauta kirjautumissivulla olevaa \"Unohdin salasana\" -linkkiä"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "Anna kelvollinen sähköpostiosoite."
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "Tarkista sähköpostistasi salasanan palautuslinkki"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr "Napsauta linkkiä ja seuraa ohjeita uuden salasanan luomiseksi"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "Ilmoittautunut kurssille"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "Ilmoittautunut kurssille"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "Selaa kurssiluetteloa"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "Valitse sinua kiinnostava kurssi"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "Napsauta kurssisivulla olevaa Ilmoittaudu-painiketta"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "Suorita ilmoittautuminen loppuun noudattamalla ohjeita"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "Kuinka seuraan edistymistäni?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "Voit seurata edistymistäsi seuraavasti:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "Oppijan kojelauta"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "Edistymispalkin tarkistaminen jokaisella kurssilla"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "Tarkistaa suoritettuja tehtäviä ja tietokilpailuja"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "Arvosanojen tarkistaminen Arvosanat-osiosta"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "Live Chat -tuki"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "Apua ja tuki"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "Live Chat -tuki"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "Apua ja tuki"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "Kokonaistulot"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr "Käyttöopas"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "Yhteisön foorumi"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "Järjestelmäpäivitykset"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "Tarvitsetko lisää apua?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "Tukitiimimme on täällä auttamaan sinua."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "Lähetetty tehtävä"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "Kojelauta – LMS-oppija"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "Katso, kuinka sijoitut vertaisesi joukossa"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "Sähköpostisi"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "Kokonaissijoituksesi"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "Parhaat esiintyjät"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "Näytä"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "Kokonaiskehitys"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "Keskim. Pisteet"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "Kommunikoi ohjaajien ja vertaisten kanssa"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "Integraatiot"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "Lähetä Viesti"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "Kirjoita vastauksesi tähän..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "Lähetä"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "Vastaanottaja:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "Viestit"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5543,44 +6461,565 @@ msgid "Ethics"
 msgstr "Etiikka"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr "Opi eettisistä liiketoimintakäytännöistä ja niiden noudattamisesta"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "Aloitettu kurssi"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "Näytä profiili"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "Tietoja meistä"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "Kurssin tiedot"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "Valmis"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "Ilmoittautumiset"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "Tunnusmerkit"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "päivää"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "Jatka samaan malliin!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "Käynnissä – 60 %% valmis"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "Käynnissä – 30 %% valmis"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "Viimeaikaiset toimet"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "Oppimisen edistyminen"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "Mullistaa oppiminen"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "Oppimisputki"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "Suositeltu kurssimuoto"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "Maali"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "Edistyminen"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "Seuraa oppimismatkaasi ja saavutuksiasi"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "Oppija"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "Kurssi"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "Oppimisputki"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "Kurssit meneillään"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "Edistyminen"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "Valmis"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "Käynnissä – 75 %% valmis"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "Lukittu - Täytä edellytykset ensin"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 tuntia sitten"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "Ansaittu merkki: CSS Master"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 päivä sitten"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "Tietojen visualisointikilpailu"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 päivä sitten"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "Suoritettu oppitunti: Johdatus JavaScriptiin"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "Suositellut seuraavat vaiheet"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "Suoritettu oppitunti: Johdatus JavaScriptiin"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "Suorita loput oppitunnit vahvistaaksesi JS-taitojasi."
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "Jatka kurssia"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "Tietoturvan hallintajärjestelmä (ISMS)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "Ilmoitukset yhteensä"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "Ymmärtää tietoturvallisuuden keskeiset periaatteet"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "Testaa Python-tietosi tällä nopealla arvioinnilla."
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 tuntia"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "Ilmoitukset yhteensä"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 moduulia"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "Tietojen visualisointikilpailu"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "Rahanpesun torjunta"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr "Paranna datatieteen taitojasi tällä uudella kurssilla."
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "Opi tunnistamaan ja ehkäisemään rahanpesutoimintaa"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "Luo kurssi"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2,5 tuntia"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "Omat kurssini - LMS-oppija"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 moduulia"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "Käytä kurssimateriaaleja ja hyödyllistä sisältöä"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "Kurssin asetukset"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "Oppimisresurssit"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "Lisälukemista"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "Pikalinkit"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "Sivuston nimi"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "Kalenteri"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "Kirjastoportaali"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "Apua ja tuki"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "Resurssien käyttö"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "Lataukset"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "Katsella"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "Vieraile foorumilla"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "Lukea"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "Viimeksi käytetty"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "Viimeksi käytetty"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "Asetukset - LMS-järjestelmänvalvoja"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "Suojausasetukset"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "Hallinnoi tilisi asetuksia ja asetuksia"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "Näytä profiili"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "Pääsymäärä"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "Salasanakäytäntö"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "Sähköpostiasetukset"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "Sivuston nimi"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "Sivuston nimi"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "Järjestelmänvalvojan sähköposti"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "marraskuu"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "Hän oli"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "Tallenna muutokset"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "Salasanakäytäntö"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "Salasanakäytäntö"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "Vahvista uusi salasana"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "Salasanakäytäntö"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "Ilmoitusasetukset"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "Ilmoitukset"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "Vientitoimitukset"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "Suojausasetukset"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "Profiilin näkyvyys"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "Julkaista"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "Vain ystävät"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "Yksityinen"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "Käyttäjän toiminta"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "Oppimisputki"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "Visuaalinen"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "Auditiivinen"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "Lue/kirjoita"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "Kinesteettinen"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "Keskim. Vastausaika"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "Varoitus"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "keskipäivä"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "Tapahtumat"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "Myöhäinen yö"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "Oppimisen edistyminen"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "Ota yhteyttä meihin"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "Ota yhteyttä meihin"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "Ota yhteyttä meihin"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "Ota yhteyttä meihin"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "Ota yhteyttä meihin"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5647,13 +7086,17 @@ msgstr "Huippuluokan ominaisuudet"
 #: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Learning Path"
-msgid "Smart Learning Paths"
+msgid "Adaptive Learning Paths"
 msgstr "Oppimispolku"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "Algoritmimme analysoivat oppijan käyttäytymistä ja suorituskykyä luodakseen "
 "yksilöllisiä oppimismatkoja ja varmistaen optimaalisen taitojen "
@@ -5661,30 +7104,74 @@ msgstr ""
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "Edistynyt arabia"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "Valmistumisaste"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"Hyödynnä datapohjaisia ​​oivalluksia oppilaiden tulosten ennustamiseen, "
-"mahdollisten haasteiden tunnistamiseen ja ennakoivaan puuttumiseen "
-"saadaksesi parempia tuloksia."
+"Hanki arvokkaita näkemyksiä oppilaiden edistymisestä, kurssin tehokkuudesta "
+"ja koulutuksen kokonaisvaikutuksista tehokkaiden raportointityökalujemme "
+"avulla."
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "Mukaansatempaava VR-koulutus"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "Automaattiset sisältösuositukset"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"Integroi virtuaalitodellisuuskokemukset käytännönläheiseen, riskittömään "
-"koulutukseen monimutkaisissa tai suuren panoksen skenaarioissa."
+"Hyödynnä koneoppimisalgoritmeja ehdottaaksesi osuvia kursseja ja resursseja "
+"oppilaiden kiinnostuksen kohteiden ja suoritusten perusteella."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "Aktiiviset istunnot"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"Edistä yhteistyötä ja tiedon jakamista sisäänrakennettujen foorumien, chat-"
+"huoneiden ja ryhmäprojektien avulla."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "Mullistaa oppiminen"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"Käytä kursseja ja materiaaleja liikkeellä ollessasi responsiivisen "
+"suunnittelumme ja iOS- ja Android-mobiilisovelluksemme avulla."
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "Valmistumisaste"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"Lisää sitoutumista saavutusmerkeillä, tulostaulukoilla ja automaattisella "
+"sertifikaatin luomisella kurssin päätyttyä."
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5887,16 +7374,14 @@ msgid "Intelligent content recommendations"
 msgstr "Älykkäät sisältösuositukset"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "Mukautuva oppimisen visualisointi"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "Menestystarinoita"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "Asiakas Avatar"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5907,12 +7392,17 @@ msgid "HR Director, TechCorp"
 msgstr "HR-johtaja, TechCorp"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS on muuttanut yrityskoulutuksemme. Henkilökohtaiset "
 "oppimispolut ja ennakoiva analytiikka ovat merkittävästi parantaneet "
@@ -5929,19 +7419,16 @@ msgid "L&D Manager, InnovateNow"
 msgstr "L&D-päällikkö, InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"NextGen AI LMS:n tarjoamat tekoälypohjaiset oivallukset ovat mullistaneet "
-"lähestymistapamme työntekijöiden kehittämiseen. Voimme nyt tunnistaa "
-"taitojen puutteet ennakoivasti ja räätälöidä koulutusohjelmamme "
-"ennennäkemättömän tarkasti. Tiimimme tuottavuus on kasvanut 30 %% tämän "
-"huippuluokan järjestelmän käyttöönoton jälkeen."
+"NextGen LMS:n käyttöönotto on muuttanut lähestymistapaamme työntekijöiden "
+"kehittämiseen. Alustan vahvat raportointityökalut ovat antaneet meille "
+"arvokasta tietoa koulutusohjelmiemme tehokkuudesta. Voimme nyt tehdä "
+"datalähtöisiä päätöksiä parantaaksemme sisältöämme ja toimitustapojamme."
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5954,10 +7441,8 @@ msgid "Starter"
 msgstr "Aloita"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "Kuukausi"
+msgid "Perfect for small teams"
+msgstr "Täydellinen pienille ryhmille"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -5978,10 +7463,8 @@ msgid "24/7 chatbot support"
 msgstr "24/7 chatbot-tuki"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "Aloitusopas"
+msgid "Contact Sales"
+msgstr "Ota yhteyttä myyntiin"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -5990,8 +7473,8 @@ msgid "Most Popular"
 msgstr "Suosituimmat kurssit"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "Ammattilainen"
+msgid "Ideal for growing organizations"
+msgstr "Ihanteellinen kasvaville organisaatioille"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -6006,28 +7489,18 @@ msgid "Automated content recommendations"
 msgstr "Automaattiset sisältösuositukset"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "VR-koulutusmoduulit"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "Tulosta raportti"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "Päivitä Pro-versioon"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "Yritys"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "Mukautetut raportit"
+msgid "Tailored for large enterprises"
+msgstr "Räätälöity suurille yrityksille"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6042,16 +7515,8 @@ msgid "Custom model development"
 msgstr "Mukautetun mallin kehitys"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "Kehittyneet VR- ja AR-ominaisuudet"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "Omistettu tilivastaava"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "Ota yhteyttä myyntiin"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6075,20 +7540,18 @@ msgstr ""
 "Oppimisen tulevaisuuden voimaannuttaminen innovatiivisella teknologialla."
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 Tech Street, San Francisco, CA 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "Newtown, Kolkata, Länsi-Bengal, Intia, 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "Puhelin: (555) 123-4567"
+msgid "Phone: __"
+msgstr "Puhelin: __"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "Sähköposti: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "Pikalinkit"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6137,12 +7600,6 @@ msgid "Support Center"
 msgstr "Ohje- ja tukikeskus"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "Järjestelmäpäivitykset"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "Ota yhteyttä meihin"
 
@@ -6169,6 +7626,254 @@ msgstr "Olet onnistuneesti kirjautunut sisään."
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "Kirjautuminen epäonnistui. Tarkista alla olevat virheet."
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "Kehittynyt Python-ohjelmointi"
+
+#~ msgid "Basic Details"
+#~ msgstr "Perustiedot"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "Miten kurssi toimitetaan?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "Nimeä ohjaajia"
+
+#~ msgid "Assign Participants"
+#~ msgstr "Määritä osallistujat"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "Lisäasetukset"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr "Haluatko lisätä pääsyjakson kurssin sisältöön tälle toimitukselle?"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "Kyllä, lisää käyttöoikeusaika"
+
+#~ msgid "Select start date"
+#~ msgstr "Valitse aloituspäivä"
+
+#~ msgid "Select end date"
+#~ msgstr "Valitse lopetuspäivä"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "Haluatko lisätä deaktivointipäivän tälle toimitukselle?"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "Kyllä, lisää poistopäivämäärä"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "Haluatko saada palautetta osallistujalta tätä toimitusta varten?"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "Kyllä, kerää palautetta"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "Kyllä, merkitse pakolliseksi"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "Haluatko tallentaa osallistujan osallistumisen tälle kurssille?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "Kyllä, kerää läsnäolo"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "Edellyttääkö tämä kurssi suorittamistodistusta?"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "Kyllä, vaadi suorittamistodistus"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "Kutsu sähköpostimalli"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "Täydennyksen sähköpostimalli"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "Hae toimituksia..."
+
+#~ msgid "Cancelled"
+#~ msgstr "Peruutettu"
+
+#~ msgid "All Instructors"
+#~ msgstr "Kaikki ohjaajat"
+
+#~ msgid "Instructor 1"
+#~ msgstr "Ohjaaja 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "Ohjaaja 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "Ohjaaja 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "Vientitoimitukset"
+
+#~ msgid "Delivery ID"
+#~ msgstr "Toimitustunnus"
+
+#~ msgid "Manage Students"
+#~ msgstr "Hallinnoi opiskelijoita"
+
+#~ msgid "Withdraw"
+#~ msgstr "Peruuttaa"
+
+#~ msgid "Approve"
+#~ msgstr "Hyväksyä"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "Aihe"
+
+#~ msgid "Category 1"
+#~ msgstr "Luokka 1"
+
+#~ msgid "Category 2"
+#~ msgstr "Luokka 2"
+
+#~ msgid "Category 3"
+#~ msgstr "Luokka 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "Lahjonnan ja korruption vastainen politiikka"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "Tärkeä vaatimustenmukaisuuskoulutus kaikille työntekijöille"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "Tämä kattava kurssi kouluttaa sinut yrityksemme lahjonnan ja korruption "
+#~ "vastaiseen politiikkaan. Opit oikeudellisista puitteista, tunnistat "
+#~ "mahdolliset riskit ja ymmärrät kuinka noudattaa politiikkaa erilaisissa "
+#~ "liiketoimintatilanteissa."
+
+#~ msgid "2 hours"
+#~ msgstr "2 tuntia"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "Lahjon ja korruption vastaiset perusteet"
+
+#~ msgid "SCORM Package"
+#~ msgstr "SCORM-paketti"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "Lahjonnan riskien tunnistaminen"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "Yrityksen korruption vastainen politiikka"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "Tapaustutkimukset: Eettinen päätöksenteko"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "Lahjonta ja korruption vastainen arviointi"
+
+#~ msgid "Take Quiz"
+#~ msgstr "Ota tietokilpailu"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr "Opi eettisistä liiketoimintakäytännöistä ja niiden noudattamisesta"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "Tietoturvan hallintajärjestelmä (ISMS)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "Ymmärtää tietoturvallisuuden keskeiset periaatteet"
+
+#~ msgid "3 hours"
+#~ msgstr "3 tuntia"
+
+#~ msgid "6 modules"
+#~ msgstr "6 moduulia"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "Rahanpesun torjunta"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "Opi tunnistamaan ja ehkäisemään rahanpesutoimintaa"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2,5 tuntia"
+
+#~ msgid "4 modules"
+#~ msgstr "4 moduulia"
+
+#, fuzzy
+#~ msgid "Smart Learning Paths"
+#~ msgstr "Oppimispolku"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "Edistynyt arabia"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "Hyödynnä datapohjaisia ​​oivalluksia oppilaiden tulosten ennustamiseen, "
+#~ "mahdollisten haasteiden tunnistamiseen ja ennakoivaan puuttumiseen "
+#~ "saadaksesi parempia tuloksia."
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "Mukaansatempaava VR-koulutus"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "Integroi virtuaalitodellisuuskokemukset käytännönläheiseen, riskittömään "
+#~ "koulutukseen monimutkaisissa tai suuren panoksen skenaarioissa."
+
+#~ msgid "Client Avatar"
+#~ msgstr "Asiakas Avatar"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "NextGen AI LMS:n tarjoamat tekoälypohjaiset oivallukset ovat mullistaneet "
+#~ "lähestymistapamme työntekijöiden kehittämiseen. Voimme nyt tunnistaa "
+#~ "taitojen puutteet ennakoivasti ja räätälöidä koulutusohjelmamme "
+#~ "ennennäkemättömän tarkasti. Tiimimme tuottavuus on kasvanut 30 %% tämän "
+#~ "huippuluokan järjestelmän käyttöönoton jälkeen."
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "Kuukausi"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "Aloitusopas"
+
+#~ msgid "VR training modules"
+#~ msgstr "VR-koulutusmoduulit"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "Päivitä Pro-versioon"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "Mukautetut raportit"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "Kehittyneet VR- ja AR-ominaisuudet"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 Tech Street, San Francisco, CA 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "Puhelin: (555) 123-4567"
 
 #~ msgid "Language menu opened!"
 #~ msgstr "Kielivalikko avattu!"

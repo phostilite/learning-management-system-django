@@ -54,7 +54,13 @@
     <div class="bg-white rounded-lg p-6 card-shadow mb-6">
         <div class="flex justify-between items-start mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800">Sarah Johnson</h1>
+                <h1 class="text-3xl font-bold text-gray-800">
+                    {% if request.user.get_full_name %}
+                        {{ request.user.get_full_name }}
+                    {% else %}
+                        {{ request.user.username }}
+                    {% endif %}
+                </h1>
                 <p class="text-gray-600">Web Development Enthusiast</p>
             </div>
             <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
@@ -68,7 +74,13 @@
             </div>
             <div>
                 <h2 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Contact Information" %}</h2>
-                <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>sarah.johnson@example.com</p>
+                <p class="text-gray-600"><i class="fas fa-envelope mr-2"></i>
+                    {% if request.user.email %}
+                    {{ request.user.email }}
+                    {% else %}
+                        No email provided
+                    {% endif %}
+                </p>
                 <p class="text-gray-600"><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</p>
                 <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>San Francisco, CA</p>
             </div>

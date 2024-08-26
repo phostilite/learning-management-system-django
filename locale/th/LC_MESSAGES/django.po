@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-18 23:56+0530\n"
+"POT-Creation-Date: 2024-08-26 11:48+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 #: env/lib/python3.12/site-packages/django/contrib/messages/apps.py
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/messages.html
 msgid "Messages"
 msgstr "ข้อความ"
 
@@ -329,6 +330,7 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]"
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Duration"
 msgstr "ระยะเวลา"
@@ -611,12 +613,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Order"
 msgstr "คำสั่ง"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
@@ -682,14 +684,18 @@ msgid "Change"
 msgstr "เปลี่ยน"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Yes"
 msgstr "ใช่"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
+#: templates/users/administrator/course/delivery_detail.html
 msgid "No"
 msgstr "เลขที่"
 
@@ -785,58 +791,69 @@ msgstr "วันอาทิตย์"
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Mon"
 msgstr "ของฉัน"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Tue"
 msgstr "อ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Wed"
 msgstr "พ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Thu"
 msgstr "เก็บรวบรวม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Fri"
 msgstr "ศุกร์"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sat"
 msgstr "นั่ง"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/reports/user_engagement.html
+#: templates/users/learner/calendar.html
 msgid "Sun"
 msgstr "ดวงอาทิตย์"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "January"
 msgstr "มกราคม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "February"
 msgstr "กุมภาพันธ์"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "March"
 msgstr "มีนาคม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "April"
 msgstr "เมษายน"
 
@@ -847,34 +864,42 @@ msgstr "เมษายน"
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/reports/learner_feedback.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/calendar.html
 msgid "May"
 msgstr "อาจ"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "June"
 msgstr "มิถุนายน"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "July"
 msgstr "กรกฎาคม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "August"
 msgstr "สิงหาคม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "September"
 msgstr "กันยายน"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "October"
 msgstr "ตุลาคม"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "November"
 msgstr "พฤศจิกายน"
 
 #: env/lib/python3.12/site-packages/django/utils/dates.py
+#: templates/users/learner/calendar.html
 msgid "December"
 msgstr "ธันวาคม"
 
@@ -1299,6 +1324,14 @@ msgstr "ชุมชนจังโก้"
 msgid "Connect, get help, or contribute"
 msgstr "เชื่อมต่อ รับความช่วยเหลือ หรือมีส่วนร่วม"
 
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "x"
+msgstr ""
+
+#: env/lib/python3.12/site-packages/sympy/solvers/simplex.py
+msgid "y"
+msgstr "และ"
+
 #: lms/settings.py
 msgid "English"
 msgstr "ภาษาอังกฤษ"
@@ -1460,7 +1493,6 @@ msgid "Active Announcements"
 msgstr "ประกาศที่ใช้งานอยู่"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Scheduled"
 msgstr "กำหนดเวลาแล้ว"
 
@@ -1496,7 +1528,6 @@ msgid "Maintenance"
 msgstr "การซ่อมบำรุง"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/list.html
 #: templates/users/learner/my_courses.html
@@ -1504,7 +1535,8 @@ msgid "All Statuses"
 msgstr "สถานะทั้งหมด"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Active"
 msgstr "คล่องแคล่ว"
 
@@ -1513,6 +1545,8 @@ msgid "Expired"
 msgstr "หมดอายุแล้ว"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Draft"
 msgstr "ร่าง"
 
@@ -1521,6 +1555,8 @@ msgid "Export Report"
 msgstr "รายงานการส่งออก"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 msgid "Title"
 msgstr "ชื่อ"
@@ -1534,7 +1570,8 @@ msgstr "หมวดหมู่"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
@@ -1550,12 +1587,13 @@ msgid "Expiry Date"
 msgstr "วันหมดอายุ"
 
 #: templates/users/administrator/announcements.html
+#: templates/users/learner/leaderboard.html
 msgid "Engagement"
 msgstr "การว่าจ้าง"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
@@ -1587,19 +1625,18 @@ msgstr "ลบประกาศ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "ก่อนหน้า"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/calendar.html
 msgid "Next"
 msgstr "ต่อไป"
 
@@ -1669,6 +1706,7 @@ msgstr "การสอบ"
 
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/calendar.html
 msgid "Upcoming Events"
 msgstr "เหตุการณ์ที่จะเกิดขึ้น"
 
@@ -1710,6 +1748,7 @@ msgstr "ติดตามและจัดการใบรับรองร
 
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/profile.html templates/users/learner/progress.html
 msgid "Certificates"
 msgstr "ใบรับรอง"
 
@@ -1722,7 +1761,6 @@ msgid "Certificates This Month"
 msgstr "ใบรับรองเดือนนี้"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 msgid "Pending Approvals"
 msgstr "รอการอนุมัติ"
 
@@ -1735,31 +1773,10 @@ msgstr "หลักสูตรที่มีใบรับรอง"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_progress.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/resource.html
 msgid "All Courses"
 msgstr "ทุกหลักสูตร"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "IT & Programming"
-msgstr "ไอทีและการเขียนโปรแกรม"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-msgid "Business"
-msgstr "ธุรกิจ"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Languages"
-msgstr "ภาษา"
-
-#: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-msgid "Science & Math"
-msgstr "วิทยาศาสตร์และคณิตศาสตร์"
 
 #: templates/users/administrator/certificates.html
 msgid "Last 30 Days"
@@ -1795,16 +1812,18 @@ msgid "Certificate ID"
 msgstr "รหัสใบรับรอง"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/learner/leaderboard.html
 msgid "Learner"
 msgstr "ผู้เรียน"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
+#: templates/users/learner/certificate.html
 msgid "Course"
 msgstr "คอร์ส"
 
@@ -1813,27 +1832,20 @@ msgid "Issue Date"
 msgstr "วันที่ออก"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "John Doe"
-msgstr "จอห์น โด"
-
-#: templates/users/administrator/certificates.html
-msgid "Advanced Python Programming"
-msgstr "การเขียนโปรแกรมหลามขั้นสูง"
-
-#: templates/users/administrator/certificates.html
 msgid "Issued"
 msgstr "ออกแล้ว"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/learner/my_courses.html
+msgid "Revoked"
+msgstr "เพิกถอนแล้ว"
+
+#: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "View Certificate"
 msgstr "ดูใบรับรอง"
 
 #: templates/users/administrator/certificates.html
+#: templates/users/learner/certificate.html
 msgid "Download Certificate"
 msgstr "ดาวน์โหลดใบรับรอง"
 
@@ -1866,149 +1878,128 @@ msgstr "เกล็ดขนมปัง"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/grades.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Courses"
 msgstr "หลักสูตร"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
 msgid "Create Delivery"
 msgstr "สร้างการจัดส่ง"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/learner/my_courses.html
-msgid "Progress"
-msgstr "ความคืบหน้า"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Basic Details"
-msgstr "รายละเอียดพื้นฐาน"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter delivery title"
+msgstr "กรอกรหัสจัดส่ง"
 
 #: templates/users/administrator/course/create_delivery.html
 msgid "Delivery Code"
 msgstr "รหัสจัดส่ง"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Enter delivery code"
+#, fuzzy
+#| msgid "Enter delivery code"
+msgid "Enter unique delivery code"
 msgstr "กรอกรหัสจัดส่ง"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "How will the course be delivered?"
-msgstr "หลักสูตรจะจัดส่งอย่างไร?"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery Code"
+msgid "Delivery Type"
+msgstr "รหัสจัดส่ง"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Self Paced"
+#, fuzzy
+#| msgid "Self Paced"
+msgid "Self-Paced"
 msgstr "ก้าวด้วยตนเอง"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Instructor Led"
+#, fuzzy
+#| msgid "Instructor Led"
+msgid "Instructor-Led"
 msgstr "อาจารย์นำ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Facilitators"
-msgstr "มอบหมายผู้อำนวยความสะดวก"
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Type"
+msgstr "การลงทะเบียน"
 
 #: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Open Enrollment"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/create_delivery.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "By Invitation"
+msgstr "บูรณาการ"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "ผู้อำนวยความสะดวก"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Assign Participants"
-msgstr "มอบหมายผู้เข้าร่วม"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+msgid "Start Date"
+msgstr "วันที่เริ่มต้น"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Participants"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "End Date"
+msgstr "วันที่สิ้นสุด"
+
+#: templates/users/administrator/course/create_delivery.html
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Participants"
+msgid "Max Participants"
 msgstr "ผู้เข้าร่วม"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Advanced Settings"
-msgstr "การตั้งค่าขั้นสูง"
+msgid "Enter maximum participants"
+msgstr "ป้อนผู้เข้าร่วมสูงสุด"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid ""
-"Would you like to add access period for Course content for this Delivery?"
-msgstr ""
-"คุณต้องการเพิ่มระยะเวลาการเข้าถึงเนื้อหาหลักสูตรสำหรับการจัดส่งนี้หรือไม่"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add access period"
-msgstr "ใช่ เพิ่มระยะเวลาการเข้าถึง"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select start date"
-msgstr "เลือกวันที่เริ่มต้น"
-
-#: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 #: templates/users/administrator/course/enrollments.html
-msgid "to"
-msgstr "ถึง"
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "Completed"
+msgstr "สมบูรณ์"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Select end date"
-msgstr "เลือกวันที่สิ้นสุด"
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/messages.html
+msgid "Archived"
+msgstr "เก็บถาวรแล้ว"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to add deactivation date for this Delivery?"
-msgstr "คุณต้องการเพิ่มวันที่ปิดใช้งานสำหรับการจัดส่งนี้หรือไม่"
+#: templates/users/administrator/course/delivery_detail.html
+msgid "Is Mandatory"
+msgstr "เป็นข้อบังคับ"
 
 #: templates/users/administrator/course/create_delivery.html
-msgid "Yes, add deactivation date"
-msgstr "ใช่ เพิ่มวันที่ปิดใช้งาน"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Select date"
-msgstr "เลือกวันที่"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to get feedback from the Participant for this Delivery?"
-msgstr "คุณต้องการรับคำติชมจากผู้เข้าร่วมสำหรับการจัดส่งครั้งนี้หรือไม่"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, collect feedback"
-msgstr "ใช่ รวบรวมความคิดเห็น"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Would you like to mark this Delivery as Mandatory for the Participant?"
+#, fuzzy
+#| msgid ""
+#| "Would you like to mark this Delivery as Mandatory for the Participant?"
+msgid "Check if this course delivery is mandatory for enrolled participants."
 msgstr ""
 "คุณต้องการทำเครื่องหมายการจัดส่งนี้เป็นข้อบังคับสำหรับผู้เข้าร่วมหรือไม่?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, mark as mandatory"
-msgstr "ใช่ ทำเครื่องหมายว่าจำเป็น"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Do you want to capture the Participant attendance for this Course?"
-msgstr "คุณต้องการบันทึกการเข้าร่วมของผู้เข้าร่วมสำหรับหลักสูตรนี้หรือไม่?"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, capture attendance"
-msgstr "ใช่ จับภาพผู้เข้าร่วม"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Does this Course require a Completion Certificate?"
-msgstr "หลักสูตรนี้จำเป็นต้องมีใบรับรองการสำเร็จหลักสูตรหรือไม่"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Yes, require completion certificate"
-msgstr "ใช่ ต้องมีใบรับรองการจบหลักสูตร"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Email Settings"
-msgstr "การตั้งค่าอีเมล"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Invite Email Template"
-msgstr "เทมเพลตอีเมลเชิญ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Completion Email Template"
-msgstr "เทมเพลตอีเมลใบเสร็จ"
-
-#: templates/users/administrator/course/create_delivery.html
-msgid "Submit"
-msgstr "ส่ง"
 
 #: templates/users/administrator/course/deliveries.html
 msgid "Course Deliveries - LMS Admin"
@@ -2027,104 +2018,21 @@ msgid "Deliveries"
 msgstr "การส่งมอบ"
 
 #: templates/users/administrator/course/deliveries.html
-msgid "Search deliveries..."
-msgstr "ค้นหาการจัดส่ง..."
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_support.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "In Progress"
-msgstr "อยู่ระหว่างดำเนินการ"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/my_courses.html
-msgid "Completed"
-msgstr "สมบูรณ์"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Cancelled"
-msgstr "ยกเลิก"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "All Instructors"
-msgstr "อาจารย์ผู้สอนทุกท่าน"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 1"
-msgstr "อาจารย์ผู้สอน 1"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 2"
-msgstr "อาจารย์ผู้สอน 2"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Instructor 3"
-msgstr "อาจารย์ผู้สอน 3"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Export Deliveries"
-msgstr "การส่งออก"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Delivery ID"
-msgstr "รหัสการจัดส่ง"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-msgid "Start Date"
-msgstr "วันที่เริ่มต้น"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "End Date"
-msgstr "วันที่สิ้นสุด"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Instructor"
-msgstr "อาจารย์ผู้สอน"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/messages.html
-msgid "Students"
-msgstr "นักเรียน"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/learner_feedback.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "View Details"
-msgstr "ดูรายละเอียด"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
-msgid "Edit"
-msgstr "แก้ไข"
-
-#: templates/users/administrator/course/deliveries.html
-msgid "Manage Students"
-msgstr "จัดการนักเรียน"
-
-#: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "Showing"
 msgstr "กำลังแสดง"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/delivery_detail.html
+msgid "to"
+msgstr "ถึง"
+
+#: templates/users/administrator/course/deliveries.html
+#: templates/users/administrator/course/delivery_detail.html
 msgid "of"
 msgstr "ของ"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/enrollments.html
 msgid "results"
 msgstr "ผลลัพธ์"
 
@@ -2135,8 +2043,194 @@ msgstr "ลบการจัดส่ง"
 #: templates/users/administrator/course/deliveries.html
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/course/list.html
+#: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "ยกเลิก"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Deliveries - LMS Admin"
+msgid "Course Delivery Details - LMS Admin"
+msgstr "การส่งมอบหลักสูตร - ผู้ดูแลระบบ LMS"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Delivery Information"
+msgstr "ข้อมูลหลักสูตร"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Stats"
+msgstr "การดำเนินการเป็นกลุ่ม"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/custom_reports.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Total Enrollments"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+msgid "Completion Rate"
+msgstr "อัตราความสำเร็จ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Average Progress"
+msgstr "ความคืบหน้า"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Progress"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "No facilitators assigned yet."
+msgstr "ยังไม่มีการมอบหมายวิทยากร"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/course_detail.html
+#: templates/users/learner/resource.html
+msgid "Learning Resources"
+msgstr "แหล่งเรียนรู้"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/resource_usage.html
+msgid "Type"
+msgstr "พิมพ์"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "No video file available."
+msgid "No learning resources available."
+msgstr "ไม่มีไฟล์วิดีโอ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/sidebar.html
+msgid "Enrollments"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/enrollments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrollment Date"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/learner/leaderboard.html
+#: templates/users/learner/my_courses.html
+msgid "Progress"
+msgstr "ความคืบหน้า"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Enrolled"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_support.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/grades.html templates/users/learner/my_courses.html
+#: templates/users/learner/progress.html
+msgid "In Progress"
+msgstr "อยู่ระหว่างดำเนินการ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enrollments.html
+msgid "Withdrawn"
+msgstr "ถอนออกแล้ว"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+msgid "View Details"
+msgstr "ดูรายละเอียด"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Edit Enrollment"
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Unenroll Learner"
+msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "No enrollments found."
+msgstr "การลงทะเบียน"
+
+#: templates/users/administrator/course/delivery_detail.html
+msgid "entries"
+msgstr "รายการ"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Delivery ID"
+msgid "Edit Delivery"
+msgstr "รหัสการจัดส่ง"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Learners"
+msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Generate Report"
+msgid "Generate Reports"
+msgstr "สร้างรายงาน"
+
+#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/learning_path.html
+#, fuzzy
+#| msgid "Number of Courses"
+msgid "Number of Learners"
+msgstr "จำนวนหลักสูตร"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Progress Range"
+msgstr "ความคืบหน้า"
+
+#: templates/users/administrator/course/delivery_detail.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Enrollment Progress Distribution"
+msgstr "ความก้าวหน้าการเรียนรู้"
 
 #: templates/users/administrator/course/detail.html
 #, fuzzy
@@ -2213,6 +2307,7 @@ msgid "Created by:"
 msgstr "สร้างการจัดส่ง"
 
 #: templates/users/administrator/course/detail.html
+#: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
@@ -2244,12 +2339,6 @@ msgid "Course Content"
 msgstr "ปกหลักสูตร"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/sidebar.html
-msgid "Enrollments"
-msgstr "การลงทะเบียน"
-
-#: templates/users/administrator/course/detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
@@ -2258,12 +2347,6 @@ msgstr "การส่งออก"
 #: templates/users/administrator/course/detail.html
 msgid "Add New Resource"
 msgstr "เพิ่มทรัพยากรใหม่"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/resource_usage.html
-msgid "Type"
-msgstr "พิมพ์"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/help_support.html
@@ -2295,21 +2378,6 @@ msgstr "รหัสการจัดส่ง"
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
-msgid "Enrollment Date"
-msgstr "การลงทะเบียน"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/custom_reports.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Total Enrollments"
-msgstr "การลงทะเบียน"
-
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "การลงทะเบียน"
 
@@ -2327,17 +2395,14 @@ msgstr "เลือกวันที่"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Video"
 msgstr "วีดีโอ"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Document"
 msgstr "เอกสาร"
 
 #: templates/users/administrator/course/detail.html
-#: templates/users/learner/course_detail.html
 msgid "Presentation"
 msgstr "การนำเสนอ"
 
@@ -2348,7 +2413,6 @@ msgstr "ลิงค์"
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
-#: templates/users/learner/course_detail.html
 msgid "Quiz"
 msgstr "แบบทดสอบ"
 
@@ -2382,6 +2446,7 @@ msgstr "การใช้ทรัพยากร"
 
 #: templates/users/administrator/course/detail.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "เส้นทางการเรียนรู้"
 
@@ -2523,6 +2588,38 @@ msgstr "การใช้ทรัพยากร"
 msgid "Preview not available for this resource type."
 msgstr "ดูตัวอย่างไม่พร้อมใช้งานสำหรับทรัพยากรประเภทนี้"
 
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Announcements - LMS Admin"
+msgid "Enroll Learners - LMS Admin"
+msgstr "ประกาศ - ผู้ดูแลระบบ LMS"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Select Learners to Enroll"
+msgstr "เลือกผู้เรียนที่จะลงทะเบียน"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Available Learners"
+msgstr "ผู้เรียน"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select All"
+msgstr "เลือกวันที่"
+
+#: templates/users/administrator/course/enroll_learners.html
+msgid "Deselect All"
+msgstr "ยกเลิกการเลือกทั้งหมด"
+
+#: templates/users/administrator/course/enroll_learners.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "Enroll Selected Learners"
+msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
+
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Announcements - LMS Admin"
@@ -2553,46 +2650,6 @@ msgid "Search enrollments..."
 msgstr "ค้นหาหลักสูตร..."
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development"
-msgstr "พื้นฐานการพัฒนาเว็บ"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/resource_usage.html
-#: templates/users/administrator/reports/user_engagement.html
-#: templates/users/administrator/reports/user_progress.html
-#, fuzzy
-#| msgid "Data Science Basics"
-msgid "Data Science"
-msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/custom_reports.html
-#: templates/users/administrator/reports/user_progress.html
-msgid "Digital Marketing"
-msgstr "การตลาดดิจิทัล"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Pending"
-msgstr "รอดำเนินการ"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdrawn"
-msgstr "ถอนออกแล้ว"
-
-#: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "New Enrollment"
@@ -2605,56 +2662,22 @@ msgstr "ส่งออกข้อมูล"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
-#| msgid "Site Name"
-msgid "Student Name"
-msgstr "ชื่อไซต์"
+#| msgid "Learner"
+msgid "Learner Name"
+msgstr "ผู้เรียน"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
 #, fuzzy
-#| msgid "Web Development Fundamentals"
-msgid "Web Development Bootcamp"
-msgstr "พื้นฐานการพัฒนาเว็บ"
+#| msgid "Export Deliveries"
+msgid "Course Delivery"
+msgstr "การส่งออก"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/course/list.html
 #: templates/users/administrator/reports/custom_reports.html
-#: templates/users/learner/course_detail.html
 msgid "View"
 msgstr "ดู"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Withdraw"
-msgstr "ถอน"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/assessment_results.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-msgid "Data Science Fundamentals"
-msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
-
-#: templates/users/administrator/course/enrollments.html
-msgid "Approve"
-msgstr "อนุมัติ"
-
-#: templates/users/administrator/course/enrollments.html
-#, fuzzy
-#| msgid "Subject"
-msgid "Reject"
-msgstr "เรื่อง"
-
-#: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/learner_feedback.html
-#, fuzzy
-#| msgid "Digital Marketing"
-msgid "Digital Marketing Mastery"
-msgstr "การตลาดดิจิทัล"
 
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
@@ -2721,12 +2744,6 @@ msgstr "ผู้เรียน"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
-#| msgid "Generate Report"
-msgid "Generate Reports"
-msgstr "สร้างรายงาน"
-
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
 #| msgid "Site Name"
 msgid "Path Name"
 msgstr "ชื่อไซต์"
@@ -2739,14 +2756,6 @@ msgid "Enrolled Learners"
 msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/dashboard.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-#: templates/users/administrator/reports/custom_reports.html
-msgid "Completion Rate"
-msgstr "อัตราความสำเร็จ"
-
-#: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Custom model development"
 msgid "Full Stack Web Development"
@@ -2755,6 +2764,11 @@ msgstr "การพัฒนาโมเดลแบบกำหนดเอง
 #: templates/users/administrator/course/learning_path.html
 msgid "Technology"
 msgstr "เทคโนโลยี"
+
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/list.html
+msgid "Edit"
+msgstr "แก้ไข"
 
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
@@ -2889,6 +2903,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2920,12 +2935,6 @@ msgstr "9-12 เดือน"
 msgid "> 12 months"
 msgstr "> 12 เดือน"
 
-#: templates/users/administrator/course/learning_path.html
-#, fuzzy
-#| msgid "Number of Courses"
-msgid "Number of Learners"
-msgstr "จำนวนหลักสูตร"
-
 #: templates/users/administrator/course/list.html
 msgid "Courses - LMS Admin"
 msgstr "หลักสูตร - ผู้ดูแลระบบ LMS"
@@ -2939,20 +2948,33 @@ msgid "Manage and Organize Your Courses"
 msgstr "จัดการและจัดระเบียบหลักสูตรของคุณ"
 
 #: templates/users/administrator/course/list.html
+#: templates/users/administrator/reports/course_completion.html
+#, fuzzy
+#| msgid "All Courses"
+msgid "Total Courses"
+msgstr "ทุกหลักสูตร"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Published Date"
+msgid "Published Courses"
+msgstr "วันที่เผยแพร่"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Unpublished"
+msgid "Unpublished Courses"
+msgstr "ไม่ได้เผยแพร่"
+
+#: templates/users/administrator/course/list.html
+#, fuzzy
+#| msgid "Categories"
+msgid "Top Categories"
+msgstr "หมวดหมู่"
+
+#: templates/users/administrator/course/list.html
 msgid "Search courses..."
 msgstr "ค้นหาหลักสูตร..."
-
-#: templates/users/administrator/course/list.html
-msgid "Category 1"
-msgstr "หมวดที่ 1"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 2"
-msgstr "หมวดที่ 2"
-
-#: templates/users/administrator/course/list.html
-msgid "Category 3"
-msgstr "หมวดที่ 3"
 
 #: templates/users/administrator/course/list.html
 msgid "Published"
@@ -3074,8 +3096,23 @@ msgid "987 enrolled"
 msgstr "ลงทะเบียนแล้ว 987 คน"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Data Science Fundamentals"
+msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
+
+#: templates/users/administrator/dashboard.html
 msgid "856 enrolled"
 msgstr "ลงทะเบียนแล้ว 856 คน"
+
+#: templates/users/administrator/dashboard.html
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "Digital Marketing"
+msgstr "การตลาดดิจิทัล"
 
 #: templates/users/administrator/dashboard.html
 msgid "743 enrolled"
@@ -3149,6 +3186,7 @@ msgid "July 12, 2024"
 msgstr "12 กรกฎาคม 2024"
 
 #: templates/users/administrator/dashboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Top Performers"
 msgstr "นักแสดงชั้นนำ"
 
@@ -3225,6 +3263,7 @@ msgstr "จัดการตั๋วสนับสนุนและทรั
 
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/help_support.html
 msgid "Help & Support"
 msgstr "ช่วยเหลือและสนับสนุน"
 
@@ -3291,6 +3330,7 @@ msgid "Close Ticket"
 msgstr "ปิดตั๋ว"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
 msgid "Frequently Asked Questions"
 msgstr "คำถามที่พบบ่อย"
 
@@ -3323,6 +3363,8 @@ msgstr ""
 "อย่าลืมมอบหมายอาจารย์ผู้สอนและกำหนดตารางเรียนด้วย"
 
 #: templates/users/administrator/help_support.html
+#: templates/users/learner/help_support.html
+#: templates/users/learner/resource.html
 msgid "Video Tutorials"
 msgstr "วิดีโอสอน"
 
@@ -3376,12 +3418,32 @@ msgstr "ลีดเดอร์บอร์ด - ผู้ดูแลระบ
 
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Leaderboard"
 msgstr "ลีดเดอร์บอร์ด"
 
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "เฉลิมฉลองผู้ประสบความสำเร็จสูงสุดของเรา"
+
+#: templates/users/administrator/leaderboard.html
+msgid "IT & Programming"
+msgstr "ไอทีและการเขียนโปรแกรม"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+msgid "Business"
+msgstr "ธุรกิจ"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Languages"
+msgstr "ภาษา"
+
+#: templates/users/administrator/leaderboard.html
+msgid "Science & Math"
+msgstr "วิทยาศาสตร์และคณิตศาสตร์"
 
 #: templates/users/administrator/leaderboard.html
 msgid "This Month"
@@ -3412,6 +3474,7 @@ msgid "3rd"
 msgstr "ข้อเสนอ"
 
 #: templates/users/administrator/leaderboard.html
+#: templates/users/learner/leaderboard.html
 msgid "Rank"
 msgstr "อันดับ"
 
@@ -3429,6 +3492,13 @@ msgstr "เฉลี่ย คะแนน"
 #: templates/users/administrator/leaderboard.html
 msgid "Total Points"
 msgstr "คะแนนรวม"
+
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/reports/learner_feedback.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+msgid "John Doe"
+msgstr "จอห์น โด"
 
 #: templates/users/administrator/leaderboard.html
 msgid "View Profile"
@@ -3479,6 +3549,7 @@ msgid "From:"
 msgstr "จาก:"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/messages.html
 msgid "Subject:"
 msgstr "เรื่อง:"
 
@@ -3525,12 +3596,12 @@ msgid "Flagged"
 msgstr "ติดธง"
 
 #: templates/users/administrator/messages.html
-msgid "Archived"
-msgstr "เก็บถาวรแล้ว"
-
-#: templates/users/administrator/messages.html
 msgid "All Users"
 msgstr "ผู้ใช้ทั้งหมด"
+
+#: templates/users/administrator/messages.html
+msgid "Students"
+msgstr "นักเรียน"
 
 #: templates/users/administrator/messages.html
 msgid "Instructors"
@@ -3659,6 +3730,29 @@ msgid "Search assessments..."
 msgstr "ค้นหาข้อความ..."
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development"
+msgstr "พื้นฐานการพัฒนาเว็บ"
+
+#: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/custom_reports.html
+#: templates/users/administrator/reports/resource_usage.html
+#: templates/users/administrator/reports/user_engagement.html
+#: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Science Basics"
+msgid "Data Science"
+msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "All Time"
 msgid "All Types"
@@ -3785,6 +3879,14 @@ msgid "JavaScript Fundamentals Quiz"
 msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
 
 #: templates/users/administrator/reports/assessment_results.html
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Web Development Bootcamp"
+msgstr "พื้นฐานการพัฒนาเว็บ"
+
+#: templates/users/administrator/reports/assessment_results.html
 #, fuzzy
 #| msgid "JavaScript Final Project"
 msgid "Data Analysis Final Project"
@@ -3875,6 +3977,7 @@ msgstr "โครงการ"
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/user_engagement.html
 #: templates/users/administrator/reports/user_progress.html
+#: templates/users/learner/assignments.html
 #, fuzzy
 #| msgid "Assignment due dates"
 msgid "Assignments"
@@ -4017,12 +4120,6 @@ msgstr ""
 
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
-#| msgid "All Courses"
-msgid "Total Courses"
-msgstr "ทุกหลักสูตร"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
 #| msgid "Certificates This Month"
 msgid "Completed This Month"
 msgstr "ใบรับรองเดือนนี้"
@@ -4038,6 +4135,13 @@ msgstr "จบหลักสูตร"
 #| msgid "Top Performers"
 msgid "Top Performing Courses"
 msgstr "นักแสดงชั้นนำ"
+
+#: templates/users/administrator/reports/course_completion.html
+#: templates/users/administrator/reports/learner_feedback.html
+#, fuzzy
+#| msgid "Digital Marketing"
+msgid "Digital Marketing Mastery"
+msgstr "การตลาดดิจิทัล"
 
 #: templates/users/administrator/reports/course_completion.html
 msgid "UX/UI Design Principles"
@@ -4074,12 +4178,6 @@ msgstr "จบหลักสูตร"
 #| msgid "Course"
 msgid "Course Name"
 msgstr "คอร์ส"
-
-#: templates/users/administrator/reports/course_completion.html
-#, fuzzy
-#| msgid "Enrollments"
-msgid "Enrolled"
-msgstr "การลงทะเบียน"
 
 #: templates/users/administrator/reports/course_completion.html
 #: templates/users/administrator/reports/resource_usage.html
@@ -4325,6 +4423,10 @@ msgstr "การกระจายเรตติ้ง"
 #| msgid "Completed Courses"
 msgid "Top Rated Courses"
 msgstr "หลักสูตรที่เสร็จสมบูรณ์"
+
+#: templates/users/administrator/reports/learner_feedback.html
+msgid "Instructor"
+msgstr "อาจารย์ผู้สอน"
 
 #: templates/users/administrator/reports/learner_feedback.html
 msgid "Rating"
@@ -4992,10 +5094,12 @@ msgid "Appearance"
 msgstr "รูปร่าง"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Notifications"
 msgstr "การแจ้งเตือน"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Integrations"
 msgstr "บูรณาการ"
 
@@ -5100,6 +5204,7 @@ msgid "Notifications Settings"
 msgstr "การตั้งค่าการแจ้งเตือน"
 
 #: templates/users/administrator/settings.html
+#: templates/users/learner/settings.html
 msgid "Email Notifications"
 msgstr "การแจ้งเตือนทางอีเมล"
 
@@ -5185,6 +5290,7 @@ msgid "Sidebar"
 msgstr "แถบด้านข้าง"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/forum.html templates/users/learner/resource.html
 msgid "Categories"
 msgstr "หมวดหมู่"
 
@@ -5205,6 +5311,7 @@ msgid "Reports & Analytics"
 msgstr "รายงานและการวิเคราะห์"
 
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/leaderboard.html
 msgid "Course Completion"
 msgstr "จบหลักสูตร"
 
@@ -5274,6 +5381,374 @@ msgstr "ผู้ดูแลระบบ"
 msgid "Back to Home"
 msgstr "กลับไปที่บ้าน"
 
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learners"
+msgid "Assignments - LMS Learner"
+msgstr "ผู้เรียน"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Manage and Organize Your Courses"
+msgid "Manage and submit your course assignments"
+msgstr "จัดการและจัดระเบียบหลักสูตรของคุณ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Your Assignments"
+msgstr "วันครบกำหนดมอบหมาย"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Completed course"
+msgid "Filter by course:"
+msgstr "จบหลักสูตร"
+
+#: templates/users/learner/assignments.html
+msgid "Pending"
+msgstr "รอดำเนินการ"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course:"
+msgstr "คอร์ส"
+
+#: templates/users/learner/assignments.html
+msgid "Due:"
+msgstr "เนื่องจาก:"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted By"
+msgid "Submitted"
+msgstr "ส่งโดย"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "View Submission"
+msgstr "เซสชันที่ใช้งานอยู่"
+
+#: templates/users/learner/assignments.html
+msgid "Graded"
+msgstr "ให้คะแนนแล้ว"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Learner Feedback"
+msgid "View Feedback"
+msgstr "ผลตอบรับของผู้เรียน"
+
+#: templates/users/learner/assignments.html
+msgid "Overdue"
+msgstr "เกินกำหนด"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Late"
+msgstr "ส่ง"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Overview"
+msgstr "วันครบกำหนดมอบหมาย"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Completion Status"
+msgstr "อัตราความสำเร็จ"
+
+#: templates/users/learner/assignments.html
+#: templates/users/learner/dashboard.html
+msgid "Upcoming Deadlines"
+msgstr "กำหนดเวลาที่กำลังจะมาถึง"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Recent Grades"
+msgstr "การลงทะเบียน"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Assignment due dates"
+msgid "Assignment Details"
+msgstr "วันครบกำหนดมอบหมาย"
+
+#: templates/users/learner/assignments.html
+msgid "Assignment details will be displayed here."
+msgstr "รายละเอียดการมอบหมายจะแสดงที่นี่"
+
+#: templates/users/learner/assignments.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit Assignment"
+msgstr "ส่งงานแล้ว"
+
+#: templates/users/learner/assignments.html templates/users/learner/badge.html
+#: templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Close"
+msgstr "ปิด"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Badges - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/badge.html
+msgid "My Badges"
+msgstr "ป้ายของฉัน"
+
+#: templates/users/learner/badge.html
+msgid "Showcase your skills and achievements"
+msgstr "แสดงทักษะและความสำเร็จของคุณ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Course Overview"
+msgid "Badge Overview"
+msgstr "ภาพรวมหลักสูตร"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Total Messages"
+msgid "Total Badges"
+msgstr "ข้อความทั้งหมด"
+
+#: templates/users/learner/badge.html
+msgid ""
+"You've earned badges in various categories. Keep learning and unlock more!"
+msgstr "คุณได้รับเหรียญตราในหมวดหมู่ต่างๆ เรียนรู้และปลดล็อคมากขึ้น!"
+
+#: templates/users/learner/badge.html
+msgid "Skill Badges"
+msgstr "ป้ายทักษะ"
+
+#: templates/users/learner/badge.html
+msgid "Achievement Badges"
+msgstr "ป้ายความสำเร็จ"
+
+#: templates/users/learner/badge.html
+msgid "Milestone Badges"
+msgstr "ป้ายเหตุการณ์สำคัญ"
+
+#: templates/users/learner/badge.html
+msgid "Your Badges"
+msgstr "ป้ายของคุณ"
+
+#: templates/users/learner/badge.html templates/users/learner/certificate.html
+#: templates/users/learner/grades.html
+msgid "Filter by:"
+msgstr "กรองตาม:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "All Messages"
+msgid "All Badges"
+msgstr "ข้อความทั้งหมด"
+
+#: templates/users/learner/badge.html
+msgid "Skill"
+msgstr "ทักษะ"
+
+#: templates/users/learner/badge.html
+msgid "Earned on:"
+msgstr "ได้รับเมื่อ:"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievement"
+msgstr "การลงทะเบียน"
+
+#: templates/users/learner/badge.html
+msgid "Milestone"
+msgstr "เหตุการณ์สำคัญ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "Message Details"
+msgid "Badge Details"
+msgstr "รายละเอียดข้อความ"
+
+#: templates/users/learner/badge.html
+#, fuzzy
+#| msgid "E-learning Webinar"
+msgid "Earning Criteria:"
+msgstr "การสัมมนาผ่านเว็บแบบอีเลิร์นนิง"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Calendar - LMS Learner"
+msgstr "แดชบอร์ด - ผู้เรียน LMS"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "LMS Calendar"
+msgid "Learner Calendar"
+msgstr "ปฏิทิน LMS"
+
+#: templates/users/learner/calendar.html
+msgid "Manage your learning schedule and deadlines"
+msgstr "จัดการตารางการเรียนรู้และกำหนดเวลาของคุณ"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Bulk Actions"
+msgid "Quick Navigation"
+msgstr "การดำเนินการเป็นกลุ่ม"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Previous"
+msgid "Prev"
+msgstr "ก่อนหน้า"
+
+#: templates/users/learner/calendar.html
+msgid "Today"
+msgstr "วันนี้"
+
+#: templates/users/learner/calendar.html
+#, fuzzy
+#| msgid "Last 3 Months"
+msgid "Go to month"
+msgstr "3 เดือนที่ผ่านมา"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "JavaScript Final Project"
+msgstr "โครงการสุดท้ายของ JavaScript"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 23, 2024"
+msgstr "ครบกำหนด: 23 กรกฎาคม 2024"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Data Visualization Quiz"
+msgstr "แบบทดสอบการแสดงข้อมูล"
+
+#: templates/users/learner/calendar.html
+#: templates/users/learner/dashboard.html
+msgid "Due: July 28, 2024"
+msgstr "ครบกำหนด: 28 กรกฎาคม 2024"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Certificates - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "My Certificates"
+msgstr "ใบรับรอง"
+
+#: templates/users/learner/certificate.html
+msgid "Showcase your achievements and skills"
+msgstr "แสดงความสำเร็จและทักษะของคุณ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates Earned"
+msgid "Certificate Overview"
+msgstr "ใบรับรองที่ได้รับ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Users"
+msgid "Total: 6"
+msgstr "ผู้ใช้ทั้งหมด"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "This Year"
+msgid "This Year: 3"
+msgstr "ปีนี้"
+
+#: templates/users/learner/certificate.html
+msgid ""
+"You've earned certificates in various courses and specializations. Keep up "
+"the great work!"
+msgstr ""
+"คุณได้รับใบรับรองในหลักสูตรและสาขาวิชาเฉพาะต่างๆ ติดตามการทำงานที่ยอดเยี่ยม!"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Courses with Certificates"
+msgid "Course Certificates"
+msgstr "หลักสูตรที่มีใบรับรอง"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Specialization Certificates"
+msgstr "ใบรับรองทั้งหมด"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificate"
+msgstr "ใบรับรองทั้งหมด"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "Your Certificates"
+msgstr "ใบรับรอง"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificates"
+msgid "All Certificates"
+msgstr "ใบรับรอง"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Total Certificates"
+msgid "Professional Certificates"
+msgstr "ใบรับรองทั้งหมด"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Issued"
+msgid "Issued on:"
+msgstr "ออกแล้ว"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "View Certificate"
+msgid "Share Certificate"
+msgstr "ดูใบรับรอง"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Specialization"
+msgstr "แบบทดสอบการแสดงข้อมูล"
+
+#: templates/users/learner/certificate.html
+#: templates/website/landing_page.html
+msgid "Professional"
+msgstr "มืออาชีพ"
+
+#: templates/users/learner/certificate.html
+#, fuzzy
+#| msgid "Certificate ID"
+msgid "Certificate Details"
+msgstr "รหัสใบรับรอง"
+
 #: templates/users/learner/course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
@@ -5282,33 +5757,12 @@ msgstr "การตั้งค่าหลักสูตร"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
-msgid "Anti-Bribery and Anti-Corruption Policy"
-msgstr "นโยบายต่อต้านการติดสินบนและการต่อต้านการทุจริต"
-
-#: templates/users/learner/course_detail.html
-msgid "Essential compliance training for all employees"
-msgstr "การฝึกอบรมการปฏิบัติตามกฎระเบียบที่จำเป็นสำหรับพนักงานทุกคน"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "หลักสูตรของฉัน"
 
 #: templates/users/learner/course_detail.html
-msgid ""
-"This comprehensive course will educate you on our company's Anti-Bribery and"
-" Anti-Corruption Policy. You'll learn about the legal framework, recognize "
-"potential risks, and understand how to comply with the policy in various "
-"business situations."
-msgstr ""
-"หลักสูตรที่ครอบคลุมนี้จะให้ความรู้แก่คุณเกี่ยวกับนโยบายต่อต้านการติดสินบนและการต่อต้านการทุจริตของบริษัทของเรา"
-" คุณจะได้เรียนรู้เกี่ยวกับกรอบทางกฎหมาย ตระหนักถึงความเสี่ยงที่อาจเกิดขึ้น "
-"และเข้าใจวิธีปฏิบัติตามนโยบายในสถานการณ์ทางธุรกิจต่างๆ"
-
-#: templates/users/learner/course_detail.html
-#: templates/users/learner/my_courses.html
-msgid "2 hours"
-msgstr "2 ชั่วโมง"
+msgid "30 minutes"
+msgstr "30 นาที"
 
 #: templates/users/learner/course_detail.html
 #: templates/users/learner/my_courses.html
@@ -5320,52 +5774,13 @@ msgid "All Employees"
 msgstr "พนักงานทุกคน"
 
 #: templates/users/learner/course_detail.html
+#: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "ความก้าวหน้าโดยรวม"
 
 #: templates/users/learner/course_detail.html
-msgid "Learning Resources"
-msgstr "แหล่งเรียนรู้"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Basics"
-msgstr "พื้นฐานการต่อต้านการติดสินบนและการต่อต้านการทุจริต"
-
-#: templates/users/learner/course_detail.html
-msgid "SCORM Package"
-msgstr "แพ็คเกจ SCORM"
-
-#: templates/users/learner/course_detail.html
 msgid "Start"
 msgstr "เริ่ม"
-
-#: templates/users/learner/course_detail.html
-msgid "Recognizing Bribery Risks"
-msgstr "ตระหนักถึงความเสี่ยงจากการติดสินบน"
-
-#: templates/users/learner/course_detail.html
-msgid "Watch"
-msgstr "ดู"
-
-#: templates/users/learner/course_detail.html
-msgid "Company Anti-Corruption Policy"
-msgstr "นโยบายต่อต้านการคอร์รัปชั่นของบริษัท"
-
-#: templates/users/learner/course_detail.html
-msgid "Read"
-msgstr "อ่าน"
-
-#: templates/users/learner/course_detail.html
-msgid "Case Studies: Ethical Decision Making"
-msgstr "กรณีศึกษา: การตัดสินใจอย่างมีจริยธรรม"
-
-#: templates/users/learner/course_detail.html
-msgid "Anti-Bribery and Anti-Corruption Assessment"
-msgstr "การประเมินการต่อต้านการติดสินบนและการต่อต้านการทุจริต"
-
-#: templates/users/learner/course_detail.html
-msgid "Take Quiz"
-msgstr "ทำแบบทดสอบ"
 
 #: templates/users/learner/course_detail.html
 msgid "Course Information"
@@ -5428,7 +5843,8 @@ msgstr "หลักสูตรที่กำลังดำเนินกา
 msgid "Certificates Earned"
 msgstr "ใบรับรองที่ได้รับ"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
+#: templates/users/learner/progress.html
 msgid "Learning Streak"
 msgstr "แนวการเรียนรู้"
 
@@ -5436,11 +5852,11 @@ msgstr "แนวการเรียนรู้"
 msgid "days"
 msgstr "วัน"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Learning Progress"
 msgstr "ความก้าวหน้าการเรียนรู้"
 
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/dashboard.html templates/users/learner/profile.html
 msgid "Current Courses"
 msgstr "หลักสูตรปัจจุบัน"
 
@@ -5453,30 +5869,12 @@ msgid "Data Science Basics"
 msgstr "พื้นฐานวิทยาศาสตร์ข้อมูล"
 
 #: templates/users/learner/dashboard.html
-msgid "Upcoming Deadlines"
-msgstr "กำหนดเวลาที่กำลังจะมาถึง"
-
-#: templates/users/learner/dashboard.html
-msgid "JavaScript Final Project"
-msgstr "โครงการสุดท้ายของ JavaScript"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 23, 2024"
-msgstr "ครบกำหนด: 23 กรกฎาคม 2024"
-
-#: templates/users/learner/dashboard.html
-msgid "Data Visualization Quiz"
-msgstr "แบบทดสอบการแสดงข้อมูล"
-
-#: templates/users/learner/dashboard.html
-msgid "Due: July 28, 2024"
-msgstr "ครบกำหนด: 28 กรกฎาคม 2024"
-
-#: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Recent Activity"
 msgstr "กิจกรรมล่าสุด"
 
 #: templates/users/learner/dashboard.html
+#: templates/users/learner/progress.html
 msgid "Completed lesson: Introduction to JavaScript"
 msgstr "บทเรียนที่เสร็จสมบูรณ์: บทนำเกี่ยวกับ JavaScript"
 
@@ -5491,6 +5889,525 @@ msgstr "จำนวนหลักสูตร"
 #: templates/users/learner/dashboard.html
 msgid "Month"
 msgstr "เดือน"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Forums - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/forum.html
+msgid "LMS Forums"
+msgstr "ฟอรัม LMS"
+
+#: templates/users/learner/forum.html
+msgid "Engage, discuss, and learn together"
+msgstr "มีส่วนร่วม พูดคุย และเรียนรู้ร่วมกัน"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Web Development Fundamentals"
+msgid "Mobile Development"
+msgstr "พื้นฐานการพัฒนาเว็บ"
+
+#: templates/users/learner/forum.html
+msgid "Artificial Intelligence"
+msgstr "ปัญญาประดิษฐ์"
+
+#: templates/users/learner/forum.html
+msgid "General Discussion"
+msgstr "การสนทนาทั่วไป"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Forum Posts"
+msgid "Forum Stats"
+msgstr "โพสต์ในฟอรัม"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Topics:"
+msgstr "คะแนนรวม:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Total Points:"
+msgid "Total Posts:"
+msgstr "คะแนนรวม:"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Active Courses"
+msgid "Active Users:"
+msgstr "หลักสูตรที่ใช้งานอยู่"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Completion"
+msgid "Recent Topics"
+msgstr "จบหลักสูตร"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "View Ticket"
+msgid "New Topic"
+msgstr "ดูตั๋ว"
+
+#: templates/users/learner/forum.html
+msgid "Best practices for responsive web design?"
+msgstr "แนวทางปฏิบัติที่ดีที่สุดสำหรับการออกแบบเว็บไซต์แบบตอบสนอง?"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Start"
+msgid "Started by"
+msgstr "เริ่ม"
+
+#: templates/users/learner/forum.html
+msgid "15 replies"
+msgstr "15 ตอบกลับ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "Last reply 2 hours ago"
+msgstr "2 ชั่วโมงที่แล้ว"
+
+#: templates/users/learner/forum.html
+msgid "Python vs R for data analysis: Pros and cons?"
+msgstr "Python กับ R สำหรับการวิเคราะห์ข้อมูล: ข้อดีและข้อเสีย?"
+
+#: templates/users/learner/forum.html
+msgid "23 replies"
+msgstr "23 ตอบกลับ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "Last reply 1 day ago"
+msgstr "1 วันที่ผ่านมา"
+
+#: templates/users/learner/forum.html
+msgid "Tips for optimizing mobile app performance?"
+msgstr "เคล็ดลับในการเพิ่มประสิทธิภาพแอพมือถือ?"
+
+#: templates/users/learner/forum.html
+msgid "8 replies"
+msgstr "8 ตอบกลับ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 3 days ago"
+msgstr "30 วันที่ผ่านมา"
+
+#: templates/users/learner/forum.html
+msgid "Ethical considerations in AI development"
+msgstr "ข้อพิจารณาทางจริยธรรมในการพัฒนา AI"
+
+#: templates/users/learner/forum.html
+msgid "32 replies"
+msgstr "32 ตอบกลับ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Last 30 Days"
+msgid "Last reply 5 days ago"
+msgstr "30 วันที่ผ่านมา"
+
+#: templates/users/learner/forum.html
+msgid "Trending Topics"
+msgstr "หัวข้อที่กำลังได้รับความนิยม"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Introduction to AI"
+msgid "Introduction to Machine Learning"
+msgstr "ความรู้เบื้องต้นเกี่ยวกับเอไอ"
+
+#: templates/users/learner/forum.html
+msgid "50 replies • 1.2k views"
+msgstr "50 ตอบกลับ • เข้าชม 1.2k"
+
+#: templates/users/learner/forum.html
+msgid "JavaScript frameworks comparison"
+msgstr "การเปรียบเทียบเฟรมเวิร์ก JavaScript"
+
+#: templates/users/learner/forum.html
+msgid "45 replies • 980 views"
+msgstr "45 ตอบกลับ • เข้าชม 980 ครั้ง"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Data visualization techniques"
+msgstr "แบบทดสอบการแสดงข้อมูล"
+
+#: templates/users/learner/forum.html
+msgid "38 replies • 850 views"
+msgstr "38 ตอบกลับ • เข้าชม 850 ครั้ง"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create New Topic"
+msgstr "สร้างตั๋วใหม่"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Title"
+msgid "Topic Title"
+msgstr "ชื่อ"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Select date"
+msgid "Select Category"
+msgstr "เลือกวันที่"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Course Cover"
+msgid "Topic Content"
+msgstr "ปกหลักสูตร"
+
+#: templates/users/learner/forum.html
+#, fuzzy
+#| msgid "Create New Ticket"
+msgid "Create Topic"
+msgstr "สร้างตั๋วใหม่"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Grades - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/grades.html
+msgid "Your Grades"
+msgstr "เกรดของคุณ"
+
+#: templates/users/learner/grades.html
+msgid "View your academic performance"
+msgstr "ดูผลการเรียนของคุณ"
+
+#: templates/users/learner/grades.html
+msgid "Grade Summary"
+msgstr "สรุปเกรด"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall Average"
+msgstr "ความก้าวหน้าโดยรวม"
+
+#: templates/users/learner/grades.html
+msgid "Highest Grade:"
+msgstr "เกรดสูงสุด:"
+
+#: templates/users/learner/grades.html
+msgid "Lowest Grade:"
+msgstr "เกรดต่ำสุด:"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Rating Distribution"
+msgid "Grade Distribution"
+msgstr "การกระจายเรตติ้ง"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course"
+msgid "Course Grades"
+msgstr "คอร์ส"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Status"
+msgid "Status:"
+msgstr "สถานะ"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Storage Usage Trend"
+msgid "Grade Trend"
+msgstr "แนวโน้มการใช้พื้นที่จัดเก็บข้อมูล"
+
+#: templates/users/learner/grades.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Grade Details"
+msgstr "การตั้งค่าหลักสูตร"
+
+#: templates/users/learner/grades.html
+msgid ""
+"Detailed grade information for the selected course will be displayed here."
+msgstr "ข้อมูลเกรดโดยละเอียดสำหรับหลักสูตรที่เลือกจะแสดงที่นี่"
+
+#: templates/users/learner/grades.html
+#, python-format
+msgid "Grade (%%)"
+msgstr "ระดับ (%%)"
+
+#: templates/users/learner/grades.html
+msgid "Grade Trend Across Courses"
+msgstr "แนวโน้มเกรดในหลักสูตรต่างๆ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support - LMS Admin"
+msgid "Help & Support - LMS Learner"
+msgstr "ช่วยเหลือและสนับสนุน - ผู้ดูแลระบบ LMS"
+
+#: templates/users/learner/help_support.html
+msgid "Find answers to your questions and get the support you need"
+msgstr "ค้นหาคำตอบสำหรับคำถามของคุณและรับการสนับสนุนที่คุณต้องการ"
+
+#: templates/users/learner/help_support.html
+msgid "How can we help you?"
+msgstr "เราจะช่วยคุณได้อย่างไร?"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Search courses..."
+msgid "Search for help..."
+msgstr "ค้นหาหลักสูตร..."
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "AI Search"
+msgid "Search"
+msgstr "ค้นหาเอไอ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "How do I reset a student's password?"
+msgid "How do I reset my password?"
+msgstr "ฉันจะรีเซ็ตรหัสผ่านของนักเรียนได้อย่างไร?"
+
+#: templates/users/learner/help_support.html
+msgid "To reset your password, follow these steps:"
+msgstr "หากต้องการรีเซ็ตรหัสผ่านของคุณ ให้ทำตามขั้นตอนเหล่านี้:"
+
+#: templates/users/learner/help_support.html
+msgid "Click on the 'Forgot Password' link on the login page"
+msgstr "คลิกที่ลิงค์ 'ลืมรหัสผ่าน' ในหน้าเข้าสู่ระบบ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter your email address"
+msgstr "ป้อนที่อยู่อีเมลที่ถูกต้อง"
+
+#: templates/users/learner/help_support.html
+msgid "Check your email for a password reset link"
+msgstr "ตรวจสอบอีเมลของคุณเพื่อดูลิงก์รีเซ็ตรหัสผ่าน"
+
+#: templates/users/learner/help_support.html
+msgid "Click the link and follow the instructions to create a new password"
+msgstr "คลิกลิงก์และปฏิบัติตามคำแนะนำเพื่อสร้างรหัสผ่านใหม่"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "How do I enroll in a course?"
+msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Enrolled in course"
+msgid "To enroll in a course:"
+msgstr "ลงทะเบียนเรียนในหลักสูตรแล้ว"
+
+#: templates/users/learner/help_support.html
+msgid "Browse the course catalog"
+msgstr "เรียกดูแคตตาล็อกหลักสูตร"
+
+#: templates/users/learner/help_support.html
+msgid "Select the course you're interested in"
+msgstr "เลือกหลักสูตรที่คุณสนใจ"
+
+#: templates/users/learner/help_support.html
+msgid "Click the 'Enroll' button on the course page"
+msgstr "คลิกปุ่ม 'ลงทะเบียน' ในหน้าหลักสูตร"
+
+#: templates/users/learner/help_support.html
+msgid "Follow the prompts to complete enrollment"
+msgstr "ปฏิบัติตามคำแนะนำเพื่อลงทะเบียนให้เสร็จสิ้น"
+
+#: templates/users/learner/help_support.html
+msgid "How do I track my progress?"
+msgstr "ฉันจะติดตามความก้าวหน้าของฉันได้อย่างไร?"
+
+#: templates/users/learner/help_support.html
+msgid "You can track your progress by:"
+msgstr "คุณสามารถติดตามความคืบหน้าของคุณโดย:"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Learner Dashboard"
+msgid "Visiting your learner dashboard"
+msgstr "แดชบอร์ดผู้เรียน"
+
+#: templates/users/learner/help_support.html
+msgid "Checking the progress bar in each course"
+msgstr "การตรวจสอบแถบความคืบหน้าในแต่ละหลักสูตร"
+
+#: templates/users/learner/help_support.html
+msgid "Reviewing your completed assignments and quizzes"
+msgstr "ทบทวนงานและแบบทดสอบที่คุณทำเสร็จแล้ว"
+
+#: templates/users/learner/help_support.html
+msgid "Checking your grades in the 'Grades' section"
+msgstr "ตรวจสอบเกรดของคุณในส่วน 'เกรด'"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Contact Support"
+msgstr "การสนับสนุนแชทสด"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Email Support"
+msgstr "ช่วยเหลือและสนับสนุน"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Live Chat Support"
+msgid "Live Chat"
+msgstr "การสนับสนุนแชทสด"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Phone Support"
+msgstr "ช่วยเหลือและสนับสนุน"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Total Revenue"
+msgid "Help Resources"
+msgstr "รายได้รวม"
+
+#: templates/users/learner/help_support.html
+msgid "User Guide"
+msgstr ""
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Community Forum"
+msgid "Community Forums"
+msgstr "ฟอรั่มชุมชน"
+
+#: templates/users/learner/help_support.html
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "System Updates"
+msgid "System Status"
+msgstr "การอัปเดตระบบ"
+
+#: templates/users/learner/help_support.html
+msgid "Need More Help?"
+msgstr "ต้องการความช่วยเหลือเพิ่มเติมหรือไม่?"
+
+#: templates/users/learner/help_support.html
+msgid "Our support team is here to assist you."
+msgstr "ทีมสนับสนุนของเราพร้อมให้ความช่วยเหลือคุณ"
+
+#: templates/users/learner/help_support.html
+#, fuzzy
+#| msgid "Submitted assignment"
+msgid "Submit a Ticket"
+msgstr "ส่งงานแล้ว"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Dashboard - LMS Learner"
+msgid "Leaderboard - LMS Learner"
+msgstr "แดชบอร์ด - ผู้เรียน LMS"
+
+#: templates/users/learner/leaderboard.html
+msgid "See how you rank among your peers"
+msgstr "ดูว่าคุณอยู่ในอันดับไหนในหมู่เพื่อนของคุณ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Your email"
+msgid "Your Rankings"
+msgstr "อีเมลของคุณ"
+
+#: templates/users/learner/leaderboard.html
+msgid "Your Overall Rank"
+msgstr "อันดับโดยรวมของคุณ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Top Performers"
+msgid "Quiz Performance"
+msgstr "นักแสดงชั้นนำ"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "View"
+msgid "View:"
+msgstr "ดู"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Overall Progress"
+msgid "Overall"
+msgstr "ความก้าวหน้าโดยรวม"
+
+#: templates/users/learner/leaderboard.html
+#, fuzzy
+#| msgid "Avg. Score"
+msgid "Score"
+msgstr "เฉลี่ย คะแนน"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Messages - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/messages.html
+msgid "Communicate with instructors and peers"
+msgstr "สื่อสารกับผู้สอนและเพื่อนร่วมงาน"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Integrations"
+msgid "Conversations"
+msgstr "บูรณาการ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Send Message"
+msgid "New Message"
+msgstr "ส่งข้อความ"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Type your reply here..."
+msgid "Type your message here..."
+msgstr "พิมพ์คำตอบของคุณที่นี่..."
+
+#: templates/users/learner/messages.html
+msgid "Send"
+msgstr "ส่ง"
+
+#: templates/users/learner/messages.html
+msgid "To:"
+msgstr "ถึง:"
+
+#: templates/users/learner/messages.html
+#, fuzzy
+#| msgid "Messages"
+msgid "Message:"
+msgstr "ข้อความ"
 
 #: templates/users/learner/my_courses.html
 msgid "My Courses - LMS Learner"
@@ -5517,45 +6434,565 @@ msgid "Ethics"
 msgstr "จริยธรรม"
 
 #: templates/users/learner/my_courses.html
-msgid "Learn about ethical business practices and compliance"
-msgstr ""
-"เรียนรู้เกี่ยวกับการดำเนินธุรกิจอย่างมีจริยธรรมและการปฏิบัติตามกฎระเบียบ"
+#, fuzzy
+#| msgid "Started course"
+msgid "Start Course"
+msgstr "เริ่มหลักสูตรแล้ว"
 
-#: templates/users/learner/my_courses.html
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Profile - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Edit Profile"
+msgstr "ดูโปรไฟล์"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "About Us"
+msgid "About Me"
+msgstr "เกี่ยวกับเรา"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Course Information"
+msgid "Contact Information"
+msgstr "ข้อมูลหลักสูตร"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Complete"
+msgstr "สมบูรณ์"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Enrollments"
+msgid "Achievements"
+msgstr "การลงทะเบียน"
+
+#: templates/users/learner/profile.html
+msgid "Badges"
+msgstr "ป้าย"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Days"
+msgstr "วัน"
+
+#: templates/users/learner/profile.html templates/users/learner/progress.html
+msgid "Keep it up!"
+msgstr "ติดตามมัน!"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 60%% Complete"
+msgstr "อยู่ระหว่างดำเนินการ - เสร็จสมบูรณ์แล้ว 60%%"
+
+#: templates/users/learner/profile.html
+#, python-format
+msgid "In Progress - 30%% Complete"
+msgstr "อยู่ระหว่างดำเนินการ - เสร็จสมบูรณ์ 30%%"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "Recent Badges"
+msgstr "กิจกรรมล่าสุด"
+
+#: templates/users/learner/profile.html templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Learning Preferences"
+msgstr "ความก้าวหน้าการเรียนรู้"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Preferred Learning Time"
+msgstr "ปฏิวัติการเรียนรู้"
+
+#: templates/users/learner/profile.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Style"
+msgstr "แนวการเรียนรู้"
+
+#: templates/users/learner/profile.html
+msgid "Preferred Course Format"
+msgstr "รูปแบบหลักสูตรที่ต้องการ"
+
+#: templates/users/learner/profile.html
+msgid "Goal"
+msgstr "เป้าหมาย"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "My Progress - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "My Progress"
+msgstr "ความคืบหน้า"
+
+#: templates/users/learner/progress.html
+msgid "Track your learning journey and achievements"
+msgstr "ติดตามเส้นทางการเรียนรู้และความสำเร็จของคุณ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learner"
+msgid "Earned"
+msgstr "ผู้เรียน"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Course"
+msgid "Hours"
+msgstr "คอร์ส"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Learning Time"
+msgstr "แนวการเรียนรู้"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Courses in Progress"
+msgid "Course Progress"
+msgstr "หลักสูตรที่กำลังดำเนินการ"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Progress"
+msgid "Skills Progress"
+msgstr "ความคืบหน้า"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed"
+msgid "Completed on"
+msgstr "สมบูรณ์"
+
+#: templates/users/learner/progress.html
+#, python-format
+msgid "In Progress - 75%% Complete"
+msgstr "อยู่ระหว่างดำเนินการ - เสร็จสมบูรณ์แล้ว 75%%"
+
+#: templates/users/learner/progress.html
+msgid "Locked - Complete prerequisites first"
+msgstr "ล็อคแล้ว - ทำข้อกำหนดเบื้องต้นให้ครบถ้วนก่อน"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "2 hours ago"
+msgid "hours ago"
+msgstr "2 ชั่วโมงที่แล้ว"
+
+#: templates/users/learner/progress.html
+msgid "Earned badge: CSS Master"
+msgstr "ป้ายที่ได้รับ: CSS Master"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "day ago"
+msgstr "1 วันที่ผ่านมา"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Submitted assignment: Data Visualization Project"
+msgstr "แบบทดสอบการแสดงข้อมูล"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "1 day ago"
+msgid "days ago"
+msgstr "1 วันที่ผ่านมา"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Watched video: Introduction to Machine Learning"
+msgstr "บทเรียนที่เสร็จสมบูรณ์: บทนำเกี่ยวกับ JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Recommended Next Steps"
+msgstr "แนะนำขั้นตอนถัดไป"
+
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Completed lesson: Introduction to JavaScript"
+msgid "Complete JavaScript Basics"
+msgstr "บทเรียนที่เสร็จสมบูรณ์: บทนำเกี่ยวกับ JavaScript"
+
+#: templates/users/learner/progress.html
+msgid "Finish the remaining lessons to solidify your JS skills."
+msgstr "จบบทเรียนที่เหลือเพื่อเสริมสร้างทักษะ JS ของคุณ"
+
+#: templates/users/learner/progress.html
 msgid "Continue Course"
 msgstr "เรียนต่อหลักสูตร"
 
-#: templates/users/learner/my_courses.html
-msgid "Information Security Management System (ISMS)"
-msgstr "ระบบการจัดการความมั่นคงปลอดภัยสารสนเทศ (ISMS)"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Take Python Assessment"
+msgstr "ประกาศทั้งหมด"
 
-#: templates/users/learner/my_courses.html
-msgid "Understand key principles of information security"
-msgstr "ทำความเข้าใจหลักการสำคัญของความปลอดภัยของข้อมูล"
+#: templates/users/learner/progress.html
+msgid "Test your Python knowledge with this quick assessment."
+msgstr "ทดสอบความรู้ Python ของคุณด้วยการประเมินอย่างรวดเร็วนี้"
 
-#: templates/users/learner/my_courses.html
-msgid "3 hours"
-msgstr "3 ชั่วโมง"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Total Announcements"
+msgid "Start Assessment"
+msgstr "ประกาศทั้งหมด"
 
-#: templates/users/learner/my_courses.html
-msgid "6 modules"
-msgstr "6 โมดูล"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Data Visualization Quiz"
+msgid "Explore Data Visualization"
+msgstr "แบบทดสอบการแสดงข้อมูล"
 
-#: templates/users/learner/my_courses.html
-msgid "Anti-Money Laundering"
-msgstr "การต่อต้านการฟอกเงิน"
+#: templates/users/learner/progress.html
+msgid "Enhance your data science skills with this new course."
+msgstr "พัฒนาทักษะด้านวิทยาศาสตร์ข้อมูลของคุณด้วยหลักสูตรใหม่นี้"
 
-#: templates/users/learner/my_courses.html
-msgid "Learn to identify and prevent money laundering activities"
-msgstr "เรียนรู้ที่จะระบุและป้องกันการฟอกเงิน"
+#: templates/users/learner/progress.html
+#, fuzzy
+#| msgid "Create Course"
+msgid "Preview Course"
+msgstr "สร้างหลักสูตร"
 
-#: templates/users/learner/my_courses.html
-msgid "2.5 hours"
-msgstr "2.5 ชม"
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "My Courses - LMS Learner"
+msgid "Resources - LMS Learner"
+msgstr "หลักสูตรของฉัน - ผู้เรียน LMS"
 
-#: templates/users/learner/my_courses.html
-msgid "4 modules"
-msgstr "4 โมดูล"
+#: templates/users/learner/resource.html
+msgid "Access course materials and helpful content"
+msgstr "เข้าถึงเนื้อหาหลักสูตรและเนื้อหาที่เป็นประโยชน์"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Course Settings"
+msgid "Course Materials"
+msgstr "การตั้งค่าหลักสูตร"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Learning Resources"
+msgid "External Resources"
+msgstr "แหล่งเรียนรู้"
+
+#: templates/users/learner/resource.html
+msgid "Additional Reading"
+msgstr "การอ่านเพิ่มเติม"
+
+#: templates/users/learner/resource.html templates/website/landing_page.html
+msgid "Quick Links"
+msgstr "ลิงค์ด่วน"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Student Handbook"
+msgstr "ชื่อไซต์"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Calendar"
+msgid "Academic Calendar"
+msgstr "ปฏิทิน"
+
+#: templates/users/learner/resource.html
+msgid "Library Portal"
+msgstr "พอร์ทัลห้องสมุด"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Help & Support"
+msgid "Tech Support"
+msgstr "ช่วยเหลือและสนับสนุน"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Resource Usage"
+msgid "All Resources"
+msgstr "การใช้ทรัพยากร"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Downloads"
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+#: templates/users/learner/resource.html
+msgid "Watch"
+msgstr "ดู"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Visit Forum"
+msgid "Visit"
+msgstr "เยี่ยมชมฟอรั่ม"
+
+#: templates/users/learner/resource.html
+msgid "Read"
+msgstr "อ่าน"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Recently Accessed"
+msgstr "เข้าถึงครั้งล่าสุด"
+
+#: templates/users/learner/resource.html
+#, fuzzy
+#| msgid "Last Accessed"
+msgid "Accessed:"
+msgstr "เข้าถึงครั้งล่าสุด"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Settings - LMS Admin"
+msgid "Settings - LMS Learner"
+msgstr "การตั้งค่า - ผู้ดูแลระบบ LMS"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Account Settings"
+msgstr "การตั้งค่าความปลอดภัย"
+
+#: templates/users/learner/settings.html
+msgid "Manage your account preferences and settings"
+msgstr "จัดการการตั้งค่าและการตั้งค่าบัญชีของคุณ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "View Profile"
+msgid "Profile"
+msgstr "ดูโปรไฟล์"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Access Count"
+msgid "Account"
+msgstr "จำนวนการเข้าถึง"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Privacy"
+msgstr "นโยบายรหัสผ่าน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Email Settings"
+msgid "Profile Settings"
+msgstr "การตั้งค่าอีเมล"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "First Name"
+msgstr "ชื่อไซต์"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Site Name"
+msgid "Last Name"
+msgstr "ชื่อไซต์"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Admin Email"
+msgid "Email"
+msgstr "อีเมล์ผู้ดูแลระบบ"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "November"
+msgid "Phone Number"
+msgstr "พฤศจิกายน"
+
+#: templates/users/learner/settings.html
+msgid "Bio"
+msgstr "เขาเป็น"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Save Changes"
+msgid "Save Profile Changes"
+msgstr "บันทึกการเปลี่ยนแปลง"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Current Password"
+msgstr "นโยบายรหัสผ่าน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "New Password"
+msgstr "นโยบายรหัสผ่าน"
+
+#: templates/users/learner/settings.html
+msgid "Confirm New Password"
+msgstr "ยืนยันรหัสผ่านใหม่"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Password Policy"
+msgid "Change Password"
+msgstr "นโยบายรหัสผ่าน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications Settings"
+msgid "Notification Settings"
+msgstr "การตั้งค่าการแจ้งเตือน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Notifications"
+msgid "Push Notifications"
+msgstr "การแจ้งเตือน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Export Deliveries"
+msgid "Course Reminders"
+msgstr "การส่งออก"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Security Settings"
+msgid "Privacy Settings"
+msgstr "การตั้งค่าความปลอดภัย"
+
+#: templates/users/learner/settings.html
+msgid "Profile Visibility"
+msgstr "การเปิดเผยโปรไฟล์"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Publish"
+msgid "Public"
+msgstr "เผยแพร่"
+
+#: templates/users/learner/settings.html
+msgid "Friends Only"
+msgstr "เพื่อนเท่านั้น"
+
+#: templates/users/learner/settings.html
+msgid "Private"
+msgstr "ส่วนตัว"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "User Activity"
+msgid "Show Learning Activity"
+msgstr "กิจกรรมของผู้ใช้"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Streak"
+msgid "Preferred Learning Style"
+msgstr "แนวการเรียนรู้"
+
+#: templates/users/learner/settings.html
+msgid "Visual"
+msgstr "ภาพ"
+
+#: templates/users/learner/settings.html
+msgid "Auditory"
+msgstr "การได้ยิน"
+
+#: templates/users/learner/settings.html
+msgid "Read/Write"
+msgstr "อ่าน/เขียน"
+
+#: templates/users/learner/settings.html
+msgid "Kinesthetic"
+msgstr "การเคลื่อนไหวร่างกาย"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Avg. Response Time"
+msgid "Preferred Study Time"
+msgstr "เฉลี่ย เวลาตอบสนอง"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Warning"
+msgid "Morning"
+msgstr "คำเตือน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "noon"
+msgid "Afternoon"
+msgstr "กลางวัน"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Events"
+msgid "Evening"
+msgstr "กิจกรรม"
+
+#: templates/users/learner/settings.html
+msgid "Late Night"
+msgstr "ดึกดื่น"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Learning Progress"
+msgid "Save Learning Preferences"
+msgstr "ความก้าวหน้าการเรียนรู้"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with LinkedIn"
+msgstr "เชื่อมต่อกับเรา"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect"
+msgstr "เชื่อมต่อกับเรา"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Google"
+msgstr "เชื่อมต่อกับเรา"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with GitHub"
+msgstr "เชื่อมต่อกับเรา"
+
+#: templates/users/learner/settings.html
+#, fuzzy
+#| msgid "Connect With Us"
+msgid "Connect with Slack"
+msgstr "เชื่อมต่อกับเรา"
 
 #: templates/website/landing_page.html
 msgid "NextGen AI LMS - Revolutionize Your Learning"
@@ -5622,41 +7059,90 @@ msgstr "คุณสมบัติล้ำสมัย"
 #: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Learning Path"
-msgid "Smart Learning Paths"
+msgid "Adaptive Learning Paths"
 msgstr "เส้นทางการเรียนรู้"
 
 #: templates/website/landing_page.html
+#, fuzzy
+#| msgid ""
+#| "Our algorithms analyze learner behavior and performance to create "
+#| "personalized learning journeys, ensuring optimal skill development."
 msgid ""
-"Our algorithms analyze learner behavior and performance to create "
-"personalized learning journeys, ensuring optimal skill development."
+"Create personalized learning journeys based on user performance and goals, "
+"ensuring optimal skill development for each learner."
 msgstr ""
 "อัลกอริธึมของเราจะวิเคราะห์พฤติกรรมและประสิทธิภาพของผู้เรียนเพื่อสร้างเส้นทางการเรียนรู้แบบเฉพาะตัว"
 " เพื่อให้มั่นใจว่าจะมีการพัฒนาทักษะที่เหมาะสมที่สุด"
 
 #: templates/website/landing_page.html
 #, fuzzy
-#| msgid "Advanced Arabic"
-msgid "Advanced Analytics"
-msgstr "ภาษาอาหรับขั้นสูง"
+#| msgid "Completion Rate"
+msgid "Comprehensive Analytics"
+msgstr "อัตราความสำเร็จ"
 
 #: templates/website/landing_page.html
 msgid ""
-"Leverage data-driven insights to forecast learner outcomes, identify "
-"potential challenges, and proactively intervene for better results."
+"Gain valuable insights into learner progress, course effectiveness, and "
+"overall training impact with our powerful reporting tools."
 msgstr ""
-"ใช้ประโยชน์จากข้อมูลเชิงลึกที่ขับเคลื่อนด้วยข้อมูลเพื่อคาดการณ์ผลลัพธ์ของผู้เรียน"
-" ระบุความท้าทายที่อาจเกิดขึ้น และแทรกแซงเชิงรุกเพื่อให้ได้ผลลัพธ์ที่ดีขึ้น"
+"รับข้อมูลเชิงลึกอันมีค่าเกี่ยวกับความก้าวหน้าของผู้เรียน "
+"ประสิทธิผลของหลักสูตร "
+"และผลกระทบการฝึกอบรมโดยรวมด้วยเครื่องมือการรายงานอันทรงพลังของเรา"
 
 #: templates/website/landing_page.html
-msgid "Immersive VR Training"
-msgstr "การฝึกอบรม VR ที่สมจริง"
+#, fuzzy
+#| msgid "Automated content recommendations"
+msgid "AI-Powered Recommendations"
+msgstr "การแนะนำเนื้อหาอัตโนมัติ"
 
 #: templates/website/landing_page.html
 msgid ""
-"Integrate virtual reality experiences for hands-on, risk-free training in "
-"complex or high-stakes scenarios."
+"Leverage machine learning algorithms to suggest relevant courses and "
+"resources based on learner interests and performance."
 msgstr ""
-"ผสานรวมประสบการณ์ความเป็นจริงเสมือนสำหรับการฝึกอบรมแบบลงมือปฏิบัติจริงและไร้ความเสี่ยงในสถานการณ์ที่ซับซ้อนหรือมีความเสี่ยงสูง"
+"ใช้ประโยชน์จากอัลกอริธึมการเรียนรู้ของเครื่องเพื่อแนะนำหลักสูตรและทรัพยากรที่เกี่ยวข้องตามความสนใจและประสิทธิภาพของผู้เรียน"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Active Sessions"
+msgid "Interactive Discussions"
+msgstr "เซสชันที่ใช้งานอยู่"
+
+#: templates/website/landing_page.html
+msgid ""
+"Foster collaboration and knowledge sharing through built-in forums, chat "
+"rooms, and group projects."
+msgstr ""
+"ส่งเสริมการทำงานร่วมกันและการแบ่งปันความรู้ผ่านฟอรัม ห้องสนทนา "
+"และโครงการกลุ่มในตัว"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Revolutionize Learning"
+msgid "Mobile Learning"
+msgstr "ปฏิวัติการเรียนรู้"
+
+#: templates/website/landing_page.html
+msgid ""
+"Access courses and materials on-the-go with our responsive design and "
+"dedicated mobile app for iOS and Android."
+msgstr ""
+"เข้าถึงหลักสูตรและสื่อการสอนได้ทุกที่ทุกเวลาด้วยการออกแบบที่ตอบสนองและแอปมือถือเฉพาะสำหรับ"
+" iOS และ Android"
+
+#: templates/website/landing_page.html
+#, fuzzy
+#| msgid "Completion Rate"
+msgid "Gamification & Certificates"
+msgstr "อัตราความสำเร็จ"
+
+#: templates/website/landing_page.html
+msgid ""
+"Increase engagement with achievement badges, leaderboards, and automated "
+"certificate generation upon course completion."
+msgstr ""
+"เพิ่มการมีส่วนร่วมด้วยตราความสำเร็จ ลีดเดอร์บอร์ด "
+"และการสร้างใบรับรองอัตโนมัติเมื่อจบหลักสูตร"
 
 #: templates/website/landing_page.html
 msgid "Advanced Enterprise Features"
@@ -5858,16 +7344,14 @@ msgid "Intelligent content recommendations"
 msgstr "คำแนะนำเนื้อหาอัจฉริยะ"
 
 #: templates/website/landing_page.html
-msgid "Adaptive learning visualization"
+#, fuzzy
+#| msgid "Adaptive learning visualization"
+msgid "Innovative learning visualization"
 msgstr "การสร้างภาพการเรียนรู้แบบปรับเปลี่ยนได้"
 
 #: templates/website/landing_page.html
 msgid "Success Stories"
 msgstr "เรื่องราวความสำเร็จ"
-
-#: templates/website/landing_page.html
-msgid "Client Avatar"
-msgstr "อวตารของลูกค้า"
 
 #: templates/website/landing_page.html
 msgid "Sarah Johnson"
@@ -5878,12 +7362,17 @@ msgid "HR Director, TechCorp"
 msgstr "ผู้อำนวยการฝ่ายทรัพยากรบุคคล TechCorp"
 
 #: templates/website/landing_page.html
-#, python-format
+#, fuzzy
+#| msgid ""
+#| "NextGen AI LMS has transformed our corporate training. The personalized "
+#| "learning paths and predictive analytics have significantly improved employee"
+#| " engagement and performance. We've seen a 40%% increase in course completion"
+#| " rates and a 25%% improvement in knowledge retention."
 msgid ""
-"NextGen AI LMS has transformed our corporate training. The personalized "
-"learning paths and predictive analytics have significantly improved employee"
-" engagement and performance. We've seen a 40%% increase in course completion"
-" rates and a 25%% improvement in knowledge retention."
+"NextGen LMS has streamlined our corporate training process. The intuitive "
+"interface and customizable learning paths have made it easy for our "
+"employees to engage with the content. We've seen a noticeable improvement in"
+" course completion rates and positive feedback from our team."
 msgstr ""
 "NextGen AI LMS ได้เปลี่ยนแปลงการฝึกอบรมองค์กรของเรา "
 "เส้นทางการเรียนรู้ส่วนบุคคลและการวิเคราะห์เชิงคาดการณ์ช่วยปรับปรุงการมีส่วนร่วมและประสิทธิภาพของพนักงานได้อย่างมาก"
@@ -5899,19 +7388,16 @@ msgid "L&D Manager, InnovateNow"
 msgstr "ผู้จัดการฝ่าย L&D, InnovateNow"
 
 #: templates/website/landing_page.html
-#, python-format
 msgid ""
-"The AI-powered insights provided by NextGen AI LMS have revolutionized our "
-"approach to employee development. We can now identify skill gaps proactively"
-" and tailor our training programs with unprecedented precision. Our team's "
-"productivity has increased by 30%% since implementing this cutting-edge "
-"system."
+"Implementing NextGen LMS has transformed our approach to employee "
+"development. The platform's robust reporting tools have given us valuable "
+"insights into our training programs' effectiveness. We can now make data-"
+"driven decisions to improve our content and delivery methods."
 msgstr ""
-"ข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI จาก NextGen AI LMS "
-"ได้ปฏิวัติแนวทางการพัฒนาพนักงานของเรา "
-"ขณะนี้เราสามารถระบุช่องว่างด้านทักษะในเชิงรุกและปรับแต่งโปรแกรมการฝึกอบรมของเราให้มีความแม่นยำอย่างที่ไม่เคยมีมาก่อน"
-" ประสิทธิภาพการทำงานของทีมงานของเราเพิ่มขึ้น 30%% "
-"นับตั้งแต่ใช้ระบบที่ล้ำสมัยนี้"
+"การใช้ NextGen LMS ได้เปลี่ยนแปลงแนวทางของเราในการพัฒนาพนักงาน "
+"เครื่องมือการรายงานที่มีประสิทธิภาพของแพลตฟอร์มทำให้เราได้รับข้อมูลเชิงลึกอันมีค่าเกี่ยวกับประสิทธิผลของโปรแกรมการฝึกอบรมของเรา"
+" "
+"ขณะนี้เราสามารถตัดสินใจโดยอาศัยข้อมูลเพื่อปรับปรุงเนื้อหาและวิธีการจัดส่งของเรา"
 
 #: templates/website/landing_page.html
 msgid "Flexible Subscription Plans"
@@ -5924,10 +7410,8 @@ msgid "Starter"
 msgstr "เริ่ม"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Month"
-msgid "/month"
-msgstr "เดือน"
+msgid "Perfect for small teams"
+msgstr "เหมาะสำหรับทีมเล็กๆ"
 
 #: templates/website/landing_page.html
 msgid "Up to 500 users"
@@ -5948,10 +7432,8 @@ msgid "24/7 chatbot support"
 msgstr "รองรับแชทบอททุกวันตลอด 24 ชั่วโมง"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Getting Started Guide"
-msgid "Get Started"
-msgstr "คู่มือการเริ่มต้นใช้งาน"
+msgid "Contact Sales"
+msgstr "ติดต่อฝ่ายขาย"
 
 #: templates/website/landing_page.html
 #, fuzzy
@@ -5960,8 +7442,8 @@ msgid "Most Popular"
 msgstr "หลักสูตรยอดนิยม"
 
 #: templates/website/landing_page.html
-msgid "Professional"
-msgstr "มืออาชีพ"
+msgid "Ideal for growing organizations"
+msgstr "เหมาะสำหรับองค์กรที่กำลังเติบโต"
 
 #: templates/website/landing_page.html
 msgid "Up to 2,000 users"
@@ -5976,28 +7458,18 @@ msgid "Automated content recommendations"
 msgstr "การแนะนำเนื้อหาอัตโนมัติ"
 
 #: templates/website/landing_page.html
-msgid "VR training modules"
-msgstr "โมดูลการฝึกอบรม VR"
-
-#: templates/website/landing_page.html
 #, fuzzy
 #| msgid "Print Report"
 msgid "Priority support"
 msgstr "พิมพ์รายงาน"
 
 #: templates/website/landing_page.html
-msgid "Upgrade to Pro"
-msgstr "อัพเกรดเป็นโปร"
-
-#: templates/website/landing_page.html
 msgid "Enterprise"
 msgstr "องค์กร"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "Custom Reports"
-msgid "Custom"
-msgstr "รายงานที่กำหนดเอง"
+msgid "Tailored for large enterprises"
+msgstr "เหมาะสำหรับองค์กรขนาดใหญ่"
 
 #: templates/website/landing_page.html
 msgid "Unlimited users"
@@ -6012,16 +7484,8 @@ msgid "Custom model development"
 msgstr "การพัฒนาโมเดลแบบกำหนดเอง"
 
 #: templates/website/landing_page.html
-msgid "Advanced VR & AR capabilities"
-msgstr "ความสามารถ VR และ AR ขั้นสูง"
-
-#: templates/website/landing_page.html
 msgid "Dedicated account manager"
 msgstr "ผู้จัดการบัญชีเฉพาะ"
-
-#: templates/website/landing_page.html
-msgid "Contact Sales"
-msgstr "ติดต่อฝ่ายขาย"
 
 #: templates/website/landing_page.html
 msgid "Ready to Transform Your Learning Experience?"
@@ -6043,20 +7507,18 @@ msgid "Empowering the future of learning with innovative technology."
 msgstr "เสริมศักยภาพการเรียนรู้แห่งอนาคตด้วยเทคโนโลยีที่เป็นนวัตกรรม"
 
 #: templates/website/landing_page.html
-msgid "123 Tech Street, San Francisco, CA 94105"
-msgstr "123 Tech Street, ซานฟรานซิสโก, แคลิฟอร์เนีย 94105"
+msgid "Newtown, Kolkata, West Bengal, India, 700156"
+msgstr "นิวทาวน์ โกลกาตา เบงกอลตะวันตก อินเดีย 700156"
 
 #: templates/website/landing_page.html
-msgid "Phone: (555) 123-4567"
-msgstr "โทรศัพท์: (555) 123-4567"
+msgid "Phone: __"
+msgstr "โทรศัพท์: __"
 
 #: templates/website/landing_page.html
-msgid "Email: info@lms.com"
+#, fuzzy
+#| msgid "Email: info@lms.com"
+msgid "Email: info@learnknowdigital.com"
 msgstr "อีเมล์: info@lms.com"
-
-#: templates/website/landing_page.html
-msgid "Quick Links"
-msgstr "ลิงค์ด่วน"
 
 #: templates/website/landing_page.html
 msgid "Home"
@@ -6105,12 +7567,6 @@ msgid "Support Center"
 msgstr "ศูนย์ช่วยเหลือและสนับสนุน"
 
 #: templates/website/landing_page.html
-#, fuzzy
-#| msgid "System Updates"
-msgid "System Status"
-msgstr "การอัปเดตระบบ"
-
-#: templates/website/landing_page.html
 msgid "Connect With Us"
 msgstr "เชื่อมต่อกับเรา"
 
@@ -6137,6 +7593,253 @@ msgstr "คุณเข้าสู่ระบบสำเร็จแล้ว
 #: users/auth_views.py
 msgid "Login failed. Please check the errors below."
 msgstr "การเข้าสู่ระบบล้มเหลว โปรดตรวจสอบข้อผิดพลาดด้านล่าง"
+
+#~ msgid "Advanced Python Programming"
+#~ msgstr "การเขียนโปรแกรมหลามขั้นสูง"
+
+#~ msgid "Basic Details"
+#~ msgstr "รายละเอียดพื้นฐาน"
+
+#~ msgid "How will the course be delivered?"
+#~ msgstr "หลักสูตรจะจัดส่งอย่างไร?"
+
+#~ msgid "Assign Facilitators"
+#~ msgstr "มอบหมายผู้อำนวยความสะดวก"
+
+#~ msgid "Assign Participants"
+#~ msgstr "มอบหมายผู้เข้าร่วม"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "การตั้งค่าขั้นสูง"
+
+#~ msgid ""
+#~ "Would you like to add access period for Course content for this Delivery?"
+#~ msgstr ""
+#~ "คุณต้องการเพิ่มระยะเวลาการเข้าถึงเนื้อหาหลักสูตรสำหรับการจัดส่งนี้หรือไม่"
+
+#~ msgid "Yes, add access period"
+#~ msgstr "ใช่ เพิ่มระยะเวลาการเข้าถึง"
+
+#~ msgid "Select start date"
+#~ msgstr "เลือกวันที่เริ่มต้น"
+
+#~ msgid "Select end date"
+#~ msgstr "เลือกวันที่สิ้นสุด"
+
+#~ msgid "Would you like to add deactivation date for this Delivery?"
+#~ msgstr "คุณต้องการเพิ่มวันที่ปิดใช้งานสำหรับการจัดส่งนี้หรือไม่"
+
+#~ msgid "Yes, add deactivation date"
+#~ msgstr "ใช่ เพิ่มวันที่ปิดใช้งาน"
+
+#~ msgid "Would you like to get feedback from the Participant for this Delivery?"
+#~ msgstr "คุณต้องการรับคำติชมจากผู้เข้าร่วมสำหรับการจัดส่งครั้งนี้หรือไม่"
+
+#~ msgid "Yes, collect feedback"
+#~ msgstr "ใช่ รวบรวมความคิดเห็น"
+
+#~ msgid "Yes, mark as mandatory"
+#~ msgstr "ใช่ ทำเครื่องหมายว่าจำเป็น"
+
+#~ msgid "Do you want to capture the Participant attendance for this Course?"
+#~ msgstr "คุณต้องการบันทึกการเข้าร่วมของผู้เข้าร่วมสำหรับหลักสูตรนี้หรือไม่?"
+
+#~ msgid "Yes, capture attendance"
+#~ msgstr "ใช่ จับภาพผู้เข้าร่วม"
+
+#~ msgid "Does this Course require a Completion Certificate?"
+#~ msgstr "หลักสูตรนี้จำเป็นต้องมีใบรับรองการสำเร็จหลักสูตรหรือไม่"
+
+#~ msgid "Yes, require completion certificate"
+#~ msgstr "ใช่ ต้องมีใบรับรองการจบหลักสูตร"
+
+#~ msgid "Invite Email Template"
+#~ msgstr "เทมเพลตอีเมลเชิญ"
+
+#~ msgid "Completion Email Template"
+#~ msgstr "เทมเพลตอีเมลใบเสร็จ"
+
+#~ msgid "Search deliveries..."
+#~ msgstr "ค้นหาการจัดส่ง..."
+
+#~ msgid "Cancelled"
+#~ msgstr "ยกเลิก"
+
+#~ msgid "All Instructors"
+#~ msgstr "อาจารย์ผู้สอนทุกท่าน"
+
+#~ msgid "Instructor 1"
+#~ msgstr "อาจารย์ผู้สอน 1"
+
+#~ msgid "Instructor 2"
+#~ msgstr "อาจารย์ผู้สอน 2"
+
+#~ msgid "Instructor 3"
+#~ msgstr "อาจารย์ผู้สอน 3"
+
+#~ msgid "Export Deliveries"
+#~ msgstr "การส่งออก"
+
+#~ msgid "Delivery ID"
+#~ msgstr "รหัสการจัดส่ง"
+
+#~ msgid "Manage Students"
+#~ msgstr "จัดการนักเรียน"
+
+#~ msgid "Withdraw"
+#~ msgstr "ถอน"
+
+#~ msgid "Approve"
+#~ msgstr "อนุมัติ"
+
+#, fuzzy
+#~ msgid "Reject"
+#~ msgstr "เรื่อง"
+
+#~ msgid "Category 1"
+#~ msgstr "หมวดที่ 1"
+
+#~ msgid "Category 2"
+#~ msgstr "หมวดที่ 2"
+
+#~ msgid "Category 3"
+#~ msgstr "หมวดที่ 3"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Policy"
+#~ msgstr "นโยบายต่อต้านการติดสินบนและการต่อต้านการทุจริต"
+
+#~ msgid "Essential compliance training for all employees"
+#~ msgstr "การฝึกอบรมการปฏิบัติตามกฎระเบียบที่จำเป็นสำหรับพนักงานทุกคน"
+
+#~ msgid ""
+#~ "This comprehensive course will educate you on our company's Anti-Bribery and"
+#~ " Anti-Corruption Policy. You'll learn about the legal framework, recognize "
+#~ "potential risks, and understand how to comply with the policy in various "
+#~ "business situations."
+#~ msgstr ""
+#~ "หลักสูตรที่ครอบคลุมนี้จะให้ความรู้แก่คุณเกี่ยวกับนโยบายต่อต้านการติดสินบนและการต่อต้านการทุจริตของบริษัทของเรา"
+#~ " คุณจะได้เรียนรู้เกี่ยวกับกรอบทางกฎหมาย ตระหนักถึงความเสี่ยงที่อาจเกิดขึ้น "
+#~ "และเข้าใจวิธีปฏิบัติตามนโยบายในสถานการณ์ทางธุรกิจต่างๆ"
+
+#~ msgid "2 hours"
+#~ msgstr "2 ชั่วโมง"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Basics"
+#~ msgstr "พื้นฐานการต่อต้านการติดสินบนและการต่อต้านการทุจริต"
+
+#~ msgid "SCORM Package"
+#~ msgstr "แพ็คเกจ SCORM"
+
+#~ msgid "Recognizing Bribery Risks"
+#~ msgstr "ตระหนักถึงความเสี่ยงจากการติดสินบน"
+
+#~ msgid "Company Anti-Corruption Policy"
+#~ msgstr "นโยบายต่อต้านการคอร์รัปชั่นของบริษัท"
+
+#~ msgid "Case Studies: Ethical Decision Making"
+#~ msgstr "กรณีศึกษา: การตัดสินใจอย่างมีจริยธรรม"
+
+#~ msgid "Anti-Bribery and Anti-Corruption Assessment"
+#~ msgstr "การประเมินการต่อต้านการติดสินบนและการต่อต้านการทุจริต"
+
+#~ msgid "Take Quiz"
+#~ msgstr "ทำแบบทดสอบ"
+
+#~ msgid "Learn about ethical business practices and compliance"
+#~ msgstr ""
+#~ "เรียนรู้เกี่ยวกับการดำเนินธุรกิจอย่างมีจริยธรรมและการปฏิบัติตามกฎระเบียบ"
+
+#~ msgid "Information Security Management System (ISMS)"
+#~ msgstr "ระบบการจัดการความมั่นคงปลอดภัยสารสนเทศ (ISMS)"
+
+#~ msgid "Understand key principles of information security"
+#~ msgstr "ทำความเข้าใจหลักการสำคัญของความปลอดภัยของข้อมูล"
+
+#~ msgid "3 hours"
+#~ msgstr "3 ชั่วโมง"
+
+#~ msgid "6 modules"
+#~ msgstr "6 โมดูล"
+
+#~ msgid "Anti-Money Laundering"
+#~ msgstr "การต่อต้านการฟอกเงิน"
+
+#~ msgid "Learn to identify and prevent money laundering activities"
+#~ msgstr "เรียนรู้ที่จะระบุและป้องกันการฟอกเงิน"
+
+#~ msgid "2.5 hours"
+#~ msgstr "2.5 ชม"
+
+#~ msgid "4 modules"
+#~ msgstr "4 โมดูล"
+
+#, fuzzy
+#~ msgid "Smart Learning Paths"
+#~ msgstr "เส้นทางการเรียนรู้"
+
+#, fuzzy
+#~ msgid "Advanced Analytics"
+#~ msgstr "ภาษาอาหรับขั้นสูง"
+
+#~ msgid ""
+#~ "Leverage data-driven insights to forecast learner outcomes, identify "
+#~ "potential challenges, and proactively intervene for better results."
+#~ msgstr ""
+#~ "ใช้ประโยชน์จากข้อมูลเชิงลึกที่ขับเคลื่อนด้วยข้อมูลเพื่อคาดการณ์ผลลัพธ์ของผู้เรียน"
+#~ " ระบุความท้าทายที่อาจเกิดขึ้น และแทรกแซงเชิงรุกเพื่อให้ได้ผลลัพธ์ที่ดีขึ้น"
+
+#~ msgid "Immersive VR Training"
+#~ msgstr "การฝึกอบรม VR ที่สมจริง"
+
+#~ msgid ""
+#~ "Integrate virtual reality experiences for hands-on, risk-free training in "
+#~ "complex or high-stakes scenarios."
+#~ msgstr ""
+#~ "ผสานรวมประสบการณ์ความเป็นจริงเสมือนสำหรับการฝึกอบรมแบบลงมือปฏิบัติจริงและไร้ความเสี่ยงในสถานการณ์ที่ซับซ้อนหรือมีความเสี่ยงสูง"
+
+#~ msgid "Client Avatar"
+#~ msgstr "อวตารของลูกค้า"
+
+#, python-format
+#~ msgid ""
+#~ "The AI-powered insights provided by NextGen AI LMS have revolutionized our "
+#~ "approach to employee development. We can now identify skill gaps proactively"
+#~ " and tailor our training programs with unprecedented precision. Our team's "
+#~ "productivity has increased by 30%% since implementing this cutting-edge "
+#~ "system."
+#~ msgstr ""
+#~ "ข้อมูลเชิงลึกที่ขับเคลื่อนด้วย AI จาก NextGen AI LMS "
+#~ "ได้ปฏิวัติแนวทางการพัฒนาพนักงานของเรา "
+#~ "ขณะนี้เราสามารถระบุช่องว่างด้านทักษะในเชิงรุกและปรับแต่งโปรแกรมการฝึกอบรมของเราให้มีความแม่นยำอย่างที่ไม่เคยมีมาก่อน"
+#~ " ประสิทธิภาพการทำงานของทีมงานของเราเพิ่มขึ้น 30%% "
+#~ "นับตั้งแต่ใช้ระบบที่ล้ำสมัยนี้"
+
+#, fuzzy
+#~ msgid "/month"
+#~ msgstr "เดือน"
+
+#, fuzzy
+#~ msgid "Get Started"
+#~ msgstr "คู่มือการเริ่มต้นใช้งาน"
+
+#~ msgid "VR training modules"
+#~ msgstr "โมดูลการฝึกอบรม VR"
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "อัพเกรดเป็นโปร"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "รายงานที่กำหนดเอง"
+
+#~ msgid "Advanced VR & AR capabilities"
+#~ msgstr "ความสามารถ VR และ AR ขั้นสูง"
+
+#~ msgid "123 Tech Street, San Francisco, CA 94105"
+#~ msgstr "123 Tech Street, ซานฟรานซิสโก, แคลิฟอร์เนีย 94105"
+
+#~ msgid "Phone: (555) 123-4567"
+#~ msgstr "โทรศัพท์: (555) 123-4567"
 
 #~ msgid "Norwegian"
 #~ msgstr "ภาษานอร์เวย์"
