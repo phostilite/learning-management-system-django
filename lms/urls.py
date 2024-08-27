@@ -30,5 +30,6 @@ urlpatterns = i18n_patterns(
     path('', include('website.urls')),
     path('rosetta/', include('rosetta.urls')),
     path('certificates/', include('certificates.urls')),
+    path('quizzes/', include('quizzes.urls')),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
