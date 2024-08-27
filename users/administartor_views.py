@@ -912,3 +912,45 @@ class AdministratorEnrollmentListView(ListView):
         })
         
         return context
+    
+
+
+
+class AdministratorLearningResourcesListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = LearningResource
+    template_name = 'users/administrator/course/learning_resources_list.html'
+    context_object_name = 'learning_resources'
+
+    def test_func(self):
+        return hasattr(self.request.user, 'administrator')
+
+    def get_queryset(self):
+        self.course = get_object_or_404(Course, id=self.kwargs['course_id'])
+        return LearningResource.objects.filter(course=self.course)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = self.course
+        return context
+    
+class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = LearningResource
+    template_name = 'users/administrator/course/learning_resource_create.html'
+    fields = ['title', 'description', 'resource_type', 'content', 'external_url', 'order']
+
+    def test_func(self):
+        return hasattr(self.request.user, 'administrator')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = get_object_or_404(Course, id=self.kwargs['course_id'])
+        return context
+
+    def form_valid(self, form):
+        form.instance.course = get_object_or_404(Course, id=self.kwargs['course_id'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_course_resource_list', kwargs={'course_id': self.kwargs['course_id']})
+
+
