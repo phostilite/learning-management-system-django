@@ -128,16 +128,16 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'SCORM':
                 resourceSpecificFields.innerHTML = `
                     <div class="mb-4">
-                        <label for="scorm-url" class="block text-gray-700 font-bold mb-2">SCORM Package URL</label>
-                        <input type="url" id="scorm-url" name="scorm_url" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                        <label for="file-upload" class="block text-gray-700 font-bold mb-2">Upload File</label>
+                        <input type="file" id="file-upload" name="file_upload" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
                     </div>
                 `;
                 break;
             case 'VIDEO':
                 resourceSpecificFields.innerHTML = `
                     <div class="mb-4">
-                        <label for="video-url" class="block text-gray-700 font-bold mb-2">Video URL</label>
-                        <input type="url" id="video-url" name="video_url" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                        <label for="file-upload" class="block text-gray-700 font-bold mb-2">Upload File</label>
+                        <input type="file" id="file-upload" name="file_upload" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
                     </div>
                 `;
                 break;
