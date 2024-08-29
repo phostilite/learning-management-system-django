@@ -7,10 +7,10 @@ from django.utils import timezone
 
 class Certificate(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    learner = models.ForeignKey(Learner, on_delete=models.CASCADE, related_name='certificates')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='certificates')
-    course_delivery = models.ForeignKey(CourseDelivery, on_delete=models.CASCADE, related_name='certificates')
-    enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE, related_name='certificate')
+    learner = models.ForeignKey(Learner, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
+    course_delivery = models.ForeignKey(CourseDelivery, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
+    enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE, related_name='certificate', null=True, blank=True)
     
     certificate_number = models.CharField(max_length=50, unique=True)
     issue_date = models.DateTimeField(auto_now_add=True)
@@ -30,6 +30,11 @@ class Certificate(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    user_name = models.CharField(max_length=255, null=True, blank=True)
+    certificate_image = models.ImageField(upload_to='certificates/', null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    course_name = models.CharField(max_length=255, null=True, blank=True)
     
     class Meta:
         unique_together = ('learner', 'course', 'course_delivery')
