@@ -584,8 +584,12 @@
             case 'SCORM':
                 return `<div class="bg-gray-200 p-6 rounded-lg text-center" data-aos="fade-up"><p class="mb-4">{% trans "This is a SCORM package. Click the button below to launch it." %}</p><button onclick="launchScorm('${scormPackageId}')" class="bg-blue-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">{% trans "Launch SCORM Package" %}</button></div>`;
             case 'PRESENTATION':
-                return contentUrl ? `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Preview" %}</p><p>{% trans "This is a presentation." %} <a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "View presentation" %}</a></p></div>` :
-                    `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Presentation Resource" %}</p><p>{% trans "No presentation file available." %}</p></div>`;
+                return `<div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="fade-up">
+                            <p class="font-bold mb-4">{% trans "Presentation Preview" %}</p>
+                            <iframe src="${externalUrl}" width="1000px" height="600px" frameborder="0">
+                                {% trans "This is an embedded" %} <a target="_blank" href="https://office.com">{% trans "Microsoft Office" %}</a> {% trans "presentation, powered by" %} <a target="_blank" href="https://office.com/webapps">{% trans "Office" %}</a>.
+                            </iframe>
+                        </div>`;
             case 'LINK':
                 return externalUrl ? `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "External Resource" %}</p><a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a><p class="mt-4">{% trans "Click the link above to access the external resource. Please note that this will open in a new tab." %}</p></div>` :
                     `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "External Resource" %}</p><p>{% trans "No external URL provided." %}</p></div>`;
