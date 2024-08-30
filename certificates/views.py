@@ -37,12 +37,6 @@ def generate_certificate(request):
             course_name_position = center_text(draw, course_name, course_name_font, course_name_point_a, course_name_point_b)
             draw.text(course_name_position, course_name, font=course_name_font, fill=(0, 0, 0))
 
-            # Draw marks at the specified coordinates
-            draw_mark(draw, user_name_point_a)
-            draw_mark(draw, user_name_point_b)
-            draw_mark(draw, course_name_point_a)
-            draw_mark(draw, course_name_point_b)
-
             # Save the image to a bytes buffer
             buffer = io.BytesIO()
             template.save(buffer, format='PNG')
