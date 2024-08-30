@@ -324,13 +324,49 @@
         }
     }
 
-    function launchPresentation(externalUrl) {
+    function launchPresentation(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        const fileExtension = contentUrl.split('.').pop().toLowerCase();
+        
+        if (fileExtension === 'pptx' || fileExtension === 'ppt') {
+            const fileName = contentUrl.split('/').pop();
+            const officeOnlineViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(contentUrl)}`;
+            
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4 text-xl">{% trans "Presentation Resource" %}</p>
+                    <p class="mb-4">{% trans "This is a PowerPoint presentation. You have the following options:" %}</p>
+                    <div class="space-y-4">
+                        <a href="${contentUrl}" download="${fileName}" class="bg-blue-500 text-white px-4 py-2 rounded-lg inline-block hover:bg-blue-600 transition">
+                            {% trans "Download Presentation" %}
+                        </a>
+                        <button onclick="viewPresentationOnline('${officeOnlineViewerUrl}')" class="bg-green-500 text-white px-4 py-2 rounded-lg inline-block hover:bg-green-600 transition">
+                            {% trans "View Online" %}
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4 text-xl">{% trans "Presentation Preview" %}</p>
+                    <div class="presentation-container">
+                        <iframe src="${contentUrl}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                            {% trans "This is an embedded presentation. Your browser may not support direct viewing." %}
+                        </iframe>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function viewPresentationOnline(url) {
         const contentDiv = document.getElementById('resourceContent');
         contentDiv.innerHTML = `
             <div class="bg-gray-100 p-6 rounded-lg">
                 <p class="font-bold mb-4 text-xl">{% trans "Presentation Preview" %}</p>
                 <div class="presentation-container">
-                    <iframe src="${externalUrl}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                    <iframe src="${url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
                         {% trans "This is an embedded" %} <a target="_blank" href="https://office.com">{% trans "Microsoft Office" %}</a> {% trans "presentation, powered by" %} <a target="_blank" href="https://office.com/webapps">{% trans "Office" %}</a>.
                     </iframe>
                 </div>
