@@ -15,6 +15,12 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
+from certificates.models import Certificate
+from django.utils import timezone
+
 
 from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
 from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
@@ -116,11 +122,40 @@ class LearnerForumView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerCertificateView(TemplateView):
+class LearnerCertificateView(LoginRequiredMixin, TemplateView):
     template_name = 'users/learner/certificate.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        # Get certificates for the logged-in learner
+        certificates = Certificate.objects.filter(learner=self.request.user.learner).order_by('-issue_date')
+        
+        # Get certificate counts
+        context['certificates'] = certificates
+        context['total_certificates'] = certificates.count()
+        context['this_year_certificates'] = certificates.filter(issue_date__year=timezone.now().year).count()
+        
+        # Get certificate counts by category
+        certificate_types = certificates.values('course__category__name').annotate(count=Count('id'))
+        
+        # Initialize counts for each certificate type
+        context['course_certificates'] = 0
+        context['specialization_certificates'] = 0
+        context['professional_certificates'] = 0
+
+        # Categorize certificates
+        for cert_type in certificate_types:
+            category_name = cert_type['course__category__name']
+            count = cert_type['count']
+            
+            if category_name == 'Course':
+                context['course_certificates'] = count
+            elif category_name == 'Specialization':
+                context['specialization_certificates'] = count
+            elif category_name == 'Professional':
+                context['professional_certificates'] = count
+
         return context
     
 @method_decorator(login_required, name='dispatch')

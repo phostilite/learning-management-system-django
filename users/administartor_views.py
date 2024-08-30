@@ -23,6 +23,7 @@ from django.db.models.functions import TruncMonth
 from certificates.models import Certificate
 from django.utils import timezone
 from datetime import timedelta
+from django.http import HttpResponse, JsonResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
