@@ -46,6 +46,7 @@ urlpatterns = [
     path('administrator/supervisors/', administartor_views.AdministratorSupervisorListView.as_view(), name='administrator_supervisor_list'),
 
     path('administrator/certificates/', administartor_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
+
     path('administrator/announcements/', administartor_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
     path('administrator/help-support/', administartor_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
     path('administrator/messages/', administartor_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
