@@ -548,7 +548,7 @@
             case 'VIDEO':
                 return contentUrl ? `<div class="aspect-w-16" data-aos="fade-up"><video src="${contentUrl}" controls class="w-full"></video></div>` : 
                     `<div class="bg-gray-100 p-6 rounded-lg" data-aos="fade-up"><p class="font-bold mb-4">{% trans "Video Resource" %}</p><p>{% trans "No video file available." %}</p></div>`;
-             'DOCUMENT':
+                    case 'DOCUMENT':
                     if (contentUrl) {
                         const fileExtension = contentUrl.split('.').pop().toLowerCase();
                         if (fileExtension === 'pdf') {
