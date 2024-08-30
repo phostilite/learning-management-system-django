@@ -46,7 +46,9 @@ class LearnerMyCoursesView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        return CourseDelivery.objects.filter(enrollment__user=user)
+        return CourseDelivery.objects.filter(enrollment__user=user).annotate(
+            resource_count=Count('course__resources')
+        )
 
 @method_decorator(login_required, name='dispatch')
 class LearnerCourseDetailView(DetailView):
@@ -63,6 +65,9 @@ class LearnerCourseDetailView(DetailView):
         context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
         context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
         context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+
+        context['resource_count'] = LearningResource.objects.filter(course=self.object.course).count()
+        
         return context
     
 @method_decorator(login_required, name='dispatch')

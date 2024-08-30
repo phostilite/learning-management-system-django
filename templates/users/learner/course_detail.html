@@ -61,6 +61,20 @@
         background-color: #6B7280;
         color: white;
     }
+    .presentation-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .presentation-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80%;
+    }
 </style>
 {% endblock %}
 
@@ -102,7 +116,7 @@
                 <p class="text-gray-700 mb-4">{{ course.course.description }}</p>
                 <div class="flex justify-between items-center mb-4">
                     <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {% trans "30 minutes" %}</span>
-                    <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {% trans "5 modules" %}</span>
+                    <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {% trans "Resources:" %} {{ resource_count }}</span>
                     <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> {% trans "All Employees" %}</span>
                 </div>
                 <div class="mb-4">
@@ -117,34 +131,36 @@
             </div>
 
             <!-- Learning Resources -->
-            <div class="bg-white rounded-lg p-6 card-shadow">
-                <h2 class="text-2xl font-bold mb-4">{% trans "Learning Resources" %}</h2>
-                <div class="space-y-4">
-
-                    {% for resource in course.course.resources.all %}
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
-                                <p class="text-sm text-gray-600">{{ resource.resource_type }}</p>
-                                {% if resource.resource_type == 'SCORM' %}
-                                <span id="completion-status-{{ resource.scorm_details.scorm_course_id }}" class="completion-status status-not-started mt-2">
-                                    {% trans "Not Started" %}
-                                </span>
-                                {% endif %}
-                            </div>
-                            <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.scorm_details.scorm_package_id }}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
-                        </div>
-                        <div class="mt-2">
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
+<!-- Learning Resources -->
+<div class="bg-white rounded-lg p-6 card-shadow">
+    <h2 class="text-2xl font-bold mb-4">{% trans "Learning Resources" %}</h2>
+    <div class="space-y-4">
+        {% for resource in course.course.resources.all %}
+        <div class="resource-card bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
+                    <p class="text-sm text-gray-600">{{ resource.get_resource_type_display }}</p>
+                    {% if resource.resource_type == 'SCORM' %}
+                    <span id="completion-status-{{ resource.scorm_details.scorm_course_id }}" class="completion-status status-not-started mt-2">
+                        {% trans "Not Started" %}
+                    </span>
+                    {% endif %}
+                </div>
+                <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.id }}', '{{ resource.scorm_details.scorm_package_id|default:"" }}', '{% if resource.content %}{{ resource.content.url }}{% elif resource.external_url %}{{ resource.external_url }}{% endif %}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
+            </div>
+            <div class="mt-2">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
                 </div>
             </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
         </div>
 
         <!-- Sidebar -->
@@ -183,12 +199,33 @@
 
 {% block extra_js %}
 <script>
-    function launchResource(resourceType, resourceId) {
-        if (resourceType === 'SCORM') {
-            launchScorm(resourceId);
-        } else {
-            // Handle other resource types if needed
-            console.log('Launching non-SCORM resource:', resourceId);
+    function launchResource(resourceType, resourceId, scormPackageId, contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.classList.remove('hidden');
+        contentDiv.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('.container').classList.add('pb-16');
+
+        switch (resourceType) {
+            case 'SCORM':
+                launchScorm(scormPackageId);
+                break;
+            case 'VIDEO':
+                launchVideo(contentUrl);
+                break;
+            case 'DOCUMENT':
+                launchDocument(contentUrl);
+                break;
+            case 'PRESENTATION':
+                launchPresentation(contentUrl);
+                break;
+            case 'LINK':
+                launchLink(contentUrl);
+                break;
+            case 'QUIZ':
+                launchQuiz(resourceId);
+                break;
+            default:
+                console.log('Unknown resource type:', resourceType);
         }
     }
 
@@ -246,6 +283,81 @@
 
         // Adjust the page layout
         document.querySelector('.container').classList.add('pb-16');
+    }
+
+
+    function launchVideo(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        if (contentUrl) {
+            contentDiv.innerHTML = `
+                <div class="aspect-w-16 aspect-h-9">
+                    <video src="${contentUrl}" controls class="w-full h-full object-cover"></video>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4">{% trans "Video Resource" %}</p>
+                    <p>{% trans "No video file available." %}</p>
+                </div>
+            `;
+        }
+    }
+
+    function launchDocument(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        if (contentUrl && contentUrl.endsWith('.pdf')) {
+            contentDiv.innerHTML = `
+                <div class="w-full h-full">
+                    <object data="${contentUrl}" type="application/pdf" width="100%" height="100%">
+                        <p>{% trans "It appears your browser doesn't support embedded PDFs. You can " %}<a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "download the PDF" %}</a> {% trans "to view it." %}</p>
+                    </object>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4">{% trans "Document Resource" %}</p>
+                    <p>{% trans "No document file available or unsupported format." %}</p>
+                </div>
+            `;
+        }
+    }
+
+    function launchPresentation(externalUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4 text-xl">{% trans "Presentation Preview" %}</p>
+                <div class="presentation-container">
+                    <iframe src="${externalUrl}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                        {% trans "This is an embedded" %} <a target="_blank" href="https://office.com">{% trans "Microsoft Office" %}</a> {% trans "presentation, powered by" %} <a target="_blank" href="https://office.com/webapps">{% trans "Office" %}</a>.
+                    </iframe>
+                </div>
+            </div>
+        `;
+    }
+
+    function launchLink(externalUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4">{% trans "External Resource" %}</p>
+                <p>{% trans "You are about to visit an external resource. Please click the link below:" %}</p>
+                <a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a>
+            </div>
+        `;
+    }
+
+    function launchQuiz(resourceId) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4">{% trans "Quiz" %}</p>
+                <p>{% trans "Quiz content for resource ID: " %}${resourceId}</p>
+                <p>{% trans "Quiz functionality to be implemented." %}</p>
+            </div>
+        `;
     }
 
 
