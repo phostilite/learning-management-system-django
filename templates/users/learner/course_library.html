@@ -162,7 +162,7 @@
         const courseList = document.getElementById('course-list');
         const courseDetails = document.getElementById('course-details');
         const courseCount = document.getElementById('course-count');
-
+    
         // Animate background
         anime({
             targets: '.animated-bg',
@@ -172,16 +172,16 @@
             direction: 'alternate',
             loop: true
         });
-
+    
         // Initialize course count
         updateCourseCount();
-
+    
         sidebarCourses.forEach(course => {
             course.addEventListener('click', function() {
                 const courseId = this.getAttribute('data-course-id');
                 const resources = this.querySelector('.course-resources');
                 const icon = this.querySelector('i');
-
+    
                 // Toggle resources dropdown with animation
                 if (resources.classList.contains('active')) {
                     anime({
@@ -192,6 +192,7 @@
                         easing: 'easeOutQuad',
                         complete: function() {
                             resources.classList.remove('active');
+                            resources.style.display = 'none';
                         }
                     });
                     anime({
@@ -201,6 +202,7 @@
                         easing: 'easeOutQuad'
                     });
                 } else {
+                    resources.style.display = 'block';
                     resources.style.height = 'auto';
                     const height = resources.clientHeight + 'px';
                     resources.style.height = '0px';
@@ -219,10 +221,10 @@
                         easing: 'easeOutQuad'
                     });
                 }
-
+    
                 // Fetch and display course details
                 fetchCourseDetails(courseId);
-
+    
                 // Highlight selected course
                 sidebarCourses.forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
