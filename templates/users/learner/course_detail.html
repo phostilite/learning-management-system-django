@@ -2,215 +2,458 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Course Library - LMS Learner" %}{% endblock %}
+{% block title %}{% trans "Course Details" %}{% endblock %}
 
 {% block extra_css %}
 <style>
-    .gradient-bg {
-        background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
-    }
-    .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    .course-card {
+    .resource-card {
         transition: all 0.3s ease;
     }
-    .course-card:hover {
+
+    .resource-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+
+    .progress-bar {
+        transition: width 0.5s ease-in-out;
+    }
+
     .button-hover {
         transition: background-color 0.3s ease;
     }
+
     .button-hover:hover {
-        background-color: #1e40af;
+        background-color: #4338ca;
     }
-    .search-input:focus {
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+
+    #resourceContent {
+        height: 90vh;
+        width: 100%;
+        max-width: 1200px;
+        margin: 2rem auto;
     }
-    .sidebar {
-        height: calc(100vh - 64px);
-        overflow-y: auto;
+
+    #resourceContent iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
     }
-    .sidebar-course {
-        cursor: pointer;
+
+    .completion-status {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
     }
-    .sidebar-course:hover {
-        background-color: #f3f4f6;
+
+    .status-completed {
+        background-color: #10B981;
+        color: white;
     }
-    .sidebar-resource {
-        display: none;
+
+    .status-in-progress {
+        background-color: #FBBF24;
+        color: white;
     }
-    .sidebar-resource.active {
-        display: block;
+
+    .status-not-started {
+        background-color: #6B7280;
+        color: white;
     }
-    .resource-item {
-        padding: 4px 8px;
-        border-radius: 4px;
-        transition: background-color 0.2s ease;
+    .presentation-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
     }
-    .resource-item:hover {
-        background-color: #e5e7eb;
+
+    .presentation-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80%;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="flex">
-    <!-- Sidebar -->
-    <div class="w-1/4 bg-white shadow-md sidebar">
-        <div class="p-4">
-            <h2 class="text-xl font-bold mb-4">{% trans "All Courses" %}</h2>
-            <div class="space-y-2">
-                {% for course in courses %}
-                <div class="sidebar-course p-2 rounded-md" data-course-id="{{ course.id }}">
-                    <div class="flex items-center justify-between">
-                        <span class="font-medium">{{ course.title }}</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="sidebar-resource mt-2 ml-4 text-sm text-gray-600">
-                        {% for resource in course.resources.all %}
-                        <div class="resource-item cursor-pointer" data-resource-id="{{ resource.id }}">
-                            {{ forloop.counter }}. {{ resource.title }}
-                        </div>
-                        {% endfor %}
-                    </div>
+<div class="container mx-auto px-4 py-8">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{{ course.course.title }}</h1>
+        <p class="text-lg text-white text-center">{{ course.course.short_description }}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-indigo-600 md:ml-2">{% trans "My Courses" %}</a>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="w-3/4 p-6">
-        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Course Library" %}</h1>
-            <p class="text-lg text-white text-center">{% trans "Explore and enroll in our wide range of courses" %}</p>
-        </header>
-
-        <!-- Search Bar -->
-        <div class="mb-6">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i class="fas fa-search text-gray-400"></i>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ course.course.title }}</span>
                 </div>
-                <input type="text" id="course-search" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 search-input" placeholder="{% trans 'Search courses...' %}">
-            </div>
-        </div>
+            </li>
+        </ol>
+    </nav>
 
-        <!-- Featured Course Details -->
-        <div id="featured-course" class="bg-white rounded-lg overflow-hidden card-shadow mb-6">
-            {% if featured_course.cover_image %}
-                <img src="{{ featured_course.cover_image.url }}" alt="{{ featured_course.title }}" class="w-full h-64 object-cover">
-            {% else %}
-                <img src="https://via.placeholder.com/800x400?text={{ featured_course.title|urlencode }}" alt="{{ featured_course.title }}" class="w-full h-64 object-cover">
-            {% endif %}
-            <div class="p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ featured_course.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ featured_course.description }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Course Overview -->
+        <div class="md:col-span-2">
+            <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Course Overview" %}</h2>
+                <p class="text-gray-700 mb-4">{{ course.course.description }}</p>
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-sm text-gray-500"><i class="fas fa-folder mr-1"></i>{{ featured_course.category.name }}</span>
-                    <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i>{% trans "Resources:" %} {{ featured_course.resources.count }}</span>
+                    <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {% trans "30 minutes" %}</span>
+                    <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {% trans "Resources:" %} {{ resource_count }}</span>
+                    <span class="text-sm text-gray-500"><i class="fas fa-user-graduate mr-1"></i> {% trans "All Employees" %}</span>
                 </div>
-                <h3 class="text-xl font-semibold mb-2">{% trans "Course Outline" %}</h3>
-                <ul class="list-disc list-inside mb-4 text-gray-700">
-                    {% for resource in featured_course.resources.all|slice:":5" %}
-                    <li>{{ resource.title }}</li>
-                    {% endfor %}
-                </ul>
-                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 button-hover register-button" data-course-id="{{ featured_course.id }}">
-                    {% trans "Register for This Course" %}
-                </button>
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-indigo-700">{% trans "Overall Progress" %}</span>
+                        <span class="text-sm font-medium text-indigo-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Learning Resources -->
+<!-- Learning Resources -->
+<div class="bg-white rounded-lg p-6 card-shadow">
+    <h2 class="text-2xl font-bold mb-4">{% trans "Learning Resources" %}</h2>
+    <div class="space-y-4">
+        {% for resource in course.course.resources.all %}
+        <div class="resource-card bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-semibold">{{ resource.title }}</h3>
+                    <p class="text-sm text-gray-600">{{ resource.get_resource_type_display }}</p>
+                    {% if resource.resource_type == 'SCORM' %}
+                    <span id="completion-status-{{ resource.scorm_details.scorm_course_id }}" class="completion-status status-not-started mt-2">
+                        {% trans "Not Started" %}
+                    </span>
+                    {% endif %}
+                </div>
+                <button onclick="launchResource('{{ resource.resource_type }}', '{{ resource.id }}', '{{ resource.scorm_details.scorm_package_id|default:"" }}', '{% if resource.content %}{{ resource.content.url }}{% elif resource.external_url %}{{ resource.external_url }}{% endif %}')" class="bg-indigo-500 text-white px-4 py-2 rounded-lg button-hover">{% trans "Start" %}</button>
+            </div>
+            <div class="mt-2">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
         </div>
 
-        <!-- Related Courses -->
-        <h3 class="text-xl font-bold text-gray-800 mb-4">{% trans "Other Courses" %}</h3>
-        <div id="course-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {% for course in courses %}
-            {% if course != featured_course %}
-            <div class="bg-white rounded-lg overflow-hidden card-shadow course-card">
-                {% if course.cover_image %}
-                    <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
-                {% else %}
-                    <img src="https://via.placeholder.com/400x200?text={{ course.title|urlencode }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
-                {% endif %}
-                <div class="p-4">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ course.title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
-                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold course-details" data-course-id="{{ course.id }}">{% trans "Learn More" %} →</a>
-                </div>
+        <!-- Sidebar -->
+        <div class="md:col-span-1">
+            <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
+                <h2 class="text-xl font-bold mb-4">{% trans "Course Information" %}</h2>
+                <ul class="space-y-2">
+                    <li><strong>{% trans "Department:" %}</strong> {{ course.course.category }}</li>
+                    <li><strong>{% trans "Start Date:" %}</strong>{{ course.start_date }}</li>
+                    <li><strong>{% trans "Due Date:" %}</strong>{{ course.end_date }}</li>
+                    <li><strong>{% trans "Language:" %}</strong> English</li>
+                    <li><strong>{% trans "Certificate:" %}</strong> Yes</li>
+                </ul>
             </div>
-            {% endif %}
-            {% endfor %}
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h2 class="text-xl font-bold mb-4">{% trans "Important Notes" %}</h2>
+                <ul class="space-y-2">
+                    <li class="text-sm">
+                        {% trans "This course is mandatory for all employees." %}
+                    </li>
+                    <li class="text-sm">
+                        {% trans "You must score at least 80% on the final assessment to pass." %}
+                    </li>
+                    <li class="text-sm">
+                        {% trans "Contact HR if you have any questions about this policy." %}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <!-- SCORM Content Container -->
+    <div id="resourceContent" class="mt-8 bg-white rounded-lg p-6 card-shadow hidden"></div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarCourses = document.querySelectorAll('.sidebar-course');
-        const courseSearch = document.getElementById('course-search');
-        const courseList = document.getElementById('course-list');
-        const featuredCourse = document.getElementById('featured-course');
+    function launchResource(resourceType, resourceId, scormPackageId, contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.classList.remove('hidden');
+        contentDiv.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('.container').classList.add('pb-16');
+
+        switch (resourceType) {
+            case 'SCORM':
+                launchScorm(scormPackageId);
+                break;
+            case 'VIDEO':
+                launchVideo(contentUrl);
+                break;
+            case 'DOCUMENT':
+                launchDocument(contentUrl);
+                break;
+            case 'PRESENTATION':
+                launchPresentation(contentUrl);
+                break;
+            case 'LINK':
+                launchLink(contentUrl);
+                break;
+            case 'QUIZ':
+                launchQuiz(resourceId);
+                break;
+            default:
+                console.log('Unknown resource type:', resourceType);
+        }
+    }
+
+    function launchScorm(packageId) {
+        const userId = '{{ SCORM_PLAYER_USER_ID }}';
+        const apiUrl = '{{ SCORM_API_BASE_URL }}/api/attempts/start_attempt/';
+        const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+
+        console.log('Launching SCORM package:', packageId);
+        console.log('User ID:', userId);
+        console.log('API URL:', apiUrl);
+        console.log('API Token:', token);
+    
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('package_id', packageId);
+    
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const launchUrl = `{{ SCORM_API_BASE_URL }}/launch/${data.id}/`;
+            launchScormPackage(launchUrl);
+        })
+        .catch(error => {
+            console.error('Error launching SCORM package:', error);
+            alert('Failed to launch SCORM package. Please try again.');
+        });
+    }
+
+    function launchScormPackage(url) {
+        const contentDiv = document.getElementById('resourceContent');
         
-        sidebarCourses.forEach(course => {
-            course.addEventListener('click', function() {
-                const resources = this.querySelector('.sidebar-resource');
-                resources.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            });
-        });
+        // Show the content div
+        contentDiv.classList.remove('hidden');
+        
+        contentDiv.innerHTML = `
+            <div class="w-full h-full flex flex-col">
+                <iframe src="${url}" allowfullscreen class="w-full h-full"></iframe>
+            </div>
+        `;
 
-        // Search functionality
-        courseSearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const courses = document.querySelectorAll('.course-card');
-            courses.forEach(course => {
-                const title = course.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    course.style.display = 'block';
-                } else {
-                    course.style.display = 'none';
+        // Scroll to the SCORM content
+        contentDiv.scrollIntoView({ behavior: 'smooth' });
+
+        // Adjust the page layout
+        document.querySelector('.container').classList.add('pb-16');
+    }
+
+
+    function launchVideo(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        if (contentUrl) {
+            contentDiv.innerHTML = `
+                <div class="aspect-w-16 aspect-h-9">
+                    <video src="${contentUrl}" controls class="w-full h-full object-cover"></video>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4">{% trans "Video Resource" %}</p>
+                    <p>{% trans "No video file available." %}</p>
+                </div>
+            `;
+        }
+    }
+
+    function launchDocument(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        if (contentUrl && contentUrl.endsWith('.pdf')) {
+            contentDiv.innerHTML = `
+                <div class="w-full h-full">
+                    <object data="${contentUrl}" type="application/pdf" width="100%" height="100%">
+                        <p>{% trans "It appears your browser doesn't support embedded PDFs. You can " %}<a href="${contentUrl}" target="_blank" class="text-blue-500 hover:underline">{% trans "download the PDF" %}</a> {% trans "to view it." %}</p>
+                    </object>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4">{% trans "Document Resource" %}</p>
+                    <p>{% trans "No document file available or unsupported format." %}</p>
+                </div>
+            `;
+        }
+    }
+
+    function launchPresentation(contentUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        const fileExtension = contentUrl.split('.').pop().toLowerCase();
+        
+        if (fileExtension === 'pptx' || fileExtension === 'ppt') {
+            const fileName = contentUrl.split('/').pop();
+            const officeOnlineViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(contentUrl)}`;
+            
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4 text-xl">{% trans "Presentation Resource" %}</p>
+                    <p class="mb-4">{% trans "This is a PowerPoint presentation. You have the following options:" %}</p>
+                    <div class="space-y-4">
+                        <a href="${contentUrl}" download="${fileName}" class="bg-blue-500 text-white px-4 py-2 rounded-lg inline-block hover:bg-blue-600 transition">
+                            {% trans "Download Presentation" %}
+                        </a>
+                        <button onclick="viewPresentationOnline('${officeOnlineViewerUrl}')" class="bg-green-500 text-white px-4 py-2 rounded-lg inline-block hover:bg-green-600 transition">
+                            {% trans "View Online" %}
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else {
+            contentDiv.innerHTML = `
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <p class="font-bold mb-4 text-xl">{% trans "Presentation Preview" %}</p>
+                    <div class="presentation-container">
+                        <iframe src="${contentUrl}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                            {% trans "This is an embedded presentation. Your browser may not support direct viewing." %}
+                        </iframe>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function viewPresentationOnline(url) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4 text-xl">{% trans "Presentation Preview" %}</p>
+                <div class="presentation-container">
+                    <iframe src="${url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                        {% trans "This is an embedded" %} <a target="_blank" href="https://office.com">{% trans "Microsoft Office" %}</a> {% trans "presentation, powered by" %} <a target="_blank" href="https://office.com/webapps">{% trans "Office" %}</a>.
+                    </iframe>
+                </div>
+            </div>
+        `;
+    }
+
+    function launchLink(externalUrl) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4">{% trans "External Resource" %}</p>
+                <p>{% trans "You are about to visit an external resource. Please click the link below:" %}</p>
+                <a href="${externalUrl}" target="_blank" class="text-blue-500 hover:underline">${externalUrl}</a>
+            </div>
+        `;
+    }
+
+    function launchQuiz(resourceId) {
+        const contentDiv = document.getElementById('resourceContent');
+        contentDiv.innerHTML = `
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="font-bold mb-4">{% trans "Quiz" %}</p>
+                <p>{% trans "Quiz content for resource ID: " %}${resourceId}</p>
+                <p>{% trans "Quiz functionality to be implemented." %}</p>
+            </div>
+        `;
+    }
+
+
+
+    function updateCompletionStatus() {
+        const userId = '{{ SCORM_PLAYER_USER_ID }}';
+        const apiBaseUrl = '{{ SCORM_API_BASE_URL }}';
+        const apiUrl = `${apiBaseUrl}/api/reports/user_course_report/`;
+        const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+
+        {% for resource in course.course.resources.all %}
+        {% if resource.resource_type == 'SCORM' %}
+        fetch(`${apiUrl}?user_id=${userId}&course_id={{ resource.scorm_details.scorm_course_id }}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Token ' + token
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.attempts && data.attempts.length > 0) {
+                const attempt = data.attempts[0];  // Get the latest attempt
+                const resourceElement = document.getElementById(`completion-status-{{ resource.scorm_details.scorm_course_id }}`);
+                if (resourceElement) {
+                    let status = attempt.completion_status || 'not_started';
+                    let statusText = '';
+                    let statusClass = '';
+
+                    switch (status) {
+                        case 'completed':
+                        case 'passed':
+                            statusText = 'Completed';
+                            statusClass = 'status-completed';
+                            break;
+                        case 'incomplete':
+                        case 'failed':
+                            statusText = 'In Progress';
+                            statusClass = 'status-in-progress';
+                            break;
+                        default:
+                            statusText = 'Not Started';
+                            statusClass = 'status-not-started';
+                    }
+
+                    resourceElement.textContent = statusText;
+                    resourceElement.className = `completion-status ${statusClass}`;
                 }
-            });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching completion status for resource {{ resource.scorm_details.scorm_course_id }}:', error);
         });
+        {% endif %}
+        {% endfor %}
+    }
 
-        // Course details functionality
-        document.querySelectorAll('.course-details').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const courseId = this.getAttribute('data-course-id');
-                // Here you would typically make an AJAX call to get the course details
-                console.log('Fetching details for course:', courseId);
-                // Update the featured course section with the selected course details
-            });
-        });
+    // Call updateCompletionStatus when the page loads
+    updateCompletionStatus();
 
-        // Registration functionality
-        document.querySelectorAll('.register-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const courseId = this.getAttribute('data-course-id');
-                // Here you would typically make an AJAX call to register for the course
-                console.log('Registering for course:', courseId);
-                alert('Registration functionality will be implemented here.');
-            });
-        });
-
-        // Resource item click functionality
-        document.querySelectorAll('.resource-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent triggering the parent course click event
-                const resourceId = this.getAttribute('data-resource-id');
-                // Here you would typically make an AJAX call to get the resource details
-                console.log('Fetching details for resource:', resourceId);
-                alert('Resource details functionality will be implemented here.');
-            });
-        });
-    });
+    // Set up an interval to call updateCompletionStatus every 5 minutes
+    setInterval(updateCompletionStatus, 5 * 60 * 1000);
 </script>
 {% endblock %}
