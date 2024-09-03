@@ -9,6 +9,32 @@ import dateutil.relativedelta
 
 User = get_user_model()
 
+class Program(models.Model):
+    PROGRAM_TYPES = (
+        ('INTERNAL', 'Internal'),
+        ('EXTERNAL', 'External'),
+    )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    short_description = models.CharField(max_length=500, blank=True)
+    cover_image = models.ImageField(upload_to='program_covers/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_programs')
+    is_published = models.BooleanField(default=False)
+    program_type = models.CharField(max_length=10, choices=PROGRAM_TYPES, default='INTERNAL', null=True, blank=True)
+    duration = models.CharField(max_length=100, null=True, blank=True)
+    level = models.CharField(max_length=50, null=True, blank=True)
+    
+    # Fields for external programs
+    provider = models.CharField(max_length=255, null=True, blank=True)
+    exam_code = models.CharField(max_length=50, null=True, blank=True)
+    exam_link = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
 class Course(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
@@ -21,10 +47,42 @@ class Course(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_courses')
     is_published = models.BooleanField(default=False)
     scorm_url = models.URLField(null=True, blank=True)
-
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
+    duration = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.title
+    
+class ProgramCourse(models.Model):
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ('program', 'course')
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.program.title} - {self.course.title}"
+    
+class ProgramEnrollment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    enrollment_date = models.DateTimeField(auto_now_add=True)
+    completion_date = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=20, choices=[
+        ('ENROLLED', 'Enrolled'),
+        ('IN_PROGRESS', 'In Progress'),
+        ('COMPLETED', 'Completed'),
+        ('WITHDRAWN', 'Withdrawn'),
+    ], default='ENROLLED')
+
+    class Meta:
+        unique_together = ('user', 'program')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.program.title}"
 
 class CourseCategory(models.Model):
     STATUS_CHOICES = (
@@ -80,6 +138,20 @@ class LearningResource(models.Model):
             return progress
         except (Enrollment.DoesNotExist, LearningProgress.DoesNotExist):
             return None
+        
+class ExternalProgramProgress(models.Model):
+    enrollment = models.OneToOneField('ProgramEnrollment', on_delete=models.CASCADE)
+    exam_status = models.CharField(max_length=20, choices=[
+        ('NOT_STARTED', 'Not Started'),
+        ('IN_PROGRESS', 'In Progress'),
+        ('PASSED', 'Passed'),
+        ('FAILED', 'Failed')
+    ], default='NOT_STARTED')
+    exam_date = models.DateField(null=True, blank=True)
+    certificate_file = models.FileField(upload_to='external_certificates/', null=True, blank=True)
+
+    def __str__(self):
+        return f"External Progress for {self.enrollment}"
 
 class ScormResource(models.Model):
     learning_resource = models.OneToOneField(LearningResource, on_delete=models.CASCADE, related_name='scorm_details')
