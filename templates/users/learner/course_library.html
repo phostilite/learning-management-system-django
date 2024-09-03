@@ -12,22 +12,6 @@
     .card-shadow {
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
-    .course-card {
-        transition: all 0.3s ease;
-    }
-    .course-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-    .button-hover {
-        transition: background-color 0.3s ease;
-    }
-    .button-hover:hover {
-        background-color: #1e40af;
-    }
-    .search-input:focus {
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    }
     .sidebar {
         height: calc(100vh - 64px);
         overflow-y: auto;
@@ -38,10 +22,10 @@
     .sidebar-course:hover {
         background-color: #f3f4f6;
     }
-    .sidebar-resource {
+    .course-resources {
         display: none;
     }
-    .sidebar-resource.active {
+    .course-resources.active {
         display: block;
     }
     .resource-item {
@@ -52,23 +36,43 @@
     .resource-item:hover {
         background-color: #e5e7eb;
     }
+    .course-cover-image {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    .course-info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .course-info-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e5e7eb;
+        border-radius: 50%;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="flex">
-    <!-- Sidebar -->
+    <!-- Left Sidebar: Course List -->
     <div class="w-1/4 bg-white shadow-md sidebar">
         <div class="p-4">
             <h2 class="text-xl font-bold mb-4">{% trans "All Courses" %}</h2>
             <div class="space-y-2">
                 {% for course in courses %}
                 <div class="sidebar-course p-2 rounded-md" data-course-id="{{ course.id }}">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between cursor-pointer">
                         <span class="font-medium">{{ course.title }}</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div class="sidebar-resource mt-2 ml-4 text-sm text-gray-600">
+                    <div class="course-resources mt-2 ml-4 text-sm text-gray-600">
                         {% for resource in course.resources.all %}
                         <div class="resource-item cursor-pointer" data-resource-id="{{ resource.id }}">
                             {{ forloop.counter }}. {{ resource.title }}
@@ -81,7 +85,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Right Side: Course Details -->
     <div class="w-3/4 p-6">
         <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
             <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Course Library" %}</h1>
@@ -94,55 +98,13 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <input type="text" id="course-search" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 search-input" placeholder="{% trans 'Search courses...' %}">
+                <input type="text" id="course-search" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans 'Search courses...' %}">
             </div>
         </div>
 
-        <!-- Featured Course Details -->
-        <div id="featured-course" class="bg-white rounded-lg overflow-hidden card-shadow mb-6">
-            {% if featured_course.cover_image %}
-                <img src="{{ featured_course.cover_image.url }}" alt="{{ featured_course.title }}" class="w-full h-64 object-cover">
-            {% else %}
-                <img src="https://via.placeholder.com/800x400?text={{ featured_course.title|urlencode }}" alt="{{ featured_course.title }}" class="w-full h-64 object-cover">
-            {% endif %}
-            <div class="p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ featured_course.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ featured_course.description }}</p>
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-sm text-gray-500"><i class="fas fa-folder mr-1"></i>{{ featured_course.category.name }}</span>
-                    <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i>{% trans "Resources:" %} {{ featured_course.resources.count }}</span>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">{% trans "Course Outline" %}</h3>
-                <ul class="list-disc list-inside mb-4 text-gray-700">
-                    {% for resource in featured_course.resources.all|slice:":5" %}
-                    <li>{{ resource.title }}</li>
-                    {% endfor %}
-                </ul>
-                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 button-hover register-button" data-course-id="{{ featured_course.id }}">
-                    {% trans "Register for This Course" %}
-                </button>
-            </div>
-        </div>
-
-        <!-- Related Courses -->
-        <h3 class="text-xl font-bold text-gray-800 mb-4">{% trans "Other Courses" %}</h3>
-        <div id="course-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {% for course in courses %}
-            {% if course != featured_course %}
-            <div class="bg-white rounded-lg overflow-hidden card-shadow course-card">
-                {% if course.cover_image %}
-                    <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
-                {% else %}
-                    <img src="https://via.placeholder.com/400x200?text={{ course.title|urlencode }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
-                {% endif %}
-                <div class="p-4">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ course.title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
-                    <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold course-details" data-course-id="{{ course.id }}">{% trans "Learn More" %} →</a>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
+        <!-- Course Details Section -->
+        <div id="course-details" class="bg-white rounded-lg overflow-hidden card-shadow">
+            <!-- Course details will be loaded here -->
         </div>
     </div>
 </div>
@@ -153,62 +115,100 @@
     document.addEventListener('DOMContentLoaded', function() {
         const sidebarCourses = document.querySelectorAll('.sidebar-course');
         const courseSearch = document.getElementById('course-search');
-        const courseList = document.getElementById('course-list');
-        const featuredCourse = document.getElementById('featured-course');
-        
+        const courseDetails = document.getElementById('course-details');
+
         sidebarCourses.forEach(course => {
             course.addEventListener('click', function() {
-                const resources = this.querySelector('.sidebar-resource');
-                resources.classList.toggle('active');
+                const courseId = this.getAttribute('data-course-id');
+                const resources = this.querySelector('.course-resources');
                 const icon = this.querySelector('i');
+
+                // Toggle resources dropdown
+                resources.classList.toggle('active');
                 icon.classList.toggle('fa-chevron-down');
                 icon.classList.toggle('fa-chevron-up');
+
+                // Fetch and display course details
+                fetchCourseDetails(courseId);
+
+                // Highlight selected course
+                sidebarCourses.forEach(c => c.classList.remove('bg-blue-100'));
+                this.classList.add('bg-blue-100');
             });
         });
+
+        function fetchCourseDetails(courseId) {
+            fetch(`?course_id=${courseId}`, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const detailHtml = `
+                    <div>
+                        <img src="${data.cover_image || 'https://via.placeholder.com/800x200?text=Course+Cover'}" alt="${data.title}" class="course-cover-image">
+                        <div class="p-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">${data.title}</h2>
+                            <p class="text-gray-600 mb-6">${data.description}</p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="course-info-item">
+                                    <div class="course-info-icon bg-blue-100 text-blue-500">
+                                        <i class="fas fa-folder"></i>
+                                    </div>
+                                    <span>${data.category}</span>
+                                </div>
+                                <div class="course-info-item">
+                                    <div class="course-info-icon bg-green-100 text-green-500">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <span>${data.resource_count} Resources</span>
+                                </div>
+                                <div class="course-info-item">
+                                    <div class="course-info-icon bg-yellow-100 text-yellow-500">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <span>Duration: 8 weeks</span>
+                                </div>
+                                <div class="course-info-item">
+                                    <div class="course-info-icon bg-red-100 text-red-500">
+                                        <i class="fas fa-signal"></i>
+                                    </div>
+                                    <span>Level: Intermediate</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4">{% trans "Course Outline" %}</h3>
+                            <ul class="list-disc list-inside mb-6 text-gray-700">
+                                ${data.resources.map(r => `<li>${r.title}</li>`).join('')}
+                            </ul>
+                            <button class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 register-button" data-course-id="${courseId}">
+                                {% trans "Register for This Course" %}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                courseDetails.innerHTML = detailHtml;
+
+                // Add event listener to the new register button
+                courseDetails.querySelector('.register-button').addEventListener('click', function() {
+                    const courseId = this.getAttribute('data-course-id');
+                    console.log('Registering for course:', courseId);
+                    alert('Registration functionality will be implemented here.');
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
 
         // Search functionality
         courseSearch.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
-            const courses = document.querySelectorAll('.course-card');
-            courses.forEach(course => {
-                const title = course.querySelector('h3').textContent.toLowerCase();
+            sidebarCourses.forEach(course => {
+                const title = course.querySelector('.font-medium').textContent.toLowerCase();
                 if (title.includes(searchTerm)) {
                     course.style.display = 'block';
                 } else {
                     course.style.display = 'none';
                 }
-            });
-        });
-
-        // Course details functionality
-        document.querySelectorAll('.course-details').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const courseId = this.getAttribute('data-course-id');
-                // Here you would typically make an AJAX call to get the course details
-                console.log('Fetching details for course:', courseId);
-                // Update the featured course section with the selected course details
-            });
-        });
-
-        // Registration functionality
-        document.querySelectorAll('.register-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const courseId = this.getAttribute('data-course-id');
-                // Here you would typically make an AJAX call to register for the course
-                console.log('Registering for course:', courseId);
-                alert('Registration functionality will be implemented here.');
-            });
-        });
-
-        // Resource item click functionality
-        document.querySelectorAll('.resource-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent triggering the parent course click event
-                const resourceId = this.getAttribute('data-resource-id');
-                // Here you would typically make an AJAX call to get the resource details
-                console.log('Fetching details for resource:', resourceId);
-                alert('Resource details functionality will be implemented here.');
             });
         });
     });

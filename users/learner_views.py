@@ -14,6 +14,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -215,3 +216,19 @@ class LearnerCourseLibraryView(ListView):
         context = super().get_context_data(**kwargs)
         context['featured_course'] = self.get_queryset().first()  # You might want to choose a featured course differently
         return context
+
+    def get(self, request, *args, **kwargs):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            course_id = request.GET.get('course_id')
+            if course_id:
+                course = Course.objects.prefetch_related('resources').get(id=course_id)
+                data = {
+                    'title': course.title,
+                    'description': course.description,
+                    'category': course.category.name if course.category else '',
+                    'resource_count': course.resources.count(),
+                    'resources': [{'title': r.title} for r in course.resources.all()[:5]],
+                    'cover_image': course.cover_image.url if course.cover_image else '',
+                }
+                return JsonResponse(data)
+        return super().get(request, *args, **kwargs)
