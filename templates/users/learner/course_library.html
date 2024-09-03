@@ -7,75 +7,128 @@
 {% block extra_css %}
 <style>
     .gradient-bg {
-        background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     .sidebar {
         height: calc(100vh - 64px);
         overflow-y: auto;
+        background: linear-gradient(180deg, #2c3e50 0%, #4ca1af 100%);
+        color: white;
     }
     .sidebar-course {
         cursor: pointer;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
     }
-    .sidebar-course:hover {
-        background-color: #f3f4f6;
+    .sidebar-course:hover, .sidebar-course.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left-color: #4ca1af;
     }
     .course-resources {
         display: none;
+        overflow: hidden;
     }
     .course-resources.active {
         display: block;
     }
     .resource-item {
-        padding: 4px 8px;
+        padding: 8px 12px;
         border-radius: 4px;
-        transition: background-color 0.2s ease;
+        transition: all 0.3s ease;
+        margin-bottom: 4px;
     }
     .resource-item:hover {
-        background-color: #e5e7eb;
+        background-color: rgba(255, 255, 255, 0.2);
     }
     .course-cover-image {
-        height: 200px;
+        height: 250px;
         object-fit: cover;
         width: 100%;
+        border-radius: 8px 8px 0 0;
     }
     .course-info-item {
         display: flex;
         align-items: center;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
     }
     .course-info-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 0.5rem;
+        width: 32px;
+        height: 32px;
+        margin-right: 0.75rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #e5e7eb;
         border-radius: 50%;
+        font-size: 1rem;
+    }
+    .search-container {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #4a5568;
+    }
+    #course-search {
+        padding-left: 40px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+    #course-search:focus {
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        background-color: white;
+    }
+    .course-count {
+        font-size: 0.875rem;
+        color: #e2e8f0;
+        margin-bottom: 1rem;
+    }
+    .animated-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="flex">
-    <!-- Left Sidebar: Course List -->
-    <div class="w-1/4 bg-white shadow-md sidebar">
-        <div class="p-4">
-            <h2 class="text-xl font-bold mb-4">{% trans "All Courses" %}</h2>
-            <div class="space-y-2">
+    <!-- Left Sidebar: Search and Course List -->
+    <div class="w-1/4 shadow-lg sidebar relative">
+        <div class="animated-bg"></div>
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">{% trans "Course Catalog" %}</h2>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="course-search" class="w-full py-2 px-4 text-gray-700 focus:outline-none" placeholder="{% trans 'Search courses...' %}">
+            </div>
+
+            <div class="course-count"><span id="course-count">0</span> courses found</div>
+
+            <div class="space-y-2" id="course-list">
                 {% for course in courses %}
-                <div class="sidebar-course p-2 rounded-md" data-course-id="{{ course.id }}">
+                <div class="sidebar-course p-3 rounded-md" data-course-id="{{ course.id }}">
                     <div class="flex items-center justify-between cursor-pointer">
                         <span class="font-medium">{{ course.title }}</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </div>
-                    <div class="course-resources mt-2 ml-4 text-sm text-gray-600">
+                    <div class="course-resources mt-2 ml-4 text-sm">
                         {% for resource in course.resources.all %}
                         <div class="resource-item cursor-pointer" data-resource-id="{{ resource.id }}">
-                            {{ forloop.counter }}. {{ resource.title }}
+                            <i class="fas fa-file-alt mr-2"></i>{{ resource.title }}
                         </div>
                         {% endfor %}
                     </div>
@@ -86,21 +139,11 @@
     </div>
 
     <!-- Right Side: Course Details -->
-    <div class="w-3/4 p-6">
+    <div class="w-3/4 p-6 bg-gray-100">
         <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
             <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Course Library" %}</h1>
             <p class="text-lg text-white text-center">{% trans "Explore and enroll in our wide range of courses" %}</p>
         </header>
-
-        <!-- Search Bar -->
-        <div class="mb-6">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i class="fas fa-search text-gray-400"></i>
-                </div>
-                <input type="text" id="course-search" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans 'Search courses...' %}">
-            </div>
-        </div>
 
         <!-- Course Details Section -->
         <div id="course-details" class="bg-white rounded-lg overflow-hidden card-shadow">
@@ -111,11 +154,27 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const sidebarCourses = document.querySelectorAll('.sidebar-course');
         const courseSearch = document.getElementById('course-search');
+        const courseList = document.getElementById('course-list');
         const courseDetails = document.getElementById('course-details');
+        const courseCount = document.getElementById('course-count');
+
+        // Animate background
+        anime({
+            targets: '.animated-bg',
+            backgroundColor: ['#2c3e50', '#4ca1af', '#2c3e50'],
+            duration: 10000,
+            easing: 'easeInOutQuad',
+            direction: 'alternate',
+            loop: true
+        });
+
+        // Initialize course count
+        updateCourseCount();
 
         sidebarCourses.forEach(course => {
             course.addEventListener('click', function() {
@@ -123,17 +182,50 @@
                 const resources = this.querySelector('.course-resources');
                 const icon = this.querySelector('i');
 
-                // Toggle resources dropdown
-                resources.classList.toggle('active');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
+                // Toggle resources dropdown with animation
+                if (resources.classList.contains('active')) {
+                    anime({
+                        targets: resources,
+                        height: 0,
+                        opacity: 0,
+                        duration: 300,
+                        easing: 'easeOutQuad',
+                        complete: function() {
+                            resources.classList.remove('active');
+                        }
+                    });
+                    anime({
+                        targets: icon,
+                        rotate: 0,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                } else {
+                    resources.style.height = 'auto';
+                    const height = resources.clientHeight + 'px';
+                    resources.style.height = '0px';
+                    resources.classList.add('active');
+                    anime({
+                        targets: resources,
+                        height: height,
+                        opacity: 1,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                    anime({
+                        targets: icon,
+                        rotate: 180,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                }
 
                 // Fetch and display course details
                 fetchCourseDetails(courseId);
 
                 // Highlight selected course
-                sidebarCourses.forEach(c => c.classList.remove('bg-blue-100'));
-                this.classList.add('bg-blue-100');
+                sidebarCourses.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
             });
         });
 
@@ -146,8 +238,8 @@
             .then(response => response.json())
             .then(data => {
                 const detailHtml = `
-                    <div>
-                        <img src="${data.cover_image || 'https://via.placeholder.com/800x200?text=Course+Cover'}" alt="${data.title}" class="course-cover-image">
+                    <div class="course-detail-container opacity-0">
+                        <img src="${data.cover_image || 'https://via.placeholder.com/800x250?text=Course+Cover'}" alt="${data.title}" class="course-cover-image">
                         <div class="p-6">
                             <h2 class="text-3xl font-bold text-gray-800 mb-4">${data.title}</h2>
                             <p class="text-gray-600 mb-6">${data.description}</p>
@@ -189,6 +281,15 @@
                 `;
                 courseDetails.innerHTML = detailHtml;
 
+                // Animate course details appearance
+                anime({
+                    targets: '.course-detail-container',
+                    opacity: 1,
+                    translateY: [20, 0],
+                    duration: 500,
+                    easing: 'easeOutQuad'
+                });
+
                 // Add event listener to the new register button
                 courseDetails.querySelector('.register-button').addEventListener('click', function() {
                     const courseId = this.getAttribute('data-course-id');
@@ -199,18 +300,52 @@
             .catch(error => console.error('Error:', error));
         }
 
-        // Search functionality
+        // Search functionality with animations
         courseSearch.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
+            let visibleCourses = 0;
+
             sidebarCourses.forEach(course => {
                 const title = course.querySelector('.font-medium').textContent.toLowerCase();
                 if (title.includes(searchTerm)) {
+                    anime({
+                        targets: course,
+                        opacity: 1,
+                        translateX: 0,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
                     course.style.display = 'block';
+                    visibleCourses++;
                 } else {
-                    course.style.display = 'none';
+                    anime({
+                        targets: course,
+                        opacity: 0,
+                        translateX: -20,
+                        duration: 300,
+                        easing: 'easeOutQuad',
+                        complete: function() {
+                            course.style.display = 'none';
+                        }
+                    });
                 }
             });
+
+            updateCourseCount(visibleCourses);
         });
+
+        function updateCourseCount(count = null) {
+            if (count === null) {
+                count = sidebarCourses.length;
+            }
+            anime({
+                targets: '#course-count',
+                innerHTML: [parseInt(courseCount.innerHTML), count],
+                round: 1,
+                duration: 500,
+                easing: 'easeInOutExpo'
+            });
+        }
     });
 </script>
 {% endblock %}
