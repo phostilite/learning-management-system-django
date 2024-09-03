@@ -955,3 +955,13 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
         return reverse_lazy('administrator_course_resource_list', kwargs={'course_id': self.kwargs['course_id']})
 
 
+from courses.models import Program
+
+@method_decorator(login_required, name='dispatch')
+class AdministratorProgramsListView(ListView):
+    model = Program
+    template_name = 'users/administrator/programs.html'
+    context_object_name = 'programs'
+
+    def get_queryset(self):
+        return Program.objects.all()

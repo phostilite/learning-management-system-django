@@ -1,0 +1,22 @@
+<h2 class="text-2xl font-semibold mb-4">{{ course.title }}</h2>
+<p class="text-gray-700 mb-4">{{ course.description }}</p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+    <div>
+        <p class="font-semibold">Duration:</p>
+        <p>{{ course.duration }}</p>
+    </div>
+    {% if course.category %}
+    <div>
+        <p class="font-semibold">Category:</p>
+        <p>{{ course.category }}</p>
+    </div>
+    {% endif %}
+</div>
+{% if course.learning_resources.exists %}
+<h3 class="text-xl font-semibold mb-2">Learning Resources:</h3>
+<ul class="list-disc list-inside">
+    {% for resource in course.learning_resources.all %}
+    <li>{{ resource.title }} ({{ resource.get_resource_type_display }})</li>
+    {% endfor %}
+</ul>
+{% endif %}

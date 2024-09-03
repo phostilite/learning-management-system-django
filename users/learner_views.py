@@ -232,3 +232,62 @@ class LearnerCourseLibraryView(ListView):
                 }
                 return JsonResponse(data)
         return super().get(request, *args, **kwargs)
+    
+
+from django.views.generic import ListView
+from django.db.models import Prefetch
+from courses.models import Program, Course, ProgramEnrollment
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
+class LearnerProgramCatalogView(ListView):
+    model = Program
+    template_name = 'users/learner/program_catalog.html'
+    context_object_name = 'programs'
+
+    def get_queryset(self):
+        return Program.objects.filter(is_published=True).prefetch_related(
+            Prefetch('courses', queryset=Course.objects.filter(is_published=True))
+        ).order_by('title')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            user_enrollments = ProgramEnrollment.objects.filter(user=self.request.user)
+            enrolled_program_ids = user_enrollments.values_list('program_id', flat=True)
+            for program in context['programs']:
+                program.is_enrolled = program.id in enrolled_program_ids
+        return context
+
+    def post(self, request, *args, **kwargs):
+        program_id = request.POST.get('program_id')
+        program = get_object_or_404(Program, id=program_id)
+        
+        # Here you would typically handle the enrollment logic
+        # For now, we'll just return a success message
+        return JsonResponse({'status': 'success', 'message': 'Enrollment functionality will be implemented here.'})
+
+    def get_course_details(self, request, course_id):
+        course = get_object_or_404(Course, id=course_id)
+        html = render_to_string('users/learner/course_details_modal.html', {'course': course})
+        return JsonResponse({'html': html})
+    
+def course_details(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    resources = course.resources.all()  # Changed from learning_resources to resources
+    
+    data = {
+        'title': course.title,
+        'description': course.description,
+        'duration': course.duration,
+        'resources': [
+            {
+                'title': r.title, 
+                'type': r.get_resource_type_display(),
+                'description': r.description
+            } for r in resources
+        ]
+    }
+    
+    return JsonResponse(data)

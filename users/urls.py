@@ -56,6 +56,8 @@ urlpatterns = [
 
     path('administrator/course/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
 
+    path('administrator/programs/', administartor_views.AdministratorProgramsListView.as_view(), name='administrator_program_list'),
+
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),
     path('learner/my-courses/', learner_views.LearnerMyCoursesView.as_view(), name='learner_my_courses'),
@@ -75,6 +77,9 @@ urlpatterns = [
     path('learner/help-support/', learner_views.LearnerHelpSupportView.as_view(), name='learner_help_support'),
 
     path('learner/course/library/', learner_views.LearnerCourseLibraryView.as_view(), name='learner_course_library'),
+
+    path('learner/programs/', learner_views.LearnerProgramCatalogView.as_view(), name='learner_programs'),
+    path('learner/courses/<uuid:course_id>/details/', learner_views.course_details, name='course_details_api'),
 
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
