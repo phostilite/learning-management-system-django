@@ -188,6 +188,12 @@ learning_resources_data = {
             'description': 'In-depth tutorial on using NumPy and Pandas for data manipulation.',
             'resource_type': 'DOCUMENT',
             'order': 3
+        },
+        {
+            'title': 'Python Data Types Quiz',
+            'description': 'Test your understanding of Python data types and structures.',
+            'resource_type': 'QUIZ',
+            'order': 4
         }
     ],
     'Data Analysis and Visualization': [
@@ -208,6 +214,12 @@ learning_resources_data = {
             'description': 'Hands-on tutorial for creating advanced visualizations with Matplotlib and Seaborn.',
             'resource_type': 'VIDEO',
             'order': 3
+        },
+        {
+            'title': 'Data Visualization Challenge',
+            'description': 'Apply your skills to create insightful visualizations from a given dataset.',
+            'resource_type': 'QUIZ',
+            'order': 4
         }
     ],
     'Machine Learning Fundamentals': [
@@ -234,6 +246,12 @@ learning_resources_data = {
             'description': 'A guided project to build and evaluate a predictive model on a real-world dataset.',
             'resource_type': 'DOCUMENT',
             'order': 4
+        },
+        {
+            'title': 'Machine Learning Algorithms Quiz',
+            'description': 'Test your knowledge of various machine learning algorithms and their applications.',
+            'resource_type': 'QUIZ',
+            'order': 5
         }
     ],
     'Big Data Processing with PySpark': [
@@ -260,6 +278,12 @@ learning_resources_data = {
             'description': 'A comprehensive project to analyze large-scale log data using PySpark.',
             'resource_type': 'DOCUMENT',
             'order': 4
+        },
+        {
+            'title': 'PySpark Concepts Quiz',
+            'description': 'Test your understanding of PySpark concepts and best practices.',
+            'resource_type': 'QUIZ',
+            'order': 5
         }
     ],
     'HTML5 and CSS3 Fundamentals': [
@@ -280,6 +304,12 @@ learning_resources_data = {
             'description': 'Hands-on workshop for creating engaging animations with CSS.',
             'resource_type': 'DOCUMENT',
             'order': 3
+        },
+        {
+            'title': 'HTML5 and CSS3 Coding Challenge',
+            'description': 'Apply your HTML and CSS skills to create a responsive web page.',
+            'resource_type': 'QUIZ',
+            'order': 4
         }
     ],
     'JavaScript and DOM Manipulation': [
@@ -300,6 +330,102 @@ learning_resources_data = {
             'description': 'Video series covering advanced topics in DOM manipulation and event handling.',
             'resource_type': 'VIDEO',
             'order': 3
+        },
+        {
+            'title': 'JavaScript Debugging Techniques',
+            'description': 'Learn effective strategies for debugging JavaScript code.',
+            'resource_type': 'VIDEO',
+            'order': 4
+        }
+    ],
+    'Backend Development with Node.js': [
+        {
+            'title': 'Introduction to Node.js',
+            'description': 'Video series introducing Node.js and its core concepts.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Building RESTful APIs with Express',
+            'description': 'Step-by-step guide to creating robust RESTful APIs using Express.js.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'Database Integration with MongoDB',
+            'description': 'Learn how to integrate MongoDB with your Node.js applications.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Node.js Security Best Practices',
+            'description': 'Comprehensive guide to securing your Node.js applications.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'Node.js Concepts Quiz',
+            'description': 'Test your understanding of Node.js and backend development concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'Full Stack Project': [
+        {
+            'title': 'Project Planning and Architecture',
+            'description': 'Learn how to plan and architect a full-stack web application.',
+            'resource_type': 'DOCUMENT',
+            'order': 1
+        },
+        {
+            'title': 'Frontend Development with React',
+            'description': 'Video series on building the frontend of your project using React.',
+            'resource_type': 'VIDEO',
+            'order': 2
+        },
+        {
+            'title': 'Backend API Development',
+            'description': 'Guide to developing a robust backend API for your full-stack project.',
+            'resource_type': 'DOCUMENT',
+            'order': 3
+        },
+        {
+            'title': 'Database Design and Implementation',
+            'description': 'Learn how to design and implement a database for your full-stack application.',
+            'resource_type': 'VIDEO',
+            'order': 4
+        },
+        {
+            'title': 'Full Stack Project Quiz',
+            'description': 'Test your understanding of full-stack development concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'Introduction to Cloud Concepts': [
+        {
+            'title': 'Cloud Computing Fundamentals',
+            'description': 'Video introduction to basic cloud computing concepts and models.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Cloud Service Models Explained',
+            'description': 'Detailed guide on IaaS, PaaS, and SaaS with real-world examples.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'Cloud Deployment Models',
+            'description': 'Learn about public, private, and hybrid cloud deployment models.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Cloud Computing Concepts Quiz',
+            'description': 'Test your understanding of core cloud computing concepts.',
+            'resource_type': 'QUIZ',
+            'order': 4
         }
     ],
     'AWS Fundamentals': [
@@ -320,6 +446,114 @@ learning_resources_data = {
             'description': 'Video lecture on implementing security best practices in AWS environments.',
             'resource_type': 'VIDEO',
             'order': 3
+        },
+        {
+            'title': 'AWS Storage Solutions',
+            'description': 'Learn about different AWS storage options like S3, EBS, and EFS.',
+            'resource_type': 'VIDEO',
+            'order': 4
+        },
+        {
+            'title': 'AWS Services Quiz',
+            'description': 'Test your knowledge of various AWS services and their applications.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'Microsoft Azure Essentials': [
+        {
+            'title': 'Introduction to Azure Services',
+            'description': 'Overview of core Azure services and their capabilities.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Azure Virtual Machines Deployment',
+            'description': 'Step-by-step guide to deploying and managing Azure VMs.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'Azure Networking Fundamentals',
+            'description': 'Learn about Azure networking concepts and best practices.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Azure Storage Solutions',
+            'description': 'Explore various storage options available in Azure.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'Azure Concepts Quiz',
+            'description': 'Test your understanding of Microsoft Azure services and concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'Cloud Security and Compliance': [
+        {
+            'title': 'Cloud Security Fundamentals',
+            'description': 'Video series introducing core cloud security concepts and challenges.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Identity and Access Management in the Cloud',
+            'description': 'Comprehensive guide to implementing IAM in cloud environments.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'Data Protection and Encryption',
+            'description': 'Learn about data protection strategies and encryption in the cloud.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Compliance Frameworks for Cloud Computing',
+            'description': 'Overview of major compliance frameworks relevant to cloud computing.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'Cloud Security Quiz',
+            'description': 'Test your knowledge of cloud security principles and best practices.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'Foundations of Artificial Intelligence': [
+        {
+            'title': 'AI History and Evolution',
+            'description': 'Video lecture on the history and evolution of artificial intelligence.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'AI Approaches and Paradigms',
+            'description': 'Comprehensive guide to different AI approaches and paradigms.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'Applications of AI in Various Industries',
+            'description': 'Explore real-world applications of AI across different sectors.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Future Trends in AI',
+            'description': 'Discussion on emerging trends and future directions in AI research.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'AI Foundations Quiz',
+            'description': 'Test your understanding of AI fundamentals and concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
         }
     ],
     'Machine Learning and Neural Networks': [
@@ -342,10 +576,80 @@ learning_resources_data = {
             'order': 3
         },
         {
-            'title': 'Ethics in Machine Learning Quiz',
-            'description': 'Interactive quiz on ethical considerations in machine learning model development and deployment.',
-            'resource_type': 'QUIZ',
+            'title': 'Reinforcement Learning Fundamentals',
+            'description': 'Video tutorial on the basics of reinforcement learning.',
+            'resource_type': 'VIDEO',
             'order': 4
+        },
+        {
+            'title': 'Neural Networks and Deep Learning Quiz',
+            'description': 'Test your knowledge of neural network architectures and deep learning concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'AI Ethics and Societal Impact': [
+        {
+            'title': 'Introduction to AI Ethics',
+            'description': 'Video lecture introducing key ethical considerations in AI development and deployment.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Bias and Fairness in AI Systems',
+            'description': 'Comprehensive guide on identifying and mitigating bias in AI systems.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'AI Transparency and Explainability',
+            'description': 'Learn about the importance of transparency and explainability in AI systems.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Case Studies in AI Ethics',
+            'description': 'Analysis of real-world ethical dilemmas in AI applications.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'AI Ethics Quiz',
+            'description': 'Test your understanding of ethical principles in AI development and deployment.',
+            'resource_type': 'QUIZ',
+            'order': 5
+        }
+    ],
+    'AI Policy and Governance': [
+        {
+            'title': 'AI Policy Landscape',
+            'description': 'Overview of current AI policies and regulations across different countries.',
+            'resource_type': 'VIDEO',
+            'order': 1
+        },
+        {
+            'title': 'Governance Frameworks for AI',
+            'description': 'Detailed guide on various governance frameworks for responsible AI development.',
+            'resource_type': 'DOCUMENT',
+            'order': 2
+        },
+        {
+            'title': 'AI Risk Assessment and Management',
+            'description': 'Learn how to assess and manage risks associated with AI systems.',
+            'resource_type': 'VIDEO',
+            'order': 3
+        },
+        {
+            'title': 'Future of AI Regulation',
+            'description': 'Discussion on emerging trends and future directions in AI regulation.',
+            'resource_type': 'DOCUMENT',
+            'order': 4
+        },
+        {
+            'title': 'AI Policy and Governance Quiz',
+            'description': 'Test your knowledge of AI policy, governance, and regulatory concepts.',
+            'resource_type': 'QUIZ',
+            'order': 5
         }
     ]
 }
