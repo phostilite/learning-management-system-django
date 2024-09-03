@@ -202,3 +202,16 @@ class LearnerHelpSupportView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+@method_decorator(login_required, name='dispatch')
+class LearnerCourseLibraryView(ListView):
+    template_name = 'users/learner/course_library.html'
+    context_object_name = 'courses'
+
+    def get_queryset(self):
+        return Course.objects.all().prefetch_related('resources')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['featured_course'] = self.get_queryset().first()  # You might want to choose a featured course differently
+        return context

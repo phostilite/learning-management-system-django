@@ -74,6 +74,8 @@ urlpatterns = [
     path('learner/settings/', learner_views.LearnerSettingsView.as_view(), name='learner_settings'),
     path('learner/help-support/', learner_views.LearnerHelpSupportView.as_view(), name='learner_help_support'),
 
+    path('learner/course/library/', learner_views.LearnerCourseLibraryView.as_view(), name='learner_course_library'),
+
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
 
