@@ -27,10 +27,12 @@ class Program(models.Model):
     duration = models.CharField(max_length=100, null=True, blank=True)
     level = models.CharField(max_length=50, null=True, blank=True)
     
-    # Fields for external programs
     provider = models.CharField(max_length=255, null=True, blank=True)
     exam_code = models.CharField(max_length=50, null=True, blank=True)
     exam_link = models.URLField(null=True, blank=True)
+
+    tags = models.ManyToManyField('Tag', blank=True)
+    prerequisites = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='required_for')
 
     def __str__(self):
         return self.title
@@ -50,8 +52,25 @@ class Course(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
     duration = models.CharField(max_length=100, blank=True)
 
+    tags = models.ManyToManyField('Tag', blank=True)
+    prerequisites = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='required_for')
+    language = models.CharField(max_length=50, null=True, blank=True)
+    difficulty_level = models.CharField(max_length=20, choices=[
+        ('BEGINNER', 'Beginner'),
+        ('INTERMEDIATE', 'Intermediate'),
+        ('ADVANCED', 'Advanced')
+    ], null=True, blank=True)
+
     def __str__(self):
         return self.title
+    
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
     
 class ProgramCourse(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)

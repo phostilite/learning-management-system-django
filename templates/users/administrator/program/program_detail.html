@@ -1,0 +1,282 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ program.title }} - {% trans "Program Details" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+    .animate-slide-in { animation: slideIn 0.5s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <!-- Program Header -->
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{{ program.title }}</h1>
+        <p class="text-lg text-white text-center">{{ program.short_description }}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_program_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Programs" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ program.title }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Program Quick Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 animate-slide-in">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-users text-3xl text-primary mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Total Enrollments" %}</h3>
+            <p class="text-3xl font-bold">{{ total_enrollments }}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-graduation-cap text-3xl text-green-500 mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Completion Rate" %}</h3>
+            <p class="text-3xl font-bold">{{ completion_rate|floatformat:1 }}%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-clock text-3xl text-blue-500 mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Duration" %}</h3>
+            <p class="text-3xl font-bold">{{ duration }}</p>
+        </div>
+    </div>
+
+    <!-- Program Details and Courses -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Program Details -->
+        <div class="lg:col-span-1 animate-slide-in" style="animation-delay: 0.2s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Program Details" %}</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-calendar-alt text-primary mr-2"></i> {% trans "Created" %}: {{ program.created_at|date:"F d, Y" }}</li>
+                    <li><i class="fas fa-user text-primary mr-2"></i> {% trans "Created by" %}: {{ program.created_by }}</li>
+                    <li><i class="fas fa-tag text-primary mr-2"></i> {% trans "Type" %}: {{ program.get_program_type_display }}</li>
+                    <li><i class="fas fa-layer-group text-primary mr-2"></i> {% trans "Level" %}: {{ program.level }}</li>
+                    {% if program.exam_code %}
+                    <li><i class="fas fa-file-alt text-primary mr-2"></i> {% trans "Exam Code" %}: {{ program.exam_code }}</li>
+                    {% endif %}
+                    {% if program.exam_link %}
+                    <li><i class="fas fa-external-link-alt text-primary mr-2"></i> <a href="{{ program.exam_link }}" target="_blank" class="text-blue-500 hover:underline">{% trans "Exam Link" %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            {% if tags %}
+            <div class="bg-white rounded-lg shadow p-6 mt-4">
+                <h3 class="text-xl font-bold mb-2">{% trans "Tags" %}</h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for tag in tags %}
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if prerequisites %}
+            <div class="bg-white rounded-lg shadow p-6 mt-4">
+                <h3 class="text-xl font-bold mb-2">{% trans "Prerequisites" %}</h3>
+                <ul class="list-disc list-inside">
+                    {% for prereq in prerequisites %}
+                    <li>{{ prereq.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Courses -->
+        <div class="lg:col-span-2 animate-slide-in" style="animation-delay: 0.4s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Courses" %} ({{ total_courses }})</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Title" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Duration" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Status" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Action" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for course in courses %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ course.title }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ course.duration }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if course.is_published %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                        {% if course.is_published %}{% trans "Published" %}{% else %}{% trans "Unpublished" %}{% endif %}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="{% url 'administrator_course_detail' course.id %}" class="text-blue-600 hover:underline">
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Enrollments and Actions -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Recent Enrollments -->
+        <div class="lg:col-span-2 animate-slide-in" style="animation-delay: 0.6s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Recent Enrollments" %}</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "User" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Enrollment Date" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Status" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for enrollment in recent_enrollments %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ enrollment.user.get_full_name }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ enrollment.enrollment_date|date:"F d, Y" }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        {% if enrollment.status == 'COMPLETED' %}bg-green-100 text-green-800
+                                        {% elif enrollment.status == 'IN_PROGRESS' %}bg-yellow-100 text-yellow-800
+                                        {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                        {{ enrollment.get_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="lg:col-span-1 animate-slide-in" style="animation-delay: 0.8s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Actions" %}</h2>
+                <div class="space-y-4">
+                    <a href="{% url 'administrator_program_edit' program.id %}" class="block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-edit mr-2"></i> {% trans "Edit Program" %}
+                    </a>
+                    <a href="#" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-plus mr-2"></i> {% trans "Add Course" %}
+                    </a>
+                    <a href="#" class="block w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-users mr-2"></i> {% trans "Manage Enrollments" %}
+                    </a>
+                    <a href="#" class="block w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-chart-bar mr-2"></i> {% trans "View Analytics" %}
+                    </a>
+                    {% if program.is_published %}
+                    <a href="{% url 'administrator_program_unpublish' pk=program.pk %}" class="block w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-eye-slash mr-2"></i> {% trans "Unpublish Program" %}
+                    </a>
+                    {% else %}
+                    <a href="{% url 'administrator_program_publish' pk=program.pk %}" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-eye mr-2"></i> {% trans "Publish Program" %}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Description -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 1s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Program Description" %}</h2>
+            <div class="prose max-w-none">
+                {{ program.description|safe }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Trends Chart -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 1.2s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Enrollment Trends" %}</h2>
+            <canvas id="enrollmentTrendsChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Program Reviews -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 1.4s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Program Reviews" %}</h2>
+            <!-- Add a component or section for program reviews here -->
+            <p class="text-gray-600">{% trans "No reviews available at the moment." %}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Enrollment Trends Chart
+    var ctx = document.getElementById('enrollmentTrendsChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Enrollments',
+                data: [12, 19, 3, 5, 2, 3],
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Add any additional JavaScript for interactivity here
+});
+</script>
+{% endblock %}

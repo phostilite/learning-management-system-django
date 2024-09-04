@@ -18,6 +18,24 @@
                         </a>
                     </li>
                     <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-programs" data-collapse-toggle="dropdown-programs">
+                            <i class="fa-solid fa-sitemap mr-3 text-indigo-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Programs" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-programs" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_program_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Programs" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_program_create' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Create Program" %}</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Program Enrollments" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
                             <i class="fa-solid fa-graduation-cap mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Courses" %}</span>

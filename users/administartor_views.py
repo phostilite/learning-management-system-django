@@ -1,55 +1,47 @@
 import logging
-from django.views import View
-import requests
 import json
+from datetime import timedelta
 
+import requests
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
-from django.db import transaction
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from formtools.wizard.views import SessionWizardView
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, DetailView, ListView
-from django.http import Http404
-from django.db.models import Count, Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.paginator import Paginator
-from courses.models import Course, CourseCategory
-from django.db.models.functions import TruncMonth
-from certificates.models import Certificate
-from django.utils import timezone
-from datetime import timedelta
-from django.http import HttpResponse, JsonResponse
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAdminUser
-from rest_framework.permissions import BasePermission
-from django.db import transaction
-from django.views.decorators.http import require_http_methods
-
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
+from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator
+from django.db import transaction
+from django.db.models import Count, Q
+from django.db.models.functions import TruncMonth
+from django.http import Http404, HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.utils import timezone
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.http import require_http_methods, require_POST
+from django.views.generic import TemplateView, DetailView, ListView, FormView, DeleteView, UpdateView
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from django.views.generic import FormView
+from formtools.wizard.views import SessionWizardView
+from rest_framework import status
+from rest_framework.permissions import BasePermission, IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm, EnrollmentForm
-from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
-                            Enrollment, Feedback, LearningResource, ScormResource)
+from certificates.models import Certificate
+from courses.forms import (CourseBasicInfoForm, CourseDeliveryForm, EnrollmentForm, LearningResourceForm,
+                           LearningResourceFormSet, ScormResourceForm, ProgramCreateForm, ProgramPublishForm, ProgramUnpublishForm)
+from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, Enrollment, Feedback,
+                            LearningResource, ScormResource, Tag, Program, ProgramCourse, ProgramEnrollment)
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
-from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
+from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
+# Initialize logger
 logger = logging.getLogger(__name__)
 
+# Get the user model
 User = get_user_model()
 
 @method_decorator(login_required, name='dispatch')
@@ -665,7 +657,7 @@ class CourseDetailView(DetailView):
     def get_object(self, queryset=None):
         try:
             course = super().get_object(queryset)
-            if course.created_by != self.request.user:
+            if not self.request.user.groups.filter(name='administrator').exists():
                 raise Http404("Course not found.")
             logger.info(f"Fetched course details for course {course.pk} by user {self.request.user.id}")
             return course
@@ -804,8 +796,9 @@ class AdministratorCourseDeleteView(APIView):
             raise
 
 
-
-# Course Delivery Views    
+# ============================================================
+# ======================= Course Delivery Views ==============
+# ============================================================
 
 class AdministratorCourseDeliveryCreateView(CreateView):
     model = CourseDelivery
@@ -955,13 +948,210 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
         return reverse_lazy('administrator_course_resource_list', kwargs={'course_id': self.kwargs['course_id']})
 
 
-from courses.models import Program
+# ============================================================
+# ======================= Program Views ======================
+# ============================================================
 
-@method_decorator(login_required, name='dispatch')
-class AdministratorProgramsListView(ListView):
+class AdministratorProgramListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Program
-    template_name = 'users/administrator/programs.html'
+    template_name = 'users/administrator/program/program_list.html'
     context_object_name = 'programs'
+    paginate_by = 10
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
 
     def get_queryset(self):
-        return Program.objects.all()
+        return Program.objects.all().order_by('-created_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_programs'] = Program.objects.count()
+        context['published_programs'] = Program.objects.filter(is_published=True).count()
+        context['unpublished_programs'] = Program.objects.filter(is_published=False).count()
+        context['top_tags'] = Tag.objects.annotate(
+            program_count=Count('program')
+        ).order_by('-program_count')[:5]
+        context['all_tags'] = Tag.objects.all()
+        return context
+    
+
+class AdministratorProgramDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = Program
+    template_name = 'users/administrator/program/program_detail.html'
+    context_object_name = 'program'
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        program = self.object
+
+        # Courses in the program
+        courses = Course.objects.filter(programcourse__program=program).order_by('programcourse__order')
+        context['courses'] = courses
+        context['total_courses'] = courses.count()
+
+        # Enrollment statistics
+        enrollments = ProgramEnrollment.objects.filter(program=program)
+        context['total_enrollments'] = enrollments.count()
+        context['active_enrollments'] = enrollments.filter(status__in=['ENROLLED', 'IN_PROGRESS']).count()
+        context['completed_enrollments'] = enrollments.filter(status='COMPLETED').count()
+
+        # Completion rate
+        if context['total_enrollments'] > 0:
+            context['completion_rate'] = (context['completed_enrollments'] / context['total_enrollments']) * 100
+        else:
+            context['completion_rate'] = 0
+
+        # Recent enrollments
+        context['recent_enrollments'] = enrollments.order_by('-enrollment_date')[:5]
+
+        # Program duration
+        if program.duration:
+            context['duration'] = program.duration
+        elif courses.exists():
+            total_duration = sum(course.duration for course in courses if course.duration)
+            context['duration'] = f"{total_duration} hours" if total_duration else "Not specified"
+        else:
+            context['duration'] = "Not specified"
+
+        # Tags
+        context['tags'] = program.tags.all()
+
+        # Prerequisites
+        context['prerequisites'] = program.prerequisites.all()
+
+        return context
+    
+
+class AdministratorProgramCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Program
+    form_class = ProgramCreateForm
+    template_name = 'users/administrator/program/program_create.html'
+    success_url = reverse_lazy('administrator_program_list')
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def form_valid(self, form):
+        logger.info("Form is valid. Attempting to save program.")
+        try:
+            with transaction.atomic():
+                form.instance.created_by = self.request.user
+                self.object = form.save()
+                
+                logger.info(f"Program saved with ID: {self.object.id}")
+                
+                # Log the selected tags and prerequisites
+                logger.info(f"Selected tags: {form.cleaned_data['tags']}")
+                logger.info(f"Selected prerequisites: {form.cleaned_data['prerequisites']}")
+                
+                # Save many-to-many relationships
+                self.object.tags.set(form.cleaned_data['tags'])
+                self.object.prerequisites.set(form.cleaned_data['prerequisites'])
+                
+                # Log the count of associated tags and prerequisites
+                logger.info(f"Number of tags associated: {self.object.tags.count()}")
+                logger.info(f"Number of prerequisites associated: {self.object.prerequisites.count()}")
+                
+                messages.success(self.request, 'Program created successfully!')
+                return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating program: {str(e)}", exc_info=True)
+            messages.error(self.request, f'There was an error creating the program: {str(e)}')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.warning("Form is invalid. Errors: %s", form.errors)
+        messages.error(self.request, 'There was an error creating the program. Please check the form and try again.')
+        return super().form_invalid(form)
+
+    def post(self, request, *args, **kwargs):
+        logger.info("Received POST request for program creation")
+        logger.debug(f"POST data: {request.POST}")
+        return super().post(request, *args, **kwargs)
+
+class AdministratorProgramDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Program
+    template_name = 'users/administrator/program/program_confirm_delete.html'
+    success_url = reverse_lazy('administrator_program_list')
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "The program was successfully deleted.")
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['program'] = self.get_object()
+        return context
+    
+class AdministratorProgramEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Program
+    form_class = ProgramCreateForm
+    template_name = 'users/administrator/program/program_edit.html'
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_program_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        messages.success(self.request, "The program was successfully updated.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error updating the program. Please check the form and try again.")
+        return super().form_invalid(form)
+    
+
+class AdministratorProgramPublishView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    template_name = 'users/administrator/program/program_publish_confirm.html'
+    form_class = ProgramPublishForm
+    success_url = reverse_lazy('administrator_program_list')
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
+        return kwargs
+
+    def form_valid(self, form):
+        program = form.save()
+        messages.success(self.request, f'Program "{program.title}" has been published.')
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
+        return context
+
+class AdministratorProgramUnpublishView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    template_name = 'users/administrator/program/program_unpublish_confirm.html'
+    form_class = ProgramUnpublishForm
+    success_url = reverse_lazy('administrator_program_list')
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
+        return kwargs
+
+    def form_valid(self, form):
+        program = form.save()
+        messages.success(self.request, f'Program "{program.title}" has been unpublished.')
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
+        return context

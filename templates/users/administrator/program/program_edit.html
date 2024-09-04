@@ -1,0 +1,247 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Edit Program" %} - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="w-full mx-auto">
+        <!-- Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Edit Program" %} : {{ program.title }}</h1>
+            <p class="text-lg text-white text-center">{% trans "Update the details below to edit the program." %}</p>
+        </header>
+
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_program_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Programs" %}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_program_detail' program.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ program.title }}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Edit Program" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Basic Information -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Basic Information" %}</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="id_title" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Title" %}</label>
+                        <input type="text" name="title" id="id_title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.title.value|default_if_none:'' }}" required>
+                        {% if form.title.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.title.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_short_description" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Short Description" %}</label>
+                        <textarea name="short_description" id="id_short_description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ form.short_description.value|default_if_none:'' }}</textarea>
+                        {% if form.short_description.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.short_description.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_description" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Full Description" %}</label>
+                        <textarea name="description" id="id_description" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ form.description.value|default_if_none:'' }}</textarea>
+                        {% if form.description.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Details -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Program Details" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="id_program_type" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Program Type" %}</label>
+                        <select name="program_type" id="id_program_type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            {% for value, label in form.fields.program_type.choices %}
+                                <option value="{{ value }}" {% if form.program_type.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.program_type.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.program_type.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_duration" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Duration" %}</label>
+                        <input type="text" name="duration" id="id_duration" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.duration.value|default_if_none:'' }}" placeholder="e.g., 6 weeks, 3 months">
+                        {% if form.duration.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.duration.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_level" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Level" %}</label>
+                        <input type="text" name="level" id="id_level" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.level.value|default_if_none:'' }}" placeholder="e.g., Beginner, Intermediate, Advanced">
+                        {% if form.level.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.level.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_provider" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Provider" %}</label>
+                        <input type="text" name="provider" id="id_provider" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.provider.value|default_if_none:'' }}">
+                        {% if form.provider.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.provider.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exam Information -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Exam Information" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="id_exam_code" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Exam Code" %}</label>
+                        <input type="text" name="exam_code" id="id_exam_code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.exam_code.value|default_if_none:'' }}">
+                        {% if form.exam_code.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.exam_code.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="id_exam_link" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Exam Link" %}</label>
+                        <input type="url" name="exam_link" id="id_exam_link" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.exam_link.value|default_if_none:'' }}">
+                        {% if form.exam_link.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.exam_link.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags and Prerequisites -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Tags and Prerequisites" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{% trans "Tags" %}</label>
+                        <div class="mt-2 space-y-2 max-h-48 overflow-y-auto">
+                            {% for tag in form.tags %}
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input id="{{ tag.id_for_label }}" name="tags" type="checkbox" 
+                                            value="{{ tag.data.value }}"
+                                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                            {% if tag.data.selected %}checked{% endif %}>
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="{{ tag.id_for_label }}" class="font-medium text-gray-700">{{ tag.choice_label }}</label>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if form.tags.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.tags.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{% trans "Prerequisites" %}</label>
+                        <div class="mt-2 space-y-2 max-h-48 overflow-y-auto">
+                            {% for prerequisite in form.prerequisites %}
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input id="{{ prerequisite.id_for_label }}" name="prerequisites" type="checkbox"
+                                            value="{{ prerequisite.data.value }}"
+                                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                            {% if prerequisite.data.selected %}checked{% endif %}>
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="{{ prerequisite.id_for_label }}" class="font-medium text-gray-700">{{ prerequisite.choice_label }}</label>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if form.prerequisites.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.prerequisites.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cover Image and Publication -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Cover Image and Publication" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="id_cover_image" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Cover Image" %}</label>
+                        {% if program.cover_image %}
+                            <img src="{{ program.cover_image.url }}" alt="Current cover image" class="mb-2 max-w-xs">
+                            <p class="text-sm text-gray-600 mb-2">{% trans "Current image. Upload a new one to replace it." %}</p>
+                        {% endif %}
+                        <input type="file" name="cover_image" id="id_cover_image" class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-indigo-50 file:text-indigo-700
+                            hover:file:bg-indigo-100" accept="image/*">
+                        {% if form.cover_image.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.cover_image.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" name="is_published" id="id_is_published" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" {% if form.is_published.value %}checked{% endif %}>
+                        <label for="id_is_published" class="ml-2 block text-sm text-gray-900">{% trans "Publish immediately" %}</label>
+                        {% if form.is_published.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.is_published.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {% trans "Update Program" %}
+                </button>
+                <a href="{% url 'administrator_program_detail' program.id %}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#id_start_date", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+
+        flatpickr("#id_end_date", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    });
+</script>
+{% endblock %}
