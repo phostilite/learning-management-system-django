@@ -152,6 +152,19 @@
                         <div class="flex items-center justify-between mb-2">
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-900">{{ request.user.get_full_name }}</h3>
+                                <span class="text-xs font-medium text-blue-600">
+                                    {% if request.user.administrator %}
+                                        Administrator
+                                    {% elif request.user.learner %}
+                                        Learner
+                                    {% elif request.user.facilitator %}
+                                        Facilitator
+                                    {% elif request.user.supervisor %}
+                                        Supervisor
+                                    {% else %}
+                                        User
+                                    {% endif %}
+                                </span>
                                 <p class="text-sm text-gray-600">{{ request.user.email }}</p>
                             </div>
                             {% if user.picture %}
