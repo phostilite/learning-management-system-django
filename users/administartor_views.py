@@ -1,55 +1,47 @@
 import logging
-from django.views import View
-import requests
 import json
+from datetime import timedelta
 
+import requests
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
-from django.db import transaction
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from formtools.wizard.views import SessionWizardView
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, DetailView, ListView
-from django.http import Http404
-from django.db.models import Count, Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.paginator import Paginator
-from courses.models import Course, CourseCategory
-from django.db.models.functions import TruncMonth
-from certificates.models import Certificate
-from django.utils import timezone
-from datetime import timedelta
-from django.http import HttpResponse, JsonResponse
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAdminUser
-from rest_framework.permissions import BasePermission
-from django.db import transaction
-from django.views.decorators.http import require_http_methods
-
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
+from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator
+from django.db import transaction
+from django.db.models import Count, Q
+from django.db.models.functions import TruncMonth
+from django.http import Http404, HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.utils import timezone
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.http import require_http_methods, require_POST
+from django.views.generic import TemplateView, DetailView, ListView, FormView
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from django.views.generic import FormView
+from formtools.wizard.views import SessionWizardView
+from rest_framework import status
+from rest_framework.permissions import BasePermission, IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm, LearningResourceForm, CourseDeliveryForm, EnrollmentForm
-from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
-                            Enrollment, Feedback, LearningResource, ScormResource)
+from certificates.models import Certificate
+from courses.forms import (CourseBasicInfoForm, CourseDeliveryForm, EnrollmentForm, LearningResourceForm,
+                           LearningResourceFormSet, ScormResourceForm)
+from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, Enrollment, Feedback,
+                            LearningResource, ScormResource, Tag, Program, ProgramCourse, ProgramEnrollment)
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
-from .api_client import upload_scorm_package, register_user_for_course, create_scormhub_course
+from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
+# Initialize logger
 logger = logging.getLogger(__name__)
 
+# Get the user model
 User = get_user_model()
 
 @method_decorator(login_required, name='dispatch')
@@ -955,13 +947,29 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
         return reverse_lazy('administrator_course_resource_list', kwargs={'course_id': self.kwargs['course_id']})
 
 
-from courses.models import Program
+# ============================================================
+# ======================= Program Views ======================
+# ============================================================
 
-@method_decorator(login_required, name='dispatch')
-class AdministratorProgramsListView(ListView):
+class AdministratorProgramListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Program
-    template_name = 'users/administrator/programs.html'
+    template_name = 'users/administrator/program/program_list.html'
     context_object_name = 'programs'
+    paginate_by = 10
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
 
     def get_queryset(self):
-        return Program.objects.all()
+        return Program.objects.all().order_by('-created_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_programs'] = Program.objects.count()
+        context['published_programs'] = Program.objects.filter(is_published=True).count()
+        context['unpublished_programs'] = Program.objects.filter(is_published=False).count()
+        context['top_tags'] = Tag.objects.annotate(
+            program_count=Count('program')
+        ).order_by('-program_count')[:5]
+        context['all_tags'] = Tag.objects.all()
+        return context

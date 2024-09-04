@@ -32,6 +32,9 @@ urlpatterns = [
          administartor_views.AdministratorCourseDeliveryEnrollView.as_view(), 
          name='administrator_course_delivery_enroll'),
 
+    
+    path('administrator/program/list/', administartor_views.AdministratorProgramListView.as_view(), name='administrator_program_list'),
+
 
     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),
     path('administrator/report/user_progress/', administartor_views.AdministratorUserProgressReportView.as_view(), name='administrator_user_progress_report'),
@@ -56,8 +59,6 @@ urlpatterns = [
 
 
     path('administrator/course/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
-
-    path('administrator/programs/', administartor_views.AdministratorProgramsListView.as_view(), name='administrator_program_list'),
 
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),
