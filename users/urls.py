@@ -42,10 +42,6 @@ urlpatterns = [
     path('administrator/programs/<uuid:pk>/unpublish/', administartor_views.AdministratorProgramUnpublishView.as_view(), name='administrator_program_unpublish'),
 
 
-
-
-
-
     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),
     path('administrator/report/user_progress/', administartor_views.AdministratorUserProgressReportView.as_view(), name='administrator_user_progress_report'),
     path('administrator/report/assessment_results/', administartor_views.AdministratorAssessmentResultsReportView.as_view(), name='administrator_assessment_results_report'),
