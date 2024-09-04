@@ -54,7 +54,7 @@ class LearnerMyCoursesView(ListView):
 @method_decorator(login_required, name='dispatch')
 class LearnerCourseDetailView(DetailView):
     model = CourseDelivery
-    template_name = 'users/learner/course_detail.html'
+    template_name = 'users/learner/administrator_course_detail.html'
     context_object_name = 'course'
 
     def get_object(self):
@@ -268,12 +268,12 @@ class LearnerProgramCatalogView(ListView):
         # For now, we'll just return a success message
         return JsonResponse({'status': 'success', 'message': 'Enrollment functionality will be implemented here.'})
 
-    def get_course_details(self, request, course_id):
+    def get_administrator_course_details(self, request, course_id):
         course = get_object_or_404(Course, id=course_id)
-        html = render_to_string('users/learner/course_details_modal.html', {'course': course})
+        html = render_to_string('users/learner/administrator_course_details_modal.html', {'course': course})
         return JsonResponse({'html': html})
     
-def course_details(request, course_id):
+def administrator_course_details(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     resources = course.resources.all()  # Changed from learning_resources to resources
     

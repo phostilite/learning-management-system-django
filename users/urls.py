@@ -14,12 +14,12 @@ urlpatterns = [
     path('administrator/calendar/', administartor_views.AdministratorCalendarView.as_view(), name='administrator_calendar'),
     path('administrator/leaderboard/', administartor_views.AdministratorLeaderboardView.as_view(), name='administrator_leaderboard'),
     
-    path('administrator/course/create/', administartor_views.create_course, name='create_course'),
-    path('administrator/course/list/', administartor_views.CourseListView.as_view(), name='course_list'),
-    path('administrator/course/<uuid:pk>/', administartor_views.CourseDetailView.as_view(), name='course_detail'),
+    path('administrator/course/create/', administartor_views.administrator_create_course, name='administrator_create_course'),
+    path('administrator/course/list/', administartor_views.CourseListView.as_view(), name='administrator_course_list'),
+    path('administrator/course/<uuid:pk>/', administartor_views.CourseDetailView.as_view(), name='administrator_course_detail'),
     path('administrator/course/categories/', administartor_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
     path('administrator/course/learning_paths/', administartor_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
-    path('administrator/course/<uuid:course_id>/add-resource/', administartor_views.add_learning_resource, name='add_learning_resource'),
+    path('administrator/course/<uuid:course_id>/add-resource/', administartor_views.administrator_add_learning_resource, name='administrator_add_learning_resource'),
 
 
     path('administrator/course/<uuid:course_id>/resources/', administartor_views.AdministratorLearningResourcesListView.as_view(), name='administrator_course_resource_list'),
@@ -62,7 +62,7 @@ urlpatterns = [
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),
     path('learner/my-courses/', learner_views.LearnerMyCoursesView.as_view(), name='learner_my_courses'),
-    path('learner/course/detail/<uuid:course_id>/', learner_views.LearnerCourseDetailView.as_view(), name='learner_course_detail'),
+    path('learner/course/detail/<uuid:course_id>/', learner_views.LearnerCourseDetailView.as_view(), name='learner_administrator_course_detail'),
     path('learner/calendar/', learner_views.LearnerCalendarView.as_view(), name='learner_calendar'),
     path('learner/messages/', learner_views.LearnerMessageListView.as_view(), name='learner_message_list'),
     path('learner/assignments/', learner_views.LearnerAssigmentListView.as_view(), name='learner_assignment_list'),
@@ -80,7 +80,7 @@ urlpatterns = [
     path('learner/course/library/', learner_views.LearnerCourseLibraryView.as_view(), name='learner_course_library'),
 
     path('learner/programs/', learner_views.LearnerProgramCatalogView.as_view(), name='learner_programs'),
-    path('learner/courses/<uuid:course_id>/details/', learner_views.course_details, name='course_details_api'),
+    path('learner/courses/<uuid:course_id>/details/', learner_views.administrator_course_details, name='administrator_course_details_api'),
 
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),

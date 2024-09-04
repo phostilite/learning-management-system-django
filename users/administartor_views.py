@@ -517,12 +517,12 @@ class CourseCreationWizard(SessionWizardView):
 
             logger.info("Course creation process completed successfully")
             messages.success(self.request, 'Course created successfully!')
-            return redirect('course_detail', pk=basic_info.pk)
+            return redirect('administrator_course_detail', pk=basic_info.pk)
 
         except Exception as e:
             logger.exception("Error during course creation:")
             messages.error(self.request, f"An error occurred while creating the course: {str(e)}")
-            return redirect('course_list')
+            return redirect('administrator_course_list')
         
     def create_scormhub_course(self, title, description):
         """
@@ -548,8 +548,8 @@ class CourseCreationWizard(SessionWizardView):
             logger.error(f"Failed to create course on SCORMHub: {str(e)}")
             raise Exception("Failed to create course on SCORMHub API")
 
-def create_course(request):
-    logger.info("create_course view called")
+def administrator_create_course(request):
+    logger.info("administrator_create_course view called")
     return CourseCreationWizard.as_view()(request)
 
 class CourseListView(ListView):
@@ -610,7 +610,7 @@ class AdministratorCourseDeliveryListView(ListView):
         return context
     
 @require_POST
-def add_learning_resource(request, course_id):
+def administrator_add_learning_resource(request, course_id):
     course = get_object_or_404(Course, id=course_id, created_by=request.user)
     form = LearningResourceForm(request.POST, request.FILES)
     if form.is_valid():
@@ -632,10 +632,10 @@ def add_learning_resource(request, course_id):
                         )
                     except Exception as e:
                         messages.error(request, f"Error saving SCORM package details: {str(e)}")
-                        return render(request, 'add_learning_resource.html', {'form': form})
+                        return render(request, 'administrator_add_learning_resource.html', {'form': form})
                 else:
                     messages.error(request, f"Failed to upload SCORM package: {upload_result.get('error', 'Unknown error')}")
-                    return render(request, 'add_learning_resource.html', {'form': form})
+                    return render(request, 'administrator_add_learning_resource.html', {'form': form})
             except Exception as e:
                 messages.error(request, f"Error processing SCORM package: {str(e)}")
         resource.save()
