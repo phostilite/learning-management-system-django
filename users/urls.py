@@ -13,6 +13,7 @@ urlpatterns = [
     path('administrator/dashboard/', administartor_views.AdministratorDashboardView.as_view(), name='administrator_dashboard'),   
     path('administrator/calendar/', administartor_views.AdministratorCalendarView.as_view(), name='administrator_calendar'),
     path('administrator/leaderboard/', administartor_views.AdministratorLeaderboardView.as_view(), name='administrator_leaderboard'),
+    
     path('administrator/course/create/', administartor_views.create_course, name='create_course'),
     path('administrator/course/list/', administartor_views.CourseListView.as_view(), name='course_list'),
     path('administrator/course/<uuid:pk>/', administartor_views.CourseDetailView.as_view(), name='course_detail'),
