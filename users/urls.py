@@ -92,9 +92,13 @@ urlpatterns = [
     path('learner/programs/', learner_views.LearnerProgramCatalogView.as_view(), name='learner_programs'),
     path('learner/courses/<uuid:course_id>/details/', learner_views.administrator_course_details, name='administrator_course_details_api'),
 
+    path('learner/notification/', learner_views.LearnerNotificationListView.as_view(), name='learner_notification_list'),
+
     # Facilitator views
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
+    path('facilitator/notification/', facilitator_views.FacilitatorNotificationListView.as_view(), name='facilitator_notification_list'),
 
     # Supervisor views
     path('supervisor/dashboard/', supervisor_views.SupervisorDashboardView.as_view(), name='supervisor_dashboard'),
+    path('supervisor/notification/', supervisor_views.SupervisorNotificationListView.as_view(), name='supervisor_notification_list'),
 ]

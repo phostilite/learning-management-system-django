@@ -1,119 +1,4 @@
-{% load static %}
-<nav class="bg-white border-b border-gray-200 fixed z-30 w-full top-0 left-0 shadow-md">
-    <div class="px-3 py-3 lg:px-5 lg:pl-3">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center justify-start">
-                <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" class="mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
-                    <span class="self-center whitespace-nowrap text-primary">
-                        <img src="{% static 'img/timesprologo.jpg' %}" style="width: 100px; height: auto;" alt="TimesproLogo">
-                    </span>
-                </a>
-            </div>
-            
-            <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
-                <div class="max-w-lg w-full lg:max-w-xs">
-                    <label for="search" class="sr-only">AI Search</label>
-                    <div class="relative">
-                        <input id="search" name="search" class="block w-full py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="🤖 Ask AI anything..." type="search">
-                        <button id="voice-search" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <button id="darkModeToggle" class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                    </svg>
-                </button>
-                
-                <div class="ml-3 relative">
-                    <div>
-                        <button type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="sr-only">View notifications</span>
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="ml-3 relative">
-                    <div>
-                        <button type="button" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="language-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="sr-only">Open language menu</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="ml-3 relative">
-                    <div>
-                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-    });
-
-    const voiceSearchButton = document.getElementById('voice-search');
-    voiceSearchButton.addEventListener('click', () => {
-        // Implement voice search functionality here
-        alert('Voice search activated!');
-    });
-
-    const languageButton = document.getElementById('language-menu-button');
-    languageButton.addEventListener('click', () => {
-        // Implement language switch functionality here
-        alert('Language menu opened!');
-    });
-
-    const userMenuButton = document.getElementById('user-menu-button');
-    userMenuButton.addEventListener('click', () => {
-        // Implement user menu functionality here
-        alert('User menu opened!');
-    });
-
-    const notificationButton = document.getElementById('notification-menu-button');
-    notificationButton.addEventListener('click', () => {
-        // Implement notification menu functionality here
-        alert('Notification menu opened!');
-    });
-
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') {
-            // Implement AI search functionality here
-            alert(`Performing AI search for: ${searchInput.value}`);
-        }
-    });
-});
-</script>
-
+{% load i18n %}
 <style>
 .dark-mode {
     background-color: #1a202c;
@@ -146,4 +31,242 @@ document.addEventListener('DOMContentLoaded', (event) => {
 .dark-mode #search::placeholder {
     color: #a0aec0;
 }
+
+.language-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.language-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.language-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.language-dropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.language-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 </style>
+
+<nav class="bg-white border-b border-gray-200 fixed z-30 w-full top-0 left-0 shadow-md">
+<div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start">
+            <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" class="mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <a href="{% url 'administrator_dashboard' %}" class="text-xl font-bold flex items-center lg:ml-2.5">
+                <span class="self-center whitespace-nowrap text-primary">
+                    {% trans "LMS" %}
+                </span>
+            </a>
+        </div>
+        
+        <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+            <div class="max-w-lg w-full lg:max-w-xs">
+                <label for="navbar-search" class="sr-only">{% trans "AI Search" %}</label>
+                <div class="relative">
+                    <input id="navbar-search" name="navbar-search" class="block w-full py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="{% trans '🤖 Ask AI anything...' %}" type="search">
+                    <button id="voice-search" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <button id="darkModeToggle" class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+            </button>
+            
+            <div class="ml-3 relative">
+                <div>
+                    <button data-popover-target="notifications-popover" data-popover-placement="bottom" type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <span class="sr-only">{% trans "View notifications" %}</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+
+                    <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-80 text-sm text-gray-800 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
+                        <div class="p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+                                <a href="#" class="text-sm text-blue-600 hover:underline">Mark all as read</a>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="p-2 bg-gray-50 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-900">New course available: Introduction to Python</p>
+                                    <p class="text-xs text-gray-600">2 hours ago</p>
+                                </li>
+                                <li class="p-2 bg-gray-50 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-900">Your assignment "Data Structures" is due tomorrow</p>
+                                    <p class="text-xs text-gray-600">1 day ago</p>
+                                </li>
+                                <li class="p-2 bg-gray-50 rounded-lg">
+                                    <p class="text-sm font-medium text-gray-900">New comment on your forum post</p>
+                                    <p class="text-xs text-gray-600">3 days ago</p>
+                                </li>
+                            </ul>
+                            <div class="mt-4">
+                                <a href="{% url 'facilitator_notification_list' %}" class="w-full inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    View All Notifications
+                                    <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div data-popper-arrow></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ml-3 relative">
+                <div>
+                    <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-popover-target="user-popover" data-popover-placement="bottom">
+                        <span class="sr-only">{% trans "Open user menu" %}</span>
+                        {% if user.picture %}
+                            <img class="w-8 h-8 rounded-full" src="{{ user.picture.url }}" alt="{% trans 'user photo' %}">
+                        {% else %}
+                            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="{% trans 'user photo' %}">
+                        {% endif %}
+                    </button>
+                </div>
+            
+                <div data-popover id="user-popover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-800 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">{{ request.user.get_full_name }}</h3>
+                                <p class="text-sm text-gray-600">{{ request.user.email }}</p>
+                            </div>
+                            {% if user.picture %}
+                                <img class="w-12 h-12 rounded-full" src="{{ user.picture.url }}" alt="{% trans 'user photo' %}">
+                            {% else %}
+                                <img class="w-12 h-12 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="{% trans 'user photo' %}">
+                            {% endif %}
+                        </div>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="{% url 'facilitator_dashboard' %}" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                    </svg>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-gray-100">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="{% url 'logout' %}" class="w-full inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                Sign out
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div data-popper-arrow></div>
+                </div>
+            </div>
+
+            <div class="ml-3 relative">
+                <div>
+                    <button type="button" class="flex items-center text-sm bg-gray-100 rounded-md focus:ring-4 focus:ring-gray-300 px-3 py-2" id="language-menu-button" aria-expanded="false">
+                        <span class="mr-2">{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+                <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div class="p-2">
+                        <input type="text" id="language-search" class="w-full px-3 py-2 border rounded-md" placeholder="{% trans 'Search language...' %}">
+                    </div>
+                    <form action="{% url 'set_language' %}" method="post" id="language-form">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <ul class="py-1 max-h-60 overflow-y-auto" id="language-list">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <li>
+                                    <button type="submit" name="language" value="{{ language.code }}" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {% if language.code == LANGUAGE_CODE %}bg-gray-200{% endif %}">
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </button>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+    });
+
+    const languageButton = document.getElementById('language-menu-button');
+    const languageDropdown = document.getElementById('language-dropdown');
+    const languageSearch = document.getElementById('language-search');
+    const languageList = document.getElementById('language-list');
+    const languageItems = languageList.querySelectorAll('button');
+
+    languageButton.addEventListener('click', () => {
+        languageDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageDropdown.classList.add('hidden');
+        }
+    });
+
+    languageSearch.addEventListener('input', () => {
+        const searchValue = languageSearch.value.toLowerCase();
+        languageItems.forEach(item => {
+            const languageName = item.textContent.toLowerCase();
+            if (languageName.includes(searchValue)) {
+                item.parentElement.style.display = 'block';
+            } else {
+                item.parentElement.style.display = 'none';
+            }
+        });
+    });
+
+    languageItems.forEach(item => {
+        item.addEventListener('click', () => {
+            document.getElementById('language-form').submit();
+        });
+    });
+});
+</script>

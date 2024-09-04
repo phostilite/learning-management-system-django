@@ -291,3 +291,11 @@ def administrator_course_details(request, course_id):
     }
     
     return JsonResponse(data)
+
+
+# ============================================================
+# ======================= Notifications Views ================
+# ============================================================
+
+class LearnerNotificationListView(TemplateView):
+    template_name = 'users/learner/notifications/notifications_list.html'

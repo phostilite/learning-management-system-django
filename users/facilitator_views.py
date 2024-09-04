@@ -30,3 +30,6 @@ class FacilitatorDashboardView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+class FacilitatorNotificationListView(TemplateView):
+    template_name = 'users/facilitator/notifications/notifications_list.html'
