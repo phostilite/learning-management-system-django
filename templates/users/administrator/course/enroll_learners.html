@@ -54,7 +54,6 @@
     <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4">{% trans "Select Learners to Enroll" %}</h2>
 
-
         <!-- Search functionality -->
         <div class="mb-4">
             <input type="text" id="search-input" class="w-full p-2 border border-gray-300 rounded" placeholder="{% trans 'Search learners...' %}">
@@ -73,7 +72,6 @@
             </select>
         </div>
 
-
         <form method="post" id="enrollmentForm">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -81,13 +79,37 @@
                 <legend class="sr-only">{{ form.learners.label }}</legend>
                 <div class="mb-4">
                     <p class="text-gray-700 mb-2">{% trans "Available Learners" %}: <span class="font-semibold">{{ form.learners.field.queryset.count }}</span></p>
-                    <div id="learners-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {% for learner in form.learners %}
-                            <div class="flex items-center learner-item">
-                                {{ learner.tag }}
-                                <label for="{{ learner.id_for_label }}" class="ml-2 text-gray-700">{{ learner.choice_label }}</label>
-                            </div>
-                        {% endfor %}
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-2 px-4 text-left">{% trans "Select" %}</th>
+                                    <th class="py-2 px-4 text-left">{% trans "Name" %}</th>
+                                    <th class="py-2 px-4 text-left">{% trans "Email" %}</th>
+                                    <th class="py-2 px-4 text-left">{% trans "Phone Number" %}</th>
+                                    <th class="py-2 px-4 text-left">{% trans "Gender" %}</th>
+                                    <th class="py-2 px-4 text-left">{% trans "Timezone" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for learner in form.learners %}
+                                    <tr class="learner-item hover:bg-gray-50">
+                                        <td class="py-2 px-4">
+                                            {{ learner.tag }}
+                                        </td>
+                                        <td class="py-2 px-4">
+                                            <label for="{{ learner.id_for_label }}" class="cursor-pointer">
+                                                {{ learner.choice_label }}
+                                            </label>
+                                        </td>
+                                        <td class="py-2 px-4">{{ learner.choice_label.email }}</td>
+                                        <td class="py-2 px-4">{{ learner.choice_label.phone_number|default:"N/A" }}</td>
+                                        <td class="py-2 px-4">{{ learner.choice_label.get_gender_display }}</td>
+                                        <td class="py-2 px-4">{{ learner.choice_label.timezone }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </fieldset>
