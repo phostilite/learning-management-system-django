@@ -7,7 +7,7 @@ from django import forms
 from django.db.models import Max
 from django.forms import inlineformset_factory
 
-from .models import Course, CourseDelivery, LearningResource, ScormResource, CourseCategory, Enrollment
+from .models import Course, CourseDelivery, LearningResource, ScormResource, CourseCategory, Enrollment, Program, Tag
 from users.models import Facilitator, Learner
 from users.models import User
 from django.contrib.auth.models import Group
@@ -139,3 +139,65 @@ class EnrollmentForm(forms.Form):
             if created:
                 enrollments.append(enrollment)
         return enrollments
+    
+
+# ============================================================
+# ======================= Program Forms ======================
+# ============================================================
+
+class ProgramCreateForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    prerequisites = forms.ModelMultipleChoiceField(
+        queryset=Program.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+
+    class Meta:
+        model = Program
+        fields = [
+            'title', 'description', 'short_description', 'cover_image',
+            'program_type', 'duration', 'level', 'provider', 'exam_code',
+            'exam_link', 'tags', 'prerequisites', 'is_published'
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 5}),
+            'short_description': forms.Textarea(attrs={'rows': 3}),
+            'duration': forms.TextInput(attrs={'placeholder': 'e.g., 6 weeks, 3 months'}),
+            'level': forms.TextInput(attrs={'placeholder': 'e.g., Beginner, Intermediate, Advanced'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-input'})
+
+class ProgramPublishForm(forms.Form):
+    confirm_publish = forms.BooleanField(required=True, label="Confirm publish")
+
+    def __init__(self, *args, **kwargs):
+        self.program = kwargs.pop('program', None)
+        super().__init__(*args, **kwargs)
+
+    def save(self):
+        if self.program and not self.program.is_published:
+            self.program.is_published = True
+            self.program.save()
+        return self.program
+
+class ProgramUnpublishForm(forms.Form):
+    confirm_unpublish = forms.BooleanField(required=True, label="Confirm unpublish")
+
+    def __init__(self, *args, **kwargs):
+        self.program = kwargs.pop('program', None)
+        super().__init__(*args, **kwargs)
+
+    def save(self):
+        if self.program and self.program.is_published:
+            self.program.is_published = False
+            self.program.save()
+        return self.program

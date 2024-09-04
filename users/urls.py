@@ -34,6 +34,16 @@ urlpatterns = [
 
     
     path('administrator/program/list/', administartor_views.AdministratorProgramListView.as_view(), name='administrator_program_list'),
+    path('administrator/program/<uuid:pk>/', administartor_views.AdministratorProgramDetailView.as_view(), name='administrator_program_detail'),
+    path('administrator/program/create/', administartor_views.AdministratorProgramCreateView.as_view(), name='administrator_program_create'),
+    path('administrator/program/<uuid:pk>/delete/', administartor_views.AdministratorProgramDeleteView.as_view(), name='administrator_program_delete'),
+    path('administrator/programs/<uuid:pk>/edit/', administartor_views.AdministratorProgramEditView.as_view(), name='administrator_program_edit'),
+    path('administrator/programs/<uuid:pk>/publish/', administartor_views.AdministratorProgramPublishView.as_view(), name='administrator_program_publish'),
+    path('administrator/programs/<uuid:pk>/unpublish/', administartor_views.AdministratorProgramUnpublishView.as_view(), name='administrator_program_unpublish'),
+
+
+
+
 
 
     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),

@@ -87,7 +87,7 @@
         
         <!-- Action Buttons -->
         <div class="mb-8 flex gap-4">
-            <a href="#" type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+            <a href="{% url 'administrator_program_create' %}" type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
                 <i class="fas fa-plus mr-2"></i> {% trans "Create Program" %}
             </a>
             <a href="#" type="button" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
@@ -125,12 +125,12 @@
                             <div id="programDropdown{{ program.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
                                 <ul class="py-2 text-sm text-black" aria-labelledby="programDropdownButton{{ program.id }}">
                                     <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <a href="{% url 'administrator_program_detail' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-eye mr-2"></i> {% trans "View" %}
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <a href="{% url 'administrator_program_edit' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-edit mr-2"></i> {% trans "Edit" %}
                                         </a>
                                     </li>
@@ -146,17 +146,17 @@
                                     </li>
                                     <li>
                                         {% if program.is_published %}
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <a href="{% url 'administrator_program_unpublish' pk=program.pk %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-toggle-off mr-2"></i> {% trans "Unpublish" %}
                                         </a>
                                         {% else %}
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <a href="{% url 'administrator_program_publish' pk=program.pk %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-toggle-on mr-2"></i> {% trans "Publish" %}
                                         </a>
                                         {% endif %}
                                     </li>
                                     <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 delete-program" data-program-id="{{ program.id }}">
+                                        <a href="{% url 'administrator_program_delete' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete" %}
                                         </a>
                                     </li>
@@ -207,12 +207,12 @@
                                 <div id="dropdown-{{ program.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
                                     <ul class="py-2 text-sm text-black" aria-labelledby="dropdownDefaultButton-{{ program.id }}">
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <a href="{% url 'administrator_program_detail' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-eye mr-2"></i> {% trans "View" %}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <a href="{% url 'administrator_program_edit' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-edit mr-2"></i> {% trans "Edit" %}
                                             </a>
                                         </li>
@@ -222,7 +222,23 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 delete-program" data-program-id="{{ program.id }}">
+                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                <i class="fas fa-file-export mr-2"></i> {% trans "Export Data" %}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            {% if program.is_published %}
+                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                <i class="fas fa-toggle-off mr-2"></i> {% trans "Unpublish" %}
+                                            </a>
+                                            {% else %}
+                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                <i class="fas fa-toggle-on mr-2"></i> {% trans "Publish" %}
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete" %}
                                             </a>
                                         </li>
