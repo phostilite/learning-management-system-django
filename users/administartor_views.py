@@ -1155,3 +1155,11 @@ class AdministratorProgramUnpublishView(LoginRequiredMixin, UserPassesTestMixin,
         context = super().get_context_data(**kwargs)
         context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
         return context
+    
+
+# ============================================================
+# ======================= Notifications Views ================
+# ============================================================
+
+class AdministratorNotificationListView(TemplateView):
+    template_name = 'users/administrator/notifications/notifications_list.html'

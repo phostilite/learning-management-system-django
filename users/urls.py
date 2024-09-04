@@ -66,6 +66,9 @@ urlpatterns = [
 
     path('administrator/course/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
 
+
+    path('administrator/notification/', administartor_views.AdministratorNotificationListView.as_view(), name='administrator_notification_list'),
+
     # Learner views
     path('learner/dashboard/', learner_views.LearnerDashboardView.as_view(), name='learner_dashboard'),
     path('learner/my-courses/', learner_views.LearnerMyCoursesView.as_view(), name='learner_my_courses'),
