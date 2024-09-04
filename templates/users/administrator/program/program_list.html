@@ -228,17 +228,17 @@
                                         </li>
                                         <li>
                                             {% if program.is_published %}
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <a href="{% url 'administrator_program_unpublish' pk=program.pk %}" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-toggle-off mr-2"></i> {% trans "Unpublish" %}
                                             </a>
                                             {% else %}
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <a href="{% url 'administrator_program_publish' pk=program.pk %}" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-toggle-on mr-2"></i> {% trans "Publish" %}
                                             </a>
                                             {% endif %}
                                         </li>
                                         <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <a href="{% url 'administrator_program_delete' program.id %}" class="block px-4 py-2 hover:bg-gray-100">
                                                 <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete" %}
                                             </a>
                                         </li>
