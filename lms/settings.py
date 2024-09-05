@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'leaderboard',
     'support',
     'announcements',
+    'activities',
+    'events',
 
     # Third-party apps
     'formtools',
