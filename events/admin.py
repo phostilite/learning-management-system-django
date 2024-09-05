@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from . import models
+
+admin.site.register(models.Event)
+admin.site.register(models.EventFeedback)
+admin.site.register(models.RecurringEvent)
+admin.site.register(models.EventRegistration)
+admin.site.register(models.EventResource)
+admin.site.register(models.EventGroup)
