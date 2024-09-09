@@ -30,6 +30,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.utils.translation import gettext_lazy as _
 from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
+from rest_framework import permissions
+from django.core.exceptions import PermissionDenied
+
 
 from certificates.models import Certificate
 from courses.forms import (CourseForm, EnrollmentForm, LearningResourceForm,
@@ -44,9 +48,26 @@ logger = logging.getLogger(__name__)
 
 # Get the user model
 User = get_user_model()
-class IsInAdministratorGroup(BasePermission):
+class IsInAdministratorGroup(permissions.BasePermission):
+    message = "User does not have administrator privileges."
+
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.groups.filter(name='administrator').exists()
+        if not request.user.is_authenticated:
+            logger.warning(f"Unauthenticated user attempted to access {view.__class__.__name__}")
+            return False
+
+        try:
+            is_admin = request.user.groups.filter(name='administrator').exists()
+            if not is_admin:
+                logger.warning(f"User {request.user.username} attempted to access {view.__class__.__name__} without administrator privileges")
+            return is_admin
+        except ObjectDoesNotExist:
+            logger.error(f"Error checking administrator group for user {request.user.username}")
+            return False
+
+    def has_object_permission(self, request, view, obj):
+        # If the user has general permission, we also grant object-level permission
+        return self.has_permission(request, view)
 
 @method_decorator(login_required, name='dispatch')
 class AdministratorDashboardView(TemplateView):
@@ -659,18 +680,84 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
 
-    def form_valid(self, form):
-        course = get_object_or_404(Course, pk=self.kwargs['course_id'])
-        form.instance.course = course
-        return super().form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['course'] = get_object_or_404(Course, pk=self.kwargs['course_id'])
+        context['scorm_upload_url'] = reverse_lazy('scorm_upload')
         return context
+
+    def form_valid(self, form):
+        course = get_object_or_404(Course, pk=self.kwargs['course_id'])
+        form.instance.course = course
+
+        if form.instance.resource_type != 'SCORM':
+            return super().form_valid(form)
+        
+        # For SCORM resources, we'll handle the creation in the template via AJAX
+        return JsonResponse({'success': True, 'redirect_url': self.get_success_url()})
 
     def get_success_url(self):
         return reverse_lazy('administrator_course_detail', kwargs={'pk': self.kwargs['course_id']})
+
+@require_POST
+@login_required
+def scorm_upload_view(request):
+    try:
+        action = request.POST.get('action')
+        if action == 'create_course':
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            if not all([title, description]):
+                raise ValueError("Title and description are required")
+
+            # Create SCORMHub course
+            scormhub_course_id = create_scormhub_course(title, description)
+            return JsonResponse({'success': True, 'scormhub_course_id': scormhub_course_id})
+
+        elif action == 'upload_package':
+            scormhub_course_id = request.POST.get('scormhub_course_id')
+            lms_course_id = request.POST.get('lms_course_id')
+            scorm_file = request.FILES.get('scorm_file')
+            scorm_version = request.POST.get('scorm_version')
+
+            if not all([scormhub_course_id, lms_course_id, scorm_file, scorm_version]):
+                raise ValueError("All fields are required for package upload")
+
+            # Upload SCORM package
+            api_response = upload_scorm_package(scormhub_course_id, scorm_file)
+
+            if isinstance(api_response, dict) and 'id' in api_response:
+                # Create LearningResource
+                course = get_object_or_404(Course, id=lms_course_id)
+                resource = LearningResource.objects.create(
+                    course=course,
+                    title=request.POST.get('title'),
+                    description=request.POST.get('description'),
+                    resource_type='SCORM',
+                    order=LearningResource.objects.filter(course=course).count() + 1,
+                    is_mandatory=True  # You can make this configurable if needed
+                )
+
+                # Create ScormResource
+                ScormResource.objects.create(
+                    learning_resource=resource,
+                    scorm_course_id=scormhub_course_id,
+                    scorm_package_id=api_response['id'],
+                    version=scorm_version,
+                    web_path=api_response.get('launch_path', '')
+                )
+
+                return JsonResponse({'success': True, 'message': 'SCORM resource created successfully'})
+            else:
+                error_message = api_response.get('error', 'Unexpected API response format')
+                raise Exception(f"Failed to create SCORM course: {error_message}")
+
+        else:
+            raise ValueError("Invalid action")
+
+    except Exception as e:
+        logger.exception("Error in SCORM upload process:")
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
     
 
 class AdministratorLearningResourceEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -714,6 +801,80 @@ class AdministratorLearningResourceDeleteView(LoginRequiredMixin, UserPassesTest
         messages.success(self.request, ("The learning resource was successfully deleted."))
         return response
 
+class AdministratorLearningResourceDetailView(LoginRequiredMixin, DetailView):
+    model = LearningResource
+    context_object_name = 'resource'
+    permission_classes = [IsInAdministratorGroup]
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            if not all(permission().has_permission(request, self) for permission in self.permission_classes):
+                logger.warning(f"User {request.user.username} attempted to access AdministratorLearningResourceDetailView without proper permissions")
+                raise PermissionDenied("You do not have administrator privileges.")
+            return super().dispatch(request, *args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error in AdministratorLearningResourceDetailView dispatch: {str(e)}")
+            raise
+
+    def get_object(self, queryset=None):
+        try:
+            course_id = self.kwargs.get('course_id')
+            resource_id = self.kwargs.get('pk')
+            
+            obj = get_object_or_404(LearningResource, pk=resource_id, course__id=course_id)
+            
+            if not all(permission().has_object_permission(self.request, self, obj) for permission in self.permission_classes):
+                logger.warning(f"User {self.request.user.username} attempted to access LearningResource {resource_id} without proper permissions")
+                raise PermissionDenied("You do not have permission to view this resource.")
+            
+            return obj
+        except LearningResource.DoesNotExist:
+            logger.error(f"LearningResource with id {resource_id} not found in course {course_id}")
+            raise Http404("Learning Resource does not exist in the specified course")
+        except Course.DoesNotExist:
+            logger.error(f"Course with id {course_id} not found")
+            raise Http404("Course does not exist")
+        except PermissionDenied as e:
+            logger.warning(f"Permission denied for user {self.request.user.username}: {str(e)}")
+            raise
+        except Exception as e:
+            logger.error(f"Unexpected error in AdministratorLearningResourceDetailView get_object: {str(e)}")
+            raise Http404("An unexpected error occurred")
+
+    def get_template_names(self):
+        resource_type = self.object.resource_type.lower()
+        return [
+            f'users/administrator/course/learning_resource/{resource_type}_detail.html',
+            'users/administrator/course/learning_resource/base_detail.html'
+        ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['course'] = self.object.course
+            context['is_administrator'] = True
+
+            # Add resource-specific context data
+            if self.object.resource_type == 'SCORM':
+                context['scorm_details'] = self.object.scorm_details
+                context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+                context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+                context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+            elif self.object.resource_type == 'QUIZ':
+                context['quiz_details'] = self.object.quiz
+            # Add more resource-specific context as needed
+
+            # Add general resource metadata
+            context['resource_metadata'] = {
+                'created_at': self.object.created_at,
+                'updated_at': self.object.updated_at,
+                'is_mandatory': self.object.is_mandatory,
+                'order': self.object.order,
+            }
+
+        except Exception as e:
+            logger.error(f"Error in AdministratorLearningResourceDetailView get_context_data: {str(e)}")
+        return context
 
 # ============================================================
 # ======================= Course Delivery Views ==============

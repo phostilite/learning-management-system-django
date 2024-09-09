@@ -129,7 +129,7 @@
                                     <div class="text-sm text-gray-500">{{ resource.order }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="#" class="text-blue-600 hover:underline">View</a>
+                                    <a href="{% url 'administrator_learning_resource_detail' course.id resource.id %}" class="text-blue-600 hover:underline">View</a>
                                 </td>
                             </tr>
                             {% endfor %}

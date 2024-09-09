@@ -78,7 +78,6 @@ class LearningResource(models.Model):
         ('SCORM', 'SCORM Package'),
         ('VIDEO', 'Video'),
         ('DOCUMENT', 'Document'),
-        ('PRESENTATION', 'Presentation'),
         ('LINK', 'External Link'),
         ('QUIZ', 'Quiz'),
     )

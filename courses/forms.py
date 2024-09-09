@@ -84,9 +84,12 @@ class CourseUnpublishForm(forms.Form):
 # ============================================================
 
 class LearningResourceForm(forms.ModelForm):
+    scorm_file = forms.FileField(required=False)
+    scorm_version = forms.CharField(max_length=50, required=False)
+
     class Meta:
         model = LearningResource
-        fields = ['title', 'description', 'resource_type', 'content', 'external_url', 'order', 'is_mandatory']
+        fields = ['title', 'description', 'resource_type', 'external_url', 'order', 'is_mandatory']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
             'order': forms.NumberInput(attrs={'min': 0}),
@@ -94,19 +97,22 @@ class LearningResourceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['content'].required = False
         self.fields['external_url'].required = False
 
     def clean(self):
         cleaned_data = super().clean()
         resource_type = cleaned_data.get('resource_type')
-        content = cleaned_data.get('content')
         external_url = cleaned_data.get('external_url')
+        scorm_file = cleaned_data.get('scorm_file')
+        scorm_version = cleaned_data.get('scorm_version')
 
-        if resource_type in ['DOCUMENT', 'PRESENTATION', 'VIDEO', 'AUDIO', 'IMAGE'] and not content:
-            raise forms.ValidationError("Content file is required for this resource type.")
-        elif resource_type == 'LINK' and not external_url:
+        if resource_type == 'LINK' and not external_url:
             raise forms.ValidationError("External URL is required for Link resource type.")
+        elif resource_type == 'SCORM':
+            if not scorm_file:
+                raise forms.ValidationError("SCORM file is required for SCORM resource type.")
+            if not scorm_version:
+                raise forms.ValidationError("SCORM version is required for SCORM resource type.")
 
         return cleaned_data
     

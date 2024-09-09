@@ -34,6 +34,8 @@ urlpatterns = [
     path('administrator/course/<uuid:course_id>/learning-resources/<uuid:resource_id>/delete/', 
          administartor_views.AdministratorLearningResourceDeleteView.as_view(), 
          name='administrator_learning_resource_delete'),
+    path('administrator/course/<uuid:course_id>/learning-resource/<uuid:pk>/', administartor_views.AdministratorLearningResourceDetailView.as_view(), name='administrator_learning_resource_detail'),
+    path('administrator/scorm-upload/', administartor_views.scorm_upload_view, name='administrator_scorm_upload'),
 
     path('administrator/deliveries/', administartor_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
     path('administrator/delivery/create/', administartor_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),

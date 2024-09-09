@@ -13,6 +13,7 @@
             <p class="text-lg text-white text-center">{% trans "Course" %}: {{ course.title }}</p>
         </header>
 
+        <!-- Breadcrumb -->
         <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -42,9 +43,9 @@
             </ol>
         </nav>
 
-        <form method="post" enctype="multipart/form-data" class="space-y-6">
+        <!-- Form -->
+        <form id="learningResourceForm" method="post" enctype="multipart/form-data" class="space-y-6">
             {% csrf_token %}
-
             <!-- Basic Information -->
             <div class="bg-white shadow-md rounded-lg p-6 mb-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Resource Information" %}</h2>
@@ -100,6 +101,21 @@
                             <p class="mt-2 text-sm text-red-600">{{ form.external_url.errors.0 }}</p>
                         {% endif %}
                     </div>
+                    <div id="scorm-fields" style="display: none;">
+                        <div>
+                            <label for="id_scorm_file" class="block text-sm font-medium text-gray-700 mb-1">{% trans "SCORM File" %}</label>
+                            <input type="file" name="scorm_file" id="id_scorm_file" accept=".zip" class="mt-1 block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-md file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-indigo-50 file:text-indigo-700
+                                hover:file:bg-indigo-100">
+                        </div>
+                        <div>
+                            <label for="id_scorm_version" class="block text-sm font-medium text-gray-700 mb-1">{% trans "SCORM Version" %}</label>
+                            <input type="text" name="scorm_version" id="id_scorm_version" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -142,23 +158,148 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('learningResourceForm');
         const resourceTypeSelect = document.getElementById('{{ form.resource_type.id_for_label }}');
         const contentFileSection = document.getElementById('content-file-section');
         const externalUrlSection = document.getElementById('external-url-section');
-
+        const scormFields = document.getElementById('scorm-fields');
+        const scormFileInput = document.getElementById('id_scorm_file');
+        const maxFileSize = 100 * 1024 * 1024; // 100 MB
+    
         function toggleFields() {
             const selectedType = resourceTypeSelect.value;
             if (selectedType === 'LINK') {
                 contentFileSection.style.display = 'none';
                 externalUrlSection.style.display = 'block';
+                scormFields.style.display = 'none';
+            } else if (selectedType === 'SCORM') {
+                contentFileSection.style.display = 'none';
+                externalUrlSection.style.display = 'none';
+                scormFields.style.display = 'block';
             } else {
                 contentFileSection.style.display = 'block';
                 externalUrlSection.style.display = 'none';
+                scormFields.style.display = 'none';
             }
         }
-
+    
         resourceTypeSelect.addEventListener('change', toggleFields);
         toggleFields(); // Call once to set initial state
+    
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (resourceTypeSelect.value === 'SCORM') {
+                handleScormUpload();
+            } else {
+                form.submit();
+            }
+        });
+    
+        function handleScormUpload() {
+            const formData = new FormData(form);
+            formData.append('action', 'create_course');
+            
+            // Show loading indicator
+            document.body.classList.add('cursor-wait');
+    
+            fetch('{% url "administrator_scorm_upload" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    uploadScormPackage(data.scormhub_course_id);
+                } else {
+                    throw new Error(data.error || 'Failed to create SCORMHub course');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error.message);
+                document.body.classList.remove('cursor-wait');
+            });
+        }
+    
+        function uploadScormPackage(scormhub_course_id) {
+            const formData = new FormData(form);
+            formData.append('action', 'upload_package');
+            formData.append('scormhub_course_id', scormhub_course_id);
+            formData.append('lms_course_id', '{{ course.id }}');
+    
+            fetch('{% url "administrator_scorm_upload" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '{% url "administrator_course_detail" course.id %}';
+                } else {
+                    throw new Error(data.error || 'Failed to upload SCORM package');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error.message);
+            })
+            .finally(() => {
+                // Hide loading indicator
+                document.body.classList.remove('cursor-wait');
+            });
+        }
+    
+        // File size validation for SCORM uploads
+        scormFileInput.addEventListener('change', function() {
+            if (this.files[0] && this.files[0].size > maxFileSize) {
+                alert('File is too large. Maximum size is 100 MB.');
+                this.value = ''; // Clear the file input
+            }
+        });
+    
+        // Dynamic form validation
+        form.addEventListener('input', function(e) {
+            const target = e.target;
+            let errorSpan = target.nextElementSibling;
+            if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+                errorSpan = document.createElement('span');
+                errorSpan.className = 'error-message text-red-500 text-sm mt-1';
+                target.parentNode.insertBefore(errorSpan, target.nextSibling);
+            }
+            
+            if (target.id === '{{ form.title.id_for_label }}') {
+                validateField(target, errorSpan, target.value.length >= 3, 'Title must be at least 3 characters long.');
+            } else if (target.id === '{{ form.description.id_for_label }}') {
+                validateField(target, errorSpan, target.value.length >= 10, 'Description must be at least 10 characters long.');
+            } else if (target.id === '{{ form.external_url.id_for_label }}') {
+                validateField(target, errorSpan, resourceTypeSelect.value !== 'LINK' || isValidURL(target.value), 'Please enter a valid URL.');
+            }
+        });
+    
+        function validateField(element, errorSpan, condition, errorMessage) {
+            if (!condition) {
+                element.classList.add('border-red-500');
+                errorSpan.textContent = errorMessage;
+            } else {
+                element.classList.remove('border-red-500');
+                errorSpan.textContent = '';
+            }
+        }
+    
+        function isValidURL(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;  
+            }
+        }
     });
-</script>
+    </script>
 {% endblock %}
