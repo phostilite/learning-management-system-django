@@ -336,8 +336,8 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Duration"
 msgstr "Продолжительность"
 
@@ -626,14 +626,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Order"
 msgstr "Заказ"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Удалить"
@@ -702,18 +702,18 @@ msgid "Change"
 msgstr "Изменять"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "Неизвестный"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Yes"
 msgstr "Да"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No"
 msgstr "Нет"
 
@@ -1490,16 +1490,16 @@ msgstr "Создание общесистемных объявлений и уп
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Dashboard"
 msgstr "Панель управления"
@@ -1530,7 +1530,7 @@ msgid "Create New Announcement"
 msgstr "Создать новое объявление"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "All Categories"
@@ -1554,14 +1554,14 @@ msgstr "Обслуживание"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Все статусы"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Active"
 msgstr "Активный"
 
@@ -1571,7 +1571,7 @@ msgstr "Истекший"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Draft"
 msgstr "Черновик"
 
@@ -1581,8 +1581,8 @@ msgstr "Экспортный отчет"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Title"
 msgstr "Заголовок"
 
@@ -1596,8 +1596,8 @@ msgstr "Категория"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
@@ -1618,8 +1618,8 @@ msgstr "Обручение"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -1651,7 +1651,7 @@ msgstr "Удалить объявление"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Предыдущий"
@@ -1659,7 +1659,7 @@ msgstr "Предыдущий"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/calendar.html
 msgid "Next"
@@ -1824,7 +1824,7 @@ msgid "All Time"
 msgstr "Все время"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Создать отчет"
@@ -1838,7 +1838,7 @@ msgid "Certificate ID"
 msgstr "Идентификатор сертификата"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/learner/leaderboard.html
@@ -1893,16 +1893,16 @@ msgstr "Настройте новую доставку для"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/list.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Breadcrumb"
 msgstr "хлебные крошки"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/grades.html templates/users/learner/profile.html
 #: templates/users/learner/progress.html
@@ -1930,7 +1930,7 @@ msgid "Enter unique delivery code"
 msgstr "Введите код доставки"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery Code"
 msgid "Delivery Type"
@@ -1949,7 +1949,7 @@ msgid "Instructor-Led"
 msgstr "Инструктор под руководством"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Type"
@@ -1968,24 +1968,24 @@ msgid "By Invitation"
 msgstr "Интеграции"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "Фасилитаторы"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Start Date"
 msgstr "Дата начала"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "End Date"
 msgstr "Дата окончания"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Participants"
 msgid "Max Participants"
@@ -1996,7 +1996,7 @@ msgid "Enter maximum participants"
 msgstr "Введите максимальное количество участников"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2009,13 +2009,13 @@ msgid "Completed"
 msgstr "Завершенный"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/messages.html
 msgid "Archived"
 msgstr "В архиве"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Is Mandatory"
 msgstr "Является обязательным"
 
@@ -2043,17 +2043,17 @@ msgid "Deliveries"
 msgstr "Поставки"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Showing"
 msgstr "Показаны"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "to"
 msgstr "к"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "of"
 msgstr "из"
 
@@ -2066,32 +2066,32 @@ msgid "Delete Delivery"
 msgstr "Удалить доставку"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "Отмена"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Deliveries - LMS Admin"
 msgid "Course Delivery Details - LMS Admin"
 msgstr "Проведение курсов — администратор LMS"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Information"
 msgid "Delivery Information"
 msgstr "Информация о курсе"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Stats"
 msgstr "Массовые действия"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/custom_reports.html
 #, fuzzy
@@ -2099,7 +2099,7 @@ msgstr "Массовые действия"
 msgid "Total Enrollments"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2108,63 +2108,63 @@ msgstr "Зачисления"
 msgid "Completion Rate"
 msgstr "Скорость завершения"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Average Progress"
 msgstr "Прогресс"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Progress"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No facilitators assigned yet."
 msgstr "Фасилитаторы пока не назначены."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/resource.html
 msgid "Learning Resources"
 msgstr "Учебные ресурсы"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Type"
 msgstr "Тип"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "No video file available."
 msgid "No learning resources available."
 msgstr "Нет доступных видеофайлов."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/sidebar.html
 msgid "Enrollments"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Date"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/learner/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "Прогресс"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
@@ -2172,7 +2172,7 @@ msgstr "Прогресс"
 msgid "Enrolled"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -2182,12 +2182,12 @@ msgstr "Зачисления"
 msgid "In Progress"
 msgstr "В ходе выполнения"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Withdrawn"
 msgstr "снято"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/administrator/reports/learner_feedback.html
@@ -2196,196 +2196,196 @@ msgstr "снято"
 msgid "View Details"
 msgstr "Посмотреть детали"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Edit Enrollment"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Unenroll Learner"
 msgstr "Записался на курс"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "No enrollments found."
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "entries"
 msgstr "записи"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Edit Delivery"
 msgstr "Идентификатор доставки"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enroll_learners.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Enroll Learners"
 msgstr "Записался на курс"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Generate Report"
 msgid "Generate Reports"
 msgstr "Создать отчет"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Number of Courses"
 msgid "Number of Learners"
 msgstr "Количество курсов"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Progress Range"
 msgstr "Прогресс"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Learning Progress"
 msgid "Enrollment Progress Distribution"
 msgstr "Прогресс обучения"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Course ID:"
 msgstr "Курс"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No Cover Image"
 msgstr "Нет обложки"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Edit Course"
 msgstr "Курс"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublish"
 msgstr "Отменить публикацию"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Previous"
 msgid "Preview"
 msgstr "Предыдущий"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Advanced Arabic"
 msgid "Analytics"
 msgstr "Продвинутый арабский"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Actions"
 msgstr "Массовые действия"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Students"
 msgid "Add New Student"
 msgstr "Студенты"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Active Sessions"
 msgid "Schedule Live Session"
 msgstr "Активные сессии"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Edit Announcement"
 msgid "Send Announcement"
 msgstr "Редактировать объявление"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Overview"
 msgstr "Обзор курса"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Category"
 msgid "Category:"
 msgstr "Категория"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Delivery"
 msgid "Created by:"
 msgstr "Создать доставку"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
 msgstr "Последнее обновление"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Total Enrollments:"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments:"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries:"
 msgstr "Экспортные поставки"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/user_engagement.html
 #, fuzzy
 #| msgid "Course Cover"
 msgid "Course Content"
 msgstr "Обложка курса"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
 msgstr "Экспортные поставки"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Add New Resource"
 msgstr "Добавить новый ресурс"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Last Updated"
 msgstr "Последнее обновление"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Recent Enrollments"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/reports/user_engagement.html
@@ -2393,205 +2393,205 @@ msgstr "Зачисления"
 msgid "User"
 msgstr "Пользователь"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Delivery"
 msgstr "Идентификатор доставки"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "Зачисления"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Type"
 msgstr "Использование ресурсов"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Select date"
 msgid "Select a type"
 msgstr "Выберите дату"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Video"
 msgstr "Видео"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Document"
 msgstr "Документ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Presentation"
 msgstr "Презентация"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Link"
 msgstr "Связь"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Quiz"
 msgstr "Контрольный опрос"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "SCORM"
 msgstr "СКОРМ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Duration"
 msgid "Description"
 msgstr "Продолжительность"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Contact Sales"
 msgid "Content File"
 msgstr "Свяжитесь с отделом продаж"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enter a valid URL."
 msgid "External URL"
 msgstr "Введите действительный URL-адрес."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Add Resource"
 msgstr "Использование ресурсов"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "Путь обучения"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course Overview"
 msgid "Course Resource Preview"
 msgstr "Обзор курса"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Metadata"
 msgstr "Использование ресурсов"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Course"
 msgid "Created"
 msgstr "Создать курс"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "File path"
 msgid "File Type"
 msgstr "Путь к файлу"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Testimonials"
 msgid "Questions"
 msgstr "Отзывы"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "Video Resource"
 msgstr "Учебные ресурсы"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No video file available."
 msgstr "Нет доступных видеофайлов."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Preview"
 msgstr "Документ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a preview of the document."
 msgstr "Это предварительный просмотр документа."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "View full document"
 msgstr "Посмотреть полный документ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Resource"
 msgstr "Документ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No document file available."
 msgstr "Нет доступного файла документа."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Quiz Preview"
 msgstr "Предварительный просмотр викторины"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This quiz is available in the course. Click to attempt."
 msgstr "Этот тест доступен в курсе. Нажмите, чтобы попытаться."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a SCORM package. Click the button below to launch it."
 msgstr "Это пакет SCORM. Нажмите кнопку ниже, чтобы запустить его."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "SCORM Package"
 msgid "Launch SCORM Package"
 msgstr "Пакет SCORM"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Preview"
 msgstr "Презентация"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "This is a presentation."
 msgstr "Презентация"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "View presentation"
 msgstr "Презентация"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Resource"
 msgstr "Презентация"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No presentation file available."
 msgstr "Файл презентации недоступен."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "External Resource"
 msgstr "Учебные ресурсы"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid ""
 "Click the link above to access the external resource. Please note that this "
 "will open in a new tab."
@@ -2599,17 +2599,17 @@ msgstr ""
 "Нажмите ссылку выше, чтобы получить доступ к внешнему ресурсу. Обратите "
 "внимание, что это откроется в новой вкладке."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No external URL provided."
 msgstr "Внешний URL-адрес не указан."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Preview"
 msgstr "Использование ресурсов"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Preview not available for this resource type."
 msgstr "Предварительный просмотр недоступен для этого типа ресурса."
 
@@ -2681,7 +2681,7 @@ msgid "New Enrollment"
 msgstr "Зачисления"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Export Data"
 msgstr "Экспортировать данные"
 
@@ -2699,7 +2699,7 @@ msgstr "Экспортные поставки"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "View"
 msgstr "Вид"
@@ -2792,7 +2792,7 @@ msgid "Technology"
 msgstr "Технология"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2930,7 +2930,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2962,89 +2962,89 @@ msgstr "9-12 месяцев"
 msgid "> 12 months"
 msgstr "> 12 месяцев"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses - LMS Admin"
 msgstr "Курсы – Администратор LMS"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses Management"
 msgstr "Управление курсами"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage and Organize Your Courses"
 msgstr "Управляйте и организуйте свои курсы"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
 #| msgid "All Courses"
 msgid "Total Courses"
 msgstr "Все курсы"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Published Date"
 msgid "Published Courses"
 msgstr "Дата публикации"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Unpublished"
 msgid "Unpublished Courses"
 msgstr "Неопубликовано"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Categories"
 msgid "Top Categories"
 msgstr "Категории"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Search courses..."
 msgstr "Искать курсы..."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Published"
 msgstr "Опубликовано"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublished"
 msgstr "Неопубликовано"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Course"
 msgstr "Создать курс"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Category"
 msgstr "Создать категорию"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "Course Cover"
 msgstr "Обложка курса"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage Deliveries"
 msgstr "Управление поставками"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Publish"
 msgstr "Публиковать"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Delete Course"
 msgstr "Удалить курс"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "You need to be logged in to perform this action."
 msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid ""
 "You do not have permission to delete this course. Please contact an "
 "administrator."
@@ -3052,7 +3052,7 @@ msgstr ""
 "У вас нет разрешения на удаление этого курса. Пожалуйста, свяжитесь с "
 "администратором."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "An error occurred:"
 msgstr "Произошла ошибка:"
 
@@ -5786,77 +5786,77 @@ msgstr "Профессиональный"
 msgid "Certificate Details"
 msgstr "Идентификатор сертификата"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
 msgid "Course Details"
 msgstr "Настройки курса"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Мои курсы"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "30 minutes"
 msgstr "30 минут"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "5 modules"
 msgstr "5 модулей"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "All Employees"
 msgstr "Все сотрудники"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "Общий прогресс"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start"
 msgstr "Начинать"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Information"
 msgstr "Информация о курсе"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Department:"
 msgstr "Отделение:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start Date:"
 msgstr "Дата начала:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Due Date:"
 msgstr "Срок оплаты:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Language:"
 msgstr "Язык:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Certificate:"
 msgstr "Сертификат:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Important Notes"
 msgstr "Важные примечания"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "This course is mandatory for all employees."
 msgstr "Этот курс является обязательным для всех сотрудников."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, python-format
 msgid "You must score at least 80%% on the final assessment to pass."
 msgstr "Чтобы пройти, вы должны набрать не менее 80%% по итоговому тесту."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Contact HR if you have any questions about this policy."
 msgstr ""
 "Если у вас есть какие-либо вопросы по поводу этой политики, обратитесь в "

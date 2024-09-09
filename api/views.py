@@ -34,10 +34,10 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken 
 
-from courses.models import Course, LearningResource, ScormResource, Enrollment, ScormRegistration, CourseDelivery
+from courses.models import Course, LearningResource, ScormResource, Enrollment, ScormRegistration, Delivery
 from .utils import course_id_is_valid
 from users.models import Learner
-from courses.models import CourseDelivery
+from courses.models import Delivery
 
 
 from rest_framework.views import APIView
@@ -113,7 +113,7 @@ def register_for_course(request):
             return JsonResponse({'error': 'Course delivery ID is required'}, status=400)
 
         try:
-            course_delivery = CourseDelivery.objects.get(id=course_delivery_id)
+            course_delivery = Delivery.objects.get(id=course_delivery_id)
             enrollment, created = Enrollment.objects.get_or_create(
                 user=user,
                 course_delivery=course_delivery
@@ -162,7 +162,7 @@ def register_for_course(request):
                 'scorm_registration_id': scorm_registration_id,
             })
 
-        except CourseDelivery.DoesNotExist:
+        except Delivery.DoesNotExist:
             return JsonResponse({'error': 'Course delivery not found'}, status=404)
         except Exception as e:
             logger.exception("Error during registration:")
@@ -352,7 +352,7 @@ class EnrolledCoursesView(APIView):
 
     def get(self, request):
         enrollments = Enrollment.objects.filter(user=request.user)
-        course_deliveries = CourseDelivery.objects.filter(enrollment__in=enrollments)
+        course_deliveries = Delivery.objects.filter(enrollment__in=enrollments)
         serializer = CourseDeliverySerializer(course_deliveries, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     

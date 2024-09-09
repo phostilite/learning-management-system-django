@@ -1,0 +1,218 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ course.title }} - {% trans "Course Details" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+    .animate-slide-in { animation: slideIn 0.5s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <!-- Course Header -->
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{{ course.title }}</h1>
+        <p class="text-lg text-white text-center">{{ course.short_description }}</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ course.title }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Course Quick Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 animate-slide-in">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-users text-3xl text-primary mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Total Enrollments" %}</h3>
+            <p class="text-3xl font-bold">{{ total_enrollments }}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-graduation-cap text-3xl text-green-500 mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Completion Rate" %}</h3>
+            <p class="text-3xl font-bold">{{ completion_rate|floatformat:1 }}%</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+            <i class="fas fa-clock text-3xl text-blue-500 mb-2"></i>
+            <h3 class="text-xl font-semibold mb-1">{% trans "Duration" %}</h3>
+            <p class="text-3xl font-bold">{{ course.duration }}</p>
+        </div>
+    </div>
+
+    <!-- Course Details and Learning Resources -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Course Details -->
+        <div class="lg:col-span-1 animate-slide-in" style="animation-delay: 0.2s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Course Details" %}</h2>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-calendar-alt text-primary mr-2"></i> {% trans "Created" %}: {{ course.created_at|date:"F d, Y" }}</li>
+                    <li><i class="fas fa-user text-primary mr-2"></i> {% trans "Created by" %}: {{ course.created_by }}</li>
+                    <li><i class="fas fa-tag text-primary mr-2"></i> {% trans "Category" %}: {{ course.category }}</li>
+                    <li><i class="fas fa-layer-group text-primary mr-2"></i> {% trans "Difficulty" %}: {{ course.get_difficulty_level_display }}</li>
+                    <li><i class="fas fa-language text-primary mr-2"></i> {% trans "Language" %}: {{ course.language }}</li>
+                </ul>
+            </div>
+
+            {% if course.tags.all %}
+            <div class="bg-white rounded-lg shadow p-6 mt-4">
+                <h3 class="text-xl font-bold mb-2">{% trans "Tags" %}</h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for tag in course.tags.all %}
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if course.prerequisites.all %}
+            <div class="bg-white rounded-lg shadow p-6 mt-4">
+                <h3 class="text-xl font-bold mb-2">{% trans "Prerequisites" %}</h3>
+                <ul class="list-disc list-inside">
+                    {% for prereq in course.prerequisites.all %}
+                    <li>{{ prereq.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Learning Resources -->
+        <div class="lg:col-span-2 animate-slide-in" style="animation-delay: 0.4s;">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Learning Resources" %} ({{ learning_resources.count }})</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Title" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Type" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Order" %}</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Action" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for resource in learning_resources %}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ resource.title }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ resource.get_resource_type_display }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ resource.order }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="#" class="text-blue-600 hover:underline">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Enrollments -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 0.6s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Recent Enrollments" %}</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "User" %}</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Enrollment Date" %}</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Status" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for enrollment in recent_enrollments %}
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">{{ enrollment.user.get_full_name }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">{{ enrollment.enrollment_date|date:"F d, Y" }}</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    {% if enrollment.status == 'COMPLETED' %}bg-green-100 text-green-800
+                                    {% elif enrollment.status == 'IN_PROGRESS' %}bg-yellow-100 text-yellow-800
+                                    {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    {{ enrollment.get_status_display }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Description -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 0.8s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Course Description" %}</h2>
+            <div class="prose max-w-none">
+                {{ course.description|safe }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="mb-8 animate-slide-in" style="animation-delay: 1s;">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Actions" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="{% url 'administrator_course_edit' course.id %}" class="block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-center">
+                    <i class="fas fa-edit mr-2"></i> {% trans "Edit Course" %}
+                </a>
+                <a href="{% url 'administrator_course_resource_list' course.id %}" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-center">
+                    <i class="fas fa-plus mr-2"></i> {% trans "Add Learning Resource" %}
+                </a>
+                <a href="#" class="block w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-center">
+                    <i class="fas fa-users mr-2"></i> {% trans "Manage Enrollments" %}
+                </a>
+                {% if course.is_published %}
+                <a href="{% url 'administrator_course_unpublish' course.id %}" class="block w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-center">
+                    <i class="fas fa-eye-slash mr-2"></i> {% trans "Unpublish Course" %}
+                </a>
+                {% else %}
+                <a href="{% url 'administrator_course_publish' course.id %}" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 text-center">
+                    <i class="fas fa-eye mr-2"></i> {% trans "Publish Course" %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

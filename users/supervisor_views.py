@@ -14,9 +14,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
-from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
-                            Enrollment, Feedback, LearningResource, ScormResource)
+from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm
+from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program)
 from .api_client import upload_scorm_package, register_user_for_course
 
 logger = logging.getLogger(__name__)
@@ -32,4 +31,4 @@ class SupervisorDashboardView(TemplateView):
         return context
     
 class SupervisorNotificationListView(TemplateView):
-    template_name = 'users/supervisor/notifications/notifications_list.html'
+    template_name = 'users/supervisor/notifications/notifications_course_list.html'

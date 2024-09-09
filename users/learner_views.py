@@ -23,9 +23,8 @@ from certificates.models import Certificate
 from django.utils import timezone
 
 
-from courses.forms import CourseBasicInfoForm, LearningResourceFormSet, ScormResourceForm
-from courses.models import (Attendance, Course, CourseCategory, CourseDelivery, 
-                            Enrollment, Feedback, LearningResource, ScormResource)
+from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm
+from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program)
 from .api_client import upload_scorm_package, register_user_for_course
 
 logger = logging.getLogger(__name__)
@@ -43,33 +42,33 @@ class LearnerDashboardView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class LearnerMyCoursesView(ListView):
     template_name = 'users/learner/my_courses.html'
-    context_object_name = 'courses'
+    # context_object_name = 'courses'
 
-    def get_queryset(self):
-        user = self.request.user
-        return CourseDelivery.objects.filter(enrollment__user=user).annotate(
-            resource_count=Count('course__resources')
-        )
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return CourseDelivery.objects.filter(enrollment__user=user).annotate(
+    #         resource_count=Count('course__resources')
+    #     )
 
 @method_decorator(login_required, name='dispatch')
 class LearnerCourseDetailView(DetailView):
-    model = CourseDelivery
-    template_name = 'users/learner/course_detail.html'
-    context_object_name = 'course'
+    # model = CourseDelivery
+    template_name = 'users/learner/course_course_detail.html'
+    # context_object_name = 'course'
 
-    def get_object(self):
-        course_id = self.kwargs.get('course_id')
-        return get_object_or_404(CourseDelivery, id=course_id)
+    # def get_object(self):
+    #     course_id = self.kwargs.get('course_id')
+    #     return get_object_or_404(CourseDelivery, id=course_id)
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
-        context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
-        context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+    #     context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+    #     context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
 
-        context['resource_count'] = LearningResource.objects.filter(course=self.object.course).count()
+    #     context['resource_count'] = LearningResource.objects.filter(course=self.object.course).count()
         
-        return context
+    #     return context
     
 @method_decorator(login_required, name='dispatch')
 class LearnerCalendarView(TemplateView):
@@ -236,7 +235,7 @@ class LearnerCourseLibraryView(ListView):
 
 from django.views.generic import ListView
 from django.db.models import Prefetch
-from courses.models import Program, Course, ProgramEnrollment
+from courses.models import Program, Course
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -254,7 +253,7 @@ class LearnerProgramCatalogView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            user_enrollments = ProgramEnrollment.objects.filter(user=self.request.user)
+            user_enrollments = Enrollment.objects.filter(user=self.request.user)
             enrolled_program_ids = user_enrollments.values_list('program_id', flat=True)
             for program in context['programs']:
                 program.is_enrolled = program.id in enrolled_program_ids
@@ -298,4 +297,4 @@ def administrator_course_details(request, course_id):
 # ============================================================
 
 class LearnerNotificationListView(TemplateView):
-    template_name = 'users/learner/notifications/notifications_list.html'
+    template_name = 'users/learner/notifications/notifications_course_list.html'

@@ -1,0 +1,81 @@
+{% extends '../_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Course to Program" %} - {{ program.title }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="w-full mx-auto">
+        <!-- Program Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Add Course to" %} {{ program.title }}</h1>
+            <p class="text-lg text-white text-center">{{ program.short_description }}</p>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_program_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Programs" %}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_program_detail' program.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ program.title }}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Add Course" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        
+        <form method="post" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            
+            <div class="mb-6">
+                <label for="course" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Course" %}:</label>
+                <select id="course" name="course" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                    <option value="">{% trans "Select a course" %}</option>
+                    {% for course in form.fields.course.queryset %}
+                        <option value="{{ course.id }}">{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="mb-6">
+                <label for="order" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Order" %}:</label>
+                <input type="number" id="order" name="order" value="{{ form.order.value|default:'' }}" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" required>
+            </div>
+            
+            <div class="mb-6">
+                <label class="flex items-center">
+                    <input type="checkbox" id="is_mandatory" name="is_mandatory" class="form-checkbox h-5 w-5 text-blue-600" {% if form.is_mandatory.value %}checked{% endif %}>
+                    <span class="ml-2 text-gray-700">{% trans "Is Mandatory" %}</span>
+                </label>
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">
+                    {% trans "Add Course" %}
+                </button>
+                <a href="{% url 'administrator_program_detail' program.id %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

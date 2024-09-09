@@ -4,7 +4,7 @@ import logging
 from django.db import models
 import uuid
 from django.conf import settings
-from courses.models import Course, CourseDelivery, Enrollment, LearningResource, LearningProgress
+from courses.models import Course, Enrollment, LearningResource, Delivery, Progress
 from users.models import User, Learner
 from django.utils import timezone
 from PIL import Image, ImageDraw, ImageFont
@@ -21,7 +21,7 @@ class Certificate(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     learner = models.ForeignKey(Learner, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
-    course_delivery = models.ForeignKey(CourseDelivery, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
+    course_delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
     enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE, related_name='certificate', null=True, blank=True)
 
     certificate_number = models.CharField(max_length=50, unique=True)
@@ -80,7 +80,7 @@ class Certificate(models.Model):
                     return None
 
                 # Get completed learning progress for this enrollment
-                completed_progress = LearningProgress.objects.filter(
+                completed_progress = Progress.objects.filter(
                     enrollment=enrollment,
                     resource__in=learning_resources,
                     is_completed=True

@@ -1,0 +1,141 @@
+{% extends '../../../_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Enroll Learners - LMS Admin" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Enroll Learners" %}</h1>
+        <p class="text-lg text-white text-center">{{ course_delivery.title }} - {{ course.title }}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_detail' course.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_delivery_list' course.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Deliveries" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_delivery_detail' course.id course_delivery.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course_delivery.course.title }} - {{ course_delivery.delivery_code }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Enroll Learners" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">{% trans "Select Learners to Enroll" %}</h2>
+
+
+        <!-- Search functionality -->
+        <div class="mb-4">
+            <input type="text" id="search-input" class="w-full p-2 border border-gray-300 rounded" placeholder="{% trans 'Search learners...' %}">
+        </div>
+
+        <!-- Placeholder filters -->
+        <div class="mb-4 flex flex-wrap gap-4">
+            <select class="p-2 border border-gray-300 rounded">
+                <option>{% trans "Filter by Program" %}</option>
+            </select>
+            <select class="p-2 border border-gray-300 rounded">
+                <option>{% trans "Filter by Year" %}</option>
+            </select>
+            <select class="p-2 border border-gray-300 rounded">
+                <option>{% trans "Filter by Status" %}</option>
+            </select>
+        </div>
+
+
+        <form method="post" id="enrollmentForm">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <fieldset>
+                <legend class="sr-only">{{ form.learners.label }}</legend>
+                <div class="mb-4">
+                    <p class="text-gray-700 mb-2">{% trans "Available Learners" %}: <span class="font-semibold">{{ form.learners.field.queryset.count }}</span></p>
+                    <div id="learners-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {% for learner in form.learners %}
+                            <div class="flex items-center learner-item">
+                                {{ learner.tag }}
+                                <label for="{{ learner.id_for_label }}" class="ml-2 text-gray-700">{{ learner.choice_label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="flex space-x-4 mb-6">
+                <button type="button" id="select-all" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {% trans "Select All" %}
+                </button>
+                <button type="button" id="deselect-all" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    {% trans "Deselect All" %}
+                </button>
+            </div>
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                {% trans "Enroll Selected Learners" %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAllBtn = document.getElementById('select-all');
+        const deselectAllBtn = document.getElementById('deselect-all');
+        const checkboxes = document.querySelectorAll('input[name="learners"]');
+        const searchInput = document.getElementById('search-input');
+        const learnerItems = document.querySelectorAll('.learner-item');
+
+        selectAllBtn.addEventListener('click', function() {
+            checkboxes.forEach(checkbox => checkbox.checked = true);
+        });
+
+        deselectAllBtn.addEventListener('click', function() {
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            learnerItems.forEach(item => {
+                const learnerName = item.textContent.toLowerCase();
+                if (learnerName.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

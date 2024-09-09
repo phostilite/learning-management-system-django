@@ -319,8 +319,8 @@ msgid ""
 msgstr "“%(value)s” 값의 형식이 잘못되었습니다. [DD] [[HH:]MM:]ss[.uuuuuu] 형식이어야 합니다."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Duration"
 msgstr "지속"
 
@@ -598,14 +598,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Order"
 msgstr "주문하다"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "삭제"
@@ -668,18 +668,18 @@ msgid "Change"
 msgstr "변화"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "알려지지 않은"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Yes"
 msgstr "예"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No"
 msgstr "아니요"
 
@@ -1445,16 +1445,16 @@ msgstr "시스템 전반에 걸친 공지사항 생성 및 관리"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Dashboard"
 msgstr "계기반"
@@ -1485,7 +1485,7 @@ msgid "Create New Announcement"
 msgstr "새 공지사항 작성"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "All Categories"
@@ -1509,14 +1509,14 @@ msgstr "유지"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "모든 상태"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Active"
 msgstr "활동적인"
 
@@ -1526,7 +1526,7 @@ msgstr "만료됨"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Draft"
 msgstr "초안"
 
@@ -1536,8 +1536,8 @@ msgstr "보고서 내보내기"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Title"
 msgstr "제목"
 
@@ -1551,8 +1551,8 @@ msgstr "범주"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
@@ -1573,8 +1573,8 @@ msgstr "약혼"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -1606,7 +1606,7 @@ msgstr "공지사항 삭제"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "이전의"
@@ -1614,7 +1614,7 @@ msgstr "이전의"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/calendar.html
 msgid "Next"
@@ -1778,7 +1778,7 @@ msgid "All Time"
 msgstr "모든 시간"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "보고서 생성"
@@ -1792,7 +1792,7 @@ msgid "Certificate ID"
 msgstr "인증서ID"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/learner/leaderboard.html
@@ -1847,16 +1847,16 @@ msgstr "다음에 대한 새 배송을 설정하세요."
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/list.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Breadcrumb"
 msgstr "탐색경로"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/grades.html templates/users/learner/profile.html
 #: templates/users/learner/progress.html
@@ -1884,7 +1884,7 @@ msgid "Enter unique delivery code"
 msgstr "배송 코드를 입력하세요"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery Code"
 msgid "Delivery Type"
@@ -1903,7 +1903,7 @@ msgid "Instructor-Led"
 msgstr "강사 주도"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Type"
@@ -1922,24 +1922,24 @@ msgid "By Invitation"
 msgstr "통합"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "진행자"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Start Date"
 msgstr "시작일"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "End Date"
 msgstr "종료일"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Participants"
 msgid "Max Participants"
@@ -1950,7 +1950,7 @@ msgid "Enter maximum participants"
 msgstr "최대 참가자를 입력하세요."
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -1963,13 +1963,13 @@ msgid "Completed"
 msgstr "완전한"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/messages.html
 msgid "Archived"
 msgstr "보관됨"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Is Mandatory"
 msgstr "필수인가요?"
 
@@ -1997,17 +1997,17 @@ msgid "Deliveries"
 msgstr "배달"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Showing"
 msgstr "전시"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "to"
 msgstr "에게"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "of"
 msgstr "~의"
 
@@ -2020,32 +2020,32 @@ msgid "Delete Delivery"
 msgstr "배송 삭제"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "취소"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Deliveries - LMS Admin"
 msgid "Course Delivery Details - LMS Admin"
 msgstr "강좌 제공 - LMS 관리자"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Information"
 msgid "Delivery Information"
 msgstr "코스정보"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Stats"
 msgstr "대량 작업"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/custom_reports.html
 #, fuzzy
@@ -2053,7 +2053,7 @@ msgstr "대량 작업"
 msgid "Total Enrollments"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2062,63 +2062,63 @@ msgstr "등록"
 msgid "Completion Rate"
 msgstr "완료율"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Average Progress"
 msgstr "진전"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Progress"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No facilitators assigned yet."
 msgstr "아직 배정된 진행자가 없습니다."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/resource.html
 msgid "Learning Resources"
 msgstr "학습 자료"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Type"
 msgstr "유형"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "No video file available."
 msgid "No learning resources available."
 msgstr "사용 가능한 비디오 파일이 없습니다."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/sidebar.html
 msgid "Enrollments"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Date"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/learner/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "진전"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
@@ -2126,7 +2126,7 @@ msgstr "진전"
 msgid "Enrolled"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -2136,12 +2136,12 @@ msgstr "등록"
 msgid "In Progress"
 msgstr "진행 중"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Withdrawn"
 msgstr "빼는"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/administrator/reports/learner_feedback.html
@@ -2150,196 +2150,196 @@ msgstr "빼는"
 msgid "View Details"
 msgstr "세부정보 보기"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Edit Enrollment"
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Unenroll Learner"
 msgstr "과정에 등록됨"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "No enrollments found."
 msgstr "등록"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "entries"
 msgstr "항목"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Edit Delivery"
 msgstr "배송ID"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enroll_learners.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Enroll Learners"
 msgstr "과정에 등록됨"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Generate Report"
 msgid "Generate Reports"
 msgstr "보고서 생성"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Number of Courses"
 msgid "Number of Learners"
 msgstr "강좌 수"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Progress Range"
 msgstr "진전"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Learning Progress"
 msgid "Enrollment Progress Distribution"
 msgstr "학습 진행"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Course ID:"
 msgstr "강의"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No Cover Image"
 msgstr "표지 이미지 없음"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Edit Course"
 msgstr "강의"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublish"
 msgstr "게시 취소"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Previous"
 msgid "Preview"
 msgstr "이전의"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Advanced Arabic"
 msgid "Analytics"
 msgstr "고급 아랍어"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Actions"
 msgstr "대량 작업"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Students"
 msgid "Add New Student"
 msgstr "재학생"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Active Sessions"
 msgid "Schedule Live Session"
 msgstr "활성 세션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Edit Announcement"
 msgid "Send Announcement"
 msgstr "공지사항 수정"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Overview"
 msgstr "코스 개요"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Category"
 msgid "Category:"
 msgstr "범주"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Delivery"
 msgid "Created by:"
 msgstr "배달 생성"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
 msgstr "마지막 업데이트"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Total Enrollments:"
 msgstr "등록"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments:"
 msgstr "등록"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries:"
 msgstr "수출 납품"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/user_engagement.html
 #, fuzzy
 #| msgid "Course Cover"
 msgid "Course Content"
 msgstr "코스 커버"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
 msgstr "수출 납품"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Add New Resource"
 msgstr "새 리소스 추가"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Last Updated"
 msgstr "마지막 업데이트"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Recent Enrollments"
 msgstr "등록"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/reports/user_engagement.html
@@ -2347,221 +2347,221 @@ msgstr "등록"
 msgid "User"
 msgstr "사용자"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Delivery"
 msgstr "배송ID"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "등록"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Type"
 msgstr "자원 사용량"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Select date"
 msgid "Select a type"
 msgstr "날짜 선택"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Video"
 msgstr "동영상"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Document"
 msgstr "문서"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Presentation"
 msgstr "프레젠테이션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Link"
 msgstr "링크"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Quiz"
 msgstr "놀리다"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "SCORM"
 msgstr "스콜"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Duration"
 msgid "Description"
 msgstr "지속"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Contact Sales"
 msgid "Content File"
 msgstr "영업팀에 문의"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enter a valid URL."
 msgid "External URL"
 msgstr "유효한 URL을 입력하세요."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Add Resource"
 msgstr "자원 사용량"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "학습 경로"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course Overview"
 msgid "Course Resource Preview"
 msgstr "코스 개요"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Metadata"
 msgstr "자원 사용량"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Course"
 msgid "Created"
 msgstr "강좌 생성"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "File path"
 msgid "File Type"
 msgstr "파일 경로"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Testimonials"
 msgid "Questions"
 msgstr "사용후기"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "Video Resource"
 msgstr "학습 자료"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No video file available."
 msgstr "사용 가능한 비디오 파일이 없습니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Preview"
 msgstr "문서"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a preview of the document."
 msgstr "문서의 미리보기입니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "View full document"
 msgstr "전체 문서 보기"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Resource"
 msgstr "문서"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No document file available."
 msgstr "문서 파일이 없습니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Quiz Preview"
 msgstr "퀴즈 미리보기"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This quiz is available in the course. Click to attempt."
 msgstr "이 퀴즈는 강좌에서 볼 수 있습니다. 시도하려면 클릭하세요."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a SCORM package. Click the button below to launch it."
 msgstr "이것은 SCORM 패키지입니다. 아래 버튼을 클릭하여 실행하세요."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "SCORM Package"
 msgid "Launch SCORM Package"
 msgstr "SCORM 패키지"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Preview"
 msgstr "프레젠테이션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "This is a presentation."
 msgstr "프레젠테이션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "View presentation"
 msgstr "프레젠테이션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Resource"
 msgstr "프레젠테이션"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No presentation file available."
 msgstr "프리젠테이션 파일이 없습니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "External Resource"
 msgstr "학습 자료"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid ""
 "Click the link above to access the external resource. Please note that this "
 "will open in a new tab."
 msgstr "외부 리소스에 액세스하려면 위 링크를 클릭하세요. 새 탭에서 열립니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No external URL provided."
 msgstr "제공된 외부 URL이 없습니다."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Preview"
 msgstr "자원 사용량"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Preview not available for this resource type."
 msgstr "이 리소스 유형에는 미리보기를 사용할 수 없습니다."
 
@@ -2633,7 +2633,7 @@ msgid "New Enrollment"
 msgstr "등록"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Export Data"
 msgstr "데이터 내보내기"
 
@@ -2651,7 +2651,7 @@ msgstr "수출 납품"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "View"
 msgstr "보다"
@@ -2742,7 +2742,7 @@ msgid "Technology"
 msgstr "기술"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Edit"
 msgstr "편집하다"
 
@@ -2877,7 +2877,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2909,95 +2909,95 @@ msgstr "9~12개월"
 msgid "> 12 months"
 msgstr "> 12개월"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses - LMS Admin"
 msgstr "강좌 - LMS 관리자"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses Management"
 msgstr "코스 관리"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage and Organize Your Courses"
 msgstr "코스 관리 및 구성"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
 #| msgid "All Courses"
 msgid "Total Courses"
 msgstr "모든 강좌"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Published Date"
 msgid "Published Courses"
 msgstr "게시 날짜"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Unpublished"
 msgid "Unpublished Courses"
 msgstr "널리 알려지지 않은"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Categories"
 msgid "Top Categories"
 msgstr "카테고리"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Search courses..."
 msgstr "강좌 검색..."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Published"
 msgstr "게시됨"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublished"
 msgstr "널리 알려지지 않은"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Course"
 msgstr "강좌 생성"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Category"
 msgstr "카테고리 생성"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "Course Cover"
 msgstr "코스 커버"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage Deliveries"
 msgstr "배송 관리"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Publish"
 msgstr "게시"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Warning"
 msgstr "경고"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Delete Course"
 msgstr "강좌 삭제"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "You need to be logged in to perform this action."
 msgstr "이 작업을 수행하려면 로그인해야 합니다."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid ""
 "You do not have permission to delete this course. Please contact an "
 "administrator."
 msgstr "이 강좌를 삭제할 권한이 없습니다. 관리자에게 문의하세요."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "An error occurred:"
 msgstr "오류가 발생했습니다:"
 
@@ -5706,77 +5706,77 @@ msgstr "전문적인"
 msgid "Certificate Details"
 msgstr "인증서ID"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
 msgid "Course Details"
 msgstr "코스 설정"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "내 코스"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "30 minutes"
 msgstr "30분"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "5 modules"
 msgstr "5개 모듈"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "All Employees"
 msgstr "모든 직원"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "전반적인 진행 상황"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start"
 msgstr "시작"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Information"
 msgstr "코스정보"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Department:"
 msgstr "부서:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start Date:"
 msgstr "시작일:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Due Date:"
 msgstr "마감일:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Language:"
 msgstr "언어:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Certificate:"
 msgstr "자격증:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Important Notes"
 msgstr "중요 사항"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "This course is mandatory for all employees."
 msgstr "이 교육은 모든 직원에게 필수입니다."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, python-format
 msgid "You must score at least 80%% on the final assessment to pass."
 msgstr "합격하려면 최종 평가에서 최소 80%%를 득점해야 합니다."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Contact HR if you have any questions about this policy."
 msgstr "이 정책에 대해 질문이 있는 경우 HR에 문의하세요."
 

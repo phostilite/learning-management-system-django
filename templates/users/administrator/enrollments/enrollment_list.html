@@ -1,0 +1,184 @@
+<!-- templates/courses/administrator_enrollment_list.html -->
+
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Enrollments" %} - LMS Admin{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <!-- Header -->
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Enrollments" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Manage and view all enrollments" %}</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Enrollments" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-bold mb-2 text-gray-800">{% trans "Total Enrollments" %}</h3>
+            <p class="text-3xl font-bold text-blue-600">{{ total_enrollments }}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-bold mb-2 text-gray-800">{% trans "Active Enrollments" %}</h3>
+            <p class="text-3xl font-bold text-green-600">{{ active_enrollments }}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-bold mb-2 text-gray-800">{% trans "Completed Enrollments" %}</h3>
+            <p class="text-3xl font-bold text-purple-600">{{ completed_enrollments }}</p>
+        </div>
+    </div>
+
+    <!-- Create Enrollment Button -->
+    <div class="mb-4">
+        <a href="{% url 'administrator_enrollment_create' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <i class="fas fa-user-plus mr-2"></i>{% trans "Create New Enrollment" %}
+        </a>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        <form method="get" class="mb-4">
+            <div class="flex flex-wrap items-center mb-2">
+                <input type="text" name="search" value="{{ search_query }}" placeholder="{% trans 'Search enrollments...' %}" class="shadow appearance-none border rounded w-full md:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:mr-2">
+                <select name="status" class="shadow appearance-none border rounded w-full md:w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:mr-2">
+                    <option value="">{% trans "All Statuses" %}</option>
+                    <option value="ENROLLED" {% if status_filter == 'ENROLLED' %}selected{% endif %}>{% trans "Enrolled" %}</option>
+                    <option value="IN_PROGRESS" {% if status_filter == 'IN_PROGRESS' %}selected{% endif %}>{% trans "In Progress" %}</option>
+                    <option value="COMPLETED" {% if status_filter == 'COMPLETED' %}selected{% endif %}>{% trans "Completed" %}</option>
+                    <option value="WITHDRAWN" {% if status_filter == 'WITHDRAWN' %}selected{% endif %}>{% trans "Withdrawn" %}</option>
+                </select>
+                <select name="enrollment_type" class="shadow appearance-none border rounded w-full md:w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2 md:mb-0 md:mr-2">
+                    <option value="">{% trans "All Types" %}</option>
+                    <option value="delivery" {% if enrollment_type == 'delivery' %}selected{% endif %}>{% trans "Delivery" %}</option>
+                    <option value="program" {% if enrollment_type == 'program' %}selected{% endif %}>{% trans "Program" %}</option>
+                    <option value="course" {% if enrollment_type == 'course' %}selected{% endif %}>{% trans "Course" %}</option>
+                </select>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <i class="fas fa-search mr-2"></i>{% trans "Search" %}
+                </button>
+            </div>
+        </form>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "User" %}
+                        </th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "Type" %}
+                        </th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "Course/Program/Delivery" %}
+                        </th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "Status" %}
+                        </th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "Enrollment Date" %}
+                        </th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            {% trans "Actions" %}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    {% for enrollment in enrollments %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            {{ enrollment.user.username }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            {% if enrollment.delivery %}
+                                {% trans "Delivery" %}
+                            {% elif enrollment.program %}
+                                {% trans "Program" %}
+                            {% else %}
+                                {% trans "Course" %}
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            {% if enrollment.delivery %}
+                                {{ enrollment.delivery.title }}
+                            {% elif enrollment.program %}
+                                {{ enrollment.program.title }}
+                            {% else %}
+                                {{ enrollment.course.title }}
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                {% if enrollment.status == 'ENROLLED' %}bg-yellow-100 text-yellow-800
+                                {% elif enrollment.status == 'IN_PROGRESS' %}bg-blue-100 text-blue-800
+                                {% elif enrollment.status == 'COMPLETED' %}bg-green-100 text-green-800
+                                {% else %}bg-red-100 text-red-800{% endif %}">
+                                {{ enrollment.get_status_display }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            {{ enrollment.enrollment_date|date:"Y-m-d H:i" }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                            <a href="{% url 'administrator_enrollment_edit' enrollment.id %}" class="text-indigo-600 hover:text-indigo-900 mr-2"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'administrator_enrollment_delete' enrollment.id %}" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-center">
+                            {% trans "No enrollments found." %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if is_paginated %}
+        <div class="pagination mt-4 flex justify-center">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if enrollment_type %}&enrollment_type={{ enrollment_type }}{% endif %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                        {% trans "First" %}
+                    </a>
+                    <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if enrollment_type %}&enrollment_type={{ enrollment_type }}{% endif %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4">
+                        {% trans "Previous" %}
+                    </a>
+                {% endif %}
+
+                <span class="current px-4 py-2">
+                    {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if enrollment_type %}&enrollment_type={{ enrollment_type }}{% endif %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4">
+                        {% trans "Next" %}
+                    </a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if enrollment_type %}&enrollment_type={{ enrollment_type }}{% endif %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                        {% trans "Last" %}
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

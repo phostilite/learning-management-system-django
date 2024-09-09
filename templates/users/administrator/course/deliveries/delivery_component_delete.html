@@ -1,0 +1,31 @@
+{% extends '../../_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Delivery Component" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{% trans "Delete Delivery Component" %}</h1>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <p class="mb-4">{% trans "Are you sure you want to delete this delivery component?" %}</p>
+        <p class="mb-4"><strong>{% trans "Component:" %}</strong> 
+            {% if object.program_course %}
+                {{ object.program_course.course.title }}
+            {% elif object.learning_resource %}
+                {{ object.learning_resource.title }}
+            {% endif %}
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="flex items-center justify-between">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    {% trans "Delete Component" %}
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'administrator_delivery_detail' delivery.pk %}">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

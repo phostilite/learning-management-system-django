@@ -1,12 +1,11 @@
 # serializers.py
 
 from rest_framework import serializers
-from courses.models import CourseDelivery, ScormRegistration
+from courses.models import Delivery, ScormRegistration
 
 class CourseDeliverySerializer(serializers.ModelSerializer):
     class Meta:
-        model = CourseDelivery
-        fields = ['id', 'title', 'course', 'delivery_type', 'start_date', 'end_date', 'status']
+        model = Delivery
 
 class ScormRegistrationSerializer(serializers.ModelSerializer):
     class Meta:

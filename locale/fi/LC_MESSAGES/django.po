@@ -337,8 +337,8 @@ msgstr ""
 "[[HH:]MM:]ss[.uuuuuu]."
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Duration"
 msgstr "Kesto"
 
@@ -624,14 +624,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Order"
 msgstr "Tilata"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "Poistaa"
@@ -698,18 +698,18 @@ msgid "Change"
 msgstr "Muuttaa"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "Tuntematon"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Yes"
 msgstr "Kyllä"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No"
 msgstr "Ei"
 
@@ -1483,16 +1483,16 @@ msgstr "Luo ja hallitse järjestelmän laajuisia ilmoituksia"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Dashboard"
 msgstr "Kojelauta"
@@ -1523,7 +1523,7 @@ msgid "Create New Announcement"
 msgstr "Luo uusi ilmoitus"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "All Categories"
@@ -1547,14 +1547,14 @@ msgstr "Huolto"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "Kaikki tilat"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Active"
 msgstr "Aktiivinen"
 
@@ -1564,7 +1564,7 @@ msgstr "Vanhentunut"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Draft"
 msgstr "Luonnos"
 
@@ -1574,8 +1574,8 @@ msgstr "Vie raportti"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Title"
 msgstr "Otsikko"
 
@@ -1589,8 +1589,8 @@ msgstr "Luokka"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
@@ -1611,8 +1611,8 @@ msgstr "Kihlaus"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -1644,7 +1644,7 @@ msgstr "Poista ilmoitus"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "Edellinen"
@@ -1652,7 +1652,7 @@ msgstr "Edellinen"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/calendar.html
 msgid "Next"
@@ -1816,7 +1816,7 @@ msgid "All Time"
 msgstr "Kaikki aika"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "Luo raportti"
@@ -1830,7 +1830,7 @@ msgid "Certificate ID"
 msgstr "Varmenteen tunnus"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/learner/leaderboard.html
@@ -1885,16 +1885,16 @@ msgstr "Määritä uusi toimitus kohteelle"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/list.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Breadcrumb"
 msgstr "Leipämuru"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/grades.html templates/users/learner/profile.html
 #: templates/users/learner/progress.html
@@ -1922,7 +1922,7 @@ msgid "Enter unique delivery code"
 msgstr "Syötä toimituskoodi"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery Code"
 msgid "Delivery Type"
@@ -1941,7 +1941,7 @@ msgid "Instructor-Led"
 msgstr "Ohjaaja Led"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Type"
@@ -1960,24 +1960,24 @@ msgid "By Invitation"
 msgstr "Integraatiot"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "Fasilitaattorit"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Start Date"
 msgstr "Aloituspäivämäärä"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "End Date"
 msgstr "Päättymispäivämäärä"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Participants"
 msgid "Max Participants"
@@ -1988,7 +1988,7 @@ msgid "Enter maximum participants"
 msgstr "Anna osallistujien enimmäismäärä"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2001,13 +2001,13 @@ msgid "Completed"
 msgstr "Valmis"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/messages.html
 msgid "Archived"
 msgstr "Arkistoitu"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Is Mandatory"
 msgstr "On Pakollinen"
 
@@ -2035,17 +2035,17 @@ msgid "Deliveries"
 msgstr "Toimitukset"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Showing"
 msgstr "Näytetään"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "to"
 msgstr "kohtaan"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "of"
 msgstr "/"
 
@@ -2058,32 +2058,32 @@ msgid "Delete Delivery"
 msgstr "Poista toimitus"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "Peruuttaa"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Deliveries - LMS Admin"
 msgid "Course Delivery Details - LMS Admin"
 msgstr "Kurssien toimitukset - LMS Admin"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Information"
 msgid "Delivery Information"
 msgstr "Kurssin tiedot"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Stats"
 msgstr "Joukkotoiminnot"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/custom_reports.html
 #, fuzzy
@@ -2091,7 +2091,7 @@ msgstr "Joukkotoiminnot"
 msgid "Total Enrollments"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2100,63 +2100,63 @@ msgstr "Ilmoittautumiset"
 msgid "Completion Rate"
 msgstr "Valmistumisaste"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Average Progress"
 msgstr "Edistyminen"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Progress"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No facilitators assigned yet."
 msgstr "Ohjaajia ei ole vielä määrätty."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/resource.html
 msgid "Learning Resources"
 msgstr "Oppimisresurssit"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Type"
 msgstr "Tyyppi"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "No video file available."
 msgid "No learning resources available."
 msgstr "Videotiedostoa ei ole saatavilla."
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/sidebar.html
 msgid "Enrollments"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Date"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/learner/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "Edistyminen"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
@@ -2164,7 +2164,7 @@ msgstr "Edistyminen"
 msgid "Enrolled"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -2174,12 +2174,12 @@ msgstr "Ilmoittautumiset"
 msgid "In Progress"
 msgstr "Käynnissä"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Withdrawn"
 msgstr "Peruutettu"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/administrator/reports/learner_feedback.html
@@ -2188,196 +2188,196 @@ msgstr "Peruutettu"
 msgid "View Details"
 msgstr "Näytä tiedot"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Edit Enrollment"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Unenroll Learner"
 msgstr "Ilmoittautunut kurssille"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "No enrollments found."
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "entries"
 msgstr "merkinnät"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Edit Delivery"
 msgstr "Toimitustunnus"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enroll_learners.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Enroll Learners"
 msgstr "Ilmoittautunut kurssille"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Generate Report"
 msgid "Generate Reports"
 msgstr "Luo raportti"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Number of Courses"
 msgid "Number of Learners"
 msgstr "Kurssien määrä"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Progress Range"
 msgstr "Edistyminen"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Learning Progress"
 msgid "Enrollment Progress Distribution"
 msgstr "Oppimisen edistyminen"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Course ID:"
 msgstr "Kurssi"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No Cover Image"
 msgstr "Ei kansikuvaa"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Edit Course"
 msgstr "Kurssi"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublish"
 msgstr "Peruuta julkaisu"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Previous"
 msgid "Preview"
 msgstr "Edellinen"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Advanced Arabic"
 msgid "Analytics"
 msgstr "Edistynyt arabia"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Actions"
 msgstr "Joukkotoiminnot"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Students"
 msgid "Add New Student"
 msgstr "Opiskelijat"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Active Sessions"
 msgid "Schedule Live Session"
 msgstr "Aktiiviset istunnot"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Edit Announcement"
 msgid "Send Announcement"
 msgstr "Muokkaa ilmoitusta"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Overview"
 msgstr "Kurssin yleiskatsaus"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Category"
 msgid "Category:"
 msgstr "Luokka"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Delivery"
 msgid "Created by:"
 msgstr "Luo toimitus"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
 msgstr "Viimeksi päivitetty"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Total Enrollments:"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments:"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries:"
 msgstr "Vientitoimitukset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/user_engagement.html
 #, fuzzy
 #| msgid "Course Cover"
 msgid "Course Content"
 msgstr "Kurssin kansi"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
 msgstr "Vientitoimitukset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Add New Resource"
 msgstr "Lisää uusi resurssi"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Last Updated"
 msgstr "Viimeksi päivitetty"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Recent Enrollments"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/reports/user_engagement.html
@@ -2385,206 +2385,206 @@ msgstr "Ilmoittautumiset"
 msgid "User"
 msgstr "Käyttäjä"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Delivery"
 msgstr "Toimitustunnus"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "Ilmoittautumiset"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Type"
 msgstr "Resurssien käyttö"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Select date"
 msgid "Select a type"
 msgstr "Valitse päivämäärä"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Video"
 msgstr "Video"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Document"
 msgstr "Asiakirja"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Presentation"
 msgstr "Esittely"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Link"
 msgstr "Linkki"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Quiz"
 msgstr "Tietokilpailu"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "SCORM"
 msgstr "SCORM"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Duration"
 msgid "Description"
 msgstr "Kesto"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Contact Sales"
 msgid "Content File"
 msgstr "Ota yhteyttä myyntiin"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enter a valid URL."
 msgid "External URL"
 msgstr "Anna kelvollinen URL-osoite."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Add Resource"
 msgstr "Resurssien käyttö"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "Oppimispolku"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course Overview"
 msgid "Course Resource Preview"
 msgstr "Kurssin yleiskatsaus"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Metadata"
 msgstr "Resurssien käyttö"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Course"
 msgid "Created"
 msgstr "Luo kurssi"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "File path"
 msgid "File Type"
 msgstr "Tiedoston polku"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Testimonials"
 msgid "Questions"
 msgstr "Mielipiteitä"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "Video Resource"
 msgstr "Oppimisresurssit"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No video file available."
 msgstr "Videotiedostoa ei ole saatavilla."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Preview"
 msgstr "Asiakirja"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a preview of the document."
 msgstr "Tämä on esikatselu asiakirjasta."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "View full document"
 msgstr "Näytä koko asiakirja"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Resource"
 msgstr "Asiakirja"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No document file available."
 msgstr "Asiakirjatiedostoa ei ole saatavilla."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Quiz Preview"
 msgstr "Tietokilpailun esikatselu"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This quiz is available in the course. Click to attempt."
 msgstr "Tämä tietokilpailu on saatavilla kurssilla. Napsauta yrittääksesi."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a SCORM package. Click the button below to launch it."
 msgstr ""
 "Tämä on SCORM-paketti. Käynnistä se napsauttamalla alla olevaa painiketta."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "SCORM Package"
 msgid "Launch SCORM Package"
 msgstr "SCORM-paketti"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Preview"
 msgstr "Esittely"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "This is a presentation."
 msgstr "Esittely"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "View presentation"
 msgstr "Esittely"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Resource"
 msgstr "Esittely"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No presentation file available."
 msgstr "Esitystiedostoa ei ole saatavilla."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "External Resource"
 msgstr "Oppimisresurssit"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid ""
 "Click the link above to access the external resource. Please note that this "
 "will open in a new tab."
@@ -2592,17 +2592,17 @@ msgstr ""
 "Napsauta yllä olevaa linkkiä päästäksesi ulkoiseen resurssiin. Huomaa, että "
 "tämä avautuu uuteen välilehteen."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No external URL provided."
 msgstr "Ulkoista URL-osoitetta ei ole annettu."
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Preview"
 msgstr "Resurssien käyttö"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Preview not available for this resource type."
 msgstr "Esikatselu ei ole käytettävissä tälle resurssityypille."
 
@@ -2674,7 +2674,7 @@ msgid "New Enrollment"
 msgstr "Ilmoittautumiset"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Export Data"
 msgstr "Vie tiedot"
 
@@ -2692,7 +2692,7 @@ msgstr "Vientitoimitukset"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "View"
 msgstr "Näytä"
@@ -2783,7 +2783,7 @@ msgid "Technology"
 msgstr "Tekniikka"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Edit"
 msgstr "Muokata"
 
@@ -2920,7 +2920,7 @@ msgstr ""
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2952,89 +2952,89 @@ msgstr "9-12 kuukautta"
 msgid "> 12 months"
 msgstr "> 12 kuukautta"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses - LMS Admin"
 msgstr "Kurssit - LMS Admin"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses Management"
 msgstr "Kurssien hallinta"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage and Organize Your Courses"
 msgstr "Hallinnoi ja järjestä kurssejasi"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
 #| msgid "All Courses"
 msgid "Total Courses"
 msgstr "Kaikki kurssit"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Published Date"
 msgid "Published Courses"
 msgstr "Julkaisupäivämäärä"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Unpublished"
 msgid "Unpublished Courses"
 msgstr "Julkaisematon"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Categories"
 msgid "Top Categories"
 msgstr "Luokat"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Search courses..."
 msgstr "Hae kursseja..."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Published"
 msgstr "Julkaistu"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublished"
 msgstr "Julkaisematon"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Course"
 msgstr "Luo kurssi"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Category"
 msgstr "Luo luokka"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "Course Cover"
 msgstr "Kurssin kansi"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage Deliveries"
 msgstr "Hallitse toimituksia"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Publish"
 msgstr "Julkaista"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Warning"
 msgstr "Varoitus"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Delete Course"
 msgstr "Poista kurssi"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "You need to be logged in to perform this action."
 msgstr "Sinun on kirjauduttava sisään suorittaaksesi tämän toiminnon."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid ""
 "You do not have permission to delete this course. Please contact an "
 "administrator."
@@ -3042,7 +3042,7 @@ msgstr ""
 "Sinulla ei ole lupaa poistaa tätä kurssia. Ota yhteyttä "
 "järjestelmänvalvojaan."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "An error occurred:"
 msgstr "Tapahtui virhe:"
 
@@ -5775,78 +5775,78 @@ msgstr "Ammattilainen"
 msgid "Certificate Details"
 msgstr "Varmenteen tunnus"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
 msgid "Course Details"
 msgstr "Kurssin asetukset"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "Omat kurssini"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "30 minutes"
 msgstr "30 minuuttia"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "5 modules"
 msgstr "5 moduulia"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "All Employees"
 msgstr "Kaikki työntekijät"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "Kokonaiskehitys"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start"
 msgstr "Aloita"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Information"
 msgstr "Kurssin tiedot"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Department:"
 msgstr "Osasto:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start Date:"
 msgstr "Aloituspäivämäärä:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Due Date:"
 msgstr "Eräpäivä:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Language:"
 msgstr "Kieli:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Certificate:"
 msgstr "Todistus:"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Important Notes"
 msgstr "Tärkeitä huomautuksia"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "This course is mandatory for all employees."
 msgstr "Kurssi on pakollinen kaikille työntekijöille."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, python-format
 msgid "You must score at least 80%% on the final assessment to pass."
 msgstr ""
 "Sinun tulee saada vähintään 80 %% lopullisesta arvioinnista läpäistäksesi."
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Contact HR if you have any questions about this policy."
 msgstr "Ota yhteyttä HR:ään, jos sinulla on kysyttävää tästä käytännöstä."
 

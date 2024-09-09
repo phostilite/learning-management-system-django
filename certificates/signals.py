@@ -2,14 +2,14 @@
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from courses.models import LearningProgress, LearningResource
+from courses.models import Progress, LearningResource
 from .models import Certificate
 import logging
 from django.core.exceptions import ObjectDoesNotExist
 
 logger = logging.getLogger(__name__)
 
-@receiver(post_save, sender=LearningProgress)
+@receiver(post_save, sender=Progress)
 def check_course_completion(sender, instance, created, **kwargs):
     logger.info(f"Signal received for LearningProgress {instance.id}")
     if instance.is_completed:
@@ -20,7 +20,7 @@ def check_course_completion(sender, instance, created, **kwargs):
             # Check if all learning resources are completed for this enrollment
             course = enrollment.course_delivery.course
             total_resources = LearningResource.objects.filter(course=course).count()
-            completed_resources = LearningProgress.objects.filter(
+            completed_resources = Progress.objects.filter(
                 enrollment=enrollment,
                 resource__course=course,
                 is_completed=True

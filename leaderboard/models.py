@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from courses.models import Course, CourseDelivery
+from courses.models import Course, Delivery
 import uuid
 
 User = get_user_model()
@@ -10,7 +10,7 @@ class Leaderboard(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='leaderboards')
-    course_delivery = models.ForeignKey(CourseDelivery, on_delete=models.CASCADE, related_name='leaderboards', null=True, blank=True)
+    course_delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='leaderboards', null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

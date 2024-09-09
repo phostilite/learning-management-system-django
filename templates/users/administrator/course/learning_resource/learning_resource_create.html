@@ -1,0 +1,164 @@
+{% extends '../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Learning Resource" %} - {{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="w-full mx-auto">
+        <!-- Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Add Learning Resource" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Course" %}: {{ course.title }}</p>
+        </header>
+
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_course_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="{% url 'administrator_course_detail' course.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course.title }}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Add Learning Resource" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Basic Information -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Resource Information" %}</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Title" %}</label>
+                        <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.title.value|default_if_none:'' }}" required>
+                        {% if form.title.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.title.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Description" %}</label>
+                        <textarea name="{{ form.description.name }}" id="{{ form.description.id_for_label }}" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ form.description.value|default_if_none:'' }}</textarea>
+                        {% if form.description.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.resource_type.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Resource Type" %}</label>
+                        <select name="{{ form.resource_type.name }}" id="{{ form.resource_type.id_for_label }}" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            {% for value, label in form.fields.resource_type.choices %}
+                                <option value="{{ value }}" {% if form.resource_type.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.resource_type.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.resource_type.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource Content -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Resource Content" %}</h2>
+                <div class="space-y-4">
+                    <div id="content-file-section">
+                        <label for="{{ form.content.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Content File" %}</label>
+                        <input type="file" name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" class="mt-1 block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-indigo-50 file:text-indigo-700
+                            hover:file:bg-indigo-100">
+                        {% if form.content.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.content.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div id="external-url-section">
+                        <label for="{{ form.external_url.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "External URL" %}</label>
+                        <input type="url" name="{{ form.external_url.name }}" id="{{ form.external_url.id_for_label }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.external_url.value|default_if_none:'' }}">
+                        {% if form.external_url.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.external_url.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource Order and Mandatory Status -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Resource Settings" %}</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="{{ form.order.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Order" %}</label>
+                        <input type="number" name="{{ form.order.name }}" id="{{ form.order.id_for_label }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.order.value|default_if_none:'' }}" min="0">
+                        {% if form.order.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.order.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="{{ form.is_mandatory.name }}" id="{{ form.is_mandatory.id_for_label }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" {% if form.is_mandatory.value %}checked{% endif %}>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="{{ form.is_mandatory.id_for_label }}" class="font-medium text-gray-700">{% trans "Is Mandatory" %}</label>
+                            <p class="text-gray-500">{% trans "Check if this resource is mandatory for course completion" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {% trans "Add Learning Resource" %}
+                </button>
+                <a href="{% url 'administrator_course_detail' course.id %}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const resourceTypeSelect = document.getElementById('{{ form.resource_type.id_for_label }}');
+        const contentFileSection = document.getElementById('content-file-section');
+        const externalUrlSection = document.getElementById('external-url-section');
+
+        function toggleFields() {
+            const selectedType = resourceTypeSelect.value;
+            if (selectedType === 'LINK') {
+                contentFileSection.style.display = 'none';
+                externalUrlSection.style.display = 'block';
+            } else {
+                contentFileSection.style.display = 'block';
+                externalUrlSection.style.display = 'none';
+            }
+        }
+
+        resourceTypeSelect.addEventListener('change', toggleFields);
+        toggleFields(); // Call once to set initial state
+    });
+</script>
+{% endblock %}

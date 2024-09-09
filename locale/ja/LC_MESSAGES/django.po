@@ -320,8 +320,8 @@ msgid ""
 msgstr "「%(value)s」値の形式が無効です。 [DD] [[HH:]MM:]ss[.uuuuuu] 形式である必要があります。"
 
 #: env/lib/python3.12/site-packages/django/db/models/fields/__init__.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Duration"
 msgstr "間隔"
 
@@ -599,14 +599,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Order"
 msgstr "注文"
 
 #: env/lib/python3.12/site-packages/django/forms/formsets.py
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Delete"
 msgstr "消去"
@@ -669,18 +669,18 @@ msgid "Change"
 msgstr "変化"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Unknown"
 msgstr "未知"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Yes"
 msgstr "はい"
 
 #: env/lib/python3.12/site-packages/django/forms/widgets.py
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No"
 msgstr "いいえ"
 
@@ -1444,16 +1444,16 @@ msgstr "システム全体のお知らせの作成と管理"
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/messages.html
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Dashboard"
 msgstr "ダッシュボード"
@@ -1484,7 +1484,7 @@ msgid "Create New Announcement"
 msgstr "新しいお知らせの作成"
 
 #: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "All Categories"
@@ -1508,14 +1508,14 @@ msgstr "メンテナンス"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "All Statuses"
 msgstr "すべてのステータス"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Active"
 msgstr "アクティブ"
 
@@ -1525,7 +1525,7 @@ msgstr "期限切れ"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Draft"
 msgstr "下書き"
 
@@ -1535,8 +1535,8 @@ msgstr "レポートのエクスポート"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Title"
 msgstr "タイトル"
 
@@ -1550,8 +1550,8 @@ msgstr "カテゴリ"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/help_support.html
 msgid "Status"
@@ -1572,8 +1572,8 @@ msgstr "婚約"
 
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -1605,7 +1605,7 @@ msgstr "お知らせの削除"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 msgid "Previous"
 msgstr "前の"
@@ -1613,7 +1613,7 @@ msgstr "前の"
 #: templates/users/administrator/announcements.html
 #: templates/users/administrator/certificates.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/learner/calendar.html
 msgid "Next"
@@ -1777,7 +1777,7 @@ msgid "All Time"
 msgstr "オールタイム"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Generate Report"
 msgstr "レポートの生成"
@@ -1791,7 +1791,7 @@ msgid "Certificate ID"
 msgstr "証明書ID"
 
 #: templates/users/administrator/certificates.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/learner/leaderboard.html
@@ -1846,16 +1846,16 @@ msgstr "新しい配信を設定する"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/list.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "Breadcrumb"
 msgstr "ブレッドクラム"
 
 #: templates/users/administrator/course/create_delivery.html
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/grades.html templates/users/learner/profile.html
 #: templates/users/learner/progress.html
@@ -1883,7 +1883,7 @@ msgid "Enter unique delivery code"
 msgstr "配送コードを入力してください"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery Code"
 msgid "Delivery Type"
@@ -1902,7 +1902,7 @@ msgid "Instructor-Led"
 msgstr "インストラクター主導"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Type"
@@ -1921,24 +1921,24 @@ msgid "By Invitation"
 msgstr "統合"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/sidebar.html
 msgid "Facilitators"
 msgstr "ファシリテーター"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Start Date"
 msgstr "開始日"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "End Date"
 msgstr "終了日"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Participants"
 msgid "Max Participants"
@@ -1949,7 +1949,7 @@ msgid "Enter maximum participants"
 msgstr "最大参加者数を入力してください"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -1962,13 +1962,13 @@ msgid "Completed"
 msgstr "完了"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/messages.html
 msgid "Archived"
 msgstr "アーカイブ済み"
 
 #: templates/users/administrator/course/create_delivery.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Is Mandatory"
 msgstr "必須です"
 
@@ -1996,17 +1996,17 @@ msgid "Deliveries"
 msgstr "配達"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "Showing"
 msgstr "表示中"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "to"
 msgstr "に"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "of"
 msgstr "の"
 
@@ -2019,32 +2019,32 @@ msgid "Delete Delivery"
 msgstr "配信の削除"
 
 #: templates/users/administrator/course/deliveries.html
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/forum.html templates/users/learner/messages.html
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Deliveries - LMS Admin"
 msgid "Course Delivery Details - LMS Admin"
 msgstr "コースの配信 - LMS 管理者"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Course Information"
 msgid "Delivery Information"
 msgstr "コース情報"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Stats"
 msgstr "一括アクション"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/custom_reports.html
 #, fuzzy
@@ -2052,7 +2052,7 @@ msgstr "一括アクション"
 msgid "Total Enrollments"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/reports/certification_tracking.html
@@ -2061,63 +2061,63 @@ msgstr "登録数"
 msgid "Completion Rate"
 msgstr "完了率"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Average Progress"
 msgstr "進捗"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Progress"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "No facilitators assigned yet."
 msgstr "ファシリテーターはまだ割り当てられていません。"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/resource.html
 msgid "Learning Resources"
 msgstr "学習リソース"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Type"
 msgstr "タイプ"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "No video file available."
 msgid "No learning resources available."
 msgstr "利用可能なビデオ ファイルがありません。"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/sidebar.html
 msgid "Enrollments"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Enrollment Date"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/learner/leaderboard.html
 #: templates/users/learner/my_courses.html
 msgid "Progress"
 msgstr "進捗"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
@@ -2125,7 +2125,7 @@ msgstr "進捗"
 msgid "Enrolled"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/help_support.html
@@ -2135,12 +2135,12 @@ msgstr "登録数"
 msgid "In Progress"
 msgstr "進行中"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enrollments.html
 msgid "Withdrawn"
 msgstr "撤回されました"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/certification_tracking.html
 #: templates/users/administrator/reports/learner_feedback.html
@@ -2149,196 +2149,196 @@ msgstr "撤回されました"
 msgid "View Details"
 msgstr "詳細を見る"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Edit Enrollment"
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Unenroll Learner"
 msgstr "コースに登録済み"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "No enrollments found."
 msgstr "登録数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 msgid "entries"
 msgstr "エントリ"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Edit Delivery"
 msgstr "配送ID"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/enroll_learners.html
 #, fuzzy
 #| msgid "Enrolled in course"
 msgid "Enroll Learners"
 msgstr "コースに登録済み"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Generate Report"
 msgid "Generate Reports"
 msgstr "レポートの生成"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #: templates/users/administrator/course/learning_path.html
 #, fuzzy
 #| msgid "Number of Courses"
 msgid "Number of Learners"
 msgstr "コース数"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Progress"
 msgid "Progress Range"
 msgstr "進捗"
 
-#: templates/users/administrator/course/delivery_detail.html
+#: templates/users/administrator/course/delivery_course_detail.html
 #, fuzzy
 #| msgid "Learning Progress"
 msgid "Enrollment Progress Distribution"
 msgstr "学習の進捗状況"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Course ID:"
 msgstr "コース"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No Cover Image"
 msgstr "表紙画像なし"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course"
 msgid "Edit Course"
 msgstr "コース"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublish"
 msgstr "非公開にする"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Previous"
 msgid "Preview"
 msgstr "前の"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Advanced Arabic"
 msgid "Analytics"
 msgstr "上級アラビア語"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Bulk Actions"
 msgid "Quick Actions"
 msgstr "一括アクション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Students"
 msgid "Add New Student"
 msgstr "学生"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Active Sessions"
 msgid "Schedule Live Session"
 msgstr "アクティブなセッション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Edit Announcement"
 msgid "Send Announcement"
 msgstr "お知らせの編集"
 
-#: templates/users/administrator/course/detail.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Overview"
 msgstr "コース概要"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Category"
 msgid "Category:"
 msgstr "カテゴリ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Delivery"
 msgid "Created by:"
 msgstr "配信の作成"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/learner/grades.html
 #, fuzzy
 #| msgid "Last Updated"
 msgid "Last Updated:"
 msgstr "最終更新日"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Total Enrollments:"
 msgstr "登録数"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments:"
 msgstr "登録数"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries:"
 msgstr "輸出納品"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/user_engagement.html
 #, fuzzy
 #| msgid "Course Cover"
 msgid "Course Content"
 msgstr "コースカバー"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Export Deliveries"
 msgid "Course Deliveries"
 msgstr "輸出納品"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Add New Resource"
 msgstr "新しいリソースの追加"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/help_support.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Last Updated"
 msgstr "最終更新日"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Recent Enrollments"
 msgstr "登録数"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/dashboard.html
 #: templates/users/administrator/leaderboard.html
 #: templates/users/administrator/reports/user_engagement.html
@@ -2346,221 +2346,221 @@ msgstr "登録数"
 msgid "User"
 msgstr "ユーザー"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Delivery ID"
 msgid "Delivery"
 msgstr "配送ID"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/enrollments.html
 #, fuzzy
 #| msgid "Enrollments"
 msgid "Active Enrollments"
 msgstr "登録数"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Type"
 msgstr "リソースの使用量"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Select date"
 msgid "Select a type"
 msgstr "日付を選択してください"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Video"
 msgstr "ビデオ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Document"
 msgstr "書類"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Presentation"
 msgstr "プレゼンテーション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Link"
 msgstr "リンク"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/reports/assessment_results.html
 #: templates/users/administrator/reports/resource_usage.html
 msgid "Quiz"
 msgstr "クイズ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "SCORM"
 msgstr "スクーム"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Duration"
 msgid "Description"
 msgstr "間隔"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Contact Sales"
 msgid "Content File"
 msgstr "営業担当者へのお問い合わせ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Enter a valid URL."
 msgid "External URL"
 msgstr "有効な URL を入力してください。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Add Resource"
 msgstr "リソースの使用量"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/progress.html
 msgid "Learning Path"
 msgstr "学習パス"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Course Overview"
 msgid "Course Resource Preview"
 msgstr "コース概要"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Metadata"
 msgstr "リソースの使用量"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Create Course"
 msgid "Created"
 msgstr "コースの作成"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "File path"
 msgid "File Type"
 msgstr "ファイルパス"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Testimonials"
 msgid "Questions"
 msgstr "お客様の声"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "Video Resource"
 msgstr "学習リソース"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No video file available."
 msgstr "利用可能なビデオ ファイルがありません。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Preview"
 msgstr "書類"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a preview of the document."
 msgstr "これはドキュメントのプレビューです。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "View full document"
 msgstr "ドキュメント全体を表示"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Document"
 msgid "Document Resource"
 msgstr "書類"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No document file available."
 msgstr "利用可能なドキュメント ファイルがありません。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Quiz Preview"
 msgstr "クイズのプレビュー"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This quiz is available in the course. Click to attempt."
 msgstr "このクイズはコース内で利用できます。クリックして試してください。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "This is a SCORM package. Click the button below to launch it."
 msgstr "これは SCORM パッケージです。下のボタンをクリックして起動します。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "SCORM Package"
 msgid "Launch SCORM Package"
 msgstr "SCORMパッケージ"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Preview"
 msgstr "プレゼンテーション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "This is a presentation."
 msgstr "プレゼンテーション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "View presentation"
 msgstr "プレゼンテーション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Presentation"
 msgid "Presentation Resource"
 msgstr "プレゼンテーション"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No presentation file available."
 msgstr "利用可能なプレゼンテーション ファイルがありません。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Learning Resources"
 msgid "External Resource"
 msgstr "学習リソース"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid ""
 "Click the link above to access the external resource. Please note that this "
 "will open in a new tab."
 msgstr "上のリンクをクリックして外部リソースにアクセスします。新しいタブで開きますのでご注意ください。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "No external URL provided."
 msgstr "外部 URL は提供されていません。"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 #, fuzzy
 #| msgid "Resource Usage"
 msgid "Resource Preview"
 msgstr "リソースの使用量"
 
-#: templates/users/administrator/course/detail.html
+#: templates/users/administrator/course/course_detail.html
 msgid "Preview not available for this resource type."
 msgstr "このリソース タイプではプレビューを利用できません。"
 
@@ -2632,7 +2632,7 @@ msgid "New Enrollment"
 msgstr "登録数"
 
 #: templates/users/administrator/course/enrollments.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Export Data"
 msgstr "データのエクスポート"
 
@@ -2650,7 +2650,7 @@ msgstr "輸出納品"
 
 #: templates/users/administrator/course/enrollments.html
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/custom_reports.html
 msgid "View"
 msgstr "ビュー"
@@ -2741,7 +2741,7 @@ msgid "Technology"
 msgstr "テクノロジー"
 
 #: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Edit"
 msgstr "編集"
 
@@ -2874,7 +2874,7 @@ msgstr "素晴らしい内容と進行。機械学習セクションでの実践
 
 #: templates/users/administrator/course/learning_path.html
 #: templates/users/administrator/reports/user_progress.html
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Getting Started Guide"
 msgid "Not Started"
@@ -2906,95 +2906,95 @@ msgstr "9～12ヶ月"
 msgid "> 12 months"
 msgstr "> 12か月"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses - LMS Admin"
 msgstr "コース - LMS 管理者"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Courses Management"
 msgstr "コース管理"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage and Organize Your Courses"
 msgstr "コースを管理および整理する"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/reports/course_completion.html
 #, fuzzy
 #| msgid "All Courses"
 msgid "Total Courses"
 msgstr "全コース"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Published Date"
 msgid "Published Courses"
 msgstr "発行日"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Unpublished"
 msgid "Unpublished Courses"
 msgstr "未公開"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #, fuzzy
 #| msgid "Categories"
 msgid "Top Categories"
 msgstr "カテゴリー"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Search courses..."
 msgstr "コースを検索..."
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Published"
 msgstr "発行済み"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Unpublished"
 msgstr "未公開"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Course"
 msgstr "コースの作成"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Create Category"
 msgstr "カテゴリの作成"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 #: templates/users/learner/my_courses.html
 msgid "Course Cover"
 msgstr "コースカバー"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Manage Deliveries"
 msgstr "配達の管理"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Publish"
 msgstr "公開"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Warning"
 msgstr "警告"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "Delete Course"
 msgstr "コースの削除"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "You need to be logged in to perform this action."
 msgstr "このアクションを実行するにはログインする必要があります。"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid ""
 "You do not have permission to delete this course. Please contact an "
 "administrator."
 msgstr "このコースを削除する権限がありません。管理者にお問い合わせください。"
 
-#: templates/users/administrator/course/list.html
+#: templates/users/administrator/course/course_list.html
 msgid "An error occurred:"
 msgstr "エラーが発生しました:"
 
@@ -5702,77 +5702,77 @@ msgstr "プロ"
 msgid "Certificate Details"
 msgstr "証明書ID"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, fuzzy
 #| msgid "Course Settings"
 msgid "Course Details"
 msgstr "コース設定"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "My Courses"
 msgstr "私のコース"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "30 minutes"
 msgstr "30分"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/my_courses.html
 msgid "5 modules"
 msgstr "5モジュール"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "All Employees"
 msgstr "全従業員"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #: templates/users/learner/progress.html
 msgid "Overall Progress"
 msgstr "全体的な進捗状況"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start"
 msgstr "始める"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Course Information"
 msgstr "コース情報"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Department:"
 msgstr "部門："
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Start Date:"
 msgstr "開始日："
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Due Date:"
 msgstr "期日："
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Language:"
 msgstr "言語："
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Certificate:"
 msgstr "証明書："
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Important Notes"
 msgstr "重要な注意事項"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "This course is mandatory for all employees."
 msgstr "このコースは全従業員に必須です。"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 #, python-format
 msgid "You must score at least 80%% on the final assessment to pass."
 msgstr "合格するには、最終評価で少なくとも 80%% のスコアを獲得する必要があります。"
 
-#: templates/users/learner/administrator_course_detail.html
+#: templates/users/learner/administrator_course_course_detail.html
 msgid "Contact HR if you have any questions about this policy."
 msgstr "このポリシーについてご質問がある場合は、人事部までお問い合わせください。"
 

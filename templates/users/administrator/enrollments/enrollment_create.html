@@ -1,0 +1,174 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Create Enrollments" %} - LMS Admin{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create New Enrollments" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Enroll users in courses, programs, or deliveries" %}</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_enrollment_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Enrollments" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Create Enrollment" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+                <div class="{% if message.tags == 'error' %}bg-red-100 border-l-4 border-red-500 text-red-700{% elif message.tags == 'success' %}bg-green-100 border-l-4 border-green-500 text-green-700{% else %}bg-blue-100 border-l-4 border-blue-500 text-blue-700{% endif %} p-4 mb-2" role="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="enrollment_type">
+                {% trans "Enrollment Type" %}
+            </label>
+            <select id="enrollment_type" name="enrollment_type" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">{% trans "Select enrollment type" %}</option>
+                <option value="delivery" {% if form.enrollment_type.value == 'delivery' %}selected{% endif %}>{% trans "Delivery" %}</option>
+                <option value="program" {% if form.enrollment_type.value == 'program' %}selected{% endif %}>{% trans "Program" %}</option>
+                <option value="course" {% if form.enrollment_type.value == 'course' %}selected{% endif %}>{% trans "Course" %}</option>
+            </select>
+            {% if form.enrollment_type.errors %}
+                <p class="mt-2 text-sm text-red-600">{{ form.enrollment_type.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div id="delivery-field" class="mb-4" style="display: none;">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="delivery">
+                {% trans "Delivery" %}
+            </label>
+            <select id="delivery" name="delivery" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">{% trans "Select delivery" %}</option>
+                {% for delivery in form.fields.delivery.queryset %}
+                    <option value="{{ delivery.id }}" {% if form.delivery.value == delivery.id %}selected{% endif %}>{{ delivery.title }}</option>
+                {% endfor %}
+            </select>
+            {% if form.delivery.errors %}
+                <p class="mt-2 text-sm text-red-600">{{ form.delivery.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div id="program-field" class="mb-4" style="display: none;">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="program">
+                {% trans "Program" %}
+            </label>
+            <select id="program" name="program" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">{% trans "Select program" %}</option>
+                {% for program in form.fields.program.queryset %}
+                    <option value="{{ program.id }}" {% if form.program.value == program.id %}selected{% endif %}>{{ program.title }}</option>
+                {% endfor %}
+            </select>
+            {% if form.program.errors %}
+                <p class="mt-2 text-sm text-red-600">{{ form.program.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div id="course-field" class="mb-4" style="display: none;">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="course">
+                {% trans "Course" %}
+            </label>
+            <select id="course" name="course" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">{% trans "Select course" %}</option>
+                {% for course in form.fields.course.queryset %}
+                    <option value="{{ course.id }}" {% if form.course.value == course.id %}selected{% endif %}>{{ course.title }}</option>
+                {% endfor %}
+            </select>
+            {% if form.course.errors %}
+                <p class="mt-2 text-sm text-red-600">{{ form.course.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-4">
+            <h2 class="text-xl font-bold mb-2">{% trans "Select Users" %}</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Select" %}
+                            </th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Username" %}
+                            </th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Email" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        {% for user in users %}
+                        <tr>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                <input type="checkbox" id="user_{{ user.id }}" name="selected_users" value="{{ user.id }}" class="form-checkbox h-5 w-5 text-blue-600">
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                <label for="user_{{ user.id }}">{{ user.username }}</label>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                {{ user.email }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <i class="fas fa-user-plus mr-2"></i>{% trans "Create Enrollments" %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const enrollmentType = document.getElementById('enrollment_type');
+        const deliveryField = document.getElementById('delivery-field');
+        const programField = document.getElementById('program-field');
+        const courseField = document.getElementById('course-field');
+
+        function toggleFields() {
+            const selectedType = enrollmentType.value;
+            deliveryField.style.display = selectedType === 'delivery' ? 'block' : 'none';
+            programField.style.display = selectedType === 'program' ? 'block' : 'none';
+            courseField.style.display = selectedType === 'course' ? 'block' : 'none';
+        }
+
+        toggleFields();
+        enrollmentType.addEventListener('change', toggleFields);
+    });
+</script>
+{% endblock %}

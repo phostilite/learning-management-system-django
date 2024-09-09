@@ -1,0 +1,165 @@
+{% extends '../../_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Deliveries" %} | {% trans "Administrator" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Deliveries" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Manage and view all course and program deliveries." %}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Deliveries" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="mb-6 flex flex-col md:flex-row justify-between items-center">
+        <div class="w-full md:w-1/3 mb-4 md:mb-0">
+            <form action="" method="get" class="flex items-center">
+                <input type="text" name="search" placeholder="{% trans 'Search deliveries...' %}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <button type="submit" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {% trans "Search" %}
+                </button>
+            </form>
+        </div>
+        <div class="w-full md:w-1/3 flex justify-end">
+            <a href="{% url 'administrator_delivery_create' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                {% trans "Create New Delivery" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="mb-6 flex flex-wrap -mx-2">
+        <div class="w-full md:w-1/4 px-2 mb-4">
+            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>{% trans "Filter by Type" %}</option>
+                <option value="PROGRAM">{% trans "Program" %}</option>
+                <option value="COURSE">{% trans "Course" %}</option>
+            </select>
+        </div>
+        <div class="w-full md:w-1/4 px-2 mb-4">
+            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>{% trans "Filter by Status" %}</option>
+                <option value="ACTIVE">{% trans "Active" %}</option>
+                <option value="INACTIVE">{% trans "Inactive" %}</option>
+            </select>
+        </div>
+        <div class="w-full md:w-1/4 px-2 mb-4">
+            <input type="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" placeholder="{% trans 'Start Date' %}">
+        </div>
+        <div class="w-full md:w-1/4 px-2 mb-4">
+            <input type="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" placeholder="{% trans 'End Date' %}">
+        </div>
+    </div>
+
+    {% if deliveries %}
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "Title" %}
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "Type" %}
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "Start Date" %}
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "End Date" %}
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "Status" %}
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            {% trans "Actions" %}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for delivery in deliveries %}
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.title }}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.get_delivery_type_display }}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.start_date|date:"M d, Y" }}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.end_date|date:"M d, Y" }}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <span class="relative inline-block px-3 py-1 font-semibold {% if delivery.is_active %}text-green-900{% else %}text-red-900{% endif %} leading-tight">
+                                    <span aria-hidden class="absolute inset-0 {% if delivery.is_active %}bg-green-200{% else %}bg-red-200{% endif %} opacity-50 rounded-full"></span>
+                                    <span class="relative">{% if delivery.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}</span>
+                                </span>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="text-blue-600 hover:text-blue-900 mr-2">{% trans "View" %}</a>
+                                <a href="{% url 'administrator_delivery_edit' delivery.id %}" class="text-green-600 hover:text-green-900 mr-2">{% trans "Edit" %}</a>
+                                <a href="{% url 'administrator_delivery_delete' delivery.id %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                <a href="{% url 'administrator_delivery_component_create' %}?delivery={{ delivery.id }}" class="text-purple-600 hover:text-purple-900">{% trans "Add Component" %}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="bg-white shadow-md rounded-lg p-6 text-center">
+            <p class="text-gray-600">{% trans "No deliveries found." %}</p>
+        </div>
+    {% endif %}
+
+    <!-- Pagination -->
+    <div class="mt-6">
+        <nav class="flex justify-center">
+            <ul class="flex pl-0 rounded list-none flex-wrap">
+                <li>
+                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
+                        <span>‹</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-blue-500 text-white">
+                        <span>1</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
+                        <span>2</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
+                        <span>3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
+                        <span>›</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

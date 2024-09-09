@@ -4,10 +4,6 @@
 
 {% block title %}{% trans "Create New Program" %} - LMS Admin{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-{% endblock %}
-
 {% block content %}
 <div class="container mx-auto">
     <div class="w-full mx-auto">
@@ -137,20 +133,23 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">{% trans "Tags" %}</label>
-                        <div class="mt-2 space-y-2 max-h-48 overflow-y-auto">
-                            {% for tag in form.tags %}
-                                <div class="flex items-start">
-                                    <div class="flex items-center h-5">
-                                        <input id="{{ tag.id_for_label }}" name="tags" type="checkbox" 
-                                               value="{{ tag.data.value }}"
-                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                               {% if tag.data.selected %}checked{% endif %}>
+                        <div class="relative">
+                            <input type="text" id="tag-search" class="mb-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search tags...">
+                            <div class="mt-2 space-y-2 max-h-48 overflow-y-auto" id="tag-list">
+                                {% for tag in form.tags %}
+                                    <div class="flex items-start tag-item">
+                                        <div class="flex items-center h-5">
+                                            <input id="{{ tag.id_for_label }}" name="tags" type="checkbox" 
+                                                   value="{{ tag.data.value }}"
+                                                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                                   {% if tag.data.selected %}checked{% endif %}>
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="{{ tag.id_for_label }}" class="font-medium text-gray-700">{{ tag.choice_label }}</label>
+                                        </div>
                                     </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="{{ tag.id_for_label }}" class="font-medium text-gray-700">{{ tag.choice_label }}</label>
-                                    </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                         {% if form.tags.errors %}
                             <p class="mt-2 text-sm text-red-600">{{ form.tags.errors.0 }}</p>
@@ -158,20 +157,23 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">{% trans "Prerequisites" %}</label>
-                        <div class="mt-2 space-y-2 max-h-48 overflow-y-auto">
-                            {% for prerequisite in form.prerequisites %}
-                                <div class="flex items-start">
-                                    <div class="flex items-center h-5">
-                                        <input id="{{ prerequisite.id_for_label }}" name="prerequisites" type="checkbox"
-                                               value="{{ prerequisite.data.value }}"
-                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                               {% if prerequisite.data.selected %}checked{% endif %}>
+                        <div class="relative">
+                            <input type="text" id="prerequisite-search" class="mb-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search prerequisites...">
+                            <div class="mt-2 space-y-2 max-h-48 overflow-y-auto" id="prerequisite-list">
+                                {% for prerequisite in form.prerequisites %}
+                                    <div class="flex items-start prerequisite-item">
+                                        <div class="flex items-center h-5">
+                                            <input id="{{ prerequisite.id_for_label }}" name="prerequisites" type="checkbox"
+                                                   value="{{ prerequisite.data.value }}"
+                                                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                                   {% if prerequisite.data.selected %}checked{% endif %}>
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="{{ prerequisite.id_for_label }}" class="font-medium text-gray-700">{{ prerequisite.choice_label }}</label>
+                                        </div>
                                     </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="{{ prerequisite.id_for_label }}" class="font-medium text-gray-700">{{ prerequisite.choice_label }}</label>
-                                    </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                         {% if form.prerequisites.errors %}
                             <p class="mt-2 text-sm text-red-600">{{ form.prerequisites.errors.0 }}</p>
@@ -220,18 +222,28 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        flatpickr("#id_start_date", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-        });
+    function setupSearch(searchInputId, listId, itemClass) {
+        const searchInput = document.getElementById(searchInputId);
+        const list = document.getElementById(listId);
+        const items = list.getElementsByClassName(itemClass);
 
-        flatpickr("#id_end_date", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            for (let item of items) {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
         });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setupSearch('tag-search', 'tag-list', 'tag-item');
+        setupSearch('prerequisite-search', 'prerequisite-list', 'prerequisite-item');
     });
 </script>
 {% endblock %}
