@@ -140,10 +140,17 @@
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                         {% trans "Edit Delivery" %}
                     </a>
-                    <a href="{% url 'administrator_delivery_component_create' %}?delivery={{ delivery.id }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                        {% trans "Add Component" %}
-                    </a>
+                    {% if delivery.delivery_type == 'PROGRAM' %}
+                        <a href="{% url 'administrator_add_course_component' delivery.id %}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            {% trans "Add Course Component" %}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'administrator_add_resource_component_to_course' delivery.id %}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            {% trans "Add Learning Resource" %}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -189,6 +196,85 @@
                 {% endif %}
             </div>
         </div>
+
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInUp">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Program Courses" %}</h2>
+                {% if program_courses %}
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {% trans "Order" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {% trans "Course" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {% trans "Mandatory" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {% trans "Actions" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for component in program_courses %}
+                                    <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ component.order }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ component.program_course.course.title }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                                {% if component.is_mandatory %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <a href="{% url 'administrator_delivery_component_edit' component.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
+                                            <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                            <a href="{% url 'administrator_add_resource_component' parent_component_id=component.id %}" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
+                                        </td>
+                                    </tr>
+                                    {% if component.child_components.exists %}
+                                        {% for resource in component.child_components.all %}
+                                            <tr class="bg-gray-100">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 pl-12">
+                                                    {{ resource.order }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {{ resource.learning_resource.title }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if resource.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                                        {% if resource.is_mandatory %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <a href="{% url 'administrator_delivery_component_edit' resource.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
+                                                    <a href="{% url 'administrator_delivery_component_delete' resource.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-gray-600">{% trans "No courses found for this program delivery." %}</p>
+                {% endif %}
+                <div class="mt-6 flex justify-start">
+                    <a href="{% url 'administrator_add_course_component' delivery.id %}" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        {% trans "Add Course Component" %}
+                    </a>
+                </div>
+            </div>
+        </div>
         {% elif delivery.delivery_type == 'COURSE' %}
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
             <div class="p-6">
@@ -230,12 +316,11 @@
                 {% endif %}
             </div>
         </div>
-        {% endif %}
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInUp">
             <div class="p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Delivery Components" %}</h2>
-                {% if components %}
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Learning Resources" %}</h2>
+                {% if learning_resources %}
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
@@ -258,24 +343,16 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                {% for component in components %}
+                                {% for component in learning_resources %}
                                     <tr class="hover:bg-gray-50 transition-colors duration-200">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ component.order }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {% if component.program_course %}
-                                                {{ component.program_course.course.title }}
-                                            {% elif component.learning_resource %}
-                                                {{ component.learning_resource.title }}
-                                            {% endif %}
+                                            {{ component.learning_resource.title }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {% if component.program_course %}
-                                                {% trans "Program Course" %}
-                                            {% elif component.learning_resource %}
-                                                {{ component.learning_resource.get_resource_type_display }}
-                                            {% endif %}
+                                            {{ component.learning_resource.get_resource_type_display }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
@@ -292,10 +369,17 @@
                         </table>
                     </div>
                 {% else %}
-                    <p class="text-gray-600">{% trans "No components found for this delivery." %}</p>
+                    <p class="text-gray-600">{% trans "No learning resources found for this course delivery." %}</p>
                 {% endif %}
+                <div class="mt-6 flex justify-start">
+                    <a href="{% url 'administrator_add_resource_component_to_course' delivery.id %}" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        {% trans "Add Learning Resource" %}
+                    </a>
+                </div>
             </div>
         </div>
+        {% endif %}
     </main>
 </div>
 {% endblock %}

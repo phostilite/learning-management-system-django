@@ -1,0 +1,151 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block title %}{{ program.title }} - {% trans "My Program" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .program-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url('{% if program.cover_image %}{{ program.cover_image.url }}{% else %}{% static "images/default-program-cover.jpg" %}{% endif %}');
+        background-size: cover;
+        background-position: center;
+    }
+    .course-card {
+        transition: all 0.3s ease;
+    }
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    {% if error %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">Error:</strong>
+            <span class="block sm:inline">{{ error }}</span>
+        </div>
+    {% else %}
+        <!-- Program Header -->
+        <div class="program-header text-white p-12 rounded-lg shadow-lg mb-8">
+            <h1 class="text-4xl font-bold mb-4">{{ program.title }}</h1>
+            <p class="text-xl mb-4">{{ program.short_description }}</p>
+            <div class="flex items-center mb-4">
+                <span class="mr-4"><i class="fas fa-book mr-2"></i>{{ program_courses|length }} {% trans "Courses" %}</span>
+                {% if program.duration %}
+                    <span class="mr-4"><i class="fas fa-clock mr-2"></i>{{ program.duration }}</span>
+                {% endif %}
+                <span><i class="fas fa-chart-line mr-2"></i>{% trans "Progress:" %} {{ program_progress.progress_percentage|floatformat:1 }}%</span>
+            </div>
+        </div>
+
+        <!-- Program Progress -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Your Progress" %}</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                <div class="bg-blue-600 h-4 rounded-full" style="width: {{ program_progress.progress_percentage }}%"></div>
+            </div>
+            <p class="text-gray-600">{% trans "You've completed" %} {{ program_progress.completed_items }} {% trans "out of" %} {{ program_progress.total_items }} {% trans "items" %}.</p>
+        </div>
+
+        <!-- Course List -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">{% trans "Program Courses" %}</h2>
+            {% for program_course in program_courses %}
+                {% with course=program_course.course %}
+                <div class="course-card bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">{{ course.title }}</h3>
+                                <p class="text-gray-600">{{ course.short_description }}</p>
+                            </div>
+                            <a href="{% url 'learner_course_detail' course.id %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                {% trans "Go to Course" %}
+                            </a>
+                        </div>
+                        {% with course_progress=course_progress|get_item:course.id %}
+                        {% if course_progress %}
+                        <div class="mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-green-500 h-3 rounded-full" style="width: {{ course_progress.progress_percentage }}%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">{% trans "Progress:" %} {{ course_progress.progress_percentage|floatformat:1 }}%</p>
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                        <div class="mt-4">
+                            <h4 class="font-semibold mb-2">{% trans "Learning Resources" %}</h4>
+                            <ul class="space-y-2">
+                                {% for resource in course.resources.all %}
+                                <li class="flex items-center">
+                                    {% if resource.resource_type == 'VIDEO' %}
+                                        <i class="fas fa-video text-blue-500 mr-2"></i>
+                                    {% elif resource.resource_type == 'DOCUMENT' %}
+                                        <i class="fas fa-file-alt text-green-500 mr-2"></i>
+                                    {% elif resource.resource_type == 'QUIZ' %}
+                                        <i class="fas fa-question-circle text-yellow-500 mr-2"></i>
+                                    {% else %}
+                                        <i class="fas fa-link text-purple-500 mr-2"></i>
+                                    {% endif %}
+                                    <a href="#" class="text-blue-600 hover:underline">{{ resource.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+
+        <!-- Program Information -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Program Information" %}</h2>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">{% trans "About This Program" %}</h3>
+                {{ program.description|safe }}
+            </div>
+            {% if program.learning_outcomes %}
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">{% trans "Learning Outcomes" %}</h3>
+                <ul class="list-disc pl-5 space-y-2">
+                    {% for outcome in program.learning_outcomes %}
+                        <li>{{ outcome }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Instructors -->
+        {% if instructors %}
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-4">{% trans "Program Instructors" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for instructor in instructors %}
+                <div class="flex items-center p-4 bg-gray-100 rounded-lg">
+                    {% if instructor.profile_picture %}
+                        <img src="{{ instructor.profile_picture.url }}" alt="{{ instructor.get_full_name }}" class="w-16 h-16 rounded-full mr-4">
+                    {% else %}
+                        <div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-gray-500 text-2xl"></i>
+                        </div>
+                    {% endif %}
+                    <div>
+                        <h4 class="font-bold">{{ instructor.get_full_name }}</h4>
+                        <p class="text-sm text-gray-600">{{ instructor.title }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

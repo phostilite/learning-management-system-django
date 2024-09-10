@@ -115,8 +115,12 @@
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="text-blue-600 hover:text-blue-900 mr-2">{% trans "View" %}</a>
                                 <a href="{% url 'administrator_delivery_edit' delivery.id %}" class="text-green-600 hover:text-green-900 mr-2">{% trans "Edit" %}</a>
-                                <a href="{% url 'administrator_delivery_delete' delivery.id %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
-                                <a href="{% url 'administrator_delivery_component_create' %}?delivery={{ delivery.id }}" class="text-purple-600 hover:text-purple-900">{% trans "Add Component" %}</a>
+                                <a href="{% url 'administrator_delivery_delete' delivery.id %}" class="text-red-600 hover:text-red-900 mr-2">{% trans "Delete" %}</a>
+                                {% if delivery.delivery_type == 'PROGRAM' %}
+                                    <a href="{% url 'administrator_add_course_component' delivery.id %}" class="text-purple-600 hover:text-purple-900">{% trans "Add Course" %}</a>
+                                {% else %}
+                                    <a href="{% url 'administrator_add_resource_component_to_course' delivery.id %}" class="text-purple-600 hover:text-purple-900">{% trans "Add Resource" %}</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

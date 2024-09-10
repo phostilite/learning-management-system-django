@@ -29,7 +29,7 @@ from django.db.models import Avg, Q
 
 
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm
-from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review)
+from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress)
 from .api_client import upload_scorm_package, register_user_for_course
 
 logger = logging.getLogger(__name__)
@@ -105,6 +105,89 @@ class ProgramDetailView(LoginRequiredMixin, DetailView):
             logger.error(f"Error in ProgramDetailView: {str(e)}")
             context['error'] = str(e)
         
+        return context
+    
+
+class MyProgramsView(LoginRequiredMixin, ListView):
+    template_name = 'users/learner/programs/my_programs.html'
+    context_object_name = 'enrollments'
+    paginate_by = 10
+
+    def get_queryset(self):
+        try:
+            # Get enrollments for programs and program deliveries
+            return Enrollment.objects.filter(
+                Q(user=self.request.user, program__isnull=False) |
+                Q(user=self.request.user, delivery__delivery_type='PROGRAM')
+            ).select_related('program', 'delivery', 'delivery__program').order_by('-enrollment_date')
+        except Exception as e:
+            logger.error(f"Error fetching enrollments for user {self.request.user.id}: {str(e)}")
+            return Enrollment.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['total_enrollments'] = self.get_queryset().count()
+        except Exception as e:
+            logger.error(f"Error getting total enrollments count: {str(e)}")
+            context['total_enrollments'] = 0
+        return context
+    
+class MyProgramDetailsView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/my_program_details.html'
+    context_object_name = 'program'
+
+    def get_object(self):
+        program_id = self.kwargs.get('program_id')
+        try:
+            return get_object_or_404(Program, id=program_id)
+        except Exception as e:
+            logger.error(f"Error fetching program with id {program_id}: {str(e)}")
+            return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            program = self.object
+            user = self.request.user
+
+            # Get enrollment (direct or through delivery)
+            enrollment = Enrollment.objects.filter(
+                user=user,
+                program=program
+            ).first() or Enrollment.objects.filter(
+                user=user,
+                delivery__program=program,
+                delivery__delivery_type='PROGRAM'
+            ).first()
+
+            if not enrollment:
+                context['error'] = "You are not enrolled in this program."
+                return context
+
+            context['enrollment'] = enrollment
+
+            # Fetch program courses with resources
+            program_courses = ProgramCourse.objects.filter(program=program).select_related('course').prefetch_related(
+                Prefetch('course__resources', queryset=LearningResource.objects.order_by('order'))
+            ).order_by('order')
+            context['program_courses'] = program_courses
+
+            # Fetch progress for the program and its courses
+            progress_records = Progress.objects.filter(
+                enrollment=enrollment,
+                program=program
+            ).select_related('course')
+            context['program_progress'] = progress_records.filter(course__isnull=True).first()
+            context['course_progress'] = {p.course_id: p for p in progress_records.filter(course__isnull=False)}
+
+            # Additional context data as needed
+            context['instructors'] = None
+
+        except Exception as e:
+            logger.error(f"Error in MyProgramDetailsView get_context_data: {str(e)}")
+            context['error'] = "An error occurred while fetching program details."
+
         return context
     
 # ================================================================

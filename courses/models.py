@@ -160,11 +160,12 @@ class Delivery(models.Model):
 
 class DeliveryComponent(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='components')
-    program_course = models.ForeignKey(ProgramCourse, on_delete=models.CASCADE, null=True, blank=True)
-    learning_resource = models.ForeignKey(LearningResource, on_delete=models.CASCADE, null=True, blank=True)
-    is_mandatory = models.BooleanField()
+    delivery = models.ForeignKey('Delivery', on_delete=models.CASCADE, related_name='components')
+    program_course = models.ForeignKey('ProgramCourse', on_delete=models.CASCADE, null=True, blank=True)
+    learning_resource = models.ForeignKey('LearningResource', on_delete=models.CASCADE, null=True, blank=True)
+    is_mandatory = models.BooleanField(default=True)
     order = models.PositiveIntegerField(default=0)
+    parent_component = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='child_components')
 
     class Meta:
         ordering = ['order']
@@ -175,23 +176,21 @@ class DeliveryComponent(models.Model):
 
     def __str__(self):
         if self.program_course:
-            return f"{self.delivery.title} - {self.program_course.course.title} ({'Mandatory' if self.is_mandatory else 'Optional'})"
-        else:
-            return f"{self.delivery.title} - {self.learning_resource.title} ({'Mandatory' if self.is_mandatory else 'Optional'})"
+            return f"{self.delivery.title} - {self.program_course.course.title}"
+        elif self.learning_resource:
+            return f"{self.delivery.title} - {self.learning_resource.title}"
+        return f"Component of {self.delivery.title}"
 
-    def clean(self):
-        if self.delivery.delivery_type == 'PROGRAM' and not self.program_course:
-            raise ValidationError("Program delivery component must have a program course associated.")
-        if self.delivery.delivery_type == 'COURSE' and not self.learning_resource:
-            raise ValidationError("Course delivery component must have a learning resource associated.")
-        
-        # Check for conflicts with default criteria
-        if self.delivery.delivery_type == 'PROGRAM':
-            if self.is_mandatory != self.program_course.is_mandatory:
-                raise ValidationError("Delivery component mandatory status conflicts with program course default.")
-        elif self.delivery.delivery_type == 'COURSE':
-            if self.is_mandatory != self.learning_resource.is_mandatory:
-                raise ValidationError("Delivery component mandatory status conflicts with learning resource default.")
+    @property
+    def is_course_component(self):
+        return self.program_course is not None and self.learning_resource is None
+
+    @property
+    def is_resource_component(self):
+        return self.learning_resource is not None
+
+    def get_child_components(self):
+        return self.child_components.all() if self.is_course_component else None
 
 class Enrollment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

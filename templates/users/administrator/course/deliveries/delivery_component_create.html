@@ -40,7 +40,7 @@
     </nav>
 
     <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-        <form method="post">
+        <form method="post" id="deliveryComponentForm">
             {% csrf_token %}
             
             {% if form.non_field_errors %}
@@ -49,33 +49,37 @@
                 </div>
             {% endif %}
             
+            {{ form.delivery.as_hidden }}
+            
+            {% if delivery.delivery_type == 'PROGRAM' %}
             <div class="mb-4">
-                <label for="{{ form.delivery.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Delivery" %}:</label>
-                {{ form.delivery }}
-                {% if form.delivery.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.delivery.errors.0 }}</p>
+                <label for="{{ form.program_course.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Program Course" %}:</label>
+                <select name="{{ form.program_course.name }}" id="{{ form.program_course.id_for_label }}" class="form-select mt-1 block w-full">
+                    <option value="">---------</option>
+                    {% for program_course in program_courses %}
+                        <option value="{{ program_course.id }}">{{ program_course.course.title }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.program_course.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.program_course.errors.0 }}</p>
                 {% endif %}
             </div>
-            
-            {% if form.program_course %}
-                <div class="mb-4">
-                    <label for="{{ form.program_course.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Program Course" %}:</label>
-                    {{ form.program_course }}
-                    {% if form.program_course.errors %}
-                        <p class="mt-2 text-sm text-red-600">{{ form.program_course.errors.0 }}</p>
-                    {% endif %}
-                </div>
+        {% endif %}
+        
+        <div class="mb-4">
+            <label for="{{ form.learning_resource.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Learning Resource" %}:</label>
+            <select name="{{ form.learning_resource.name }}" id="{{ form.learning_resource.id_for_label }}" class="form-select mt-1 block w-full">
+                <option value="">---------</option>
+                {% if delivery.delivery_type == 'COURSE' %}
+                    {% for resource in learning_resources %}
+                        <option value="{{ resource.id }}">{{ resource.title }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            {% if form.learning_resource.errors %}
+                <p class="mt-2 text-sm text-red-600">{{ form.learning_resource.errors.0 }}</p>
             {% endif %}
-            
-            {% if form.learning_resource %}
-                <div class="mb-4">
-                    <label for="{{ form.learning_resource.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Learning Resource" %}:</label>
-                    {{ form.learning_resource }}
-                    {% if form.learning_resource.errors %}
-                        <p class="mt-2 text-sm text-red-600">{{ form.learning_resource.errors.0 }}</p>
-                    {% endif %}
-                </div>
-            {% endif %}
+        </div>
             
             <div class="mb-4">
                 <label for="{{ form.order.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Order" %}:</label>
@@ -99,7 +103,7 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     {% trans "Create Component" %}
                 </button>
-                <a href="{% url 'administrator_delivery_list' %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     {% trans "Cancel" %}
                 </a>
             </div>
@@ -111,28 +115,32 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const deliverySelect = document.getElementById('{{ form.delivery.id_for_label }}');
-        const programCourseField = document.getElementById('{{ form.program_course.id_for_label }}').closest('div');
-        const learningResourceField = document.getElementById('{{ form.learning_resource.id_for_label }}').closest('div');
+        const programCourseSelect = document.getElementById('{{ form.program_course.id_for_label }}');
+        const learningResourceSelect = document.getElementById('{{ form.learning_resource.id_for_label }}');
 
-        function toggleFields() {
-            const selectedDelivery = deliverySelect.options[deliverySelect.selectedIndex];
-            const deliveryType = selectedDelivery.getAttribute('data-type');
-
-            if (deliveryType === 'PROGRAM') {
-                programCourseField.style.display = 'block';
-                learningResourceField.style.display = 'none';
-            } else if (deliveryType === 'COURSE') {
-                programCourseField.style.display = 'none';
-                learningResourceField.style.display = 'block';
-            } else {
-                programCourseField.style.display = 'none';
-                learningResourceField.style.display = 'none';
-            }
-        }
-
-        deliverySelect.addEventListener('change', toggleFields);
-        toggleFields(); // Call once to set initial state
+        {% if delivery.delivery_type == 'PROGRAM' %}
+            programCourseSelect.addEventListener('change', function() {
+                const selectedCourseId = this.value;
+                if (selectedCourseId) {
+                    fetch(`{% url 'get_learning_resources' %}?program_course=${selectedCourseId}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        learningResourceSelect.innerHTML = '<option value="">---------</option>';
+                        data.learning_resources.forEach(resource => {
+                            learningResourceSelect.innerHTML += `<option value="${resource.id}">${resource.title}</option>`;
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+                } else {
+                    learningResourceSelect.innerHTML = '<option value="">---------</option>';
+                }
+            });
+        {% endif %}
     });
 </script>
 {% endblock %}

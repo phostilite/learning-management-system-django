@@ -334,18 +334,30 @@ class DeliveryComponentForm(forms.ModelForm):
         
         return cleaned_data
 
-class ProgramDeliveryComponentForm(DeliveryComponentForm):
-    program_course = forms.ModelChoiceField(queryset=ProgramCourse.objects.all(), required=False)
+class CourseComponentForm(forms.ModelForm):
+    class Meta:
+        model = DeliveryComponent
+        fields = ['program_course', 'is_mandatory', 'order']
 
-    class Meta(DeliveryComponentForm.Meta):
-        fields = DeliveryComponentForm.Meta.fields + ['program_course']
+    def __init__(self, *args, **kwargs):
+        self.delivery = kwargs.pop('delivery')
+        super().__init__(*args, **kwargs)
+        self.fields['program_course'].queryset = ProgramCourse.objects.filter(program=self.delivery.program)
 
-class CourseDeliveryComponentForm(DeliveryComponentForm):
-    learning_resource = forms.ModelChoiceField(queryset=LearningResource.objects.all(), required=False)
+class ResourceComponentForm(forms.ModelForm):
+    class Meta:
+        model = DeliveryComponent
+        fields = ['learning_resource', 'is_mandatory', 'order']
 
-    class Meta(DeliveryComponentForm.Meta):
-        fields = DeliveryComponentForm.Meta.fields + ['learning_resource']
-
+    def __init__(self, *args, **kwargs):
+        self.delivery = kwargs.pop('delivery', None)
+        self.parent_component = kwargs.pop('parent_component', None)
+        super().__init__(*args, **kwargs)
+        
+        if self.delivery:
+            self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.delivery.course)
+        elif self.parent_component:
+            self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.parent_component.program_course.course)
 
 # ============================================================
 # ======================= Enrollment Forms ===================

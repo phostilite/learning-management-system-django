@@ -37,7 +37,7 @@ from django.core.exceptions import PermissionDenied
 
 from certificates.models import Certificate
 from courses.forms import (CourseForm, EnrollmentForm, LearningResourceForm,
-                           LearningResourceFormSet, ScormResourceForm, ProgramForm, ProgramPublishForm, ProgramUnpublishForm, LearningResourceEditForm, CoursePublishForm, CourseUnpublishForm, ProgramCourseForm, DeliveryCreateForm, ProgramDeliveryComponentForm, CourseDeliveryComponentForm, DeliveryEditForm, EnrollmentEditForm)
+                           LearningResourceFormSet, ScormResourceForm, ProgramForm, ProgramPublishForm, ProgramUnpublishForm, LearningResourceEditForm, CoursePublishForm, CourseUnpublishForm, ProgramCourseForm, DeliveryCreateForm, DeliveryEditForm, EnrollmentEditForm, CourseComponentForm, ResourceComponentForm)
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Delivery, DeliveryComponent)
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
@@ -941,7 +941,18 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, UserPassesTestMixin, D
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['components'] = DeliveryComponent.objects.filter(delivery=self.object).order_by('order')
+        delivery = self.object
+        if delivery.delivery_type == 'PROGRAM':
+            context['program_courses'] = DeliveryComponent.objects.filter(
+                delivery=delivery,
+                program_course__isnull=False,
+                parent_component__isnull=True
+            ).select_related('program_course__course').order_by('order')
+        else:
+            context['learning_resources'] = DeliveryComponent.objects.filter(
+                delivery=delivery,
+                learning_resource__isnull=False
+            ).select_related('learning_resource').order_by('order')
         return context
     
 class AdministratorDeliveryEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -965,79 +976,57 @@ class AdministratorDeliveryDeleteView(LoginRequiredMixin, UserPassesTestMixin, D
     def test_func(self):
         return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
 
-class AdministratorDeliveryComponentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class CourseComponentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = DeliveryComponent
-    template_name = 'users/administrator/course/deliveries/delivery_component_create.html'
-    success_url = reverse_lazy('administrator_delivery_list')
+    form_class = CourseComponentForm
+    template_name = 'users/administrator/course/deliveries/course_component_form.html'
 
     def test_func(self):
         return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
 
-    def get_form_class(self):
-        delivery_id = self.request.GET.get('delivery')
-        if delivery_id:
-            delivery = Delivery.objects.get(id=delivery_id)
-            if delivery.delivery_type == 'PROGRAM':
-                return ProgramDeliveryComponentForm
-            elif delivery.delivery_type == 'COURSE':
-                return CourseDeliveryComponentForm
-        return ProgramDeliveryComponentForm  # Default to Program form
-
-    def get_initial(self):
-        initial = super().get_initial()
-        delivery_id = self.request.GET.get('delivery')
-        if delivery_id:
-            initial['delivery'] = delivery_id
-        return initial
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['delivery'] = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
+        return kwargs
 
     def form_valid(self, form):
-        delivery = form.cleaned_data['delivery']
-        if delivery.delivery_type == 'PROGRAM':
-            form.instance.program_course = form.cleaned_data['program_course']
-        elif delivery.delivery_type == 'COURSE':
-            form.instance.learning_resource = form.cleaned_data['learning_resource']
+        form.instance.delivery = form.delivery
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        delivery_id = self.request.GET.get('delivery')
-        if delivery_id:
-            context['delivery'] = Delivery.objects.get(id=delivery_id)
-        return context
+    def get_success_url(self):
+        return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.kwargs['delivery_id']})
 
-
-class AdministratorDeliveryComponentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ResourceComponentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = DeliveryComponent
-    template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
-    
+    form_class = ResourceComponentForm
+    template_name = 'users/administrator/course/deliveries/resource_component_form.html'
+
     def test_func(self):
         return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
 
-    def get_form_class(self):
-        delivery_component = self.get_object()
-        if delivery_component.delivery.delivery_type == 'PROGRAM':
-            return ProgramDeliveryComponentForm
-        elif delivery_component.delivery.delivery_type == 'COURSE':
-            return CourseDeliveryComponentForm
-    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if 'delivery_id' in self.kwargs:
+            kwargs['delivery'] = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
+        elif 'parent_component_id' in self.kwargs:
+            kwargs['parent_component'] = get_object_or_404(DeliveryComponent, pk=self.kwargs['parent_component_id'])
+        return kwargs
+
+    def form_valid(self, form):
+        if 'delivery_id' in self.kwargs:
+            form.instance.delivery = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
+        elif 'parent_component_id' in self.kwargs:
+            parent_component = get_object_or_404(DeliveryComponent, pk=self.kwargs['parent_component_id'])
+            form.instance.delivery = parent_component.delivery
+            form.instance.parent_component = parent_component
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
 
-    def form_valid(self, form):
-        delivery = form.cleaned_data['delivery']
-        if delivery.delivery_type == 'PROGRAM':
-            form.instance.program_course = form.cleaned_data['program_course']
-            form.instance.learning_resource = None
-        elif delivery.delivery_type == 'COURSE':
-            form.instance.learning_resource = form.cleaned_data['learning_resource']
-            form.instance.program_course = None
-        messages.success(self.request, 'Delivery component updated successfully.')
-        return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['delivery'] = self.object.delivery
-        return context
+class AdministratorDeliveryComponentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
 
 class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DeliveryComponent

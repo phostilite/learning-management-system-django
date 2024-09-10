@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from . import administartor_views, facilitator_views, learner_views, supervisor_views, auth_views
+from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views
 from django.views.i18n import set_language
 
 urlpatterns = [
@@ -10,86 +10,93 @@ urlpatterns = [
      path('logout/', auth_views.user_logout, name='logout'),
 
      # Administrator views
-     path('administrator/dashboard/', administartor_views.AdministratorDashboardView.as_view(), name='administrator_dashboard'),   
-     path('administrator/calendar/', administartor_views.AdministratorCalendarView.as_view(), name='administrator_calendar'),
-     path('administrator/leaderboard/', administartor_views.AdministratorLeaderboardView.as_view(), name='administrator_leaderboard'),
+     path('administrator/dashboard/', administrator_views.AdministratorDashboardView.as_view(), name='administrator_dashboard'),   
+     path('administrator/calendar/', administrator_views.AdministratorCalendarView.as_view(), name='administrator_calendar'),
+     path('administrator/leaderboard/', administrator_views.AdministratorLeaderboardView.as_view(), name='administrator_leaderboard'),
 
-     path('administrator/course/create/', administartor_views.AdministratorCourseCreateView.as_view(), name='administrator_create_course'),
-     path('administrator/course/list/', administartor_views.AdministratorCourseListView.as_view(), name='administrator_course_list'),
-     path('administrator/course/<uuid:pk>/', administartor_views.AdministratorCourseDetailView.as_view(), name='administrator_course_detail'),
-     path('administrator/course/<uuid:pk>/edit/', administartor_views.AdministratorCourseEditView.as_view(), name='administrator_course_edit'),
-     path('administrator/course/<uuid:pk>/publish/', administartor_views.AdministratorCoursePublishView.as_view(), name='administrator_course_publish'),
-     path('administrator/course/<uuid:pk>/unpublish/', administartor_views.AdministratorCourseUnpublishView.as_view(), name='administrator_course_unpublish'),
-     path('administrator/course/<uuid:pk>/delete/', administartor_views.AdministratorCourseDeleteView.as_view(), name='administrator_course_delete'),
+     path('administrator/course/create/', administrator_views.AdministratorCourseCreateView.as_view(), name='administrator_create_course'),
+     path('administrator/course/list/', administrator_views.AdministratorCourseListView.as_view(), name='administrator_course_list'),
+     path('administrator/course/<uuid:pk>/', administrator_views.AdministratorCourseDetailView.as_view(), name='administrator_course_detail'),
+     path('administrator/course/<uuid:pk>/edit/', administrator_views.AdministratorCourseEditView.as_view(), name='administrator_course_edit'),
+     path('administrator/course/<uuid:pk>/publish/', administrator_views.AdministratorCoursePublishView.as_view(), name='administrator_course_publish'),
+     path('administrator/course/<uuid:pk>/unpublish/', administrator_views.AdministratorCourseUnpublishView.as_view(), name='administrator_course_unpublish'),
+     path('administrator/course/<uuid:pk>/delete/', administrator_views.AdministratorCourseDeleteView.as_view(), name='administrator_course_delete'),
 
-     path('administrator/course/categories/', administartor_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
-     path('administrator/course/learning_paths/', administartor_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
+     path('administrator/course/categories/', administrator_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
+     path('administrator/course/learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
 
 
-     path('administrator/course/<uuid:course_id>/resources/', administartor_views.AdministratorLearningResourcesListView.as_view(), name='administrator_course_resource_list'),
-     path('administrator/course/<uuid:course_id>/resources/create/', administartor_views.AdministratorLearningResourceCreateView.as_view(), name='administrator_learning_resource_create'),
+     path('administrator/course/<uuid:course_id>/resources/', administrator_views.AdministratorLearningResourcesListView.as_view(), name='administrator_course_resource_list'),
+     path('administrator/course/<uuid:course_id>/resources/create/', administrator_views.AdministratorLearningResourceCreateView.as_view(), name='administrator_learning_resource_create'),
      path('administrator/course/<uuid:course_id>/learning-resources/<uuid:resource_id>/edit/', 
-          administartor_views.AdministratorLearningResourceEditView.as_view(), 
+          administrator_views.AdministratorLearningResourceEditView.as_view(), 
           name='administrator_learning_resource_edit'),
      path('administrator/course/<uuid:course_id>/learning-resources/<uuid:resource_id>/delete/', 
-          administartor_views.AdministratorLearningResourceDeleteView.as_view(), 
+          administrator_views.AdministratorLearningResourceDeleteView.as_view(), 
           name='administrator_learning_resource_delete'),
-     path('administrator/course/<uuid:course_id>/learning-resource/<uuid:pk>/', administartor_views.AdministratorLearningResourceDetailView.as_view(), name='administrator_learning_resource_detail'),
-     path('administrator/scorm-upload/', administartor_views.scorm_upload_view, name='administrator_scorm_upload'),
+     path('administrator/course/<uuid:course_id>/learning-resource/<uuid:pk>/', administrator_views.AdministratorLearningResourceDetailView.as_view(), name='administrator_learning_resource_detail'),
+     path('administrator/scorm-upload/', administrator_views.scorm_upload_view, name='administrator_scorm_upload'),
 
-     path('administrator/deliveries/', administartor_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
-     path('administrator/delivery/create/', administartor_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
-     path('administrator/deliveries/<uuid:pk>/', administartor_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),
-     path('administrator/delivery/<uuid:pk>/edit/', administartor_views.AdministratorDeliveryEditView.as_view(), name='administrator_delivery_edit'),
-     path('administrator/delivery/<uuid:pk>/delete/', administartor_views.AdministratorDeliveryDeleteView.as_view(), name='administrator_delivery_delete'),
-
-
-     path('administrator/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_enrollment_list'),
-     path('administrator/enrollment/create/', administartor_views.AdministratorEnrollmentCreateView.as_view(), name='administrator_enrollment_create'),
-     path('administrator/enrollments/<uuid:pk>/edit/', administartor_views.AdministratorEnrollmentEditView.as_view(), name='administrator_enrollment_edit'),
-     path('administrator/enrollments/<uuid:pk>/delete/', administartor_views.AdministratorEnrollmentDeleteView.as_view(), name='administrator_enrollment_delete'),
+     path('administrator/deliveries/', administrator_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
+     path('administrator/delivery/create/', administrator_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
+     path('administrator/deliveries/<uuid:pk>/', administrator_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),
+     path('administrator/delivery/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryEditView.as_view(), name='administrator_delivery_edit'),
+     path('administrator/delivery/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryDeleteView.as_view(), name='administrator_delivery_delete'),
 
 
-     path('administrator/deliveries/components/create/', administartor_views.AdministratorDeliveryComponentCreateView.as_view(), name='administrator_delivery_component_create'),
-     path('administrator/delivery-component/<uuid:pk>/edit/', administartor_views.AdministratorDeliveryComponentEditView.as_view(), name='administrator_delivery_component_edit'),
-     path('administrator/delivery-component/<uuid:pk>/delete/', administartor_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
+     path('administrator/enrollments/', administrator_views.AdministratorEnrollmentListView.as_view(), name='administrator_enrollment_list'),
+     path('administrator/enrollment/create/', administrator_views.AdministratorEnrollmentCreateView.as_view(), name='administrator_enrollment_create'),
+     path('administrator/enrollments/<uuid:pk>/edit/', administrator_views.AdministratorEnrollmentEditView.as_view(), name='administrator_enrollment_edit'),
+     path('administrator/enrollments/<uuid:pk>/delete/', administrator_views.AdministratorEnrollmentDeleteView.as_view(), name='administrator_enrollment_delete'),
 
-     path('administrator/program/list/', administartor_views.AdministratorProgramListView.as_view(), name='administrator_program_list'),
-     path('administrator/program/<uuid:pk>/', administartor_views.AdministratorProgramDetailView.as_view(), name='administrator_program_detail'),
-     path('administrator/program/create/', administartor_views.AdministratorProgramCreateView.as_view(), name='administrator_program_create'),
-     path('administrator/program/<uuid:pk>/delete/', administartor_views.AdministratorProgramDeleteView.as_view(), name='administrator_program_delete'),
-     path('administrator/programs/<uuid:pk>/edit/', administartor_views.AdministratorProgramEditView.as_view(), name='administrator_program_edit'),
-     path('administrator/program/<uuid:pk>/publish/', administartor_views.AdministratorProgramPublishView.as_view(), name='administrator_program_publish'),
-     path('administrator/program/<uuid:pk>/unpublish/', administartor_views.AdministratorProgramUnpublishView.as_view(), name='administrator_program_unpublish'),
-     path('administrator/program/<uuid:program_id>/add-course/', administartor_views.AdministratorProgramCourseCreateView.as_view(), name='administrator_program_add_course'),
+
+     path('administrator/deliveries/<uuid:delivery_id>/add-course-component/', administrator_views.CourseComponentCreateView.as_view(), name='administrator_add_course_component'),
+    path('administrator/components/<uuid:parent_component_id>/add-resource-component/', administrator_views.ResourceComponentCreateView.as_view(), name='administrator_add_resource_component'),
+    path('administrator/deliveries/<uuid:delivery_id>/add-resource-component/', 
+     administrator_views.ResourceComponentCreateView.as_view(), 
+     name='administrator_add_resource_component_to_course'),
+
+     path('administrator/delivery-component/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryComponentEditView.as_view(), name='administrator_delivery_component_edit'),
+     path('administrator/delivery-component/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
 
 
 
-     path('administrator/report/course_completion/', administartor_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),
-     path('administrator/report/user_progress/', administartor_views.AdministratorUserProgressReportView.as_view(), name='administrator_user_progress_report'),
-     path('administrator/report/assessment_results/', administartor_views.AdministratorAssessmentResultsReportView.as_view(), name='administrator_assessment_results_report'),
-     path('administrator/report/user_engagement/', administartor_views.AdministratorUserEngagementReportView.as_view(), name='administrator_user_engagement_report'),
-     path('administrator/report/resource_usage/', administartor_views.AdministratorResourceUsageReportView.as_view(), name='administrator_resource_usage_report'),
-     path('administrator/report/certification_tracking/', administartor_views.AdministratorCertificationTrackingReportView.as_view(), name='administrator_certification_tracking_report'),
-     path('administrator/report/learner_feedback/', administartor_views.AdministratorLearnerFeedbackReportView.as_view(), name='administrator_learner_feedback_report'),
-     path('administrator/report/custom_report/', administartor_views.AdministratorCustomReportView.as_view(), name='administrator_custom_report'),
-
-     path('administrator/learners/', administartor_views.AdministratorLearnerListView.as_view(), name='administrator_learner_list'),
-     path('administrator/facilitators/', administartor_views.AdministratorFacilitatorListView.as_view(), name='administrator_facilitator_list'),
-     path('administrator/supervisors/', administartor_views.AdministratorSupervisorListView.as_view(), name='administrator_supervisor_list'),
-
-     path('administrator/certificates/', administartor_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
-
-     path('administrator/announcements/', administartor_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
-     path('administrator/help-support/', administartor_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
-     path('administrator/messages/', administartor_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
-     path('administrator/settings/', administartor_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
+     path('administrator/program/list/', administrator_views.AdministratorProgramListView.as_view(), name='administrator_program_list'),
+     path('administrator/program/<uuid:pk>/', administrator_views.AdministratorProgramDetailView.as_view(), name='administrator_program_detail'),
+     path('administrator/program/create/', administrator_views.AdministratorProgramCreateView.as_view(), name='administrator_program_create'),
+     path('administrator/program/<uuid:pk>/delete/', administrator_views.AdministratorProgramDeleteView.as_view(), name='administrator_program_delete'),
+     path('administrator/programs/<uuid:pk>/edit/', administrator_views.AdministratorProgramEditView.as_view(), name='administrator_program_edit'),
+     path('administrator/program/<uuid:pk>/publish/', administrator_views.AdministratorProgramPublishView.as_view(), name='administrator_program_publish'),
+     path('administrator/program/<uuid:pk>/unpublish/', administrator_views.AdministratorProgramUnpublishView.as_view(), name='administrator_program_unpublish'),
+     path('administrator/program/<uuid:program_id>/add-course/', administrator_views.AdministratorProgramCourseCreateView.as_view(), name='administrator_program_add_course'),
 
 
-     path('administrator/course/enrollments/', administartor_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
+
+     path('administrator/report/course_completion/', administrator_views.AdministratorCourseCompletionReportView.as_view(), name='administrator_course_completion_report'),
+     path('administrator/report/user_progress/', administrator_views.AdministratorUserProgressReportView.as_view(), name='administrator_user_progress_report'),
+     path('administrator/report/assessment_results/', administrator_views.AdministratorAssessmentResultsReportView.as_view(), name='administrator_assessment_results_report'),
+     path('administrator/report/user_engagement/', administrator_views.AdministratorUserEngagementReportView.as_view(), name='administrator_user_engagement_report'),
+     path('administrator/report/resource_usage/', administrator_views.AdministratorResourceUsageReportView.as_view(), name='administrator_resource_usage_report'),
+     path('administrator/report/certification_tracking/', administrator_views.AdministratorCertificationTrackingReportView.as_view(), name='administrator_certification_tracking_report'),
+     path('administrator/report/learner_feedback/', administrator_views.AdministratorLearnerFeedbackReportView.as_view(), name='administrator_learner_feedback_report'),
+     path('administrator/report/custom_report/', administrator_views.AdministratorCustomReportView.as_view(), name='administrator_custom_report'),
+
+     path('administrator/learners/', administrator_views.AdministratorLearnerListView.as_view(), name='administrator_learner_list'),
+     path('administrator/facilitators/', administrator_views.AdministratorFacilitatorListView.as_view(), name='administrator_facilitator_list'),
+     path('administrator/supervisors/', administrator_views.AdministratorSupervisorListView.as_view(), name='administrator_supervisor_list'),
+
+     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
+
+     path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
+     path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
+     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
+     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
 
 
-     path('administrator/notification/', administartor_views.AdministratorNotificationListView.as_view(), name='administrator_notification_list'),
+     path('administrator/course/enrollments/', administrator_views.AdministratorEnrollmentListView.as_view(), name='administrator_course_enrollment_list'),
+
+
+     path('administrator/notification/', administrator_views.AdministratorNotificationListView.as_view(), name='administrator_notification_list'),
 
      # ================================================================
      #                           Learner URLs
@@ -101,6 +108,8 @@ urlpatterns = [
      # Programs
      path('learner/programs/', learner_views.ProgramListView.as_view(), name='learner_program_list'),
      path('learner/programs/<uuid:pk>/', learner_views.ProgramDetailView.as_view(), name='learner_program_detail'),
+     path('learner/my-programs/', learner_views.MyProgramsView.as_view(), name='learner_my_programs'),
+     path('learner/my-programs/<uuid:program_id>/', learner_views.MyProgramDetailsView.as_view(), name='learner_my_program_details'),
     
      # Courses
      path('learner/courses/', learner_views.CourseListView.as_view(), name='learner_course_list'),

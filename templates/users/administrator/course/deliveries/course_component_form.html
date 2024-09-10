@@ -1,0 +1,39 @@
+{% extends '../../_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Course Component" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-4">{% trans "Add Course Component" %}</h1>
+    
+    <form method="post" class="max-w-lg">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label for="{{ form.program_course.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                {% trans "Program Course" %}:
+            </label>
+            {{ form.program_course }}
+        </div>
+        
+        <div class="mb-4">
+            <label for="{{ form.is_mandatory.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                {% trans "Is Mandatory" %}:
+            </label>
+            {{ form.is_mandatory }}
+        </div>
+        
+        <div class="mb-4">
+            <label for="{{ form.order.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                {% trans "Order" %}:
+            </label>
+            {{ form.order }}
+        </div>
+        
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            {% trans "Add Course Component" %}
+        </button>
+    </form>
+</div>
+{% endblock %}

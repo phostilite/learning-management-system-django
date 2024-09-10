@@ -4,13 +4,8 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
-@register.filter
+@register.filter(name='get_item')
 def get_item(dictionary, key):
-    if isinstance(key, str):
-        try:
-            key = UUID(key)
-        except ValueError:
-            pass
     return dictionary.get(key)
 
 @register.filter
