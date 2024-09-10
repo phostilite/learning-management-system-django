@@ -5,7 +5,7 @@
 {% block title %}{% trans "Create Enrollments" %} - LMS Admin{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto">
     <!-- Header -->
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create New Enrollments" %}</h1>
@@ -110,6 +110,20 @@
 
         <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">{% trans "Select Users" %}</h2>
+            
+            <!-- Add search form -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="user-search">
+                    {% trans "Search Users" %}
+                </label>
+                <div class="flex">
+                    <input type="text" id="user-search" class="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="{% trans 'Search by name or email' %}">
+                    <button type="button" id="search-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline">
+                        {% trans "Search" %}
+                    </button>
+                </div>
+            </div>
+
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-100">
@@ -125,7 +139,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white">
+                    <tbody id="user-table-body" class="bg-white">
                         {% for user in users %}
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
@@ -159,6 +173,9 @@
         const deliveryField = document.getElementById('delivery-field');
         const programField = document.getElementById('program-field');
         const courseField = document.getElementById('course-field');
+        const userSearch = document.getElementById('user-search');
+        const searchButton = document.getElementById('search-button');
+        const userTableBody = document.getElementById('user-table-body');
 
         function toggleFields() {
             const selectedType = enrollmentType.value;
@@ -167,8 +184,29 @@
             courseField.style.display = selectedType === 'course' ? 'block' : 'none';
         }
 
+        function searchUsers() {
+            const searchTerm = userSearch.value.toLowerCase();
+            const rows = userTableBody.getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const username = row.cells[1].textContent.toLowerCase();
+                const email = row.cells[2].textContent.toLowerCase();
+                if (username.includes(searchTerm) || email.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
         toggleFields();
         enrollmentType.addEventListener('change', toggleFields);
+        searchButton.addEventListener('click', searchUsers);
+        userSearch.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchUsers();
+            }
+        });
     });
 </script>
 {% endblock %}

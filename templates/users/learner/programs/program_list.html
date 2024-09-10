@@ -1,0 +1,203 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Programs - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .program-card {
+        transition: all 0.3s ease;
+    }
+    .program-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .tag {
+        transition: all 0.3s ease;
+    }
+    .tag:hover {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <!-- Header (same as administrator template) -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Explore Programs" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Discover and Enroll in Our Learning Programs" %}</p>
+        </header>
+
+        <!-- Breadcrumbs (same as administrator template) -->
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'learner_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Programs" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Search, Filters, and View Switcher -->
+        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex-grow">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="programSearchInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans 'Search programs...' %}">
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <select id="categoryFilter" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option selected value="">{% trans "All Categories" %}</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <select id="difficultyFilter" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option selected value="">{% trans "All Difficulties" %}</option>
+                    <option value="BEGINNER">{% trans "Beginner" %}</option>
+                    <option value="INTERMEDIATE">{% trans "Intermediate" %}</option>
+                    <option value="ADVANCED">{% trans "Advanced" %}</option>
+                </select>
+                <select id="viewSwitcher" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option value="grid">{% trans "Grid View" %}</option>
+                    <option value="list">{% trans "List View" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Grid View -->
+        <div id="gridView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for program in programs %}
+            <div class="program-card bg-white rounded-lg overflow-hidden card-shadow">
+                <img src="{% if program.cover_image %}{{ program.cover_image.url }}{% else %}{% static 'images/default-program.jpg' %}{% endif %}" alt="{{ program.title }}" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-2">{{ program.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ program.short_description }}</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {{ program.program_courses.count }} {% trans "courses" %}</span>
+                        <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {{ program.duration }}</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        {% for tag in program.tags.all|slice:":3" %}
+                        <span class="tag text-xs font-semibold inline-block py-1 px-2 rounded text-primary bg-blue-200">
+                            #{{ tag.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'learner_program_detail' program.id %}" class="block w-full text-center bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded transition duration-300">
+                        {% trans "Learn More" %}
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-8">
+                <p class="text-xl text-gray-600">{% trans "No programs found. Please try a different search or filter." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- List View -->
+        <div id="listView" class="hidden">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">{% trans "Title" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Category" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Duration" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Difficulty" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for program in programs %}
+                    <tr class="bg-white border-b">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ program.title }}
+                        </td>
+                        <td class="px-6 py-4">{{ program.category.name }}</td>
+                        <td class="px-6 py-4">{{ program.duration }}</td>
+                        <td class="px-6 py-4">{{ program.get_difficulty_level_display }}</td>
+                        <td class="px-6 py-4">
+                            <a href="{% url 'learner_program_detail' program.id %}" class="font-medium text-blue-600 hover:underline">{% trans "View Details" %}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('programSearchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const difficultyFilter = document.getElementById('difficultyFilter');
+    const viewSwitcher = document.getElementById('viewSwitcher');
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+    const programCards = document.querySelectorAll('.program-card');
+    const programRows = document.querySelectorAll('tbody tr');
+
+    function filterPrograms() {
+        const query = searchInput.value.toLowerCase();
+        const category = categoryFilter.value;
+        const difficulty = difficultyFilter.value;
+
+        programCards.forEach(function(card) {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const cardCategory = card.dataset.category;
+            const cardDifficulty = card.dataset.difficulty;
+
+            const matchesSearch = title.includes(query);
+            const matchesCategory = category === '' || cardCategory === category;
+            const matchesDifficulty = difficulty === '' || cardDifficulty === difficulty;
+
+            card.style.display = (matchesSearch && matchesCategory && matchesDifficulty) ? '' : 'none';
+        });
+
+        programRows.forEach(function(row) {
+            const title = row.querySelector('td:first-child').textContent.toLowerCase();
+            const rowCategory = row.dataset.category;
+            const rowDifficulty = row.dataset.difficulty;
+
+            const matchesSearch = title.includes(query);
+            const matchesCategory = category === '' || rowCategory === category;
+            const matchesDifficulty = difficulty === '' || rowDifficulty === difficulty;
+
+            row.style.display = (matchesSearch && matchesCategory && matchesDifficulty) ? '' : 'none';
+        });
+    }
+
+    searchInput.addEventListener('input', filterPrograms);
+    categoryFilter.addEventListener('change', filterPrograms);
+    difficultyFilter.addEventListener('change', filterPrograms);
+
+    viewSwitcher.addEventListener('change', function() {
+        if (this.value === 'grid') {
+            gridView.classList.remove('hidden');
+            listView.classList.add('hidden');
+        } else {
+            gridView.classList.add('hidden');
+            listView.classList.remove('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

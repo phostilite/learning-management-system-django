@@ -22,9 +22,14 @@ from django.db.models import Count
 from certificates.models import Certificate
 from django.utils import timezone
 
+from django_filters.views import FilterView
+from .filters import ProgramFilter, CourseFilter
+from django.db.models import Prefetch
+from django.db.models import Avg, Q
+
 
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm
-from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program)
+from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review)
 from .api_client import upload_scorm_package, register_user_for_course
 
 logger = logging.getLogger(__name__)
@@ -32,46 +37,141 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 @method_decorator(login_required, name='dispatch')
-class LearnerDashboardView(TemplateView):
+class DashboardView(TemplateView):
     template_name = 'users/learner/dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-@method_decorator(login_required, name='dispatch')
-class LearnerMyCoursesView(ListView):
-    template_name = 'users/learner/my_courses.html'
-    # context_object_name = 'courses'
+# ================================================================
+#                           Programs Views
+# ================================================================
 
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     return CourseDelivery.objects.filter(enrollment__user=user).annotate(
-    #         resource_count=Count('course__resources')
-    #     )
+class ProgramListView(LoginRequiredMixin, FilterView):
+    model = Program
+    template_name = 'users/learner/programs/program_list.html'
+    context_object_name = 'programs'
+    filterset_class = ProgramFilter
+    paginate_by = 10
 
-@method_decorator(login_required, name='dispatch')
-class LearnerCourseDetailView(DetailView):
-    # model = CourseDelivery
-    template_name = 'users/learner/course_course_detail.html'
-    # context_object_name = 'course'
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(is_published=True)
 
-    # def get_object(self):
-    #     course_id = self.kwargs.get('course_id')
-    #     return get_object_or_404(CourseDelivery, id=course_id)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['total_programs'] = self.get_queryset().count()
+        except Exception as e:
+            logger.error(f"Error getting total programs count: {str(e)}")
+            context['total_programs'] = 0
+        return context
     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
-    #     context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
-    #     context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+class ProgramDetailView(LoginRequiredMixin, DetailView):
+    model = Program
+    template_name = 'users/learner/programs/program_detail.html'
+    context_object_name = 'program'
 
-    #     context['resource_count'] = LearningResource.objects.filter(course=self.object.course).count()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            # Prefetch related courses and their learning resources
+            program_courses = ProgramCourse.objects.filter(program=self.object).select_related('course').prefetch_related(
+                Prefetch('course__resources', queryset=LearningResource.objects.order_by('order'))
+            ).order_by('order')
+            
+            context['program_courses'] = program_courses
+            
+            # Check if the user is enrolled
+            context['is_enrolled'] = Enrollment.objects.filter(user=self.request.user, program=self.object).exists()
+            
+            # Get related programs based on shared tags
+            program_tags = self.object.tags.values_list('id', flat=True)
+            related_programs = Program.objects.filter(tags__in=program_tags).exclude(id=self.object.id).distinct().order_by('-created_at')[:3]
+            context['related_programs'] = related_programs
+            
+            # Get program reviews
+            reviews = Review.objects.filter(content_type__model='program', object_id=self.object.id).select_related('user').order_by('-created_at')
+            context['reviews'] = reviews[:5]
+            
+            # Calculate average rating
+            context['average_rating'] = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+
+            # Check if the current user has already reviewed this program
+            context['user_has_reviewed'] = reviews.filter(user=self.request.user).exists()
+
+        except Exception as e:
+            logger.error(f"Error in ProgramDetailView: {str(e)}")
+            context['error'] = str(e)
         
-    #     return context
+        return context
     
+# ================================================================
+#                           Courses Views
+# ================================================================
+
+class CourseListView(LoginRequiredMixin, FilterView):
+    model = Course
+    template_name = 'users/learner/courses/course_list.html'
+    context_object_name = 'courses'
+    filterset_class = CourseFilter
+    paginate_by = 12  # Increased from 10 to 12 for better grid layout
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(is_published=True).select_related('category').prefetch_related('tags')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['total_courses'] = self.get_queryset().count()
+            context['categories'] = CourseCategory.objects.all()
+            
+            # Get unique difficulty levels from the database
+            context['difficulty_levels'] = Course.objects.values_list('difficulty_level', flat=True).distinct()
+            
+        except Exception as e:
+            logger.error(f"Error in CourseListView get_context_data: {str(e)}")
+            context['total_courses'] = 0
+            context['categories'] = []
+            context['difficulty_levels'] = []
+        
+        return context
+
+class CourseDetailView(LoginRequiredMixin, DetailView):
+    model = Course
+    template_name = 'users/learner/courses/course_detail.html'
+    context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['learning_resources'] = self.object.resources.all().order_by('order')
+            
+            # Get course reviews
+            reviews = Review.objects.filter(content_type__model='course', object_id=self.object.id)
+            context['reviews'] = reviews
+            context['average_rating'] = reviews.aggregate(Avg('rating'))['rating__avg']
+
+            # Get related courses (courses with same category or shared tags)
+            related_courses = Course.objects.filter(
+                Q(category=self.object.category) | Q(tags__in=self.object.tags.all())
+            ).exclude(id=self.object.id).distinct()[:3]
+            context['related_courses'] = related_courses
+
+        except Exception as e:
+            logger.error(f"Error in CourseDetailView get_context_data: {str(e)}")
+            context['learning_resources'] = []
+            context['reviews'] = []
+            context['average_rating'] = None
+            context['related_courses'] = []
+
+        return context
+    
+
 @method_decorator(login_required, name='dispatch')
-class LearnerCalendarView(TemplateView):
+class CalendarView(TemplateView):
     template_name = 'users/learner/calendar.html'
 
     def get_context_data(self, **kwargs):
@@ -79,7 +179,7 @@ class LearnerCalendarView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerMessageListView(TemplateView):
+class MessageListView(TemplateView):
     template_name = 'users/learner/messages.html'
 
     def get_context_data(self, **kwargs):
@@ -87,7 +187,7 @@ class LearnerMessageListView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerAssigmentListView(TemplateView):
+class AssigmentListView(TemplateView):
     template_name = 'users/learner/assignments.html'
 
     def get_context_data(self, **kwargs):
@@ -95,7 +195,7 @@ class LearnerAssigmentListView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerGradesView(TemplateView):
+class GradesView(TemplateView):
     template_name = 'users/learner/grades.html'
 
     def get_context_data(self, **kwargs):
@@ -103,7 +203,7 @@ class LearnerGradesView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerResourceView(TemplateView):
+class ResourceView(TemplateView):
     template_name = 'users/learner/resource.html'
 
     def get_context_data(self, **kwargs):
@@ -111,7 +211,7 @@ class LearnerResourceView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerProgressView(TemplateView):
+class ProgressView(TemplateView):
     template_name = 'users/learner/progress.html'
 
     def get_context_data(self, **kwargs):
@@ -119,7 +219,7 @@ class LearnerProgressView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerForumView(TemplateView):
+class ForumView(TemplateView):
     template_name = 'users/learner/forum.html'
 
     def get_context_data(self, **kwargs):
@@ -127,7 +227,7 @@ class LearnerForumView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerCertificateView(LoginRequiredMixin, TemplateView):
+class CertificateView(LoginRequiredMixin, TemplateView):
     template_name = 'users/learner/certificate.html'
 
     def get_context_data(self, **kwargs):
@@ -164,7 +264,7 @@ class LearnerCertificateView(LoginRequiredMixin, TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerBadgeView(TemplateView):
+class BadgeView(TemplateView):
     template_name = 'users/learner/badge.html'
 
     def get_context_data(self, **kwargs):
@@ -172,7 +272,7 @@ class LearnerBadgeView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerLeaderboardView(TemplateView):
+class LeaderboardView(TemplateView):
     template_name = 'users/learner/leaderboard.html'
 
     def get_context_data(self, **kwargs):
@@ -180,7 +280,7 @@ class LearnerLeaderboardView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerProfileView(TemplateView):
+class ProfileView(TemplateView):
     template_name = 'users/learner/profile.html'
 
     def get_context_data(self, **kwargs):
@@ -188,7 +288,7 @@ class LearnerProfileView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerSettingsView(TemplateView):
+class SettingsView(TemplateView):
     template_name = 'users/learner/settings.html'
 
     def get_context_data(self, **kwargs):
@@ -196,105 +296,17 @@ class LearnerSettingsView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class LearnerHelpSupportView(TemplateView):
+class HelpSupportView(TemplateView):
     template_name = 'users/learner/help_support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-@method_decorator(login_required, name='dispatch')
-class LearnerCourseLibraryView(ListView):
-    template_name = 'users/learner/course_library.html'
-    context_object_name = 'courses'
-
-    def get_queryset(self):
-        return Course.objects.all().prefetch_related('resources')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['featured_course'] = self.get_queryset().first()  # You might want to choose a featured course differently
-        return context
-
-    def get(self, request, *args, **kwargs):
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            course_id = request.GET.get('course_id')
-            if course_id:
-                course = Course.objects.prefetch_related('resources').get(id=course_id)
-                data = {
-                    'title': course.title,
-                    'description': course.description,
-                    'category': course.category.name if course.category else '',
-                    'resource_count': course.resources.count(),
-                    'resources': [{'title': r.title} for r in course.resources.all()[:5]],
-                    'cover_image': course.cover_image.url if course.cover_image else '',
-                }
-                return JsonResponse(data)
-        return super().get(request, *args, **kwargs)
     
-
-from django.views.generic import ListView
-from django.db.models import Prefetch
-from courses.models import Program, Course
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from django.template.loader import render_to_string
-
-class LearnerProgramCatalogView(ListView):
-    model = Program
-    template_name = 'users/learner/program_catalog.html'
-    context_object_name = 'programs'
-
-    def get_queryset(self):
-        return Program.objects.filter(is_published=True).prefetch_related(
-            Prefetch('courses', queryset=Course.objects.filter(is_published=True))
-        ).order_by('title')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            user_enrollments = Enrollment.objects.filter(user=self.request.user)
-            enrolled_program_ids = user_enrollments.values_list('program_id', flat=True)
-            for program in context['programs']:
-                program.is_enrolled = program.id in enrolled_program_ids
-        return context
-
-    def post(self, request, *args, **kwargs):
-        program_id = request.POST.get('program_id')
-        program = get_object_or_404(Program, id=program_id)
-        
-        # Here you would typically handle the enrollment logic
-        # For now, we'll just return a success message
-        return JsonResponse({'status': 'success', 'message': 'Enrollment functionality will be implemented here.'})
-
-    def get_administrator_course_details(self, request, course_id):
-        course = get_object_or_404(Course, id=course_id)
-        html = render_to_string('users/learner/course_details_modal.html', {'course': course})
-        return JsonResponse({'html': html})
-    
-def administrator_course_details(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    resources = course.resources.all()  # Changed from learning_resources to resources
-    
-    data = {
-        'title': course.title,
-        'description': course.description,
-        'duration': course.duration,
-        'resources': [
-            {
-                'title': r.title, 
-                'type': r.get_resource_type_display(),
-                'description': r.description
-            } for r in resources
-        ]
-    }
-    
-    return JsonResponse(data)
-
-
 # ============================================================
 # ======================= Notifications Views ================
 # ============================================================
 
-class LearnerNotificationListView(TemplateView):
+class NotificationListView(TemplateView):
     template_name = 'users/learner/notifications/notifications_course_list.html'

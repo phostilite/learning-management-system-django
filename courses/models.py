@@ -4,7 +4,31 @@ import uuid
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 User = get_user_model()
+
+class Review(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.UUIDField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ['user', 'content_type', 'object_id']
+        indexes = [
+            models.Index(fields=['content_type', 'object_id']),
+        ]
+
+    def __str__(self):
+        return f"Review by {self.user.username} for {self.content_object}"
 
 class Program(models.Model):
     PROGRAM_TYPES = (
@@ -28,6 +52,8 @@ class Program(models.Model):
     exam_link = models.URLField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
     prerequisites = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='required_for')
+    reviews = GenericRelation(Review, related_query_name='program')
+
 
     def __str__(self):
         return self.title
@@ -53,6 +79,7 @@ class Course(models.Model):
     prerequisites = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='required_for')
     language = models.CharField(max_length=50, null=True, blank=True)
     difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_LEVELS, null=True, blank=True)
+    reviews = GenericRelation(Review, related_query_name='course')
 
     def __str__(self):
         return self.title
@@ -93,6 +120,7 @@ class LearningResource(models.Model):
     is_mandatory = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    reviews = GenericRelation(Review, related_query_name='learning_resource')
 
     class Meta:
         ordering = ['order']
@@ -300,3 +328,52 @@ class ScormRegistration(models.Model):
 
     def __str__(self):
         return f"SCORM Registration for {self.enrollment}"
+
+
+
+class Recommendation(models.Model):
+    RECOMMENDATION_TYPES = (
+        ('COURSE', 'Course'),
+        ('PROGRAM', 'Program'),
+        ('LEARNING_RESOURCE', 'Learning Resource'),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recommendations')
+    recommendation_type = models.CharField(max_length=20, choices=RECOMMENDATION_TYPES)
+    
+    # For Course recommendations
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, related_name='course_recommendations')
+    
+    # For Program recommendations
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True, blank=True, related_name='program_recommendations')
+    
+    # For Learning Resource recommendations
+    learning_resource = models.ForeignKey(LearningResource, on_delete=models.CASCADE, null=True, blank=True, related_name='resource_recommendations')
+    
+    score = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(1.0)])
+    reason = models.TextField(blank=True, help_text="Explanation for this recommendation")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ['user', 'recommendation_type', 'course', 'program', 'learning_resource']
+        indexes = [
+            models.Index(fields=['user', 'recommendation_type', 'score']),
+        ]
+
+    def clean(self):
+        if self.recommendation_type == 'COURSE' and not self.course:
+            raise ValidationError("Course must be specified for course recommendations.")
+        elif self.recommendation_type == 'PROGRAM' and not self.program:
+            raise ValidationError("Program must be specified for program recommendations.")
+        elif self.recommendation_type == 'LEARNING_RESOURCE' and not self.learning_resource:
+            raise ValidationError("Learning Resource must be specified for learning resource recommendations.")
+
+    def __str__(self):
+        if self.recommendation_type == 'COURSE':
+            return f"Course recommendation: {self.course.title} for {self.user.username}"
+        elif self.recommendation_type == 'PROGRAM':
+            return f"Program recommendation: {self.program.title} for {self.user.username}"
+        else:
+            return f"Learning Resource recommendation: {self.learning_resource.title} for {self.user.username}"
+        

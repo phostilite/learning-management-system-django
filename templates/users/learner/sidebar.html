@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-300 lg:flex transition-all" aria-label="Sidebar">
     <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-gradient-to-b from-blue-900 to-blue-800 border-r border-blue-700 shadow-lg">
         <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
@@ -10,57 +12,45 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'learner_course_library' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-book mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Course Library</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_programs' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-cubes mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Programs Library</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_my_courses' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-graduation-cap mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">My Courses</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_assignment_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-tasks mr-3 text-red-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Assignments</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_grades' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-chart-bar mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Grades</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{% url 'learner_calendar' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-calendar mr-3 text-orange-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Calendar</span>
                         </a>
                     </li>
                     <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-blue-700" aria-controls="dropdown-programs" data-collapse-toggle="dropdown-programs">
+                            <i class="fa-solid fa-graduation-cap mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Programs" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-programs" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'learner_program_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "All Programs" %}</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "My Programs" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-blue-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
+                            <i class="fa-solid fa-book mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Courses" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-courses" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'learner_course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "All Courses" %}</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "My Courses" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="{% url 'learner_message_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-envelope mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Messages</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_resource_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-book-open mr-3 text-teal-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Resources</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'learner_progress' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-chart-line mr-3 text-indigo-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">My Progress</span>
                         </a>
                     </li>
                     <li>
