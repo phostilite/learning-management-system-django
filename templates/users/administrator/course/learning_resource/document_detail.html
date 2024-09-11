@@ -1,38 +1,54 @@
-{% extends "users/administrator/course/learning_resource/base_detail.html" %}
+{{% extends "users/administrator/course/learning_resource/base_detail.html" %}
 {% load i18n %}
 {% load custom_filters %}
 
 {% block resource_specific_content %}
     <h2 class="text-2xl font-semibold mb-4">{% trans "Document Details" %}</h2>
     
-    <p class="mb-2"><strong>{% trans "File Name" %}:</strong> {{ resource.content.name }}</p>
-    <p class="mb-2"><strong>{% trans "File Size" %}:</strong> {{ resource.content.size|filesizeformat }}</p>
-    <p class="mb-4"><strong>{% trans "File Type" %}:</strong> {{ resource.content.name|file_extension|upper }}</p>
+    {% if resource.content %}
+        <p class="mb-2"><strong>{% trans "File Name" %}:</strong> {{ resource.content.name }}</p>
+        <p class="mb-2"><strong>{% trans "File Size" %}:</strong> {{ resource.content.size|filesizeformat }}</p>
+        <p class="mb-4"><strong>{% trans "File Type" %}:</strong> {{ resource.content.name|file_extension|upper }}</p>
 
-    {% with file_ext=resource.content.name|file_extension %}
-        <div class="mb-4">
-            {% if file_ext == 'pdf' %}
-                <embed src="{{ resource.content.url }}" type="application/pdf" width="100%" height="800px" />
-            {% elif file_ext == 'txt' or file_ext == 'csv' %}
-                <iframe src="{{ resource.content.url }}" width="100%" height="600px"></iframe>
-            {% elif file_ext == 'jpg' or file_ext == 'jpeg' or file_ext == 'png' or file_ext == 'gif' %}
-                <img src="{{ resource.content.url }}" alt="{{ resource.title }}" class="max-w-full h-auto" />
-            {% else %}
-                <p>{% trans "Preview not available for this file type. Please use the download option." %}</p>
-            {% endif %}
-        </div>
+        {% with file_ext=resource.content.name|file_extension %}
+            <div class="mb-4">
+                {% if file_ext == 'pdf' %}
+                    <embed src="{{ resource.content.url }}" type="application/pdf" width="100%" height="800px" />
+                {% elif file_ext == 'txt' or file_ext == 'csv' %}
+                    <iframe src="{{ resource.content.url }}" width="100%" height="600px"></iframe>
+                {% elif file_ext == 'jpg' or file_ext == 'jpeg' or file_ext == 'png' or file_ext == 'gif' %}
+                    <img src="{{ resource.content.url }}" alt="{{ resource.title }}" class="max-w-full h-auto" />
+                {% else %}
+                    <p>{% trans "Preview not available for this file type. Please use the download option." %}</p>
+                {% endif %}
+            </div>
 
-        <div class="flex flex-wrap gap-4">
-            {% if file_ext == 'doc' or file_ext == 'docx' or file_ext == 'xls' or file_ext == 'xlsx' or file_ext == 'ppt' or file_ext == 'pptx' %}
-                <a href="https://view.officeapps.live.com/op/view.aspx?src={{ request.scheme }}://{{ request.get_host }}{{ resource.content.url }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                    <i class="fas fa-external-link-alt mr-2"></i>{% trans "View in Office Online" %}
+            <div class="flex flex-wrap gap-4">
+                {% if file_ext == 'doc' or file_ext == 'docx' or file_ext == 'xls' or file_ext == 'xlsx' or file_ext == 'ppt' or file_ext == 'pptx' %}
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src={{ request.scheme }}://{{ request.get_host }}{{ resource.content.url }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>{% trans "View in Office Online" %}
+                    </a>
+                {% endif %}
+                <a href="{{ resource.content.url }}" download class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                    <i class="fas fa-download mr-2"></i>{% trans "Download Document" %}
                 </a>
-            {% endif %}
-            <a href="{{ resource.content.url }}" download class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <i class="fas fa-download mr-2"></i>{% trans "Download Document" %}
+            </div>
+        {% endwith %}
+    {% else %}
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+            <p class="font-bold">{% trans "No Document Content Available" %}</p>
+            <p>{% trans "There is currently no document content associated with this learning resource." %}</p>
+        </div>
+    {% endif %}
+
+    {% if resource.external_url %}
+        <div class="mt-4">
+            <h3 class="text-lg font-semibold mb-2">{% trans "External Document Link" %}</h3>
+            <a href="{{ resource.external_url }}" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fas fa-external-link-alt mr-2"></i>{% trans "Open External Document" %}
             </a>
         </div>
-    {% endwith %}
+    {% endif %}
 
 
 <script>
