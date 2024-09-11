@@ -5,35 +5,87 @@
 
 {% block content %}
 <div class="container mx-auto">
-    <h1 class="text-3xl font-bold mb-4">{% trans "Add Learning Resource Component" %}</h1>
-    
-    <form method="post" class="max-w-lg">
-        {% csrf_token %}
-        
-        <div class="mb-4">
-            <label for="{{ form.learning_resource.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Learning Resource" %}:
-            </label>
-            {{ form.learning_resource }}
-        </div>
-        
-        <div class="mb-4">
-            <label for="{{ form.is_mandatory.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Is Mandatory" %}:
-            </label>
-            {{ form.is_mandatory }}
-        </div>
-        
-        <div class="mb-4">
-            <label for="{{ form.order.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Order" %}:
-            </label>
-            {{ form.order }}
-        </div>
-        
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {% trans "Add Learning Resource Component" %}
-        </button>
-    </form>
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Add Learning Resource Component" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Enhance your learning resources by adding a new component." %}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Learning Resources" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Add Component" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        <form method="post" class="max-w-lg mx-auto">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded-lg">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            
+            <div class="mb-4">
+                <label for="id_learning_resource" class="block text-gray-700 text-sm font-bold mb-2">
+                    {% trans "Learning Resource" %}:
+                </label>
+                <select name="learning_resource" id="id_learning_resource" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {% for value, label in form.fields.learning_resource.choices %}
+                        <option value="{{ value }}" {% if form.learning_resource.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.learning_resource.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.learning_resource.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="mb-4">
+                <label class="flex items-center">
+                    <input type="checkbox" name="is_mandatory" id="id_is_mandatory" class="form-checkbox h-5 w-5 text-blue-600" {% if form.is_mandatory.value %}checked{% endif %}>
+                    <span class="ml-2 text-gray-700">{% trans "Is Mandatory" %}</span>
+                </label>
+                {% if form.is_mandatory.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.is_mandatory.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="mb-6">
+                <label for="id_order" class="block text-gray-700 text-sm font-bold mb-2">
+                    {% trans "Order" %}:
+                </label>
+                <input type="number" name="order" id="id_order" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ form.order.value|default_if_none:'' }}">
+                {% if form.order.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.order.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    {% trans "Add Component" %}
+                </button>
+                <a href="#" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
