@@ -1,0 +1,113 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "My Courses - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .course-card {
+        transition: all 0.3s ease;
+    }
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .progress-bar {
+        transition: width 0.5s ease-in-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <!-- Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "My Courses" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Track Your Progress in Enrolled Courses" %}</p>
+        </header>
+
+        <!-- Breadcrumbs -->
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'learner_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "My Courses" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Courses Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for enrollment in enrollments %}
+            <div class="course-card bg-white rounded-lg overflow-hidden card-shadow">
+                {% if enrollment.course %}
+                    {% with course=enrollment.course %}
+                    <img src="{% if course.cover_image %}{{ course.cover_image.url }}{% else %}{% static 'images/default-course.jpg' %}{% endif %}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">{{ course.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {{ course.resources.count }} {% trans "resources" %}</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {{ course.duration }}</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: {{ enrollment.progress_percentage|default:0 }}%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">{% trans "Progress" %}: {{ enrollment.progress_percentage|default:0 }}%</p>
+                        </div>
+                        <a href="{% url 'learner_my_course_details' course.id %}" class="block w-full text-center bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded transition duration-300">
+                            {% trans "Continue Learning" %}
+                        </a>
+                    </div>
+                    {% endwith %}
+                {% elif enrollment.delivery %}
+                    {% with course=enrollment.delivery.course %}
+                    <img src="{% if course.cover_image %}{{ course.cover_image.url }}{% else %}{% static 'images/default-course.jpg' %}{% endif %}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">{{ course.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500"><i class="fas fa-book mr-1"></i> {{ course.resources.count }} {% trans "resources" %}</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> {{ course.duration }}</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: {{ enrollment.progress_percentage|default:0 }}%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">{% trans "Progress" %}: {{ enrollment.progress_percentage|default:0 }}%</p>
+                        </div>
+                        <a href="{% url 'learner_my_course_details' course.id %}" class="block w-full text-center bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded transition duration-300">
+                            {% trans "Continue Learning" %}
+                        </a>
+                    </div>
+                    {% endwith %}
+                {% endif %}
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-8">
+                <p class="text-xl text-gray-600">{% trans "You are not enrolled in any courses yet." %}</p>
+                <a href="{% url 'learner_course_list' %}" class="mt-4 inline-block bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded transition duration-300">
+                    {% trans "Explore Courses" %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Total Enrollments -->
+        <div class="mt-8 text-center">
+            <p class="text-lg text-gray-700">{% trans "Total Enrollments" %}: {{ total_enrollments }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

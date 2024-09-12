@@ -1,0 +1,41 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ resource.title }} - {% trans "Learning Resource" %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{{ resource.title }}</h1>
+
+    {% if error %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error:</strong>
+            <span class="block sm:inline">{{ error }}</span>
+        </div>
+    {% else %}
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">{% trans "Resource Information" %}</h2>
+            <p><strong>{% trans "Type:" %}</strong> {{ resource.get_resource_type_display }}</p>
+            <p><strong>{% trans "Description:" %}</strong> {{ resource.description }}</p>
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">{% trans "Your Progress" %}</h2>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ progress.progress_percentage|default:0 }}%"></div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">{% trans "Progress" %}: {{ progress.progress_percentage|default:0 }}%</p>
+            <p class="text-sm {% if is_completed %}text-green-600{% else %}text-yellow-600{% endif %} mt-2">
+                {% if is_completed %}
+                    {% trans "Completed" %}
+                {% else %}
+                    {% trans "In Progress" %}
+                {% endif %}
+            </p>
+        </div>
+
+        {% include specific_template %}
+    {% endif %}
+</div>
+{% endblock %}
