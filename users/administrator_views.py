@@ -1047,7 +1047,7 @@ class ResourceComponentCreateView(LoginRequiredMixin, UserPassesTestMixin, Creat
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
 
 
-class AdministratorDeliveryComponentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class AdministratorDeliveryComponentEditView(LoginRequiredMixin, UserPassesTestMixin):
     template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
 
     def test_func(self):
