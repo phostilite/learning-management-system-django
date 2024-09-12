@@ -1,0 +1,30 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<h1>{{ delivery.title }}</h1>
+<p>Enrollment Type: Via Delivery</p>
+
+<ul>
+{% for component in components %}
+    {% if component.program_course %}
+        <li>
+            <strong>{{ component.program_course.course.title }}</strong>
+            {% if component.is_mandatory %}(Mandatory){% else %}(Optional){% endif %}
+            <ul>
+    {% elif component.learning_resource %}
+        <li>
+            {{ component.learning_resource.title }} 
+            ({{ component.learning_resource.get_resource_type_display }})
+            {% if component.is_mandatory %}(Mandatory){% else %}(Optional){% endif %}
+        </li>
+    {% endif %}
+
+    {% if forloop.next.program_course and component.program_course %}
+        </ul>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+{% endblock %}

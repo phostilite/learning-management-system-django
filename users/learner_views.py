@@ -98,113 +98,92 @@ class ProgramDetailView(LoginRequiredMixin, DetailView):
         return context
     
 
-class MyProgramsView(LoginRequiredMixin, ListView):
+class MyProgramListView(LoginRequiredMixin, ListView):
     template_name = 'users/learner/programs/my_programs.html'
     context_object_name = 'enrollments'
-    paginate_by = 10
 
     def get_queryset(self):
         try:
-            enrollments = Enrollment.objects.filter(
-                Q(user=self.request.user, program__isnull=False) |
-                Q(user=self.request.user, delivery__delivery_type='PROGRAM')
-            ).select_related('program', 'delivery', 'delivery__program').order_by('-enrollment_date')
+            user = self.request.user
+            enrollments = Enrollment.objects.filter(user=user).select_related('program', 'delivery')
             
+            enrollment_data = []
             for enrollment in enrollments:
-                if enrollment.program:
-                    enrollment.current_program = enrollment.program
-                    enrollment.enrollment_type = 'direct'
-                elif enrollment.delivery and enrollment.delivery.program:
-                    enrollment.current_program = enrollment.delivery.program
-                    enrollment.enrollment_type = 'delivery'
+                if enrollment.delivery and enrollment.delivery.delivery_type == 'PROGRAM':
+                    title = enrollment.delivery.title
+                    enrollment_type = 'Via Delivery'
+                elif enrollment.program:
+                    title = enrollment.program.title
+                    enrollment_type = 'Direct'
                 else:
-                    enrollment.current_program = None
-                    enrollment.enrollment_type = 'unknown'
+                    logger.error(f"Enrollment {enrollment.id} has no associated delivery or program")
+                    continue
+                
+                enrollment_data.append({
+                    'id': enrollment.id,
+                    'title': title,
+                    'enrollment_type': enrollment_type,
+                    'status': enrollment.status,
+                })
             
-            return enrollments
+            logger.info(f"Retrieved {len(enrollment_data)} program enrollments for user {user.username}")
+            return enrollment_data
         except Exception as e:
-            logger.error(f"Error fetching enrollments for user {self.request.user.id}: {str(e)}", exc_info=True)
-            return Enrollment.objects.none()
+            logger.error(f"Error retrieving program enrollments for user {user.username}: {str(e)}")
+            raise
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            context['total_enrollments'] = self.get_queryset().count()
-        except Exception as e:
-            logger.error(f"Error getting total enrollments count: {str(e)}", exc_info=True)
-            context['total_enrollments'] = 0
-        return context
-    
-class MyProgramDetailsView(LoginRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/my_program_details.html'
-    context_object_name = 'program'
+class MyProgramDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/my_program_detail.html'
+    context_object_name = 'enrollment'
 
     def get_object(self):
-        program_id = self.kwargs.get('program_id')
-        return get_object_or_404(Program, id=program_id)
+        enrollment_id = self.kwargs.get('enrollment_id')
+        user = self.request.user
+        return get_object_or_404(Enrollment, id=enrollment_id, user=user)
+
+    def get_template_names(self):
+        enrollment = self.get_object()
+        if enrollment.delivery:
+            return ['users/learner/programs/my_program_detail_delivery.html']
+        else:
+            return ['users/learner/programs/my_program_detail_direct.html']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        program = self.object
+        enrollment = self.get_object()
 
-        enrollment = Enrollment.objects.filter(
-            user=user,
-            program=program
-        ).first() or Enrollment.objects.filter(
-            user=user,
-            delivery__program=program,
-            delivery__delivery_type='PROGRAM'
-        ).first()
+        try:
+            if enrollment.delivery:
+                # Delivery enrollment
+                delivery = enrollment.delivery
+                components = DeliveryComponent.objects.filter(delivery=delivery).select_related(
+                    'program_course__course', 'learning_resource'
+                ).order_by('order')
 
-        if not enrollment:
-            context['error'] = "You are not enrolled in this program."
-            return context
+                context['delivery'] = delivery
+                context['components'] = components
+                logger.info(f"Retrieved {components.count()} delivery components for enrollment {enrollment.id}")
+            else:
+                # Direct program enrollment
+                program = enrollment.program
+                program_courses = program.program_courses.select_related('course').order_by('order')
+                courses_with_resources = []
 
-        context['enrollment'] = enrollment
+                for program_course in program_courses:
+                    course = program_course.course
+                    resources = LearningResource.objects.filter(course=course).order_by('order')
+                    courses_with_resources.append({
+                        'course': course,
+                        'resources': resources
+                    })
 
-        if enrollment.delivery:
-            # Fetch top-level delivery components (courses for program delivery)
-            delivery_components = DeliveryComponent.objects.filter(
-                delivery=enrollment.delivery,
-                parent_component__isnull=True
-            ).order_by('order')
+                context['program'] = program
+                context['courses_with_resources'] = courses_with_resources
+                logger.info(f"Retrieved {len(courses_with_resources)} courses with resources for enrollment {enrollment.id}")
 
-            # Fetch sub-components (learning resources) for each course component
-            for component in delivery_components:
-                if component.is_course_component:
-                    component.sub_components = DeliveryComponent.objects.filter(
-                        parent_component=component
-                    ).order_by('order')
-
-            context['delivery_components'] = delivery_components
-
-            # Fetch progress for all components
-            all_components = DeliveryComponent.objects.filter(delivery=enrollment.delivery)
-            progress_records = Progress.objects.filter(
-                enrollment=enrollment,
-                learning_resource__in=[dc.learning_resource for dc in all_components if dc.learning_resource]
-            )
-            context['component_progress'] = {p.learning_resource_id: p for p in progress_records}
-
-            # Fetch course progress
-            course_progress = Progress.objects.filter(
-                enrollment=enrollment,
-                course__in=[dc.program_course.course for dc in delivery_components if dc.program_course]
-            )
-            context['course_progress'] = {p.course_id: p for p in course_progress}
-        else:
-            # Direct program enrollment
-            program_courses = program.program_courses.all().select_related('course').order_by('order')
-            context['program_courses'] = program_courses
-
-            # Fetch progress for the program and its courses
-            progress_records = Progress.objects.filter(
-                enrollment=enrollment,
-                program=program
-            ).select_related('course')
-            context['program_progress'] = progress_records.filter(course__isnull=True).first()
-            context['course_progress'] = {p.course_id: p for p in progress_records.filter(course__isnull=False)}
+        except Exception as e:
+            logger.error(f"Error retrieving details for enrollment {enrollment.id}: {str(e)}")
+            raise
 
         return context
     

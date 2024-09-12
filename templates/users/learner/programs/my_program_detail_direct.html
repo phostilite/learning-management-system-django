@@ -1,0 +1,19 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{{% block content %}
+<h1>{{ program.title }}</h1>
+<p>Enrollment Type: Direct</p>
+
+{% for course_data in courses_with_resources %}
+    <h2>{{ course_data.course.title }}</h2>
+    <ul>
+    {% for resource in course_data.resources %}
+        <li>{{ resource.title }} ({{ resource.get_resource_type_display }})</li>
+    {% empty %}
+        <li>No resources available for this course.</li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}

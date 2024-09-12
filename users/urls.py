@@ -108,8 +108,8 @@ urlpatterns = [
      # Programs
      path('learner/programs/', learner_views.ProgramListView.as_view(), name='learner_program_list'),
      path('learner/programs/<uuid:pk>/', learner_views.ProgramDetailView.as_view(), name='learner_program_detail'),
-     path('learner/my-programs/', learner_views.MyProgramsView.as_view(), name='learner_my_programs'),
-     path('learner/my-programs/<uuid:program_id>/', learner_views.MyProgramDetailsView.as_view(), name='learner_my_program_details'),
+     path('learner/my-programs/', learner_views.MyProgramListView.as_view(), name='learner_my_programs'),
+     path('learner/my-programs/<uuid:enrollment_id>/', learner_views.MyProgramDetailView.as_view(), name='learner_my_program_detail'),
     
      # Courses
      path('learner/courses/', learner_views.CourseListView.as_view(), name='learner_course_list'),
