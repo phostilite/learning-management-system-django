@@ -686,15 +686,26 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
         context['scorm_upload_url'] = reverse_lazy('scorm_upload')
         return context
 
+    @transaction.atomic
     def form_valid(self, form):
         course = get_object_or_404(Course, pk=self.kwargs['course_id'])
         form.instance.course = course
 
-        if form.instance.resource_type != 'SCORM':
-            return super().form_valid(form)
-        
-        # For SCORM resources, we'll handle the creation in the template via AJAX
-        return JsonResponse({'success': True, 'redirect_url': self.get_success_url()})
+        if form.instance.resource_type == 'SCORM':
+            # For SCORM resources, we'll handle the creation in the template via AJAX
+            return JsonResponse({'success': True, 'redirect_url': self.get_success_url()})
+        else:
+            try:
+                # For non-SCORM resources, save the form and handle file upload
+                self.object = form.save(commit=False)
+                if form.instance.resource_type in ['VIDEO', 'DOCUMENT']:
+                    self.object.content = form.cleaned_data['content']
+                self.object.save()
+                logger.info(f"Created {form.instance.resource_type} learning resource: {self.object.id}")
+                return super().form_valid(form)
+            except Exception as e:
+                logger.exception(f"Error creating learning resource: {str(e)}")
+                return JsonResponse({'success': False, 'error': 'An error occurred while creating the resource'}, status=500)
 
     def get_success_url(self):
         return reverse_lazy('administrator_course_detail', kwargs={'pk': self.kwargs['course_id']})

@@ -21,6 +21,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from certificates.models import Certificate
 from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.urls import reverse_lazy
+from django.views.generic import FormView
+from django.contrib.auth import get_user_model
 
 from django_filters.views import FilterView
 from .filters import ProgramFilter, CourseFilter
@@ -28,7 +32,7 @@ from django.db.models import Prefetch
 from django.db.models import Avg, Q
 
 
-from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm
+from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
 from .api_client import upload_scorm_package, register_user_for_course
 
@@ -421,6 +425,96 @@ class LearningResourceDetailView(LoginRequiredMixin, DetailView):
             context['error'] = "An error occurred while fetching resource details. Please try again later."
 
         return context
+    
+
+# ================================================================
+#                           Enrollment Views
+# ================================================================
+
+class EnrollmentConfirmationView(LoginRequiredMixin, FormView):
+    template_name = 'users/learner/enrollment/enrollment_confirmation.html'
+    form_class = UserEnrollmentForm
+    success_url = reverse_lazy('learner_dashboard')
+
+    def get_initial(self):
+        return {
+            'enrollment_type': self.kwargs['enrollment_type'],
+            'object_id': self.kwargs['object_id']
+        }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        enrollment_type = self.kwargs['enrollment_type']
+        object_id = self.kwargs['object_id']
+
+        logger.info(f"EnrollmentConfirmationView: get_context_data called for {enrollment_type} with id {object_id}")
+
+        try:
+            if enrollment_type == 'program':
+                context['object'] = get_object_or_404(Program, id=object_id)
+                logger.info(f"Program found: {context['object'].title}")
+            elif enrollment_type == 'course':
+                context['object'] = get_object_or_404(Course, id=object_id)
+                logger.info(f"Course found: {context['object'].title}")
+            else:
+                logger.error(f"Invalid enrollment type: {enrollment_type}")
+                raise ValueError("Invalid enrollment type")
+        except Exception as e:
+            logger.error(f"Error in EnrollmentConfirmationView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred. Please try again."))
+            return redirect('home')
+
+        return context
+
+    def form_valid(self, form):
+        enrollment_type = form.cleaned_data['enrollment_type']
+        object_id = form.cleaned_data['object_id']
+
+        logger.info(f"EnrollmentConfirmationView: form_valid called for {enrollment_type} with id {object_id}")
+
+        try:
+            with transaction.atomic():
+                if enrollment_type == 'program':
+                    program = get_object_or_404(Program, id=object_id)
+                    logger.info(f"Program found: {program.title}")
+
+                    enrollment, created = Enrollment.objects.get_or_create(
+                        user=self.request.user,
+                        program=program,
+                        defaults={'status': 'ENROLLED'}
+                    )
+
+                else:  # course
+                    course = get_object_or_404(Course, id=object_id)
+                    logger.info(f"Course found: {course.title}")
+
+
+                    enrollment, created = Enrollment.objects.get_or_create(
+                        user=self.request.user,
+                        course=course,
+                        defaults={'status': 'ENROLLED'}
+                    )
+
+                if created:
+                    logger.info(f"New enrollment created: {enrollment.id}")
+                    messages.success(self.request, _("You have successfully enrolled."))
+                else:
+                    logger.info(f"Existing enrollment found: {enrollment.id}")
+                    messages.info(self.request, _("You were already enrolled."))
+
+                logger.info(f"Enrollment process completed successfully for user {self.request.user.username}")
+
+        except Exception as e:
+            logger.exception(f"Error in EnrollmentConfirmationView form_valid: {str(e)}")
+            messages.error(self.request, _("An error occurred during enrollment. Please try again."))
+            return JsonResponse({'error': 'An error occurred during enrollment.'}, status=500)
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        logger.warning(f"Invalid form submission: {form.errors}")
+        messages.error(self.request, _("Invalid enrollment data. Please try again."))
+        return super().form_invalid(form)
 
 @method_decorator(login_required, name='dispatch')
 class CalendarView(TemplateView):

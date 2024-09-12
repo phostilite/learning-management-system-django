@@ -84,12 +84,13 @@ class CourseUnpublishForm(forms.Form):
 # ============================================================
 
 class LearningResourceForm(forms.ModelForm):
+    content = forms.FileField(required=False)
     scorm_file = forms.FileField(required=False)
     scorm_version = forms.CharField(max_length=50, required=False)
 
     class Meta:
         model = LearningResource
-        fields = ['title', 'description', 'resource_type', 'external_url', 'order', 'is_mandatory']
+        fields = ['title', 'description', 'resource_type', 'content', 'external_url', 'order', 'is_mandatory']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
             'order': forms.NumberInput(attrs={'min': 0}),
@@ -98,10 +99,12 @@ class LearningResourceForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['external_url'].required = False
+        self.fields['content'].required = False
 
     def clean(self):
         cleaned_data = super().clean()
         resource_type = cleaned_data.get('resource_type')
+        content = cleaned_data.get('content')
         external_url = cleaned_data.get('external_url')
         scorm_file = cleaned_data.get('scorm_file')
         scorm_version = cleaned_data.get('scorm_version')
@@ -113,6 +116,8 @@ class LearningResourceForm(forms.ModelForm):
                 raise forms.ValidationError("SCORM file is required for SCORM resource type.")
             if not scorm_version:
                 raise forms.ValidationError("SCORM version is required for SCORM resource type.")
+        elif resource_type in ['VIDEO', 'DOCUMENT'] and not content:
+            raise forms.ValidationError(f"{resource_type.capitalize()} file is required for {resource_type} resource type.")
 
         return cleaned_data
     
@@ -421,3 +426,25 @@ class EnrollmentEditForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}),
             'completion_date': forms.DateTimeInput(attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'type': 'datetime-local'}),
         }
+
+class UserEnrollmentForm(forms.Form):
+    enrollment_type = forms.ChoiceField(choices=[('program', 'Program'), ('course', 'Course')], widget=forms.HiddenInput())
+    object_id = forms.UUIDField(widget=forms.HiddenInput())
+
+    def clean(self):
+        cleaned_data = super().clean()
+        enrollment_type = cleaned_data.get('enrollment_type')
+        object_id = cleaned_data.get('object_id')
+
+        if enrollment_type == 'program':
+            try:
+                Program.objects.get(id=object_id)
+            except Program.DoesNotExist:
+                raise forms.ValidationError("Invalid program selected.")
+        elif enrollment_type == 'course':
+            try:
+                Course.objects.get(id=object_id)
+            except Course.DoesNotExist:
+                raise forms.ValidationError("Invalid course selected.")
+
+        return cleaned_data

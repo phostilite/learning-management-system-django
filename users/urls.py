@@ -118,6 +118,9 @@ urlpatterns = [
      path('learner/my-courses/<uuid:course_id>/', learner_views.MyCourseDetailsView.as_view(), name='learner_my_course_details'),
      path('learner/resource/<uuid:resource_id>/', learner_views.LearningResourceDetailView.as_view(), name='learning_resource_detail'),
 
+     # Enrollment
+     path('learner/enroll/<str:enrollment_type>/<uuid:object_id>/', learner_views.EnrollmentConfirmationView.as_view(), name='learner_enroll'),
+
      path('learner/calendar/', learner_views.CalendarView.as_view(), name='learner_calendar'),
      path('learner/messages/', learner_views.MessageListView.as_view(), name='learner_message_list'),
      path('learner/assignments/', learner_views.AssigmentListView.as_view(), name='learner_assignment_list'),
