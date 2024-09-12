@@ -942,17 +942,39 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, UserPassesTestMixin, D
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         delivery = self.object
+
+        # Get all components for this delivery
+        components = DeliveryComponent.objects.filter(delivery=delivery)
+
+        # Count metrics
+        component_counts = components.aggregate(
+            total=Count('id'),
+            mandatory_count=Count('id', filter=Q(is_mandatory=True)),
+            optional_count=Count('id', filter=Q(is_mandatory=False))
+        )
+
+        # Enrollment count
+        enrollment_count = Enrollment.objects.filter(delivery=delivery).count()
+
+        context['components'] = {
+            'count': component_counts['total'],
+            'mandatory_count': component_counts['mandatory_count'],
+            'optional_count': component_counts['optional_count'],
+        }
+        context['enrollment_stats'] = {
+            'total': enrollment_count,
+        }
+
         if delivery.delivery_type == 'PROGRAM':
-            context['program_courses'] = DeliveryComponent.objects.filter(
-                delivery=delivery,
+            context['program_courses'] = components.filter(
                 program_course__isnull=False,
                 parent_component__isnull=True
             ).select_related('program_course__course').order_by('order')
         else:
-            context['learning_resources'] = DeliveryComponent.objects.filter(
-                delivery=delivery,
+            context['learning_resources'] = components.filter(
                 learning_resource__isnull=False
             ).select_related('learning_resource').order_by('order')
+
         return context
     
 class AdministratorDeliveryEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
