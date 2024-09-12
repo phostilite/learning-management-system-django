@@ -1050,6 +1050,9 @@ class ResourceComponentCreateView(LoginRequiredMixin, UserPassesTestMixin, Creat
 class AdministratorDeliveryComponentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
 
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
 class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DeliveryComponent
     template_name = 'users/administrator/course/deliveries/delivery_component_delete.html'
