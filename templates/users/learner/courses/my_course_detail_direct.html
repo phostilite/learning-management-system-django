@@ -16,13 +16,13 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "My Programs" %}</a>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "My Courses" %}</a>
                 </div>
             </li>
             <li aria-current="page">
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ program.title }}</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ course.title }}</span>
                 </div>
             </li>
         </ol>
@@ -30,32 +30,27 @@
 
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <div class="p-6">
-            <h1 class="text-3xl font-bold text-primary mb-4">{{ program.title }}</h1>
+            <h1 class="text-3xl font-bold text-primary mb-4">{{ course.title }}</h1>
             <p class="text-lg text-gray-600 mb-6">{% trans "Enrollment Type" %}: <span class="font-semibold">{% trans "Direct" %}</span></p>
 
             <div class="mb-8">
-                <h2 class="text-xl font-semibold text-primary mb-4">{% trans "Program Courses" %}</h2>
-                <div class="space-y-6">
-                    {% for course_data in courses_with_resources %}
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-lg font-medium text-gray-900 mb-2">{{ course_data.course.title }}</h3>
-                            {% if course_data.resources %}
-                                <ul class="list-disc list-inside space-y-2 ml-4">
-                                    {% for resource in course_data.resources %}
-                                        <li class="text-gray-700">
-                                            {{ resource.title }}
-                                            <span class="text-sm text-gray-500">({{ resource.get_resource_type_display }})</span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p class="text-gray-600 italic ml-4">{% trans "No resources available for this course." %}</p>
-                            {% endif %}
-                        </div>
-                    {% empty %}
-                        <p class="text-gray-600 italic">{% trans "No courses available for this program." %}</p>
-                    {% endfor %}
-                </div>
+                <h2 class="text-xl font-semibold text-primary mb-4">{% trans "Course Resources" %}</h2>
+                {% if resources %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {% for resource in resources %}
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">{{ resource.title }}</h3>
+                                <p class="text-sm text-gray-500">{{ resource.get_resource_type_display }}</p>
+                                <a href="#" class="mt-2 inline-flex items-center text-sm text-blue-600 hover:underline">
+                                    {% trans "Access Resource" %}
+                                    <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-600 italic">{% trans "No resources available for this course." %}</p>
+                {% endif %}
             </div>
 
             <div class="flex justify-between items-center">
@@ -63,10 +58,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    {% trans "Back to My Programs" %}
+                    {% trans "Back to My Courses" %}
                 </a>
                 <a href="#" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md">
-                    {% trans "Start Program" %}
+                    {% trans "Start Course" %}
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>

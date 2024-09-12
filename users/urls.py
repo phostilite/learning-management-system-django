@@ -114,8 +114,9 @@ urlpatterns = [
      # Courses
      path('learner/courses/', learner_views.CourseListView.as_view(), name='learner_course_list'),
      path('learner/courses/<uuid:pk>/', learner_views.CourseDetailView.as_view(), name='learner_course_detail'),
-     path('learner/my-courses/', learner_views.MyCoursesView.as_view(), name='learner_my_courses'),
-     path('learner/my-courses/<uuid:course_id>/', learner_views.MyCourseDetailsView.as_view(), name='learner_my_course_details'),
+     path('learner/my-courses/', learner_views.MyCourseListView.as_view(), name='learner_my_courses'),
+     path('learner/my-courses/<uuid:enrollment_id>/', learner_views.MyCourseDetailView.as_view(), name='learner_my_course_detail'),
+
      path('learner/resource/<uuid:resource_id>/', learner_views.LearningResourceDetailView.as_view(), name='learning_resource_detail'),
 
      # Enrollment

@@ -3,96 +3,14 @@
 
 {% block title %}{% trans "Add Learning Resource Component" %}{% endblock %}
 
-{% block extra_css %}
-<style>
-    .form-container {
-        max-width: 500px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .form-title {
-        color: #2d3748;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-    .input-group {
-        margin-bottom: 1.5rem;
-    }
-    .input-label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #4a5568;
-        font-weight: 500;
-    }
-    .input-field {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 4px;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-    }
-    .input-field:focus {
-        outline: none;
-        border-color: #4299e1;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
-    }
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-    .checkbox-label {
-        margin-left: 0.5rem;
-        color: #4a5568;
-    }
-    .submit-btn {
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #4299e1;
-        color: white;
-        font-weight: bold;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .submit-btn:hover {
-        background-color: #3182ce;
-    }
-    .submit-btn:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-    }
-    .error-message {
-        color: #e53e3e;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-    }
-    .input-field, .submit-btn {
-        transform: translateY(0);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .input-field:focus, .submit-btn:hover {
-        transform: translateY(-2px);
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="container mx-auto ">
-    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md animate__animated animate__fadeIn">
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Add Learning Resource Component" %}</h1>
         <p class="text-lg text-white text-center">{% trans "Enhance your learning resources by adding a new component." %}</p>
     </header>
 
-
-    <nav class="flex mb-4 animate__animated animate__fadeInDown" aria-label="{% trans 'Breadcrumb' %}">
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
@@ -115,85 +33,59 @@
         </ol>
     </nav>
 
-    <div class="form-container">
-        <h2 class="form-title">{% trans "Add Learning Resource Component" %}</h2>
-        <form method="post" id="resourceForm">
+    <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        <form method="post" class="max-w-lg mx-auto">
             {% csrf_token %}
             
             {% if form.non_field_errors %}
-                <div class="error-message mb-4">
+                <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded-lg">
                     {{ form.non_field_errors }}
                 </div>
             {% endif %}
             
-            <div class="input-group">
-                <label for="id_learning_resource" class="input-label">{% trans "Learning Resource" %}</label>
-                <select name="learning_resource" id="id_learning_resource" class="input-field" required>
-                    <option value="" disabled selected>{% trans "Select a resource" %}</option>
+            <div class="mb-4">
+                <label for="id_learning_resource" class="block text-gray-700 text-sm font-bold mb-2">
+                    {% trans "Learning Resource" %}:
+                </label>
+                <select name="learning_resource" id="id_learning_resource" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     {% for value, label in form.fields.learning_resource.choices %}
                         <option value="{{ value }}" {% if form.learning_resource.value == value %}selected{% endif %}>{{ label }}</option>
                     {% endfor %}
                 </select>
                 {% if form.learning_resource.errors %}
-                    <p class="error-message">{{ form.learning_resource.errors.0 }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ form.learning_resource.errors.0 }}</p>
                 {% endif %}
             </div>
             
-            <div class="checkbox-group">
-                <input type="checkbox" name="is_mandatory" id="id_is_mandatory" {% if form.is_mandatory.value %}checked{% endif %}>
-                <label for="id_is_mandatory" class="checkbox-label">{% trans "Is Mandatory" %}</label>
+            <div class="mb-4">
+                <label class="flex items-center">
+                    <input type="checkbox" name="is_mandatory" id="id_is_mandatory" class="form-checkbox h-5 w-5 text-blue-600" {% if form.is_mandatory.value %}checked{% endif %}>
+                    <span class="ml-2 text-gray-700">{% trans "Is Mandatory" %}</span>
+                </label>
+                {% if form.is_mandatory.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.is_mandatory.errors.0 }}</p>
+                {% endif %}
             </div>
             
-            <div class="input-group">
-                <label for="id_order" class="input-label">{% trans "Order" %}</label>
-                <input type="number" name="order" id="id_order" class="input-field" value="{{ form.order.value|default_if_none:'' }}" required>
+            <div class="mb-6">
+                <label for="id_order" class="block text-gray-700 text-sm font-bold mb-2">
+                    {% trans "Order" %}:
+                </label>
+                <input type="number" name="order" id="id_order" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ form.order.value|default_if_none:'' }}">
                 {% if form.order.errors %}
-                    <p class="error-message">{{ form.order.errors.0 }}</p>
+                    <p class="mt-2 text-sm text-red-600">{{ form.order.errors.0 }}</p>
                 {% endif %}
             </div>
             
-            <button type="submit" class="submit-btn">
-                {% trans "Add Component" %}
-            </button>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    {% trans "Add Component" %}
+                </button>
+                <a href="#" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
         </form>
     </div>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('resourceForm');
-        const inputs = form.querySelectorAll('.input-field');
-    
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            });
-            input.addEventListener('blur', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
-    
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = form.querySelector('.submit-btn');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerHTML = '{% trans "Adding..." %}';
-            submitBtn.disabled = true;
-    
-            // Simulated form submission (replace with actual AJAX submission)
-            setTimeout(() => {
-                submitBtn.innerHTML = '{% trans "Added!" %}';
-                submitBtn.style.backgroundColor = '#48bb78';
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.backgroundColor = '';
-                    submitBtn.disabled = false;
-                    form.reset();
-                }, 1500);
-            }, 1500);
-        });
-    });
-    </script>
-    {% endblock %}
+</div>
+{% endblock %}

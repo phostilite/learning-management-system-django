@@ -16,7 +16,7 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "My Programs" %}</a>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "My Courses" %}</a>
                 </div>
             </li>
             <li aria-current="page">
@@ -34,44 +34,26 @@
             <p class="text-lg text-gray-600 mb-6">{% trans "Enrollment Type" %}: <span class="font-semibold">{% trans "Via Delivery" %}</span></p>
 
             <div class="mb-8">
-                <h2 class="text-xl font-semibold text-primary mb-4">{% trans "Program Components" %}</h2>
-                <div class="space-y-6">
-                    {% for component in components %}
-                        {% if component.is_course_component %}
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h3 class="text-lg font-medium text-gray-900">{{ component.program_course.course.title }}</h3>
-                                    <span class="px-3 py-1 text-xs font-semibold {% if component.is_mandatory %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %} rounded-full">
-                                        {% if component.is_mandatory %}{% trans "Mandatory" %}{% else %}{% trans "Optional" %}{% endif %}
-                                    </span>
-                                </div>
-                                <ul class="list-disc list-inside space-y-2 ml-4">
-                                    {% for child in component.get_child_components %}
-                                        <li class="text-gray-700">
-                                            {{ child.learning_resource.title }} 
-                                            <span class="text-sm text-gray-500">({{ child.learning_resource.get_resource_type_display }})</span>
-                                            <span class="ml-2 text-xs font-semibold {% if child.is_mandatory %}text-red-600{% else %}text-green-600{% endif %}">
-                                                {% if child.is_mandatory %}{% trans "Mandatory" %}{% else %}{% trans "Optional" %}{% endif %}
-                                            </span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% elif component.is_resource_component and not component.parent_component %}
+                <h2 class="text-xl font-semibold text-primary mb-4">{% trans "Course Components" %}</h2>
+                {% if components %}
+                    <div class="space-y-4">
+                        {% for component in components %}
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-medium text-gray-900">{{ component.learning_resource.title }}</h3>
+                                    <div>
+                                        <h3 class="text-lg font-medium text-gray-900">{{ component.learning_resource.title }}</h3>
+                                        <p class="text-sm text-gray-500">{{ component.learning_resource.get_resource_type_display }}</p>
+                                    </div>
                                     <span class="px-3 py-1 text-xs font-semibold {% if component.is_mandatory %}bg-red-100 text-red-800{% else %}bg-green-100 text-green-800{% endif %} rounded-full">
                                         {% if component.is_mandatory %}{% trans "Mandatory" %}{% else %}{% trans "Optional" %}{% endif %}
                                     </span>
                                 </div>
-                                <p class="text-sm text-gray-500 mt-1">{{ component.learning_resource.get_resource_type_display }}</p>
                             </div>
-                        {% endif %}
-                    {% empty %}
-                        <p class="text-gray-600 italic">{% trans "No components available for this program delivery." %}</p>
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-600 italic">{% trans "No components available for this course delivery." %}</p>
+                {% endif %}
             </div>
 
             <div class="flex justify-between items-center">
@@ -79,10 +61,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    {% trans "Back to My Programs" %}
+                    {% trans "Back to My Courses" %}
                 </a>
                 <a href="#" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md">
-                    {% trans "Start Program" %}
+                    {% trans "Start Learning" %}
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
