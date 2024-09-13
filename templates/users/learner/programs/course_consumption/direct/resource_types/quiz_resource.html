@@ -1,0 +1,26 @@
+{% extends 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html' %}
+{% load i18n %}
+
+{% block resource_content %}
+<div class="quiz-container">
+    <form method="post" action="{% url 'submit_quiz' resource.id %}">
+        {% csrf_token %}
+        {% for question in resource.questions.all %}
+            <div class="mb-4">
+                <p class="font-semibold">{{ forloop.counter }}. {{ question.text }}</p>
+                {% for choice in question.choices.all %}
+                    <div class="mt-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="question_{{ question.id }}" value="{{ choice.id }}">
+                            <span class="ml-2">{{ choice.text }}</span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            {% trans "Submit Quiz" %}
+        </button>
+    </form>
+</div>
+{% endblock %}

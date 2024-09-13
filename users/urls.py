@@ -117,6 +117,14 @@ urlpatterns = [
      path('learner/my-courses/', learner_views.MyCourseListView.as_view(), name='learner_my_courses'),
      path('learner/my-courses/<uuid:enrollment_id>/', learner_views.MyCourseDetailView.as_view(), name='learner_my_course_detail'),
 
+     path('learner/my-programs/<uuid:enrollment_id>/course/<uuid:course_id>/direct/', 
+         learner_views.DirectCourseConsumptionView.as_view(), 
+         name='direct_course_consumption'),
+     path('learner/my-programs/<uuid:enrollment_id>/resource/<uuid:resource_id>/direct/', 
+         learner_views.DirectResourceConsumptionView.as_view(), 
+         name='direct_resource_consumption'),
+
+
      path('learner/resource/<uuid:resource_id>/', learner_views.LearningResourceDetailView.as_view(), name='learning_resource_detail'),
 
      # Enrollment

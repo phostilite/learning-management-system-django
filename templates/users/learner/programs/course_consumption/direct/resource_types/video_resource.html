@@ -1,0 +1,57 @@
+{% extends 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html' %}
+{% load i18n %}
+
+{% block resource_content %}
+{% if resource.content %}
+    <div class="aspect-w-16 aspect-h-9 mb-4">
+        <video controls class="rounded-lg shadow-lg w-full" preload="metadata">
+            <source src="{{ resource.content.url }}" type="video/mp4">
+            <source src="{{ resource.content.url }}" type="video/webm">
+            <source src="{{ resource.content.url }}" type="video/ogg">
+            {% trans "Your browser does not support the video tag." %}
+        </video>
+    </div>
+
+    <div class="mt-4">
+        <h3 class="text-lg font-semibold mb-2">{% trans "Download Options" %}</h3>
+        <a href="{{ resource.content.url }}" download class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            {% trans "Download Video" %}
+        </a>
+    </div>
+
+    <div class="mt-4">
+        <h3 class="text-lg font-semibold mb-2">{% trans "Video Information" %}</h3>
+        <p><strong>{% trans "File Name" %}:</strong> {{ resource.content.name }}</p>
+        <p><strong>{% trans "File Size" %}:</strong> {{ resource.content.size|filesizeformat }}</p>
+    </div>
+{% else %}
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+        <p class="font-bold">{% trans "No Video Content Available" %}</p>
+        <p>{% trans "There is currently no video content associated with this learning resource." %}</p>
+    </div>
+{% endif %}
+
+{% if resource.external_url %}
+    <div class="mt-4">
+        <h3 class="text-lg font-semibold mb-2">{% trans "External Video Link" %}</h3>
+        <a href="{{ resource.external_url }}" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            {% trans "Open External Video" %}
+        </a>
+    </div>
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.querySelector('video');
+    video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        var errorMessage = document.createElement('p');
+        errorMessage.className = 'text-red-500 mt-2';
+        errorMessage.textContent = '{% trans "Error loading video. Please try downloading or using the external link if available." %}';
+        video.parentNode.appendChild(errorMessage);
+    });
+});
+</script>
+{% endblock %}

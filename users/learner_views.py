@@ -187,6 +187,71 @@ class MyProgramDetailView(LoginRequiredMixin, DetailView):
 
         return context
     
+class DirectCourseConsumptionView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/course_consumption/direct/course_consumption.html'
+    context_object_name = 'program_course'
+
+    def get_object(self):
+        try:
+            enrollment_id = self.kwargs.get('enrollment_id')
+            course_id = self.kwargs.get('course_id')
+            user = self.request.user
+
+            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
+            program_course = get_object_or_404(ProgramCourse, program=enrollment.program, course__id=course_id)
+
+            return program_course
+        except Exception as e:
+            logger.error(f"Error retrieving program course for user {self.request.user.username}: {str(e)}")
+            raise
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            program_course = self.object
+            resources = LearningResource.objects.filter(course=program_course.course).order_by('order')
+            context['resources'] = resources
+            context['enrollment_id'] = self.kwargs.get('enrollment_id')
+            logger.info(f"Retrieved {resources.count()} learning resources for course {program_course.course.id}")
+        except Exception as e:
+            logger.error(f"Error retrieving learning resources for course {program_course.course.id}: {str(e)}")
+            raise
+        return context
+    
+class DirectResourceConsumptionView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html'
+    context_object_name = 'resource'
+
+    def get_object(self):
+        try:
+            resource_id = self.kwargs.get('resource_id')
+            # Directly retrieve the resource without re-validating the enrollment
+            resource = get_object_or_404(LearningResource, id=resource_id)
+            return resource
+        except Exception as e:
+            logger.error(f"Error retrieving learning resource for user {self.request.user.username}: {str(e)}")
+            raise
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enrollment_id'] = self.kwargs.get('enrollment_id')
+
+        # Add SCORM-specific context if the resource type is SCORM
+        if self.object.resource_type == 'SCORM':
+            context['scorm_details'] = self.object.scorm_details
+            context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+            context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+            context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+
+        return context
+
+    def get_template_names(self):
+        resource = self.object
+        return [
+            f'users/learner/programs/course_consumption/direct/resource_types/{resource.resource_type.lower()}_resource.html',
+            self.template_name
+        ]
+    
 # ================================================================
 #                           Courses Views
 # ================================================================

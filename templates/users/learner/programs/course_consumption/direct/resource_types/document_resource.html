@@ -1,8 +1,9 @@
-{% extends "users/administrator/course/learning_resource/base_detail.html" %}
+{% extends 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html' %}
 {% load i18n %}
 {% load custom_filters %}
 
-{% block resource_specific_content %}
+{% block resource_content %}
+<div class="document-container">
     <h2 class="text-2xl font-semibold mb-4">{% trans "Document Details" %}</h2>
     
     {% if resource.content %}
@@ -26,11 +27,13 @@
             <div class="flex flex-wrap gap-4">
                 {% if file_ext == 'doc' or file_ext == 'docx' or file_ext == 'xls' or file_ext == 'xlsx' or file_ext == 'ppt' or file_ext == 'pptx' %}
                     <a href="https://view.officeapps.live.com/op/view.aspx?src={{ request.scheme }}://{{ request.get_host }}{{ resource.content.url }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                        <i class="fas fa-external-link-alt mr-2"></i>{% trans "View in Office Online" %}
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        {% trans "View in Office Online" %}
                     </a>
                 {% endif %}
                 <a href="{{ resource.content.url }}" download class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                    <i class="fas fa-download mr-2"></i>{% trans "Download Document" %}
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    {% trans "Download Document" %}
                 </a>
             </div>
         {% endwith %}
@@ -45,11 +48,12 @@
         <div class="mt-4">
             <h3 class="text-lg font-semibold mb-2">{% trans "External Document Link" %}</h3>
             <a href="{{ resource.external_url }}" target="_blank" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <i class="fas fa-external-link-alt mr-2"></i>{% trans "Open External Document" %}
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                {% trans "Open External Document" %}
             </a>
         </div>
     {% endif %}
-
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
