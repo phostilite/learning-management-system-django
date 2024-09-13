@@ -124,6 +124,9 @@ urlpatterns = [
          learner_views.DirectResourceConsumptionView.as_view(), 
          name='direct_resource_consumption'),
 
+     path('learner/my-programs/<uuid:enrollment_id>/delivery/course/<uuid:component_id>/', learner_views.DeliveryCourseConsumptionView.as_view(), name='delivery_course_consumption'),
+     path('learner/my-programs/<uuid:enrollment_id>/delivery/resource/<uuid:component_id>/', learner_views.DeliveryResourceConsumptionView.as_view(), name='delivery_resource_consumption'),
+
 
      path('learner/resource/<uuid:resource_id>/', learner_views.LearningResourceDetailView.as_view(), name='learning_resource_detail'),
 

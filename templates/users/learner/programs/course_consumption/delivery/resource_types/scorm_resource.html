@@ -1,0 +1,141 @@
+{% extends 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html' %}
+{% load i18n %}
+
+{% block resource_content %}
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold mb-6">{% trans "SCORM Resource" %}: {{ delivery_component.learning_resource.title }}</h2>
+
+    <div class="bg-gray-100 p-4 rounded-lg mb-6">
+        <h3 class="text-lg font-semibold mb-2">{% trans "SCORM Details" %}</h3>
+        <ul class="list-disc list-inside text-gray-600">
+            <li><strong>{% trans "SCORM Course ID" %}:</strong> {{ delivery_component.learning_resource.scorm_details.scorm_course_id }}</li>
+            <li><strong>{% trans "SCORM Package ID" %}:</strong> {{ delivery_component.learning_resource.scorm_details.scorm_package_id }}</li>
+            <li><strong>{% trans "Version" %}:</strong> {{ delivery_component.learning_resource.scorm_details.scorm_version }}</li>
+            <li><strong>{% trans "Web Path" %}:</strong> {{ delivery_component.learning_resource.scorm_details.scorm_web_path }}</li>
+        </ul>
+    </div>
+
+    <div class="flex flex-wrap gap-4 mb-6">
+        <button id="launchButton" onclick="launchScorm('{{ delivery_component.learning_resource.scorm_details.scorm_package_id }}')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            {% trans "Launch SCORM Content" %}
+        </button>
+        <button id="closeButton" onclick="closeScorm()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out" style="display: none;">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            {% trans "Close SCORM Content" %}
+        </button>
+        <button id="fullscreenButton" onclick="toggleFullscreen()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out" style="display: none;">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+            {% trans "Toggle Fullscreen" %}
+        </button>
+    </div>
+
+    <div id="scormContainer" class="mt-4" style="display: none;">
+        <iframe id="scormFrame" src="" allowfullscreen style="width: 100%; height: 600px; border: none;"></iframe>
+    </div>
+</div>
+
+<script>
+function launchScorm(packageId) {
+    const userId = '{{ SCORM_PLAYER_USER_ID }}';
+    const apiUrl = '{{ SCORM_API_BASE_URL }}/api/attempts/start_attempt/';
+    const token = '{{ SCORM_PLAYER_API_TOKEN }}';
+
+    const formData = new FormData();
+    formData.append('user_id', userId);
+    formData.append('package_id', packageId);
+
+    fetch(apiUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const launchUrl = `{{ SCORM_API_BASE_URL }}/launch/${data.id}/`;
+        launchScormPackage(launchUrl);
+    })
+    .catch(error => {
+        console.error('Error launching SCORM package:', error);
+        alert('Failed to launch SCORM package. Please try again.');
+    });
+}
+
+function launchScormPackage(url) {
+    const scormContainer = document.getElementById('scormContainer');
+    const scormFrame = document.getElementById('scormFrame');
+    const launchButton = document.getElementById('launchButton');
+    const closeButton = document.getElementById('closeButton');
+    const fullscreenButton = document.getElementById('fullscreenButton');
+
+    scormFrame.src = url;
+    scormContainer.style.display = 'block';
+    launchButton.style.display = 'none';
+    closeButton.style.display = 'inline-flex';
+    fullscreenButton.style.display = 'inline-flex';
+    
+    scormContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+function closeScorm() {
+    const scormContainer = document.getElementById('scormContainer');
+    const scormFrame = document.getElementById('scormFrame');
+    const launchButton = document.getElementById('launchButton');
+    const closeButton = document.getElementById('closeButton');
+    const fullscreenButton = document.getElementById('fullscreenButton');
+
+    scormFrame.src = '';
+    scormContainer.style.display = 'none';
+    launchButton.style.display = 'inline-flex';
+    closeButton.style.display = 'none';
+    fullscreenButton.style.display = 'none';
+}
+
+function toggleFullscreen() {
+    const scormFrame = document.getElementById('scormFrame');
+    
+    if (!document.fullscreenElement) {
+        if (scormFrame.requestFullscreen) {
+            scormFrame.requestFullscreen();
+        } else if (scormFrame.mozRequestFullScreen) { /* Firefox */
+            scormFrame.mozRequestFullScreen();
+        } else if (scormFrame.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            scormFrame.webkitRequestFullscreen();
+        } else if (scormFrame.msRequestFullscreen) { /* IE/Edge */
+            scormFrame.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari & Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+}
+
+document.addEventListener('fullscreenchange', updateFullscreenButton);
+document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+
+function updateFullscreenButton() {
+    const fullscreenButton = document.getElementById('fullscreenButton');
+    if (document.fullscreenElement) {
+        fullscreenButton.innerHTML = '<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18h12M6 6h12"></path></svg>{% trans "Exit Fullscreen" %}';
+    } else {
+        fullscreenButton.innerHTML = '<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>{% trans "Enter Fullscreen" %}';
+    }
+}
+</script>
+{% endblock %}

@@ -252,6 +252,98 @@ class DirectResourceConsumptionView(LoginRequiredMixin, DetailView):
             self.template_name
         ]
     
+
+class DeliveryCourseConsumptionView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/course_consumption/delivery/course_consumption.html'
+    context_object_name = 'delivery_component'
+
+    def get_object(self):
+        try:
+            enrollment_id = self.kwargs.get('enrollment_id')
+            component_id = self.kwargs.get('component_id')
+            user = self.request.user
+
+            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
+            delivery_component = get_object_or_404(
+                DeliveryComponent, 
+                id=component_id, 
+                delivery=enrollment.delivery,
+                program_course__isnull=False
+            )
+
+            return delivery_component
+        except Exception as e:
+            logger.error(f"Error retrieving delivery component for user {self.request.user.username}: {str(e)}")
+            raise
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            delivery_component = self.object
+            child_components = DeliveryComponent.objects.filter(
+                delivery=delivery_component.delivery,
+                parent_component=delivery_component
+            ).select_related('learning_resource').order_by('order')
+
+            context['child_components'] = child_components
+            context['enrollment_id'] = self.kwargs.get('enrollment_id')
+            logger.info(f"Retrieved {child_components.count()} child components for delivery component {delivery_component.id}")
+        except Exception as e:
+            logger.error(f"Error retrieving child components for delivery component {delivery_component.id}: {str(e)}")
+            raise
+        return context
+
+class DeliveryResourceConsumptionView(LoginRequiredMixin, DetailView):
+    template_name = 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html'
+    context_object_name = 'delivery_component'
+
+    def get_object(self):
+        try:
+            enrollment_id = self.kwargs.get('enrollment_id')
+            component_id = self.kwargs.get('component_id')
+            user = self.request.user
+
+            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
+            delivery_component = get_object_or_404(
+                DeliveryComponent, 
+                id=component_id, 
+                delivery=enrollment.delivery,
+                learning_resource__isnull=False
+            )
+
+            return delivery_component
+        except Exception as e:
+            logger.error(f"Error retrieving delivery component for user {self.request.user.username}: {str(e)}")
+            raise
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enrollment_id'] = self.kwargs.get('enrollment_id')
+
+        delivery_component = self.object
+        resource = delivery_component.learning_resource
+
+        # Add SCORM-specific context if the resource type is SCORM
+        if resource.resource_type == 'SCORM':
+            try:
+                context['scorm_details'] = resource.scorm_details
+                context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
+                context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
+                context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
+            except Exception as e:
+                logger.error(f"Error retrieving SCORM details for resource {resource.id}: {str(e)}")
+                # Handle the error appropriately, e.g., set a flag in the context
+
+        return context
+
+    def get_template_names(self):
+        delivery_component = self.object
+        resource = delivery_component.learning_resource
+        return [
+            f'users/learner/programs/course_consumption/delivery/resource_types/{resource.resource_type.lower()}_resource.html',
+            self.template_name
+        ]
+    
 # ================================================================
 #                           Courses Views
 # ================================================================

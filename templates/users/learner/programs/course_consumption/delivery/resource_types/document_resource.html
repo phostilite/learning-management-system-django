@@ -1,0 +1,92 @@
+{% extends 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block resource_content %}
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold mb-4">{% trans "Document" %}: {{ delivery_component.learning_resource.title }}</h2>
+    
+    {% if delivery_component.learning_resource.content %}
+        <div class="mb-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">{% trans "Document Details" %}</h3>
+            <ul class="list-disc list-inside text-gray-600">
+                <li>{% trans "File Name" %}: {{ delivery_component.learning_resource.content.name }}</li>
+                <li>{% trans "File Size" %}: {{ delivery_component.learning_resource.content.size|filesizeformat }}</li>
+                <li>{% trans "File Type" %}: {{ delivery_component.learning_resource.content.name|file_extension|upper }}</li>
+                <li>{% trans "Last Modified" %}: {{ delivery_component.learning_resource.updated_at|date:"F d, Y H:i" }}</li>
+            </ul>
+        </div>
+
+        {% with file_ext=delivery_component.learning_resource.content.name|file_extension %}
+            <div class="mb-6">
+                {% if file_ext == 'pdf' %}
+                    <div class="aspect-w-16 aspect-h-9">
+                        <embed src="{{ delivery_component.learning_resource.content.url }}" type="application/pdf" width="100%" height="600px" class="rounded-md" />
+                    </div>
+                {% elif file_ext == 'txt' or file_ext == 'csv' %}
+                    <iframe src="{{ delivery_component.learning_resource.content.url }}" width="100%" height="600px" class="border border-gray-300 rounded-md"></iframe>
+                {% elif file_ext in 'jpg,jpeg,png,gif' %}
+                    <div class="text-center">
+                        <img src="{{ delivery_component.learning_resource.content.url }}" alt="{{ delivery_component.learning_resource.title }}" class="max-w-full h-auto rounded-md shadow-lg">
+                    </div>
+                {% else %}
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">
+                                    {% trans "Preview not available for this file type. Please use the download option or view in Office Online if available." %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                {% if file_ext in 'doc,docx,xls,xlsx,ppt,pptx' %}
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src={{ request.scheme }}://{{ request.get_host }}{{ delivery_component.learning_resource.content.url }}" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        {% trans "View in Office Online" %}
+                    </a>
+                {% endif %}
+                <a href="{{ delivery_component.learning_resource.content.url }}" download class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    {% trans "Download Document" %}
+                </a>
+            </div>
+        {% endwith %}
+    {% else %}
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+            <p class="font-bold">{% trans "No Document Content Available" %}</p>
+            <p>{% trans "There is currently no document content associated with this learning resource." %}</p>
+        </div>
+    {% endif %}
+
+    {% if delivery_component.learning_resource.external_url %}
+        <div class="mt-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">{% trans "External Document Link" %}</h3>
+            <a href="{{ delivery_component.learning_resource.external_url }}" target="_blank" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-150 ease-in-out">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                {% trans "Open External Document" %}
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var iframe = document.querySelector('iframe');
+    if (iframe) {
+        iframe.addEventListener('load', function() {
+            this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+        });
+    }
+});
+</script>
+{% endblock %}

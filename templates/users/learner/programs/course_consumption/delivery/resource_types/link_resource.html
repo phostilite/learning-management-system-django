@@ -1,0 +1,54 @@
+{% extends 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block resource_content %}
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold mb-4">{% trans "External Resource" %}: {{ delivery_component.learning_resource.title }}</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-2">{% trans "Resource Details" %}</h3>
+        <ul class="list-disc list-inside text-gray-600">
+            <li>{% trans "Type" %}: {{ delivery_component.learning_resource.get_resource_type_display }}</li>
+            <li>{% trans "Added On" %}: {{ delivery_component.learning_resource.created_at|date:"F d, Y" }}</li>
+            <li>{% trans "Last Updated" %}: {{ delivery_component.learning_resource.updated_at|date:"F d, Y" }}</li>
+        </ul>
+    </div>
+
+    <div class="mb-6">
+        <p class="text-gray-700">{% trans "This resource is an external link. Please review the information below before accessing it." %}</p>
+    </div>
+
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-blue-700">
+                    {% trans "The link will open in a new tab. Please ensure you trust the source before proceeding." %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+        <a href="{{ delivery_component.learning_resource.external_url }}" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition duration-300 ease-in-out">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            {% trans "Access External Resource" %}
+        </a>
+        <span class="text-sm text-gray-500">
+            {% trans "Opens in a new tab" %}
+        </span>
+    </div>
+
+    <div class="mt-6 text-sm text-gray-500">
+        <p>{% trans "Please note: This is an external resource not hosted on our platform. We are not responsible for its content or availability." %}</p>
+    </div>
+</div>
+{% endblock %}
