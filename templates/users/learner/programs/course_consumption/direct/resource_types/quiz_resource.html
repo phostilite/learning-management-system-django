@@ -3,7 +3,7 @@
 
 {% block resource_content %}
 <div class="quiz-container">
-    <form method="post" action="{% url 'submit_quiz' resource.id %}">
+    <form method="post" action="#">
         {% csrf_token %}
         {% for question in resource.questions.all %}
             <div class="mb-4">
