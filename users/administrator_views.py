@@ -29,6 +29,7 @@ from rest_framework.permissions import BasePermission, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.utils.translation import gettext_lazy as _
+from django.forms import formset_factory
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import permissions
@@ -39,6 +40,8 @@ from certificates.models import Certificate
 from courses.forms import (CourseForm, EnrollmentForm, LearningResourceForm,
                            LearningResourceFormSet, ScormResourceForm, ProgramForm, ProgramPublishForm, ProgramUnpublishForm, LearningResourceEditForm, CoursePublishForm, CourseUnpublishForm, ProgramCourseForm, DeliveryCreateForm, DeliveryEditForm, EnrollmentEditForm, CourseComponentForm, ResourceComponentForm)
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Delivery, DeliveryComponent)
+from quizzes.models import Quiz, Question, Choice
+from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, QuestionFormSet
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
@@ -48,6 +51,7 @@ logger = logging.getLogger(__name__)
 
 # Get the user model
 User = get_user_model()
+
 class IsInAdministratorGroup(permissions.BasePermission):
     message = "User does not have administrator privileges."
 
@@ -702,6 +706,11 @@ class AdministratorLearningResourceCreateView(LoginRequiredMixin, UserPassesTest
                     self.object.content = form.cleaned_data['content']
                 self.object.save()
                 logger.info(f"Created {form.instance.resource_type} learning resource: {self.object.id}")
+
+                # Redirect to quiz creation if the resource type is 'QUIZ'
+                if form.instance.resource_type == 'QUIZ':
+                    return redirect('administrator_quiz_create', course_id=course.id, resource_id=self.object.id)
+
                 return super().form_valid(form)
             except Exception as e:
                 logger.exception(f"Error creating learning resource: {str(e)}")
@@ -886,6 +895,187 @@ class AdministratorLearningResourceDetailView(LoginRequiredMixin, DetailView):
         except Exception as e:
             logger.error(f"Error in AdministratorLearningResourceDetailView get_context_data: {str(e)}")
         return context
+
+# ============================================================
+# ============================ Quiz Views ====================
+# ============================================================    
+
+class QuizCreateView(LoginRequiredMixin, CreateView):
+    model = Quiz
+    form_class = QuizForm
+    template_name = 'users/administrator/course/learning_resource/quizzes/quiz_create.html'
+    permission_classes = [IsInAdministratorGroup]
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.permission_classes[0]().has_permission(request, self):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['course'] = get_object_or_404(Course, pk=self.kwargs['course_id'])
+        context['learning_resource'] = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'])
+        return context
+
+    def form_valid(self, form):
+        learning_resource = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'])
+        form.instance.learning_resource = learning_resource
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('administrator_quiz_add_questions', kwargs={
+            'course_id': self.kwargs['course_id'],
+            'resource_id': self.kwargs['resource_id'],
+            'quiz_id': self.object.id
+        })
+
+class QuizAddQuestionsView(LoginRequiredMixin, CreateView):
+    model = Question
+    form_class = QuestionForm
+    template_name = 'users/administrator/course/learning_resource/quizzes/quiz_add_questions.html'
+    permission_classes = [IsInAdministratorGroup]
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.permission_classes[0]().has_permission(request, self):
+            return self.handle_no_permission()
+        self.quiz = get_object_or_404(Quiz, pk=self.kwargs['quiz_id'])
+        self.course = get_object_or_404(Course, pk=self.kwargs['course_id'])
+        self.learning_resource = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['quiz'] = self.quiz
+        context['course'] = self.course
+        context['learning_resource'] = self.learning_resource
+        ChoiceFormSet = formset_factory(ChoiceForm, extra=4)
+        context['choice_formset'] = ChoiceFormSet(prefix='choices')
+        return context
+
+    def form_valid(self, form):
+        question = form.save(commit=False)
+        question.quiz = self.quiz
+        question.save()
+
+        question_type = form.cleaned_data['question_type']
+
+        if question_type in ['MULTIPLE_CHOICE', 'TRUE_FALSE']:
+            ChoiceFormSet = formset_factory(ChoiceForm, extra=4)
+            choice_formset = ChoiceFormSet(self.request.POST, prefix='choices')
+            
+            if choice_formset.is_valid():
+                logging.info("Choice formset is valid")
+                for index, choice_form in enumerate(choice_formset):
+                    if choice_form.cleaned_data:
+                        choice = choice_form.save(commit=False)
+                        choice.question = question
+                        if question_type == 'TRUE_FALSE':
+                            # For True/False, set 'True' as correct and 'False' as incorrect
+                            choice.is_correct = (index == 0)  # First choice is 'True'
+                        choice.save()
+                        logging.info(f"Choice {choice.text} saved for question {question.id}")
+            else:
+                logging.error("Choice formset is not valid")
+                logging.error(choice_formset.errors)
+                # Handle the case when the formset is not valid
+                return self.form_invalid(form)
+        elif question_type == 'SHORT_ANSWER':
+            short_answer_key = form.cleaned_data.get('short_answer_key')
+            Choice.objects.create(
+                question=question,
+                text=short_answer_key,
+                is_correct=True
+            )
+        elif question_type == 'ESSAY':
+            essay_rubric = form.cleaned_data.get('essay_rubric')
+            Choice.objects.create(
+                question=question,
+                text=essay_rubric,
+                is_correct=True  
+            )
+
+        return redirect('administrator_quiz_add_questions', course_id=self.course.id, resource_id=self.learning_resource.id, quiz_id=self.quiz.id)
+
+    def form_invalid(self, form):
+        logging.error("Form is invalid")
+        logging.error(form.errors)
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        return reverse('administrator_quiz_add_questions', kwargs={
+            'course_id': self.course.id,
+            'resource_id': self.learning_resource.id,
+            'quiz_id': self.quiz.id
+        })
+
+class QuizEditView(LoginRequiredMixin, UpdateView):
+    model = Quiz
+    form_class = QuizForm
+    template_name = 'users/administrator/course/learning_resource/quizzes/quiz_edit.html'
+    permission_classes = [IsInAdministratorGroup]
+
+    def dispatch(self, request, *args, **kwargs):
+        if not all(permission().has_permission(request, self) for permission in self.permission_classes):
+            return self.handle_no_permission()
+        self.course = get_object_or_404(Course, pk=self.kwargs['course_id'])
+        self.learning_resource = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'], course=self.course)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.learning_resource.quiz
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['question_formset'] = QuestionFormSet(self.request.POST, instance=self.object)
+            context['choice_formsets'] = [
+                ChoiceFormSet(self.request.POST, instance=question, prefix=f'choices_{question.id}')
+                for question in self.object.questions.all()
+            ]
+        else:
+            context['question_formset'] = QuestionFormSet(instance=self.object)
+            context['choice_formsets'] = [
+                ChoiceFormSet(instance=question, prefix=f'choices_{question.id}')
+                for question in self.object.questions.all()
+            ]
+        context['course'] = self.course
+        context['learning_resource'] = self.learning_resource
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        question_formset = context['question_formset']
+        choice_formsets = context['choice_formsets']
+
+        with transaction.atomic():
+            self.object = form.save()
+            if question_formset.is_valid():
+                questions = question_formset.save(commit=False)
+                for question in questions:
+                    question.quiz = self.object
+                    question.save()
+                for question in question_formset.deleted_objects:
+                    question.delete()
+                
+                for index, question in enumerate(self.object.questions.all()):
+                    choice_formset = ChoiceFormSet(self.request.POST, instance=question, prefix=f'choices_{question.id}')
+                    if choice_formset.is_valid():
+                        choices = choice_formset.save(commit=False)
+                        for choice in choices:
+                            choice.question = question
+                            choice.save()
+                        for choice in choice_formset.deleted_objects:
+                            choice.delete()
+                    else:
+                        return self.form_invalid(form)
+
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('administrator_learning_resource_detail', kwargs={
+            'course_id': self.course.id,
+            'pk': self.learning_resource.id
+        })
 
 # ============================================================
 # ======================= Course Delivery Views ==============

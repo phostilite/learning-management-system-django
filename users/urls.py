@@ -37,6 +37,13 @@ urlpatterns = [
      path('administrator/course/<uuid:course_id>/learning-resource/<uuid:pk>/', administrator_views.AdministratorLearningResourceDetailView.as_view(), name='administrator_learning_resource_detail'),
      path('administrator/scorm-upload/', administrator_views.scorm_upload_view, name='administrator_scorm_upload'),
 
+     path('administrator/course/<uuid:course_id>/resource/<uuid:resource_id>/quiz/create/', administrator_views.QuizCreateView.as_view(), name='administrator_quiz_create'),
+     path('administrator/course/<uuid:course_id>/resource/<uuid:resource_id>/quiz/<uuid:quiz_id>/add-questions/', administrator_views.QuizAddQuestionsView.as_view(), name='administrator_quiz_add_questions'),
+     path('administrator/courses/<uuid:course_id>/resources/<uuid:resource_id>/quiz/edit/', 
+         administrator_views.QuizEditView.as_view(), 
+         name='administrator_quiz_edit'),
+
+
      path('administrator/deliveries/', administrator_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
      path('administrator/delivery/create/', administrator_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
      path('administrator/deliveries/<uuid:pk>/', administrator_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),
