@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 import uuid
 
 class TimeStampedModel(models.Model):
@@ -27,6 +28,12 @@ class Organization(TimeStampedModel):
 
     def __str__(self):
         return self.name
+    
+    def get_all_users(self):
+        return settings.AUTH_USER_MODEL.objects.filter(
+            userrole__organization=self,
+            userrole__is_active=True
+        ).distinct()
 
 class OrganizationUnit(TimeStampedModel):
     UNIT_TYPES = (
@@ -99,6 +106,21 @@ class OrganizationUnit(TimeStampedModel):
             models.Index(fields=['organization', 'level']),
         ]
 
+    def get_users(self):
+        return settings.AUTH_USER_MODEL.objects.filter(
+            userrole__organization=self.organization,
+            userrole__organization_unit=self,
+            userrole__is_active=True
+        ).distinct()
+
+    def get_managers(self):
+        return settings.AUTH_USER_MODEL.objects.filter(
+            userrole__organization=self.organization,
+            userrole__organization_unit=self,
+            userrole__role__name='Manager',  
+            userrole__is_active=True
+        ).distinct()
+
 class Location(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='locations')
@@ -127,6 +149,13 @@ class JobPosition(TimeStampedModel):
 
     def __str__(self):
         return f"{self.organization.name} - {self.title}"
+    
+    def get_users(self):
+        return settings.AUTH_USER_MODEL.objects.filter(
+            userorganizationassignment__organization=self.organization,
+            userorganizationassignment__job_position=self,
+            userorganizationassignment__is_active=True
+        ).distinct()
 
 class EmployeeProfile(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -136,6 +165,7 @@ class EmployeeProfile(TimeStampedModel):
     job_position = models.ForeignKey(JobPosition, on_delete=models.SET_NULL, null=True, related_name='employees')
     organization_unit = models.ForeignKey(OrganizationUnit, on_delete=models.SET_NULL, null=True, related_name='employees')
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='subordinates')
+    current_assignment = models.ForeignKey('users.UserOrganizationAssignment', on_delete=models.SET_NULL, null=True, related_name='current_profile')
     hire_date = models.DateField()
     termination_date = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -145,6 +175,12 @@ class EmployeeProfile(TimeStampedModel):
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.employee_id}"
+    
+    def get_current_role(self):
+        return self.user.get_current_role()
+
+    def get_all_roles(self):
+        return self.user.get_all_roles()
 
 class OrganizationContact(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
