@@ -35,9 +35,9 @@
             <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> {% trans "12% from last month" %}</p>
         </div>
         <div class="bg-white rounded-xl p-6 card-shadow">
-            <h3 class="text-xl font-semibold text-primary mb-2">{% trans "Active Courses" %}</h3>
-            <p class="text-4xl font-bold text-accent">87</p>
-            <p class="text-sm text-secondary mt-2"><i class="fas fa-plus text-blue-500"></i> {% trans "3 new this week" %}</p>
+            <h3 class="text-xl font-semibold text-primary mb-2">{% trans "Active Courses & Programs" %}</h3>
+            <p class="text-4xl font-bold text-accent">112</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-plus text-blue-500"></i> {% trans "5 new this week" %}</p>
         </div>
         <div class="bg-white rounded-xl p-6 card-shadow">
             <h3 class="text-xl font-semibold text-primary mb-2">{% trans "Completion Rate" %}</h3>
@@ -45,9 +45,9 @@
             <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> {% trans "5% from last month" %}</p>
         </div>
         <div class="bg-white rounded-xl p-6 card-shadow">
-            <h3 class="text-xl font-semibold text-primary mb-2">{% trans "Total Revenue" %}</h3>
-            <p class="text-4xl font-bold text-accent">$124,500</p>
-            <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> {% trans "18% from last month" %}</p>
+            <h3 class="text-xl font-semibold text-primary mb-2">{% trans "New Enrollments" %}</h3>
+            <p class="text-4xl font-bold text-accent">328</p>
+            <p class="text-sm text-secondary mt-2"><i class="fas fa-arrow-up text-green-500"></i> {% trans "15% from last week" %}</p>
         </div>
     </div>
 
@@ -130,7 +130,7 @@
     </div>
 
     <!-- New Sections -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
         <!-- Top Performers -->
         <div class="bg-white rounded-xl p-6 card-shadow">
             <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Top Performers" %}</h3>
@@ -175,33 +175,104 @@
                     <p class="font-semibold">{% trans "Summer Coding Bootcamp" %}</p>
                     <p class="text-sm text-gray-500">{% trans "August 1-15, 2024" %}</p>
                 </li>
+                <li>
+                    <p class="font-semibold">{% trans "Virtual Career Fair" %}</p>
+                    <p class="text-sm text-gray-500">{% trans "August 20, 2024" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- New Instructors -->
+        <div class="bg-white rounded-xl p-6 card-shadow">
+            <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "New Instructors" %}</h3>
+            <ul class="space-y-4">
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=4" alt="Instructor" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">{% trans "Dr. Yusuf Al-Qahtani" %}</p>
+                        <p class="text-sm text-gray-500">{% trans "Data Science" %}</p>
+                    </div>
+                </li>
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=5" alt="Instructor" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">{% trans "Prof. Maryam Al-Saud" %}</p>
+                        <p class="text-sm text-gray-500">{% trans "Business Ethics" %}</p>
+                    </div>
+                </li>
+                <li class="flex items-center">
+                    <img src="https://i.pravatar.cc/40?img=6" alt="Instructor" class="rounded-full mr-3">
+                    <div>
+                        <p class="font-semibold">{% trans "Dr. Hassan El-Masry" %}</p>
+                        <p class="text-sm text-gray-500">{% trans "Artificial Intelligence" %}</p>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
 
-    <!-- System Health -->
-    <div class="bg-white rounded-xl p-6 card-shadow">
-        <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "System Health" %}</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-                <p class="font-semibold">{% trans "Server Uptime" %}</p>
-                <p class="text-2xl font-bold text-green-500">99.9%</p>
-            </div>
-            <div>
-                <p class="font-semibold">{% trans "Average Response Time" %}</p>
-                <p class="text-2xl font-bold text-blue-500">0.3s</p>
-            </div>
-            <div>
-                <p class="font-semibold">{% trans "Active Sessions" %}</p>
-                <p class="text-2xl font-bold text-purple-500">1,234</p>
-            </div>
+   <!-- System Health -->
+   <div class="bg-white rounded-xl p-6 card-shadow">
+    <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "System Health" %}</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+            <p class="font-semibold">{% trans "Server Uptime" %}</p>
+            <p class="text-2xl font-bold text-green-500">99.9%</p>
+        </div>
+        <div>
+            <p class="font-semibold">{% trans "Average Response Time" %}</p>
+            <p class="text-2xl font-bold text-blue-500">0.3s</p>
+        </div>
+        <div>
+            <p class="font-semibold">{% trans "Active Sessions" %}</p>
+            <p class="text-2xl font-bold text-purple-500">1,234</p>
         </div>
     </div>
 </div>
 
+<!-- Additional Dashboard Elements -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+    <!-- Course Completion Rates -->
+    <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Course Completion Rates" %}</h3>
+        <canvas id="courseCompletionChart"></canvas>
+    </div>
+
+    <!-- Student Feedback -->
+    <div class="bg-white rounded-xl p-6 card-shadow">
+        <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Recent Student Feedback" %}</h3>
+        <ul class="space-y-4">
+            <li>
+                <p class="font-semibold">{% trans "Advanced Arabic" %}</p>
+                <div class="flex items-center">
+                    <span class="text-yellow-400">★★★★★</span>
+                    <span class="ml-2 text-sm text-gray-600">{% trans "Excellent course structure!" %}</span>
+                </div>
+            </li>
+            <li>
+                <p class="font-semibold">{% trans "Data Science Fundamentals" %}</p>
+                <div class="flex items-center">
+                    <span class="text-yellow-400">★★★★☆</span>
+                    <span class="ml-2 text-sm text-gray-600">{% trans "Very informative, could use more practical exercises." %}</span>
+                </div>
+            </li>
+            <li>
+                <p class="font-semibold">{% trans "Business Management" %}</p>
+                <div class="flex items-center">
+                    <span class="text-yellow-400">★★★★★</span>
+                    <span class="ml-2 text-sm text-gray-600">{% trans "Great insights from real-world scenarios!" %}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock %}
+
 {% block extra_js %}
 <script>
-    var ctx = document.getElementById('userActivityChart').getContext('2d');
+// User Activity Chart
+var ctx = document.getElementById('userActivityChart').getContext('2d');
 var chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -224,7 +295,43 @@ var chart = new Chart(ctx, {
         }
     }
 });
+
+// Course Completion Chart
+var completionCtx = document.getElementById('courseCompletionChart').getContext('2d');
+var completionChart = new Chart(completionCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Advanced Arabic', 'Business Management', 'Data Science', 'Digital Marketing', 'AI Basics'],
+        datasets: [{
+            label: 'Completion Rate (%)',
+            data: [85, 78, 92, 88, 76],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
 </script>
 {% endblock %}
 
-{% endblock %}

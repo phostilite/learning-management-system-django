@@ -1,11 +1,11 @@
 {% extends './_base.html' %}
 {% load i18n %}
-
 {% load static %}
 
 {% block title %}Calendar - LMS Admin{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <style>
 .calendar {
     display: grid;
@@ -40,6 +40,7 @@
     border-radius: 3px;
     font-size: 0.8rem;
     margin-bottom: 2px;
+    cursor: pointer;
 }
 .today {
     background-color: #e5e7eb;
@@ -51,11 +52,30 @@
     background-color: #f0f0f0;
     border-radius: 8px;
 }
+.event-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.event-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+}
 </style>
 {% endblock %}
 
 {% block content %}
-
 <div class="calendar-specific-class">
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
         <h1 class="text-4xl font-bold text-center mb-2">{% trans "LMS Calendar" %}</h1>
@@ -82,12 +102,73 @@
     <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-3xl font-semibold text-primary">{% trans "July 2024" %}</h2>
+            <div id="currentTimeDisplay" class="text-lg font-medium text-gray-600"></div>
             <div>
-                <button class="text-gray-600 hover:text-primary">
+                <button id="prevMonth" class="text-gray-600 hover:text-primary">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="text-gray-600 hover:text-primary ml-4">
+                <button id="nextMonth" class="text-gray-600 hover:text-primary ml-4">
                     <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Advanced filtering and search options -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-4">{% trans "Advanced Filters" %}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="eventTypeFilter">
+                        {% trans "Event Type" %}
+                    </label>
+                    <select id="eventTypeFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">{% trans "All Types" %}</option>
+                        <option value="course">{% trans "Course" %}</option>
+                        <option value="webinar">{% trans "Webinar" %}</option>
+                        <option value="workshop">{% trans "Workshop" %}</option>
+                        <option value="exam">{% trans "Exam" %}</option>
+                        <option value="physical">{% trans "Physical Event" %}</option>
+                        <option value="program">{% trans "Learning Program" %}</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="locationFilter">
+                        {% trans "Location" %}
+                    </label>
+                    <select id="locationFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">{% trans "All Locations" %}</option>
+                        <option value="online">{% trans "Online" %}</option>
+                        <option value="physical">{% trans "Physical" %}</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="dateRangeFilter">
+                        {% trans "Date Range" %}
+                    </label>
+                    <input type="text" id="dateRangeFilter" placeholder="{% trans 'Select date range' %}" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="timezoneFilter">
+                        {% trans "Time Zone" %}
+                    </label>
+                    <select id="timezoneFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">{% trans "All Time Zones" %}</option>
+                        <option value="UTC">UTC</option>
+                        <option value="GMT">GMT</option>
+                        <option value="EST">EST</option>
+                        <option value="PST">PST</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="searchEvents">
+                    {% trans "Search Events" %}
+                </label>
+                <input type="text" id="searchEvents" placeholder="{% trans 'Search by event name, description, or instructor' %}" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+                    {% trans "Apply Filters" %}
                 </button>
             </div>
         </div>
@@ -218,7 +299,7 @@
         <!-- Add Event -->
         <div class="bg-white rounded-xl p-6 card-shadow">
             <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Add Event" %}</h3>
-            <form>
+            <form id="addEventForm">
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2" for="event-name">
                         {% trans "Event Name" %}
@@ -236,11 +317,34 @@
                         {% trans "Event Type" %}
                     </label>
                     <select id="event-type" name="event-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option>{% trans "Course Launch" %}</option>
-                        <option>{% trans "Webinar" %}</option>
-                        <option>{% trans "Workshop" %}</option>
-                        <option>{% trans "Exam" %}</option>
+                        <option value="course">{% trans "Course Launch" %}</option>
+                        <option value="webinar">{% trans "Webinar" %}</option>
+                        <option value="workshop">{% trans "Workshop" %}</option>
+                        <option value="exam">{% trans "Exam" %}</option>
                     </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="event-location">
+                        {% trans "Location" %}
+                    </label>
+                    <input type="text" id="event-location" name="event-location" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="event-timezone">
+                        {% trans "Time Zone" %}
+                    </label>
+                    <select id="event-timezone" name="event-timezone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="UTC">UTC</option>
+                        <option value="GMT">GMT</option>
+                        <option value="EST">EST</option>
+                        <option value="PST">PST</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="event-capacity">
+                        {% trans "Capacity" %}
+                    </label>
+                    <input type="number" id="event-capacity" name="event-capacity" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <button type="submit" class="w-full bg-accent text-white py-2 px-4 rounded-md hover:bg-accent-dark transition duration-300">
                     {% trans "Add Event" %}
@@ -251,37 +355,157 @@
         <!-- Upcoming Events -->
         <div class="bg-white rounded-xl p-6 card-shadow">
             <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Upcoming Events" %}</h3>
-            <ul class="space-y-4">
+            <ul id="upcomingEventsList" class="space-y-4">
+                <!-- Sample static data for upcoming events -->
                 <li class="flex items-center">
                     <div class="bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                        <i class="fas fa-graduation-cap"></i>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div>
                         <p class="font-semibold">{% trans "Advanced Machine Learning Course Launch" %}</p>
-                        <p class="text-sm text-gray-500">{% blocktrans with date="2024-07-20" %}{{ date|date:"F d, Y" }}{% endblocktrans %}</p>
+                        <p class="text-sm text-gray-500">2024-07-20</p>
                     </div>
                 </li>
                 <li class="flex items-center">
-                    <div class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                        <i class="fas fa-video"></i>
+                    <div class="bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div>
                         <p class="font-semibold">{% trans "Webinar: Future of E-learning" %}</p>
-                        <p class="text-sm text-gray-500">{% blocktrans with date="2024-07-25" %}{{ date|date:"F d, Y" }}{% endblocktrans %}</p>
+                        <p class="text-sm text-gray-500">2024-07-25</p>
                     </div>
                 </li>
                 <li class="flex items-center">
-                    <div class="bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                        <i class="fas fa-code"></i>
+                    <div class="bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div>
                         <p class="font-semibold">{% trans "Summer Coding Bootcamp" %}</p>
-                        <p class="text-sm text-gray-500">{% blocktrans with start_date="2024-08-01" end_date="2024-08-15" %}{{ start_date|date:"F d" }} - {{ end_date|date:"F d, Y" }}{% endblocktrans %}</p>
+                        <p class="text-sm text-gray-500">2024-08-01</p>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+
+    <!-- Analytics Section -->
+    <div class="bg-white rounded-xl p-6 mt-8 card-shadow">
+        <h3 class="text-2xl font-semibold text-primary mb-4">{% trans "Event Analytics" %}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <p class="font-semibold">{% trans "Total Events" %}</p>
+                <p class="text-2xl font-bold text-blue-500" id="totalEvents">3</p>
+            </div>
+            <div>
+                <p class="font-semibold">{% trans "Most Popular Event Type" %}</p>
+                <p class="text-2xl font-bold text-green-500" id="popularEventType">{% trans "Course" %}</p>
+            </div>
+            <div>
+                <p class="font-semibold">{% trans "Average Attendance Rate" %}</p>
+                <p class="text-2xl font-bold text-purple-500" id="avgAttendanceRate">75%</p>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Event Details Modal -->
+<div id="eventModal" class="event-modal">
+    <div class="event-modal-content">
+        <h2 id="modalEventTitle" class="text-2xl font-bold mb-4">{% trans "Event Title" %}</h2>
+        <p id="modalEventDate" class="mb-2">{% trans "Date: 2024-07-20" %}</p>
+        <p id="modalEventType" class="mb-2">{% trans "Type: Course" %}</p>
+        <p id="modalEventLocation" class="mb-2">{% trans "Location: Online" %}</p>
+        <p id="modalEventTimezone" class="mb-2">{% trans "Timezone: UTC" %}</p>
+        <p id="modalEventCapacity" class="mb-2">{% trans "Capacity: 500" %}</p>
+        <div class="flex justify-between mt-4">
+            <button id="showInterestBtn" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+                {% trans "Show Interest" %}
+            </button>
+            <button id="rsvpBtn" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300">
+                {% trans "RSVP" %}
+            </button>
+        </div>
+        <button id="closeModal" class="mt-4 text-gray-500 hover:text-gray-700">{% trans "Close" %}</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let currentDate = new Date();
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+    
+        function updateCalendar() {
+            // Update month and year in the header
+            document.querySelector('h2').textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+    
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            
+            let calendarHTML = '';
+            
+            // Add day headers
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayNames.forEach(day => {
+                calendarHTML += `<div class="calendar-header">${day}</div>`;
+            });
+    
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                calendarHTML += '<div class="calendar-day other-month"></div>';
+            }
+    
+            // Add days of the month
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const isToday = i === new Date().getDate() && 
+                                currentDate.getMonth() === new Date().getMonth() && 
+                                currentDate.getFullYear() === new Date().getFullYear();
+                
+                calendarHTML += `
+                    <div class="calendar-day ${isToday ? 'today' : ''}">
+                        <div class="calendar-day-header">${i}</div>
+                    </div>
+                `;
+            }
+    
+            // Add empty cells for days after the last day of the month
+            const remainingCells = 42 - (firstDay.getDay() + lastDay.getDate());
+            for (let i = 0; i < remainingCells; i++) {
+                calendarHTML += '<div class="calendar-day other-month"></div>';
+            }
+    
+            document.querySelector('.calendar').innerHTML = calendarHTML;
+        }
+    
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const timezoneString = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const timeDisplay = document.getElementById('currentTimeDisplay');
+            timeDisplay.textContent = `${timeString} | ${timezoneString}`;
+        }
+    
+        // Initialize calendar
+        updateCalendar();
+    
+        // Initialize and update time display
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+    
+        // Event listeners for navigation buttons
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            updateCalendar();
+        });
+    
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            updateCalendar();
+        });
+    });
+</script>
 {% endblock %}
