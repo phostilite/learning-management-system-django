@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'activities',
     'events',
     'organization',
+    'gamification',
 
     # Third-party apps
     'formtools',
