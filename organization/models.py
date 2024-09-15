@@ -34,22 +34,70 @@ class OrganizationUnit(TimeStampedModel):
         ('DIVISION', 'Division'),
         ('DEPARTMENT', 'Department'),
         ('TEAM', 'Team'),
+        ('SUB_TEAM', 'Sub Team'),
         ('PROJECT', 'Project'),
         ('OTHER', 'Other'),
     )
-
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='units')
     name = models.CharField(max_length=255)
-    unit_type = models.CharField(max_length=20, choices=UNIT_TYPES)
+    unit_type = models.CharField(max_length=20, choices=UNIT_TYPES, default='OTHER')
     code = models.CharField(max_length=50, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='children')
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='managed_units')
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
+    level = models.PositiveIntegerField(default=0, editable=False)
 
     def __str__(self):
         return f"{self.organization.name} - {self.name} ({self.get_unit_type_display()})"
+
+    def save(self, *args, **kwargs):
+        if self.parent:
+            self.level = self.parent.level + 1
+        else:
+            self.level = 0
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        if self.parent and self.parent.organization != self.organization:
+            raise ValidationError(_("Parent unit must belong to the same organization."))
+
+    def get_ancestors(self):
+        ancestors = []
+        current = self.parent
+        while current:
+            ancestors.append(current)
+            current = current.parent
+        return ancestors[::-1]
+
+    def get_descendants(self):
+        descendants = []
+        for child in self.children.all():
+            descendants.append(child)
+            descendants.extend(child.get_descendants())
+        return descendants
+
+    def is_descendant_of(self, other_unit):
+        current = self.parent
+        while current:
+            if current == other_unit:
+                return True
+            current = current.parent
+        return False
+
+    @property
+    def depth(self):
+        return len(self.get_ancestors())
+
+    class Meta:
+        ordering = ['organization', 'level', 'name']
+        unique_together = ['organization', 'name']
+        indexes = [
+            models.Index(fields=['organization', 'parent']),
+            models.Index(fields=['organization', 'level']),
+        ]
 
 class Location(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
