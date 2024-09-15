@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'announcements',
     'activities',
     'events',
+    'organization',
 
     # Third-party apps
     'formtools',
