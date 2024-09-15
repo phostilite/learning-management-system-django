@@ -1,0 +1,217 @@
+{% extends '../../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Questions" %} - {{ quiz.title }} {% endblock %}
+
+{% block content %}
+<div class="w-full mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Add Questions" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Quiz" %}: {{ quiz.title }}</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_course_detail' course.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_learning_resource_detail' course.id learning_resource.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ learning_resource.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ quiz.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Add Questions" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <form id="questionForm" method="post" class="space-y-6">
+        {% csrf_token %}
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Question Information" %}</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="{{ form.text.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Question Text" %}</label>
+                    <textarea name="{{ form.text.name }}" id="{{ form.text.id_for_label }}" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ form.text.value|default_if_none:'' }}</textarea>
+                    {% if form.text.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.text.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.question_type.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Question Type" %}</label>
+                    <select name="{{ form.question_type.name }}" id="{{ form.question_type.id_for_label }}" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        {% for value, label in form.fields.question_type.choices %}
+                            <option value="{{ value }}" {% if form.question_type.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.question_type.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.question_type.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.points.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Points" %}</label>
+                    <input type="number" name="{{ form.points.name }}" id="{{ form.points.id_for_label }}" value="{{ form.points.value|default:'1' }}" min="1" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    {% if form.points.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.points.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.order.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Order" %}</label>
+                    <input type="number" name="{{ form.order.name }}" id="{{ form.order.id_for_label }}" value="{{ form.order.value|default:'0' }}" min="0" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    {% if form.order.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.order.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiple Choice and True/False Choices -->
+        <div id="choices-section" class="bg-white shadow-md rounded-lg p-6 mb-6" style="display: none;">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Answer Choices" %}</h2>
+            {{ choice_formset.management_form }}
+            {% for choice_form in choice_formset %}
+                <div class="space-y-4 mb-4">
+                    <div>
+                        <label for="id_choices-{{ forloop.counter0 }}-text" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Choice Text" %}</label>
+                        <input type="text" name="choices-{{ forloop.counter0 }}-text" id="id_choices-{{ forloop.counter0 }}-text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="flex items-start multiple-choice-correct">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox" name="choices-{{ forloop.counter0 }}-is_correct" id="id_choices-{{ forloop.counter0 }}-is_correct" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="id_choices-{{ forloop.counter0 }}-is_correct" class="font-medium text-gray-700">{% trans "Correct Answer" %}</label>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Short Answer Section -->
+        <div id="short-answer-section" class="bg-white shadow-md rounded-lg p-6 mb-6" style="display: none;">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Short Answer" %}</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="short-answer-key" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Answer Key" %}</label>
+                    <input type="text" name="short_answer_key" id="short-answer-key" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter the correct answer">
+                    {% if form.short_answer_key.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.short_answer_key.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Essay Section -->
+        <div id="essay-section" class="bg-white shadow-md rounded-lg p-6 mb-6" style="display: none;">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Essay Question" %}</h2>
+            <div class="space-y-4">
+                <div>
+                    <label for="essay-rubric" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Grading Rubric or Guidelines" %}</label>
+                    <textarea name="essay_rubric" id="essay-rubric" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter grading guidelines or rubric for this essay question"></textarea>
+                    {% if form.essay_rubric.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.essay_rubric.errors|join:", " }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                {% trans "Add Question" %}
+            </button>
+            <a href="{% url 'administrator_learning_resource_detail' course_id=course.id pk=learning_resource.id %}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                {% trans "Finish Adding Questions" %}
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const questionTypeSelect = document.getElementById('{{ form.question_type.id_for_label }}');
+    const choicesSection = document.getElementById('choices-section');
+    const shortAnswerSection = document.getElementById('short-answer-section');
+    const essaySection = document.getElementById('essay-section');
+    const choiceForms = choicesSection.querySelectorAll('.space-y-4.mb-4');
+    const multipleChoiceCorrectDivs = choicesSection.querySelectorAll('.multiple-choice-correct');
+
+    function updateQuestionTypeVisibility() {
+        const selectedType = questionTypeSelect.value;
+        
+        // Hide all sections first
+        choicesSection.style.display = 'none';
+        shortAnswerSection.style.display = 'none';
+        essaySection.style.display = 'none';
+
+        switch(selectedType) {
+            case 'MULTIPLE_CHOICE':
+                choicesSection.style.display = 'block';
+                choiceForms.forEach((form, index) => {
+                    form.style.display = 'block';
+                    const textInput = form.querySelector('input[type="text"]');
+                    textInput.readOnly = false;
+                    textInput.value = '';
+                    multipleChoiceCorrectDivs[index].style.display = 'flex';
+                });
+                break;
+            case 'TRUE_FALSE':
+                choicesSection.style.display = 'block';
+                choiceForms.forEach((form, index) => {
+                    if (index < 2) {
+                        form.style.display = 'block';
+                        const textInput = form.querySelector('input[type="text"]');
+                        textInput.value = index === 0 ? 'True' : 'False';
+                        textInput.readOnly = true;
+                        multipleChoiceCorrectDivs[index].style.display = 'none';
+                        // Set the correct answer automatically
+                        const checkbox = form.querySelector('input[type="checkbox"]');
+                        checkbox.checked = index === 0;
+                    } else {
+                        form.style.display = 'none';
+                    }
+                });
+                break;
+            case 'SHORT_ANSWER':
+                shortAnswerSection.style.display = 'block';
+                break;
+            case 'ESSAY':
+                essaySection.style.display = 'block';
+                break;
+        }
+    }
+
+    questionTypeSelect.addEventListener('change', updateQuestionTypeVisibility);
+    updateQuestionTypeVisibility(); // Call on initial load
+});
+</script>
+{% endblock %}

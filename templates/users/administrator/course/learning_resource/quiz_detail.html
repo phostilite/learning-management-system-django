@@ -1,0 +1,51 @@
+{% extends "users/administrator/course/learning_resource/base_detail.html" %}
+{% load i18n %}
+
+{% block resource_specific_content %}
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <h2 class="text-2xl font-bold mb-4 text-primary"><i class="fas fa-question-circle mr-2"></i>{% trans "Quiz Details" %}</h2>
+        
+        <div class="mb-4">
+            <p class="text-gray-600"><strong>{% trans "Total Questions" %}:</strong> {{ resource.quiz.questions.count }}</p>
+            <p class="text-gray-600"><strong>{% trans "Time Limit" %}:</strong> {{ resource.quiz.time_limit }} {% trans "minutes" %}</p>
+            <p class="text-gray-600"><strong>{% trans "Passing Score" %}:</strong> {{ resource.quiz.passing_score }}%</p>
+        </div>
+
+        <h3 class="text-xl font-bold mb-2 text-primary"><i class="fas fa-list-ol mr-2"></i>{% trans "Questions" %}</h3>
+        
+        {% for question in resource.quiz.questions.all %}
+            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                <h4 class="text-lg font-semibold mb-2">{{ forloop.counter }}. {{ question.text }}</h4>
+                <p class="text-sm text-gray-600 mb-2"><strong>{% trans "Type" %}:</strong> {{ question.get_question_type_display }}</p>
+                <p class="text-sm text-gray-600 mb-2"><strong>{% trans "Points" %}:</strong> {{ question.points }}</p>
+                
+                {% if question.question_type in 'MULTIPLE_CHOICE,TRUE_FALSE' %}
+                    <ul class="list-disc list-inside ml-4">
+                        {% for choice in question.choices.all %}
+                            <li class="{% if choice.is_correct %}text-green-600 font-semibold{% else %}text-gray-700{% endif %}">
+                                {{ choice.text }}
+                                {% if choice.is_correct %}<span class="ml-2 text-xs bg-green-200 text-green-800 px-2 py-1 rounded">{% trans "Correct" %}</span>{% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% elif question.question_type == 'SHORT_ANSWER' %}
+                    <p class="text-sm text-gray-600"><strong>{% trans "Answer Key" %}:</strong> {{ question.choices.first.text }}</p>
+                {% elif question.question_type == 'ESSAY' %}
+                    <p class="text-sm text-gray-600"><strong>{% trans "Grading Rubric" %}:</strong> {{ question.choices.first.text }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p class="text-gray-600">{% trans "No questions have been added to this quiz yet." %}</p>
+        {% endfor %}
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-primary"><i class="fas fa-cog mr-2"></i>{% trans "Quiz Management" %}</h3>
+        <a href="{% url 'administrator_quiz_edit' course_id=course.id resource_id=resource.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mb-2">
+            <i class="fas fa-edit mr-2"></i>{% trans "Edit Quiz" %}
+        </a>
+        <a href="{% url 'administrator_quiz_add_questions' course_id=course.id resource_id=resource.id quiz_id=resource.quiz.id %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block">
+            <i class="fas fa-plus mr-2"></i>{% trans "Add Questions" %}
+        </a>
+    </div>
+{% endblock %}

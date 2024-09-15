@@ -12,15 +12,15 @@ class QuestionForm(forms.ModelForm):
         model = Question
         fields = ['text', 'question_type', 'points', 'order']
 
+QuestionFormSet = inlineformset_factory(
+    Quiz, Question, form=QuestionForm, extra=1, can_delete=True
+)
+
 class ChoiceForm(forms.ModelForm):
     class Meta:
         model = Choice
         fields = ['text', 'is_correct']
 
-QuestionFormSet = inlineformset_factory(
-    Quiz, Question, form=QuestionForm, extra=1, can_delete=True
-)
-
 ChoiceFormSet = inlineformset_factory(
-    Question, Choice, form=ChoiceForm, extra=4, can_delete=True
+    Question, Choice, form=ChoiceForm, extra=3, can_delete=True
 )

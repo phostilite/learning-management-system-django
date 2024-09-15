@@ -242,7 +242,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Remove CSP middleware if it's causing issues
 MIDDLEWARE = [middleware for middleware in MIDDLEWARE if middleware != 'csp.middleware.CSPMiddleware']
 
-
 # Email settings for Gmail
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
