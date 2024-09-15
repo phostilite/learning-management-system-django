@@ -1,0 +1,469 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if organization and organization.name %}{{ organization.name }}{% else %}NextGen{% endif %} Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #3b82f6, #ef4444);
+        }
+    
+        .hero-bg::before,
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+    
+        .hero-bg::before {
+            background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+    
+        .hero-bg::after {
+            background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+        }
+    
+        .bg-pattern {
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(30deg, #f0f0f0 12%, transparent 12.5%, transparent 87%, #f0f0f0 87.5%, #f0f0f0),
+                linear-gradient(150deg, #f0f0f0 12%, transparent 12.5%, transparent 87%, #f0f0f0 87.5%, #f0f0f0),
+                linear-gradient(30deg, #f0f0f0 12%, transparent 12.5%, transparent 87%, #f0f0f0 87.5%, #f0f0f0),
+                linear-gradient(150deg, #f0f0f0 12%, transparent 12.5%, transparent 87%, #f0f0f0 87.5%, #f0f0f0),
+                linear-gradient(60deg, #f0f0f077 25%, transparent 25.5%, transparent 75%, #f0f0f077 75%, #f0f0f077),
+                linear-gradient(60deg, #f0f0f077 25%, transparent 25.5%, transparent 75%, #f0f0f077 75%, #f0f0f077);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            opacity: 0.1;
+        }
+    
+        .bg-dots {
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .bg-dots::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+        }
+    
+        .bg-waves {
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .bg-waves::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 100% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent),
+                radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent) 0 -50px;
+            background-size: 75px 100px;
+            opacity: 0.1;
+        }
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(239, 68, 68, 0.8));
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .custom-shape-divider-bottom-1684886304 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider-bottom-1684886304 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        .custom-shape-divider-bottom-1684886304 .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        .animated-book {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            perspective: 1500px;
+        }
+
+        .book {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            left: 50px;
+            top: 50px;
+            transform-style: preserve-3d;
+            transform: rotateY(-30deg);
+            transition: transform 1s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .book:hover {
+            transform: rotateY(0deg);
+        }
+
+        .book-cover {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            border-radius: 2px 20px 20px 2px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+            transform: translateZ(25px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .book-page {
+            position: absolute;
+            width: 190px;
+            height: 290px;
+            background: white;
+            border-radius: 1px 15px 15px 1px;
+            transform: translateZ(24px);
+        }
+
+        .book-side {
+            position: absolute;
+            width: 50px;
+            height: 300px;
+            background: #2563eb;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float-element 5s infinite alternate;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotateY(-30deg) translateY(0); }
+            50% { transform: rotateY(-30deg) translateY(-20px); }
+        }
+
+        @keyframes float-element {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-50px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="absolute top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    {% if organization and organization.logo %}
+                        <img src="{{ organization.logo.url }}" alt="{{ organization.name }} Logo" class="h-12">
+                    {% else %}
+                        <span class="text-3xl font-bold text-white">NextGen<span class="text-red-500">LMS</span></span>
+                    {% endif %}
+                </div>
+                <div>
+                    <a href="{% url 'login' %}" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-blue-100 transition duration-300">Log In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-bg relative min-h-screen flex items-center">
+            <div class="gradient-overlay absolute inset-0"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                            Elevate Your <span class="text-red-400">Learning</span> Experience
+                        </h1>
+                        <p class="text-xl text-white mb-12 max-w-lg">
+                            Unlock your potential with our cutting-edge learning platform. Dive into a world of knowledge, anytime, anywhere.
+                        </p>
+                        <a href="{% url 'login' %}" class="bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300 inline-block">
+                            Start Your Journey
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2 mt-12 md:mt-0">
+                        <div class="animated-book">
+                            <div class="book">
+                                <div class="book-side"></div>
+                                <div class="book-cover">LMS</div>
+                                <div class="book-page"></div>
+                            </div>
+                            <div class="floating-element" style="width: 30px; height: 30px; background-color: #ef4444; top: 20%; left: 0;"></div>
+                            <div class="floating-element" style="width: 20px; height: 20px; background-color: #3b82f6; top: 60%; right: 20%;"></div>
+                            <div class="floating-element" style="width: 25px; height: 25px; background-color: #10b981; bottom: 10%; left: 30%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white bg-pattern">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Why Choose Our Platform?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg p-8 text-white card-hover">
+                        <i class="fas fa-rocket text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Accelerated Learning</h3>
+                        <p>Our AI-powered system adapts to your learning style, helping you master new skills faster.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-red-500 to-red-700 rounded-lg p-8 text-white card-hover">
+                        <i class="fas fa-users text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Collaborative Environment</h3>
+                        <p>Connect with peers, join discussion forums, and participate in group projects to enhance your learning.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-8 text-white card-hover">
+                        <i class="fas fa-certificate text-5xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-4">Industry-Recognized Certifications</h3>
+                        <p>Earn certificates that boost your credentials and open new career opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-100 relative overflow-hidden bg-dots">
+            <div class="container mx-auto px-6 relative z-10">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Featured Courses</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="{% static 'img/one.jpg' %}" alt="AI and Machine Learning" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">AI and Machine Learning</h3>
+                            <p class="text-gray-600 mb-4">Master the fundamentals of AI and ML to drive innovation in your organization.</p>
+                            <a href="{% url 'login' %}" class="text-blue-600 hover:text-blue-800 font-semibold">Explore Course →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="{% static 'img/two.jpg' %}" alt="Digital Marketing Mastery" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Digital Marketing Mastery</h3>
+                            <p class="text-gray-600 mb-4">Learn cutting-edge digital marketing strategies to grow your business online.</p>
+                            <a href="{% url 'login' %}" class="text-blue-600 hover:text-blue-800 font-semibold">Explore Course →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                        <img src="{% static 'img/three.jpg' %}" alt="Leadership in the Digital Age" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Leadership in the Digital Age</h3>
+                            <p class="text-gray-600 mb-4">Develop essential leadership skills for the rapidly evolving digital landscape.</p>
+                            <a href="{% url 'login' %}" class="text-blue-600 hover:text-blue-800 font-semibold">Explore Course →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-white to-transparent"></div>
+            <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-white to-transparent"></div>
+        </section>
+
+        <section class="py-20 bg-blue-600 text-white relative overflow-hidden bg-waves">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 mb-12 md:mb-0">
+                        <h2 class="text-4xl font-bold mb-6">Transform Your Skills with Our Platform</h2>
+                        <p class="text-xl mb-8">Join thousands of learners who have advanced their careers through our comprehensive courses and expert-led training.</p>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-center">
+                                <span class="text-4xl font-bold block">500+</span>
+                                <span class="text-sm">Courses</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-4xl font-bold block">50k+</span>
+                                <span class="text-sm">Learners</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-4xl font-bold block">98%</span>
+                                <span class="text-sm">Satisfaction</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img src="{% static 'img/seven.jpeg' %}" alt="Learning Statistics" class="mx-auto md:ml-auto w-full max-w-md">
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-opacity-10 bg-white transform rotate-12 translate-x-1/3"></div>
+            <div class="absolute bottom-0 left-0 w-1/3 h-full bg-opacity-10 bg-white transform -rotate-12 -translate-x-1/3"></div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">What Our Learners Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-md relative">
+                        <i class="fas fa-quote-left absolute top-4 left-4 text-4xl text-blue-200"></i>
+                        <p class="text-gray-600 mb-6 relative z-10">"This platform has been a game-changer for my career. The courses are engaging, and the skills I've learned have directly impacted my job performance."</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Emily Chen</h4>
+                                <p class="text-gray-500">Product Manager at TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-md relative">
+                        <i class="fas fa-quote-left absolute top-4 left-4 text-4xl text-red-200"></i>
+                        <p class="text-gray-600 mb-6 relative z-10">"The flexibility of this learning platform is unmatched. I can learn at my own pace, and the mobile app allows me to study on-the-go. Highly recommended!"</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Alex Rodriguez</h4>
+                                <p class="text-gray-500">Software Engineer at InnovateSoft</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gradient-to-r from-blue-600 to-red-600 text-white relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10">
+                <h2 class="text-4xl font-bold text-center mb-8">Ready to Transform Your Skills?</h2>
+                <p class="text-xl text-center mb-12 max-w-2xl mx-auto">Join thousands of learners who have already taken the first step towards their professional growth. Start your learning journey today!</p>
+                <div class="flex justify-center">
+                    <a href="{% url 'login' %}" class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-100 transition duration-300 inline-block">Get Started Now</a>
+                </div>
+            </div>
+            <div class="absolute top-0 left-0 w-full h-full">
+                <img src="{% static 'img/five.jpg' %}" alt="Background Pattern" class="w-full h-full object-cover opacity-10">
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">
+                        {% if organization and organization.logo %}
+                            <img src="{{ organization.logo.url }}" alt="{{ organization.name }} Logo" class="h-12">
+                        {% else %}
+                            <span class="text-3xl font-bold text-white">NextGen<span class="text-red-500">LMS</span></span>
+                        {% endif %}
+                    </h3>
+                    <p class="text-gray-400">Empowering learners worldwide with cutting-edge education technology.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Our Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="text-gray-400">Stay updated with our newsletter</p>
+                    <form class="mt-2">
+                        <div class="flex">
+                            <input type="email" placeholder="Enter your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 flex-grow">
+                            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition duration-300">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 {% if organization and organization.name %}{{ organization.name }}{% else %}NextGenLMS{% endif %}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Add more JavaScript for interactive elements if needed
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add random movement to floating elements
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((element) => {
+            element.style.animation = `float-element ${5 + Math.random() * 5}s infinite alternate`;
+        });
+    </script>
+</body>
+</html>

@@ -1,142 +1,108 @@
-{% load static %}
-{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% trans "Login - NextGenAI LMS" %}</title>
+    <title>{% if organization and organization.name %}{{ organization.name }}{% else %}NextGen{% endif %} - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        .login-bg {
+            background: 
+                linear-gradient(135deg, #3b82f6 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, #3b82f6 25%, transparent 25%) -50px 0,
+                linear-gradient(315deg, #3b82f6 25%, transparent 25%),
+                linear-gradient(45deg, #3b82f6 25%, transparent 25%);
+            background-size: 100px 100px;
+            background-color: #2563eb;
+            animation: bg-animation 20s linear infinite;
         }
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(45deg, #00f2fe, #4facfe);
+        @keyframes bg-animation {
+            0% {background-position: 0 0, 0 0, 0 0, 0 0;}
+            100% {background-position: 100px 0, 100px 0, 50px 50px, 50px 50px;}
+        }
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(220, 38, 38, 0.9));
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .login-button {
+            background: linear-gradient(45deg, #3b82f6, #2563eb);
+            transition: all 0.3s ease;
+        }
+        .login-button:hover {
+            background: linear-gradient(45deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
-    <div id="particles-js" class="absolute inset-0"></div>
-    <div class="relative z-10 w-full max-w-md">
-        <div class="bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
-            <div class="gradient-bg p-8 text-center">
-                <h2 class="text-3xl font-bold mb-2 text-gradient">{% trans "Welcome Back" %}</h2>
-                <p class="text-gray-300">{% trans "Log in to your NextGen LMS account" %}</p>
-            </div>
-            <div class="p-8">
-                <form id="loginForm" method="post">
-                    {% csrf_token %}
-                    <div class="mb-6">
-                        <label for="username" class="block text-gray-300 text-sm font-bold mb-2">{% trans "Email Address" %}</label>
-                        <input type="username" id="username" name="username" class="w-full px-3 py-2 text-gray-300 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="password" class="block text-gray-300 text-sm font-bold mb-2">{% trans "Password" %}</label>
-                        <input type="password" id="password" name="password" class="w-full px-3 py-2 text-gray-300 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center">
-                            <input type="checkbox" id="remember" name="remember" class="mr-2 bg-gray-700 border-gray-600 rounded">
-                            <label for="remember" class="text-sm text-gray-300">{% trans "Remember me" %}</label>
-                        </div>
-                        <a href="#" class="text-sm text-blue-400 hover:text-blue-300">{% trans "Forgot password?" %}</a>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
-                        <i class="fas fa-sign-in-alt mr-2"></i>{% trans "Log In" %}
-                    </button>
-                </form>
-            </div>
-            <div class="bg-gray-900 p-4 text-center">
-                <p class="text-gray-400">{% trans "Don't have an account?" %} <a href="#" class="text-blue-400 hover:text-blue-300">{% trans "Contact your administrator" %}</a></p>
-            </div>
-        </div>
-        <div class="mt-8 text-center">
-            <a href="{% url 'landing_page' %}" class="text-gray-400 hover:text-white transition duration-300">
-                <i class="fas fa-arrow-left mr-2"></i>{% trans "Back to Home" %}
+<body class="login-bg min-h-screen flex items-center justify-center p-4">
+    <div class="gradient-overlay absolute inset-0"></div>
+    
+    <div class="glassmorphism p-8 w-full max-w-md relative z-10">
+        <div class="text-center mb-8">
+            <a href="{% url 'marketing_page' %}">
+            {% if organization and organization.logo %}
+                <img src="{{ organization.logo.url }}" alt="{{ organization.name }} Logo" class="h-16 mx-auto mb-4">
+            {% else %}
+                <h1 class="text-4xl font-bold text-white mb-2">NextGen<span class="text-red-400">LMS</span></h1>
+            {% endif %}
             </a>
+            <h2 class="text-2xl font-semibold text-white">Welcome Back!</h2>
+        </div>
+        
+        <form action="{% url 'login' %}" method="post" class="space-y-6">
+            {% csrf_token %}
+            <div>
+                <label for="username" class="block text-white mb-2">Username or Email</label>
+                <input type="text" id="username" name="username" required
+                    class="w-full px-4 py-2 rounded-lg input-field focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">
+            </div>
+            <div>
+                <label for="password" class="block text-white mb-2">Password</label>
+                <input type="password" id="password" name="password" required
+                    class="w-full px-4 py-2 rounded-lg input-field focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">
+            </div>
+            <div class="flex items-center justify-between">
+                <label class="flex items-center text-white">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500">
+                    <span class="ml-2">Remember me</span>
+                </label>
+                <a href="#" class="text-red-300 hover:text-red-100 transition duration-300">Forgot password?</a>
+            </div>
+            <button type="submit"
+                class="w-full login-button text-white py-2 rounded-lg transition duration-300">
+                Login
+            </button>
+        </form>
+        
+        <div class="mt-6 text-center">
+            <p class="text-white text-sm">Don't have an account? Please contact your administrator for access.</p>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
     <script>
-        // Particles.js configuration
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-
-        // Anime.js animations
-        anime({
-            targets: '.text-gradient',
-            backgroundPosition: ['0% 50%', '100% 50%'],
-            easing: 'easeInOutQuad',
-            duration: 5000,
-            loop: true,
-            direction: 'alternate'
-        });
-
-        anime({
-            targets: '#loginForm',
-            opacity: [0, 1],
-            translateY: [20, 0],
-            easing: 'easeOutQuad',
-            duration: 800,
-            delay: 300
-        });
-
-        function showError(message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'bg-red-500 text-white p-3 rounded mb-4';
-            errorDiv.textContent = message;
-            
-            const form = document.getElementById('loginForm');
-            form.insertBefore(errorDiv, form.firstChild);
-
-            anime({
-                targets: errorDiv,
-                opacity: [0, 1],
-                translateY: [-20, 0],
-                easing: 'easeOutQuad',
-                duration: 300
-            });
-
-            setTimeout(() => {
-                anime({
-                    targets: errorDiv,
-                    opacity: 0,
-                    translateY: -20,
-                    easing: 'easeInQuad',
-                    duration: 300,
-                    complete: function() {
-                        errorDiv.remove();
-                    }
-                });
-            }, 3000);
-        }
+        // Add any necessary JavaScript here
+        // For example, you could add form validation or handle the "Remember me" functionality
     </script>
 </body>
 </html>

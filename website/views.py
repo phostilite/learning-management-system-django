@@ -10,6 +10,13 @@ def landing_page(request):
     except Exception as e:
         logger.error(f"Error rendering landing page: {e}")
         return HttpResponseServerError("An error occurred while processing your request.")
+    
+def marketing_page(request):
+    try:
+        return render(request, 'website/marketing_page.html')
+    except Exception as e:
+        logger.error(f"Error rendering marketing page: {e}")
+        return HttpResponseServerError("An error occurred while processing your request.")
 
 def about_page(request):
     try:
