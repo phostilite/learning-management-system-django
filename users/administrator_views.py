@@ -42,6 +42,7 @@ from courses.forms import (CourseForm, EnrollmentForm, LearningResourceForm,
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Delivery, DeliveryComponent)
 from quizzes.models import Quiz, Question, Choice
 from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, QuestionFormSet
+from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
@@ -79,6 +80,8 @@ class AdministratorDashboardView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()  
+        context['organization'] = organization
         return context
     
 @method_decorator(login_required, name='dispatch')
