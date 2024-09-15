@@ -1590,4 +1590,4 @@ class AdministratorEnrollmentDeleteView(DeleteView):
 # ============================================================
 
 class AdministratorNotificationListView(TemplateView):
-    template_name = 'users/administrator/notifications/notifications_course_list.html'
+    template_name = 'users/administrator/notifications/notifications_list.html'
