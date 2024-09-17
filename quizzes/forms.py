@@ -8,6 +8,9 @@ class QuizForm(forms.ModelForm):
         fields = ['title', 'description', 'time_limit', 'passing_score', 'max_attempts', 'is_active']
 
 class QuestionForm(forms.ModelForm):
+    short_answer_key = forms.CharField(required=False)
+    essay_rubric = forms.CharField(required=False, widget=forms.Textarea)
+
     class Meta:
         model = Question
         fields = ['text', 'question_type', 'points', 'order']

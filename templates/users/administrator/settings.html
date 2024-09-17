@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings - LMS Admin" %}{% endblock %}
+{% block title %}{% trans "Advanced LMS Settings - AdminPanel" %}{% endblock %}
 
 {% block extra_css %}
 {% endblock %}
@@ -13,10 +13,10 @@
     <!-- Header -->
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-4xl font-bold text-center mb-2">{% trans "LMS Settings" %}</h1>
-            <p class="text-center text-lg">{% trans "Configure and Customize Your Learning Management System" %}</p>
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Advanced LMS Settings" %}</h1>
+            <p class="text-center text-lg">{% trans "Comprehensive Configuration for Your Learning Management System" %}</p>
         </div>
-        <div class="absolute inset-0 islamic-pattern"></div>
+        <div class="absolute inset-0"></div>
     </header>
 
     <!-- Breadcrumb -->
@@ -40,22 +40,37 @@
     <!-- Settings Tabs and Content -->
     <div class="bg-white rounded-lg card-shadow overflow-hidden">
         <!-- Tabs -->
-        <div class="border-b border-gray-200">
-            <nav class="flex flex-wrap" aria-label="Tabs">
-                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" data-tab="general">
+        <div class="border-b border-gray-200 overflow-x-auto">
+            <nav class="flex flex-nowrap" aria-label="Tabs">
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap text-blue-500 border-b-2 font-medium border-blue-500" data-tab="general">
                     {% trans "General" %}
                 </button>
-                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="security">
-                    {% trans "Security" %}
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="users">
+                    {% trans "Users & Roles" %}
                 </button>
-                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="appearance">
-                    {% trans "Appearance" %}
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="courses">
+                    {% trans "Courses & Programs" %}
                 </button>
-                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="notifications">
-                    {% trans "Notifications" %}
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="organizations">
+                    {% trans "Organizations" %}
                 </button>
-                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="integrations">
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="events">
+                    {% trans "Events" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="certificates">
+                    {% trans "Certificates" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="analytics">
+                    {% trans "Analytics" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="integrations">
                     {% trans "Integrations" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="localization">
+                    {% trans "Localization" %}
+                </button>
+                <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none whitespace-nowrap" data-tab="security">
+                    {% trans "Security" %}
                 </button>
             </nav>
         </div>
@@ -65,60 +80,964 @@
             <!-- General Settings -->
             <div id="general" class="tab-content">
                 <form>
-                    <div class="mb-6">
-                        <h2 class="text-2xl font-semibold mb-4">{% trans "General Settings" %}</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="site_name" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site Name" %}</label>
-                                <input type="text" id="site_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="My LMS" required>
-                            </div>
-                            <div>
-                                <label for="site_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site URL" %}</label>
-                                <input type="url" id="site_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="https://example.com" required>
-                            </div>
-                            <div>
-                                <label for="admin_email" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Admin Email" %}</label>
-                                <input type="email" id="admin_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="admin@example.com" required>
-                            </div>
-                            <div>
-                                <label for="time_zone" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Time Zone" %}</label>
-                                <select id="time_zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="UTC">UTC</option>
-                                    <option value="America/New_York">America/New_York</option>
-                                    <option value="Europe/London">Europe/London</option>
-                                    <option value="Asia/Tokyo">Asia/Tokyo</option>
-                                </select>
-                            </div>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "General Settings" %}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="site_name" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site Name" %}</label>
+                            <input type="text" id="site_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="EduXcellence LMS" required>
+                        </div>
+                        <div>
+                            <label for="site_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Site URL" %}</label>
+                            <input type="url" id="site_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="https://eduxcellence.com" required>
+                        </div>
+                        <div>
+                            <label for="admin_email" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Admin Email" %}</label>
+                            <input type="email" id="admin_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="admin@eduxcellence.com" required>
+                        </div>
+                        <div>
+                            <label for="support_email" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Support Email" %}</label>
+                            <input type="email" id="support_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="support@eduxcellence.com" required>
+                        </div>
+                        <div>
+                            <label for="time_zone" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Time Zone" %}</label>
+                            <select id="time_zone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="UTC" selected>UTC</option>
+                                <option value="America/New_York">America/New_York</option>
+                                <option value="Europe/London">Europe/London</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date_format" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Date Format" %}</label>
+                            <select id="date_format" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                            </select>
                         </div>
                     </div>
-    
+                    
+                    <h3 class="text-xl font-semibold my-4">{% trans "System Notifications" %}</h3>
+                    <div class="mb-4">
+                        <div class="flex items-center mb-2">
+                            <input id="notify_new_user" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="notify_new_user" class="ml-2 text-sm font-medium text-gray-900">{% trans "Notify admin on new user registration" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="notify_course_completion" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="notify_course_completion" class="ml-2 text-sm font-medium text-gray-900">{% trans "Notify admin on course completion" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="notify_new_course" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="notify_new_course" class="ml-2 text-sm font-medium text-gray-900">{% trans "Notify users on new course availability" %}</label>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold my-4">{% trans "File Upload Settings" %}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="max_upload_size" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Upload Size (MB)" %}</label>
+                            <input type="number" id="max_upload_size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="50" min="1" max="1000">
+                        </div>
+                        <div>
+                            <label for="allowed_file_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Allowed File Types" %}</label>
+                            <input type="text" id="allowed_file_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,jpeg,png,gif,mp4,mp3,zip">
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold my-4">{% trans "Homepage Settings" %}</h3>
+                    <div class="mb-4">
+                        <label for="welcome_message" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Welcome Message" %}</label>
+                        <textarea id="welcome_message" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">Welcome to EduXcellence LMS! Start your learning journey today.</textarea>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="show_featured_courses" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                        <label for="show_featured_courses" class="ml-2 text-sm font-medium text-gray-900">{% trans "Show featured courses on homepage" %}</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="show_learner_stats" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                        <label for="show_learner_stats" class="ml-2 text-sm font-medium text-gray-900">{% trans "Display learner statistics on homepage" %}</label>
+                    </div>
+                    <div class="mb-4">
+                        <label for="featured_categories" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Featured Categories (comma-separated)" %}</label>
+                        <input type="text" id="featured_categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="Technology, Business, Design, Personal Development">
+                    </div>
+
+                    <h3 class="text-xl font-semibold my-4">{% trans "Social Media Integration" %}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="facebook_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Facebook URL" %}</label>
+                            <input type="url" id="facebook_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="https://facebook.com/eduxcellence">
+                        </div>
+                        <div>
+                            <label for="twitter_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Twitter URL" %}</label>
+                            <input type="url" id="twitter_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="https://twitter.com/eduxcellence">
+                        </div>
+                        <div>
+                            <label for="linkedin_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "LinkedIn URL" %}</label>
+                            <input type="url" id="linkedin_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="https://linkedin.com/company/eduxcellence">
+                        </div>
+                        <div>
+                            <label for="youtube_url" class="block mb-2 text-sm font-medium text-gray-900">{% trans "YouTube URL" %}</label>
+                            <input type="url" id="youtube_url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="https://youtube.com/c/eduxcellence">
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold my-4">{% trans "Footer Settings" %}</h3>
+                    <div class="mb-4">
+                        <label for="footer_text" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Footer Text" %}</label>
+                        <textarea id="footer_text" rows="2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">© 2024 EduXcellence LMS. All rights reserved.</textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="footer_links" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Footer Links (JSON format)" %}</label>
+                        <textarea id="footer_links" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">[
+  {"text": "Privacy Policy", "url": "/privacy"},
+  {"text": "Terms of Service", "url": "/terms"},
+  {"text": "Contact Us", "url": "/contact"},
+  {"text": "About Us", "url": "/about"}
+]</textarea>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save General Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Users & Roles Settings -->
+            <div id="users" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Users & Roles Settings" %}</h2>
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-4">{% trans "Registration Settings" %}</h3>
+                        <h3 class="text-xl font-semibold mb-4">{% trans "User Registration" %}</h3>
                         <div class="flex items-center mb-4">
-                            <input id="allow_registration" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="allow_registration" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow new user registrations" %}</label>
+                            <input id="allow_registration" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_registration" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow public user registration" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="require_email_verification" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="require_email_verification" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require email verification for new accounts" %}</label>
                         </div>
                         <div class="flex items-center mb-4">
                             <input id="require_approval" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                             <label for="require_approval" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require admin approval for new registrations" %}</label>
                         </div>
+                        <div class="mb-4">
+                            <label for="registration_fields" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Required Registration Fields" %}</label>
+                            <select id="registration_fields" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                <option value="first_name" selected>First Name</option>
+                                <option value="last_name" selected>Last Name</option>
+                                <option value="email" selected>Email</option>
+                                <option value="username" selected>Username</option>
+                                <option value="password" selected>Password</option>
+                                <option value="phone">Phone Number</option>
+                                <option value="address">Address</option>
+                                <option value="company">Company</option>
+                                <option value="job_title">Job Title</option>
+                            </select>
+                        </div>
                     </div>
-    
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Role Management" %}</h3>
+                        <div class="mb-4">
+                            <label for="default_user_role" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Role for New Users" %}</label>
+                            <select id="default_user_role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="learner" selected>Learner</option>
+                                <option value="instructor">Instructor</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="custom_roles" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Custom Roles (JSON format)" %}</label>
+                            <textarea id="custom_roles" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">[
+  {"name": "Content Creator", "permissions": ["create_course", "edit_course", "delete_course"]},
+  {"name": "Moderator", "permissions": ["moderate_forum", "ban_users", "delete_comments"]},
+  {"name": "Analyst", "permissions": ["view_reports", "export_data"]}
+]</textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "User Profile Settings" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_profile_picture" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_profile_picture" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to upload profile pictures" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="show_user_progress" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="show_user_progress" class="ml-2 text-sm font-medium text-gray-900">{% trans "Display user progress on profile" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_social_profiles" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_social_profiles" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to add social media profiles" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "User Authentication" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_password_reset" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_password_reset" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to reset passwords" %}</label>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password_reset_expiry" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Password Reset Link Expiry (hours)" %}</label>
+                            <input type="number" id="password_reset_expiry" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="24" min="1" max="72">
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_2fa" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_2fa" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Two-Factor Authentication" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save User & Role Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Courses & Programs Settings -->
+            <div id="courses" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Courses & Programs Settings" %}</h2>
                     <div class="mb-6">
                         <h3 class="text-xl font-semibold mb-4">{% trans "Course Settings" %}</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="default_course_duration" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Course Duration (weeks)" %}</label>
-                                <input type="number" id="default_course_duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" max="52" value="12">
+                                <input type="number" id="default_course_duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="8">
                             </div>
                             <div>
                                 <label for="max_students_per_course" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Students per Course" %}</label>
-                                <input type="number" id="max_students_per_course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="100">
+                                <input type="number" id="max_students_per_course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="500">
+                            </div>
+                            <div>
+                                <label for="default_passing_grade" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Passing Grade (%)" %}</label>
+                                <input type="number" id="default_passing_grade" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" max="100" value="70">
+                            </div>
+                            <div>
+                                <label for="course_visibility" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Course Visibility" %}</label>
+                                <select id="course_visibility" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="public">Public</option>
+                                    <option value="private" selected>Private</option>
+                                    <option value="password_protected">Password Protected</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label for="allowed_content_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Allowed Content Types" %}</label>
+                            <select id="allowed_content_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                <option value="video" selected>Video</option>
+                                <option value="audio" selected>Audio</option>
+                                <option value="pdf" selected>PDF</option>
+                                <option value="text" selected>Text</option>
+                                <option value="quiz" selected>Quiz</option>
+                                <option value="assignment" selected>Assignment</option>
+                                <option value="scorm" selected>SCORM Package</option>
+                                <option value="live_session">Live Session</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Program Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="program_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Available Program Types" %}</label>
+                                <select id="program_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="INTERNAL" selected>Internal</option>
+                                    <option value="EXTERNAL" selected>External</option>
+                                    <option value="CERTIFICATION">Certification</option>
+                                    <option value="DEGREE">Degree</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="max_courses_per_program" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Courses per Program" %}</label>
+                                <input type="number" id="max_courses_per_program" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="20">
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="allow_self_paced_programs" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_self_paced_programs" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow self-paced programs" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Assessment Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="quiz_attempt_limit" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Quiz Attempt Limit" %}</label>
+                                <input type="number" id="quiz_attempt_limit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="3">
+                            </div>
+                            <div>
+                                <label for="assignment_submission_format" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Allowed Assignment Submission Formats" %}</label>
+                                <select id="assignment_submission_format" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="pdf" selected>PDF</option>
+                                    <option value="doc" selected>DOC/DOCX</option>
+                                    <option value="ppt" selected>PPT/PPTX</option>
+                                    <option value="image" selected>Image (JPG, PNG)</option>
+                                    <option value="zip">ZIP</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="enable_plagiarism_check" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_plagiarism_check" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable plagiarism check for assignments" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Content Delivery Settings" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_drip_content" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_drip_content" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable drip content delivery" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_content_download" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_content_download" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow content download for offline viewing" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_adaptive_learning" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_adaptive_learning" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable adaptive learning paths" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Course & Program Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Organizations Settings -->
+            <div id="organizations" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Organizations Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Organization Structure" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="max_org_unit_depth" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Organizational Unit Depth" %}</label>
+                                <input type="number" id="max_org_unit_depth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="5">
+                            </div>
+                            <div>
+                                <label for="org_unit_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Available Organizational Unit Types" %}</label>
+                                <select id="org_unit_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="COMPANY" selected>Company</option>
+                                    <option value="DIVISION" selected>Division</option>
+                                    <option value="DEPARTMENT" selected>Department</option>
+                                    <option value="TEAM" selected>Team</option>
+                                    <option value="SUB_TEAM" selected>Sub Team</option>
+                                    <option value="PROJECT" selected>Project</option>
+                                    <option value="OTHER" selected>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="allow_custom_org_units" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_custom_org_units" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow organizations to create custom unit types" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Organization Management" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="org_admin_role" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Organization Admin Role" %}</label>
+                                <input type="text" id="org_admin_role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="Org Admin">
+                            </div>
+                            <div>
+                                <label for="max_org_admins" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Organization Admins" %}</label>
+                                <input type="number" id="max_org_admins" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="5">
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="allow_org_branding" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_org_branding" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow organizations to customize branding" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Employee Management" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="employee_id_prefix" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Employee ID Prefix" %}</label>
+                                <input type="text" id="employee_id_prefix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="EMP">
+                            </div>
+                            <div>
+                                <label for="employee_fields" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Required Employee Fields" %}</label>
+                                <select id="employee_fields" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="first_name" selected>First Name</option>
+                                    <option value="last_name" selected>Last Name</option>
+                                    <option value="email" selected>Email</option>
+                                    <option value="job_title" selected>Job Title</option>
+                                    <option value="department" selected>Department</option>
+                                    <option value="hire_date" selected>Hire Date</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="employee_type">Employee Type</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-    
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Learning Path Configuration" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_org_learning_paths" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_org_learning_paths" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable organization-specific learning paths" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="auto_enroll_employees" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="auto_enroll_employees" class="ml-2 text-sm font-medium text-gray-900">{% trans "Automatically enroll employees in required courses" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Reporting and Analytics" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_org_analytics" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_org_analytics" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable organization-level analytics" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_data_export" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_data_export" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow organization admins to export data" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Organization Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Events Settings -->
+            <div id="events" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Events Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Event Types" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="event_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Available Event Types" %}</label>
+                                <select id="event_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="LECTURE" selected>Lecture</option>
+                                    <option value="WEBINAR" selected>Webinar</option>
+                                    <option value="WORKSHOP" selected>Workshop</option>
+                                    <option value="EXAM" selected>Exam</option>
+                                    <option value="ASSIGNMENT_DUE" selected>Assignment Due</option>
+                                    <option value="COURSE_START" selected>Course Start</option>
+                                    <option value="COURSE_END" selected>Course End</option>
+                                    <option value="OFFICE_HOURS" selected>Office Hours</option>
+                                    <option value="GROUP_MEETING" selected>Group Meeting</option>
+                                    <option value="GUEST_SPEAKER" selected>Guest Speaker</option>
+                                    <option value="ORIENTATION" selected>Orientation</option>
+                                    <option value="DEADLINE" selected>Deadline</option>
+                                    <option value="OTHER" selected>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="custom_event_types" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Custom Event Types (comma-separated)" %}</label>
+                                <input type="text" id="custom_event_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="Conference, Hackathon, Networking">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Event Registration" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_event_registration" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_event_registration" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to register for events" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_waitlist" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_waitlist" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable waitlist for full events" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="registration_deadline" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Registration Deadline (hours before event)" %}</label>
+                                <input type="number" id="registration_deadline" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="24">
+                            </div>
+                            <div>
+                                <label for="cancellation_policy" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Cancellation Policy (hours before event)" %}</label>
+                                <input type="number" id="cancellation_policy" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="48">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Event Reminders" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="reminder_times" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Reminder Times (hours before event, comma-separated)" %}</label>
+                                <input type="text" id="reminder_times" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="24, 2">
+                            </div>
+                            <div>
+                                <label for="reminder_methods" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Reminder Methods" %}</label>
+                                <select id="reminder_methods" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="email" selected>Email</option>
+                                    <option value="sms">SMS</option>
+                                    <option value="push" selected>Push Notification</option>
+                                    <option value="in_app" selected>In-App Notification</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Virtual Event Settings" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_virtual_events" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_virtual_events" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable virtual event hosting" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="virtual_platform" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Virtual Event Platform" %}</label>
+                                <select id="virtual_platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="zoom" selected>Zoom</option>
+                                    <option value="teams">Microsoft Teams</option>
+                                    <option value="meet">Google Meet</option>
+                                    <option value="webex">Cisco Webex</option>
+                                    <option value="custom">Custom Platform</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="max_virtual_attendees" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Virtual Attendees" %}</label>
+                                <input type="number" id="max_virtual_attendees" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Event Feedback" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_event_feedback" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_event_feedback" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable event feedback collection" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="feedback_form_template" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Feedback Form Template" %}</label>
+                                <select id="feedback_form_template" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="standard" selected>Standard Feedback Form</option>
+                                    <option value="detailed">Detailed Feedback Form</option>
+                                    <option value="nps">NPS Survey</option>
+                                    <option value="custom">Custom Template</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="feedback_reminder_delay" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Feedback Reminder Delay (hours after event)" %}</label>
+                                <input type="number" id="feedback_reminder_delay" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="24">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Event Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Certificates Settings -->
+            <div id="certificates" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Certificates Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Certificate Generation" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="auto_generate_certificates" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="auto_generate_certificates" class="ml-2 text-sm font-medium text-gray-900">{% trans "Automatically generate certificates upon course completion" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="certificate_format" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Certificate Format" %}</label>
+                                <select id="certificate_format" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="pdf" selected>PDF</option>
+                                    <option value="image">Image (PNG/JPG)</option>
+                                    <option value="both">Both PDF and Image</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="certificate_size" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Certificate Size" %}</label>
+                                <select id="certificate_size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="a4" selected>A4</option>
+                                    <option value="letter">Letter</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Certificate Templates" %}</h3>
+                        <div class="mb-4">
+                            <label for="default_certificate_template" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Certificate Template" %}</label>
+                            <select id="default_certificate_template" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="standard" selected>Standard Template</option>
+                                <option value="professional">Professional Template</option>
+                                <option value="minimalist">Minimalist Template</option>
+                                <option value="custom">Custom Template</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_custom_templates" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_custom_templates" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow organizations to use custom certificate templates" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Certificate Content" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="certificate_fields" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Certificate Fields" %}</label>
+                                <select id="certificate_fields" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="student_name" selected>Student Name</option>
+                                    <option value="course_name" selected>Course Name</option>
+                                    <option value="completion_date" selected>Completion Date</option>
+                                    <option value="certificate_id" selected>Certificate ID</option>
+                                    <option value="grade">Grade</option>
+                                    <option value="instructor_name">Instructor Name</option>
+                                    <option value="organization_name">Organization Name</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="signature_type" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Signature Type" %}</label>
+                                <select id="signature_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="digital" selected>Digital Signature</option>
+                                    <option value="image">Signature Image</option>
+                                    <option value="none">No Signature</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Certificate Verification" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_certificate_verification" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_certificate_verification" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable online certificate verification" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="verification_method" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Verification Method" %}</label>
+                                <select id="verification_method" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="qr" selected>QR Code</option>
+                                    <option value="url">Verification URL</option>
+                                    <option value="both">Both QR Code and URL</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="verification_validity" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Verification Validity Period (years)" %}</label>
+                                <input type="number" id="verification_validity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Certificate Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Analytics Settings -->
+            <div id="analytics" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Analytics Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Data Collection" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_user_tracking" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_user_tracking" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable user activity tracking" %}</label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="data_retention_period" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Data Retention Period (months)" %}</label>
+                                <input type="number" id="data_retention_period" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="24">
+                            </div>
+                            <div>
+                                <label for="tracking_granularity" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Tracking Granularity" %}</label>
+                                <select id="tracking_granularity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="page_view">Page View</option>
+                                    <option value="user_action" selected>User Action</option>
+                                    <option value="detailed">Detailed (including time spent)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Reporting" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="default_report_period" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Reporting Period" %}</label>
+                                <select id="default_report_period" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="week">Last Week</option>
+                                    <option value="month" selected>Last Month</option>
+                                    <option value="quarter">Last Quarter</option>
+                                    <option value="year">Last Year</option>
+                                    <option value="custom">Custom Range</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="report_export_formats" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Report Export Formats" %}</label>
+                                <select id="report_export_formats" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="pdf" selected>PDF</option>
+                                    <option value="csv" selected>CSV</option>
+                                    <option value="excel" selected>Excel</option>
+                                    <option value="json">JSON</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="enable_scheduled_reports" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_scheduled_reports" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable scheduled reports" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Dashboard Configuration" %}</h3>
+                        <div class="mb-4">
+                            <label for="dashboard_widgets" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Dashboard Widgets" %}</label>
+                            <select id="dashboard_widgets" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                <option value="active_users" selected>Active Users</option>
+                                <option value="course_completions" selected>Course Completions</option>
+                                <option value="revenue" selected>Revenue</option>
+                                <option value="popular_courses" selected>Popular Courses</option>
+                                <option value="user_engagement" selected>User Engagement</option>
+                                <option value="learner_progress">Learner Progress</option>
+                                <option value="certification_rate">Certification Rate</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_custom_widgets" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_custom_widgets" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to create custom dashboard widgets" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Advanced Analytics" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_predictive_analytics" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_predictive_analytics" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable predictive analytics for learner performance" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_content_recommendations" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_content_recommendations" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable AI-powered content recommendations" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_anomaly_detection" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_anomaly_detection" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable anomaly detection in user behavior" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Analytics Settings" %}</button>
+                </form>
+            </div>
+
+            <!-- Integrations Settings -->
+            <div id="integrations" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Integrations Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Authentication Integrations" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="sso_provider" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Single Sign-On (SSO) Provider" %}</label>
+                                <select id="sso_provider" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="none">None</option>
+                                    <option value="oauth2" selected>OAuth 2.0</option>
+                                    <option value="saml">SAML 2.0</option>
+                                    <option value="ldap">LDAP</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="social_login" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Social Login Providers" %}</label>
+                                <select id="social_login" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="google" selected>Google</option>
+                                    <option value="facebook" selected>Facebook</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="github">GitHub</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Payment Gateway Integration" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="payment_gateway" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Primary Payment Gateway" %}</label>
+                                <select id="payment_gateway" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="stripe" selected>Stripe</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="square">Square</option>
+                                    <option value="authorize">Authorize.net</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="currency" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Currency" %}</label>
+                                <select id="currency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="usd" selected>USD</option>
+                                    <option value="eur">EUR</option>
+                                    <option value="gbp">GBP</option>
+                                    <option value="jpy">JPY</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="enable_subscription_billing" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_subscription_billing" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable subscription-based billing" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Content Integrations" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="video_platform" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Video Platform Integration" %}</label>
+                                <select id="video_platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="youtube" selected>YouTube</option>
+                                    <option value="vimeo">Vimeo</option>
+                                    <option value="wistia">Wistia</option>
+                                    <option value="custom">Custom Platform</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="document_storage" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Document Storage Integration" %}</label>
+                                <select id="document_storage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="s3" selected>Amazon S3</option>
+                                    <option value="google_drive">Google Drive</option>
+                                    <option value="dropbox">Dropbox</option>
+                                    <option value="onedrive">OneDrive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Communication Integrations" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email_provider" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Email Service Provider" %}</label>
+                                <select id="email_provider" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="sendgrid" selected>SendGrid</option>
+                                    <option value="mailchimp">Mailchimp</option>
+                                    <option value="aws_ses">Amazon SES</option>
+                                    <option value="custom_smtp">Custom SMTP</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="sms_provider" class="block mb-2 text-sm font-medium text-gray-900">{% trans "SMS Service Provider" %}</label>
+                                <select id="sms_provider" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="twilio" selected>Twilio</option>
+                                    <option value="nexmo">Nexmo</option>
+                                    <option value="aws_sns">Amazon SNS</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Integration Settings" %}</button>
+                </form>
+            </div>
+
+
+            <!-- Localization Settings -->
+            <div id="localization" class="tab-content hidden">
+                <form>
+                    <h2 class="text-2xl font-semibold mb-4">{% trans "Localization Settings" %}</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Language Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="default_language" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Language" %}</label>
+                                <select id="default_language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="en" selected>English</option>
+                                    <option value="es">Español</option>
+                                    <option value="fr">Français</option>
+                                    <option value="de">Deutsch</option>
+                                    <option value="zh">中文</option>
+                                    <option value="ja">日本語</option>
+                                    <option value="ar">العربية</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="available_languages" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Available Languages" %}</label>
+                                <select id="available_languages" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="en" selected>English</option>
+                                    <option value="es" selected>Español</option>
+                                    <option value="fr" selected>Français</option>
+                                    <option value="de" selected>Deutsch</option>
+                                    <option value="zh">中文</option>
+                                    <option value="ja">日本語</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                    <option value="pt">Português</option>
+                                    <option value="hi">हिन्दी</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="allow_user_language_selection" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_user_language_selection" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to select their preferred language" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Date and Time Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="default_timezone" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Time Zone" %}</label>
+                                <select id="default_timezone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="UTC" selected>UTC</option>
+                                    <option value="America/New_York">America/New_York</option>
+                                    <option value="Europe/London">Europe/London</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo</option>
+                                    <option value="Australia/Sydney">Australia/Sydney</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date_format" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Date Format" %}</label>
+                                <select id="date_format" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="allow_user_timezone_selection" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_user_timezone_selection" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to select their time zone" %}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Currency Settings" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="default_currency" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Default Currency" %}</label>
+                                <select id="default_currency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="USD" selected>US Dollar (USD)</option>
+                                    <option value="EUR">Euro (EUR)</option>
+                                    <option value="GBP">British Pound (GBP)</option>
+                                    <option value="JPY">Japanese Yen (JPY)</option>
+                                    <option value="AUD">Australian Dollar (AUD)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="currency_display" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Currency Display Format" %}</label>
+                                <select id="currency_display" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="symbol" selected>Symbol (e.g., $)</option>
+                                    <option value="code">Code (e.g., USD)</option>
+                                    <option value="name">Name (e.g., US Dollar)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Content Localization" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_content_translation" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_content_translation" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable content translation for courses and programs" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_auto_translation" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_auto_translation" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable automatic translation using AI services" %}</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="allow_user_content_language" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="allow_user_content_language" class="ml-2 text-sm font-medium text-gray-900">{% trans "Allow users to select content language independently from interface language" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Localization Settings" %}</button>
                 </form>
             </div>
 
@@ -128,173 +1047,166 @@
                     <h2 class="text-2xl font-semibold mb-4">{% trans "Security Settings" %}</h2>
                     <div class="mb-6">
                         <h3 class="text-xl font-semibold mb-4">{% trans "Password Policy" %}</h3>
-                        <div class="flex items-center mb-4">
-                            <input id="require_uppercase" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="require_uppercase" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require uppercase letters" %}</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="min_password_length" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Minimum Password Length" %}</label>
+                                <input type="number" id="min_password_length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="8" value="12">
+                            </div>
+                            <div>
+                                <label for="password_expiry_days" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Password Expiry (days)" %}</label>
+                                <input type="number" id="password_expiry_days" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="90">
+                            </div>
                         </div>
-                        <div class="flex items-center mb-4">
-                            <input id="require_number" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="require_number" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require numbers" %}</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="require_special_char" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="require_special_char" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require special characters" %}</label>
-                        </div>
-                        <div>
-                            <label for="min_password_length" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Minimum Password Length" %}</label>
-                            <input type="number" id="min_password_length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="8" value="8">
+                        <div class="mt-4">
+                            <div class="flex items-center mb-2">
+                                <input id="require_uppercase" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                                <label for="require_uppercase" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require uppercase letters" %}</label>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input id="require_lowercase" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                                <label for="require_lowercase" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require lowercase letters" %}</label>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input id="require_numbers" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                                <label for="require_numbers" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require numbers" %}</label>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <input id="require_special_chars" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                                <label for="require_special_chars" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require special characters" %}</label>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-4">{% trans "Two-Factor Authentication" %}</h3>
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Two-Factor Authentication (2FA)" %}</h3>
                         <div class="flex items-center mb-4">
-                            <input id="enable_2fa" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <input id="enable_2fa" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
                             <label for="enable_2fa" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Two-Factor Authentication" %}</label>
                         </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="2fa_methods" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Allowed 2FA Methods" %}</label>
+                                <select id="2fa_methods" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                                    <option value="app" selected>Authenticator App</option>
+                                    <option value="sms" selected>SMS</option>
+                                    <option value="email" selected>Email</option>
+                                    <option value="security_key">Security Key (WebAuthn)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="2fa_grace_period" class="block mb-2 text-sm font-medium text-gray-900">{% trans "2FA Setup Grace Period (days)" %}</label>
+                                <input type="number" id="2fa_grace_period" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="7">
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Session Security" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="session_timeout" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Session Timeout (minutes)" %}</label>
+                                <input type="number" id="session_timeout" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="5" value="30">
+                            </div>
+                            <div>
+                                <label for="max_concurrent_sessions" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Maximum Concurrent Sessions" %}</label>
+                                <input type="number" id="max_concurrent_sessions" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="3">
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="enforce_single_session" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enforce_single_session" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enforce single active session per user" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "IP Restriction" %}</h3>
+                        <div class="flex items-center mb-4">
+                            <input id="enable_ip_restriction" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="enable_ip_restriction" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable IP address restriction" %}</label>
+                        </div>
+                        <div>
+                            <label for="allowed_ip_ranges" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Allowed IP Ranges (one per line)" %}</label>
+                            <textarea id="allowed_ip_ranges" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., 192.168.1.0/24"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Security Headers" %}</h3>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_hsts" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_hsts" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable HTTP Strict Transport Security (HSTS)" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_csp" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_csp" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Content Security Policy (CSP)" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_xframe_options" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_xframe_options" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable X-Frame-Options header" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "API Security" %}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="api_rate_limit" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Rate Limit (requests per minute)" %}</label>
+                                <input type="number" id="api_rate_limit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="1" value="60">
+                            </div>
+                            <div>
+                                <label for="api_key_expiration" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Key Expiration (days)" %}</label>
+                                <input type="number" id="api_key_expiration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="365">
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <input id="require_api_key_approval" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="require_api_key_approval" class="ml-2 text-sm font-medium text-gray-900">{% trans "Require manual approval for API key requests" %}</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4">{% trans "Security Monitoring" %}</h3>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_audit_logging" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_audit_logging" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable comprehensive audit logging" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_intrusion_detection" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_intrusion_detection" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable intrusion detection system" %}</label>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <input id="enable_automated_security_updates" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" checked>
+                            <label for="enable_automated_security_updates" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable automated security updates" %}</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Security Settings" %}</button>
                 </form>
             </div>
-
-            <!-- Appearance Settings -->
-            <div id="appearance" class="tab-content hidden">
-                <form>
-                    <h2 class="text-2xl font-semibold mb-4">{% trans "Appearance Settings" %}</h2>
-                    <div class="mb-6">
-                        <label for="theme_color" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Primary Theme Color" %}</label>
-                        <input type="color" id="theme_color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="#1e3a8a">
-                    </div>
-                    <div class="mb-6">
-                        <label for="logo_upload" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Upload Logo" %}</label>
-                        <input type="file" id="logo_upload" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" accept="image/*">
-                    </div>
-                    <div class="mb-6">
-                        <label for="font_family" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Font Family" %}</label>
-                        <select id="font_family" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="Arial, sans-serif">Arial</option>
-                            <option value="Helvetica, sans-serif">Helvetica</option>
-                            <option value="Georgia, serif">Georgia</option>
-                            <option value="'Times New Roman', serif">Times New Roman</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
-                </form>
-            </div>
-
-            <!-- Notifications Settings -->
-            <div id="notifications" class="tab-content hidden">
-                <form>
-                    <h2 class="text-2xl font-semibold mb-4">{% trans "Notifications Settings" %}</h2>
-                    <div class="mb-6">
-                        <h3 class="text-xl font-semibold mb-4">{% trans "Email Notifications" %}</h3>
-                        <div class="flex items-center mb-4">
-                            <input id="notify_new_user" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="notify_new_user" class="ml-2 text-sm font-medium text-gray-900">{% trans "New user registration" %}</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="notify_course_completion" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="notify_course_completion" class="ml-2 text-sm font-medium text-gray-900">{% trans "Course completion" %}</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="notify_new_course" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="notify_new_course" class="ml-2 text-sm font-medium text-gray-900">
-                                <label for="notify_new_course" class="ml-2 text-sm font-medium text-gray-900">{% trans "New course added" %}</label>
-                </div>
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-4">{% trans "In-App Notifications" %}</h3>
-                <div class="flex items-center mb-4">
-                    <input id="notify_assignment_due" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="notify_assignment_due" class="ml-2 text-sm font-medium text-gray-900">{% trans "Assignment due dates" %}</label>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="notify_forum_activity" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="notify_forum_activity" class="ml-2 text-sm font-medium text-gray-900">{% trans "Forum activity" %}</label>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="notify_grade_posted" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="notify_grade_posted" class="ml-2 text-sm font-medium text-gray-900">{% trans "New grades posted" %}</label>
-                </div>
-            </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
-        </form>
+        </div>
     </div>
-
-    <!-- Integrations Settings -->
-    <div id="integrations" class="tab-content hidden">
-        <form>
-            <h2 class="text-2xl font-semibold mb-4">{% trans "Integrations Settings" %}</h2>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-4">{% trans "Google Integration" %}</h3>
-                <div class="mb-4">
-                    <label for="google_client_id" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Google Client ID" %}</label>
-                    <input type="text" id="google_client_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter Google Client ID">
-                </div>
-                <div class="mb-4">
-                    <label for="google_client_secret" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Google Client Secret" %}</label>
-                    <input type="password" id="google_client_secret" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter Google Client Secret">
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="enable_google_login" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="enable_google_login" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Google Login" %}</label>
-                </div>
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-4">{% trans "Payment Gateway Integration" %}</h3>
-                <div class="mb-4">
-                    <label for="payment_gateway" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Select Payment Gateway" %}</label>
-                    <select id="payment_gateway" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="">{% trans "Select a gateway" %}</option>
-                        <option value="stripe">Stripe</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="square">Square</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="payment_api_key" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Key" %}</label>
-                    <input type="password" id="payment_api_key" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter API Key">
-                </div>
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-4">{% trans "Video Conferencing Integration" %}</h3>
-                <div class="mb-4">
-                    <label for="video_platform" class="block mb-2 text-sm font-medium text-gray-900">{% trans "Select Video Platform" %}</label>
-                    <select id="video_platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="">{% trans "Select a platform" %}</option>
-                        <option value="zoom">Zoom</option>
-                        <option value="google_meet">Google Meet</option>
-                        <option value="microsoft_teams">Microsoft Teams</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="video_api_key" class="block mb-2 text-sm font-medium text-gray-900">{% trans "API Key" %}</label>
-                    <input type="password" id="video_api_key" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter API Key">
-                </div>
-            </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{% trans "Save Changes" %}</button>
-        </form>
-    </div>
+</div>
 </div>
 
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabName = button.getAttribute('data-tab');
-                
-                tabButtons.forEach(btn => btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500'));
-                tabContents.forEach(content => content.classList.add('hidden'));
-                
-                button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
-                document.getElementById(tabName).classList.remove('hidden');
-            });
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabName = button.getAttribute('data-tab');
+            
+            tabButtons.forEach(btn => btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500'));
+            tabContents.forEach(content => content.classList.add('hidden'));
+            
+            button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+            document.getElementById(tabName).classList.remove('hidden');
         });
     });
+});
 </script>
 {% endblock %}
