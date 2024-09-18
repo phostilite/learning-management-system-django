@@ -1672,3 +1672,21 @@ class AdministratorTicketEditView(LoginRequiredMixin, UserPassesTestMixin, Updat
         logger.error(f"Form errors: {form.errors}")
         messages.error(self.request, 'There was an error updating the support ticket. Please check the form and try again.')
         return super().form_invalid(form)
+    
+class AdministratorTicketDeleteView (LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/delete_ticket.html'
+    success_url = reverse_lazy('administrator_help_support')
+    
+    
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, ("The ticket was successfully deleted."))
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = ("Delete Ticket")
+        return context

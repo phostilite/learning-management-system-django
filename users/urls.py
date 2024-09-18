@@ -102,7 +102,7 @@ urlpatterns = [
      path('administrator/help-support/tickets/create/',administrator_views.AdministratorTicketCreateView.as_view(), name='administrator_tickets_create'),
      path('administrator/help-support/tickets/<uuid:pk>/detail/', administrator_views.AdministratorTicketDetailView.as_view(), name='administrator_tickets_detail'),
      path('administrator/help-support/tickets/<uuid:pk>/edit/', administrator_views.AdministratorTicketEditView.as_view(), name= 'administrator_ticket_edit'),
-     
+     path('administrator/help-support/tickets/<uuid:pk>/delete/', administrator_views.AdministratorTicketDeleteView.as_view(), name= 'administrator_ticket_delete'),
      
      
      

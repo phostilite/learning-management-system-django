@@ -186,9 +186,9 @@
                         <a href="{% url 'administrator_ticket_edit' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <button class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Delete' %}">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
+                        <a href="{% url 'administrator_ticket_delete' ticket.id %}" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                            <i class="fas fa-circle"></i>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
