@@ -37,23 +37,22 @@
         </ol>
     </nav>
 
-    <!-- Support Statistics -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div class="bg-white rounded-lg p-4 card-shadow">
+        <div class="bg-white rounded-lg p-4 shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Open Tickets" %}</h3>
-            <p class="text-3xl font-bold text-primary">24</p>
+            <p class="text-3xl font-bold text-blue-600">{{ open_tickets }}</p>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
+        <div class="bg-white rounded-lg p-4 shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Response Time" %}</h3>
-            <p class="text-3xl font-bold text-accent">2.5h</p>
+            <p class="text-3xl font-bold text-green-600">{{ avg_response_time }}</p>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
+        <div class="bg-white rounded-lg p-4 shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Resolved This Week" %}</h3>
-            <p class="text-3xl font-bold text-green-600">87</p>
+            <p class="text-3xl font-bold text-purple-600">{{ resolved_this_week }}</p>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
+        <div class="bg-white rounded-lg p-4 shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "User Satisfaction" %}</h3>
-            <p class="text-3xl font-bold text-yellow-500">94%</p>
+            <p class="text-3xl font-bold text-yellow-600">{{ user_satisfaction }}</p>
         </div>
     </div>
 

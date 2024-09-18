@@ -1591,13 +1591,49 @@ class AdministratorNotificationListView(TemplateView):
 # ======================= Help and support ================
 # ============================================================
 
+from django.views.generic import TemplateView
+from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Q
+from django.utils import timezone
+from datetime import timedelta
+from support.models import SupportTicket, TicketResponse
 
 class AdministratorHelpSupportView(TemplateView):
     template_name = 'users/administrator/help_and_support/support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['support_tickets'] = SupportTicket.objects.all()
+        
+        # Get the current date and the date 7 days ago
+        now = timezone.now()
+        week_ago = now - timedelta(days=7)
+        
+        # Fetch all required metrics in a single query
+        metrics = SupportTicket.objects.aggregate(
+            open_tickets=Count('id', filter=Q(status='OPEN')),
+            resolved_this_week=Count('id', filter=Q(status='RESOLVED', updated_at__gte=week_ago)),
+            total_response_time=Avg(
+                ExpressionWrapper(
+                    F('responses__created_at') - F('created_at'),
+                    output_field=fields.DurationField()
+                ),
+                filter=Q(responses__isnull=False)
+            )
+        )
+        
+        # Calculate average response time in hours
+        avg_response_time = metrics['total_response_time'].total_seconds() / 3600 if metrics['total_response_time'] else 0
+        
+        # Fetch user satisfaction (this is a placeholder, adjust based on your actual data model)
+        user_satisfaction = 94  # Placeholder value, replace with actual calculation if available
+        
+        context.update({
+            'open_tickets': metrics['open_tickets'],
+            'avg_response_time': f"{avg_response_time:.1f}h",
+            'resolved_this_week': metrics['resolved_this_week'],
+            'user_satisfaction': f"{user_satisfaction}%",
+            'support_tickets': SupportTicket.objects.all(),
+        })
+        
         return context
 
 class AdministratorTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
