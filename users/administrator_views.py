@@ -45,6 +45,7 @@ from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, Que
 from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
+from support.models import SupportTicket
 from support.forms import TicketCreateForm
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
@@ -1596,6 +1597,7 @@ class AdministratorHelpSupportView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['support_tickets'] = SupportTicket.objects.all()
         return context
 
 class AdministratorTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
