@@ -163,13 +163,6 @@ class AdministratorCertificateListView(ListView):
 
         return context
     
-class AdministratorAnnouncementListView(TemplateView):
-    template_name = 'users/administrator/announcements.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
 class AdministratorHelpSupportView(TemplateView):
     template_name = 'users/administrator/help_support.html'
 
@@ -1589,3 +1582,15 @@ class AdministratorEnrollmentDeleteView(DeleteView):
 
 class AdministratorNotificationListView(TemplateView):
     template_name = 'users/administrator/notifications/notifications_list.html'
+
+
+
+# ============================================================
+# ======================= Announcements Views ================
+# ============================================================
+class AdministratorAnnouncementListView(TemplateView):
+    template_name = 'users/administrator/announcements/announcements.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
