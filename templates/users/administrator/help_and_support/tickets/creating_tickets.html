@@ -1,0 +1,97 @@
+{% extends '../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Help & Support - Create Ticket - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ticket-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    .help-text {
+        font-size: 0.875em;
+        color: #6c757d;
+    }
+    .error-text {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">{% trans "Create a New Support Ticket" %}</h1>
+            <div class="ticket-form">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}">{% trans "Title" %}:</label>
+                        {{ form.title }}
+                        {% if form.title.help_text %}
+                            <small class="help-text">{{ form.title.help_text }}</small>
+                        {% endif %}
+                        {% if form.title.errors %}
+                            <div class="error-text">{{ form.title.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.description.id_for_label }}">{% trans "Description" %}:</label>
+                        {{ form.description }}
+                        {% if form.description.help_text %}
+                            <small class="help-text">{{ form.description.help_text }}</small>
+                        {% endif %}
+                        {% if form.description.errors %}
+                            <div class="error-text">{{ form.description.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.category.id_for_label }}">{% trans "Category" %}:</label>
+                        {{ form.category }}
+                        {% if form.category.help_text %}
+                            <small class="help-text">{{ form.category.help_text }}</small>
+                        {% endif %}
+                        {% if form.category.errors %}
+                            <div class="error-text">{{ form.category.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.priority.id_for_label }}">{% trans "Priority" %}:</label>
+                        {{ form.priority }}
+                        {% if form.priority.help_text %}
+                            <small class="help-text">{{ form.priority.help_text }}</small>
+                        {% endif %}
+                        {% if form.priority.errors %}
+                            <div class="error-text">{{ form.priority.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">{% trans "Submit Ticket" %}</button>
+                        <a href="#" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // You can add any additional JavaScript here if needed
+    // For example, you might want to add client-side validation or dynamic form behavior
+</script>
+{% endblock %}

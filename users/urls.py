@@ -95,7 +95,20 @@ urlpatterns = [
      path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
 
      path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
+     
+     
+     # help and support
      path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
+     path('administrator/help-support/tickets/create/',administrator_views.AdministratorTicketCreateView.as_view(), name='administrator_tickets_create'),
+     
+     
+     
+     
+     
+     
+     
+     
+     
      path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
      path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
 
