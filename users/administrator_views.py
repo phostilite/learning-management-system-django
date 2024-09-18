@@ -45,6 +45,8 @@ from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, Que
 from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
+from support.models import SupportTicket
+from support.forms import TicketForm
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
 # Initialize logger
@@ -170,12 +172,6 @@ class AdministratorAnnouncementListView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorHelpSupportView(TemplateView):
-    template_name = 'users/administrator/help_support.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
     
 class AdministratorMessageListView(TemplateView):
     template_name = 'users/administrator/messages.html'
@@ -1589,3 +1585,144 @@ class AdministratorEnrollmentDeleteView(DeleteView):
 
 class AdministratorNotificationListView(TemplateView):
     template_name = 'users/administrator/notifications/notifications_list.html'
+
+
+# ============================================================
+# ======================= Help and support ================
+# ============================================================
+
+from django.views.generic import TemplateView
+from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Q
+from django.utils import timezone
+from datetime import timedelta
+from support.models import SupportTicket, TicketResponse
+
+class AdministratorHelpSupportView(TemplateView):
+    template_name = 'users/administrator/help_and_support/support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the current date and the date 7 days ago
+        now = timezone.now()
+        week_ago = now - timedelta(days=7)
+        
+        # Fetch all required metrics in a single query
+        metrics = SupportTicket.objects.aggregate(
+            open_tickets=Count('id', filter=Q(status='OPEN')),
+            resolved_this_week=Count('id', filter=Q(status='RESOLVED', updated_at__gte=week_ago)),
+            total_response_time=Avg(
+                ExpressionWrapper(
+                    F('responses__created_at') - F('created_at'),
+                    output_field=fields.DurationField()
+                ),
+                filter=Q(responses__isnull=False)
+            )
+        )
+        
+        # Calculate average response time in hours
+        avg_response_time = metrics['total_response_time'].total_seconds() / 3600 if metrics['total_response_time'] else 0
+        
+        # Fetch user satisfaction (this is a placeholder, adjust based on your actual data model)
+        user_satisfaction = 94  # Placeholder value, replace with actual calculation if available
+        
+        context.update({
+            'open_tickets': metrics['open_tickets'],
+            'avg_response_time': f"{avg_response_time:.1f}h",
+            'resolved_this_week': metrics['resolved_this_week'],
+            'user_satisfaction': f"{user_satisfaction}%",
+            'support_tickets': SupportTicket.objects.all(),
+        })
+        
+        return context
+
+class AdministratorTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    template_name = 'users/administrator/help_and_support/tickets/creating_tickets.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Ticket'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorTicketDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AdministratorTicketEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/edit_ticket.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating support ticket: {e}")
+            messages.error(self.request, 'There was an error updating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+    
+class AdministratorTicketDeleteView (LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/delete_ticket.html'
+    success_url = reverse_lazy('administrator_help_support')
+    
+    
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, ("The ticket was successfully deleted."))
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = ("Delete Ticket")
+        return context

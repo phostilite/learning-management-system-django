@@ -1,0 +1,74 @@
+{% extends '../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Ticket Details - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .ticket-details {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .ticket-field {
+    margin-bottom: 10px;
+  }
+  .ticket-field strong {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">{% trans "Ticket Details" %}</h1>
+  
+  <div class="ticket-details">
+    <div class="ticket-field">
+      <strong>{% trans "ID:" %}</strong>
+      {{ support_ticket.id }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Title:" %}</strong>
+      {{ support_ticket.title }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Description:" %}</strong>
+      <p>{{ support_ticket.description }}</p>
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Category:" %}</strong>
+      {{ support_ticket.category }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Status:" %}</strong>
+      {{ support_ticket.get_status_display }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Priority:" %}</strong>
+      {{ support_ticket.get_priority_display }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Created By:" %}</strong>
+      {{ support_ticket.created_by }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Assigned To:" %}</strong>
+      {{ support_ticket.assigned_to|default_if_none:"Not Assigned" }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Created At:" %}</strong>
+      {{ support_ticket.created_at|date:"F d, Y H:i" }}
+    </div>
+    <div class="ticket-field">
+      <strong>{% trans "Last Updated:" %}</strong>
+      {{ support_ticket.updated_at|date:"F d, Y H:i" }}
+    </div>
+  </div>
+
+  <a href="{% url 'administrator_help_support' %}" class="btn btn-secondary">{% trans "Back to Tickets" %}</a>
+</div>
+{% endblock %}
