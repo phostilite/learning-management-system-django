@@ -5,8 +5,8 @@ from .models import Certificate, CertificateTemplate, CertificateIssuanceLog
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ('certificate_number', 'learner', 'course', 'issue_date', 'is_valid')
-    search_fields = ('certificate_number', 'learner__user__username', 'course__title')
+    list_display = ('certificate_number', 'user', 'course', 'issue_date', 'is_valid')
+    search_fields = ('certificate_number', 'user__username', 'course__title')
     list_filter = ('is_valid', 'course', 'course_delivery')
     
     actions = ['revoke_certificates']

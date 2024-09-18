@@ -9,7 +9,6 @@ from django.forms import inlineformset_factory
 from django.utils.translation import gettext_lazy as _
 
 from .models import Course, LearningResource, ScormResource, CourseCategory, Enrollment, Program, Tag, ProgramCourse, Delivery, DeliveryComponent, ProgramCourse
-from users.models import Facilitator, Learner
 from users.models import User
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError

@@ -71,20 +71,6 @@ class Command(BaseCommand):
             )
             group = Group.objects.get(name=group_name)
             user.groups.add(group)
-            
-            # Create corresponding profile object
-            if group_name == 'administrator':
-                from users.models import Administrator
-                Administrator.objects.get_or_create(user=user)
-            elif group_name == 'learner':
-                from users.models import Learner
-                Learner.objects.get_or_create(user=user)
-            elif group_name == 'facilitator':
-                from users.models import Facilitator
-                Facilitator.objects.get_or_create(user=user)
-            elif group_name == 'supervisor':
-                from users.models import Supervisor
-                Supervisor.objects.get_or_create(user=user)
 
             self.stdout.write(self.style.SUCCESS(f"{group_name.capitalize()} user '{username}' created successfully."))
         except Exception as e:

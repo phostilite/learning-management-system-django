@@ -31,7 +31,6 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,6 +60,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'csp',
     'rosetta',
+    'django_session_timeout',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -100,16 +101,28 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+# Determine the environment
+ENV = os.getenv('DJANGO_ENV', 'development')
+
+# Database configuration
+if ENV == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -208,11 +221,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom user model
 AUTH_USER_MODEL = 'users.User'
 
-# CloudSCORM API settings
-CLOUDSCORM_APP_ID = os.getenv('CLOUDSCORM_APP_ID')
-CLOUDSCORM_SECRET_KEY = os.getenv('CLOUDSCORM_SECRET_KEY')
-CLOUDSCORM_API_URL = os.getenv('CLOUDSCORM_API_URL')
-
 # SCORMHub API settings
 SCORM_API_BASE_URL = os.getenv('SCORM_API_BASE_URL')
 SCORM_API_TOKEN = os.getenv('SCORM_API_TOKEN')
@@ -234,7 +242,6 @@ LOGGING = {
     },
 }
 
-
 # Allow embedding from all origins
 X_FRAME_OPTIONS = 'ALLOWALL'
 
@@ -252,3 +259,9 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+# Set session timeout to 30 minutes (1800 seconds)
+SESSION_EXPIRE_SECONDS = 1800
+
+# Redirect to landing page after session timeout
+SESSION_TIMEOUT_REDIRECT = 'login'  
