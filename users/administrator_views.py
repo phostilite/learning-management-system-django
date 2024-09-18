@@ -1590,18 +1590,24 @@ class AdministratorNotificationListView(TemplateView):
 # ============================================================
 # ======================= Announcements Views ================
 # ============================================================
-class AdministratorAnnouncementListView(TemplateView):
+class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin,TemplateView):
     template_name = 'users/administrator/announcements/announcements.html'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['announcements'] = Announcement.objects.all()
         return context
     
-class AdministratorAnnouncementCreateView(FormView):
+class AdministratorAnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin,FormView):
     form_class = AnnouncementForm
     template_name = 'users/administrator/announcements/announcement_create.html'
     success_url = reverse_lazy('administrator_announcement_list')
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
 
     def form_valid(self, form):
         try:
@@ -1619,4 +1625,18 @@ class AdministratorAnnouncementCreateView(FormView):
         logger.error(f"Form errors: {form.errors}")
         messages.error(self.request, 'There was an error creating the announcement. Please check the form and try again.')
         return super().form_invalid(form)
+
+
+class AdministratorAnnouncementDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = Announcement
+    template_name = 'users/administrator/announcements/announcement_detail.html'
+    context_object_name = 'announcement'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_object(self):
+        return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+
+    
 
