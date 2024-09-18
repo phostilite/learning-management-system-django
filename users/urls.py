@@ -100,8 +100,8 @@ urlpatterns = [
      # help and support
      path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
      path('administrator/help-support/tickets/create/',administrator_views.AdministratorTicketCreateView.as_view(), name='administrator_tickets_create'),
-     
-     
+     path('administrator/help-support/tickets/<uuid:pk>/detail/', administrator_views.AdministratorTicketDetailView.as_view(), name='administrator_tickets_detail'),
+     path('administrator/help-support/tickets/<uuid:pk>/edit/', administrator_views.AdministratorTicketEditView.as_view(), name= 'administrator_ticket_edit'),
      
      
      

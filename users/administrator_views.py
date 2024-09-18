@@ -46,7 +46,7 @@ from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
 from support.models import SupportTicket
-from support.forms import TicketCreateForm
+from support.forms import TicketForm
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
 # Initialize logger
@@ -1602,7 +1602,7 @@ class AdministratorHelpSupportView(TemplateView):
 
 class AdministratorTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     template_name = 'users/administrator/help_and_support/tickets/creating_tickets.html'
-    form_class = TicketCreateForm
+    form_class = TicketForm
     success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
 
     def get_context_data(self, **kwargs):
@@ -1628,4 +1628,47 @@ class AdministratorTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, For
     def form_invalid(self, form):
         logger.error(f"Form errors: {form.errors}")
         messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorTicketDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AdministratorTicketEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/edit_ticket.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating support ticket: {e}")
+            messages.error(self.request, 'There was an error updating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the support ticket. Please check the form and try again.')
         return super().form_invalid(form)

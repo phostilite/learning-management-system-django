@@ -3,10 +3,10 @@
 from django import forms
 from .models import SupportTicket, SupportCategory
 
-class TicketCreateForm(forms.ModelForm):
+class TicketForm(forms.ModelForm):
     class Meta:
         model = SupportTicket
-        fields = ['title', 'description', 'category', 'priority']
+        fields = ['title', 'description', 'category', 'priority', 'status']
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -22,7 +22,10 @@ class TicketCreateForm(forms.ModelForm):
             }),
             'priority': forms.Select(attrs={
                 'class': 'form-control'
-            })
+            }),
+            'status': forms.Select(attrs={
+                'class': 'form-control'
+        })
         }
         help_texts = {
             'title': 'A short, descriptive title for your support ticket.',
@@ -35,6 +38,8 @@ class TicketCreateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = SupportCategory.objects.all()
         self.fields['priority'].choices = SupportTicket.PRIORITY_CHOICES
+        self.fields['status'].choices = SupportTicket.STATUS_CHOICES
+        
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

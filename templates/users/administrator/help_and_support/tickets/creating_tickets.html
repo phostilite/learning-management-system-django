@@ -2,12 +2,12 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Help & Support - Create Ticket - LMS Admin" %}{% endblock %}
+{% block title %}{% trans "Create Support Ticket" %} - LMS Admin{% endblock %}
 
 {% block extra_css %}
 <style>
     .ticket-form {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
     }
     .form-group {
@@ -22,20 +22,65 @@
         font-size: 0.875em;
         margin-top: 0.25rem;
     }
+    input[type="text"], textarea, select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        font-weight: 600;
+        font-size: 0.75rem;
+        border-radius: 9999px;
+    }
+    .status-OPEN {
+        color: #047857;
+        background-color: #d1fae5;
+    }
+    .status-IN_PROGRESS {
+        color: #1d4ed8;
+        background-color: #dbeafe;
+    }
+    .status-RESOLVED {
+        color: #b45309;
+        background-color: #fef3c7;
+    }
+    .status-CLOSED {
+        color: #b91c1c;
+        background-color: #fee2e2;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="mb-4">{% trans "Create a New Support Ticket" %}</h1>
-            <div class="ticket-form">
-                <form method="post">
-                    {% csrf_token %}
-                    
+<div class="container mx-auto ticket-form">
+    <div class="w-full mx-auto">
+        <!-- Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create Support Ticket" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Fill up the details below to create the support ticket." %}</p>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <!-- ... (breadcrumb code remains the same) ... -->
+        </nav>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Ticket Information -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Ticket Information" %}</h2>
+                <div class="space-y-4">
                     <div class="form-group">
-                        <label for="{{ form.title.id_for_label }}">{% trans "Title" %}:</label>
+                        <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Title" %}</label>
                         {{ form.title }}
                         {% if form.title.help_text %}
                             <small class="help-text">{{ form.title.help_text }}</small>
@@ -44,9 +89,8 @@
                             <div class="error-text">{{ form.title.errors|join:", " }}</div>
                         {% endif %}
                     </div>
-
                     <div class="form-group">
-                        <label for="{{ form.description.id_for_label }}">{% trans "Description" %}:</label>
+                        <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Description" %}</label>
                         {{ form.description }}
                         {% if form.description.help_text %}
                             <small class="help-text">{{ form.description.help_text }}</small>
@@ -55,9 +99,15 @@
                             <div class="error-text">{{ form.description.errors|join:", " }}</div>
                         {% endif %}
                     </div>
+                </div>
+            </div>
 
+            <!-- Ticket Details -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Ticket Details" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
-                        <label for="{{ form.category.id_for_label }}">{% trans "Category" %}:</label>
+                        <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Category" %}</label>
                         {{ form.category }}
                         {% if form.category.help_text %}
                             <small class="help-text">{{ form.category.help_text }}</small>
@@ -66,9 +116,8 @@
                             <div class="error-text">{{ form.category.errors|join:", " }}</div>
                         {% endif %}
                     </div>
-
                     <div class="form-group">
-                        <label for="{{ form.priority.id_for_label }}">{% trans "Priority" %}:</label>
+                        <label for="{{ form.priority.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Priority" %}</label>
                         {{ form.priority }}
                         {% if form.priority.help_text %}
                             <small class="help-text">{{ form.priority.help_text }}</small>
@@ -77,21 +126,54 @@
                             <div class="error-text">{{ form.priority.errors|join:", " }}</div>
                         {% endif %}
                     </div>
-
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">{% trans "Submit Ticket" %}</button>
-                        <a href="#" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                        <label for="{{ form.status.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Status" %}</label>
+                        {{ form.status }}
+                        {% if form.status.help_text %}
+                            <small class="help-text">{{ form.status.help_text }}</small>
+                        {% endif %}
+                        {% if form.status.errors %}
+                            <div class="error-text">{{ form.status.errors|join:", " }}</div>
+                        {% endif %}
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{% trans "Status Preview" %}</label>
+                        <div id="status-preview" class="mt-1">
+                            <span class="status-badge status-OPEN">
+                                {% trans "Open" %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {% trans "Create Ticket" %}
+                </button>
+                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                    {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // You can add any additional JavaScript here if needed
-    // For example, you might want to add client-side validation or dynamic form behavior
+    document.addEventListener('DOMContentLoaded', function() {
+        const statusSelect = document.getElementById('{{ form.status.id_for_label }}');
+        const statusPreview = document.getElementById('status-preview');
+
+        function updateStatusPreview() {
+            const selectedStatus = statusSelect.value;
+            const statusText = statusSelect.options[statusSelect.selectedIndex].text;
+            statusPreview.innerHTML = `<span class="status-badge status-${selectedStatus}">${statusText}</span>`;
+        }
+
+        statusSelect.addEventListener('change', updateStatusPreview);
+        updateStatusPreview();  // Initialize with default value
+    });
 </script>
 {% endblock %}

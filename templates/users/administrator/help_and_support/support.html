@@ -103,7 +103,7 @@
                 <tr class="bg-white border-b hover:bg-gray-50">
 
                     <td class="px-6 py-4">{{ ticket.title }}</td>
-                    <td class="px-6 py-4">{{ ticket.description }}</td>
+                    <td class="px-6 py-4">{{ ticket.description|slice:":10" }}</td>
                     <td class="px-6 py-4">
                         {% if ticket.status == 'OPEN' %}
                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
@@ -180,13 +180,13 @@
                         <p>{{ ticket.updated_at|date:"Y-m-d H:i" }}</p>
                     </td>
                     <td class="px-6 py-4">
-                        <button class="text-blue-600 hover:text-blue-900" title="{% trans 'View Ticket' %}">
+                        <a href="{% url 'administrator_tickets_detail' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'View Ticket' %}">
                             <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="text-green-600 hover:text-green-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Respond' %}">
-                            <i class="fas fa-reply"></i>
-                        </button>
-                        <button class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Close Ticket' %}">
+                        </a>
+                        <a href="{% url 'administrator_ticket_edit' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <button class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Delete' %}">
                             <i class="fas fa-times-circle"></i>
                         </button>
                     </td>
