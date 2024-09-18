@@ -104,9 +104,9 @@
                     </th>
                     <td class="px-6 py-4 flex items-center">
                         <img class="w-8 h-8 rounded-full mr-3 rtl:ml-3 rtl:mr-0" 
-                            src="{% if certificate.learner.user.picture %}{{ certificate.learner.user.picture.url }}{% else %}https://via.placeholder.com/32{% endif %}" 
-                            alt="{{ certificate.learner.user.get_full_name }}">
-                        {{ certificate.learner.user.get_full_name }}
+                            src="{% if certificate.user.picture %}{{ certificate.user.picture.url }}{% else %}https://via.placeholder.com/32{% endif %}" 
+                            alt="{{ certificate.user.get_full_name }}">
+                        {{ certificate.user.get_full_name }}
                     </td>
                     <td class="px-6 py-4">{{ certificate.course.title }}</td>
                     <td class="px-6 py-4">{{ certificate.issue_date|date:"Y-m-d" }}</td>

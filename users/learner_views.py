@@ -702,7 +702,7 @@ class CertificateView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         
         # Get certificates for the logged-in learner
-        certificates = Certificate.objects.filter(learner=self.request.user.learner).order_by('-issue_date')
+        certificates = Certificate.objects.filter(learner=self.request.user).order_by('-issue_date')
         
         # Get certificate counts
         context['certificates'] = certificates

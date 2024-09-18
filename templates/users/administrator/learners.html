@@ -68,14 +68,14 @@
                                     <div class="mr-2">
                                         <img class="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Avatar">
                                     </div>
-                                    <span class="font-medium">{{ learner.user.first_name }} {{ learner.user.last_name }}</span>
+                                    <span class="font-medium">{{ user.first_name }} {{ user.last_name }}</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-left">
-                                <span>{{ learner.user.email }}</span>
+                                <span>{{ user.email }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                {% if learner.user.is_active %}
+                                {% if user.is_active %}
                                     <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Active</span>
                                 {% else %}
                                     <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Inactive</span>

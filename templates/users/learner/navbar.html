@@ -155,7 +155,7 @@
                                 <span class="text-xs font-medium text-blue-600">
                                     {% if request.user.administrator %}
                                         Administrator
-                                    {% elif request.user.learner %}
+                                    {% elif request.user %}
                                         Learner
                                     {% elif request.user.facilitator %}
                                         Facilitator
