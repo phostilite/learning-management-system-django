@@ -1,0 +1,94 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Announcements - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">{% trans "Create New Announcements" %}</h1>
+            <div class="ticket-form">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}">{% trans "Announcement Title" %}:</label>
+                        {{ form.title }}
+                        {% if form.title.help_text %}
+                            <small class="help-text">{{ form.title.help_text }}</small>
+                        {% endif %}
+                        {% if form.title.errors %}
+                            <div class="error-text">{{ form.title.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.content.id_for_label }}">{% trans "Announcement Description" %}:</label>
+                        {{ form.content }}
+                        {% if form.content.help_text %}
+                            <small class="help-text">{{ form.content.help_text }}</small>
+                        {% endif %}
+                        {% if form.content.errors %}
+                            <div class="error-text">{{ form.content.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.priority.id_for_label }}">{% trans "Announcement Priority" %}:</label>
+                        {{ form.priority }}
+                        {% if form.priority.help_text %}
+                            <small class="help-text">{{ form.priority.help_text }}</small>
+                        {% endif %}
+                        {% if form.priority.errors %}
+                            <div class="error-text">{{ form.priority.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label for="{{ form.publish_date.id_for_label }}">{% trans "Announcement Publish Date" %}:</label>
+                        {{ form.publish_date }}
+                        {% if form.publish_date.help_text %}
+                            <small class="help-text">{{ form.publish_date.help_text }}</small>
+                        {% endif %}
+                        {% if form.publish_date.errors %}
+                            <div class="error-text">{{ form.publish_date.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.expiry_date.id_for_label }}">{% trans "Announcement Expiry Date" %}:</label>
+                        {{ form.expiry_date }}
+                        {% if form.expiry_date.help_text %}
+                            <small class="help-text">{{ form.expiry_date.help_text }}</small>
+                        {% endif %}
+                        {% if form.expiry_date.errors %}
+                            <div class="error-text">{{ form.expiry_date.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">{% trans "Submit Announcement" %}</button>
+                        <a href="#" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+    // You can add any additional JavaScript here if needed
+    // For example, you might want to add client-side validation or dynamic form behavior
+</script>
+
+{% endblock %}

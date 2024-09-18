@@ -45,6 +45,8 @@ from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, Que
 from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
+from announcements.models import Announcement
+from announcements.forms import AnnouncementForm
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
 # Initialize logger
@@ -1593,4 +1595,28 @@ class AdministratorAnnouncementListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['announcements'] = Announcement.objects.all()
         return context
+    
+class AdministratorAnnouncementCreateView(FormView):
+    form_class = AnnouncementForm
+    template_name = 'users/administrator/announcements/announcement_create.html'
+    success_url = reverse_lazy('administrator_announcement_list')
+
+    def form_valid(self, form):
+        try:
+            announcement = form.save(commit=False)
+            announcement.author = self.request.user
+            announcement.save()
+            messages.success(self.request, 'Announcement created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the announcement. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the announcement. Please check the form and try again.')
+        return super().form_invalid(form)
+
