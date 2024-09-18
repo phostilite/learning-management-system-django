@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import User, SCORMUserProfile, Role, UserRole, UserOrganizationAssignment, VisibilityRule, Learner, Administrator, Supervisor, Facilitator
+from .models import User, SCORMUserProfile, Role, UserRole, UserOrganizationAssignment, VisibilityRule
 
 class SCORMUserProfileInline(admin.StackedInline):
     model = SCORMUserProfile
@@ -56,23 +56,3 @@ class VisibilityRuleAdmin(admin.ModelAdmin):
     list_display = ('role', 'content_type', 'visibility_level')
     list_filter = ('role', 'content_type', 'visibility_level')
     search_fields = ('role__name', 'content_type__model')
-
-@admin.register(Learner)
-class LearnerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'token')
-    search_fields = ('user__username', 'user__first_name', 'user__last_name')
-
-@admin.register(Administrator)
-class AdministratorAdmin(admin.ModelAdmin):
-    list_display = ('user',)
-    search_fields = ('user__username', 'user__first_name', 'user__last_name')
-
-@admin.register(Supervisor)
-class SupervisorAdmin(admin.ModelAdmin):
-    list_display = ('user',)
-    search_fields = ('user__username', 'user__first_name', 'user__last_name')
-
-@admin.register(Facilitator)
-class FacilitatorAdmin(admin.ModelAdmin):
-    list_display = ('user',)
-    search_fields = ('user__username', 'user__first_name', 'user__last_name')

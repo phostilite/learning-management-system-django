@@ -5,7 +5,6 @@ from django.db import models
 import uuid
 from django.conf import settings
 from courses.models import Course, Enrollment, LearningResource, Delivery, Progress
-from users.models import User, Learner
 from django.utils import timezone
 from PIL import Image, ImageDraw, ImageFont
 import io
@@ -14,12 +13,15 @@ from django.core.files.base import ContentFile
 from django.db.models import Count
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
 class Certificate(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    learner = models.ForeignKey(Learner, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
     course_delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='certificates', null=True, blank=True)
     enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE, related_name='certificate', null=True, blank=True)
@@ -36,7 +38,7 @@ class Certificate(models.Model):
 
     is_valid = models.BooleanField(default=True)
     revoked_at = models.DateTimeField(null=True, blank=True)
-    revoked_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='revoked_certificates')
+    revoked_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='revoked_certificates')
     revocation_reason = models.TextField(blank=True)
 
     additional_info = models.JSONField(default=dict, blank=True)
@@ -45,15 +47,15 @@ class Certificate(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('learner', 'course', 'course_delivery')
+        unique_together = ('user', 'course', 'course_delivery')
         indexes = [
             models.Index(fields=['certificate_number']),
             models.Index(fields=['issue_date']),
-            models.Index(fields=['learner', 'course']),
+            models.Index(fields=['user', 'course']),
         ]
 
     def __str__(self):
-        return f"Certificate {self.certificate_number} for {self.learner.user.get_full_name()} - {self.course.title}"
+        return f"Certificate {self.certificate_number} for {self.user.get_full_name()} - {self.course.title}"
 
     @classmethod
     def generate_certificate_number(cls):
@@ -117,7 +119,7 @@ class Certificate(models.Model):
 
                     try:
                         certificate = cls.objects.create(
-                            learner=enrollment.user.learner,
+                            user = enrollment.user.groups.filter(name='learner').exists(),
                             course=enrollment.course_delivery.course,
                             course_delivery=enrollment.course_delivery,
                             enrollment=enrollment,
@@ -230,7 +232,7 @@ class CertificateTemplate(models.Model):
 class CertificateIssuanceLog(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE, related_name='issuance_logs')
-    issued_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    issued_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     issued_at = models.DateTimeField(auto_now_add=True)
     ip_address = models.GenericIPAddressField(null=True, blank=True)
     user_agent = models.TextField(blank=True, null=True)

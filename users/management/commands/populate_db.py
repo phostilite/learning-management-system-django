@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.db import transaction
 from django.contrib.contenttypes.models import ContentType
-from users.models import User, Role, UserRole, UserOrganizationAssignment, SCORMUserProfile, VisibilityRule, Learner, Administrator, Supervisor, Facilitator
+from users.models import User, Role, UserRole, UserOrganizationAssignment, SCORMUserProfile, VisibilityRule
 from organization.models import Organization, OrganizationUnit, JobPosition, EmployeeProfile, Location, OrganizationContact, CustomField, CustomFieldValue, OrganizationChange, TeamMembership
 from faker import Faker
 import json
@@ -264,13 +264,3 @@ class Command(BaseCommand):
                     visibility_level=random.choice(visibility_levels)
                 )
         self.stdout.write(self.style.SUCCESS('Created visibility rules'))
-
-    def create_special_user_types(self, users):
-        special_users = random.sample(list(users), k=len(users) // 5)  # 20% of users get special types
-        for user in special_users:
-            user_type = random.choice([Learner, Administrator, Supervisor, Facilitator])
-            if user_type == Learner:
-                Learner.objects.create(user=user, token=fake.sha256()[:100])  # Assuming max_length=100 for token
-            else:
-                user_type.objects.create(user=user)
-        self.stdout.write(self.style.SUCCESS('Created special user types'))
