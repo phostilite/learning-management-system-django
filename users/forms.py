@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordChangeForm as BasePasswordChangeForm
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -38,3 +40,34 @@ class LearnerCreationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match")
 
         return cleaned_data
+
+
+class PersonalInfoForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'gender']
+
+class PasswordChangeForm(BasePasswordChangeForm):
+    pass
+
+class PreferencesForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['preferred_language', 'timezone', 'email_notifications_enabled', 'sms_notifications_enabled']
+
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['picture']
+        widgets = {
+            'picture': forms.FileInput(attrs={'accept': 'image/*'})
+        }
+
+    def clean_picture(self):
+        picture = self.cleaned_data.get('picture')
+        if picture:
+            if picture.size > 5 * 1024 * 1024:  # 5MB limit
+                raise forms.ValidationError(_("Image file too large ( > 5MB )"))
+            if picture.content_type not in ['image/jpeg', 'image/png', 'image/gif']:
+                raise forms.ValidationError(_("Unsupported file type. Please upload a JPEG, PNG, or GIF image."))
+        return picture

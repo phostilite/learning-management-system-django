@@ -15,6 +15,9 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.db.models import Count, Avg
+from django.core.cache import cache
+from django.views import View
 
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -26,12 +29,24 @@ from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.contrib.auth import get_user_model
 
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
+from .models import User, SCORMUserProfile
+from .forms import (
+    PersonalInfoForm,
+    PasswordChangeForm,
+    PreferencesForm,
+    ProfilePictureForm
+)
+
 from django_filters.views import FilterView
 from .filters import ProgramFilter, CourseFilter
 from django.db.models import Prefetch
 from django.db.models import Avg, Q
 
-
+from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
 from .api_client import upload_scorm_package, register_user_for_course
@@ -747,21 +762,117 @@ class LeaderboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-@method_decorator(login_required, name='dispatch')
-class ProfileView(TemplateView):
-    template_name = 'users/learner/profile.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+# ============================================================
+# ======================= Settings Views =====================
+# ============================================================
     
-@method_decorator(login_required, name='dispatch')
-class SettingsView(TemplateView):
+class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     template_name = 'users/learner/settings.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def test_func(self):
+        return self.request.user.groups.filter(name='learner').exists()
+
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            raise PermissionDenied(_("You do not have permission to access this page."))
+        return super().handle_no_permission()
+
+    def get(self, request):
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        action = request.POST.get('action')
+        if action == 'update_personal_info':
+            return self.update_personal_info(request)
+        elif action == 'change_password':
+            return self.change_password(request)
+        elif action == 'update_preferences':
+            return self.update_preferences(request)
+        elif action == 'update_profile_picture':
+            return self.update_profile_picture(request)
+        else:
+            messages.error(request, _("Invalid action specified."))
+            return redirect('learner_settings')
+
+    def get_context_data(self):
+        user = self.request.user
+        context = {
+            'personal_info_form': PersonalInfoForm(instance=user),
+            'password_form': PasswordChangeForm(user),
+            'preferences_form': PreferencesForm(instance=user),
+            'profile_picture_form': ProfilePictureForm(instance=user),
+        }
+        try:
+            context['scorm_profile'] = user.scorm_profile
+        except SCORMUserProfile.DoesNotExist:
+            context['scorm_profile'] = None
         return context
+
+    @transaction.atomic
+    def update_personal_info(self, request):
+        try:
+            form = PersonalInfoForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, _("Personal information updated successfully."))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+        except Exception as e:
+            logger.error(f"Error updating personal info for user {request.user.username}: {str(e)}")
+            messages.error(request, _("An error occurred while updating your personal information. Please try again."))
+        return redirect('learner_settings')
+
+    @transaction.atomic
+    def change_password(self, request):
+        try:
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, _("Password changed successfully."))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+        except Exception as e:
+            logger.error(f"Error changing password for user {request.user.username}: {str(e)}")
+            messages.error(request, _("An error occurred while changing your password. Please try again."))
+        return redirect('login')
+
+    @transaction.atomic
+    def update_preferences(self, request):
+        try:
+            form = PreferencesForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, _("Preferences updated successfully."))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+        except Exception as e:
+            logger.error(f"Error updating preferences for user {request.user.username}: {str(e)}")
+            messages.error(request, _("An error occurred while updating your preferences. Please try again."))
+        return redirect('learner_settings')
+
+    @transaction.atomic
+    def update_profile_picture(self, request):
+        try:
+            form = ProfilePictureForm(request.POST, request.FILES, instance=request.user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, _("Profile picture updated successfully."))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field}: {error}")
+        except Exception as e:
+            logger.error(f"Error updating profile picture for user {request.user.username}: {str(e)}")
+            messages.error(request, _("An error occurred while updating your profile picture. Please try again."))
+        return redirect('learner_settings')
     
 @method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):

@@ -21,14 +21,16 @@ class UserAdmin(BaseUserAdmin):
     list_filter = BaseUserAdmin.list_filter + ('current_organization', 'current_organization_unit', 'groups')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone_number', 'gender', 'picture', 'timezone')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone_number', 'gender', 'picture', 'timezone', 'bio')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
         (_('Organization'), {'fields': ('current_organization', 'current_organization_unit')}),
+        (_('Preferences'), {'fields': ('preferred_language', 'email_notifications_enabled', 'sms_notifications_enabled')}),
     )
     add_fieldsets = BaseUserAdmin.add_fieldsets + (
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone_number', 'gender', 'picture', 'timezone')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone_number', 'gender', 'picture', 'timezone', 'bio')}),
         (_('Organization'), {'fields': ('current_organization', 'current_organization_unit')}),
+        (_('Preferences'), {'fields': ('preferred_language', 'email_notifications_enabled', 'sms_notifications_enabled')}),
     )
 
     def get_inline_instances(self, request, obj=None):

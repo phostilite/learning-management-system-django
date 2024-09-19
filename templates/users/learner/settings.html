@@ -2,316 +2,435 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings - LMS Learner" %}{% endblock %}
+{% block title %}{% trans "Learner Profile & Settings - EduXcellence LMS" %}{% endblock %}
 
 {% block extra_css %}
 <style>
-    .card-shadow {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    .settings-nav-item {
+    .settings-card {
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
-
-    .settings-nav-item:hover {
-        background-color: #F3F4F6;
+    .settings-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
-
-    .settings-nav-item.active {
-        background-color: #EFF6FF;
-        border-left: 4px solid #3B82F6;
-    }
-
-    .toggle-checkbox:checked {
-        right: 0;
-        border-color: #68D391;
-    }
-
-    .toggle-checkbox:checked + .toggle-label {
-        background-color: #68D391;
+    .info-item {
+        background-color: #f3f4f6;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container mx-auto">
-    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Account Settings" %}</h1>
-        <p class="text-lg text-white text-center">{% trans "Manage your account preferences and settings" %}</p>
-    </header>
 
-    <div class="flex flex-col md:flex-row gap-6">
-        <!-- Settings Navigation -->
-        <nav class="w-full md:w-1/4 bg-white rounded-lg p-4 card-shadow">
-            <ul>
-                <li class="settings-nav-item active p-2 rounded">
-                    <a href="#profile" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-user-circle mr-2"></i>{% trans "Profile" %}
+<div class="profile-settings-page bg-gray-100 min-h-screen" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl mb-4 shadow-lg relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-4xl font-bold text-center mb-2">{% trans "Learner Profile & Settings" %}</h1>
+                <p class="text-center text-lg">{% trans "Customize Your Learning Experience" %}</p>
+            </div>
+            <div class="absolute inset-0 bg-black opacity-10"></div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav class="flex mb-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'learner_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
                     </a>
                 </li>
-                <li class="settings-nav-item p-2 rounded">
-                    <a href="#account" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-cog mr-2"></i>{% trans "Account" %}
-                    </a>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Settings" %}</span>
+                    </div>
                 </li>
-                <li class="settings-nav-item p-2 rounded">
-                    <a href="#notifications" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-bell mr-2"></i>{% trans "Notifications" %}
-                    </a>
-                </li>
-                <li class="settings-nav-item p-2 rounded">
-                    <a href="#privacy" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-lock mr-2"></i>{% trans "Privacy" %}
-                    </a>
-                </li>
-                <li class="settings-nav-item p-2 rounded">
-                    <a href="#learning" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-graduation-cap mr-2"></i>{% trans "Learning Preferences" %}
-                    </a>
-                </li>
-                <li class="settings-nav-item p-2 rounded">
-                    <a href="#integrations" class="block text-gray-800 hover:text-blue-600">
-                        <i class="fas fa-plug mr-2"></i>{% trans "Integrations" %}
-                    </a>
-                </li>
-            </ul>
+            </ol>
         </nav>
 
-        <!-- Settings Content -->
-        <div class="w-full md:w-3/4 bg-white rounded-lg p-6 card-shadow">
-            <!-- Profile Settings -->
-            <section id="profile" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Profile Settings" %}</h2>
-                <form>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="firstName" class="block text-sm font-medium text-gray-700">{% trans "First Name" %}</label>
-                            <input type="text" id="firstName" name="firstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                        </div>
-                        <div>
-                            <label for="lastName" class="block text-sm font-medium text-gray-700">{% trans "Last Name" %}</label>
-                            <input type="text" id="lastName" name="lastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">{% trans "Email" %}</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                        </div>
-                        <div>
-                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">{% trans "Phone Number" %}</label>
-                            <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <label for="bio" class="block text-sm font-medium text-gray-700">{% trans "Bio" %}</label>
-                        <textarea id="bio" name="bio" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
-                    </div>
-                    <div class="mt-4">
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            {% trans "Save Profile Changes" %}
-                        </button>
-                    </div>
-                </form>
-            </section>
+        <!-- Main Content -->
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <!-- Tabs -->
+            <div class="bg-gray-200 border-b border-gray-300">
+                <nav class="flex flex-wrap" aria-label="Tabs">
+                    <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" data-tab="overview">
+                        <i class="fas fa-user-circle mr-2"></i>{% trans "Overview" %}
+                    </button>
+                    <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="personal">
+                        <i class="fas fa-id-card mr-2"></i>{% trans "Personal Info" %}
+                    </button>
+                    <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="account">
+                        <i class="fas fa-user-cog mr-2"></i>{% trans "Account" %}
+                    </button>
+                    <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="organization">
+                        <i class="fas fa-building mr-2"></i>{% trans "Organization" %}
+                    </button>
+                    <button class="tab-button text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" data-tab="preferences">
+                        <i class="fas fa-sliders-h mr-2"></i>{% trans "Preferences" %}
+                    </button>
+                </nav>
+            </div>
 
-            <!-- Account Settings -->
-            <section id="account" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Account Settings" %}</h2>
-                <form>
-                    <div class="mb-4">
-                        <label for="currentPassword" class="block text-sm font-medium text-gray-700">{% trans "Current Password" %}</label>
-                        <input type="password" id="currentPassword" name="currentPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                    </div>
-                    <div class="mb-4">
-                        <label for="newPassword" class="block text-sm font-medium text-gray-700">{% trans "New Password" %}</label>
-                        <input type="password" id="newPassword" name="newPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                    </div>
-                    <div class="mb-4">
-                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">{% trans "Confirm New Password" %}</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                    </div>
-                    <div class="mt-4">
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            {% trans "Change Password" %}
-                        </button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Notification Settings -->
-            <section id="notifications" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Notification Settings" %}</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Email Notifications" %}</span>
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="emailNotifications" id="emailNotifications" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                            <label for="emailNotifications" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            <!-- Content -->
+            <div class="p-6">
+                <!-- Overview -->
+                <div id="overview" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-1">
+                            <div class="settings-card p-6 text-center">
+                                {% if user.picture %}
+                                    <img src="{{ user.picture.url }}" alt="Profile Picture" class="w-full h-auto rounded-lg shadow" id="profile-picture">
+                                {% else %}
+                                    <img src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Default Profile Picture" class="w-full h-auto rounded-lg shadow" id="profile-picture">
+                                {% endif %}
+                                <h2 class="text-2xl font-bold mb-2">{{ user.get_full_name }}</h2>
+                                <p class="text-gray-600 mb-4">{{ user.email }}</p>
+                                <form id="profile-picture-form" method="post" action="{% url 'learner_settings' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="update_profile_picture">
+                                    <label for="picture-input" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                                        <i class="fas fa-camera mr-2"></i>{% trans "Change Photo" %}
+                                        <input type="file" name="picture" id="picture-input" class="hidden" accept="image/*" onchange="this.form.submit()">
+                                    </label>
+                                </form>
+                                {% if form.picture.errors %}
+                                    <div class="text-red-500 text-sm mt-2">
+                                        {% for error in form.picture.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Push Notifications" %}</span>
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="pushNotifications" id="pushNotifications" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                            <label for="pushNotifications" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Course Reminders" %}</span>
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="courseReminders" id="courseReminders" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                            <label for="courseReminders" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        <div class="col-span-2">
+                            <div class="settings-card p-6">
+                                <h3 class="text-xl font-semibold mb-4">{% trans "Quick Information" %}</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="info-item">
+                                        <i class="fas fa-user text-blue-500 mr-2"></i>
+                                        <strong>{% trans "Username:" %}</strong> {{ user.username }}
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-calendar-check text-green-500 mr-2"></i>
+                                        <strong>{% trans "Last Login:" %}</strong> {{ user.last_login|date:"F d, Y H:i" }}
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-user-plus text-purple-500 mr-2"></i>
+                                        <strong>{% trans "Date Joined:" %}</strong> {{ user.date_joined|date:"F d, Y" }}
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-id-badge text-indigo-500 mr-2"></i>
+                                        <strong>{% trans "Employee ID:" %}</strong> {{ user.employee_profile.employee_id }}
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-building text-yellow-500 mr-2"></i>
+                                        <strong>{% trans "Organization:" %}</strong> {{ user.employee_profile.organization.name }}
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-briefcase text-red-500 mr-2"></i>
+                                        <strong>{% trans "Job Position:" %}</strong> {{ user.employee_profile.job_position.title }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Privacy Settings -->
-            <section id="privacy" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Privacy Settings" %}</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Profile Visibility" %}</span>
-                        <select class="block w-1/3 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                            <option>{% trans "Public" %}</option>
-                            <option>{% trans "Friends Only" %}</option>
-                            <option>{% trans "Private" %}</option>
-                        </select>
+                <!-- Personal Information -->
+                <div id="personal" class="tab-content hidden">
+                    <div class="settings-card p-6">
+                        <h2 class="text-2xl font-semibold mb-4">{% trans "Personal Information" %}</h2>
+                        <form method="post" action="{% url 'learner_settings' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="update_personal_info">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="{{ personal_info_form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "First Name" %}</label>
+                                    <input type="text" name="{{ personal_info_form.first_name.name }}" id="{{ personal_info_form.first_name.id_for_label }}" value="{{ personal_info_form.first_name.value|default:'' }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    {% if personal_info_form.first_name.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ personal_info_form.first_name.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <label for="{{ personal_info_form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Last Name" %}</label>
+                                    <input type="text" name="{{ personal_info_form.last_name.name }}" id="{{ personal_info_form.last_name.id_for_label }}" value="{{ personal_info_form.last_name.value|default:'' }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    {% if personal_info_form.last_name.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ personal_info_form.last_name.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <label for="{{ personal_info_form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Email" %}</label>
+                                    <input type="email" name="{{ personal_info_form.email.name }}" id="{{ personal_info_form.email.id_for_label }}" value="{{ personal_info_form.email.value|default:'' }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    {% if personal_info_form.email.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ personal_info_form.email.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <label for="{{ personal_info_form.phone_number.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Phone Number" %}</label>
+                                    <input type="tel" name="{{ personal_info_form.phone_number.name }}" id="{{ personal_info_form.phone_number.id_for_label }}" value="{{ personal_info_form.phone_number.value|default:'' }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% if personal_info_form.phone_number.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ personal_info_form.phone_number.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <label for="{{ personal_info_form.gender.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Gender" %}</label>
+                                    <select name="{{ personal_info_form.gender.name }}" id="{{ personal_info_form.gender.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="male" {% if personal_info_form.gender.value == 'male' %}selected{% endif %}>{% trans "Male" %}</option>
+                                        <option value="female" {% if personal_info_form.gender.value == 'female' %}selected{% endif %}>{% trans "Female" %}</option>
+                                        <option value="other" {% if personal_info_form.gender.value == 'other' %}selected{% endif %}>{% trans "Other" %}</option>
+                                    </select>
+                                    {% if personal_info_form.gender.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ personal_info_form.gender.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button type="submit" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                <i class="fas fa-save mr-2"></i>{% trans "Update Personal Information" %}
+                            </button>
+                        </form>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Show Learning Activity" %}</span>
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                            <input type="checkbox" name="showLearningActivity" id="showLearningActivity" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                            <label for="showLearningActivity" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+
+                <!-- Account Settings -->
+                <div id="account" class="tab-content hidden">
+                    <div class="settings-card p-6">
+                        <h2 class="text-2xl font-semibold mb-4">{% trans "Account Settings" %}</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">{% trans "Account Details" %}</h3>
+                                <div class="info-item">
+                                    <i class="fas fa-user text-blue-500 mr-2"></i>
+                                    <strong>{% trans "Username:" %}</strong> {{ user.username }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-calendar-check text-green-500 mr-2"></i>
+                                    <strong>{% trans "Last Login:" %}</strong> {{ user.last_login|date:"F d, Y H:i" }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-user-plus text-purple-500 mr-2"></i>
+                                    <strong>{% trans "Date Joined:" %}</strong> {{ user.date_joined|date:"F d, Y" }}
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">{% trans "Groups & Permissions" %}</h3>
+                                <div class="info-item">
+                                    <i class="fas fa-users text-indigo-500 mr-2"></i>
+                                    <strong>{% trans "Groups:" %}</strong> 
+                                    {% for group in user.groups.all %}
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">{{ group.name }}</span>
+                                    {% empty %}
+                                        {% trans "No groups assigned" %}
+                                    {% endfor %}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-key text-yellow-500 mr-2"></i>
+                                    <strong>{% trans "User Permissions:" %}</strong> 
+                                    {% for perm in user.user_permissions.all %}
+                                        <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">{{ perm.name }}</span>
+                                    {% empty %}
+                                        {% trans "No specific permissions assigned" %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-2">{% trans "Change Password" %}</h3>
+                            <form method="post" action="{% url 'learner_settings' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="change_password">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label for="{{ password_form.old_password.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Current Password" %}</label>
+                                        <input type="password" name="{{ password_form.old_password.name }}" id="{{ password_form.old_password.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        {% if password_form.old_password.errors %}
+                                            <p class="text-red-500 text-xs italic">{{ password_form.old_password.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        <label for="{{ password_form.new_password1.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "New Password" %}</label>
+                                        <input type="password" name="{{ password_form.new_password1.name }}" id="{{ password_form.new_password1.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        {% if password_form.new_password1.errors %}
+                                            <p class="text-red-500 text-xs italic">{{ password_form.new_password1.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        <label for="{{ password_form.new_password2.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Confirm New Password" %}</label>
+                                        <input type="password" name="{{ password_form.new_password2.name }}" id="{{ password_form.new_password2.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        {% if password_form.new_password2.errors %}
+                                            <p class="text-red-500 text-xs italic">{{ password_form.new_password2.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                    <i class="fas fa-key mr-2"></i>{% trans "Change Password" %}
+                                </button>
+                            </form>
+                        </div>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-2">{% trans "SCORM Profile" %}</h3>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-id-badge text-blue-500 mr-2"></i>
+                                    <strong class="mr-2">{% trans "SCORM Player ID:" %}</strong>
+                                    <span>{{ user.scorm_profile.scorm_player_id }}</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-key text-green-500 mr-2"></i>
+                                    <strong class="mr-2">{% trans "SCORM Token:" %}</strong>
+                                    <span>{{ user.scorm_profile.token }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-2">{% trans "Two-Factor Authentication" %}</h3>
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+                                <p class="font-bold">{% trans "Enhance Your Account Security" %}</p>
+                                <p>{% trans "Two-factor authentication adds an extra layer of security to your account." %}</p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input id="enable_2fa" name="enable_2fa" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {% if user.two_factor_auth_enabled %}checked{% endif %}>
+                                <label for="enable_2fa" class="ml-2 text-sm font-medium text-gray-900">{% trans "Enable Two-Factor Authentication" %}</label>
+                            </div>
+                            <button type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                                <i class="fas fa-shield-alt mr-2"></i>{% trans "Set Up Two-Factor Authentication" %}
+                            </button>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Learning Preferences -->
-            <section id="learning" class="mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Learning Preferences" %}</h2>
-                <form>
-                    <div class="mb-4">
-                        <label for="learningStyle" class="block text-sm font-medium text-gray-700">{% trans "Preferred Learning Style" %}</label>
-                        <select id="learningStyle" name="learningStyle" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                            <option>{% trans "Visual" %}</option>
-                            <option>{% trans "Auditory" %}</option>
-                            <option>{% trans "Read/Write" %}</option>
-                            <option>{% trans "Kinesthetic" %}</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="studyTime" class="block text-sm font-medium text-gray-700">{% trans "Preferred Study Time" %}</label>
-                        <select id="studyTime" name="studyTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                            <option>{% trans "Morning" %}</option>
-                            <option>{% trans "Afternoon" %}</option>
-                            <option>{% trans "Evening" %}</option>
-                            <option>{% trans "Late Night" %}</option>
-                        </select>
-                    </div>
-                    <div class="mt-4">
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            {% trans "Save Learning Preferences" %}
-                        </button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Integrations -->
-            <section id="integrations">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Integrations" %}</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Connect with LinkedIn"%}</span>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            <i class="fab fa-linkedin mr-2"></i>{% trans "Connect" %}
-                        </button>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Connect with Google" %}</span>
-                        <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                            <i class="fab fa-google mr-2"></i>{% trans "Connect" %}
-                        </button>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Connect with GitHub" %}</span>
-                        <button class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">
-                            <i class="fab fa-github mr-2"></i>{% trans "Connect" %}
-                        </button>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">{% trans "Connect with Slack" %}</span>
-                        <button class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                            <i class="fab fa-slack mr-2"></i>{% trans "Connect" %}
-                        </button>
+                <!-- Organization -->
+                <div id="organization" class="tab-content hidden">
+                    <div class="settings-card p-6">
+                        <h2 class="text-2xl font-semibold mb-4">{% trans "Organization Information" %}</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="info-item">
+                                    <i class="fas fa-id-badge text-blue-500 mr-2"></i>
+                                    <strong>{% trans "Employee ID:" %}</strong> {{ user.employee_profile.employee_id }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-building text-green-500 mr-2"></i>
+                                    <strong>{% trans "Organization:" %}</strong> {{ user.employee_profile.organization.name }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-briefcase text-purple-500 mr-2"></i>
+                                    <strong>{% trans "Job Position:" %}</strong> {{ user.employee_profile.job_position.title }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-sitemap text-indigo-500 mr-2"></i>
+                                    <strong>{% trans "Organization Unit:" %}</strong> {{ user.employee_profile.organization_unit.name }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="info-item">
+                                    <i class="fas fa-user-tie text-red-500 mr-2"></i>
+                                    <strong>{% trans "Manager:" %}</strong> {{ user.employee_profile.manager.get_full_name }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-calendar-alt text-yellow-500 mr-2"></i>
+                                    <strong>{% trans "Hire Date:" %}</strong> {{ user.employee_profile.hire_date|date:"F d, Y" }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-phone text-teal-500 mr-2"></i>
+                                    <strong>{% trans "Work Phone:" %}</strong> {{ user.employee_profile.work_phone }}
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-envelope text-pink-500 mr-2"></i>
+                                    <strong>{% trans "Work Email:" %}</strong> {{ user.employee_profile.work_email }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Preferences -->
+                <div id="preferences" class="tab-content hidden">
+                    <div class="settings-card p-6">
+                        <h2 class="text-2xl font-semibold mb-4">{% trans "User Preferences" %}</h2>
+                        <form method="post" action="{% url 'learner_settings' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="update_preferences">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="{{ preferences_form.preferred_language.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Preferred Language" %}</label>
+                                    <select name="{{ preferences_form.preferred_language.name }}" id="{{ preferences_form.preferred_language.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        {% for value, label in preferences_form.fields.preferred_language.choices %}
+                                            <option value="{{ value }}" {% if preferences_form.preferred_language.value == value %}selected{% endif %}>{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% if preferences_form.preferred_language.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ preferences_form.preferred_language.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <label for="{{ preferences_form.timezone.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">{% trans "Time Zone" %}</label>
+                                    <select name="{{ preferences_form.timezone.name }}" id="{{ preferences_form.timezone.id_for_label }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        {% for value, label in preferences_form.fields.timezone.choices %}
+                                            <option value="{{ value }}" {% if preferences_form.timezone.value == value %}selected{% endif %}>{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% if preferences_form.timezone.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ preferences_form.timezone.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-semibold mb-2">{% trans "Notification Preferences" %}</h3>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" name="{{ preferences_form.email_notifications_enabled.name }}" id="{{ preferences_form.email_notifications_enabled.id_for_label }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {% if preferences_form.email_notifications_enabled.value %}checked{% endif %}>
+                                        <label for="{{ preferences_form.email_notifications_enabled.id_for_label }}" class="ml-2 text-sm font-medium text-gray-900">{% trans "Receive email notifications" %}</label>
+                                    </div>
+                                    {% if preferences_form.email_notifications_enabled.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ preferences_form.email_notifications_enabled.errors.0 }}</p>
+                                    {% endif %}
+                                    <div class="flex items-center">
+                                        <input type="checkbox" name="{{ preferences_form.sms_notifications_enabled.name }}" id="{{ preferences_form.sms_notifications_enabled.id_for_label }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {% if preferences_form.sms_notifications_enabled.value %}checked{% endif %}>
+                                        <label for="{{ preferences_form.sms_notifications_enabled.id_for_label }}" class="ml-2 text-sm font-medium text-gray-900">{% trans "Receive SMS notifications" %}</label>
+                                    </div>
+                                    {% if preferences_form.sms_notifications_enabled.errors %}
+                                        <p class="text-red-500 text-xs italic">{{ preferences_form.sms_notifications_enabled.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button type="submit" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                <i class="fas fa-save mr-2"></i>{% trans "Save Preferences" %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
-        
-        {% endblock %}
-        
-        {% block extra_js %}
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Navigation highlighting
-            const navItems = document.querySelectorAll('.settings-nav-item');
-            const sections = document.querySelectorAll('section');
-        
-            function setActiveNavItem() {
-                let currentSection = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= sectionTop - 50) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-        
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.querySelector('a').getAttribute('href').slice(1) === currentSection) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        
-            window.addEventListener('scroll', setActiveNavItem);
-            setActiveNavItem();
-        
-            // Form submission handling
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    // Here you would typically send the form data to your backend
-                    console.log('Form submitted:', this.id);
-                    // Show a success message to the user
-                    alert('Settings saved successfully!');
-                });
-            });
-        
-            // Toggle switches
-            const toggles = document.querySelectorAll('.toggle-checkbox');
-            toggles.forEach(toggle => {
-                toggle.addEventListener('change', function() {
-                    console.log(this.name, 'toggled:', this.checked);
-                    // Here you would typically update this setting in your backend
-                });
-            });
-        
-            // Integration buttons
-            const integrationButtons = document.querySelectorAll('#integrations button');
-            integrationButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const integration = this.querySelector('i').className.split('-')[1];
-                    console.log('Connect with', integration);
-                    // Here you would typically initiate the OAuth flow for the selected integration
-                });
-            });
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabName = button.getAttribute('data-tab');
+            
+            tabButtons.forEach(btn => btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500'));
+            tabContents.forEach(content => content.classList.add('hidden'));
+            
+            button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+            document.getElementById(tabName).classList.remove('hidden');
         });
-        </script>
-        {% endblock %}
+    });
+});
+</script>
+{% endblock %}

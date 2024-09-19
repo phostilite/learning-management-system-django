@@ -118,7 +118,6 @@ urlpatterns = [
     path('learner/certificates/', learner_views.CertificateView.as_view(), name='learner_certificate'),
     path('learner/badges/', learner_views.BadgeView.as_view(), name='learner_badge'),
     path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
-    path('learner/profile/', learner_views.ProfileView.as_view(), name='learner_profile'),
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),

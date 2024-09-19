@@ -25,6 +25,16 @@ class User(AbstractUser):
     )
     current_organization = models.ForeignKey('organization.Organization', on_delete=models.SET_NULL, null=True, blank=True, related_name='current_users')
     current_organization_unit = models.ForeignKey('organization.OrganizationUnit', on_delete=models.SET_NULL, null=True, blank=True, related_name='current_users')
+    bio = models.TextField(blank=True, null=True)
+
+    # New fields
+    preferred_language = models.CharField(
+        max_length=10,
+        choices=[('en', 'English'), ('es', 'Spanish'), ('fr', 'French')],  # Add more languages as needed
+        default='en'
+    )
+    email_notifications_enabled = models.BooleanField(default=True)
+    sms_notifications_enabled = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         try:
