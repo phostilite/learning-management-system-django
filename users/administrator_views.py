@@ -1,3 +1,4 @@
+import pandas as pd
 import logging
 import json
 from datetime import timedelta
@@ -1664,3 +1665,4 @@ class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixi
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+
