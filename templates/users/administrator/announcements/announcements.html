@@ -86,15 +86,15 @@
             </select>
         </div>
         <div class="flex space-x-2 rtl:space-x-reverse">
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-                {% trans "Export Report" %}
-            </button>
+                <button onclick="exportTableToExcel('announcementsTable', 'announcements')" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                    {% trans "Export Report" %}
+                </button>
         </div>
     </div>
 
     <!-- Announcements Table -->
     <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500" id="announcementsTable">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">{% trans "Title" %}</th>
@@ -189,5 +189,48 @@
         </nav>
     </div>
 </div>
+
+<script>
+    function exportTableToExcel(tableID, filename = ''){
+        var tableSelect = document.getElementById(tableID);
+        var workbook = XLSX.utils.table_to_book(tableSelect, {sheet: "Sheet1"});
+        var ws = workbook.Sheets["Sheet1"];
+        
+        // Create a new workbook and append the worksheet
+        var newWorkbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(newWorkbook, ws, "Sheet1");
+        
+        // Write the workbook to a binary string
+        var wbout = XLSX.write(newWorkbook, {bookType: 'xlsx', type: 'binary'});
+        
+        // Convert the binary string to a Blob
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+        
+        var blob = new Blob([s2ab(wbout)], {type: "application/octet-stream"});
+        
+        // Create a link element
+        var downloadLink = document.createElement("a");
+        
+        // Set the file name
+        downloadLink.download = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+        
+        // Create a link to the file
+        downloadLink.href = URL.createObjectURL(blob);
+        
+        // Append the link to the body
+        document.body.appendChild(downloadLink);
+        
+        // Trigger the download
+        downloadLink.click();
+        
+        // Remove the link from the body
+        document.body.removeChild(downloadLink);
+    }
+</script>
 
 {% endblock %}
