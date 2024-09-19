@@ -97,7 +97,8 @@ urlpatterns = [
     # announcements
      path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
      path('administrator/announcement/create/', administrator_views.AdministratorAnnouncementCreateView.as_view(), name='administrator_announcement_create'),
-     path('administrator/announcement/<uuid:pk>/detail/', administrator_views.AdministratorAnnouncementDetailView.as_view(), name='administrator_announcement_detail'),  
+     path('administrator/announcement/<uuid:pk>/detail/', administrator_views.AdministratorAnnouncementDetailView.as_view(), name='administrator_announcement_detail'),
+     path('administrator/announcement/<uuid:pk>/delete/', administrator_views.AdministratorAnnouncementDeleteView.as_view(), name='administrator_announcement_delete'),
 
 
 
