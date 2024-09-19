@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.contrib.auth import get_user_model
 from .models import (
     Organization,
     OrganizationUnit,
@@ -12,6 +13,8 @@ from .models import (
     OrganizationChange,
     TeamMembership
 )
+
+User = get_user_model()
 
 class OrganizationUnitInline(admin.TabularInline):
     model = OrganizationUnit
@@ -61,8 +64,8 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(JobPosition)
 class JobPositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'organization', 'code', 'is_manager_position')
-    list_filter = ('organization', 'is_manager_position')
+    list_display = ('title', 'organization', 'code', 'level', 'is_manager_position')
+    list_filter = ('organization', 'is_manager_position', 'level')
     search_fields = ('title', 'code')
 
 class TeamMembershipInline(admin.TabularInline):
@@ -72,17 +75,22 @@ class TeamMembershipInline(admin.TabularInline):
 @admin.register(EmployeeProfile)
 class EmployeeProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'employee_id', 'organization', 'job_position', 'hire_date', 'is_active')
-    list_filter = ('organization', 'is_active', 'hire_date')
+    list_filter = ('organization', 'is_active', 'hire_date', 'job_position__level')
     search_fields = ('user__username', 'user__email', 'employee_id')
-    raw_id_fields = ('user', 'job_position', 'organization_unit', 'manager', 'location')
+    raw_id_fields = ('user', 'job_position', 'organization_unit', 'manager')
     inlines = [TeamMembershipInline]
     fieldsets = (
         (None, {'fields': ('user', 'organization', 'employee_id')}),
         ('Job Information', {'fields': ('job_position', 'organization_unit', 'manager')}),
         ('Dates', {'fields': ('hire_date', 'termination_date')}),
         ('Status', {'fields': ('is_active',)}),
-        ('Contact', {'fields': ('location', 'work_phone', 'work_email')}),
+        ('Contact', {'fields': ('work_phone', 'work_email')}),
     )
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "user":
+            kwargs["queryset"] = User.objects.filter(groups__name__in=['Learner', 'Facilitator', 'Supervisor', 'Administrator'])
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 @admin.register(OrganizationContact)
 class OrganizationContactAdmin(admin.ModelAdmin):

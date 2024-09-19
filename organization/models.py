@@ -6,6 +6,9 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 import uuid
+import logging
+
+logger = logging.getLogger(__name__)
 
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,8 +34,8 @@ class Organization(TimeStampedModel):
     
     def get_all_users(self):
         return settings.AUTH_USER_MODEL.objects.filter(
-            userrole__organization=self,
-            userrole__is_active=True
+            employee_profile__organization=self,
+            employee_profile__is_active=True
         ).distinct()
 
 class OrganizationUnit(TimeStampedModel):
@@ -108,18 +111,11 @@ class OrganizationUnit(TimeStampedModel):
 
     def get_users(self):
         return settings.AUTH_USER_MODEL.objects.filter(
-            userrole__organization=self.organization,
-            userrole__organization_unit=self,
-            userrole__is_active=True
+            employee_profile__organization=self.organization,
+            employee_profile__organization_unit=self,
+            employee_profile__is_active=True
         ).distinct()
 
-    def get_managers(self):
-        return settings.AUTH_USER_MODEL.objects.filter(
-            userrole__organization=self.organization,
-            userrole__organization_unit=self,
-            userrole__role__name='Manager',  
-            userrole__is_active=True
-        ).distinct()
 
 class Location(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -145,16 +141,17 @@ class JobPosition(TimeStampedModel):
     code = models.CharField(max_length=50, blank=True)
     description = models.TextField(blank=True)
     is_manager_position = models.BooleanField(default=False)
+    level = models.PositiveIntegerField(default=1)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='subordinate_positions')
 
     def __str__(self):
-        return f"{self.organization.name} - {self.title}"
+        return f"{self.organization.name} - {self.title} (Level {self.level})"
     
     def get_users(self):
         return settings.AUTH_USER_MODEL.objects.filter(
-            userorganizationassignment__organization=self.organization,
-            userorganizationassignment__job_position=self,
-            userorganizationassignment__is_active=True
+            employee_profile__organization=self.organization,
+            employee_profile__job_position=self,
+            employee_profile__is_active=True
         ).distinct()
 
 class EmployeeProfile(TimeStampedModel):
@@ -165,22 +162,24 @@ class EmployeeProfile(TimeStampedModel):
     job_position = models.ForeignKey(JobPosition, on_delete=models.SET_NULL, null=True, related_name='employees')
     organization_unit = models.ForeignKey(OrganizationUnit, on_delete=models.SET_NULL, null=True, related_name='employees')
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='subordinates')
-    current_assignment = models.ForeignKey('users.UserOrganizationAssignment', on_delete=models.SET_NULL, null=True, related_name='current_profile')
     hire_date = models.DateField()
     termination_date = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='employees')
     work_phone = models.CharField(max_length=20, blank=True)
     work_email = models.EmailField(blank=True)
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.employee_id}"
-    
-    def get_current_role(self):
-        return self.user.get_current_role()
 
-    def get_all_roles(self):
-        return self.user.get_all_roles()
+    def save(self, *args, **kwargs):
+        try:
+            super().save(*args, **kwargs)
+            self.user.current_organization = self.organization
+            self.user.current_organization_unit = self.organization_unit
+            self.user.save()
+        except Exception as e:
+            logger.error(f"Error saving EmployeeProfile for user {self.user.username}: {str(e)}")
+            raise
 
 class OrganizationContact(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
