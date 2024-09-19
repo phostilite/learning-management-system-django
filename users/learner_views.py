@@ -774,6 +774,7 @@ class HelpSupportView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['support_tickets'] = SupportTicket.objects.filter(created_by=self.request.user)
         return context
     
 class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
@@ -787,7 +788,7 @@ class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView)
         return context
 
     def test_func(self):
-        return self.request.user.is_staff or hasattr(self.request.user, 'learner')
+        return self.request.user.groups.filter(name='learner').exists()
 
     def form_valid(self, form):
         try:
@@ -806,6 +807,19 @@ class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView)
         messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
         return super().form_invalid(form)
     
+    
+class LearnerTicketDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/learner/support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='learner').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 # ============================================================
 # ======================= Notifications Views ================
 # ============================================================

@@ -171,7 +171,7 @@ urlpatterns = [
     
      path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
      path('learner/help-support/tickets/create/',learner_views.LearnerTicketCreateView.as_view(), name='learner_tickets_create'),
-
+     path('learner/help-support/tickets/<uuid:pk>/ticket_details/', learner_views.LearnerTicketDetailView.as_view(), name='learner_tickets_detail'),
      
      
 
