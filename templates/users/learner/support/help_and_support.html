@@ -1,0 +1,200 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Help & Support - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .faq-item {
+        transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+        background-color: #F3F4F6;
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .faq-answer.active {
+        max-height: 500px;
+        transition: max-height 0.5s ease-in;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Help & Support" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Find answers to your questions and get the support you need" %}</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Quick Help Section -->
+        <div class="md:col-span-2">
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "How can we help you?" %}</h2>
+                <div class="relative">
+                    <input type="text" placeholder="{% trans 'Search for help...' %}" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button class="absolute right-2 top-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+                        {% trans "Search" %}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Frequently Asked Questions -->
+            <div class="bg-white rounded-lg p-6 card-shadow">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Frequently Asked Questions" %}</h2>
+                <div class="space-y-4">
+                    <div class="faq-item p-4 rounded-lg border border-gray-200">
+                        <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
+                            {% trans "How do I reset my password?" %}
+                            <i class="fas fa-chevron-down float-right"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            <p>{% trans "To reset your password, follow these steps:" %}</p>
+                            <ol class="list-decimal list-inside mt-2">
+                                <li>{% trans "Click on the 'Forgot Password' link on the login page" %}</li>
+                                <li>{% trans "Enter your email address" %}</li>
+                                <li>{% trans "Check your email for a password reset link" %}</li>
+                                <li>{% trans "Click the link and follow the instructions to create a new password" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="faq-item p-4 rounded-lg border border-gray-200">
+                        <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
+                            {% trans "How do I enroll in a course?" %}
+                            <i class="fas fa-chevron-down float-right"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            <p>{% trans "To enroll in a course:" %}</p>
+                            <ol class="list-decimal list-inside mt-2">
+                                <li>{% trans "Browse the course catalog" %}</li>
+                                <li>{% trans "Select the course you're interested in" %}</li>
+                                <li>{% trans "Click the 'Enroll' button on the course page" %}</li>
+                                <li>{% trans "Follow the prompts to complete enrollment" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="faq-item p-4 rounded-lg border border-gray-200">
+                        <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
+                            {% trans "How do I track my progress?" %}
+                            <i class="fas fa-chevron-down float-right"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            <p>{% trans "You can track your progress by:" %}</p>
+                            <ul class="list-disc list-inside mt-2">
+                                <li>{% trans "Visiting your learner dashboard" %}</li>
+                                <li>{% trans "Checking the progress bar in each course" %}</li>
+                                <li>{% trans "Reviewing your completed assignments and quizzes" %}</li>
+                                <li>{% trans "Checking your grades in the 'Grades' section" %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Options -->
+        <div class="md:col-span-1">
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Contact Support" %}</h2>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-envelope mr-2"></i>
+                            {% trans "Email Support" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-comment-dots mr-2"></i>
+                            {% trans "Live Chat" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            {% trans "Phone Support" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Help Resources" %}</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">{% trans "User Guide" %}</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">{% trans "Video Tutorials" %}</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">{% trans "Community Forums" %}</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-blue-600 hover:text-blue-800">{% trans "System Status" %}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-6 card-shadow">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">{% trans "Need More Help?" %}</h2>
+                <p class="text-gray-600 mb-4">{% trans "Our support team is here to assist you." %}</p>
+                <a href="{% url 'learner_tickets_create'  %}" class="block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+                    {% trans "Submit a Ticket" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ accordion functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector('i');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        });
+    });
+
+    // Search functionality (placeholder - you'll need to implement the actual search)
+    const searchInput = document.querySelector('input[type="text"]');
+    const searchButton = searchInput.nextElementSibling;
+    
+    searchButton.addEventListener('click', function() {
+        const searchTerm = searchInput.value;
+        console.log('Searching for:', searchTerm);
+        // Implement your search logic here
+    });
+
+    // Contact support links (placeholder - you'll need to implement the actual functionality)
+    const supportLinks = document.querySelectorAll('.md\\:col-span-1 a');
+    supportLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Support option clicked:', this.textContent.trim());
+            // Implement your support option logic here
+        });
+    });
+});
+</script>
+{% endblock %}

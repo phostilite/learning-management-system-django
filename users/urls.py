@@ -165,7 +165,15 @@ urlpatterns = [
      path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
      path('learner/profile/', learner_views.ProfileView.as_view(), name='learner_profile'),
      path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
+     
+     
+     # Help And Support
+    
      path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
+     path('learner/help-support/tickets/create/',learner_views.LearnerTicketCreateView.as_view(), name='learner_tickets_create'),
+
+     
+     
 
      path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),
 

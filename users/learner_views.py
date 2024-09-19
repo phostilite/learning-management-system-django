@@ -15,6 +15,8 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -25,6 +27,9 @@ from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.contrib.auth import get_user_model
+
+from support.models import SupportTicket
+from support.forms import TicketForm
 
 from django_filters.views import FilterView
 from .filters import ProgramFilter, CourseFilter
@@ -765,12 +770,41 @@ class SettingsView(TemplateView):
     
 @method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):
-    template_name = 'users/learner/help_support.html'
+    template_name = 'users/learner/support/help_and_support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
+class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    template_name = 'users/learner/support/tickets/create.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('learner_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Ticket'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'learner')
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
     
 # ============================================================
 # ======================= Notifications Views ================

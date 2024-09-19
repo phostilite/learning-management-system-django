@@ -20,12 +20,14 @@ class TicketForm(forms.ModelForm):
             'category': forms.Select(attrs={
                 'class': 'form-control'
             }),
-            'priority': forms.Select(attrs={
-                'class': 'form-control'
+           'priority': forms.Select(attrs={
+                'class': 'form-control',
+                'required': False
             }),
             'status': forms.Select(attrs={
-                'class': 'form-control'
-        })
+                'class': 'form-control',
+                'required': False
+            })
         }
         help_texts = {
             'title': 'A short, descriptive title for your support ticket.',
@@ -37,8 +39,8 @@ class TicketForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = SupportCategory.objects.all()
-        self.fields['priority'].choices = SupportTicket.PRIORITY_CHOICES
-        self.fields['status'].choices = SupportTicket.STATUS_CHOICES
+        self.fields['priority'].required = False
+        self.fields['status'].required = False
         
 
     def clean_title(self):
