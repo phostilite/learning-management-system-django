@@ -1650,3 +1650,17 @@ class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixi
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+
+
+class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+    model = Announcement
+    form_class = AnnouncementForm
+    template_name = 'users/administrator/announcements/announcement_update.html'
+    context_object_name = 'announcement'
+    success_url = reverse_lazy('administrator_announcement_list')
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_object(self):
+        return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
