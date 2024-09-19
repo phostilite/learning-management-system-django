@@ -41,19 +41,19 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Total Announcements" %}</h3>
-            <p class="text-3xl font-bold text-primary">127</p>
+            <p class="text-3xl font-bold text-primary">{{ total_announcements }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Active Announcements" %}</h3>
-            <p class="text-3xl font-bold text-accent">12</p>
+            <p class="text-3xl font-bold text-accent">{{ active_announcements }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Scheduled" %}</h3>
-            <p class="text-3xl font-bold text-yellow-500">5</p>
+            <p class="text-3xl font-bold text-yellow-500">{{ scheduled_announcements }}</p>
         </div>
         <div class="bg-white rounded-lg p-4 card-shadow">
             <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Engagement Rate" %}</h3>
-            <p class="text-3xl font-bold text-green-600">78%</p>
+            <p class="text-3xl font-bold text-green-600">{{ avg_engagement_rate|floatformat:2 }}%</p>
         </div>
     </div>
 

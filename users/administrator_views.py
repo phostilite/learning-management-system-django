@@ -46,8 +46,11 @@ from quizzes.forms import QuizForm, QuestionForm, ChoiceForm, ChoiceFormSet, Que
 from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
-from announcements.models import Announcement
+from announcements.models import Announcement, AnnouncementRead
 from announcements.forms import AnnouncementForm
+from django.db.models import Count, Avg, Q
+
+
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
 # Initialize logger
@@ -1591,7 +1594,7 @@ class AdministratorNotificationListView(TemplateView):
 # ============================================================
 # ======================= Announcements Views ================
 # ============================================================
-class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin,TemplateView):
+class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'users/administrator/announcements/announcements.html'
 
     def test_func(self):
@@ -1599,10 +1602,26 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['announcements'] = Announcement.objects.all()
+        
+        # Calculate metrics
+        total_announcements = Announcement.objects.count()
+        active_announcements = Announcement.objects.filter(is_active=True).count()
+        scheduled_announcements = Announcement.objects.filter(publish_date__gt=timezone.now()).count()
+        
+        # Calculate total reads and average engagement rate
+        total_reads = AnnouncementRead.objects.count()
+        avg_engagement_rate = (total_reads / total_announcements) * 100 if total_announcements > 0 else 0
+
+        # Add metrics to context
+        context['total_announcements'] = total_announcements
+        context['active_announcements'] = active_announcements
+        context['scheduled_announcements'] = scheduled_announcements
+        context['avg_engagement_rate'] = avg_engagement_rate
+        context['announcements'] = Announcement.objects.all().order_by('-publish_date')
+
         return context
     
-class AdministratorAnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin,FormView):
+class AdministratorAnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     form_class = AnnouncementForm
     template_name = 'users/administrator/announcements/announcement_create.html'
     success_url = reverse_lazy('administrator_announcement_list')
@@ -1640,7 +1659,7 @@ class AdministratorAnnouncementDetailView(LoginRequiredMixin, UserPassesTestMixi
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
 
     
-class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
+class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Announcement
     template_name = 'users/administrator/announcements/announcement_confirm_delete.html'
     context_object_name = 'announcement'
@@ -1653,7 +1672,7 @@ class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixi
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
 
 
-class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Announcement
     form_class = AnnouncementForm
     template_name = 'users/administrator/announcements/announcement_update.html'
