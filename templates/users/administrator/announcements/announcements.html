@@ -140,9 +140,11 @@
                         <button class="text-green-600 hover:text-green-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'View Statistics' %}">
                             <i class="fas fa-chart-bar"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0" title="{% trans 'Delete Announcement' %}">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <a href="{% url 'administrator_announcement_delete' announcement.pk %}" title="{% trans 'Delete Announcement' %}">
+                            <button class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
