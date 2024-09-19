@@ -186,7 +186,7 @@
                             <i class="fas fa-pen"></i>
                         </a>
                         <a href="{% url 'administrator_ticket_delete' ticket.id %}" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
-                            <i class="fas fa-circle"></i>
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -196,18 +196,42 @@
     </div>
 
     <!-- FAQ Section -->
+
     <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
-        <div class="p-4 border-b border-gray-200">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 class="text-xl font-semibold">{% trans "Frequently Asked Questions" %}</h2>
+            <div>
+                <a class="bg-blue-500 text-white px-4 py-2 rounded mr-2" href="{% url 'administrator_faq_create' %}">{% trans "Create FAQ" %}</a>
+            </div>
         </div>
         <div class="p-4">
-            <div class="mb-4">
-                <h3 class="font-semibold mb-2">{% trans "How do I reset a student's password?" %}</h3>
-                <p class="text-gray-600">{% trans "To reset a student's password, go to User Management, find the student's profile, and click on the 'Reset Password' button. An email with instructions will be sent to the student." %}</p>
+            <div class="mb-4 flex justify-between items-center">
+                <div>
+                    <h3 class="font-semibold mb-2">{% trans "How do I reset a student's password?" %}</h3>
+                    <p class="text-gray-600">{% trans "To reset a student's password, go to User Management, find the student's profile, and click on the 'Reset Password' button. An email with instructions will be sent to the student." %}</p>
+                </div>
+                <div class="flex space-x-2">
+                    <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a href="#" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
             </div>
-            <div class="mb-4">
-                <h3 class="font-semibold mb-2">{% trans "How can I add a new course to the system?" %}</h3>
-                <p class="text-gray-600">{% trans "To add a new course, navigate to the Courses section, click on 'Add New Course', fill in the required information, and upload course materials. Don't forget to assign instructors and set the course schedule." %}</p>
+            <div class="mb-4 flex justify-between items-center">
+                <div>
+                    <h3 class="font-semibold mb-2">{% trans "How can I add a new course to the system?" %}</h3>
+                    <p class="text-gray-600">{% trans "To add a new course, navigate to the Courses section, click on 'Add New Course', fill in the required information, and upload course materials. Don't forget to assign instructors and set the course schedule." %}</p>
+                </div>
+                <div class="flex space-x-2">
+                    <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a href="#" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
             </div>
             <!-- Add more FAQs as needed -->
         </div>

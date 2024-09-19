@@ -46,7 +46,9 @@ from organization.models import Organization
 from users.forms import LearnerCreationForm
 from users.models import Learner, Facilitator, Supervisor, SCORMUserProfile
 from support.models import SupportTicket
+from support.models import FAQ
 from support.forms import TicketForm
+from support.forms import FAQForm
 from .api_client import create_scormhub_course, register_user_for_course, upload_scorm_package
 
 # Initialize logger
@@ -1726,3 +1728,37 @@ class AdministratorTicketDeleteView (LoginRequiredMixin, UserPassesTestMixin, De
         context = super().get_context_data(**kwargs)
         context['title'] = ("Delete Ticket")
         return context
+    
+    
+class AdministratorFaqCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    model= FAQ
+    form_class = FAQForm
+    template_name = 'users/administrator/help_and_support/FAQ/create_faq.html'
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New FAQ'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff or hasattr(self.request.user, 'administrator')
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'FAQ created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating FAQ: {e}")
+            messages.error(self.request, 'There was an error creating the FAQ. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the FAQ. Please check the form and try again.')
+        return super().form_invalid(form)
+    
+    
