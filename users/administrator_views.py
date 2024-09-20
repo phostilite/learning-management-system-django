@@ -10,6 +10,7 @@ from rest_framework import permissions, status
 from rest_framework.permissions import BasePermission, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django_filters.views import FilterView
 
 # Django imports
 from django.conf import settings
@@ -51,11 +52,15 @@ from courses.forms import (CourseComponentForm, CourseForm, CoursePublishForm,
 from courses.models import (Course, CourseCategory, Delivery, DeliveryComponent,
                             Enrollment, LearningResource, Program,
                             ProgramCourse, ScormResource, Tag)
-from organization.models import Organization
+from organization.models import Organization, OrganizationUnit, OrganizationContact, OrganizationChange, Location, JobPosition, EmployeeProfile
 from quizzes.forms import ChoiceForm, ChoiceFormSet, QuestionForm, QuestionFormSet, QuizForm
 from quizzes.models import Choice, Question, Quiz
 from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
+from activities.models import SystemNotification, ActivityLog, UserSession
+
+from .utils.notification_utils import create_notification, log_activity
+from .filters import NotificationFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -1467,8 +1472,128 @@ class AdministratorEnrollmentDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 # ============================================================
+# =============== Organization Hierarcy Views ================
+# ============================================================
+
+class OrganizationDetailsView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()  
+        context['organization'] = organization
+        return context
+
+class OrganizationUnitsView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_units.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()
+        organization_units = OrganizationUnit.objects.filter(organization=organization)
+        context['organization_units'] = organization_units
+        return context
+    
+class OrganizationLocationsView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_locations.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()
+        locations = Location.objects.filter(organization=organization)
+        context['locations'] = locations
+        return context
+    
+class OrganizationJobPositionsView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_job_positions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()
+        job_positions = JobPosition.objects.filter(organization=organization)
+        context['job_positions'] = job_positions
+        return context
+    
+class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_employee_profiles.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        organization = Organization.objects.first()
+        employee_profiles = EmployeeProfile.objects.filter(organization=organization)
+        context['employee_profiles'] = employee_profiles
+        return context
+    
+class OrganizationGroupsView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/organization/organization_groups.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        groups = Group.objects.all()
+        context['groups'] = groups
+        return context
+    
+
+# ============================================================
 # ======================= Notifications Views ================
 # ============================================================
 
-class AdministratorNotificationListView(AdministratorRequiredMixin, TemplateView):
+class RecentNotificationsView(AdministratorRequiredMixin, View):
+    def get(self, request):
+        notifications = SystemNotification.objects.filter(
+            user=request.user,
+            is_read=False
+        )[:3]  
+
+        data = [{
+            'id': notification.id,
+            'message': notification.message,
+            'timestamp': notification.timestamp.isoformat()
+        } for notification in notifications]
+
+        return JsonResponse(data, safe=False)
+
+class NotificationListView(AdministratorRequiredMixin, FilterView, ListView):
+    model = SystemNotification
     template_name = 'users/administrator/notifications/notifications_list.html'
+    context_object_name = 'notifications'
+    filterset_class = NotificationFilter
+
+    def get_queryset(self):
+        try:
+            return SystemNotification.objects.filter(user=self.request.user).order_by('-timestamp')
+        except Exception as e:
+            logger.error(f"Error fetching notifications for user {self.request.user}: {e}")
+            return SystemNotification.objects.none()
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = self.filterset
+        return context
+        
+class MarkNotificationReadView(AdministratorRequiredMixin, View):
+    def post(self, request, pk):
+        try:
+            notification = SystemNotification.objects.get(id=pk, user=request.user)
+            notification.is_read = True
+            notification.save()
+            return JsonResponse({'status': 'success'})
+        except SystemNotification.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Notification not found'}, status=404)
+        except Exception as e:
+            logger.error(f"Error marking notification as read: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
+
+class MarkAllNotificationsReadView(AdministratorRequiredMixin, View):
+    def post(self, request):
+        SystemNotification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+        return JsonResponse({'status': 'success'})
+    
+class UnreadNotificationsCountView(AdministratorRequiredMixin, View):
+    def get(self, request):
+        try:
+            count = SystemNotification.objects.filter(user=request.user, is_read=False).count()
+            return JsonResponse({'count': count})
+        except Exception as e:
+            logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
+            return JsonResponse({'count': 0})

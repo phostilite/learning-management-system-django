@@ -96,6 +96,14 @@ urlpatterns = [
     path('administrator/learners/', administrator_views.AdministratorLearnerListView.as_view(), name='administrator_learner_list'),
     path('administrator/facilitators/', administrator_views.AdministratorFacilitatorListView.as_view(), name='administrator_facilitator_list'),
     path('administrator/supervisors/', administrator_views.AdministratorSupervisorListView.as_view(), name='administrator_supervisor_list'),
+    
+    path('administrator/organization/', administrator_views.OrganizationDetailsView.as_view(), name='administrator_organization_details'),
+    path('administrator/organization/units/', administrator_views.OrganizationUnitsView.as_view(), name='administrator_organization_units'),
+    path('administrator/organization/groups/', administrator_views.OrganizationGroupsView.as_view(), name='administrator_organization_groups'),
+    path('administrator/organization/locations/', administrator_views.OrganizationLocationsView.as_view(), name='administrator_organization_locations'),
+    path('administrator/organization/job-positions/', administrator_views.OrganizationJobPositionsView.as_view(), name='administrator_organization_job_positions'),
+    path('administrator/organization/employee-profiles/', administrator_views.OrganizationEmployeeProfilesView.as_view(), name='administrator_organization_employee_profiles'),
+    
 
     # Other Administrator Views
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
@@ -103,7 +111,13 @@ urlpatterns = [
     path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
-    path('administrator/notification/', administrator_views.AdministratorNotificationListView.as_view(), name='administrator_notification_list'),
+
+    # Notification Views
+    path('administrator/notifications/recent/', administrator_views.RecentNotificationsView.as_view(), name='administrator_recent_notifications'),
+    path('administrator/notification/', administrator_views.NotificationListView.as_view(), name='administrator_notification_list'),
+    path('administrator/notifications/<uuid:pk>/mark-read/', administrator_views.MarkNotificationReadView.as_view(), name='administrator_mark_notification_read'),
+    path('administrator/notifications/mark-all-read/', administrator_views.MarkAllNotificationsReadView.as_view(), name='administrator_mark_all_notifications_read'),
+    path('administrator/notifications/unread-count/', administrator_views.UnreadNotificationsCountView.as_view(), name='administrator_unread_notifications_count'),
 
     # ==================== Learner URLs ====================
     # Dashboard and General Views

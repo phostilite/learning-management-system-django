@@ -1,0 +1,97 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Organization Details - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .organization-logo {
+        max-width: 200px;
+        max-height: 200px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="organization-details-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{{ organization.name }}</h1>
+            <p class="text-center text-lg">{% trans "Organization Details" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Organization Details" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Organization Details -->
+    <div class="bg-white shadow rounded-lg p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">{% trans "General Information" %}</h2>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Name:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.name }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Legal Name:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.legal_name }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Tax ID:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.tax_id }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Registration Number:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.registration_number }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Founded Date:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.founded_date }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Industry:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.industry }}</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">{% trans "Additional Information" %}</h2>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Website:" %}</p>
+                    <p class="text-lg font-semibold">{{ organization.website }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Description:" %}</p>
+                    <p class="text-lg">{{ organization.description }}</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">{% trans "Logo:" %}</p>
+                    {% if organization.logo %}
+                        <img src="{{ organization.logo.url }}" alt="{% trans 'Organization Logo' %}" class="organization-logo">
+                    {% else %}
+                        <p class="text-lg">{% trans "No logo available" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

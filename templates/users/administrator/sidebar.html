@@ -84,20 +84,29 @@
                         </ul>
                     </li>
                     <li>
-                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-users" data-collapse-toggle="dropdown-users">
-                            <i class="fa-solid fa-users mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Users" %}</span>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-organization" data-collapse-toggle="dropdown-organization">
+                            <i class="fa-solid fa-building mr-3 text-teal-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Organization" %}</span>
                             <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
                         </button>
-                        <ul id="dropdown-users" class="hidden py-2 space-y-2 sidebar-dropdown">
+                        <ul id="dropdown-organization" class="hidden py-2 space-y-2 sidebar-dropdown">
                             <li>
-                                <a href="{% url 'administrator_learner_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Learners" %}</a>
+                                <a href="{% url 'administrator_organization_details' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Organization Details" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_facilitator_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Facilitators" %}</a>
+                                <a href="{% url 'administrator_organization_units' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Organization Units" %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'administrator_supervisor_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Supervisors" %}</a>
+                                <a href="{% url 'administrator_organization_groups' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Groups" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_locations' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Locations" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_job_positions' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Job Positions" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_employee_profiles' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Employee Profiles" %}</a>
                             </li>
                         </ul>
                     </li>

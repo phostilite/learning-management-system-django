@@ -1,0 +1,319 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Organization Units - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Organization Units Management" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Manage and Organize Your Organization Structure" %}</p>
+        </header>
+
+        <!-- Organization Metrics -->
+        <div class="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Total Units" %}</h3>
+                <p class="text-3xl font-bold text-primary">15</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Active Units" %}</h3>
+                <p class="text-3xl font-bold text-green-600">12</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Inactive Units" %}</h3>
+                <p class="text-3xl font-bold text-yellow-600">3</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 card-shadow">
+                <h3 class="text-lg font-semibold mb-2">{% trans "Total Employees" %}</h3>
+                <p class="text-3xl font-bold text-blue-600">150</p>
+            </div>
+        </div>
+
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Organization Units" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        
+        <!-- Search, Filters, and View Switcher -->
+        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex-grow">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="unitSearchInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans 'Search units...' %}">
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option selected>{% trans "All Unit Types" %}</option>
+                    <option value="COMPANY">{% trans "Company" %}</option>
+                    <option value="DIVISION">{% trans "Division" %}</option>
+                    <option value="DEPARTMENT">{% trans "Department" %}</option>
+                    <option value="TEAM">{% trans "Team" %}</option>
+                </select>
+                <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option selected>{% trans "All Statuses" %}</option>
+                    <option value="1">{% trans "Active" %}</option>
+                    <option value="0">{% trans "Inactive" %}</option>
+                </select>
+                <select id="viewSwitcher" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                    <option value="grid">{% trans "Grid View" %}</option>
+                    <option value="list">{% trans "List View" %}</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="mb-8 flex gap-4">
+            <a href="#" type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-plus mr-2"></i> {% trans "Create Unit" %}
+            </a>
+            <a href="#" type="button" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                <i class="fas fa-file-export mr-2"></i> {% trans "Export Structure" %}
+            </a>
+        </div>
+        
+        <!-- Grid View -->
+        <div id="gridView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Sample Organization Unit Cards -->
+            <div class="bg-white rounded-lg overflow-hidden card-shadow org-unit-card">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-2 org-unit-name">Acme Corporation</h3>
+                    <p class="text-gray-600 mb-4">Main company headquarters</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500"><i class="fas fa-sitemap mr-1"></i> Company</span>
+                        <span class="text-sm text-gray-500"><i class="fas fa-users mr-1"></i> 150 Employees</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">
+                            Active
+                        </span>
+                        <div class="relative">
+                            <button id="unitDropdownButton1" data-dropdown-toggle="unitDropdown1" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitDropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
+                                <ul class="py-2 text-sm text-black" aria-labelledby="unitDropdownButton1">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "View" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-edit mr-2"></i> {% trans "Edit" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-users mr-2"></i> {% trans "Manage Employees" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete" %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg overflow-hidden card-shadow org-unit-card">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-2 org-unit-name">Sales Division</h3>
+                    <p class="text-gray-600 mb-4">Global sales operations</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500"><i class="fas fa-sitemap mr-1"></i> Division</span>
+                        <span class="text-sm text-gray-500"><i class="fas fa-users mr-1"></i> 50 Employees</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">
+                            Active
+                        </span>
+                        <div class="relative">
+                            <button id="unitDropdownButton2" data-dropdown-toggle="unitDropdown2" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitDropdown2" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
+                                <!-- Dropdown menu items -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg overflow-hidden card-shadow org-unit-card">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-2 org-unit-name">IT Department</h3>
+                    <p class="text-gray-600 mb-4">Information Technology support</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500"><i class="fas fa-sitemap mr-1"></i> Department</span>
+                        <span class="text-sm text-gray-500"><i class="fas fa-users mr-1"></i> 30 Employees</span>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">
+                            Active
+                        </span>
+                        <div class="relative">
+                            <button id="unitDropdownButton3" data-dropdown-toggle="unitDropdown3" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitDropdown3" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
+                                <!-- Dropdown menu items -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more sample cards as needed -->
+
+        </div>
+
+        <!-- List View -->
+        <div id="listView" class="hidden overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">{% trans "Name" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Type" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Parent Unit" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Employees" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b org-unit-row">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap org-unit-name">
+                            Acme Corporation
+                        </td>
+                        <td class="px-6 py-4">Company</td>
+                        <td class="px-6 py-4">-</td>
+                        <td class="px-6 py-4">150</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button id="unitListDropdownButton1" data-dropdown-toggle="unitListDropdown1" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitListDropdown1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                <ul class="py-2 text-sm text-black" aria-labelledby="unitListDropdownButton1">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "View" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-edit mr-2"></i> {% trans "Edit" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-users mr-2"></i> {% trans "Manage Employees" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete" %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b org-unit-row">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap org-unit-name">
+                            Sales Division
+                        </td>
+                        <td class="px-6 py-4">Division</td>
+                        <td class="px-6 py-4">Acme Corporation</td>
+                        <td class="px-6 py-4">50</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button id="unitListDropdownButton2" data-dropdown-toggle="unitListDropdown2" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitListDropdown2" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                <!-- Dropdown menu items (same as above) -->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b org-unit-row">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap org-unit-name">
+                            IT Department
+                        </td>
+                        <td class="px-6 py-4">Department</td>
+                        <td class="px-6 py-4">Acme Corporation</td>
+                        <td class="px-6 py-4">30</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button id="unitListDropdownButton3" data-dropdown-toggle="unitListDropdown3" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="unitListDropdown3" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                <!-- Dropdown menu items (same as above) -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Add more sample rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const viewSwitcher = document.getElementById('viewSwitcher');
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+
+    viewSwitcher.addEventListener('change', function() {
+        if (this.value === 'grid') {
+            gridView.classList.remove('hidden');
+            listView.classList.add('hidden');
+        } else {
+            gridView.classList.add('hidden');
+            listView.classList.remove('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

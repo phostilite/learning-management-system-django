@@ -89,55 +89,38 @@
             </div>
         </div>
 
-        <div class="flex items-center">
-            <button id="darkModeToggle" class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-            </button>
-            
-            <div class="ml-3 relative">
-                <div>
-                    <button data-popover-target="notifications-popover" data-popover-placement="bottom" type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <span class="sr-only">{% trans "View notifications" %}</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </button>
-
-                    <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-80 text-sm text-gray-800 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
-                        <div class="p-3">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
-                                <a href="#" class="text-sm text-blue-600 hover:underline">Mark all as read</a>
-                            </div>
-                            <ul class="space-y-2">
-                                <li class="p-2 bg-gray-50 rounded-lg">
-                                    <p class="text-sm font-medium text-gray-900">New course available: Introduction to Python</p>
-                                    <p class="text-xs text-gray-600">2 hours ago</p>
-                                </li>
-                                <li class="p-2 bg-gray-50 rounded-lg">
-                                    <p class="text-sm font-medium text-gray-900">Your assignment "Data Structures" is due tomorrow</p>
-                                    <p class="text-xs text-gray-600">1 day ago</p>
-                                </li>
-                                <li class="p-2 bg-gray-50 rounded-lg">
-                                    <p class="text-sm font-medium text-gray-900">New comment on your forum post</p>
-                                    <p class="text-xs text-gray-600">3 days ago</p>
-                                </li>
-                            </ul>
-                            <div class="mt-4">
-                                <a href="{% url 'administrator_notification_list' %}" class="w-full inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    View All Notifications
-                                    <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
+        <div class="ml-3 relative">
+            <div>
+                <button data-popover-target="notifications-popover" data-popover-placement="bottom" type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white relative" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
+                    <span class="sr-only">{% trans "View notifications" %}</span>
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span id="unread-notifications-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">0</span>
+                </button>
+        
+                <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-80 text-sm text-gray-800 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
+                    <div class="p-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+                            <a href="#" class="text-sm text-blue-600 hover:underline" id="mark-all-read">Mark all as read</a>
                         </div>
-                        <div data-popper-arrow></div>
+                        <ul class="space-y-2" id="notifications-list">
+                            <!-- Notifications will be dynamically inserted here -->
+                        </ul>
+                        <div class="mt-4">
+                            <a href="{% url 'administrator_notification_list' %}" class="w-full inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                View All Notifications
+                                <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
+                    <div data-popper-arrow></div>
                 </div>
             </div>
+        </div>
 
             <div class="ml-3 relative">
                 <div>
@@ -160,7 +143,7 @@
                                     {% if request.user.administrator %}
                                         Administrator
                                     {% elif request.user %}
-                                        Learner
+                                        administrator
                                     {% elif request.user.facilitator %}
                                         Facilitator
                                     {% elif request.user.supervisor %}
@@ -243,6 +226,90 @@
 </div>
 </nav>
 
+
+<script>
+    function fetchNotifications() {
+        fetch('{% url "administrator_recent_notifications" %}')
+            .then(response => response.json())
+            .then(data => {
+                const notificationsList = document.getElementById('notifications-list');
+                notificationsList.innerHTML = '';
+                data.forEach(notification => {
+                    const li = document.createElement('li');
+                    li.className = 'p-2 bg-gray-50 rounded-lg';
+                    li.innerHTML = `
+                        <p class="text-sm font-medium text-gray-900">${notification.message}</p>
+                        <p class="text-xs text-gray-600">${new Date(notification.timestamp).toLocaleString()}</p>
+                    `;
+                    notificationsList.appendChild(li);
+                });
+            });
+    }
+    
+    function fetchUnreadNotificationsCount() {
+        fetch('{% url "administrator_unread_notifications_count" %}')
+            .then(response => response.json())
+            .then(data => {
+                const countElement = document.getElementById('unread-notifications-count');
+                countElement.textContent = data.count;
+                // Store the count in local storage
+                localStorage.setItem('unreadNotificationsCount', data.count);
+            });
+    }
+    
+    function updateNotificationCount() {
+        const countElement = document.getElementById('unread-notifications-count');
+        const storedCount = localStorage.getItem('unreadNotificationsCount');
+        if (storedCount !== null) {
+            countElement.textContent = storedCount;
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Update count from local storage immediately
+        updateNotificationCount();
+    
+        // Fetch notifications and update count
+        fetchNotifications();
+        fetchUnreadNotificationsCount();
+    
+        // Set intervals for periodic updates
+        setInterval(fetchUnreadNotificationsCount, 60000);
+        setInterval(fetchNotifications, 60000); 
+    
+        document.getElementById('mark-all-read').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('{% url "administrator_mark_all_notifications_read" %}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    fetchNotifications();
+                    fetchUnreadNotificationsCount(); 
+                }
+            });
+        });
+    });
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     const darkModeToggle = document.getElementById('darkModeToggle');
