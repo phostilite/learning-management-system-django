@@ -28,7 +28,7 @@ class Command(BaseCommand):
         fake = Faker()
         
         # Create groups
-        groups = ['Administrator', 'Learner', 'Facilitator', 'Instructor']
+        groups = ['administrator', 'learner', 'facilitator', 'instructor']
         for group_name in groups:
             Group.objects.get_or_create(name=group_name)
         
