@@ -62,6 +62,23 @@
     .calendar-day:hover {
         background-color: #eff6ff;
     }
+
+    .recommendation-card {
+        transition: all 0.3s ease;
+    }
+
+    .recommendation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        background-color: #e5e7eb;
+        color: #4b5563;
+    }
 </style>
 {% endblock %}
 
@@ -69,7 +86,11 @@
 <div class="container mx-auto">
     <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Learner Dashboard" %}</h1>
-        <p class="text-lg text-white text-center">{% trans "Welcome back, Sarah! Here's your learning overview." %}</p>
+        <p class="text-lg text-white text-center">
+            {% blocktrans with full_name=request.user.get_full_name %}
+                Welcome back, {{ full_name }}! Here's your personalized learning overview.
+            {% endblocktrans %}
+        </p>
     </header>
 
     <!-- Breadcrumb -->
@@ -112,47 +133,8 @@
         </div>
         <div>
             <div class="bg-white rounded-lg p-6 card-shadow">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Calendar" %}</h3>
-                <div class="calendar">
-                    <div class="calendar-header">Sun</div>
-                    <div class="calendar-header">Mon</div>
-                    <div class="calendar-header">Tue</div>
-                    <div class="calendar-header">Wed</div>
-                    <div class="calendar-header">Thu</div>
-                    <div class="calendar-header">Fri</div>
-                    <div class="calendar-header">Sat</div>
-                    <div class="calendar-day">1</div>
-                    <div class="calendar-day">2</div>
-                    <div class="calendar-day">3</div>
-                    <div class="calendar-day">4</div>
-                    <div class="calendar-day">5</div>
-                    <div class="calendar-day">6</div>
-                    <div class="calendar-day">7</div>
-                    <div class="calendar-day">8</div>
-                    <div class="calendar-day">9</div>
-                    <div class="calendar-day">10</div>
-                    <div class="calendar-day">11</div>
-                    <div class="calendar-day">12</div>
-                    <div class="calendar-day">13</div>
-                    <div class="calendar-day today">14</div>
-                    <div class="calendar-day">15</div>
-                    <div class="calendar-day">16</div>
-                    <div class="calendar-day">17</div>
-                    <div class="calendar-day">18</div>
-                    <div class="calendar-day">19</div>
-                    <div class="calendar-day">20</div>
-                    <div class="calendar-day">21</div>
-                    <div class="calendar-day">22</div>
-                    <div class="calendar-day">23</div>
-                    <div class="calendar-day">24</div>
-                    <div class="calendar-day">25</div>
-                    <div class="calendar-day">26</div>
-                    <div class="calendar-day">27</div>
-                    <div class="calendar-day">28</div>
-                    <div class="calendar-day">29</div>
-                    <div class="calendar-day">30</div>
-                    <div class="calendar-day">31</div>
-                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Skill Development" %}</h3>
+                <canvas id="skillRadarChart" height="250"></canvas>
             </div>
         </div>
     </div>
@@ -218,6 +200,37 @@
         </div>
     </div>
 
+    <div class="bg-white rounded-lg p-6 card-shadow mb-8">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Personalized Recommendations" %}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="recommendation-card bg-blue-50 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-blue-700 mb-2">{% trans "Recommended Course" %}</h4>
+                <p class="text-gray-700 mb-2">{% trans "Advanced JavaScript Techniques" %}</p>
+                <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Web Development</span>
+                </div>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">{% trans "Enroll Now" %}</button>
+            </div>
+            <div class="recommendation-card bg-green-50 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-green-700 mb-2">{% trans "Upcoming Event" %}</h4>
+                <p class="text-gray-700 mb-2">{% trans "Web Development Career Fair" %}</p>
+                <p class="text-sm text-gray-600 mb-2">{% trans "Date: August 15, 2024" %}</p>
+                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">{% trans "Register" %}</button>
+            </div>
+            <div class="recommendation-card bg-purple-50 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-purple-700 mb-2">{% trans "Career Path" %}</h4>
+                <p class="text-gray-700 mb-2">{% trans "Full Stack Developer" %}</p>
+                <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="skill-badge">HTML/CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Node.js</span>
+                </div>
+                <button class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition duration-300">{% trans "Explore Path" %}</button>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-white rounded-lg p-6 card-shadow">
         <h3 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Recent Activity" %}</h3>
         <ul class="space-y-4">
@@ -239,12 +252,22 @@
                     <p class="text-gray-600">{% trans "1 day ago" %}</p>
                 </div>
             </li>
+            <li class="flex items-center">
+                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-comments text-yellow-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-700">{% trans "Participated in forum discussion: Best practices for responsive design" %}</h4>
+                    <p class="text-gray-600">{% trans "3 days ago" %}</p>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Learning Progress Chart
     var ctx = document.getElementById('learningProgressChart').getContext('2d');
@@ -258,6 +281,12 @@
                 fill: false,
                 borderColor: 'rgb(59, 130, 246)',
                 tension: 0.1
+            }, {
+                label: '{% trans "Hours Studied" %}',
+                data: [10, 15, 20, 25, 30, 35, 40],
+                fill: false,
+                borderColor: 'rgb(16, 185, 129)',
+                tension: 0.1
             }]
         },
         options: {
@@ -267,7 +296,7 @@
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: '{% trans "Number of Courses" %}'
+                        text: '{% trans "Progress" %}'
                     }
                 },
                 x: {
@@ -275,6 +304,42 @@
                         display: true,
                         text: '{% trans "Month" %}'
                     }
+                }
+            }
+        }
+    });
+
+    // Skill Radar Chart
+    var ctxRadar = document.getElementById('skillRadarChart').getContext('2d');
+    var radarChart = new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: ['HTML', 'CSS', 'JavaScript', 'Python', 'Data Analysis', 'UX Design'],
+            datasets: [{
+                label: '{% trans "Current Skills" %}',
+                data: [80, 70, 60, 40, 50, 30],
+                fill: true,
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgb(59, 130, 246)',
+                pointBackgroundColor: 'rgb(59, 130, 246)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(59, 130, 246)'
+            }]
+        },
+        options: {
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
+            scales: {
+                r: {
+                    angleLines: {
+                        display: false
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
                 }
             }
         }
@@ -292,6 +357,14 @@
     document.querySelectorAll('.progress-ring__circle').forEach((circle, index) => {
         const percentages = [75, 50]; // Corresponding to the course progress percentages
         setProgress(percentages[index], circle);
+    });
+
+    // Recommendation Interaction (placeholder functionality)
+    document.querySelectorAll('.recommendation-card button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Feature coming soon: ' + this.textContent);
+        });
     });
 </script>
 {% endblock %}

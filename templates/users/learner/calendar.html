@@ -66,6 +66,11 @@
         color: #9a3412;
     }
 
+    .event-workshop {
+        background-color: #ddd6fe;
+        color: #5b21b6;
+    }
+
     .modal {
         display: none;
         position: fixed;
@@ -99,6 +104,60 @@
         color: black;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    .filter-section {
+        background-color: #f3f4f6;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .filter-section h3 {
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .filter-group select,
+    .filter-group input[type="text"] {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.25rem;
+    }
+
+    .event-actions {
+        margin-top: 0.5rem;
+    }
+
+    .event-actions button {
+        margin-right: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+    .rsvp-yes {
+        background-color: #10b981;
+        color: white;
+    }
+
+    .rsvp-no {
+        background-color: #ef4444;
+        color: white;
+    }
+
+    .show-interest {
+        background-color: #3b82f6;
+        color: white;
     }
 </style>
 {% endblock %}
@@ -161,6 +220,44 @@
                     </select>
                 </div>
             </div>
+
+            <!-- New Filter Section -->
+            <div class="bg-white rounded-lg p-6 card-shadow mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Event Filters" %}</h3>
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label for="eventType">{% trans "Event Type" %}</label>
+                        <select id="eventType" class="w-full">
+                            <option value="">{% trans "All Types" %}</option>
+                            <option value="lecture">{% trans "Lecture" %}</option>
+                            <option value="exam">{% trans "Exam" %}</option>
+                            <option value="assignment">{% trans "Assignment" %}</option>
+                            <option value="workshop">{% trans "Workshop" %}</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="courseFilter">{% trans "Course" %}</label>
+                        <select id="courseFilter" class="w-full">
+                            <option value="">{% trans "All Courses" %}</option>
+                            <option value="python">{% trans "Python Programming" %}</option>
+                            <option value="javascript">{% trans "JavaScript Basics" %}</option>
+                            <option value="data-viz">{% trans "Data Visualization" %}</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="dateRange">{% trans "Date Range" %}</label>
+                        <input type="text" id="dateRange" class="w-full" placeholder="{% trans 'Select date range' %}">
+                    </div>
+                    <div class="filter-group">
+                        <label for="searchEvents">{% trans "Search Events" %}</label>
+                        <input type="text" id="searchEvents" class="w-full" placeholder="{% trans 'Search by keyword' %}">
+                    </div>
+                    <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-2">
+                        {% trans "Apply Filters" %}
+                    </button>
+                </div>
+            </div>
+
             <div class="bg-white rounded-lg p-6 card-shadow">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Upcoming Events" %}</h3>
                 <ul class="space-y-4">
@@ -178,7 +275,7 @@
                             <span class="text-white font-semibold">28</span>
                         </div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-700">{% trans "Data Visualization Quiz" %}</h4>
+                            <h4 class="text-lg font-semibold text-gray-700">{% trans "Data Visualization Workshop" %}</h4>
                             <p class="text-gray-600">{% trans "Due: July 28, 2024" %}</p>
                         </div>
                     </li>
@@ -210,7 +307,15 @@
         <h2 id="eventTitle" class="text-2xl font-semibold mb-4"></h2>
         <p id="eventDate" class="text-gray-600 mb-2"></p>
         <p id="eventTime" class="text-gray-600 mb-2"></p>
-        <p id="eventDescription" class="text-gray-700"></p>
+        <p id="eventLocation" class="text-gray-600 mb-2"></p>
+        <p id="eventTimeZone" class="text-gray-600 mb-2"></p>
+        <p id="eventCapacity" class="text-gray-600 mb-2"></p>
+        <p id="eventDescription" class="text-gray-700 mb-4"></p>
+        <div class="event-actions">
+            <button class="rsvp-yes">{% trans "RSVP Yes" %}</button>
+            <button class="rsvp-no">{% trans "RSVP No" %}</button>
+            <button class="show-interest">{% trans "Show Interest" %}</button>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -227,10 +332,10 @@
         let currentDate = new Date();
 
         const events = [
-            { date: '2024-07-05', title: 'Python Basics Quiz', type: 'exam', time: '14:00', description: 'Online quiz covering Python fundamentals' },
-            { date: '2024-07-12', title: 'Data Structures Lecture', type: 'lecture', time: '10:00', description: 'Introduction to advanced data structures' },
-            { date: '2024-07-23', title: 'JavaScript Final Project', type: 'assignment', time: '23:59', description: 'Submit your final JavaScript project' },
-            { date: '2024-07-28', title: 'Data Visualization Quiz', type: 'exam', time: '15:00', description: 'Quiz on data visualization techniques' }
+            { date: '2024-07-05', title: 'Python Basics Quiz', type: 'exam', time: '14:00', description: 'Online quiz covering Python fundamentals', location: 'Online', timeZone: 'UTC', capacity: 50 },
+            { date: '2024-07-12', title: 'Data Structures Lecture', type: 'lecture', time: '10:00', description: 'Introduction to advanced data structures', location: 'Room 101', timeZone: 'UTC', capacity: 100 },
+            { date: '2024-07-23', title: 'JavaScript Final Project', type: 'assignment', time: '23:59', description: 'Submit your final JavaScript project', location: 'Online', timeZone: 'UTC', capacity: null },
+            { date: '2024-07-28', title: 'Data Visualization Workshop', type: 'workshop', time: '15:00', description: 'Hands-on workshop on data visualization techniques', location: 'Lab 3', timeZone: 'UTC', capacity: 30 }
         ];
 
         function renderCalendar(year, month) {
@@ -295,11 +400,17 @@
             const title = document.getElementById('eventTitle');
             const date = document.getElementById('eventDate');
             const time = document.getElementById('eventTime');
+            const location = document.getElementById('eventLocation');
+            const timeZone = document.getElementById('eventTimeZone');
+            const capacity = document.getElementById('eventCapacity');
             const description = document.getElementById('eventDescription');
 
             title.textContent = event.title;
             date.textContent = `Date: ${event.date}`;
             time.textContent = `Time: ${event.time}`;
+            location.textContent = `Location: ${event.location}`;
+            timeZone.textContent = `Time Zone: ${event.timeZone}`;
+            capacity.textContent = event.capacity ? `Capacity: ${event.capacity}` : '';
             description.textContent = event.description;
 
             modal.style.display = 'block';
@@ -329,6 +440,33 @@
         monthSelect.addEventListener('change', (e) => {
             currentDate.setMonth(parseInt(e.target.value));
             renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        // New filter functionality (placeholder)
+        document.querySelector('.filter-section button').addEventListener('click', function() {
+            const eventType = document.getElementById('eventType').value;
+            const course = document.getElementById('courseFilter').value;
+            const dateRange = document.getElementById('dateRange').value;
+            const searchKeyword = document.getElementById('searchEvents').value;
+
+            console.log('Applying filters:', { eventType, course, dateRange, searchKeyword });
+            // TODO: Implement actual filtering logic
+        });
+
+        // RSVP and Show Interest functionality (placeholder)
+        document.querySelector('.rsvp-yes').addEventListener('click', function() {
+            console.log('RSVP Yes clicked');
+            // TODO: Implement RSVP Yes logic
+        });
+
+        document.querySelector('.rsvp-no').addEventListener('click', function() {
+            console.log('RSVP No clicked');
+            // TODO: Implement RSVP No logic
+        });
+
+        document.querySelector('.show-interest').addEventListener('click', function() {
+            console.log('Show Interest clicked');
+            // TODO: Implement Show Interest logic
         });
 
         // Initial render
