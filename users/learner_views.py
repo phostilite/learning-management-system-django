@@ -964,7 +964,7 @@ class MarkNotificationReadView(LoginRequiredMixin, View):
             notification = SystemNotification.objects.get(id=pk, user=request.user)
             notification.is_read = True
             notification.save()
-            return JsonResponse({'status': 'success'})
+            return redirect('learner_notification_list')
         except SystemNotification.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Notification not found'}, status=404)
         except Exception as e:
