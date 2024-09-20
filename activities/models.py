@@ -74,6 +74,10 @@ class SystemNotification(models.Model):
             models.Index(fields=['user', 'is_read', 'timestamp']),
         ]
 
+    def mark_as_read(self):
+        self.is_read = True
+        self.save()
+
     def __str__(self):
         return f"{self.get_notification_type_display()}: {self.message[:50]}..."
 

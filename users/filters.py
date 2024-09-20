@@ -1,5 +1,7 @@
 import django_filters
 from courses.models import Program, Course, Tag, CourseCategory
+from activities.models import SystemNotification
+from django import forms
 
 class ProgramFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains')
@@ -21,3 +23,19 @@ class CourseFilter(django_filters.FilterSet):
     class Meta:
         model = Course
         fields = ['title', 'category', 'difficulty_level', 'language', 'tags']
+
+class NotificationFilter(django_filters.FilterSet):
+    start_date = django_filters.DateFilter(
+        field_name='timestamp',
+        lookup_expr='gte',
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+    end_date = django_filters.DateFilter(
+        field_name='timestamp',
+        lookup_expr='lte',
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+
+    class Meta:
+        model = SystemNotification
+        fields = ['start_date', 'end_date']

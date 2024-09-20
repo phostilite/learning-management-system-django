@@ -67,10 +67,22 @@
 
 {% block content %}
 <div class="container mx-auto">
-    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+    <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Learner Dashboard" %}</h1>
         <p class="text-lg text-white text-center">{% trans "Welcome back, Sarah! Here's your learning overview." %}</p>
     </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'learner_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+        </ol>
+    </nav>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="dashboard-card bg-white rounded-lg p-6 card-shadow">

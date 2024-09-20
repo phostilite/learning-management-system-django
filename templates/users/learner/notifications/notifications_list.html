@@ -5,6 +5,11 @@
 {% block title %}{% trans "Notifications - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
+<style>
+    .unread-notification {
+        border-left: 4px solid #3B82F6;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -24,84 +29,61 @@
                 <input type="text" id="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search notifications">
             </div>
         </div>
-        <div class="flex space-x-4">
-            <select id="filter-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option value="">All Types</option>
-                <option value="course">Course</option>
-                <option value="assignment">Assignment</option>
-                <option value="forum">Forum</option>
-            </select>
-            <select id="filter-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option value="">All Time</option>
-                <option value="today">Today</option>
-                <option value="week">This Week</option>
-                <option value="month">This Month</option>
-            </select>
-        </div>
+        <form method="get" class="flex space-x-4">
+            <div class="flex space-x-2">
+                <label for="{{ filter.form.start_date.id_for_label }}" class="sr-only">Start Date</label>
+                {{ filter.form.start_date }}
+                <label for="{{ filter.form.end_date.id_for_label }}" class="sr-only">End Date</label>
+                {{ filter.form.end_date }}
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                {% trans "Filter" %}
+            </button>
+        </form>
     </div>
 
     <!-- Notifications List -->
     <div id="notifications-list" class="space-y-4">
-        <!-- Notification Item Template -->
-        <div class="notification-item bg-white p-4 rounded-lg shadow-md flex items-start space-x-4 opacity-0">
-            <div class="flex-shrink-0">
-                <i class="fas fa-book text-blue-500 text-2xl"></i>
-            </div>
-            <div class="flex-grow">
-                <h3 class="text-lg font-semibold">New course available: Advanced Machine Learning</h3>
-                <p class="text-gray-600">Explore the latest techniques in machine learning and artificial intelligence.</p>
-                <div class="mt-2 flex items-center text-sm text-gray-500">
-                    <i class="far fa-clock mr-2"></i>
-                    <span>2 hours ago</span>
+        {% if notifications %}
+            {% for notification in notifications %}
+                <div class="notification-item bg-white p-4 rounded-lg shadow-md flex items-start space-x-4 {% if not notification.is_read %}unread-notification{% endif %}" data-type="{{ notification.notification_type }}">
+                    <div class="flex-shrink-0">
+                        {% if notification.notification_type == 'COURSE' %}
+                            <i class="fas fa-book text-blue-500 text-2xl"></i>
+                        {% elif notification.notification_type == 'ASSIGNMENT' %}
+                            <i class="fas fa-tasks text-green-500 text-2xl"></i>
+                        {% elif notification.notification_type == 'FORUM' %}
+                            <i class="fas fa-comments text-purple-500 text-2xl"></i>
+                        {% else %}
+                            <i class="fas fa-bell text-gray-500 text-2xl"></i>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold">{{ notification.message }}</h3>
+                        <p class="text-gray-600">{{ notification.additional_info }}</p>
+                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>{{ notification.timestamp|date:"F j, Y, g:i a" }}</span>
+                            {% if not notification.is_read %}
+                                <span class="ml-2 px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">{% trans "Unread" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <form method="post" action="{% url 'learner_mark_notification_read' notification.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="text-blue-500 hover:text-blue-700" title="{% trans 'Mark as read' %}">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center py-8">
+                <p class="text-xl text-gray-600">{% trans "No notifications found." %}</p>
             </div>
-            <div class="flex-shrink-0">
-                <button class="text-blue-500 hover:text-blue-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Repeat the above div for more notification items -->
-    </div>
-
-    <!-- Pagination -->
-    <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-6 rounded-lg">
-        <div class="flex flex-1 justify-between sm:hidden">
-            <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-            <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
-        </div>
-        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div>
-                <p class="text-sm text-gray-700">
-                    Showing
-                    <span class="font-medium">1</span>
-                    to
-                    <span class="font-medium">10</span>
-                    of
-                    <span class="font-medium">97</span>
-                    results
-                </p>
-            </div>
-            <div>
-                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">Previous</span>
-                        <i class="fas fa-chevron-left h-5 w-5"></i>
-                    </a>
-                    <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">1</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                    <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-                    <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-                    <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
-                    <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                        <span class="sr-only">Next</span>
-                        <i class="fas fa-chevron-right h-5 w-5"></i>
-                    </a>
-                </nav>
-            </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
@@ -109,13 +91,70 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 <script>
-    // Anime.js animation
-    anime({
-        targets: '.notification-item',
-        opacity: [0, 1],
-        translateY: [20, 0],
-        delay: anime.stagger(100),
-        easing: 'easeOutQuad'
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search');
+    const filterType = document.getElementById('filter-type');
+    const filterDate = document.getElementById('filter-date');
+    const notifications = document.querySelectorAll('.notification-item');
+
+    function filterNotifications() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedType = filterType.value;
+        const selectedDate = filterDate.value;
+
+        notifications.forEach(notification => {
+            const content = notification.textContent.toLowerCase();
+            const type = notification.dataset.type;
+            const timestamp = new Date(notification.querySelector('span').textContent);
+            const now = new Date();
+
+            let dateMatch = true;
+            if (selectedDate === 'today') {
+                dateMatch = timestamp.toDateString() === now.toDateString();
+            } else if (selectedDate === 'week') {
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                dateMatch = timestamp >= weekAgo;
+            } else if (selectedDate === 'month') {
+                const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                dateMatch = timestamp >= monthAgo;
+            }
+
+            const isVisible = content.includes(searchTerm) && 
+                              (selectedType === '' || type === selectedType) &&
+                              dateMatch;
+
+            notification.style.display = isVisible ? 'flex' : 'none';
+        });
+    }
+
+    searchInput.addEventListener('input', filterNotifications);
+    filterType.addEventListener('change', filterNotifications);
+    filterDate.addEventListener('change', filterNotifications);
+
+    // Mark as read functionality
+    const forms = document.querySelectorAll('.notification-item form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'X-CSRFToken': this.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const notificationItem = this.closest('.notification-item');
+                    notificationItem.classList.remove('unread-notification');
+                    const unreadBadge = notificationItem.querySelector('.bg-blue-100');
+                    if (unreadBadge) unreadBadge.remove();
+                    this.querySelector('button').disabled = true;
+                }
+            });
+        });
     });
+});
 </script>
 {% endblock %}

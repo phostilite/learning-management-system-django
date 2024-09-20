@@ -120,7 +120,12 @@ urlpatterns = [
     path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
+
+    path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),
+    path('learner/notifications/<uuid:pk>/mark-read/', learner_views.MarkNotificationReadView.as_view(), name='learner_mark_notification_read'),
+    path('learner/notifications/mark-all-read/', learner_views.MarkAllNotificationsReadView.as_view(), name='learner_mark_all_notifications_read'),
+    path('learner/notifications/unread-count/', learner_views.UnreadNotificationsCountView.as_view(), name='learner_unread_notifications_count'),
 
     # Programs
     path('learner/programs/', include([

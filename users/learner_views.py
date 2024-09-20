@@ -42,7 +42,7 @@ from .forms import (
 )
 
 from django_filters.views import FilterView
-from .filters import ProgramFilter, CourseFilter
+from .filters import ProgramFilter, CourseFilter, NotificationFilter
 from django.db.models import Prefetch
 from django.db.models import Avg, Q
 
@@ -50,6 +50,9 @@ from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
 from .api_client import upload_scorm_package, register_user_for_course
+
+from activities.models import SystemNotification
+from .utils.notification_utils import create_notification, log_activity
 
 logger = logging.getLogger(__name__)
 
@@ -717,7 +720,7 @@ class CertificateView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         
         # Get certificates for the logged-in learner
-        certificates = Certificate.objects.filter(learner=self.request.user).order_by('-issue_date')
+        certificates = Certificate.objects.filter(user=self.request.user).order_by('-issue_date')
         
         # Get certificate counts
         context['certificates'] = certificates
@@ -817,13 +820,17 @@ class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
             if form.is_valid():
                 form.save()
                 messages.success(request, _("Personal information updated successfully."))
+                create_notification(request.user, _("Your personal information has been updated successfully."))
+                log_activity(request.user, 'UPDATE', 'Updated personal information')
             else:
                 for field, errors in form.errors.items():
                     for error in errors:
                         messages.error(request, f"{field}: {error}")
+                create_notification(request.user, _("Failed to update personal information."), 'ERROR')
         except Exception as e:
             logger.error(f"Error updating personal info for user {request.user.username}: {str(e)}")
             messages.error(request, _("An error occurred while updating your personal information. Please try again."))
+            create_notification(request.user, _("An error occurred while updating your personal information."), 'ERROR')
         return redirect('learner_settings')
 
     @transaction.atomic
@@ -833,14 +840,23 @@ class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
             if form.is_valid():
                 form.save()
                 messages.success(request, _("Password changed successfully."))
+                create_notification(request.user, _("Your password has been changed successfully."))
+                log_activity(request.user, 'CHANGE_PASSWORD', 'User changed their password')
             else:
+                error_messages = []
                 for field, errors in form.errors.items():
                     for error in errors:
-                        messages.error(request, f"{field}: {error}")
+                        error_message = f"{field}: {error}"
+                        messages.error(request, error_message)
+                        error_messages.append(error_message)
+                create_notification(request.user, _("Failed to change password. Please check the errors and try again."), 'ERROR')
+                log_activity(request.user, 'CHANGE_PASSWORD_FAILED', f"Password change failed due to: {', '.join(error_messages)}")
         except Exception as e:
             logger.error(f"Error changing password for user {request.user.username}: {str(e)}")
             messages.error(request, _("An error occurred while changing your password. Please try again."))
-        return redirect('login')
+            create_notification(request.user, _("An error occurred while changing your password."), 'ERROR')
+            log_activity(request.user, 'CHANGE_PASSWORD_ERROR', f"Password change error: {str(e)}")
+        return redirect('logout')
 
     @transaction.atomic
     def update_preferences(self, request):
@@ -849,13 +865,22 @@ class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
             if form.is_valid():
                 form.save()
                 messages.success(request, _("Preferences updated successfully."))
+                create_notification(request.user, _("Your preferences have been updated successfully."))
+                log_activity(request.user, 'UPDATE_PREFERENCES', 'User updated their preferences')
             else:
+                error_messages = []
                 for field, errors in form.errors.items():
                     for error in errors:
-                        messages.error(request, f"{field}: {error}")
+                        error_message = f"{field}: {error}"
+                        messages.error(request, error_message)
+                        error_messages.append(error_message)
+                create_notification(request.user, _("Failed to update preferences. Please check the errors and try again."), 'ERROR')
+                log_activity(request.user, 'UPDATE_PREFERENCES_FAILED', f"Preference update failed due to: {', '.join(error_messages)}")
         except Exception as e:
             logger.error(f"Error updating preferences for user {request.user.username}: {str(e)}")
             messages.error(request, _("An error occurred while updating your preferences. Please try again."))
+            create_notification(request.user, _("An error occurred while updating your preferences."), 'ERROR')
+            log_activity(request.user, 'UPDATE_PREFERENCES_ERROR', f"Preference update error: {str(e)}")
         return redirect('learner_settings')
 
     @transaction.atomic
@@ -865,14 +890,27 @@ class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
             if form.is_valid():
                 form.save()
                 messages.success(request, _("Profile picture updated successfully."))
+                create_notification(request.user, _("Your profile picture has been updated successfully."))
+                log_activity(request.user, 'UPDATE_PROFILE_PICTURE', 'User updated their profile picture')
             else:
+                error_messages = []
                 for field, errors in form.errors.items():
                     for error in errors:
-                        messages.error(request, f"{field}: {error}")
+                        error_message = f"{field}: {error}"
+                        messages.error(request, error_message)
+                        error_messages.append(error_message)
+                create_notification(request.user, _("Failed to update profile picture. Please check the errors and try again."), 'ERROR')
+                log_activity(request.user, 'UPDATE_PROFILE_PICTURE_FAILED', f"Profile picture update failed due to: {', '.join(error_messages)}")
         except Exception as e:
             logger.error(f"Error updating profile picture for user {request.user.username}: {str(e)}")
             messages.error(request, _("An error occurred while updating your profile picture. Please try again."))
+            create_notification(request.user, _("An error occurred while updating your profile picture."), 'ERROR')
+            log_activity(request.user, 'UPDATE_PROFILE_PICTURE_ERROR', f"Profile picture update error: {str(e)}")
         return redirect('learner_settings')
+
+# ============================================================
+# ====================== Help & Support Views ================
+# ============================================================
     
 @method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):
@@ -887,5 +925,62 @@ class HelpSupportView(TemplateView):
 # ======================= Notifications Views ================
 # ============================================================
 
-class NotificationListView(TemplateView):
-    template_name = 'users/learner/notifications/notifications_course_list.html'
+class RecentNotificationsView(LoginRequiredMixin, View):
+    def get(self, request):
+        notifications = SystemNotification.objects.filter(
+            user=request.user,
+            is_read=False
+        )[:3]  
+
+        data = [{
+            'id': notification.id,
+            'message': notification.message,
+            'timestamp': notification.timestamp.isoformat()
+        } for notification in notifications]
+
+        return JsonResponse(data, safe=False)
+
+class NotificationListView(FilterView, ListView):
+    model = SystemNotification
+    template_name = 'users/learner/notifications/notifications_list.html'
+    context_object_name = 'notifications'
+    filterset_class = NotificationFilter
+
+    def get_queryset(self):
+        try:
+            return SystemNotification.objects.filter(user=self.request.user).order_by('-timestamp')
+        except Exception as e:
+            logger.error(f"Error fetching notifications for user {self.request.user}: {e}")
+            return SystemNotification.objects.none()
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = self.filterset
+        return context
+        
+class MarkNotificationReadView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        try:
+            notification = SystemNotification.objects.get(id=pk, user=request.user)
+            notification.is_read = True
+            notification.save()
+            return JsonResponse({'status': 'success'})
+        except SystemNotification.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Notification not found'}, status=404)
+        except Exception as e:
+            logger.error(f"Error marking notification as read: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
+
+class MarkAllNotificationsReadView(LoginRequiredMixin, View):
+    def post(self, request):
+        SystemNotification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+        return JsonResponse({'status': 'success'})
+    
+class UnreadNotificationsCountView(LoginRequiredMixin, View):
+    def get(self, request):
+        try:
+            count = SystemNotification.objects.filter(user=request.user, is_read=False).count()
+            return JsonResponse({'count': count})
+        except Exception as e:
+            logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
+            return JsonResponse({'count': 0})
