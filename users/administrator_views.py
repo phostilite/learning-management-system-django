@@ -770,26 +770,12 @@ class AdministratorLearningResourceDetailView(AdministratorRequiredMixin, Detail
     model = LearningResource
     context_object_name = 'resource'
 
-    def dispatch(self, request, *args, **kwargs):
-        try:
-            if not all(permission().has_permission(request, self) for permission in self.permission_classes):
-                logger.warning(f"User {request.user.username} attempted to access AdministratorLearningResourceDetailView without proper permissions")
-                raise PermissionDenied("You do not have administrator privileges.")
-            return super().dispatch(request, *args, **kwargs)
-        except Exception as e:
-            logger.error(f"Error in AdministratorLearningResourceDetailView dispatch: {str(e)}")
-            raise
-
     def get_object(self, queryset=None):
         try:
             course_id = self.kwargs.get('course_id')
             resource_id = self.kwargs.get('pk')
             
             obj = get_object_or_404(LearningResource, pk=resource_id, course__id=course_id)
-            
-            if not all(permission().has_object_permission(self.request, self, obj) for permission in self.permission_classes):
-                logger.warning(f"User {self.request.user.username} attempted to access LearningResource {resource_id} without proper permissions")
-                raise PermissionDenied("You do not have permission to view this resource.")
             
             return obj
         except LearningResource.DoesNotExist:
