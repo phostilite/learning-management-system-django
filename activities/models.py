@@ -37,6 +37,7 @@ class ActivityLog(models.Model):
 
     # Additional metadata
     meta_data = models.JSONField(default=dict, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
 
     class Meta:
         ordering = ['-timestamp']

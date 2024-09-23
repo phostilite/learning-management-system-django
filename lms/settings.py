@@ -263,7 +263,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 # Set session timeout to 30 minutes (1800 seconds)
-SESSION_EXPIRE_SECONDS = 1800
+SESSION_EXPIRE_SECONDS = 18000
 
 # Redirect to landing page after session timeout
 SESSION_TIMEOUT_REDIRECT = 'login'  

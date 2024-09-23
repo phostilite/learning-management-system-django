@@ -18,6 +18,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
@@ -53,6 +54,7 @@ from courses.models import (Course, CourseCategory, Delivery, DeliveryComponent,
                             Enrollment, LearningResource, Program,
                             ProgramCourse, ScormResource, Tag)
 from organization.models import Organization, OrganizationUnit, OrganizationContact, OrganizationChange, Location, JobPosition, EmployeeProfile
+from organization.forms import EmployeeProfileForm, JobPositionForm, LocationForm, OrganizationUnitForm, OrganizationGroupForm
 from quizzes.forms import ChoiceForm, ChoiceFormSet, QuestionForm, QuestionFormSet, QuizForm
 from quizzes.models import Choice, Question, Quiz
 from users.forms import LearnerCreationForm
@@ -1480,8 +1482,25 @@ class OrganizationDetailsView(AdministratorRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        organization = Organization.objects.first()  
-        context['organization'] = organization
+        try:
+            organization = Organization.objects.first()
+            if not organization:
+                logger.error("No organization found in the system")
+                raise Http404("No organization found in the system")
+
+            context['organization'] = organization
+            context['organization_units'] = OrganizationUnit.objects.filter(organization=organization).select_related('parent', 'manager')
+            context['locations'] = Location.objects.filter(organization=organization)
+            context['contacts'] = OrganizationContact.objects.filter(organization=organization)
+
+            logger.info(f"Organization details retrieved successfully for {organization.name}")
+        except ObjectDoesNotExist as e:
+            logger.error(f"Error retrieving organization details: {str(e)}")
+            raise Http404("Organization not found")
+        except Exception as e:
+            logger.error(f"Unexpected error in OrganizationDetailsView: {str(e)}")
+            raise
+
         return context
 
 class OrganizationUnitsView(AdministratorRequiredMixin, ListView):
@@ -1558,7 +1577,7 @@ class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_employee_profiles.html'
     model = EmployeeProfile
     context_object_name = 'employee_profiles'
-    paginate_by = 10  # Adjust this value as needed
+    paginate_by = 10  
 
     def get_queryset(self):
         try:
@@ -1606,6 +1625,91 @@ class OrganizationGroupsView(AdministratorRequiredMixin, ListView):
             messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
+# ============================================================
+# =============== Organization Employee Views ================
+# ============================================================
+
+class AddEmployeeView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'users/administrator/organization/employee/add_employee.html'
+    form_class = EmployeeProfileForm
+    success_url = reverse_lazy('administrator_organization_employee_profiles')
+    success_message = "Employee profile created successfully."
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organization'] = Organization.objects.first()  
+        kwargs['request'] = self.request
+        return kwargs
+    
+# ============================================================
+# ============ Organization JobPositions Views ===============
+# ============================================================
+
+class AddJobPositionView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'users/administrator/organization/job_position/add_job_position.html'
+    form_class = JobPositionForm
+    success_url = reverse_lazy('administrator_organization_job_positions')
+    success_message = "Job position created successfully."
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organization'] = Organization.objects.first()
+        kwargs['request'] = self.request
+        return kwargs
+    
+# ============================================================
+# ============== Organization Location Views =================
+# ============================================================
+
+class AddLocationView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'users/administrator/organization/location/add_location.html'
+    form_class = LocationForm
+    success_url = reverse_lazy('administrator_organization_locations')
+    success_message = "Location created successfully."
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organization'] = Organization.objects.first()
+        kwargs['request'] = self.request
+        return kwargs
+
+# ============================================================
+# ============== Organization Unit Views =====================
+# ============================================================
+
+class AddOrganizationUnitView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'users/administrator/organization/unit/add_unit.html'
+    form_class = OrganizationUnitForm
+    success_url = reverse_lazy('administrator_organization_units')
+    success_message = _("Organization unit created successfully.")
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def form_valid(self, form):
+        try:
+            response = super().form_valid(form)
+            logger.info(f"Organization unit created successfully: {self.object}")
+            return response
+        except Exception as e:
+            logger.error(f"Error creating organization unit: {str(e)}")
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.warning(f"Invalid form submission: {form.errors}")
+        return super().form_invalid(form)
+
+# ============================================================
+# ============== Organization Group Views ====================
+# ============================================================
+    
+class AddOrganizationGroupView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'users/administrator/organization/group/add_group.html'
+    form_class = OrganizationGroupForm
+    success_url = reverse_lazy('administrator_organization_groups')
+    success_message = "Organization group created successfully."
 
 # ============================================================
 # ======================= Notifications Views ================

@@ -10,22 +10,54 @@
         max-width: 200px;
         max-height: 200px;
     }
+    .tab-content {
+        display: none;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    .org-tree ul {
+        padding-left: 1.5rem;
+    }
+    .org-tree li {
+        list-style-type: none;
+        position: relative;
+    }
+    .org-tree li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -1rem;
+        border-left: 1px solid #cbd5e0;
+        height: 100%;
+    }
+    .org-tree li::after {
+        content: "";
+        position: absolute;
+        top: 0.7rem;
+        left: -1rem;
+        border-top: 1px solid #cbd5e0;
+        width: 0.5rem;
+    }
+    .org-tree li:last-child::before {
+        height: 0.7rem;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="organization-details-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+<div class="organization-details-page bg-gray-100 min-h-screen" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
     <!-- Header -->
-    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl mb-8 shadow-lg relative overflow-hidden">
         <div class="relative z-10">
             <h1 class="text-4xl font-bold text-center mb-2">{{ organization.name }}</h1>
-            <p class="text-center text-lg">{% trans "Organization Details" %}</p>
+            <p class="text-center text-xl">{% trans "Organization Details" %}</p>
         </div>
-        <div class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-black opacity-10"></div>
     </header>
 
     <!-- Breadcrumb -->
-    <nav class="flex mb-4" aria-label="Breadcrumb">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
                 <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
@@ -43,55 +75,193 @@
     </nav>
 
     <!-- Organization Details -->
-    <div class="bg-white shadow rounded-lg p-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <h2 class="text-2xl font-bold mb-4">{% trans "General Information" %}</h2>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Name:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.name }}</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Legal Name:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.legal_name }}</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Tax ID:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.tax_id }}</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Registration Number:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.registration_number }}</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Founded Date:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.founded_date }}</p>
-                </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Industry:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.industry }}</p>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Tabs -->
+        <div class="flex border-b">
+            <button class="tab-button py-4 px-6 bg-white hover:bg-gray-100 focus:outline-none text-blue-600 border-b-2 border-blue-600 font-medium" data-tab="general">
+                {% trans "General Information" %}
+            </button>
+            <button class="tab-button py-4 px-6 bg-white hover:bg-gray-100 focus:outline-none" data-tab="units">
+                {% trans "Organization Units" %}
+            </button>
+            <button class="tab-button py-4 px-6 bg-white hover:bg-gray-100 focus:outline-none" data-tab="locations">
+                {% trans "Locations" %}
+            </button>
+            <button class="tab-button py-4 px-6 bg-white hover:bg-gray-100 focus:outline-none" data-tab="contacts">
+                {% trans "Contacts" %}
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="p-6">
+            <!-- General Information -->
+            <div id="general" class="tab-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4">{% trans "General Information" %}</h2>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Name:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.name }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Legal Name:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.legal_name }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Tax ID:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.tax_id }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Registration Number:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.registration_number }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Founded Date:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.founded_date }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Industry:" %}</p>
+                            <p class="text-lg font-semibold">{{ organization.industry }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4">{% trans "Additional Information" %}</h2>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Website:" %}</p>
+                            <p class="text-lg font-semibold">
+                                <a href="{{ organization.website }}" target="_blank" class="text-blue-600 hover:underline">{{ organization.website }}</a>
+                            </p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Description:" %}</p>
+                            <p class="text-lg">{{ organization.description }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-gray-600">{% trans "Logo:" %}</p>
+                            {% if organization.logo %}
+                                <img src="{{ organization.logo.url }}" alt="{% trans 'Organization Logo' %}" class="organization-logo">
+                            {% else %}
+                                <p class="text-lg">{% trans "No logo available" %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h2 class="text-2xl font-bold mb-4">{% trans "Additional Information" %}</h2>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Website:" %}</p>
-                    <p class="text-lg font-semibold">{{ organization.website }}</p>
+
+            <!-- Organization Units -->
+            <div id="units" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Organization Units" %}</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-6 text-left">{% trans "Name" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Type" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Parent" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Manager" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for unit in organization.units.all %}
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-6">{{ unit.name }}</td>
+                                <td class="py-4 px-6">{{ unit.get_unit_type_display }}</td>
+                                <td class="py-4 px-6">{{ unit.parent.name|default:"-" }}</td>
+                                <td class="py-4 px-6">{{ unit.manager.get_full_name|default:"-" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="py-4 px-6 text-center">{% trans "No organization units found." %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Description:" %}</p>
-                    <p class="text-lg">{{ organization.description }}</p>
+            </div>
+
+            <!-- Locations -->
+            <div id="locations" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Locations" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for location in organization.locations.all %}
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold mb-2">{{ location.name }}</h3>
+                        <p class="text-gray-600">{{ location.address_line1 }}</p>
+                        {% if location.address_line2 %}
+                        <p class="text-gray-600">{{ location.address_line2 }}</p>
+                        {% endif %}
+                        <p class="text-gray-600">{{ location.city }}, {{ location.state }}</p>
+                        <p class="text-gray-600">{{ location.country }} {{ location.postal_code }}</p>
+                        {% if location.is_headquarters %}
+                        <p class="mt-2 text-blue-600 font-semibold">{% trans "Headquarters" %}</p>
+                        {% endif %}
+                    </div>
+                    {% empty %}
+                    <p class="col-span-3 text-center text-gray-500">{% trans "No locations found." %}</p>
+                    {% endfor %}
                 </div>
-                <div class="mb-4">
-                    <p class="text-gray-600">{% trans "Logo:" %}</p>
-                    {% if organization.logo %}
-                        <img src="{{ organization.logo.url }}" alt="{% trans 'Organization Logo' %}" class="organization-logo">
-                    {% else %}
-                        <p class="text-lg">{% trans "No logo available" %}</p>
-                    {% endif %}
+            </div>
+
+            <!-- Contacts -->
+            <div id="contacts" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">{% trans "Organization Contacts" %}</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-6 text-left">{% trans "Name" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Position" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Email" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Phone" %}</th>
+                                <th class="py-3 px-6 text-left">{% trans "Primary" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in organization.contacts.all %}
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-6">{{ contact.name }}</td>
+                                <td class="py-4 px-6">{{ contact.position }}</td>
+                                <td class="py-4 px-6">
+                                    <a href="mailto:{{ contact.email }}" class="text-blue-600 hover:underline">{{ contact.email }}</a>
+                                </td>
+                                <td class="py-4 px-6">{{ contact.phone }}</td>
+                                <td class="py-4 px-6">
+                                    {% if contact.is_primary %}
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{% trans "Primary" %}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="py-4 px-6 text-center">{% trans "No contacts found." %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                tabs.forEach(t => t.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                tab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    });
+</script>
 {% endblock %}

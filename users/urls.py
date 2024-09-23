@@ -103,7 +103,12 @@ urlpatterns = [
     path('administrator/organization/locations/', administrator_views.OrganizationLocationsView.as_view(), name='administrator_organization_locations'),
     path('administrator/organization/job-positions/', administrator_views.OrganizationJobPositionsView.as_view(), name='administrator_organization_job_positions'),
     path('administrator/organization/employee-profiles/', administrator_views.OrganizationEmployeeProfilesView.as_view(), name='administrator_organization_employee_profiles'),
-    
+
+    path('administrator/organization/add-employee/', administrator_views.AddEmployeeView.as_view(), name='administrator_add_employee'),
+    path('administrator/organization/add-job-position/', administrator_views.AddJobPositionView.as_view(), name='administrator_add_job_position'),
+    path('administrator/organization/add-location/', administrator_views.AddLocationView.as_view(), name='administrator_add_location'),
+    path('administrator/organization/add-unit/', administrator_views.AddOrganizationUnitView.as_view(), name='administrator_add_unit'),
+    path('administrator/organization/add-group/', administrator_views.AddOrganizationGroupView.as_view(), name='administrator_add_group'),
 
     # Other Administrator Views
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
