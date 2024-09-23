@@ -3,6 +3,9 @@ import logging
 import json
 from datetime import timedelta
 
+from django_filters.views import FilterView
+from .filters import AnnouncementFilter
+
 import requests
 from django.conf import settings
 from django.contrib import messages
@@ -1594,15 +1597,24 @@ class AdministratorNotificationListView(TemplateView):
 # ============================================================
 # ======================= Announcements Views ================
 # ============================================================
-class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     template_name = 'users/administrator/announcements/announcements.html'
+    model = Announcement
+    context_object_name = 'announcements'
+    paginate_by = 10
 
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
 
+    def get_queryset(self):
+        queryset = Announcement.objects.all().order_by('-publish_date')
+        self.filterset = AnnouncementFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+        context['filter'] = self.filterset
+
         # Calculate metrics
         total_announcements = Announcement.objects.count()
         active_announcements = Announcement.objects.filter(is_active=True).count()
@@ -1617,7 +1629,6 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin,
         context['active_announcements'] = active_announcements
         context['scheduled_announcements'] = scheduled_announcements
         context['avg_engagement_rate'] = avg_engagement_rate
-        context['announcements'] = Announcement.objects.all().order_by('-publish_date')
 
         return context
     
