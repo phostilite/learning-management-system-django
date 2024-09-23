@@ -68,29 +68,32 @@
     </div>
 
     <!-- Announcement Filters and Actions -->
-    <div class="flex flex-wrap justify-between items-center mb-6">
-        <div class="flex space-x-4 rtl:space-x-reverse mb-4 sm:mb-0">
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
-                <option selected>{% trans "All Categories" %}</option>
-                <option>{% trans "System Updates" %}</option>
-                <option>{% trans "Course Announcements" %}</option>
-                <option>{% trans "Events" %}</option>
-                <option>{% trans "Maintenance" %}</option>
-            </select>
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 rtl:text-right">
-                <option selected>{% trans "All Statuses" %}</option>
-                <option>{% trans "Active" %}</option>
-                <option>{% trans "Scheduled" %}</option>
-                <option>{% trans "Expired" %}</option>
-                <option>{% trans "Draft" %}</option>
-            </select>
+    <form method="get" class="mb-6 bg-white rounded-lg p-6 shadow-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="form-group">
+                <label for="{{ filter.form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Title" %}:</label>
+                <input type="text" name="{{ filter.form.title.name }}" id="{{ filter.form.title.id_for_label }}" {% if filter.form.title.value %}value="{{ filter.form.title.value }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.priority.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Priority" %}:</label>
+                <select name="{{ filter.form.priority.name }}" id="{{ filter.form.priority.id_for_label }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    {% for value, label in filter.form.priority.field.choices %}
+                        <option value="{{ value }}" {% if value == filter.form.priority.value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.publish_date_after.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Published After" %}:</label>
+                <input type="date" name="{{ filter.form.publish_date_after.name }}" id="{{ filter.form.publish_date_after.id_for_label }}" {% if filter.form.publish_date_after.value %}value="{{ filter.form.publish_date_after.value|date:'Y-m-d' }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.publish_date_before.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Published Before" %}:</label>
+                <input type="date" name="{{ filter.form.publish_date_before.name }}" id="{{ filter.form.publish_date_before.id_for_label }}" {% if filter.form.publish_date_before.value %}value="{{ filter.form.publish_date_before.value|date:'Y-m-d' }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
         </div>
-        <div class="flex space-x-2 rtl:space-x-reverse">
-                <button onclick="exportTableToExcel('announcementsTable', 'announcements')" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-                    {% trans "Export Report" %}
-                </button>
-        </div>
-    </div>
+        <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">{% trans "Filter" %}</button>
+    </form>
+
 
     <!-- Announcements Table -->
     <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
@@ -149,45 +152,36 @@
                         </a>
                     </td>
                 </tr>
+                {% empty %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td colspan="4">No announcements found.</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
     <!-- Pagination -->
-    <div class="flex justify-center mt-8">
-        <nav aria-label="Page navigation">
-            <ul class="inline-flex items-center -space-x-px rtl:space-x-reverse">
-                <li>
-                    <a href="#" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 rtl:rounded-r-lg rtl:rounded-l-none">
-                        <span class="sr-only">{% trans "Previous" %}</span>
-                        <svg aria-hidden="true" class="w-5 h-5 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
-                </li>
-                <li>
-                    <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
-                </li>
-                <li>
-                    <a href="#" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">3</a>
-                </li>
-                <li>
-                    <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
-                </li>
-                <li>
-                    <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 rtl:rounded-l-lg rtl:rounded-r-none">
-                        <span class="sr-only">{% trans "Next" %}</span>
-                        <svg aria-hidden="true" class="w-5 h-5 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    {% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Previous</a></li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
 </div>
 
 <script>
@@ -231,6 +225,9 @@
         // Remove the link from the body
         document.body.removeChild(downloadLink);
     }
+
 </script>
+
+<s
 
 {% endblock %}
