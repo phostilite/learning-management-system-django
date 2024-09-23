@@ -1,6 +1,9 @@
 import django_filters
 from courses.models import Program, Course, Tag, CourseCategory
+from organization.models import EmployeeProfile, OrganizationUnit, JobPosition
 from activities.models import SystemNotification
+from .mixins import AdministratorRequiredMixin
+from django.db import models
 from django import forms
 
 class ProgramFilter(django_filters.FilterSet):
@@ -39,3 +42,22 @@ class NotificationFilter(django_filters.FilterSet):
     class Meta:
         model = SystemNotification
         fields = ['start_date', 'end_date']
+
+class EmployeeProfileFilter(django_filters.FilterSet):
+    search = django_filters.CharFilter(method='filter_search', label='Search')
+    organization_unit = django_filters.ModelChoiceFilter(queryset=OrganizationUnit.objects.all())
+    job_position = django_filters.ModelChoiceFilter(queryset=JobPosition.objects.all())
+    is_active = django_filters.BooleanFilter()
+    hire_date = django_filters.DateFromToRangeFilter()
+
+    class Meta:
+        model = EmployeeProfile
+        fields = ['search', 'organization_unit', 'job_position', 'is_active', 'hire_date']
+
+    def filter_search(self, queryset, name, value):
+        return queryset.filter(
+            models.Q(user__first_name__icontains=value) |
+            models.Q(user__last_name__icontains=value) |
+            models.Q(user__email__icontains=value) |
+            models.Q(employee_id__icontains=value)
+        )
