@@ -19,7 +19,7 @@
 {% block content %}
 <div class="organization-employee-profiles-page bg-gray-100 min-h-screen" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
     <!-- Header -->
-    <header class="gradient-bg text-white p-6 rounded-xl mb-8 shadow-lg relative overflow-hidden">
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 shadow-lg relative overflow-hidden">
         <div class="relative z-10">
             <h1 class="text-4xl font-bold text-center mb-2">{% trans "Organization Employee Profiles" %}</h1>
             <p class="text-center text-lg">{% trans "Manage organization employee profiles" %}</p>
@@ -28,7 +28,7 @@
     </header>
 
     <!-- Breadcrumb -->
-    <nav class="flex mb-6" aria-label="Breadcrumb">
+    <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
                 <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
@@ -47,59 +47,67 @@
 
     <!-- Filters, Search, and Add Employee Button -->
     <div class="bg-white shadow rounded-lg p-6 mb-8">
-        <form method="get" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div>
-                    <label for="search" class="block text-sm font-medium text-gray-700">{% trans "Search" %}</label>
-                    {{ filter.form.search }}
-                </div>
-                <div>
-                    <label for="organization_unit" class="block text-sm font-medium text-gray-700">{% trans "Organization Unit" %}</label>
-                    {{ filter.form.organization_unit }}
-                </div>
-                <div>
-                    <label for="job_position" class="block text-sm font-medium text-gray-700">{% trans "Job Position" %}</label>
-                    {{ filter.form.job_position }}
-                </div>
-                <div>
-                    <label for="is_active" class="block text-sm font-medium text-gray-700">{% trans "Status" %}</label>
-                    {{ filter.form.is_active }}
-                </div>
-                <div>
-                    <label for="hire_date" class="block text-sm font-medium text-gray-700">{% trans "Hire Date Range" %}</label>
-                    <div class="flex space-x-2">
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker datepicker-format="yyyy-mm-dd" name="hire_date_after" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'From date' %}">
-                        </div>
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker datepicker-format="yyyy-mm-dd" name="hire_date_before" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% trans 'To date' %}">
-                        </div>
-                    </div>
-                </div>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-gray-800">{% trans "Filter Employees" %}</h2>
+            <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                {% trans "Add Employee" %}
+            </a>
+        </div>
+        <form method="get" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+                <label for="{{ filterset.form.search.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Search" %}</label>
+                <input type="text" name="{{ filterset.form.search.name }}" id="{{ filterset.form.search.id_for_label }}" 
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    placeholder="{% trans 'Search by name, email, or ID' %}">
             </div>
-            <div class="flex justify-between items-center">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
-                    <i class="fas fa-filter mr-2"></i>{% trans "Apply Filters" %}
-                </button>
-                <a href="{% url 'administrator_organization_employee_profiles' %}" class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-undo mr-2"></i>{% trans "Reset Filters" %}
-                </a>
-                <button id="addEmployee" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
-                    <i class="fas fa-plus mr-2"></i>{% trans "Add Employee" %}
+            <div>
+                <label for="{{ filterset.form.organization_unit.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Organization Unit" %}</label>
+                <select name="{{ filterset.form.organization_unit.name }}" id="{{ filterset.form.organization_unit.id_for_label }}"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">{% trans "All Units" %}</option>
+                    {% for value, label in filterset.form.organization_unit.field.choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="{{ filterset.form.job_position.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Job Position" %}</label>
+                <select name="{{ filterset.form.job_position.name }}" id="{{ filterset.form.job_position.id_for_label }}"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">{% trans "All Positions" %}</option>
+                    {% for value, label in filterset.form.job_position.field.choices %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="{{ filterset.form.is_active.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Status" %}</label>
+                <select name="{{ filterset.form.is_active.name }}" id="{{ filterset.form.is_active.id_for_label }}"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="">{% trans "All" %}</option>
+                    <option value="true">{% trans "Active" %}</option>
+                    <option value="false">{% trans "Inactive" %}</option>
+                </select>
+            </div>
+            <div>
+                <label for="{{ filterset.form.hire_date.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Hire Date" %}</label>
+                <input type="date" name="{{ filterset.form.hire_date.name }}" id="{{ filterset.form.hire_date.id_for_label }}"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+            <div class="flex items-end">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    {% trans "Filter" %}
                 </button>
             </div>
         </form>
     </div>
+    
 
     <!-- Employee Profiles List - Now with horizontal scrolling -->
     <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -124,7 +132,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="{% static 'images/default-avatar.png' %}" alt="{{ profile.user.get_full_name }}">
+                                    {% if profile.picture %}
+                                        <img class="h-10 w-10 rounded-full" src="{{ profile.picture.url }}" alt="{{ profile.user.get_full_name }}">
+                                    {% else %}
+                                        <i class="fas fa-user-circle h-10 w-10"></i>
+                                    {% endif %}
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ profile.user.get_full_name }}</div>
@@ -218,86 +230,4 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Flowbite's datepicker is automatically initialized, so we don't need to do it manually
-
-        // Add Employee button functionality
-        const addEmployeeBtn = document.getElementById('addEmployee');
-        addEmployeeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Implement add employee functionality (e.g., redirect to add employee page or open a modal)
-            console.log('Add employee button clicked');
-        });
-
-        // Implement action button functionalities
-        document.querySelectorAll('tbody button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const action = this.getAttribute('title');
-                const employeeId = this.closest('tr').querySelector('td:first-child').textContent;
-                
-                switch(action) {
-                    case 'View':
-                        viewEmployee(employeeId);
-                        break;
-                    case 'Edit':
-                        editEmployee(employeeId);
-                        break;
-                    case 'Delete':
-                        deleteEmployee(employeeId);
-                        break;
-                    default:
-                        console.error('Unknown action:', action);
-                }
-            });
-        });
-
-        function viewEmployee(employeeId) {
-            console.log('Viewing employee:', employeeId);
-            // Implement view functionality
-        }
-
-        function editEmployee(employeeId) {
-            console.log('Editing employee:', employeeId);
-            // Implement edit functionality
-        }
-
-        function deleteEmployee(employeeId) {
-            console.log('Deleting employee:', employeeId);
-            // Implement delete functionality with confirmation
-        }
-
-        // Error handling function
-        function handleError(error) {
-            console.error('An error occurred:', error);
-            // Display an error message to the user
-            alert('An error occurred. Please try again later.');
-        }
-
-        // Wrap all AJAX calls with try-catch for error handling
-        async function makeAPICall(url, method = 'GET', data = null) {
-            try {
-                const options = {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // Add any necessary headers, such as authentication tokens
-                    }
-                };
-                if (data) {
-                    options.body = JSON.stringify(data);
-                }
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return await response.json();
-            } catch (error) {
-                handleError(error);
-                throw error;
-            }
-        }
-    });
-</script>
 {% endblock %}

@@ -60,7 +60,7 @@ from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 
 from .utils.notification_utils import create_notification, log_activity
-from .filters import NotificationFilter, EmployeeProfileFilter
+from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -768,12 +768,26 @@ class AdministratorLearningResourceDetailView(AdministratorRequiredMixin, Detail
     model = LearningResource
     context_object_name = 'resource'
 
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            if not all(permission().has_permission(request, self) for permission in self.permission_classes):
+                logger.warning(f"User {request.user.username} attempted to access AdministratorLearningResourceDetailView without proper permissions")
+                raise PermissionDenied("You do not have administrator privileges.")
+            return super().dispatch(request, *args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error in AdministratorLearningResourceDetailView dispatch: {str(e)}")
+            raise
+
     def get_object(self, queryset=None):
         try:
             course_id = self.kwargs.get('course_id')
             resource_id = self.kwargs.get('pk')
             
             obj = get_object_or_404(LearningResource, pk=resource_id, course__id=course_id)
+            
+            if not all(permission().has_object_permission(self.request, self, obj) for permission in self.permission_classes):
+                logger.warning(f"User {self.request.user.username} attempted to access LearningResource {resource_id} without proper permissions")
+                raise PermissionDenied("You do not have permission to view this resource.")
             
             return obj
         except LearningResource.DoesNotExist:
@@ -1470,59 +1484,126 @@ class OrganizationDetailsView(AdministratorRequiredMixin, TemplateView):
         context['organization'] = organization
         return context
 
-class OrganizationUnitsView(AdministratorRequiredMixin, TemplateView):
+class OrganizationUnitsView(AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_units.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        organization = Organization.objects.first()
-        organization_units = OrganizationUnit.objects.filter(organization=organization)
-        context['organization_units'] = organization_units
-        return context
-    
-class OrganizationLocationsView(AdministratorRequiredMixin, TemplateView):
-    template_name = 'users/administrator/organization/organization_locations.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        organization = Organization.objects.first()
-        locations = Location.objects.filter(organization=organization)
-        context['locations'] = locations
-        return context
-    
-class OrganizationJobPositionsView(AdministratorRequiredMixin, TemplateView):
-    template_name = 'users/administrator/organization/organization_job_positions.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        organization = Organization.objects.first()
-        job_positions = JobPosition.objects.filter(organization=organization)
-        context['job_positions'] = job_positions
-        return context
-    
-class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, FilterView):
-    model = EmployeeProfile
-    template_name = 'users/administrator/organization/organization_employee_profiles.html'
-    context_object_name = 'employee_profiles'
-    filterset_class = EmployeeProfileFilter
-    paginate_by = 10 
+    model = OrganizationUnit
+    context_object_name = 'organization_units'
+    paginate_by = 10
+    permission_required = 'organization.view_organizationunit'
 
     def get_queryset(self):
-        organization = Organization.objects.first()
-        return EmployeeProfile.objects.filter(organization=organization)
+        try:
+            organization = Organization.objects.first()
+            queryset = OrganizationUnit.objects.filter(organization=organization)
+            self.filterset = OrganizationUnitFilter(self.request.GET, queryset=queryset)
+            return self.filterset.qs
+        except Exception as e:
+            logger.error(f"Error in OrganizationUnitsView get_queryset: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching organization units. Please try again later."))
+            return OrganizationUnit.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['organization_units'] = OrganizationUnit.objects.filter(organization=Organization.objects.first())
+        try:
+            context['filterset'] = self.filterset
+        except Exception as e:
+            logger.error(f"Error in OrganizationUnitsView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
-class OrganizationGroupsView(AdministratorRequiredMixin, TemplateView):
-    template_name = 'users/administrator/organization/organization_groups.html'
+class OrganizationLocationsView(AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/organization/organization_locations.html'
+    model = Location
+    context_object_name = 'locations'
+    paginate_by = 10
+    permission_required = 'organization.view_location'
+
+    def get_queryset(self):
+        try:
+            organization = Organization.objects.first()
+            queryset = Location.objects.filter(organization=organization)
+            self.filterset = LocationFilter(self.request.GET, queryset=queryset)
+            return self.filterset.qs
+        except Exception as e:
+            logger.error(f"Error in OrganizationLocationsView get_queryset: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching locations. Please try again later."))
+            return Location.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        groups = Group.objects.all()
-        context['groups'] = groups
+        try:
+            context['filterset'] = self.filterset
+        except Exception as e:
+            logger.error(f"Error in OrganizationLocationsView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
+        return context
+    
+class OrganizationJobPositionsView(AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/organization/organization_job_positions.html'
+    model = JobPosition
+    context_object_name = 'job_positions'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = JobPositionFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
+    
+class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/organization/organization_employee_profiles.html'
+    model = EmployeeProfile
+    context_object_name = 'employee_profiles'
+    paginate_by = 10  # Adjust this value as needed
+
+    def get_queryset(self):
+        try:
+            organization = Organization.objects.first()
+            queryset = EmployeeProfile.objects.filter(organization=organization)
+            self.filterset = EmployeeProfileFilter(self.request.GET, queryset=queryset)
+            return self.filterset.qs
+        except Exception as e:
+            logger.error(f"Error in OrganizationEmployeeProfilesView get_queryset: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching employee profiles. Please try again later."))
+            return EmployeeProfile.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['filterset'] = self.filterset
+        except Exception as e:
+            logger.error(f"Error in OrganizationEmployeeProfilesView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
+        return context
+    
+class OrganizationGroupsView(AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/organization/organization_groups.html'
+    model = Group
+    context_object_name = 'groups'
+    paginate_by = 10
+    permission_required = 'auth.view_group'
+
+    def get_queryset(self):
+        try:
+            queryset = Group.objects.all()
+            self.filterset = GroupFilter(self.request.GET, queryset=queryset)
+            return self.filterset.qs
+        except Exception as e:
+            logger.error(f"Error in OrganizationGroupsView get_queryset: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching groups. Please try again later."))
+            return Group.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['filterset'] = self.filterset
+        except Exception as e:
+            logger.error(f"Error in OrganizationGroupsView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
 

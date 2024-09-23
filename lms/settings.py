@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'csp',
     'rosetta',
     'django_session_timeout',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -265,3 +267,6 @@ SESSION_EXPIRE_SECONDS = 1800
 
 # Redirect to landing page after session timeout
 SESSION_TIMEOUT_REDIRECT = 'login'  
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
