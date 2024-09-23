@@ -205,35 +205,22 @@
             </div>
         </div>
         <div class="p-4">
+            {% for faq in faqs %}
             <div class="mb-4 flex justify-between items-center">
                 <div>
-                    <h3 class="font-semibold mb-2">{% trans "How do I reset a student's password?" %}</h3>
-                    <p class="text-gray-600">{% trans "To reset a student's password, go to User Management, find the student's profile, and click on the 'Reset Password' button. An email with instructions will be sent to the student." %}</p>
+                    <h3 class="font-semibold mb-2">{{ faq.question }}</h3>
+                    <p class="text-gray-600">{{ faq.answer }}</p>
                 </div>
                 <div class="flex space-x-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                    <a href="{% url 'administrator_faq_edit' faq.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
                         <i class="fas fa-pen"></i>
                     </a>
-                    <a href="#" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                    <a href="{% url 'administrator_faq_delete' faq.id %}" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </div>
-            <div class="mb-4 flex justify-between items-center">
-                <div>
-                    <h3 class="font-semibold mb-2">{% trans "How can I add a new course to the system?" %}</h3>
-                    <p class="text-gray-600">{% trans "To add a new course, navigate to the Courses section, click on 'Add New Course', fill in the required information, and upload course materials. Don't forget to assign instructors and set the course schedule." %}</p>
-                </div>
-                <div class="flex space-x-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
-                        <i class="fas fa-pen"></i>
-                    </a>
-                    <a href="#" class="text-blue-600 hover:text-red-900" title="{% trans 'Delete' %}">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- Add more FAQs as needed -->
+            {% endfor %}
         </div>
     </div>
 

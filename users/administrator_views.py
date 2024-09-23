@@ -1634,6 +1634,7 @@ class AdministratorHelpSupportView(TemplateView):
             'resolved_this_week': metrics['resolved_this_week'],
             'user_satisfaction': f"{user_satisfaction}%",
             'support_tickets': SupportTicket.objects.all(),
+            'faqs': FAQ.objects.all(),
         })
         
         return context
@@ -1746,9 +1747,9 @@ class AdministratorFaqCreateView(LoginRequiredMixin, UserPassesTestMixin, FormVi
 
     def form_valid(self, form):
         try:
-            ticket = form.save(commit=False)
-            ticket.created_by = self.request.user
-            ticket.save()
+            faq = form.save(commit=False)
+            faq.created_by = self.request.user
+            faq.save()
             messages.success(self.request, 'FAQ created successfully!')
             return super().form_valid(form)
         except Exception as e:
@@ -1760,5 +1761,50 @@ class AdministratorFaqCreateView(LoginRequiredMixin, UserPassesTestMixin, FormVi
         logger.error(f"Form errors: {form.errors}")
         messages.error(self.request, 'There was an error creating the FAQ. Please check the form and try again.')
         return super().form_invalid(form)
+
+class AdministratorFaqEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = FAQ
+    template_name = 'users/administrator/help_and_support/FAQ/edit_faq.html'
+    form_class = FAQForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support faq updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating FAQ: {e}")
+            messages.error(self.request, 'There was an error updating the FAQs. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the FAQs. Please check the form and try again.')
+        return super().form_invalid(form)    
     
+class AdministratorFaqDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = FAQ  # Changed from SupportTicket to FAQ
+    template_name = 'users/administrator/help_and_support/FAQ/delete_faq.html'
+    success_url = reverse_lazy('administrator_help_support')
     
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "The FAQ was successfully deleted.")
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Delete FAQ"
+        return context
