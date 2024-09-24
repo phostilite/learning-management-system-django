@@ -149,7 +149,12 @@ urlpatterns = [
     path('learner/badges/', learner_views.BadgeView.as_view(), name='learner_badge'),
     path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
+    
+    
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
+    path('learner/help-support/tickets/create/',learner_views.LearnerTicketCreateView.as_view(), name='learner_tickets_create'),
+    path('learner/help-support/tickets/<uuid:pk>/ticket_details/', learner_views.LearnerTicketDetailView.as_view(), name='learner_tickets_detail'),
+     
 
     path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),
