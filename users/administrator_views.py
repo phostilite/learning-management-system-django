@@ -62,7 +62,7 @@ from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 from support.models import SupportTicket, SupportCategory, FAQ
-from support.forms import TicketForm, FAQForm
+from support.forms import TicketForm, FAQForm, SupportCategoryForm
 
 from .utils.notification_utils import create_notification, log_activity
 from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter
@@ -1965,3 +1965,31 @@ class AdministratorSupportCategoryView(AdministratorRequiredMixin, TemplateView)
         context = super().get_context_data(**kwargs)
         context['support_categories'] = SupportCategory.objects.all()
         return context
+    
+class AdministratorCategoryCreateView(AdministratorRequiredMixin, FormView):
+    model= SupportCategory
+    form_class = SupportCategoryForm
+    template_name = 'users/administrator/help_and_support/support_category/create_category.html'
+    success_url = reverse_lazy('administrator_support_category')  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Category'
+        return context
+
+    def form_valid(self, form):
+        try:
+            category = form.save(commit=False)
+            category.created_by = self.request.user
+            category.save()
+            messages.success(self.request, 'Support Category created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating Support Category: {e}")
+            messages.error(self.request, 'There was an error creating the Support Category. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the Support Category. Please check the form and try again.')
+        return super().form_invalid(form)
