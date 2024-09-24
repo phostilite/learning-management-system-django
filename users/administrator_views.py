@@ -23,7 +23,7 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.db import IntegrityError, transaction
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Avg, ExpressionWrapper, F, fields
 from django.db.models.functions import TruncMonth
 from django.forms import formset_factory
 from django.http import Http404, HttpResponse, JsonResponse
@@ -36,6 +36,7 @@ from django.views import View
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic import (CreateView, DeleteView, DetailView, FormView,
                                   ListView, TemplateView, UpdateView)
+
 
 # Local application imports
 from .api_client import (create_scormhub_course, register_user_for_course,
@@ -60,6 +61,8 @@ from quizzes.models import Choice, Question, Quiz
 from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
+from support.models import SupportTicket, SupportCategory, FAQ
+from support.forms import TicketForm, FAQForm
 
 from .utils.notification_utils import create_notification, log_activity
 from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter
@@ -1760,3 +1763,196 @@ class UnreadNotificationsCountView(AdministratorRequiredMixin, View):
         except Exception as e:
             logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
             return JsonResponse({'count': 0})
+        
+
+# ============================================================
+# ======================= Help and support ================
+# ============================================================
+
+class AdministratorHelpSupportView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/help_and_support/support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the current date and the date 7 days ago
+        now = timezone.now()
+        week_ago = now - timedelta(days=7)
+        
+        # Fetch all required metrics in a single query
+        metrics = SupportTicket.objects.aggregate(
+            open_tickets=Count('id', filter=Q(status='OPEN')),
+            resolved_this_week=Count('id', filter=Q(status='RESOLVED', updated_at__gte=week_ago)),
+            total_response_time=Avg(
+                ExpressionWrapper(
+                    F('responses__created_at') - F('created_at'),
+                    output_field=fields.DurationField()
+                ),
+                filter=Q(responses__isnull=False)
+            )
+        )
+        
+        # Calculate average response time in hours
+        avg_response_time = metrics['total_response_time'].total_seconds() / 3600 if metrics['total_response_time'] else 0
+        
+        # Fetch user satisfaction (this is a placeholder, adjust based on your actual data model)
+        user_satisfaction = 94  # Placeholder value, replace with actual calculation if available
+        
+        context.update({
+            'open_tickets': metrics['open_tickets'],
+            'avg_response_time': f"{avg_response_time:.1f}h",
+            'resolved_this_week': metrics['resolved_this_week'],
+            'user_satisfaction': f"{user_satisfaction}%",
+            'support_tickets': SupportTicket.objects.all(),
+            'faqs': FAQ.objects.all(),
+        })
+        
+        return context
+
+class AdministratorTicketCreateView(AdministratorRequiredMixin, FormView):
+    template_name = 'users/administrator/help_and_support/tickets/creating_tickets.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Ticket'
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorTicketDetailView(AdministratorRequiredMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AdministratorTicketEditView(AdministratorRequiredMixin, UpdateView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/edit_ticket.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating support ticket: {e}")
+            messages.error(self.request, 'There was an error updating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+    
+class AdministratorTicketDeleteView (AdministratorRequiredMixin, DeleteView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/delete_ticket.html'
+    success_url = reverse_lazy('administrator_help_support')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, ("The ticket was successfully deleted."))
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = ("Delete Ticket")
+        return context
+    
+    
+class AdministratorFaqCreateView(AdministratorRequiredMixin, FormView):
+    model= FAQ
+    form_class = FAQForm
+    template_name = 'users/administrator/help_and_support/FAQ/create_faq.html'
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New FAQ'
+        return context
+
+    def form_valid(self, form):
+        try:
+            faq = form.save(commit=False)
+            faq.created_by = self.request.user
+            faq.save()
+            messages.success(self.request, 'FAQ created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating FAQ: {e}")
+            messages.error(self.request, 'There was an error creating the FAQ. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the FAQ. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorFaqEditView(AdministratorRequiredMixin, UpdateView):
+    model = FAQ
+    template_name = 'users/administrator/help_and_support/FAQ/edit_faq.html'
+    form_class = FAQForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support faq updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating FAQ: {e}")
+            messages.error(self.request, 'There was an error updating the FAQs. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the FAQs. Please check the form and try again.')
+        return super().form_invalid(form)    
+    
+class AdministratorFaqDeleteView(AdministratorRequiredMixin, DeleteView):
+    model = FAQ  # Changed from SupportTicket to FAQ
+    template_name = 'users/administrator/help_and_support/FAQ/delete_faq.html'
+    success_url = reverse_lazy('administrator_help_support')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "The FAQ was successfully deleted.")
+        return super().delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Delete FAQ"
+        return context

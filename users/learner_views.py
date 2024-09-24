@@ -30,7 +30,7 @@ from django.views.generic import FormView
 from django.contrib.auth import get_user_model
 
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .mixins import AdministratorRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from .models import User, SCORMUserProfile
@@ -770,7 +770,7 @@ class LeaderboardView(TemplateView):
 # ======================= Settings Views =====================
 # ============================================================
     
-class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
+class SettingsView(AdministratorRequiredMixin, View):
     template_name = 'users/learner/settings.html'
 
     def test_func(self):
