@@ -1672,7 +1672,6 @@ class AdministratorAnnouncementDetailView(LoginRequiredMixin, UserPassesTestMixi
     
 class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Announcement
-    template_name = 'users/administrator/announcements/announcement_confirm_delete.html'
     context_object_name = 'announcement'
     success_url = reverse_lazy('administrator_announcement_list')
 
@@ -1681,6 +1680,11 @@ class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixi
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({'success': True, 'redirect_url': str(self.success_url)})
 
 
 class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -1688,11 +1692,32 @@ class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixi
     form_class = AnnouncementForm
     template_name = 'users/administrator/announcements/announcement_update.html'
     context_object_name = 'announcement'
-    success_url = reverse_lazy('administrator_announcement_list')
 
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+    
+    def form_valid(self, form):
+        try:
+            response = super().form_valid(form)
+            logger.info(f"Announcement updated successfully: {self.object}")
+            return response
+        except Exception as e:
+            logger.error(f"Error during form validation: {e}")
+            raise
 
+    def form_invalid(self, form):
+        try:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    logger.error(f"Error in field '{field}': {error}")
+            response = super().form_invalid(form)
+            return response
+        except Exception as e:
+            logger.error(f"Error during form invalid handling: {e}")
+            raise
+
+    def get_success_url(self):
+        return reverse('administrator_announcement_detail', kwargs={'pk': self.object.pk})
