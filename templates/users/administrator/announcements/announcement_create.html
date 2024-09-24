@@ -8,78 +8,108 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="mb-4">{% trans "Create New Announcements" %}</h1>
-            <div class="ticket-form">
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <div class="form-group">
-                        <label for="{{ form.title.id_for_label }}">{% trans "Announcement Title" %}:</label>
-                        {{ form.title }}
-                        {% if form.title.help_text %}
-                            <small class="help-text">{{ form.title.help_text }}</small>
-                        {% endif %}
-                        {% if form.title.errors %}
-                            <div class="error-text">{{ form.title.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
+<div class="w-full">
+    
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
+        <h1 class="text-3xl font-bold text-white text-center">{% trans "Create New Announcements" %}</h1>
+        <p class="text-center text-lg">{% trans "Keep everyone informed with timely updates and important information." %}</p>
+    </header>
 
-                    <div class="form-group">
-                        <label for="{{ form.content.id_for_label }}">{% trans "Announcement Description" %}:</label>
-                        {{ form.content }}
-                        {% if form.content.help_text %}
-                            <small class="help-text">{{ form.content.help_text }}</small>
-                        {% endif %}
-                        {% if form.content.errors %}
-                            <div class="error-text">{{ form.content.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="{{ form.priority.id_for_label }}">{% trans "Announcement Priority" %}:</label>
-                        {{ form.priority }}
-                        {% if form.priority.help_text %}
-                            <small class="help-text">{{ form.priority.help_text }}</small>
-                        {% endif %}
-                        {% if form.priority.errors %}
-                            <div class="error-text">{{ form.priority.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
-
-                    
-
-                    <div class="form-group">
-                        <label for="{{ form.publish_date.id_for_label }}">{% trans "Announcement Publish Date" %}:</label>
-                        {{ form.publish_date }}
-                        {% if form.publish_date.help_text %}
-                            <small class="help-text">{{ form.publish_date.help_text }}</small>
-                        {% endif %}
-                        {% if form.publish_date.errors %}
-                            <div class="error-text">{{ form.publish_date.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="{{ form.expiry_date.id_for_label }}">{% trans "Announcement Expiry Date" %}:</label>
-                        {{ form.expiry_date }}
-                        {% if form.expiry_date.help_text %}
-                            <small class="help-text">{{ form.expiry_date.help_text }}</small>
-                        {% endif %}
-                        {% if form.expiry_date.errors %}
-                            <div class="error-text">{{ form.expiry_date.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">{% trans "Submit Announcement" %}</button>
-                        <a href="{% url 'administrator_announcement_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
-                    </div>
-                </form>
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_announcement_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Announcements" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Create New Announcement" %}</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    
+    
+    <div class="bg-white rounded-xl pt-1 p-6 mb-8 card-shadow">
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}            
+            <div>
+                <label for="id_title" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Announcement Title" %}</label>
+                <input type="text" name="title" id="id_title" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.title.value|default_if_none:'' }}" required>
+                {% if form.title.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.title.errors.0 }}</p>
+                {% endif %}
             </div>
-        </div>
+            
+            <div>
+                <label for="id_content" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Announcement Description" %}</label>
+                <textarea name="content" id="id_content" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ form.content.value|default_if_none:'' }}</textarea>
+                {% if form.content.help_text %}
+                    <p class="mt-2 text-sm text-gray-500">{{ form.content.help_text }}</p>
+                {% endif %}
+                {% if form.content.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.content.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div>
+                <label for="id_priority" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Announcement Priority" %}</label>
+                <select name="priority" id="id_priority" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    {% for value, label in form.fields.priority.choices %}
+                        <option value="{{ value }}" {% if form.priority.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.priority.help_text %}
+                    <p class="mt-2 text-sm text-gray-500">{{ form.priority.help_text }}</p>
+                {% endif %}
+                {% if form.priority.errors %}
+                    <p class="mt-2 text-sm text-red-600">{{ form.priority.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="id_publish_date" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Announcement Publish Date" %}</label>
+                    <input type="datetime-local" name="publish_date" id="id_publish_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.publish_date.value|default_if_none:'' }}" required>
+                    {% if form.publish_date.help_text %}
+                        <p class="mt-2 text-sm text-gray-500">{{ form.publish_date.help_text }}</p>
+                    {% endif %}
+                    {% if form.publish_date.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.publish_date.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    <label for="id_expiry_date" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Announcement Expiry Date" %}</label>
+                    <input type="datetime-local" name="expiry_date" id="id_expiry_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ form.expiry_date.value|default_if_none:'' }}" required>
+                    {% if form.expiry_date.help_text %}
+                        <p class="mt-2 text-sm text-gray-500">{{ form.expiry_date.help_text }}</p>
+                    {% endif %}
+                    {% if form.expiry_date.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.expiry_date.errors.0 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4 rtl:space-x-reverse mt-6">
+                <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i class="fas fa-save mr-2"></i> {% trans "Create Announcement" %}
+                </button>
+                <a href="{% url 'administrator_announcement_list' %}" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                    <i class="fas fa-times mr-2"></i> {% trans "Cancel" %}
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
