@@ -1,6 +1,8 @@
 # forms.py
 
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Submit
 from .models import SupportTicket, SupportCategory,FAQ
 
 class TicketForm(forms.ModelForm):
@@ -92,3 +94,38 @@ class FAQForm(forms.ModelForm):
         if len(answer) < 30:
             raise forms.ValidationError("Please provide a more detailed answer (at least 30 characters).")
         return answer
+    
+
+class SupportCategoryForm(forms.ModelForm):
+    class Meta:
+        model = SupportCategory
+        fields = ['name', 'description', 'parent', 'is_active']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Enter the category name'
+            }),
+            'description': forms.Textarea(attrs={
+                'rows': 3,
+                'placeholder': 'Enter a brief description'
+            }),
+            'parent': forms.Select(),
+            'is_active': forms.CheckboxInput()
+        }
+        help_texts = {
+            'name': 'The name of the support category.',
+            'description': 'A brief description of the support category.',
+            'parent': 'Select the parent category if applicable.',
+            'is_active': 'Check this if the category is active.'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SupportCategoryForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Field('name', css_class='form-control'),
+            Field('description', css_class='form-control'),
+            Field('parent', css_class='form-control'),
+            Field('is_active', css_class='form-check-input'),
+            Submit('submit', 'Save', css_class='btn btn-primary')
+        )

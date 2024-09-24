@@ -12,6 +12,10 @@ class SupportCategory(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='subcategories')
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    is_active = models.BooleanField(default=False, null=True, blank=True)
+    
 
     def __str__(self):
         return self.name

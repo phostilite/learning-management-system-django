@@ -123,6 +123,8 @@ urlpatterns = [
     path('administrator/help-support/faq/create/', administrator_views.AdministratorFaqCreateView.as_view(), name='administrator_faq_create'),
     path('administrator/help-support/faq/<uuid:pk>/edit/', administrator_views.AdministratorFaqEditView.as_view(), name='administrator_faq_edit'),
     path('administrator/help-support/faq/<uuid:pk>/delete/', administrator_views.AdministratorFaqDeleteView.as_view(), name='administrator_faq_delete'),
+    
+    path('administrator/help-support/support_category/', administrator_views.AdministratorSupportCategoryView.as_view(), name='administrator_support_category'),
      
     
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),

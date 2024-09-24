@@ -1,0 +1,103 @@
+{% extends '../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Support Categories - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="support-category-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Support Categories" %}</h1>
+            <p class="text-center text-lg">{% trans "Manage and Organize Support Categories" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_help_support' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Help & Support" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Support Categories" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <a href="#" class="bg-primary text-white p-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 flex items-center justify-center">
+            <svg class="w-6 h-6 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            {% trans "Create New Category" %}
+        </a>
+        <a href="#" class="bg-accent text-white p-4 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 flex items-center justify-center">
+            <svg class="w-6 h-6 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+            </svg>
+            {% trans "Back to Help & Support" %}
+        </a>
+    </div>
+
+    <!-- Support Categories List -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <div class="p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold">{% trans "Support Categories" %}</h2>
+        </div>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">{% trans "Name" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Description" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Parent Category" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in support_categories %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="px-6 py-4 font-medium text-gray-900">{{ category.name }}</td>
+                    <td class="px-6 py-4">{{ category.description|truncatewords:10 }}</td>
+                    <td class="px-6 py-4">{{ category.parent.name|default:"-" }}</td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a href="#" class="text-red-600 hover:text-red-900 ml-2" title="{% trans 'Delete' %}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">
+                        {% trans "No support categories found." %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

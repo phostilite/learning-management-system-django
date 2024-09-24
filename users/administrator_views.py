@@ -1956,3 +1956,12 @@ class AdministratorFaqDeleteView(AdministratorRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = "Delete FAQ"
         return context
+    
+    
+class AdministratorSupportCategoryView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/help_and_support/support_category/category_dash.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['support_categories'] = SupportCategory.objects.all()
+        return context
