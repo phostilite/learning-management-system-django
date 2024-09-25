@@ -17,3 +17,4 @@ class AdministratorRequiredMixin(AccessMixin):
             raise PermissionDenied("You do not have administrator privileges.")
         
         return super().dispatch(request, *args, **kwargs)
+    

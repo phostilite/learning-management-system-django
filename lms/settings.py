@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,8 +76,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
+    'users.middleware.SessionRefreshMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -220,6 +221,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = reverse_lazy('login')
+
 # Custom user model
 AUTH_USER_MODEL = 'users.User'
 
@@ -262,11 +265,10 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-# Set session timeout to 30 minutes (1800 seconds)
-SESSION_EXPIRE_SECONDS = 18000
-
-# Redirect to landing page after session timeout
-SESSION_TIMEOUT_REDIRECT = 'login'  
-
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+# Session timeout settings
+SESSION_EXPIRE_SECONDS = 18000
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_TIMEOUT_REDIRECT = 'session_expired'
