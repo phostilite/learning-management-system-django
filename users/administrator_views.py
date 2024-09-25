@@ -5,6 +5,8 @@ from datetime import timedelta
 
 from django_filters.views import FilterView
 from .filters import AnnouncementFilter
+from django.views.decorators.csrf import csrf_exempt
+
 
 import requests
 from django.conf import settings
@@ -1686,38 +1688,35 @@ class AdministratorAnnouncementDeleteView(LoginRequiredMixin, UserPassesTestMixi
         self.object.delete()
         return JsonResponse({'success': True, 'redirect_url': str(self.success_url)})
 
-
 class AdministratorAnnouncementUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Announcement
     form_class = AnnouncementForm
-    template_name = 'users/administrator/announcements/announcement_update.html'
     context_object_name = 'announcement'
+    success_url = reverse_lazy('administrator_announcement_detail', kwargs={'pk': 'uuid:pk'})
 
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
 
-    def get_object(self):
-        return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
-    
-    def form_valid(self, form):
-        try:
-            response = super().form_valid(form)
-            logger.info(f"Announcement updated successfully: {self.object}")
-            return response
-        except Exception as e:
-            logger.error(f"Error during form validation: {e}")
-            raise
+    def get(self, request, *args, **kwargs):
+        announcement = get_object_or_404(Announcement, pk=kwargs['pk'])
+        data = {
+            'title': announcement.title,
+            'content': announcement.content,
+            'priority': announcement.priority,
+            'publish_date': announcement.publish_date.isoformat() if announcement.publish_date else None,
+            'expiry_date': announcement.expiry_date.isoformat() if announcement.expiry_date else None,
+        }
+        return JsonResponse(data)
 
-    def form_invalid(self, form):
-        try:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    logger.error(f"Error in field '{field}': {error}")
-            response = super().form_invalid(form)
-            return response
-        except Exception as e:
-            logger.error(f"Error during form invalid handling: {e}")
-            raise
-
-    def get_success_url(self):
-        return reverse('administrator_announcement_detail', kwargs={'pk': self.object.pk})
+    @method_decorator(csrf_exempt)
+    def post(self, request, *args, **kwargs):
+        announcement = get_object_or_404(Announcement, pk=kwargs['pk'])
+        form = AnnouncementForm(request.POST, instance=announcement)
+        if form.is_valid():
+            announcement = form.save(commit=False)
+            announcement.author = self.request.user
+            announcement.save()
+            redirect_url = reverse('administrator_announcement_detail', kwargs={'pk': announcement.pk})
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
