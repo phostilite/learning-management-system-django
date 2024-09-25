@@ -126,7 +126,8 @@ urlpatterns = [
     
     path('administrator/help-support/support_category/', administrator_views.AdministratorSupportCategoryView.as_view(), name='administrator_support_category'),
     path('administrator/help-support/support_category/create_category/', administrator_views.AdministratorCategoryCreateView.as_view(), name='administrator_category_create'),
-     
+    path('administrator/help-support/category/<uuid:pk>/edit/', administrator_views.AdministratorCategoryEditView.as_view(), name='administrator_category_edit'),
+    path('administrator/help-support/category/<uuid:pk>/delete/', administrator_views.AdministratorCategoryDeleteView.as_view(), name='administrator_category_delete'),
     
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),

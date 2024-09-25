@@ -4,6 +4,7 @@ import logging
 from datetime import timedelta
 
 # Third-party imports
+from django.db.models.query import QuerySet
 import requests
 from formtools.wizard.views import SessionWizardView
 from rest_framework import permissions, status
@@ -26,7 +27,7 @@ from django.db import IntegrityError, transaction
 from django.db.models import Count, Q, Avg, ExpressionWrapper, F, fields
 from django.db.models.functions import TruncMonth
 from django.forms import formset_factory
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -1993,3 +1994,50 @@ class AdministratorCategoryCreateView(AdministratorRequiredMixin, FormView):
         logger.error(f"Form errors: {form.errors}")
         messages.error(self.request, 'There was an error creating the Support Category. Please check the form and try again.')
         return super().form_invalid(form)
+    
+from django.core.serializers.json import DjangoJSONEncoder
+
+class AdministratorCategoryEditView(AdministratorRequiredMixin, UpdateView):
+    model = SupportCategory
+    fields = ['name', 'description', 'parent']
+    success_url = reverse_lazy('administrator_support_category')
+
+    def get(self, request, *args, **kwargs):
+        category = get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+        all_categories = SupportCategory.objects.exclude(pk=category.pk).values('id', 'name')
+        
+        return JsonResponse({
+            'name': category.name,
+            'description': category.description,
+            'parent_id': str(category.parent.id) if category.parent else None,
+            'is_active': category.is_active,
+            'all_categories': list(all_categories)
+        }, encoder=DjangoJSONEncoder)
+    
+    def post(self, request, *args, **kwargs):
+        category = get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+        form = SupportCategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            redirect_url = reverse('administrator_support_category')
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+
+
+    
+    
+class AdministratorCategoryDeleteView(AdministratorRequiredMixin, DeleteView):
+    model = SupportCategory
+    success_url = reverse_lazy('administrator_support_category')
+
+    def get_object(self):
+        return get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({
+            'success': True,
+            'redirect_url': str(self.success_url)
+        })
