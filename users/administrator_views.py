@@ -19,6 +19,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
@@ -70,8 +71,8 @@ logger = logging.getLogger(__name__)
 # Get the user model
 User = get_user_model()
 
-@method_decorator(login_required, name='dispatch')
-class AdministratorDashboardView(AdministratorRequiredMixin, TemplateView):
+
+class AdministratorDashboardView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/dashboard.html'
 
     def get_context_data(self, **kwargs):
@@ -79,7 +80,7 @@ class AdministratorDashboardView(AdministratorRequiredMixin, TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class AdministratorCalendarView(AdministratorRequiredMixin, TemplateView):
+class AdministratorCalendarView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/calendar.html'
 
     def get_context_data(self, **kwargs):
@@ -87,14 +88,14 @@ class AdministratorCalendarView(AdministratorRequiredMixin, TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class AdministratorLeaderboardView(AdministratorRequiredMixin, TemplateView):
+class AdministratorLeaderboardView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/leaderboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorCertificateListView(AdministratorRequiredMixin, ListView):
+class AdministratorCertificateListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/certificates.html'
     model = Certificate
     context_object_name = 'certificates'
@@ -159,28 +160,28 @@ class AdministratorCertificateListView(AdministratorRequiredMixin, ListView):
 
         return context
     
-class AdministratorAnnouncementListView(AdministratorRequiredMixin, TemplateView):
+class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/announcements.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorHelpSupportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorHelpSupportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/help_support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorMessageListView(AdministratorRequiredMixin, TemplateView):
+class AdministratorMessageListView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/messages.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorSettingsView(AdministratorRequiredMixin, TemplateView):
+class AdministratorSettingsView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/settings.html'
 
     def get_context_data(self, **kwargs):
@@ -188,70 +189,70 @@ class AdministratorSettingsView(AdministratorRequiredMixin, TemplateView):
         return context
 
     
-class AdministratorLearningPathListView(AdministratorRequiredMixin, TemplateView):
+class AdministratorLearningPathListView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/course/learning_path.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorCourseCompletionReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorCourseCompletionReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/course_completion.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorUserProgressReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorUserProgressReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/user_progress.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorAssessmentResultsReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorAssessmentResultsReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/assessment_results.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorUserEngagementReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorUserEngagementReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/user_engagement.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorResourceUsageReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorResourceUsageReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/resource_usage.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorCertificationTrackingReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorCertificationTrackingReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/certification_tracking.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorLearnerFeedbackReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorLearnerFeedbackReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/learner_feedback.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorCustomReportView(AdministratorRequiredMixin, TemplateView):
+class AdministratorCustomReportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/reports/custom_reports.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-class AdministratorLearnerListView(AdministratorRequiredMixin, ListView):
+class AdministratorLearnerListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/learners.html'
     context_object_name = 'learners'
 
@@ -326,7 +327,7 @@ class AdministratorLearnerListView(AdministratorRequiredMixin, ListView):
             }, status=500)
 
 
-class AdministratorFacilitatorListView(AdministratorRequiredMixin, ListView):
+class AdministratorFacilitatorListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/facilitators.html'
     context_object_name = 'facilitators'
 
@@ -367,7 +368,7 @@ class AdministratorFacilitatorListView(AdministratorRequiredMixin, ListView):
             }, status=500)
     
 
-class AdministratorSupervisorListView(AdministratorRequiredMixin, ListView):
+class AdministratorSupervisorListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/supervisors.html'
     context_object_name = 'supervisors'
 
@@ -412,7 +413,7 @@ class AdministratorSupervisorListView(AdministratorRequiredMixin, ListView):
 # ============== Course Category Views =======================
 # ============================================================
 
-class AdministratorCourseCategoryListView(AdministratorRequiredMixin, ListView):
+class AdministratorCourseCategoryListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = CourseCategory
     template_name = 'users/administrator/course/course_categories/categories.html'
     context_object_name = 'categories'
@@ -430,7 +431,7 @@ class AdministratorCourseCategoryListView(AdministratorRequiredMixin, ListView):
 # ======================= Course Views =======================
 # ============================================================
 
-class AdministratorCourseCreateView(AdministratorRequiredMixin, CreateView):
+class AdministratorCourseCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Course
     form_class = CourseForm
     template_name = 'users/administrator/course/course_create.html'
@@ -440,7 +441,7 @@ class AdministratorCourseCreateView(AdministratorRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class AdministratorCourseListView(AdministratorRequiredMixin, ListView):
+class AdministratorCourseListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/course/course_list.html'
     context_object_name = 'courses'
 
@@ -482,7 +483,7 @@ class AdministratorCourseListView(AdministratorRequiredMixin, ListView):
         return context
 
 
-class AdministratorCourseDetailView(AdministratorRequiredMixin, DetailView):
+class AdministratorCourseDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Course
     template_name = 'users/administrator/course/course_detail.html'
     context_object_name = 'course'
@@ -507,7 +508,7 @@ class AdministratorCourseDetailView(AdministratorRequiredMixin, DetailView):
         return context
 
 
-class AdministratorCourseEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorCourseEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Course
     form_class = CourseForm
     template_name = 'users/administrator/course/course_edit.html'
@@ -522,7 +523,7 @@ class AdministratorCourseEditView(AdministratorRequiredMixin, UpdateView):
         return context
     
     
-class AdministratorCoursePublishView(AdministratorRequiredMixin, FormView):
+class AdministratorCoursePublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     template_name = 'users/administrator/course/course_publish_confirm.html'
     form_class = CoursePublishForm
     success_url = reverse_lazy('administrator_course_list')
@@ -542,7 +543,7 @@ class AdministratorCoursePublishView(AdministratorRequiredMixin, FormView):
         context['course'] = get_object_or_404(Course, pk=self.kwargs['pk'])
         return context
     
-class AdministratorCourseUnpublishView(AdministratorRequiredMixin, FormView):
+class AdministratorCourseUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     template_name = 'users/administrator/course/course_unpublish_confirm.html'
     form_class = CourseUnpublishForm
     success_url = reverse_lazy('administrator_course_list')    
@@ -564,7 +565,7 @@ class AdministratorCourseUnpublishView(AdministratorRequiredMixin, FormView):
 
     
 
-class AdministratorCourseDeleteView(AdministratorRequiredMixin, DeleteView):
+class AdministratorCourseDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Course
     template_name = 'users/administrator/course/course_delete_confirm.html'
     success_url = reverse_lazy('administrator_course_list')
@@ -582,7 +583,7 @@ class AdministratorCourseDeleteView(AdministratorRequiredMixin, DeleteView):
 # =================== Course Enrollment Views ================
 # ============================================================
 
-class AdministratorEnrollmentListView(AdministratorRequiredMixin, ListView):
+class AdministratorEnrollmentListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Enrollment
     template_name = 'users/administrator/course/enrollments/enrollments.html'
     context_object_name = 'enrollments'
@@ -616,7 +617,7 @@ class AdministratorEnrollmentListView(AdministratorRequiredMixin, ListView):
 # =========== Course Learning Resources Views ================
 # ============================================================
 
-class AdministratorLearningResourcesListView(AdministratorRequiredMixin, ListView):
+class AdministratorLearningResourcesListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = LearningResource
     template_name = 'users/administrator/course/learning_resource/learning_resource_list.html'
     context_object_name = 'learning_resources'
@@ -630,7 +631,7 @@ class AdministratorLearningResourcesListView(AdministratorRequiredMixin, ListVie
         context['course'] = self.course
         return context
     
-class AdministratorLearningResourceCreateView(AdministratorRequiredMixin, CreateView):
+class AdministratorLearningResourceCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = LearningResource
     form_class = LearningResourceForm
     template_name = 'users/administrator/course/learning_resource/learning_resource_create.html'
@@ -731,7 +732,7 @@ def scorm_upload_view(request):
         return JsonResponse({'success': False, 'error': str(e)}, status=400)
     
 
-class AdministratorLearningResourceEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorLearningResourceEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = LearningResource
     form_class = LearningResourceEditForm
     template_name = 'users/administrator/course/learning_resource/learning_resource_edit.html'
@@ -746,7 +747,7 @@ class AdministratorLearningResourceEditView(AdministratorRequiredMixin, UpdateVi
         return reverse_lazy('administrator_course_detail', kwargs={'pk': self.kwargs['course_id']})
     
 
-class AdministratorLearningResourceDeleteView(AdministratorRequiredMixin, DeleteView):
+class AdministratorLearningResourceDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = LearningResource
     template_name = 'users/administrator/course/learning_resource/learning_resource_delete_confirm.html'
     pk_url_kwarg = 'resource_id'
@@ -766,7 +767,7 @@ class AdministratorLearningResourceDeleteView(AdministratorRequiredMixin, Delete
         messages.success(self.request, ("The learning resource was successfully deleted."))
         return response
 
-class AdministratorLearningResourceDetailView(AdministratorRequiredMixin, DetailView):
+class AdministratorLearningResourceDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = LearningResource
     context_object_name = 'resource'
 
@@ -830,7 +831,7 @@ class AdministratorLearningResourceDetailView(AdministratorRequiredMixin, Detail
 # ============================ Quiz Views ====================
 # ============================================================    
 
-class QuizCreateView(AdministratorRequiredMixin, CreateView):
+class QuizCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Quiz
     form_class = QuizForm
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_create.html'
@@ -858,7 +859,7 @@ class QuizCreateView(AdministratorRequiredMixin, CreateView):
             'quiz_id': self.object.id
         })
 
-class QuizAddQuestionsView(AdministratorRequiredMixin, CreateView):
+class QuizAddQuestionsView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Question
     form_class = QuestionForm
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_add_questions.html'
@@ -936,7 +937,7 @@ class QuizAddQuestionsView(AdministratorRequiredMixin, CreateView):
             'quiz_id': self.quiz.id
         })
 
-class QuizEditView(AdministratorRequiredMixin, UpdateView):
+class QuizEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Quiz
     form_class = QuizForm
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_edit.html'
@@ -1008,7 +1009,7 @@ class QuizEditView(AdministratorRequiredMixin, UpdateView):
 # ======================= Course Delivery Views ==============
 # ============================================================
 
-class AdministratorDeliveryCreateView(AdministratorRequiredMixin, CreateView):
+class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Delivery
     form_class = DeliveryCreateForm
     template_name = 'users/administrator/course/deliveries/delivery_create.html'
@@ -1040,7 +1041,7 @@ class AdministratorDeliveryCreateView(AdministratorRequiredMixin, CreateView):
         messages.error(self.request, "You do not have permission to create deliveries.")
         return super().handle_no_permission()
     
-class AdministratorDeliveryListView(AdministratorRequiredMixin, ListView):
+class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Delivery
     template_name = 'users/administrator/course/deliveries/delivery_list.html'
     context_object_name = 'deliveries'
@@ -1053,7 +1054,7 @@ class AdministratorDeliveryListView(AdministratorRequiredMixin, ListView):
         context['active_tab'] = 'deliveries'  
         return context
     
-class AdministratorDeliveryDetailView(AdministratorRequiredMixin, DetailView):
+class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Delivery
     template_name = 'users/administrator/course/deliveries/delivery_detail.html'
     context_object_name = 'delivery'
@@ -1096,7 +1097,7 @@ class AdministratorDeliveryDetailView(AdministratorRequiredMixin, DetailView):
 
         return context
     
-class AdministratorDeliveryEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorDeliveryEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Delivery
     form_class = DeliveryEditForm
     template_name = 'users/administrator/course/deliveries/delivery_edit.html'
@@ -1105,13 +1106,13 @@ class AdministratorDeliveryEditView(AdministratorRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.pk})
     
-class AdministratorDeliveryDeleteView(AdministratorRequiredMixin, DeleteView):
+class AdministratorDeliveryDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Delivery
     template_name = 'users/administrator/course/deliveries/delivery_confirm_delete.html'
     context_object_name = 'delivery'
     success_url = reverse_lazy('administrator_delivery_list')  
 
-class CourseComponentCreateView(AdministratorRequiredMixin, CreateView):
+class CourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent
     form_class = CourseComponentForm
     template_name = 'users/administrator/course/deliveries/course_component_form.html'
@@ -1128,7 +1129,7 @@ class CourseComponentCreateView(AdministratorRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.kwargs['delivery_id']})
 
-class ResourceComponentCreateView(AdministratorRequiredMixin, CreateView):
+class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent
     form_class = ResourceComponentForm
     template_name = 'users/administrator/course/deliveries/resource_component_form.html'
@@ -1154,11 +1155,11 @@ class ResourceComponentCreateView(AdministratorRequiredMixin, CreateView):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
 
 
-class AdministratorDeliveryComponentEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorDeliveryComponentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
  
 
-class AdministratorDeliveryComponentDeleteView(AdministratorRequiredMixin, DeleteView):
+class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = DeliveryComponent
     template_name = 'users/administrator/course/deliveries/delivery_component_delete.html'
     
@@ -1178,7 +1179,7 @@ class AdministratorDeliveryComponentDeleteView(AdministratorRequiredMixin, Delet
 # ======================= Program Views ======================
 # ============================================================
 
-class AdministratorProgramListView(AdministratorRequiredMixin, ListView):
+class AdministratorProgramListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Program
     template_name = 'users/administrator/program/program_list.html'
     context_object_name = 'programs'
@@ -1199,7 +1200,7 @@ class AdministratorProgramListView(AdministratorRequiredMixin, ListView):
         return context
     
 
-class AdministratorProgramDetailView(AdministratorRequiredMixin, DetailView):
+class AdministratorProgramDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Program
     template_name = 'users/administrator/program/program_detail.html'
     context_object_name = 'program'
@@ -1210,7 +1211,7 @@ class AdministratorProgramDetailView(AdministratorRequiredMixin, DetailView):
         return context
     
 
-class AdministratorProgramCreateView(AdministratorRequiredMixin, CreateView):
+class AdministratorProgramCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Program
     form_class = ProgramForm
     template_name = 'users/administrator/program/program_create.html'
@@ -1220,7 +1221,7 @@ class AdministratorProgramCreateView(AdministratorRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class AdministratorProgramDeleteView(AdministratorRequiredMixin, DeleteView):
+class AdministratorProgramDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Program
     template_name = 'users/administrator/program/program_confirm_delete.html'
     success_url = reverse_lazy('administrator_program_list')
@@ -1234,7 +1235,7 @@ class AdministratorProgramDeleteView(AdministratorRequiredMixin, DeleteView):
         context['program'] = self.get_object()
         return context
     
-class AdministratorProgramEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorProgramEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Program
     form_class = ProgramForm
     template_name = 'users/administrator/program/program_edit.html'
@@ -1251,7 +1252,7 @@ class AdministratorProgramEditView(AdministratorRequiredMixin, UpdateView):
         return super().form_invalid(form)
     
 
-class AdministratorProgramPublishView(AdministratorRequiredMixin, FormView):
+class AdministratorProgramPublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     template_name = 'users/administrator/program/program_publish_confirm.html'
     form_class = ProgramPublishForm
     success_url = reverse_lazy('administrator_program_list')
@@ -1271,7 +1272,7 @@ class AdministratorProgramPublishView(AdministratorRequiredMixin, FormView):
         context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
         return context
 
-class AdministratorProgramUnpublishView(AdministratorRequiredMixin, FormView):
+class AdministratorProgramUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     template_name = 'users/administrator/program/program_unpublish_confirm.html'
     form_class = ProgramUnpublishForm
     success_url = reverse_lazy('administrator_program_list')  
@@ -1292,7 +1293,7 @@ class AdministratorProgramUnpublishView(AdministratorRequiredMixin, FormView):
         return context
     
 
-class AdministratorProgramCourseCreateView(AdministratorRequiredMixin, CreateView):
+class AdministratorProgramCourseCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = ProgramCourse
     form_class = ProgramCourseForm
     template_name = 'users/administrator/program/program_course_create.html'
@@ -1314,7 +1315,7 @@ class AdministratorProgramCourseCreateView(AdministratorRequiredMixin, CreateVie
 # ======================= Enrollments Views ==================
 # ============================================================
 
-class AdministratorEnrollmentCreateView(AdministratorRequiredMixin, FormView):
+class AdministratorEnrollmentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     template_name = 'users/administrator/enrollments/enrollment_create.html'
     form_class = EnrollmentForm
     success_url = reverse_lazy('administrator_enrollment_list')
@@ -1386,7 +1387,7 @@ class AdministratorEnrollmentCreateView(AdministratorRequiredMixin, FormView):
                 messages.error(self.request, f"{form.fields[field].label}: {error}")
         return super().form_invalid(form)
 
-class AdministratorEnrollmentListView(AdministratorRequiredMixin, ListView):
+class AdministratorEnrollmentListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Enrollment
     template_name = 'users/administrator/enrollments/enrollment_list.html'
     context_object_name = 'enrollments'
@@ -1436,7 +1437,7 @@ class AdministratorEnrollmentListView(AdministratorRequiredMixin, ListView):
         
         return context
     
-class AdministratorEnrollmentEditView(AdministratorRequiredMixin, UpdateView):
+class AdministratorEnrollmentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Enrollment
     form_class = EnrollmentEditForm
     template_name = 'users/administrator/enrollments/enrollment_edit.html'
@@ -1463,7 +1464,7 @@ class AdministratorEnrollmentDeleteView(DeleteView):
 # =============== Organization Hierarcy Views ================
 # ============================================================
 
-class OrganizationDetailsView(AdministratorRequiredMixin, TemplateView):
+class OrganizationDetailsView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/organization/organization_details.html'
 
     def get_context_data(self, **kwargs):
@@ -1489,7 +1490,7 @@ class OrganizationDetailsView(AdministratorRequiredMixin, TemplateView):
 
         return context
 
-class OrganizationUnitsView(AdministratorRequiredMixin, ListView):
+class OrganizationUnitsView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_units.html'
     model = OrganizationUnit
     context_object_name = 'organization_units'
@@ -1516,7 +1517,7 @@ class OrganizationUnitsView(AdministratorRequiredMixin, ListView):
             messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
-class OrganizationLocationsView(AdministratorRequiredMixin, ListView):
+class OrganizationLocationsView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_locations.html'
     model = Location
     context_object_name = 'locations'
@@ -1543,7 +1544,7 @@ class OrganizationLocationsView(AdministratorRequiredMixin, ListView):
             messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
-class OrganizationJobPositionsView(AdministratorRequiredMixin, ListView):
+class OrganizationJobPositionsView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_job_positions.html'
     model = JobPosition
     context_object_name = 'job_positions'
@@ -1559,7 +1560,7 @@ class OrganizationJobPositionsView(AdministratorRequiredMixin, ListView):
         context['filterset'] = self.filterset
         return context
     
-class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, ListView):
+class OrganizationEmployeeProfilesView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_employee_profiles.html'
     model = EmployeeProfile
     context_object_name = 'employee_profiles'
@@ -1585,7 +1586,7 @@ class OrganizationEmployeeProfilesView(AdministratorRequiredMixin, ListView):
             messages.error(self.request, _("An error occurred while preparing the page. Please try again later."))
         return context
     
-class OrganizationGroupsView(AdministratorRequiredMixin, ListView):
+class OrganizationGroupsView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/organization/organization_groups.html'
     model = Group
     context_object_name = 'groups'
@@ -1615,7 +1616,7 @@ class OrganizationGroupsView(AdministratorRequiredMixin, ListView):
 # =============== Organization Employee Views ================
 # ============================================================
 
-class AddEmployeeView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+class AddEmployeeView(LoginRequiredMixin, AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/administrator/organization/employee/add_employee.html'
     form_class = EmployeeProfileForm
     success_url = reverse_lazy('administrator_organization_employee_profiles')
@@ -1631,7 +1632,7 @@ class AddEmployeeView(AdministratorRequiredMixin, SuccessMessageMixin, CreateVie
 # ============ Organization JobPositions Views ===============
 # ============================================================
 
-class AddJobPositionView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+class AddJobPositionView(LoginRequiredMixin, AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/administrator/organization/job_position/add_job_position.html'
     form_class = JobPositionForm
     success_url = reverse_lazy('administrator_organization_job_positions')
@@ -1647,7 +1648,7 @@ class AddJobPositionView(AdministratorRequiredMixin, SuccessMessageMixin, Create
 # ============== Organization Location Views =================
 # ============================================================
 
-class AddLocationView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+class AddLocationView(LoginRequiredMixin, AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/administrator/organization/location/add_location.html'
     form_class = LocationForm
     success_url = reverse_lazy('administrator_organization_locations')
@@ -1663,7 +1664,7 @@ class AddLocationView(AdministratorRequiredMixin, SuccessMessageMixin, CreateVie
 # ============== Organization Unit Views =====================
 # ============================================================
 
-class AddOrganizationUnitView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+class AddOrganizationUnitView(LoginRequiredMixin, AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/administrator/organization/unit/add_unit.html'
     form_class = OrganizationUnitForm
     success_url = reverse_lazy('administrator_organization_units')
@@ -1691,7 +1692,7 @@ class AddOrganizationUnitView(AdministratorRequiredMixin, SuccessMessageMixin, C
 # ============== Organization Group Views ====================
 # ============================================================
     
-class AddOrganizationGroupView(AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
+class AddOrganizationGroupView(LoginRequiredMixin, AdministratorRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'users/administrator/organization/group/add_group.html'
     form_class = OrganizationGroupForm
     success_url = reverse_lazy('administrator_organization_groups')
@@ -1701,7 +1702,7 @@ class AddOrganizationGroupView(AdministratorRequiredMixin, SuccessMessageMixin, 
 # ======================= Notifications Views ================
 # ============================================================
 
-class RecentNotificationsView(AdministratorRequiredMixin, View):
+class RecentNotificationsView(LoginRequiredMixin, AdministratorRequiredMixin, View):
     def get(self, request):
         notifications = SystemNotification.objects.filter(
             user=request.user,
@@ -1716,7 +1717,7 @@ class RecentNotificationsView(AdministratorRequiredMixin, View):
 
         return JsonResponse(data, safe=False)
 
-class NotificationListView(AdministratorRequiredMixin, FilterView, ListView):
+class NotificationListView(LoginRequiredMixin, AdministratorRequiredMixin, FilterView, ListView):
     model = SystemNotification
     template_name = 'users/administrator/notifications/notifications_list.html'
     context_object_name = 'notifications'
@@ -1734,7 +1735,7 @@ class NotificationListView(AdministratorRequiredMixin, FilterView, ListView):
         context['filter'] = self.filterset
         return context
         
-class MarkNotificationReadView(AdministratorRequiredMixin, View):
+class MarkNotificationReadView(LoginRequiredMixin, AdministratorRequiredMixin, View):
     def post(self, request, pk):
         try:
             notification = SystemNotification.objects.get(id=pk, user=request.user)
@@ -1747,12 +1748,12 @@ class MarkNotificationReadView(AdministratorRequiredMixin, View):
             logger.error(f"Error marking notification as read: {e}")
             return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
 
-class MarkAllNotificationsReadView(AdministratorRequiredMixin, View):
+class MarkAllNotificationsReadView(LoginRequiredMixin, AdministratorRequiredMixin, View):
     def post(self, request):
         SystemNotification.objects.filter(user=request.user, is_read=False).update(is_read=True)
         return JsonResponse({'status': 'success'})
     
-class UnreadNotificationsCountView(AdministratorRequiredMixin, View):
+class UnreadNotificationsCountView(LoginRequiredMixin, AdministratorRequiredMixin, View):
     def get(self, request):
         try:
             count = SystemNotification.objects.filter(user=request.user, is_read=False).count()

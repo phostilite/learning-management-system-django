@@ -1,12 +1,15 @@
 from django.urls import path, include
 from django.views.i18n import set_language
-from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views
+from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views, general_views
 
 urlpatterns = [
     # ==================== Authentication URLs ====================
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', auth_views.SignupView.as_view(), name='signup'),
     path('logout/', auth_views.user_logout, name='logout'),
+
+    # ==================== General URLs ============================
+    path('session-expired/', general_views.SessionExpiredView.as_view(), name='session_expired'),
 
     # ==================== Administrator URLs ====================
     # Dashboard and General Views
