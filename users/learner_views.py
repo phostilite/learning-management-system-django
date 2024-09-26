@@ -53,6 +53,7 @@ from .api_client import upload_scorm_package, register_user_for_course
 
 from activities.models import SystemNotification
 from .utils.notification_utils import create_notification, log_activity
+from .mixins import LearnerRequiredMixin
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +71,7 @@ class DashboardView(TemplateView):
 #                           Programs Views
 # ================================================================
 
-class ProgramListView(LoginRequiredMixin, FilterView):
+class ProgramListView(LoginRequiredMixin, LearnerRequiredMixin, FilterView):
     model = Program
     template_name = 'users/learner/programs/program_list.html'
     context_object_name = 'programs'
@@ -90,7 +91,7 @@ class ProgramListView(LoginRequiredMixin, FilterView):
             context['total_programs'] = 0
         return context
     
-class ProgramDetailView(LoginRequiredMixin, DetailView):
+class ProgramDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     model = Program
     template_name = 'users/learner/programs/program_detail.html'
     context_object_name = 'program'
@@ -116,7 +117,7 @@ class ProgramDetailView(LoginRequiredMixin, DetailView):
         return context
     
 
-class MyProgramListView(LoginRequiredMixin, ListView):
+class MyProgramListView(LoginRequiredMixin, LearnerRequiredMixin, ListView):
     template_name = 'users/learner/programs/my_programs.html'
     context_object_name = 'enrollments'
 
@@ -150,7 +151,7 @@ class MyProgramListView(LoginRequiredMixin, ListView):
             logger.error(f"Error retrieving program enrollments for user {user.username}: {str(e)}")
             raise
 
-class MyProgramDetailView(LoginRequiredMixin, DetailView):
+class MyProgramDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/programs/my_program_detail.html'
     context_object_name = 'enrollment'
 
@@ -205,7 +206,7 @@ class MyProgramDetailView(LoginRequiredMixin, DetailView):
 
         return context
     
-class DirectCourseConsumptionView(LoginRequiredMixin, DetailView):
+class DirectCourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/programs/course_consumption/direct/course_consumption.html'
     context_object_name = 'program_course'
 
@@ -236,7 +237,7 @@ class DirectCourseConsumptionView(LoginRequiredMixin, DetailView):
             raise
         return context
     
-class DirectResourceConsumptionView(LoginRequiredMixin, DetailView):
+class DirectResourceConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html'
     context_object_name = 'resource'
 
@@ -271,7 +272,7 @@ class DirectResourceConsumptionView(LoginRequiredMixin, DetailView):
         ]
     
 
-class DeliveryCourseConsumptionView(LoginRequiredMixin, DetailView):
+class DeliveryCourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/programs/course_consumption/delivery/course_consumption.html'
     context_object_name = 'delivery_component'
 
@@ -311,7 +312,7 @@ class DeliveryCourseConsumptionView(LoginRequiredMixin, DetailView):
             raise
         return context
 
-class DeliveryResourceConsumptionView(LoginRequiredMixin, DetailView):
+class DeliveryResourceConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html'
     context_object_name = 'delivery_component'
 
@@ -366,7 +367,7 @@ class DeliveryResourceConsumptionView(LoginRequiredMixin, DetailView):
 #                           Courses Views
 # ================================================================
 
-class CourseListView(LoginRequiredMixin, FilterView):
+class CourseListView(LoginRequiredMixin, LearnerRequiredMixin, FilterView):
     model = Course
     template_name = 'users/learner/courses/course_list.html'
     context_object_name = 'courses'
@@ -394,7 +395,7 @@ class CourseListView(LoginRequiredMixin, FilterView):
         
         return context
 
-class CourseDetailView(LoginRequiredMixin, DetailView):
+class CourseDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     model = Course
     template_name = 'users/learner/courses/course_detail.html'
     context_object_name = 'course'
@@ -424,7 +425,7 @@ class CourseDetailView(LoginRequiredMixin, DetailView):
 
         return context
     
-class MyCourseListView(LoginRequiredMixin, ListView):
+class MyCourseListView(LoginRequiredMixin, LearnerRequiredMixin, ListView):
     template_name = 'users/learner/courses/my_courses.html'
     context_object_name = 'enrollments'
 
@@ -458,7 +459,7 @@ class MyCourseListView(LoginRequiredMixin, ListView):
             logger.error(f"Error retrieving course enrollments for user {user.username}: {str(e)}")
             raise
 
-class MyCourseDetailView(LoginRequiredMixin, DetailView):
+class MyCourseDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     template_name = 'users/learner/courses/my_course_detail.html'
     context_object_name = 'enrollment'
 
@@ -504,7 +505,7 @@ class MyCourseDetailView(LoginRequiredMixin, DetailView):
 
         return context
     
-class LearningResourceDetailView(LoginRequiredMixin, DetailView):
+class LearningResourceDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
     model = LearningResource
     context_object_name = 'resource'
     template_name = 'users/learner/courses/learning_resource_base.html'
@@ -571,7 +572,7 @@ class LearningResourceDetailView(LoginRequiredMixin, DetailView):
 #                           Enrollment Views
 # ================================================================
 
-class EnrollmentConfirmationView(LoginRequiredMixin, FormView):
+class EnrollmentConfirmationView(LoginRequiredMixin, LearnerRequiredMixin, FormView):
     template_name = 'users/learner/enrollment/enrollment_confirmation.html'
     form_class = UserEnrollmentForm
     success_url = reverse_lazy('learner_dashboard')
@@ -713,7 +714,7 @@ class ForumView(TemplateView):
         return context
     
 @method_decorator(login_required, name='dispatch')
-class CertificateView(LoginRequiredMixin, TemplateView):
+class CertificateView(LoginRequiredMixin, LearnerRequiredMixin, TemplateView):
     template_name = 'users/learner/certificate.html'
 
     def get_context_data(self, **kwargs):
@@ -770,7 +771,7 @@ class LeaderboardView(TemplateView):
 # ======================= Settings Views =====================
 # ============================================================
     
-class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
+class SettingsView(LoginRequiredMixin, LearnerRequiredMixin, UserPassesTestMixin, View):
     template_name = 'users/learner/settings.html'
 
     def test_func(self):
@@ -925,7 +926,7 @@ class HelpSupportView(TemplateView):
 # ======================= Notifications Views ================
 # ============================================================
 
-class RecentNotificationsView(LoginRequiredMixin, View):
+class RecentNotificationsView(LoginRequiredMixin, LearnerRequiredMixin, View):
     def get(self, request):
         notifications = SystemNotification.objects.filter(
             user=request.user,
@@ -958,7 +959,7 @@ class NotificationListView(FilterView, ListView):
         context['filter'] = self.filterset
         return context
         
-class MarkNotificationReadView(LoginRequiredMixin, View):
+class MarkNotificationReadView(LoginRequiredMixin, LearnerRequiredMixin, View):
     def post(self, request, pk):
         try:
             notification = SystemNotification.objects.get(id=pk, user=request.user)
@@ -971,12 +972,12 @@ class MarkNotificationReadView(LoginRequiredMixin, View):
             logger.error(f"Error marking notification as read: {e}")
             return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
 
-class MarkAllNotificationsReadView(LoginRequiredMixin, View):
+class MarkAllNotificationsReadView(LoginRequiredMixin, LearnerRequiredMixin, View):
     def post(self, request):
         SystemNotification.objects.filter(user=request.user, is_read=False).update(is_read=True)
         return JsonResponse({'status': 'success'})
     
-class UnreadNotificationsCountView(LoginRequiredMixin, View):
+class UnreadNotificationsCountView(LoginRequiredMixin, LearnerRequiredMixin, View):
     def get(self, request):
         try:
             count = SystemNotification.objects.filter(user=request.user, is_read=False).count()
