@@ -1,12 +1,20 @@
 from django.urls import path, include
 from django.views.i18n import set_language
-from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views, general_views
+from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views, general_views, password_reset_views
 
 urlpatterns = [
     # ==================== Authentication URLs ====================
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', auth_views.SignupView.as_view(), name='signup'),
     path('logout/', auth_views.user_logout, name='logout'),
+
+    # ==================== Password Reset URLs ====================
+    path('password-reset/', password_reset_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password-reset/done/', password_reset_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password-reset/confirm/<uidb64>/<token>/', 
+     password_reset_views.PasswordResetConfirmView.as_view(), 
+     name='password_reset_confirm'),
+    path('password-reset/complete/', password_reset_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     # ==================== General URLs ============================
     path('session-expired/', general_views.SessionExpiredView.as_view(), name='session_expired'),
