@@ -1963,37 +1963,33 @@ class AdministratorSupportCategoryView(AdministratorRequiredMixin, TemplateView)
     template_name = 'users/administrator/help_and_support/support_category/category_dash.html'
     
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['support_categories'] = SupportCategory.objects.all()
-        return context
-    
-class AdministratorCategoryCreateView(AdministratorRequiredMixin, FormView):
-    model= SupportCategory
-    form_class = SupportCategoryForm
-    template_name = 'users/administrator/help_and_support/support_category/create_category.html'
-    success_url = reverse_lazy('administrator_support_category')  
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Create New Support Category'
-        return context
-
-    def form_valid(self, form):
         try:
-            category = form.save(commit=False)
-            category.created_by = self.request.user
-            category.save()
-            messages.success(self.request, 'Support Category created successfully!')
-            return super().form_valid(form)
+            context = super().get_context_data(**kwargs)
+            context['support_categories'] = SupportCategory.objects.all()
+            context['form'] = SupportCategoryForm()
+            return context
         except Exception as e:
-            logger.error(f"Error creating Support Category: {e}")
-            messages.error(self.request, 'There was an error creating the Support Category. Please try again later.')
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        logger.error(f"Form errors: {form.errors}")
-        messages.error(self.request, 'There was an error creating the Support Category. Please check the form and try again.')
-        return super().form_invalid(form)
+            logger.error(f"Error in get_context_data: {e}")
+            context = super().get_context_data(**kwargs)
+            context['support_categories'] = []
+            context['form'] = SupportCategoryForm()
+            return context
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            form = SupportCategoryForm(request.POST)
+            if form.is_valid():
+                category = form.save(commit=False)
+                category.created_by = request.user
+                category.save()
+                redirect_url = reverse('administrator_support_category')
+                return redirect(redirect_url)
+            else:
+                logger.error(f"Form errors: {form.errors}")
+                return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+        except Exception as e:
+            logger.error(f"Error in post method: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An unexpected error occurred.'}, status=500)
     
 from django.core.serializers.json import DjangoJSONEncoder
 

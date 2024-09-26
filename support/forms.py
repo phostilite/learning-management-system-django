@@ -4,6 +4,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 from .models import SupportTicket, SupportCategory,FAQ
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column, Field
 
 class TicketForm(forms.ModelForm):
     class Meta:
@@ -100,4 +102,34 @@ class SupportCategoryForm(forms.ModelForm):
     class Meta:
         model = SupportCategory
         fields = ['name', 'description', 'parent', 'is_active']
-    
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-input'}),
+            'description': forms.Textarea(attrs={'class': 'form-textarea', 'rows': 3}),
+            'parent': forms.Select(attrs={'class': 'form-select'}),
+            'is_active': forms.CheckboxInput(attrs={'class': 'form-checkbox'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'category-create-form'
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('name', css_class='col-span-2'),
+                css_class='grid gap-4 mb-4 grid-cols-2'
+            ),
+            Row(
+                Column('description', css_class='col-span-2'),
+                css_class='grid gap-4 mb-4 grid-cols-2'
+            ),
+            Row(
+                Column('parent', css_class='col-span-2'),
+                css_class='grid gap-4 mb-4 grid-cols-2'
+            ),
+            Row(
+                Column(Field('is_active', wrapper_class='flex items-center'), css_class='col-span-2'),
+                css_class='grid gap-4 mb-4 grid-cols-2'
+            ),
+            Submit('submit', 'Create Category', css_class='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center')
+        )
