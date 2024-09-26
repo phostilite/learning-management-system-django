@@ -115,10 +115,15 @@ urlpatterns = [
 
     # Other Administrator Views
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
-    path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
     path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
+    
+    # Announcements
+    path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
+    path('administrator/announcement/<uuid:pk>/detail/', administrator_views.AdministratorAnnouncementDetailView.as_view(), name='administrator_announcement_detail'),
+    path('administrator/announcement/<uuid:pk>/delete/', administrator_views.AdministratorAnnouncementDeleteView.as_view(), name='administrator_announcement_delete'),
+    path('administrator/announcement/<uuid:pk>/update/', administrator_views.AdministratorAnnouncementUpdateView.as_view(), name='administrator_announcement_update'),
 
     # Notification Views
     path('administrator/notifications/recent/', administrator_views.RecentNotificationsView.as_view(), name='administrator_recent_notifications'),

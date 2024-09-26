@@ -3,6 +3,7 @@ from courses.models import Program, Course, Tag, CourseCategory
 from organization.models import EmployeeProfile, OrganizationUnit, JobPosition, Organization, Location
 from django_filters import FilterSet, CharFilter, ModelChoiceFilter, BooleanFilter, DateFromToRangeFilter, DateFilter, NumberFilter, ChoiceFilter
 from activities.models import SystemNotification
+from announcements.models import Announcement
 from .mixins import AdministratorRequiredMixin
 from django.contrib.auth.models import Group
 from django.db import models
@@ -144,3 +145,13 @@ class OrganizationUnitFilter(FilterSet):
         except Exception as e:
             logger.error(f"Error in OrganizationUnitFilter filter_search: {str(e)}")
             return queryset.none()
+        
+class AnnouncementFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='icontains')
+    priority = django_filters.ChoiceFilter(choices=Announcement.PRIORITY_CHOICES)
+    publish_date_after = django_filters.DateFilter(field_name='publish_date', lookup_expr='gte', widget=forms.DateInput(attrs={'type': 'date'}))
+    publish_date_before = django_filters.DateFilter(field_name='publish_date', lookup_expr='lte', widget=forms.DateInput(attrs={'type': 'date'}))
+    
+    class Meta:
+        model = Announcement
+        fields = ['title', 'priority', 'publish_date_after', 'publish_date_before']

@@ -20,7 +20,7 @@ class Announcement(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='authored_announcements')
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='MEDIUM')
-    publish_date = models.DateTimeField()
+    publish_date = models.DateTimeField(null=True, blank=True)
     expiry_date = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
