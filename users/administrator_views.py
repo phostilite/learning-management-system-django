@@ -1879,15 +1879,16 @@ class AdministratorTicketDeleteView (AdministratorRequiredMixin, DeleteView):
     template_name = 'users/administrator/help_and_support/tickets/delete_ticket.html'
     success_url = reverse_lazy('administrator_help_support')
 
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, ("The ticket was successfully deleted."))
-        return super().delete(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = ("Delete Ticket")
-        return context
+    def get_object(self):
+        return get_object_or_404(SupportTicket, pk=self.kwargs.get('pk'))
     
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({
+            'success': True,
+            'redirect_url': str(self.success_url)
+        })
     
 class AdministratorFaqCreateView(AdministratorRequiredMixin, FormView):
     model= FAQ

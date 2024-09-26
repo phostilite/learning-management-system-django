@@ -145,9 +145,10 @@
                         <a href="{% url 'administrator_ticket_edit' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a href="{% url 'administrator_ticket_delete' ticket.id %}" class="text-red-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                        <a href="#" class="text-red-600 hover:text-red-900 ml-2" data-modal-target="delete-ticket-modal{{ ticket.id }}" data-modal-toggle="delete-ticket-modal{{ ticket.id }}"  title="{% trans 'Delete' %}">
                             <i class="fas fa-trash-alt"></i>
                         </a>
+                        {% include "./tickets/delete_ticket.html" %}
                     </td>
                 </tr>
                 {% endfor %}
