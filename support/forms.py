@@ -93,8 +93,8 @@ class FAQForm(forms.ModelForm):
 
     def clean_answer(self):
         answer = self.cleaned_data.get('answer')
-        if len(answer) < 30:
-            raise forms.ValidationError("Please provide a more detailed answer (at least 30 characters).")
+        if len(answer) < 20:
+            raise forms.ValidationError("Please provide a more detailed answer (at least 20 characters).")
         return answer
     
 
