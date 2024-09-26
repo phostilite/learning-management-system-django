@@ -1634,30 +1634,20 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, UserPassesTestMixin,
 
         return context
     
-class AdministratorAnnouncementCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
-    form_class = AnnouncementForm
-    template_name = 'users/administrator/announcements/announcement_create.html'
-    success_url = reverse_lazy('administrator_announcement_list')
-
-    def test_func(self):
-        return self.request.user.groups.filter(name='administrator').exists()
-
-    def form_valid(self, form):
-        try:
+    @method_decorator(csrf_exempt)
+    def post(self, request, *args, **kwargs):
+        form = AnnouncementForm(request.POST)
+        if form.is_valid():
             announcement = form.save(commit=False)
             announcement.author = self.request.user
             announcement.save()
-            messages.success(self.request, 'Announcement created successfully!')
-            return super().form_valid(form)
-        except Exception as e:
-            logger.error(f"Error creating support ticket: {e}")
-            messages.error(self.request, 'There was an error creating the announcement. Please try again later.')
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        logger.error(f"Form errors: {form.errors}")
-        messages.error(self.request, 'There was an error creating the announcement. Please check the form and try again.')
-        return super().form_invalid(form)
+            redirect_url = reverse('administrator_announcement_list')
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        else:
+            logger.error(form.errors)
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+    
+    
 
 
 class AdministratorAnnouncementDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
