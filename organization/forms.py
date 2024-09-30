@@ -111,6 +111,13 @@ class EmployeeProfileForm(forms.ModelForm):
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name']
         )
+
+        try:
+            learner_group = Group.objects.get(name='learner')
+            user.groups.add(learner_group)
+        except Group.DoesNotExist:
+            logger.error("Learner group does not exist. Please create it first.")
+
         employee_profile = super().save(commit=False)
         employee_profile.user = user
         employee_profile.organization = self.organization

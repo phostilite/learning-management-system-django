@@ -6,6 +6,9 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 import uuid
 import logging
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +40,11 @@ class User(AbstractUser):
     sms_notifications_enabled = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
+        is_new_user = self._state.adding
         try:
             super().save(*args, **kwargs)
+            if is_new_user:
+                self.send_welcome_email()
         except Exception as e:
             logger.error(f"Error saving user {self.username}: {str(e)}")
             raise
@@ -62,6 +68,26 @@ class User(AbstractUser):
         except Exception as e:
             logger.error(f"Error checking advanced permission for user {self.username}: {str(e)}")
             return False
+        
+    def send_welcome_email(self):
+        from organization.models import Organization  
+
+        try:
+            organization = Organization.objects.first()  
+            subject = f'Welcome to {organization.name} LMS!' if organization else 'Welcome to Our LMS!'
+            html_message = render_to_string('emails/welcome_email.html', {
+                'user': self,
+                'temp_password': 'Test@123',
+                'organization': organization
+            })
+            plain_message = strip_tags(html_message)
+            from_email = settings.DEFAULT_FROM_EMAIL
+            to_email = self.email
+
+            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
+        except Exception as e:
+            logger.error(f"Error sending welcome email to user {self.username}: {str(e)}")
+
 
 class SCORMUserProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

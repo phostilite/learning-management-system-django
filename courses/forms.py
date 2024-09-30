@@ -3,15 +3,20 @@ import uuid
 import logging
 from datetime import datetime
 
+from django.contrib.auth import get_user_model
 from django import forms
 from django.db.models import Max
 from django.forms import inlineformset_factory
 from django.utils.translation import gettext_lazy as _
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column, Div, HTML
 
 from .models import Course, LearningResource, ScormResource, CourseCategory, Enrollment, Program, Tag, ProgramCourse, Delivery, DeliveryComponent, ProgramCourse
 from users.models import User
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
@@ -256,35 +261,88 @@ class ProgramCourseForm(forms.ModelForm):
 class DeliveryCreateForm(forms.ModelForm):
     class Meta:
         model = Delivery
-        fields = ['title', 'delivery_type', 'program', 'course', 'start_date', 'end_date', 'is_active']
+        fields = ['title', 'delivery_type', 'delivery_method', 'program', 'course', 'facilitator', 'start_date', 'end_date', 'is_active']
         widgets = {
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+        help_texts = {
+            'title': 'Enter a descriptive title for the delivery.',
+            'delivery_type': 'Select whether this is a program or course delivery.',
+            'delivery_method': 'Choose between instructor-led or self-paced delivery.',
+            'program': 'Select the program for this delivery (required for program deliveries).',
+            'course': 'Select the course for this delivery (required for course deliveries).',
+            'facilitator': 'Assign a facilitator for instructor-led deliveries.',
+            'start_date': 'Set the start date and time for the delivery.',
+            'end_date': 'Set the end date and time for the delivery.',
+            'is_active': 'Check this box if the delivery is currently active.',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['program'].queryset = Program.objects.all()
-        self.fields['course'].queryset = Course.objects.all()
-        self.fields['program'].required = False
-        self.fields['course'].required = False
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('title', css_class='form-group col-md-6 mb-0'),
+                Column('delivery_type', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('delivery_method', css_class='form-group col-md-6 mb-0'),
+                Column('facilitator', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('program', css_class='form-group col-md-6 mb-0'),
+                Column('course', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('start_date', css_class='form-group col-md-6 mb-0'),
+                Column('end_date', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            'is_active',
+            HTML("<div class='row'><div class='col-md-12'><hr></div></div>"),
+            Div(
+                Div(
+                    HTML("""
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Create Delivery
+                        </button>
+                    """),
+                    css_class='col-md-12 flex justify-end mt-6'
+                ),
+                css_class='row'
+            )
+        )
+
+        # Limit facilitator choices to users in the 'facilitator' group
+        facilitator_group = Group.objects.get(name='facilitator')
+        self.fields['facilitator'].queryset = User.objects.filter(groups=facilitator_group)
+
+        # Add helper texts to form fields
+        for field_name, help_text in self.Meta.help_texts.items():
+            self.fields[field_name].help_text = help_text
 
     def clean(self):
         cleaned_data = super().clean()
         delivery_type = cleaned_data.get('delivery_type')
+        delivery_method = cleaned_data.get('delivery_method')
         program = cleaned_data.get('program')
         course = cleaned_data.get('course')
+        facilitator = cleaned_data.get('facilitator')
 
-        if delivery_type == 'PROGRAM':
-            if not program:
-                self.add_error('program', "Program is required for Program delivery type.")
-            if course:
-                self.add_error('course', "Course should not be selected for Program delivery type.")
-        elif delivery_type == 'COURSE':
-            if not course:
-                self.add_error('course', "Course is required for Course delivery type.")
-            if program:
-                self.add_error('program', "Program should not be selected for Course delivery type.")
+        if delivery_type == 'PROGRAM' and not program:
+            self.add_error('program', 'Program is required for program deliveries.')
+        elif delivery_type == 'COURSE' and not course:
+            self.add_error('course', 'Course is required for course deliveries.')
+
+        if delivery_method == 'INSTRUCTOR_LED' and not facilitator:
+            self.add_error('facilitator', 'Facilitator is required for instructor-led deliveries.')
+        elif delivery_method == 'SELF_PACED' and facilitator:
+            self.add_error('facilitator', 'Facilitator should not be set for self-paced deliveries.')
 
         return cleaned_data
     
