@@ -134,25 +134,44 @@
                     <td class="px-6 py-4">{{ announcement.publish_date }}</td>
                     <td class="px-6 py-4">{{ announcement.expiry_date }}</td>
                     <td class="px-6 py-4">{{announcement.updated_at}}</td>
-                    <td class="px-6 py-4">
-                        <!-- View Details Button -->
-                        <a href="{% url 'administrator_announcement_detail' announcement.pk %}" title="{% trans 'View Details' %}">
-                            <button class="text-green-600 hover:text-green-900 ml-3 rtl:mr-3 rtl:ml-0">
-                                <i class="fas fa-eye"></i>
+                    <td class="px-6 py-4">                        
+                        <div>
+                            <button id="announcementDropdownButton{{ announcement.id }}" data-dropdown-toggle="announcementDropdown{{ announcement.id }}" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
                             </button>
-                        </a>
-                        <!-- Edit/Update Announcement Button -->
-                        <a href="#" title="{% trans 'Edit/Update Announcement' %}" data-modal-target="announcement-update-modal{{ announcement.id }}" data-modal-toggle="announcement-update-modal{{ announcement.id }}">
-                            <button class="text-blue-600 hover:text-blue-900 ml-3 rtl:mr-3 rtl:ml-0" data-announcement-id="{{ announcement.id }}" onclick="getAnnouncementDetails(this)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </a>
-                        {% include './announcement_update.html' %}
-                        <!-- Delete Announcement Button -->
-                        <button data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}" class="text-red-600 hover:text-red-900 ml-3 rtl:mr-3 rtl:ml-0">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        {% include './announcement_delete.html' %}
+                            <div id="announcementDropdown{{ announcement.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
+                                <ul class="py-2 text-sm text-black" aria-labelledby="announcementDropdownButton{{ announcement.id }}">
+                                    <li>
+                                        <a href="{% url 'administrator_announcement_detail' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "View Announcement Detail" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-update-modal{{ announcement.id }}" data-modal-toggle="announcement-update-modal{{ announcement.id }}" data-announcement-id="{{ announcement.id }}" onclick="getAnnouncementDetails(this)">
+                                            <i class="fas fa-edit mr-2"></i> {% trans "Edit/Update Announcement" %}
+                                        </a>
+                                        {% include './announcement_update.html' %}
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}">
+                                            <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete Announcement" %}
+                                        </a>
+                                        {% include './announcement_delete.html' %}
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="crud-modal{{ announcement.id }}" data-modal-toggle="crud-modal{{ announcement.id }}">
+                                            <i class="fas fa-user-plus mr-2"></i> {% trans "Add Recipients" %}
+                                        </a>
+                                        {% include './announcement_recipients.html' %}
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'administrator_announcement_manage_recipients' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "Manage Recipients" %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 {% empty %}
