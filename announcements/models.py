@@ -37,16 +37,16 @@ class Announcement(models.Model):
 class AnnouncementRecipient(models.Model):
     RECIPIENT_TYPES = (
         ('ALL', 'All Users'),
-        ('STUDENTS', 'All Students'),
-        ('INSTRUCTORS', 'All Instructors'),
-        ('COURSE', 'Specific Course'),
-        ('PROGRAM', 'Specific Program'),
+        ('LEARNER', 'All Learners'),
+        ('FACILITATOR', 'All Faciltators'),
+        ('SUPERVISOR', 'All Supervisors'),
         ('USER', 'Specific User'),
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='recipients')
     recipient_type = models.CharField(max_length=20, choices=RECIPIENT_TYPES)
+    specific_recipient = models.CharField(max_length=255, null=True, blank=True)
     
     # For specific user, course, or program
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)

@@ -193,6 +193,15 @@ urlpatterns = [
     # Enrollment
     path('learner/enroll/<str:enrollment_type>/<uuid:object_id>/', learner_views.EnrollmentConfirmationView.as_view(), name='learner_enroll'),
 
+    # Announcements
+    path('learner/announcements/', learner_views.AnnouncementListView.as_view(), name='learner_announcements'),
+    path('learner/announcement/<uuid:pk>/detail/', learner_views.AnnouncementDetailView.as_view(), name='learner_announcement_detail'),
+    path('learner/announcement/<uuid:pk>/mark-read/', learner_views.AnnouncementReadView.as_view(), name='learner_mark_announcement_read'),
+    
+
+
+
+
     # ==================== Facilitator URLs ====================
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
     path('facilitator/notification/', facilitator_views.FacilitatorNotificationListView.as_view(), name='facilitator_notification_list'),

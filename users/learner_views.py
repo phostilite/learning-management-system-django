@@ -34,6 +34,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from .models import User, SCORMUserProfile
+from .mixins import LearnerRequiredMixin
 from .forms import (
     PersonalInfoForm,
     PasswordChangeForm,
@@ -49,6 +50,7 @@ from django.db.models import Avg, Q
 from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
+from announcements.models import Announcement, AnnouncementRecipient, AnnouncementRead
 from .api_client import upload_scorm_package, register_user_for_course
 
 from activities.models import SystemNotification
@@ -920,7 +922,73 @@ class HelpSupportView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
+
+
+
+# ============================================================
+# =================== Announcements Views ====================
+# ============================================================
+
+class AnnouncementListView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_page.html'
+    context_object_name = 'announcements'
+
+    def get_queryset(self):
+        user = self.request.user
+        announcements = Announcement.objects.filter(
+            recipients__recipient_type__in=['ALL', 'LEARNER', 'USER']
+        ).distinct()
+
+        if user.groups.filter(name='learner').exists():
+            announcements = announcements.filter(
+                recipients__recipient_type='LEARNER'
+            ).distinct()
+
+        specific_user_announcements = Announcement.objects.filter(
+            recipients__recipient_type='USER',
+            recipients__specific_recipient__in=[user.username, user.email]
+        ).distinct()
+
+        return announcements | specific_user_announcements
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AnnouncementDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_detail.html'
+    context_object_name = 'announcement'
+
+    def get_queryset(self):
+        return Announcement.objects.filter(id=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcement = self.get_object()
+        announcement_read = AnnouncementRead.objects.filter(user=self.request.user, announcement=announcement).first()
+        context['announcement_read'] = announcement_read
+        return context
     
+class AnnouncementReadView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        try:
+            announcement = Announcement.objects.get(id=pk)
+            announcement_read, created = AnnouncementRead.objects.get_or_create(user=request.user, announcement=announcement)
+            if created:
+                logger.info(f"Announcement {pk} marked as read by user {request.user.id}")
+            else:
+                logger.info(f"Announcement {pk} was already marked as read by user {request.user.id}")
+            return JsonResponse({'status': 'success'})
+        except Announcement.DoesNotExist:
+            logger.warning(f"Announcement {pk} not found for user {request.user.id}")
+            return JsonResponse({'status': 'error', 'message': 'Announcement not found'}, status=404)
+        except Exception as e:
+            logger.error(f"Error marking announcement {pk} as read for user {request.user.id}: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
+   
 # ============================================================
 # ======================= Notifications Views ================
 # ============================================================
