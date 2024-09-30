@@ -1,0 +1,92 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Manage Recipients - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="w-full">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
+        <h1 class="text-3xl font-bold text-white text-center">{% trans "Manage Recipients" %}</h1>
+        <p class="text-center text-lg">{% trans "Check if recipients have read their respective announcements." %}</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_announcement_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Announcements" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_announcement_detail' announcement.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ announcement.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Manage Recipients" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    
+    <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Announcement" %}</th>
+                    <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Recipient Type" %}</th>
+                    <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Recipient" %}</th>
+                    <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Read Status" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for announcement in announcements %}
+                    {% for recipient in announcement.recipients.all %}
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.title }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ recipient.get_recipient_type_display }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                {% if recipient.recipient_type == 'USER' %}
+                                    {{ recipient.content_object.username }}
+                                {% elif recipient.recipient_type == 'COURSE' %}
+                                    {{ recipient.content_object.name }}
+                                {% elif recipient.recipient_type == 'PROGRAM' %}
+                                    {{ recipient.content_object.name }}
+                                {% else %}
+                                    {{ recipient.get_recipient_type_display }}
+                                {% endif %}
+                            </td>
+                            <span class="text-red-600">{% trans "Not Read" %}</span>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'administrator_announcement_list' %}" class="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        <i class="fas fa-arrow-left mr-2"></i> {% trans "Back to Announcements List" %}
+    </a>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

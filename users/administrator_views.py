@@ -63,7 +63,7 @@ from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 from announcements.models import Announcement, AnnouncementRead
-from announcements.forms import AnnouncementForm
+from announcements.forms import AnnouncementForm, AnnouncementRecipientForm
 
 from .utils.notification_utils import create_notification, log_activity
 from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, AnnouncementFilter
@@ -1773,7 +1773,6 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequire
     template_name = 'users/administrator/announcements/announcements.html'
     model = Announcement
     context_object_name = 'announcements'
-    paginate_by = 10
 
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
@@ -1786,17 +1785,17 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequire
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
+        context['announcement_form'] = AnnouncementForm()
+        context['recipient_form'] = AnnouncementRecipientForm()
 
         # Calculate metrics
         total_announcements = Announcement.objects.count()
         active_announcements = Announcement.objects.filter(is_active=True).count()
         scheduled_announcements = Announcement.objects.filter(publish_date__gt=timezone.now()).count()
         
-        # Calculate total reads and average engagement rate
         total_reads = AnnouncementRead.objects.count()
         avg_engagement_rate = (total_reads / total_announcements) * 100 if total_announcements > 0 else 0
 
-        # Add metrics to context
         context['total_announcements'] = total_announcements
         context['active_announcements'] = active_announcements
         context['scheduled_announcements'] = scheduled_announcements
@@ -1806,16 +1805,32 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequire
     
     @method_decorator(csrf_exempt)
     def post(self, request, *args, **kwargs):
-        form = AnnouncementForm(request.POST)
-        if form.is_valid():
-            announcement = form.save(commit=False)
-            announcement.author = self.request.user
-            announcement.save()
-            redirect_url = reverse('administrator_announcement_list')
-            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        form_type = request.POST.get('form_type')
+
+        if form_type == 'announcement':
+            form = AnnouncementForm(request.POST)
+            if form.is_valid():
+                announcement = form.save(commit=False)
+                announcement.author = self.request.user
+                announcement.save()
+                redirect_url = reverse('administrator_announcement_list')
+                return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+            else:
+                return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+            
+        elif form_type == 'announcement_recipient':
+            form = AnnouncementRecipientForm(request.POST)
+            if form.is_valid():
+                recipient = form.save(commit=False)
+                recipient.announcement_id = request.POST.get('announcement_id')
+                recipient.save()
+                redirect_url = reverse('administrator_announcement_list')
+                return redirect(redirect_url)
+            else:
+                return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+        
         else:
-            logger.error(form.errors)
-            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+            return JsonResponse({'status': 'error', 'message': 'Invalid form type'}, status=400)
 
 
 class AdministratorAnnouncementDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
@@ -1828,6 +1843,34 @@ class AdministratorAnnouncementDetailView(LoginRequiredMixin, AdministratorRequi
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+    
+
+class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
+    model = Announcement
+    template_name = 'users/administrator/announcements/announcement_manage_recipients.html'
+    context_object_name = 'announcement'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='administrator').exists()
+
+    def get_object(self):
+        return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcement = self.get_object()
+        
+        # Prepare the recipients data with read status
+        recipients_data = []
+        for recipient in announcement.recipients.all():
+            read_status = announcement.reads.filter(user=recipient.content_object).exists()
+            recipients_data.append({
+                'recipient': recipient,
+                'read_status': read_status
+            })
+        
+        context['recipients_data'] = recipients_data
+        return context
 
     
 class AdministratorAnnouncementDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):

@@ -149,20 +149,17 @@
                                     <li>
                                         <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-update-modal{{ announcement.id }}" data-modal-toggle="announcement-update-modal{{ announcement.id }}" data-announcement-id="{{ announcement.id }}" onclick="getAnnouncementDetails(this)">
                                             <i class="fas fa-edit mr-2"></i> {% trans "Edit/Update Announcement" %}
-                                        </a>
-                                        {% include './announcement_update.html' %}
+                                        </a>                                        
                                     </li>
                                     <li>
                                         <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}">
                                             <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete Announcement" %}
-                                        </a>
-                                        {% include './announcement_delete.html' %}
+                                        </a>                                        
                                     </li>
                                     <li>
                                         <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="crud-modal{{ announcement.id }}" data-modal-toggle="crud-modal{{ announcement.id }}">
                                             <i class="fas fa-user-plus mr-2"></i> {% trans "Add Recipients" %}
-                                        </a>
-                                        {% include './announcement_recipients.html' %}
+                                        </a>                                        
                                     </li>
                                     <li>
                                         <a href="{% url 'administrator_announcement_manage_recipients' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
@@ -172,6 +169,9 @@
                                 </ul>
                             </div>
                         </div>
+                        {% include './announcement_update.html' %}
+                        {% include './announcement_delete.html' %}
+                        {% include './announcement_recipients.html' %}
                     </td>
                 </tr>
                 {% empty %}
@@ -231,6 +231,33 @@
     
         // Export the workbook to an Excel file
         XLSX.writeFile(workbook, "announcements.xlsx");
+    }
+
+
+    function handleRecipientFormSubmit(event, announcementId) {
+        event.preventDefault();
+        const form = document.getElementById(`recipient-form-${announcementId}`);
+        const formData = new FormData(form);
+    
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.href = "{% url 'administrator_announcement_list' %}";
+            } else {
+                // Handle form errors (optional)
+                console.error('Form submission error:', data.errors);
+            }
+        })
+        .catch(error => {
+            console.error('Form submission error:', error);
+        });
     }
     </script>
 {% endblock %}
