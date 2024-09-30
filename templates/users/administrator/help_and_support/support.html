@@ -139,12 +139,17 @@
                     <td class="px-6 py-4">{{ ticket.created_at|date:"Y-m-d H:i" }}</td>
                     <td class="px-6 py-4">{{ ticket.updated_at|date:"Y-m-d H:i" }}</td>
                     <td class="px-6 py-4">
-                        <a href="{% url 'administrator_tickets_detail' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'View Ticket' %}">
+                        <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'View Ticket' %}">
                             <i class="fas fa-eye"></i>
-                        </a>
-                        <a href="{% url 'administrator_ticket_edit' ticket.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                        </a>    
+                        <button id="edit-ticket-button{{ ticket.id }}" class="text-red-600 hover:text-red-900 ml-2" 
+                                data-modal-target="ticket-edit-modal{{ ticket.id }}" 
+                                data-modal-toggle="ticket-edit-modal{{ ticket.id }}" 
+                                data-ticket-id="{{ ticket.id }}"
+                                title="{% trans 'Edit' %}">
                             <i class="fas fa-pen"></i>
-                        </a>
+                        </button>
+                        {% include "./tickets/edit_ticket.html" %}
                         <a href="#" class="text-red-600 hover:text-red-900 ml-2" data-modal-target="delete-ticket-modal{{ ticket.id }}" data-modal-toggle="delete-ticket-modal{{ ticket.id }}"  title="{% trans 'Delete' %}">
                             <i class="fas fa-trash-alt"></i>
                         </a>
@@ -175,14 +180,44 @@
                     <a href="{% url 'administrator_faq_edit' faq.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
                         <i class="fas fa-pen"></i>
                     </a>
-                    <a href="{% url 'administrator_faq_delete' faq.id %}" class="text-red-600 hover:text-red-900" title="{% trans 'Delete' %}">
+                    <a href="#" class="text-red-600 hover:text-red-900 ml-2" data-modal-target="delete-faq-modal{{ faq.id }}" data-modal-toggle="delete-faq-modal{{ faq.id }}"  title="{% trans 'Delete' %}">
                         <i class="fas fa-trash-alt"></i>
                     </a>
+                    {% include "./faq/delete_faq.html" %} 
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageCode = document.documentElement.lang || 'en'; 
+        
+        document.querySelectorAll('[id^="edit-ticket-button"]').forEach(button => {
+            button.addEventListener('click', function() {
+                const ticketId = this.getAttribute('data-ticket-id');
+                const url = `http://127.0.0.1:8000/${languageCode}/user/administrator/help-support/tickets/${ticketId}/edit/`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const modal = document.getElementById(`ticket-edit-modal${ticketId}`);
+                        const content = `
+                            <strong>Title:</strong> ${data.title}<br>
+                            <strong>Description:</strong> ${data.description}<br>
+                            <strong>Category:</strong> ${data.category}<br>
+                            <strong>Priority:</strong> ${data.priority}<br>
+                            <strong>Status:</strong> ${data.status}
+                        `;
+                        modal.querySelector(`#ticket-content-${ticketId}`).innerHTML = content;
+                        modal.classList.remove('hidden');
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
 
 {% endblock %}
