@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django_session_timeout',
     'crispy_forms',
     'crispy_tailwind',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

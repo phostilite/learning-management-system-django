@@ -63,7 +63,7 @@ from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 
 from .utils.notification_utils import create_notification, log_activity
-from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter
+from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -1040,18 +1040,31 @@ class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredM
         logger.warning(f"Unauthorized access attempt to create delivery by user {self.request.user}")
         messages.error(self.request, "You do not have permission to create deliveries.")
         return super().handle_no_permission()
-    
-class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
+
+class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, FilterView):
     model = Delivery
     template_name = 'users/administrator/course/deliveries/delivery_list.html'
     context_object_name = 'deliveries'
+    filterset_class = DeliveryFilter
+    paginate_by = 10
 
     def get_queryset(self):
-        return Delivery.objects.all().order_by('-created_at')
+        queryset = super().get_queryset().order_by('-created_at')
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['active_tab'] = 'deliveries'  
+        context['active_tab'] = 'deliveries'
+        
+        try:
+            context['total_deliveries'] = Delivery.objects.count()
+            context['active_deliveries'] = Delivery.objects.filter(is_active=True).count()
+            context['program_deliveries'] = Delivery.objects.filter(delivery_type='PROGRAM').count()
+            context['course_deliveries'] = Delivery.objects.filter(delivery_type='COURSE').count()
+        except Exception as e:
+            logger.error(f"Error fetching delivery statistics: {str(e)}")
+            context['stats_error'] = "Unable to fetch delivery statistics."
+
         return context
     
 class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
@@ -1108,9 +1121,18 @@ class AdministratorDeliveryEditView(LoginRequiredMixin, AdministratorRequiredMix
     
 class AdministratorDeliveryDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Delivery
-    template_name = 'users/administrator/course/deliveries/delivery_confirm_delete.html'
-    context_object_name = 'delivery'
-    success_url = reverse_lazy('administrator_delivery_list')  
+    success_url = reverse_lazy('administrator_delivery_list')
+    
+    def delete(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'error': _('Error deleting delivery: {}').format(str(e))}, status=400)
+
+    def handle_no_permission(self):
+        return JsonResponse({'error': _('You do not have permission to delete this delivery.')}, status=403)
 
 class CourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent

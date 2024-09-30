@@ -1,25 +1,37 @@
+# Standard library imports
 import re
 import uuid
 import logging
 from datetime import datetime
 
-from django.contrib.auth import get_user_model
+# Django imports
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
+from django.core.exceptions import ValidationError
 from django.db.models import Max
 from django.forms import inlineformset_factory
 from django.utils.translation import gettext_lazy as _
+
+# Third-party imports
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column, Div, HTML
+from crispy_forms.layout import Layout, Submit, Row, Column, Div, HTML, Fieldset, Field
+from crispy_forms.bootstrap import TabHolder, Tab
+from crispy_forms.bootstrap import PrependedText
 
-from .models import Course, LearningResource, ScormResource, CourseCategory, Enrollment, Program, Tag, ProgramCourse, Delivery, DeliveryComponent, ProgramCourse
+# Local application imports
+from .models import (
+    Course, LearningResource, ScormResource, CourseCategory, Enrollment, 
+    Program, Tag, ProgramCourse, Delivery, DeliveryComponent, DeliveryInstructor    
+)
 from users.models import User
-from django.contrib.auth.models import Group
-from django.core.exceptions import ValidationError
+from courses.models import Delivery, Program, Course, User
 
+# Get the user model
 User = get_user_model()
 
+# Set up logging
 logger = logging.getLogger(__name__)
-
 
 # ============================================================
 # ======================= Course Forms =======================
@@ -258,120 +270,210 @@ class ProgramCourseForm(forms.ModelForm):
 # ======================= Delivery Forms =====================
 # ============================================================
 
+
 class DeliveryCreateForm(forms.ModelForm):
+    instructors = forms.ModelMultipleChoiceField(
+        queryset=User.objects.filter(groups__name='facilitator'),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        help_text=_("Select one or more instructors for this delivery.")
+    )
+
     class Meta:
         model = Delivery
-        fields = ['title', 'delivery_type', 'delivery_method', 'program', 'course', 'facilitator', 'start_date', 'end_date', 'is_active']
+        fields = [
+            'title', 'description', 'delivery_type', 'delivery_mode', 
+            'program', 'course', 'instructors',
+            'start_date', 'end_date', 'enrollment_start',
+            'enrollment_end', 'deactivation_date', 'max_participants',
+            'is_active', 'is_mandatory', 'completion_criteria', 'minimum_score',
+            'attendance_threshold', 'issue_certificate', 'allow_self_unenroll'
+        ]
         widgets = {
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-        }
-        help_texts = {
-            'title': 'Enter a descriptive title for the delivery.',
-            'delivery_type': 'Select whether this is a program or course delivery.',
-            'delivery_method': 'Choose between instructor-led or self-paced delivery.',
-            'program': 'Select the program for this delivery (required for program deliveries).',
-            'course': 'Select the course for this delivery (required for course deliveries).',
-            'facilitator': 'Assign a facilitator for instructor-led deliveries.',
-            'start_date': 'Set the start date and time for the delivery.',
-            'end_date': 'Set the end date and time for the delivery.',
-            'is_active': 'Check this box if the delivery is currently active.',
+            'enrollment_start': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'enrollment_end': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'deactivation_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('title', css_class='form-group col-md-6 mb-0'),
-                Column('delivery_type', css_class='form-group col-md-6 mb-0'),
-                css_class='form-row'
-            ),
-            Row(
-                Column('delivery_method', css_class='form-group col-md-6 mb-0'),
-                Column('facilitator', css_class='form-group col-md-6 mb-0'),
-                css_class='form-row'
-            ),
-            Row(
-                Column('program', css_class='form-group col-md-6 mb-0'),
-                Column('course', css_class='form-group col-md-6 mb-0'),
-                css_class='form-row'
-            ),
-            Row(
-                Column('start_date', css_class='form-group col-md-6 mb-0'),
-                Column('end_date', css_class='form-group col-md-6 mb-0'),
-                css_class='form-row'
-            ),
-            'is_active',
-            HTML("<div class='row'><div class='col-md-12'><hr></div></div>"),
-            Div(
-                Div(
-                    HTML("""
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Create Delivery
-                        </button>
-                    """),
-                    css_class='col-md-12 flex justify-end mt-6'
-                ),
-                css_class='row'
-            )
-        )
+        self.helper.form_tag = False
 
-        # Limit facilitator choices to users in the 'facilitator' group
-        facilitator_group = Group.objects.get(name='facilitator')
-        self.fields['facilitator'].queryset = User.objects.filter(groups=facilitator_group)
+        self.fields['program'].queryset = Program.objects.filter(is_published=True)
+        self.fields['course'].queryset = Course.objects.filter(is_published=True)
 
-        # Add helper texts to form fields
-        for field_name, help_text in self.Meta.help_texts.items():
-            self.fields[field_name].help_text = help_text
+        # Add helper text to each field
+        self.fields['title'].help_text = _("Enter a descriptive title for this delivery.")
+        self.fields['description'].help_text = _("Provide a detailed description of the delivery content and objectives.")
+        self.fields['delivery_type'].help_text = _("Select whether this is a program or course delivery.")
+        self.fields['program'].help_text = _("Select the program for this delivery (if delivery type is Program).")
+        self.fields['course'].help_text = _("Select the course for this delivery (if delivery type is Course).")
+        self.fields['delivery_mode'].help_text = _("Choose the mode of delivery (e.g., self-paced, instructor-led, blended).")
+        self.fields['start_date'].help_text = _("Set the start date and time for this delivery.")
+        self.fields['end_date'].help_text = _("Set the end date and time for this delivery.")
+        self.fields['enrollment_start'].help_text = _("Set the date when enrollment for this delivery opens.")
+        self.fields['enrollment_end'].help_text = _("Set the deadline for enrollment in this delivery.")
+        self.fields['deactivation_date'].help_text = _("Optionally set a date when this delivery will be deactivated.")
+        self.fields['max_participants'].help_text = _("Set the maximum number of participants allowed (leave blank for unlimited).")
+        self.fields['is_active'].help_text = _("Indicate whether this delivery is currently active.")
+        self.fields['is_mandatory'].help_text = _("Indicate whether this delivery is mandatory for enrolled participants.")
+        self.fields['completion_criteria'].help_text = _("Select the criteria for marking this delivery as completed.")
+        self.fields['minimum_score'].help_text = _("Set the minimum score required for completion (if applicable).")
+        self.fields['attendance_threshold'].help_text = _("Set the minimum attendance percentage required (if applicable).")
+        self.fields['issue_certificate'].help_text = _("Indicate whether a certificate should be issued upon completion.")
+        self.fields['allow_self_unenroll'].help_text = _("Allow participants to unenroll themselves from this delivery.")
 
     def clean(self):
         cleaned_data = super().clean()
         delivery_type = cleaned_data.get('delivery_type')
-        delivery_method = cleaned_data.get('delivery_method')
+        delivery_mode = cleaned_data.get('delivery_mode')
         program = cleaned_data.get('program')
         course = cleaned_data.get('course')
-        facilitator = cleaned_data.get('facilitator')
+        instructors = cleaned_data.get('instructors')
 
         if delivery_type == 'PROGRAM' and not program:
-            self.add_error('program', 'Program is required for program deliveries.')
-        elif delivery_type == 'COURSE' and not course:
-            self.add_error('course', 'Course is required for course deliveries.')
+            raise forms.ValidationError(_("Program delivery must have a program associated."))
+        if delivery_type == 'COURSE' and not course:
+            raise forms.ValidationError(_("Course delivery must have a course associated."))
+        
+        if delivery_mode == 'INSTRUCTOR_LED' and not instructors:
+            raise forms.ValidationError(_("Instructor-led delivery must have at least one instructor."))
 
-        if delivery_method == 'INSTRUCTOR_LED' and not facilitator:
-            self.add_error('facilitator', 'Facilitator is required for instructor-led deliveries.')
-        elif delivery_method == 'SELF_PACED' and facilitator:
-            self.add_error('facilitator', 'Facilitator should not be set for self-paced deliveries.')
+        completion_criteria = cleaned_data.get('completion_criteria')
+        minimum_score = cleaned_data.get('minimum_score')
+        attendance_threshold = cleaned_data.get('attendance_threshold')
+
+        if completion_criteria == 'MINIMUM_SCORE' and minimum_score is None:
+            raise forms.ValidationError(_("Minimum score must be set when using 'Achieve Minimum Score' completion criteria."))
+        if completion_criteria == 'ATTENDANCE' and attendance_threshold is None:
+            raise forms.ValidationError(_("Attendance threshold must be set when using 'Meet Attendance Requirement' completion criteria."))
 
         return cleaned_data
+
+    def save(self, commit=True):
+        delivery = super().save(commit=False)
+        if commit:
+            try:
+                delivery.save()
+                instructors = self.cleaned_data.get('instructors')
+                if instructors:
+                    for instructor in instructors:
+                        DeliveryInstructor.objects.create(
+                            delivery=delivery,
+                            instructor=instructor,
+                            role='PRIMARY',
+                            assigned_by=self.user
+                        )
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error saving delivery: {str(e)}")
+                raise
+        return delivery
     
 class DeliveryEditForm(forms.ModelForm):
+    instructors = forms.ModelMultipleChoiceField(
+        queryset=User.objects.filter(groups__name='facilitator'),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        help_text=_("Select one or more instructors for this delivery.")
+    )
+
     class Meta:
         model = Delivery
-        fields = ['title', 'delivery_type', 'program', 'course', 'start_date', 'end_date', 'is_active']
+        fields = [
+            'title', 'description', 'delivery_type', 'delivery_mode', 
+            'program', 'course', 'instructors',
+            'start_date', 'end_date', 'enrollment_start',
+            'enrollment_end', 'deactivation_date', 'max_participants',
+            'is_active', 'is_mandatory', 'completion_criteria', 'minimum_score',
+            'attendance_threshold', 'issue_certificate', 'allow_self_unenroll'
+        ]
         widgets = {
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'enrollment_start': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'enrollment_end': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'deactivation_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        self.fields['program'].queryset = Program.objects.all()
-        self.fields['course'].queryset = Course.objects.all()
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+        self.fields['program'].queryset = Program.objects.filter(is_published=True)
+        self.fields['course'].queryset = Course.objects.filter(is_published=True)
+
+        # Disable changing of delivery type if the delivery has already started
+        if self.instance.pk and self.instance.has_started():
+            self.fields['delivery_type'].disabled = True
+            self.fields['program'].disabled = True
+            self.fields['course'].disabled = True
+
+        # Add helper text to each field
+        self.fields['title'].help_text = _("Enter a descriptive title for this delivery.")
+        self.fields['description'].help_text = _("Provide a detailed description of the delivery content and objectives.")
+        self.fields['delivery_type'].help_text = _("Select whether this is a program or course delivery.")
+        self.fields['program'].help_text = _("Select the program for this delivery (if delivery type is Program).")
+        self.fields['course'].help_text = _("Select the course for this delivery (if delivery type is Course).")
+        self.fields['delivery_mode'].help_text = _("Choose the mode of delivery (e.g., self-paced, instructor-led, blended).")
+        self.fields['start_date'].help_text = _("Set the start date and time for this delivery.")
+        self.fields['end_date'].help_text = _("Set the end date and time for this delivery.")
+        self.fields['enrollment_start'].help_text = _("Set the date when enrollment for this delivery opens.")
+        self.fields['enrollment_end'].help_text = _("Set the deadline for enrollment in this delivery.")
+        self.fields['deactivation_date'].help_text = _("Optionally set a date when this delivery will be deactivated.")
+        self.fields['max_participants'].help_text = _("Set the maximum number of participants allowed (leave blank for unlimited).")
+        self.fields['is_active'].help_text = _("Indicate whether this delivery is currently active.")
+        self.fields['is_mandatory'].help_text = _("Indicate whether this delivery is mandatory for enrolled participants.")
+        self.fields['completion_criteria'].help_text = _("Select the criteria for marking this delivery as completed.")
+        self.fields['minimum_score'].help_text = _("Set the minimum score required for completion (if applicable).")
+        self.fields['attendance_threshold'].help_text = _("Set the minimum attendance percentage required (if applicable).")
+        self.fields['issue_certificate'].help_text = _("Indicate whether a certificate should be issued upon completion.")
+        self.fields['allow_self_unenroll'].help_text = _("Allow participants to unenroll themselves from this delivery.")
 
     def clean(self):
         cleaned_data = super().clean()
         delivery_type = cleaned_data.get('delivery_type')
+        delivery_mode = cleaned_data.get('delivery_mode')
         program = cleaned_data.get('program')
         course = cleaned_data.get('course')
+        instructors = cleaned_data.get('instructors')
 
         if delivery_type == 'PROGRAM' and not program:
-            raise forms.ValidationError("Program delivery must have a program associated.")
+            raise forms.ValidationError(_("Program delivery must have a program associated."))
         if delivery_type == 'COURSE' and not course:
-            raise forms.ValidationError("Course delivery must have a course associated.")
+            raise forms.ValidationError(_("Course delivery must have a course associated."))
+        
+        if delivery_mode == 'INSTRUCTOR_LED' and not instructors:
+            raise forms.ValidationError(_("Instructor-led delivery must have at least one instructor."))
+
+        # Additional validation for editing
+        if self.instance.pk and self.instance.has_started():
+            if delivery_type != self.instance.delivery_type:
+                raise forms.ValidationError(_("Cannot change delivery type for an ongoing delivery."))
 
         return cleaned_data
+
+    def save(self, commit=True):
+        delivery = super().save(commit=False)
+        if commit:
+            delivery.save()
+            # Update instructors
+            DeliveryInstructor.objects.filter(delivery=delivery).delete()
+            for instructor in self.cleaned_data.get('instructors', []):
+                DeliveryInstructor.objects.create(
+                    delivery=delivery,
+                    instructor=instructor,
+                    role='PRIMARY',
+                    assigned_by=self.user
+                )
+        return delivery
 
 class DeliveryComponentForm(forms.ModelForm):
     class Meta:

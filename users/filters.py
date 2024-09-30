@@ -1,5 +1,5 @@
 import django_filters
-from courses.models import Program, Course, Tag, CourseCategory
+from courses.models import Program, Course, Tag, CourseCategory, Delivery
 from organization.models import EmployeeProfile, OrganizationUnit, JobPosition, Organization, Location
 from django_filters import FilterSet, CharFilter, ModelChoiceFilter, BooleanFilter, DateFromToRangeFilter, DateFilter, NumberFilter, ChoiceFilter
 from activities.models import SystemNotification
@@ -31,6 +31,25 @@ class CourseFilter(django_filters.FilterSet):
     class Meta:
         model = Course
         fields = ['title', 'category', 'difficulty_level', 'language', 'tags']
+
+class DeliveryFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
+    delivery_type = django_filters.ChoiceFilter(choices=Delivery.DELIVERY_TYPES)
+    delivery_mode = django_filters.ChoiceFilter(choices=Delivery.DELIVERY_MODES)
+    start_date = django_filters.DateFilter(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = django_filters.DateFilter(widget=forms.DateInput(attrs={'type': 'date'}))
+    is_active = django_filters.BooleanFilter(
+        widget=forms.Select(choices=((None, 'All'), (True, 'Active'), (False, 'Inactive')))
+    )
+    completion_criteria = django_filters.ChoiceFilter(choices=Delivery.COMPLETION_CRITERIA)
+    is_mandatory = django_filters.BooleanFilter()
+
+    class Meta:
+        model = Delivery
+        fields = [
+            'title', 'delivery_type', 'delivery_mode', 'start_date', 'end_date',
+            'is_active', 'completion_criteria', 'is_mandatory'
+        ]
 
 class NotificationFilter(django_filters.FilterSet):
     start_date = django_filters.DateFilter(
