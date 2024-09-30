@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our {{ organization.name }} LMS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 0 5px 5px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Our {{ organization.name }} LMS!</h1>
+    </div>
+    <div class="content">
+        <p>Dear {{ user.first_name }},</p>
+        <p>Welcome to our Learning Management System! We're excited to have you on board.</p>
+        <p>Your account has been created with the following details:</p>
+        <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>Temporary Password: {{ temp_password }}</li>
+        </ul>
+        <p>For security reasons, please reset your password upon your first login. You can do this from your profile page.</p>
+        <a href="https://lms.learnknowdigital.com/en/user/learner/settings/" class="button">Go to Your Profile</a>
+        <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
+        <p>Best regards,<br>The {{ organization.name }} LMS Team</p>
+    </div>
+    <div class="footer">
+        <p>This is an automated message, please do not reply directly to this email.</p>
+    </div>
+</body>
+</html>

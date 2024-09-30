@@ -133,12 +133,18 @@ class Delivery(models.Model):
         ('PROGRAM', 'Program'),
         ('COURSE', 'Course'),
     )
+    DELIVERY_METHODS = (
+        ('INSTRUCTOR_LED', 'Instructor-led'),
+        ('SELF_PACED', 'Self-paced'),
+    )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
     delivery_type = models.CharField(max_length=10, choices=DELIVERY_TYPES)
+    delivery_method = models.CharField(max_length=15, choices=DELIVERY_METHODS, null=True, blank=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
+    facilitator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='facilitated_deliveries')
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
