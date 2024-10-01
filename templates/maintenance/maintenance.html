@@ -3,6 +3,37 @@
 
 {% block title %}{% trans "Maintenance Mode" %} - LMS{% endblock %}
 
+{% block extra_css %}
+<style>
+    .clock-container {
+        background: linear-gradient(145deg, #f3f4f6, #ffffff);
+        border-radius: 15px;
+        box-shadow: 
+            5px 5px 10px #d1d5db,
+            -5px -5px 10px #ffffff;
+        padding: 20px;
+        margin-top: 2rem;
+    }
+    .digital-time {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5rem;
+        color: #374151;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        margin-top: 1rem;
+    }
+    .timezone {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-top: 0.5rem;
+    }
+    .date {
+        font-size: 1rem;
+        color: #4b5563;
+        margin-top: 0.5rem;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
@@ -32,17 +63,19 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-6">
-                <div class="relative">
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-2 bg-white text-gray-500">
-                            {% trans "Estimated time remaining" %}
-                        </span>
-                    </div>
+            <div class="clock-container">
+                <div class="flex justify-center">
+                    <svg id="clock" width="150" height="150">
+                        <circle cx="75" cy="75" r="70" fill="none" stroke="#333" stroke-width="2" />
+                        <line id="hour-hand" x1="75" y1="75" x2="75" y2="35" stroke="#333" stroke-width="4" stroke-linecap="round" />
+                        <line id="minute-hand" x1="75" y1="75" x2="75" y2="20" stroke="#666" stroke-width="3" stroke-linecap="round" />
+                        <line id="second-hand" x1="75" y1="75" x2="75" y2="15" stroke="red" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="75" cy="75" r="3" fill="#333" />
+                    </svg>
                 </div>
-                <div class="mt-6">
-                    <div id="countdown" class="flex justify-center space-x-4 text-2xl font-bold text-gray-900"></div>
-                </div>
+                <div id="digital-time" class="digital-time text-center"></div>
+                <div id="date" class="date text-center"></div>
+                <div id="timezone" class="timezone text-center"></div>
             </div>
             <div class="mt-6">
                 <div class="relative">
@@ -66,40 +99,51 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const countdownElement = document.getElementById('countdown');
-        const endTime = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 hours from now
+        const digitalTimeElement = document.getElementById('digital-time');
+        const dateElement = document.getElementById('date');
+        const timezoneElement = document.getElementById('timezone');
+        const hourHand = document.getElementById('hour-hand');
+        const minuteHand = document.getElementById('minute-hand');
+        const secondHand = document.getElementById('second-hand');
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeLeft = endTime - now;
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
 
-            if (timeLeft < 0) {
-                countdownElement.innerHTML = "{% trans 'Maintenance should be completed. Please refresh the page.' %}";
-                return;
-            }
+            // Update analog clock
+            const hourAngle = (hours + minutes / 60) * 30;
+            const minuteAngle = (minutes + seconds / 60) * 6;
+            const secondAngle = seconds * 6;
 
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            hourHand.setAttribute('transform', `rotate(${hourAngle}, 75, 75)`);
+            minuteHand.setAttribute('transform', `rotate(${minuteAngle}, 75, 75)`);
+            secondHand.setAttribute('transform', `rotate(${secondAngle}, 75, 75)`);
 
-            countdownElement.innerHTML = `
-                <div class="text-center">
-                    <span class="text-3xl">${hours}</span>
-                    <span class="text-sm block">{% trans "Hours" %}</span>
-                </div>
-                <div class="text-center">
-                    <span class="text-3xl">${minutes}</span>
-                    <span class="text-sm block">{% trans "Minutes" %}</span>
-                </div>
-                <div class="text-center">
-                    <span class="text-3xl">${seconds}</span>
-                    <span class="text-sm block">{% trans "Seconds" %}</span>
-                </div>
-            `;
+            // Update digital clock
+            const timeOptions = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: true
+            };
+            digitalTimeElement.textContent = now.toLocaleString('en-US', timeOptions);
+
+            const dateOptions = { 
+                weekday: 'long',
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric'
+            };
+            dateElement.textContent = now.toLocaleDateString('en-US', dateOptions);
+            
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            timezoneElement.textContent = `Timezone: ${timeZone}`;
         }
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        updateClock();
+        setInterval(updateClock, 1000);
 
         // Animate the tools icon
         anime({
