@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.db import models
 import uuid
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
@@ -133,36 +136,81 @@ class Delivery(models.Model):
         ('PROGRAM', 'Program'),
         ('COURSE', 'Course'),
     )
-    DELIVERY_METHODS = (
-        ('INSTRUCTOR_LED', 'Instructor-led'),
-        ('SELF_PACED', 'Self-paced'),
+    DELIVERY_MODES = (
+        ('SELF_PACED', 'Self-Paced'),
+        ('INSTRUCTOR_LED', 'Instructor-Led'),
+        ('BLENDED', 'Blended'),
+    )
+    COMPLETION_CRITERIA = (
+        ('ALL_COMPONENTS', 'Complete All Components'),
+        ('MINIMUM_SCORE', 'Achieve Minimum Score'),
+        ('ATTENDANCE', 'Meet Attendance Requirement'),
     )
 
+    # Basic Information
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+
+    # Delivery Configuration
     delivery_type = models.CharField(max_length=10, choices=DELIVERY_TYPES)
-    delivery_method = models.CharField(max_length=15, choices=DELIVERY_METHODS, null=True, blank=True)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
-    facilitator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='facilitated_deliveries')
-    start_date = models.DateTimeField(null=True, blank=True)
-    end_date = models.DateTimeField(null=True, blank=True)
+    program = models.ForeignKey('Program', on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
+    course = models.ForeignKey('Course', on_delete=models.CASCADE, null=True, blank=True, related_name='deliveries')
+    delivery_mode = models.CharField(max_length=20, choices=DELIVERY_MODES)
+
+    # Scheduling
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    enrollment_start = models.DateTimeField()
+    enrollment_end = models.DateTimeField()
+    deactivation_date = models.DateTimeField(null=True, blank=True)
+
+    # Instructor Assignment
+    instructors = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        through='DeliveryInstructor',
+        through_fields=('delivery', 'instructor'),
+        related_name='instructed_deliveries'
+    )
+
+    # Capacity and Status
+    max_participants = models.PositiveIntegerField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    is_mandatory = models.BooleanField(default=False)
+
+    # Completion and Certification
+    completion_criteria = models.CharField(max_length=20, choices=COMPLETION_CRITERIA)
+    minimum_score = models.PositiveIntegerField(null=True, blank=True)
+    attendance_threshold = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    issue_certificate = models.BooleanField(default=True)
+
+    # Enrollment Options
+    allow_self_unenroll = models.BooleanField(default=False)
+
+    # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.get_delivery_type_display()} Delivery: {self.title}"
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='created_deliveries')
 
     def clean(self):
         if self.delivery_type == 'PROGRAM' and not self.program:
-            raise ValidationError("Program delivery must have a program associated.")
+            raise ValidationError(_("Program delivery must have a program associated."))
         if self.delivery_type == 'COURSE' and not self.course:
-            raise ValidationError("Course delivery must have a course associated.")
+            raise ValidationError(_("Course delivery must have a course associated."))
         if self.delivery_type == 'PROGRAM' and self.course:
-            raise ValidationError("Program delivery cannot have a course associated.")
+            raise ValidationError(_("Program delivery cannot have a course associated."))
         if self.delivery_type == 'COURSE' and self.program:
-            raise ValidationError("Course delivery cannot have a program associated.")
+            raise ValidationError(_("Course delivery cannot have a program associated."))
+        if self.completion_criteria == 'MINIMUM_SCORE' and self.minimum_score is None:
+            raise ValidationError(_("Minimum score must be set when using 'Achieve Minimum Score' completion criteria."))
+        if self.completion_criteria == 'ATTENDANCE' and self.attendance_threshold is None:
+            raise ValidationError(_("Attendance threshold must be set when using 'Meet Attendance Requirement' completion criteria."))
+
+    def __str__(self):
+        return f"{self.get_delivery_type_display()} Delivery: {self.title}"
+    
+    def has_started(self):
+        return self.start_date <= timezone.now() if self.start_date else False
 
 class DeliveryComponent(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -197,6 +245,129 @@ class DeliveryComponent(models.Model):
 
     def get_child_components(self):
         return self.child_components.all() if self.is_course_component else None
+
+class DeliverySchedule(models.Model):
+    # Basic Information
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='schedules')
+    session_title = models.CharField(max_length=255)
+
+    # Scheduling
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+
+    # Location
+    location = models.CharField(max_length=255, blank=True)
+    is_virtual = models.BooleanField(default=False)
+    virtual_meeting_link = models.URLField(blank=True)
+
+    class Meta:
+        ordering = ['start_time']
+
+    def __str__(self):
+        return f"{self.delivery.title} - {self.session_title}"
+    
+class DeliveryInstructor(models.Model):
+    INSTRUCTOR_ROLES = (
+        ('PRIMARY', 'Primary Instructor'),
+        ('ASSISTANT', 'Assistant Instructor'),
+        ('GUEST', 'Guest Lecturer'),
+        ('MENTOR', 'Mentor'),
+    )
+
+    # Basic Information
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='delivery_instructors')
+    instructor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='delivery_instructor_roles')
+
+    # Role Information
+    role = models.CharField(max_length=20, choices=INSTRUCTOR_ROLES)
+    is_active = models.BooleanField(default=True)
+
+    # Assignment Details
+    assigned_date = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    assigned_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='instructor_assignments'
+    )
+
+    class Meta:
+        unique_together = ['delivery', 'instructor']
+
+    def __str__(self):
+        return f"{self.instructor.get_full_name()} - {self.get_role_display()} for {self.delivery.title}"
+    
+
+    def clean(self):
+        # Ensure the assigned instructor has the appropriate permissions
+        if not self.instructor.has_perm('courses.can_be_instructor'):
+            raise ValidationError(_("The selected user does not have permission to be an instructor."))
+
+class DeliveryFeedback(models.Model):
+    FEEDBACK_TYPES = (
+        ('SURVEY', 'Survey'),
+        ('RATING', 'Rating'),
+        ('OPEN_ENDED', 'Open-ended Feedback'),
+    )
+
+    # Basic Information
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='feedback')
+    feedback_type = models.CharField(max_length=20, choices=FEEDBACK_TYPES)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+
+    # Feedback Configuration
+    is_anonymous = models.BooleanField(default=False)
+    is_required = models.BooleanField(default=False)
+    due_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.delivery.title} - {self.title}"
+
+class DeliveryEmailTemplate(models.Model):
+    EMAIL_TYPES = (
+        ('ENROLLMENT_CONFIRMATION', 'Enrollment Confirmation'),
+        ('REMINDER', 'Reminder'),
+        ('COMPLETION', 'Completion'),
+        ('CERTIFICATE', 'Certificate Issuance'),
+    )
+
+    # Basic Information
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='email_templates')
+    email_type = models.CharField(max_length=30, choices=EMAIL_TYPES)
+
+    # Email Content
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+
+    # Status
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.delivery.title} - {self.get_email_type_display()}"
+
+class DeliveryAttendance(models.Model):
+    # Basic Information
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    delivery = models.ForeignKey(Delivery, on_delete=models.CASCADE, related_name='attendance')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='delivery_attendance')
+    schedule = models.ForeignKey(DeliverySchedule, on_delete=models.CASCADE, related_name='attendance')
+
+    # Attendance Data
+    is_present = models.BooleanField(default=False)
+    check_in_time = models.DateTimeField(null=True, blank=True)
+    check_out_time = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ['delivery', 'user', 'schedule']
+
+    def __str__(self):
+        return f"{self.user} - {self.schedule}"
 
 class Enrollment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

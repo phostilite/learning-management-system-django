@@ -1,0 +1,244 @@
+{% extends '../../../_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}{% trans "Enrollments" %} | {{ delivery.title }} | {% trans "Administrator" %}{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Enrollments for" %} {{ delivery.title }}</h1>
+        <p class="text-lg text-white text-center">{% trans "Manage and view all enrollments for this delivery." %}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_delivery_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Deliveries" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ delivery.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Enrollments" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden mb-8">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-4">{% trans "Enrollment Statistics" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-blue-100 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-800">{% trans "Total Enrollments" %}</h3>
+                    <p class="text-3xl font-bold text-blue-600">{{ total_enrollments }}</p>
+                </div>
+                <div class="bg-green-100 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-green-800">{% trans "Active Enrollments" %}</h3>
+                    <p class="text-3xl font-bold text-green-600">{{ active_enrollments }}</p>
+                </div>
+                <div class="bg-purple-100 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-purple-800">{% trans "Completed Enrollments" %}</h3>
+                    <p class="text-3xl font-bold text-purple-600">{{ completed_enrollments }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden mb-8">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold">{% trans "Filter Enrollments" %}</h2>
+                <a href="{% url 'administrator_delivery_enrollments_create' delivery.id %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    {% trans "Create Enrollment" %}
+                </a>
+            </div>
+            <form method="get" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="{{ filterset.form.user__username.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filterset.form.user__username.label }}</label>
+                        {{ filterset.form.user__username|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.user__email.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filterset.form.user__email.label }}</label>
+                        {{ filterset.form.user__email|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.status.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filterset.form.status.label }}</label>
+                        {{ filterset.form.status|add_class:"mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.enrollment_date_after.id_for_label }}" class="block text-sm font-medium text-gray-700">Enrollment Date After</label>
+                        {{ filterset.form.enrollment_date_after|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.enrollment_date_before.id_for_label }}" class="block text-sm font-medium text-gray-700">Enrollment Date Before</label>
+                        {{ filterset.form.enrollment_date_before|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.completion_date_after.id_for_label }}" class="block text-sm font-medium text-gray-700">Completion Date After</label>
+                        {{ filterset.form.completion_date_after|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filterset.form.completion_date_before.id_for_label }}" class="block text-sm font-medium text-gray-700">Completion Date Before</label>
+                        {{ filterset.form.completion_date_before|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Apply Filters
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "User" %}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Status" %}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Enrollment Date" %}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Completion Date" %}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10">
+                                    {% if enrollment.user.profile_picture %}
+                                        <img class="h-10 w-10 rounded-full" src="{{ enrollment.user.profile_picture.url }}" alt="">
+                                    {% else %}
+                                        <i class="fas fa-user-circle h-10 w-10 text-gray-500"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">{{ enrollment.user.get_full_name }}</div>
+                                    <div class="text-sm text-gray-500">{{ enrollment.user.email }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                {% if enrollment.status == 'ENROLLED' %}bg-yellow-100 text-yellow-800
+                                {% elif enrollment.status == 'IN_PROGRESS' %}bg-blue-100 text-blue-800
+                                {% elif enrollment.status == 'COMPLETED' %}bg-green-100 text-green-800
+                                {% else %}bg-red-100 text-red-800{% endif %}">
+                                {{ enrollment.get_status_display }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ enrollment.enrollment_date|date:"Y-m-d H:i" }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ enrollment.completion_date|date:"Y-m-d H:i"|default:"-" }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900">{% trans "Edit" %}</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                            {% trans "No enrollments found." %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if enrollments.has_other_pages %}
+        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+            <div class="flex-1 flex justify-between sm:hidden">
+                {% if enrollments.has_previous %}
+                    <a href="?page={{ enrollments.previous_page_number }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        {% trans "Previous" %}
+                    </a>
+                {% endif %}
+                {% if enrollments.has_next %}
+                    <a href="?page={{ enrollments.next_page_number }}" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        {% trans "Next" %}
+                    </a>
+                {% endif %}
+            </div>
+            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-gray-700">
+                        {% trans "Showing" %}
+                        <span class="font-medium">{{ enrollments.start_index }}</span>
+                        {% trans "to" %}
+                        <span class="font-medium">{{ enrollments.end_index }}</span>
+                        {% trans "of" %}
+                        <span class="font-medium">{{ enrollments.paginator.count }}</span>
+                        {% trans "results" %}
+                    </p>
+                </div>
+                <div>
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        {% if enrollments.has_previous %}
+                            <a href="?page={{ enrollments.previous_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">{% trans "Previous" %}</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        {% endif %}
+                        
+                        {% for i in enrollments.paginator.page_range %}
+                            {% if enrollments.number == i %}
+                                <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-blue-50 text-sm font-medium text-blue-600">
+                                    {{ i }}
+                                </span>
+                            {% elif i > enrollments.number|add:'-3' and i < enrollments.number|add:'3' %}
+                                <a href="?page={{ i }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    {{ i }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if enrollments.has_next %}
+                            <a href="?page={{ enrollments.next_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">{% trans "Next" %}</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

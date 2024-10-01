@@ -1,0 +1,215 @@
+{% extends '../../../_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}{% trans "Create Enrollments" %} | {{ delivery.title }} | {% trans "Administrator" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .user-table-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .user-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+    }
+    .user-table th,
+    .user-table td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+    }
+    .user-table tr:last-child td {
+        border-bottom: none;
+    }
+    .user-table tbody tr:hover {
+        background-color: #f3f4f6;
+    }
+    .user-table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9fafb;
+        z-index: 1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto">
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create Enrollments for" %} {{ delivery.title }}</h1>
+        <p class="text-lg text-white text-center">{% trans "Enroll users in this delivery by filtering and selecting them below." %}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_delivery_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Deliveries" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ delivery.title }}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Create Enrollments" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden mb-8">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-4">{% trans "Filter Users" %}</h2>
+            <form method="get" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="{{ filter.form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.first_name.label }}</label>
+                        {{ filter.form.first_name|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filter.form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.last_name.label }}</label>
+                        {{ filter.form.last_name|add_class:"mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" }}
+                    </div>
+                    <div>
+                        <label for="{{ filter.form.gender.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.gender.label }}</label>
+                        {{ filter.form.gender|add_class:"mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+                    </div>
+                    <div>
+                        <label for="{{ filter.form.timezone.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.timezone.label }}</label>
+                        {{ filter.form.timezone|add_class:"mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+                    </div>
+                    <div>
+                        <label for="{{ filter.form.current_organization.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.current_organization.label }}</label>
+                        {{ filter.form.current_organization|add_class:"mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+                    </div>
+                    <div>
+                        <label for="{{ filter.form.current_organization_unit.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ filter.form.current_organization_unit.label }}</label>
+                        {{ filter.form.current_organization_unit|add_class:"mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {% trans "Apply Filters" %}
+                    </button>
+                    <a href="{% url 'administrator_delivery_enrollments_create' delivery.id %}" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {% trans "Clear Filters" %}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="user-table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th class="p-4">
+                                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                </th>
+                                <th class="px-6 py-3 text-left">Name</th>
+                                <th class="px-6 py-3 text-left">Email</th>
+                                <th class="px-6 py-3 text-left">Organization</th>
+                                <th class="px-6 py-3 text-left">Organization Unit</th>
+                                <th class="px-6 py-3 text-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for checkbox in form.selected_users %}
+                            <tr>
+                                <td class="p-4">
+                                    {{ checkbox.tag }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        {% if checkbox.choice_label.profile_picture %}
+                                            <img class="w-10 h-10 rounded-full mr-3" src="{{ checkbox.choice_label.profile_picture }}" alt="{{ checkbox.choice_label.username }} image">
+                                        {% else %}
+                                            <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user-circle text-gray-500"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div>
+                                            <div class="font-semibold">{{ checkbox.choice_label.first_name }} {{ checkbox.choice_label.last_name }}</div>
+                                            <div class="text-sm text-gray-500">{{ checkbox.choice_label.username }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">{{ checkbox.choice_label.email }}</td>
+                                <td class="px-6 py-4">{{ checkbox.choice_label.organization }}</td>
+                                <td class="px-6 py-4">{{ checkbox.choice_label.organization_unit }}</td>
+                                <td class="px-6 py-4">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit user</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="px-6 py-4 text-center">No users available for enrollment.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="flex-grow max-w-xs">
+                        <label for="{{ form.status.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ form.status.label }}
+                        </label>
+                        {% render_field form.status class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %}
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="{% url 'administrator_delivery_detail' delivery.id %}">
+                            <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                {% trans "Cancel" %}
+                            </button>
+                        </a>
+                        <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {% trans "Create Enrollments" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAllCheckbox = document.getElementById('checkbox-all-search');
+        const userCheckboxes = document.querySelectorAll('input[name="selected_users"]');
+    
+        selectAllCheckbox.addEventListener('change', function() {
+            userCheckboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    
+        userCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                selectAllCheckbox.checked = Array.from(userCheckboxes).every(cb => cb.checked);
+            });
+        });
+    });
+</script>
+{% endblock %}

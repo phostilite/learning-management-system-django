@@ -1,7 +1,12 @@
 {% extends '../../_base.html' %}
 {% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
 
 {% block title %}{% trans "Deliveries" %} | {% trans "Administrator" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
 
 {% block content %}
 <div class="container mx-auto">
@@ -27,143 +32,273 @@
         </ol>
     </nav>
 
-    <div class="mb-6 flex flex-col md:flex-row justify-between items-center">
-        <div class="w-full md:w-1/3 mb-4 md:mb-0">
-            <form action="" method="get" class="flex items-center">
-                <input type="text" name="search" placeholder="{% trans 'Search deliveries...' %}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <button type="submit" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {% trans "Search" %}
-                </button>
-            </form>
-        </div>
-        <div class="w-full md:w-1/3 flex justify-end">
-            <a href="{% url 'administrator_delivery_create' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                {% trans "Create New Delivery" %}
-            </a>
-        </div>
-    </div>
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">{% trans "Delivery List" %}</h2>
+                <a href="{% url 'administrator_delivery_create' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    {% trans "Create New Delivery" %}
+                </a>
+            </div>
 
-    <div class="mb-6 flex flex-wrap -mx-2">
-        <div class="w-full md:w-1/4 px-2 mb-4">
-            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                <option>{% trans "Filter by Type" %}</option>
-                <option value="PROGRAM">{% trans "Program" %}</option>
-                <option value="COURSE">{% trans "Course" %}</option>
-            </select>
-        </div>
-        <div class="w-full md:w-1/4 px-2 mb-4">
-            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                <option>{% trans "Filter by Status" %}</option>
-                <option value="ACTIVE">{% trans "Active" %}</option>
-                <option value="INACTIVE">{% trans "Inactive" %}</option>
-            </select>
-        </div>
-        <div class="w-full md:w-1/4 px-2 mb-4">
-            <input type="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" placeholder="{% trans 'Start Date' %}">
-        </div>
-        <div class="w-full md:w-1/4 px-2 mb-4">
-            <input type="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" placeholder="{% trans 'End Date' %}">
-        </div>
-    </div>
-
-    {% if deliveries %}
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="min-w-full leading-normal">
-                <thead>
-                    <tr>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <form method="get" class="mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="{{ filter.form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
                             {% trans "Title" %}
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            {% trans "Type" %}
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        </label>
+                        {% render_field filter.form.title class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.delivery_type.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                            {% trans "Delivery Type" %}
+                        </label>
+                        {% render_field filter.form.delivery_type class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.delivery_mode.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                            {% trans "Delivery Mode" %}
+                        </label>
+                        {% render_field filter.form.delivery_mode class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.start_date.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
                             {% trans "Start Date" %}
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        </label>
+                        {% render_field filter.form.start_date class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.end_date.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
                             {% trans "End Date" %}
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        </label>
+                        {% render_field filter.form.end_date class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.is_active.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
                             {% trans "Status" %}
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            {% trans "Actions" %}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for delivery in deliveries %}
+                        </label>
+                        {% render_field filter.form.is_active class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.completion_criteria.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                            {% trans "Completion Criteria" %}
+                        </label>
+                        {% render_field filter.form.completion_criteria class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+            
+                    <div>
+                        <label for="{{ filter.form.is_mandatory.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                            {% trans "Is Mandatory" %}
+                        </label>
+                        {% render_field filter.form.is_mandatory class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 h-10" %}
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                        {% trans "Apply Filters" %}
+                    </button>
+                    <a href="{% url 'administrator_delivery_list' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded">
+                        {% trans "Clear Filters" %}
+                    </a>
+                </div>
+            </form>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.title }}</p>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Title" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Type" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Start Date" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "End Date" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Status" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Actions" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for delivery in deliveries %}
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">{{ delivery.title }}</div>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.get_delivery_type_display }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ delivery.get_delivery_type_display }}</div>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.start_date|date:"M d, Y" }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ delivery.start_date|date:"M d, Y" }}</div>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ delivery.end_date|date:"M d, Y" }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ delivery.end_date|date:"M d, Y" }}</div>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold {% if delivery.is_active %}text-green-900{% else %}text-red-900{% endif %} leading-tight">
-                                    <span aria-hidden class="absolute inset-0 {% if delivery.is_active %}bg-green-200{% else %}bg-red-200{% endif %} opacity-50 rounded-full"></span>
-                                    <span class="relative">{% if delivery.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}</span>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if delivery.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                    {% if delivery.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}
                                 </span>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="text-blue-600 hover:text-blue-900 mr-2">{% trans "View" %}</a>
-                                <a href="{% url 'administrator_delivery_edit' delivery.id %}" class="text-green-600 hover:text-green-900 mr-2">{% trans "Edit" %}</a>
-                                <a href="{% url 'administrator_delivery_delete' delivery.id %}" class="text-red-600 hover:text-red-900 mr-2">{% trans "Delete" %}</a>
-                                {% if delivery.delivery_type == 'PROGRAM' %}
-                                    <a href="{% url 'administrator_add_course_component' delivery.id %}" class="text-purple-600 hover:text-purple-900">{% trans "Add Course" %}</a>
-                                {% else %}
-                                    <a href="{% url 'administrator_add_resource_component_to_course' delivery.id %}" class="text-purple-600 hover:text-purple-900">{% trans "Add Resource" %}</a>
-                                {% endif %}
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div>
+                                    <button id="dropdownDeliveryButton-{{ delivery.id }}" data-dropdown-toggle="dropdown-{{ delivery.id }}" class="text-gray-500 hover:text-gray-700">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div id="dropdown-{{ delivery.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left">
+                                        <ul class="py-2 text-sm text-black" aria-labelledby="dropdownDeliveryButton-{{ delivery.id }}">
+                                            <li>
+                                                <a href="{% url 'administrator_delivery_detail' delivery.id %}" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-eye mr-2"></i> {% trans "View Details" %}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'administrator_delivery_edit' delivery.id %}" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-edit mr-2"></i> {% trans "Edit Delivery" %}
+                                                </a>
+                                            </li>
+                                            {% if delivery.delivery_mode != 'SELF_PACED' %}
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-calendar-alt mr-2"></i> {% trans "Manage Schedule" %} 
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if delivery.delivery_mode == 'INSTRUCTOR_LED' or delivery.delivery_mode == 'BLENDED' %}
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-chalkboard-teacher mr-2"></i> {% trans "Manage Instructors" %} 
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-puzzle-piece mr-2"></i> {% trans "Manage Components" %} 
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'administrator_delivery_enrollments' delivery.id %}" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-user-graduate mr-2"></i> {% trans "Manage Enrollments" %} 
+                                                </a>
+                                            </li>
+                                            {% if delivery.completion_criteria == 'ATTENDANCE' or delivery.delivery_mode != 'SELF_PACED' %}
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-clipboard-list mr-2"></i> {% trans "Attendance" %} 
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-comment-alt mr-2"></i> {% trans "Manage Feedback" %} 
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-envelope mr-2"></i> {% trans "Email Templates" %} 
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                                    <i class="fas fa-chart-bar mr-2"></i> {% trans "Reports" %} 
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-red-600" id="deliveryDeleteButton" data-modal-target="deliveryDeleteModal{{ delivery.id }}" data-modal-toggle="deliveryDeleteModal{{ delivery.id }}">
+                                                    <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete Delivery" %}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            {% include './delivery_confirm_delete.html' %}
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                {% trans "No deliveries found." %}
                             </td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="bg-white shadow-md rounded-lg p-6 text-center">
-            <p class="text-gray-600">{% trans "No deliveries found." %}</p>
-        </div>
-    {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-    <!-- Pagination -->
-    <div class="mt-6">
-        <nav class="flex justify-center">
-            <ul class="flex pl-0 rounded list-none flex-wrap">
-                <li>
-                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
-                        <span>‹</span>
+            {% if is_paginated %}
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        {% trans "Previous" %}
                     </a>
-                </li>
-                <li>
-                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-blue-500 text-white">
-                        <span>1</span>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        {% trans "Next" %}
                     </a>
-                </li>
-                <li>
-                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
-                        <span>2</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
-                        <span>3</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-gray-500 bg-white text-gray-500 hover:bg-gray-100">
-                        <span>›</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                    {% endif %}
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            {% trans "Showing" %}
+                            <span class="font-medium">{{ page_obj.start_index }}</span>
+                            {% trans "to" %}
+                            <span class="font-medium">{{ page_obj.end_index }}</span>
+                            {% trans "of" %}
+                            <span class="font-medium">{{ page_obj.paginator.count }}</span>
+                            {% trans "results" %}
+                        </p>
+                    </div>
+                    <div>
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">{% trans "Previous" %}</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            {% endif %}
+                            {% for i in page_obj.paginator.page_range %}
+                            {% if page_obj.number == i %}
+                            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-blue-50 text-sm font-medium text-blue-600">
+                                {{ i }}
+                            </span>
+                            {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                            <a href="?page={{ i }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                {{ i }}
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">{% trans "Next" %}</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

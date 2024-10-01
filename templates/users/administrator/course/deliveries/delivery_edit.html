@@ -1,5 +1,6 @@
 {% extends '../../_base.html' %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block title %}{% trans "Edit Delivery" %}{% endblock %}
 
@@ -34,95 +35,86 @@
     </nav>
 
     <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-        <form method="post">
+        <form method="post" id="deliveryForm">
             {% csrf_token %}
             
-            {% if form.non_field_errors %}
-                <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded-lg">
-                    {{ form.non_field_errors }}
-                </div>
-            {% endif %}
-            
-            <div class="mb-4">
-                <label for="id_title" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Title" %}:</label>
-                <input type="text" name="title" id="id_title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ form.title.value|default_if_none:'' }}" required>
-                {% if form.title.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.title.errors.0 }}</p>
-                {% endif %}
-            </div>
-            
-            <div class="mb-4">
-                <label for="id_delivery_type" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Delivery Type" %}:</label>
-                <select name="delivery_type" id="id_delivery_type" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-                    <option value="">---------</option>
-                    <option value="PROGRAM" {% if form.delivery_type.value == 'PROGRAM' %}selected{% endif %}>{% trans "Program" %}</option>
-                    <option value="COURSE" {% if form.delivery_type.value == 'COURSE' %}selected{% endif %}>{% trans "Course" %}</option>
-                </select>
-                {% if form.delivery_type.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.delivery_type.errors.0 }}</p>
-                {% endif %}
-            </div>
-            
-            <div id="program_field" class="mb-4" style="display: none;">
-                <label for="id_program" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Program" %}:</label>
-                <select name="program" id="id_program" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">---------</option>
-                    {% for program in form.fields.program.queryset %}
-                        <option value="{{ program.id }}" {% if form.program.value == program.id %}selected{% endif %}>{{ program.title }}</option>
-                    {% endfor %}
-                </select>
-                {% if form.program.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.program.errors.0 }}</p>
-                {% endif %}
-            </div>
-            
-            <div id="course_field" class="mb-4" style="display: none;">
-                <label for="id_course" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Course" %}:</label>
-                <select name="course" id="id_course" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">---------</option>
-                    {% for course in form.fields.course.queryset %}
-                        <option value="{{ course.id }}" {% if form.course.value == course.id %}selected{% endif %}>{{ course.title }}</option>
-                    {% endfor %}
-                </select>
-                {% if form.course.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.course.errors.0 }}</p>
-                {% endif %}
-            </div>
-            
-            <div class="flex flex-wrap -mx-2 mb-4">
-                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                    <label for="id_start_date" class="block text-gray-700 text-sm font-bold mb-2">{% trans "Start Date" %}:</label>
-                    <input type="datetime-local" name="start_date" id="id_start_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ form.start_date.value|date:'Y-m-d\TH:i' }}">
-                    {% if form.start_date.errors %}
-                        <p class="mt-2 text-sm text-red-600">{{ form.start_date.errors.0 }}</p>
-                    {% endif %}
-                </div>
-                <div class="w-full md:w-1/2 px-2">
-                    <label for="id_end_date" class="block text-gray-700 text-sm font-bold mb-2">{% trans "End Date" %}:</label>
-                    <input type="datetime-local" name="end_date" id="id_end_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ form.end_date.value|date:'Y-m-d\TH:i' }}">
-                    {% if form.end_date.errors %}
-                        <p class="mt-2 text-sm text-red-600">{{ form.end_date.errors.0 }}</p>
-                    {% endif %}
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">Basic Information</h3>
+                <div class="grid grid-cols-1 gap-6">
+                    <div>
+                        {{ form.title|as_crispy_field }}
+                    </div>
+                    <div>
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>{{ form.delivery_type|as_crispy_field }}</div>
+                        <div>{{ form.delivery_mode|as_crispy_field }}</div>
+                    </div>
+                    <div id="programField" {% if form.instance.delivery_type != 'PROGRAM' %}class="hidden"{% endif %}>
+                        {{ form.program|as_crispy_field }}
+                    </div>
+                    <div id="courseField" {% if form.instance.delivery_type != 'COURSE' %}class="hidden"{% endif %}>
+                        {{ form.course|as_crispy_field }}
+                    </div>
+                    <div id="instructorsField" {% if form.instance.delivery_mode != 'INSTRUCTOR_LED' %}class="hidden"{% endif %}>
+                        <label for="id_instructors" class="block text-gray-700 text-sm font-bold mb-2">Instructors</label>
+                        <input type="text" id="instructorSearch" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Search instructors...">
+                        <div class="instructor-list h-48 overflow-y-auto border rounded p-2">
+                            {% for value, label in form.instructors.field.choices %}
+                                <div class="instructor-item">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" name="instructors" value="{{ value }}" class="form-checkbox" {% if value in form.instructors.value %}checked{% endif %}>
+                                        <span class="ml-2">{{ label }}</span>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if form.instructors.help_text %}
+                            <p class="text-gray-600 text-xs italic">{{ form.instructors.help_text }}</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             
             <div class="mb-6">
-                <label class="flex items-center">
-                    <input type="checkbox" name="is_active" id="id_is_active" class="form-checkbox h-5 w-5 text-blue-600" {% if form.is_active.value %}checked{% endif %}>
-                    <span class="ml-2 text-gray-700">{% trans "Is Active" %}</span>
-                </label>
-                {% if form.is_active.errors %}
-                    <p class="mt-2 text-sm text-red-600">{{ form.is_active.errors.0 }}</p>
-                {% endif %}
+                <h3 class="text-xl font-semibold mb-4">Schedule</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>{{ form.start_date|as_crispy_field }}</div>
+                    <div>{{ form.end_date|as_crispy_field }}</div>
+                    <div>{{ form.enrollment_start|as_crispy_field }}</div>
+                    <div>{{ form.enrollment_end|as_crispy_field }}</div>
+                </div>
+                <div class="mt-4">
+                    {{ form.deactivation_date|as_crispy_field }}
+                </div>
             </div>
             
-            <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    {% trans "Update Delivery" %}
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">Delivery Settings</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div>{{ form.max_participants|as_crispy_field }}</div>
+                    <div>{{ form.is_active|as_crispy_field }}</div>
+                    <div>{{ form.is_mandatory|as_crispy_field }}</div>
+                </div>
+                <div class="grid grid-cols-3 gap-6 mt-4">
+                    <div>{{ form.completion_criteria|as_crispy_field }}</div>
+                    <div>{{ form.minimum_score|as_crispy_field }}</div>
+                    <div>{{ form.attendance_threshold|as_crispy_field }}</div>
+                </div>
+                <div class="grid grid-cols-2 gap-6 mt-4">
+                    <div>{{ form.issue_certificate|as_crispy_field }}</div>
+                    <div>{{ form.allow_self_unenroll|as_crispy_field }}</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between mt-6">
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.history.back();">
+                    Back
                 </button>
-                <a href="{% url 'administrator_delivery_detail' delivery.pk %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    {% trans "Cancel" %}
-                </a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Update Delivery
+                </button>
             </div>
         </form>
     </div>
@@ -133,24 +125,55 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const deliveryTypeSelect = document.getElementById('id_delivery_type');
-        const programField = document.getElementById('program_field');
-        const courseField = document.getElementById('course_field');
-
-        function toggleFields() {
-            if (deliveryTypeSelect.value === 'PROGRAM') {
-                programField.style.display = 'block';
-                courseField.style.display = 'none';
-            } else if (deliveryTypeSelect.value === 'COURSE') {
-                programField.style.display = 'none';
-                courseField.style.display = 'block';
+        const deliveryModeSelect = document.getElementById('id_delivery_mode');
+        const programField = document.getElementById('programField');
+        const courseField = document.getElementById('courseField');
+        const instructorsField = document.getElementById('instructorsField');
+        const instructorSearch = document.getElementById('instructorSearch');
+        const instructorItems = document.querySelectorAll('.instructor-item');
+    
+        function updateVisibility() {
+            const deliveryType = deliveryTypeSelect.value;
+            const deliveryMode = deliveryModeSelect.value;
+    
+            // Show/hide program or course based on delivery type
+            if (deliveryType === 'PROGRAM') {
+                programField.classList.remove('hidden');
+                courseField.classList.add('hidden');
+            } else if (deliveryType === 'COURSE') {
+                programField.classList.add('hidden');
+                courseField.classList.remove('hidden');
             } else {
-                programField.style.display = 'none';
-                courseField.style.display = 'none';
+                programField.classList.add('hidden');
+                courseField.classList.add('hidden');
+            }
+    
+            // Show/hide instructors based on delivery mode
+            if (deliveryMode === 'INSTRUCTOR_LED' || deliveryMode === 'BLENDED') {
+                instructorsField.classList.remove('hidden');
+            } else {
+                instructorsField.classList.add('hidden');
             }
         }
-
-        deliveryTypeSelect.addEventListener('change', toggleFields);
-        toggleFields(); // Call once to set initial state
+    
+        function filterInstructors() {
+            const searchTerm = instructorSearch.value.toLowerCase();
+            instructorItems.forEach(item => {
+                const instructorName = item.textContent.toLowerCase();
+                if (instructorName.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    
+        deliveryTypeSelect.addEventListener('change', updateVisibility);
+        deliveryModeSelect.addEventListener('change', updateVisibility);
+        instructorSearch.addEventListener('input', filterInstructors);
+    
+        // Initial update
+        updateVisibility();
     });
-</script>
+    </script>
 {% endblock %}

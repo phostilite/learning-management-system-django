@@ -71,3 +71,4 @@ class ProfilePictureForm(forms.ModelForm):
             if picture.content_type not in ['image/jpeg', 'image/png', 'image/gif']:
                 raise forms.ValidationError(_("Unsupported file type. Please upload a JPEG, PNG, or GIF image."))
         return picture
+    

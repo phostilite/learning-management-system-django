@@ -1,5 +1,5 @@
 import django_filters
-from courses.models import Program, Course, Tag, CourseCategory
+from courses.models import Program, Course, Tag, CourseCategory, Delivery, Enrollment
 from organization.models import EmployeeProfile, OrganizationUnit, JobPosition, Organization, Location
 from django_filters import FilterSet, CharFilter, ModelChoiceFilter, BooleanFilter, DateFromToRangeFilter, DateFilter, NumberFilter, ChoiceFilter
 from activities.models import SystemNotification
@@ -8,8 +8,26 @@ from django.contrib.auth.models import Group
 from django.db import models
 from django import forms
 import logging
+from django.db.models import Q
+from django.contrib.auth import get_user_model
+import pytz
+
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
+
+class UserFilter(django_filters.FilterSet):
+    first_name = django_filters.CharFilter(lookup_expr='icontains')
+    last_name = django_filters.CharFilter(lookup_expr='icontains')
+    gender = django_filters.ChoiceFilter(choices=[('male', 'Male'), ('female', 'Female'), ('other', 'Other')])
+    timezone = django_filters.ChoiceFilter(choices=[(tz, tz) for tz in pytz.common_timezones])
+    current_organization = django_filters.ModelChoiceFilter(queryset=Organization.objects.all())
+    current_organization_unit = django_filters.ModelChoiceFilter(queryset=OrganizationUnit.objects.all())
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'gender', 'timezone', 'current_organization', 'current_organization_unit']
+
 
 class ProgramFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains')
@@ -31,6 +49,44 @@ class CourseFilter(django_filters.FilterSet):
     class Meta:
         model = Course
         fields = ['title', 'category', 'difficulty_level', 'language', 'tags']
+
+class DeliveryFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
+    delivery_type = django_filters.ChoiceFilter(choices=Delivery.DELIVERY_TYPES)
+    delivery_mode = django_filters.ChoiceFilter(choices=Delivery.DELIVERY_MODES)
+    start_date = django_filters.DateFilter(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = django_filters.DateFilter(widget=forms.DateInput(attrs={'type': 'date'}))
+    is_active = django_filters.BooleanFilter(
+        widget=forms.Select(choices=((None, 'All'), (True, 'Active'), (False, 'Inactive')))
+    )
+    completion_criteria = django_filters.ChoiceFilter(choices=Delivery.COMPLETION_CRITERIA)
+    is_mandatory = django_filters.BooleanFilter()
+
+    class Meta:
+        model = Delivery
+        fields = [
+            'title', 'delivery_type', 'delivery_mode', 'start_date', 'end_date',
+            'is_active', 'completion_criteria', 'is_mandatory'
+        ]
+
+class EnrollmentFilter(django_filters.FilterSet):
+    user__username = django_filters.CharFilter(lookup_expr='icontains', label='Username')
+    user__email = django_filters.CharFilter(lookup_expr='icontains', label='Email')
+    status = django_filters.ChoiceFilter(choices=[
+        ('ENROLLED', 'Enrolled'),
+        ('IN_PROGRESS', 'In Progress'),
+        ('COMPLETED', 'Completed'),
+        ('WITHDRAWN', 'Withdrawn'),
+    ])
+    enrollment_date_after = django_filters.DateFilter(field_name='enrollment_date', lookup_expr='gte', widget=forms.DateInput(attrs={'type': 'date'}))
+    enrollment_date_before = django_filters.DateFilter(field_name='enrollment_date', lookup_expr='lte', widget=forms.DateInput(attrs={'type': 'date'}))
+    completion_date_after = django_filters.DateFilter(field_name='completion_date', lookup_expr='gte', widget=forms.DateInput(attrs={'type': 'date'}))
+    completion_date_before = django_filters.DateFilter(field_name='completion_date', lookup_expr='lte', widget=forms.DateInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = Enrollment
+        fields = ['user__username', 'user__email', 'status', 'enrollment_date_after', 'enrollment_date_before', 'completion_date_after', 'completion_date_before']
+
 
 class NotificationFilter(django_filters.FilterSet):
     start_date = django_filters.DateFilter(

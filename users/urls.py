@@ -36,6 +36,7 @@ urlpatterns = [
         path('<uuid:pk>/delete/', administrator_views.AdministratorCourseDeleteView.as_view(), name='administrator_course_delete'),
         path('categories/', administrator_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
         path('learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
+        path('<uuid:course_id>/deliveries/', administrator_views.CourseDeliveryListView.as_view(), name='administrator_course_delivery_list'),
     ])),
 
     # Learning Resources
@@ -71,6 +72,9 @@ urlpatterns = [
         path('<uuid:pk>/edit/', administrator_views.AdministratorEnrollmentEditView.as_view(), name='administrator_enrollment_edit'),
         path('<uuid:pk>/delete/', administrator_views.AdministratorEnrollmentDeleteView.as_view(), name='administrator_enrollment_delete'),
     ])),
+
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
 
     # Delivery Components
     path('administrator/deliveries/<uuid:delivery_id>/add-course-component/', administrator_views.CourseComponentCreateView.as_view(), name='administrator_add_course_component'),

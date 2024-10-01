@@ -35,9 +35,87 @@
     </nav>
 
     <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-        <form method="post" novalidate>
+        <form method="post" id="deliveryForm">
             {% csrf_token %}
-            {% crispy form %}
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">Basic Information</h3>
+                <div class="grid grid-cols-1 gap-6">
+                    <div>
+                        {{ form.title|as_crispy_field }}
+                    </div>
+                    <div>
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>{{ form.delivery_type|as_crispy_field }}</div>
+                        <div>{{ form.delivery_mode|as_crispy_field }}</div>
+                    </div>
+                    <div id="programField" class="hidden">
+                        {{ form.program|as_crispy_field }}
+                    </div>
+                    <div id="courseField" class="hidden">
+                        {{ form.course|as_crispy_field }}
+                    </div>
+                    <div id="instructorsField" class="hidden">
+                        <label for="id_instructors" class="block text-gray-700 text-sm font-bold mb-2">Instructors</label>
+                        <input type="text" id="instructorSearch" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Search instructors...">
+                        <div class="instructor-list h-48 overflow-y-auto border rounded p-2">
+                            {% for value, label in form.instructors.field.choices %}
+                                <div class="instructor-item">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" name="instructors" value="{{ value }}" class="form-checkbox">
+                                        <span class="ml-2">{{ label }}</span>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if form.instructors.help_text %}
+                            <p class="text-gray-600 text-xs italic">{{ form.instructors.help_text }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">Schedule</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>{{ form.start_date|as_crispy_field }}</div>
+                    <div>{{ form.end_date|as_crispy_field }}</div>
+                    <div>{{ form.enrollment_start|as_crispy_field }}</div>
+                    <div>{{ form.enrollment_end|as_crispy_field }}</div>
+                </div>
+                <div class="mt-4">
+                    {{ form.deactivation_date|as_crispy_field }}
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-4">Delivery Settings</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div>{{ form.max_participants|as_crispy_field }}</div>
+                    <div>{{ form.is_active|as_crispy_field }}</div>
+                    <div>{{ form.is_mandatory|as_crispy_field }}</div>
+                </div>
+                <div class="grid grid-cols-3 gap-6 mt-4">
+                    <div>{{ form.completion_criteria|as_crispy_field }}</div>
+                    <div>{{ form.minimum_score|as_crispy_field }}</div>
+                    <div>{{ form.attendance_threshold|as_crispy_field }}</div>
+                </div>
+                <div class="grid grid-cols-2 gap-6 mt-4">
+                    <div>{{ form.issue_certificate|as_crispy_field }}</div>
+                    <div>{{ form.allow_self_unenroll|as_crispy_field }}</div>
+                </div>
+            </div>
+            
+            <div class="flex mt-6 justify-between">
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.history.back();">
+                    Back
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Create Delivery
+                </button>
+            </div>
         </form>
     </div>
 </div>
@@ -46,26 +124,56 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var deliveryTypeSelect = document.getElementById('id_delivery_type');
-        var deliveryMethodSelect = document.getElementById('id_delivery_method');
-        var programField = document.getElementById('id_program').closest('.form-group');
-        var courseField = document.getElementById('id_course').closest('.form-group');
-        var facilitatorField = document.getElementById('id_facilitator').closest('.form-group');
-
-        function updateFieldVisibility() {
-            var deliveryType = deliveryTypeSelect.value;
-            var deliveryMethod = deliveryMethodSelect.value;
-
-            programField.style.display = deliveryType === 'PROGRAM' ? 'block' : 'none';
-            courseField.style.display = deliveryType === 'COURSE' ? 'block' : 'none';
-            facilitatorField.style.display = deliveryMethod === 'INSTRUCTOR_LED' ? 'block' : 'none';
+        const deliveryTypeSelect = document.getElementById('id_delivery_type');
+        const deliveryModeSelect = document.getElementById('id_delivery_mode');
+        const programField = document.getElementById('programField');
+        const courseField = document.getElementById('courseField');
+        const instructorsField = document.getElementById('instructorsField');
+        const instructorSearch = document.getElementById('instructorSearch');
+        const instructorItems = document.querySelectorAll('.instructor-item');
+    
+        function updateVisibility() {
+            const deliveryType = deliveryTypeSelect.value;
+            const deliveryMode = deliveryModeSelect.value;
+    
+            // Show/hide program or course based on delivery type
+            if (deliveryType === 'PROGRAM') {
+                programField.classList.remove('hidden');
+                courseField.classList.add('hidden');
+            } else if (deliveryType === 'COURSE') {
+                programField.classList.add('hidden');
+                courseField.classList.remove('hidden');
+            } else {
+                programField.classList.add('hidden');
+                courseField.classList.add('hidden');
+            }
+    
+            // Show/hide instructors based on delivery mode
+            if (deliveryMode === 'INSTRUCTOR_LED' || deliveryMode === 'BLENDED') {
+                instructorsField.classList.remove('hidden');
+            } else {
+                instructorsField.classList.add('hidden');
+            }
         }
-
-        deliveryTypeSelect.addEventListener('change', updateFieldVisibility);
-        deliveryMethodSelect.addEventListener('change', updateFieldVisibility);
-
+    
+        function filterInstructors() {
+            const searchTerm = instructorSearch.value.toLowerCase();
+            instructorItems.forEach(item => {
+                const instructorName = item.textContent.toLowerCase();
+                if (instructorName.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    
+        deliveryTypeSelect.addEventListener('change', updateVisibility);
+        deliveryModeSelect.addEventListener('change', updateVisibility);
+        instructorSearch.addEventListener('input', filterInstructors);
+    
         // Initial update
-        updateFieldVisibility();
+        updateVisibility();
     });
-</script>
+    </script>
 {% endblock %}
