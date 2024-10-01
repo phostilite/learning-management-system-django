@@ -29,10 +29,6 @@
                     <div class="col-span-2">
                         <label for="category-{{ ticket.id }}" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
                         <select id="category-{{ ticket.id }}" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                            <option value="">No category</option>
-                            {% for category in categories %}
-                                <option value="{{ category.id }}" {% if ticket.category and ticket.category.id == category.id %}selected{% endif %}>{{ category.name }}</option>
-                            {% endfor %}
                         </select>
                     </div>
                     <div>
@@ -97,70 +93,45 @@
             // Populate category dropdown
             const categorySelect = form.querySelector(`#category-${ticketId}`);
             categorySelect.innerHTML = '<option value="">No category</option>';
-            data.categories.forEach(category => {
+            data.all_categories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category.id;
                 option.textContent = category.name;
-                if (data.category && category.id === data.category.id) {
+                if (data.category_id && category.id.toString() === data.category_id) {
                     option.selected = true;
                 }
                 categorySelect.appendChild(option);
             });
     
             // Set priority and status
-            form.querySelector(`#priority-${ticketId}`).value = data.priority;
-            form.querySelector(`#status-${ticketId}`).value = data.status;
+            const prioritySelect = form.querySelector(`#priority-${ticketId}`);
+            prioritySelect.innerHTML = '';
+            Object.entries(data.priority_choices).forEach(([value, display]) => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = display;
+                if (value === data.priority) {
+                    option.selected = true;
+                }
+                prioritySelect.appendChild(option);
+            });
+    
+            const statusSelect = form.querySelector(`#status-${ticketId}`);
+            statusSelect.innerHTML = '';
+            Object.entries(data.status_choices).forEach(([value, display]) => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = display;
+                if (value === data.status) {
+                    option.selected = true;
+                }
+                statusSelect.appendChild(option);
+            });
     
             // Show the modal
             const modal = document.getElementById(`ticket-edit-modal${ticketId}`);
             modal.classList.remove('hidden');
         })
         .catch(error => console.error('Error:', error));
-    }
-    
-    function updateTicket(event) {
-        event.preventDefault();
-        const form = event.target;
-        const ticketId = form.id.replace('ticket-edit-form-', '');
-        const languageCode = document.documentElement.lang || 'en';
-        const url = `/${languageCode}/user/administrator/help-support/tickets/${ticketId}/edit/`;
-        
-        const formData = new FormData(form);
-        
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Close the modal
-                const modal = document.getElementById(`ticket-edit-modal${ticketId}`);
-                if (modal && typeof modal.hide === 'function') {
-                    modal.hide();
-                }
-                // Show a success message
-                alert('Ticket updated successfully');
-                // Refresh the page or update the UI
-                window.location.reload();
-            } else {
-                // Handle errors
-                console.error('Error updating ticket:', data.errors);
-                // Display error messages to the user
-                let errorMessage = 'Error updating ticket:\n';
-                for (const [key, value] of Object.entries(data.errors)) {
-                    errorMessage += `${key}: ${value.join(', ')}\n`;
-                }
-                alert(errorMessage);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An unexpected error occurred. Please try again.');
-        });
-    }
+    } 
     </script>
