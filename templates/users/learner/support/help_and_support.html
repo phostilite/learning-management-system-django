@@ -132,51 +132,19 @@
             <div class="bg-white rounded-lg p-6 card-shadow">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">{% trans "Frequently Asked Questions" %}</h2>
                 <div class="space-y-4">
+                    {% for faq in faqs %}
                     <div class="faq-item p-4 rounded-lg border border-gray-200">
                         <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
-                            {% trans "How do I reset my password?" %}
+                            {{ faq.question }}
                             <i class="fas fa-chevron-down float-right"></i>
                         </button>
-                        <div class="faq-answer mt-2 text-gray-600">
-                            <p>{% trans "To reset your password, follow these steps:" %}</p>
-                            <ol class="list-decimal list-inside mt-2">
-                                <li>{% trans "Click on the 'Forgot Password' link on the login page" %}</li>
-                                <li>{% trans "Enter your email address" %}</li>
-                                <li>{% trans "Check your email for a password reset link" %}</li>
-                                <li>{% trans "Click the link and follow the instructions to create a new password" %}</li>
-                            </ol>
+                        <div class="faq-answer mt-2 text-gray-600 hidden">
+                            <p>{{ faq.answer }}</p>
                         </div>
                     </div>
-                    <div class="faq-item p-4 rounded-lg border border-gray-200">
-                        <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
-                            {% trans "How do I enroll in a course?" %}
-                            <i class="fas fa-chevron-down float-right"></i>
-                        </button>
-                        <div class="faq-answer mt-2 text-gray-600">
-                            <p>{% trans "To enroll in a course:" %}</p>
-                            <ol class="list-decimal list-inside mt-2">
-                                <li>{% trans "Browse the course catalog" %}</li>
-                                <li>{% trans "Select the course you're interested in" %}</li>
-                                <li>{% trans "Click the 'Enroll' button on the course page" %}</li>
-                                <li>{% trans "Follow the prompts to complete enrollment" %}</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <div class="faq-item p-4 rounded-lg border border-gray-200">
-                        <button class="faq-question w-full text-left font-semibold text-gray-700 focus:outline-none">
-                            {% trans "How do I track my progress?" %}
-                            <i class="fas fa-chevron-down float-right"></i>
-                        </button>
-                        <div class="faq-answer mt-2 text-gray-600">
-                            <p>{% trans "You can track your progress by:" %}</p>
-                            <ul class="list-disc list-inside mt-2">
-                                <li>{% trans "Visiting your learner dashboard" %}</li>
-                                <li>{% trans "Checking the progress bar in each course" %}</li>
-                                <li>{% trans "Reviewing your completed assignments and quizzes" %}</li>
-                                <li>{% trans "Checking your grades in the 'Grades' section" %}</li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% empty %}
+                    <p>{% trans "No FAQs available at the moment." %}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -239,17 +207,18 @@
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // FAQ accordion functionality
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const answer = this.nextElementSibling;
-            const icon = this.querySelector('i');
-            
-            answer.classList.toggle('active');
-            icon.classList.toggle('fa-chevron-up');
-            icon.classList.toggle('fa-chevron-down');
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('fa-chevron-down');
+            });
         });
     });
 

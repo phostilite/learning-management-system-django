@@ -111,16 +111,6 @@
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "FAQ Details" %}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
-                        <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Category" %}</label>
-                        {{ form.category }}
-                        {% if form.category.help_text %}
-                            <small class="help-text">{{ form.category.help_text }}</small>
-                        {% endif %}
-                        {% if form.category.errors %}
-                            <div class="error-text">{{ form.category.errors|join:", " }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="form-group">
                         <label for="{{ form.is_published.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Publication Status" %}</label>
                         <div class="checkbox-wrapper">
                             {{ form.is_published }}
