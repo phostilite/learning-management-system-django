@@ -11,6 +11,8 @@ import logging
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 import pytz
+from django_filters import DateTimeFilter
+from django.forms import DateTimeInput
 
 User = get_user_model()
 
@@ -40,15 +42,33 @@ class ProgramFilter(django_filters.FilterSet):
         fields = ['title', 'program_type', 'level', 'tags']
 
 class CourseFilter(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr='icontains')
+    title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
     category = django_filters.ModelChoiceFilter(queryset=CourseCategory.objects.all())
     difficulty_level = django_filters.ChoiceFilter(choices=Course.DIFFICULTY_LEVELS)
-    language = django_filters.CharFilter(lookup_expr='icontains')
-    tags = django_filters.ModelMultipleChoiceFilter(queryset=Tag.objects.all())
+    is_published = django_filters.BooleanFilter()
+    created_at_after = DateTimeFilter(
+        field_name='created_at', 
+        lookup_expr='gte', 
+        label='Created after',
+        widget=DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M'
+        )
+    )
+    created_at_before = DateTimeFilter(
+        field_name='created_at', 
+        lookup_expr='lte', 
+        label='Created before',
+        widget=DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M'
+        )
+    )
+    created_by = django_filters.ModelChoiceFilter(queryset=User.objects.all())
 
     class Meta:
         model = Course
-        fields = ['title', 'category', 'difficulty_level', 'language', 'tags']
+        fields = ['title', 'category', 'difficulty_level', 'is_published', 'created_at_after', 'created_at_before', 'created_by']
 
 class DeliveryFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains', label='Title')

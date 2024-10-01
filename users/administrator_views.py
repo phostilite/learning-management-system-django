@@ -27,7 +27,7 @@ from django.db import IntegrityError, transaction
 from django.db.models import Count, Q
 from django.db.models.functions import TruncMonth
 from django.forms import formset_factory
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -63,7 +63,7 @@ from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 
 from .utils.notification_utils import create_notification, log_activity
-from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter, EnrollmentFilter, UserFilter
+from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter, EnrollmentFilter, UserFilter, CourseFilter, ProgramFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -441,42 +441,47 @@ class AdministratorCourseCreateView(LoginRequiredMixin, AdministratorRequiredMix
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
-class AdministratorCourseListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
+class AdministratorCourseListView(LoginRequiredMixin, AdministratorRequiredMixin, FilterView):
     template_name = 'users/administrator/course/course_list.html'
     context_object_name = 'courses'
+    filterset_class = CourseFilter
+    paginate_by = 9
 
     def get_queryset(self):
         try:
-            courses = Course.objects.all().select_related('category')
-            logger.info(f"Fetched {len(courses)} courses for user {self.request.user.id}")
+            courses = Course.objects.all().select_related('category', 'created_by').prefetch_related('tags')
+            logger.info(f"Fetched courses for user {self.request.user.id}")
             return courses
         except Exception as e:
             logger.exception("Error fetching course list:")
             messages.error(self.request, f"An error occurred while fetching the course list: {str(e)}")
-            return []
+            return Course.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-        # Fetch course metrics efficiently
-        course_metrics = Course.objects.all().aggregate(
-            total_courses=Count('id'),
-            published_courses=Count('id', filter=Q(is_published=True)),
-            unpublished_courses=Count('id', filter=Q(is_published=False))
-        )
-        
-        # Fetch category metrics
-        category_metrics = CourseCategory.objects.all().annotate(course_count=Count('course')).order_by('-course_count')[:5]
+        try:
+            # Fetch course metrics efficiently
+            course_metrics = Course.objects.aggregate(
+                total_courses=Count('id'),
+                published_courses=Count('id', filter=Q(is_published=True)),
+                unpublished_courses=Count('id', filter=Q(is_published=False))
+            )
+            
+            # Fetch category metrics
+            category_metrics = CourseCategory.objects.annotate(course_count=Count('course')).order_by('-course_count')[:5]
 
-        all_categories = CourseCategory.objects.all().order_by('name')
+            all_categories = CourseCategory.objects.all().order_by('name')
 
-        context.update({
-            'total_courses': course_metrics['total_courses'],
-            'published_courses': course_metrics['published_courses'],
-            'unpublished_courses': course_metrics['unpublished_courses'],
-            'top_categories': category_metrics,
-            'all_categories': all_categories,
-        })
+            context.update({
+                'total_courses': course_metrics['total_courses'],
+                'published_courses': course_metrics['published_courses'],
+                'unpublished_courses': course_metrics['unpublished_courses'],
+                'top_categories': category_metrics,
+                'all_categories': all_categories,
+            })
+        except Exception as e:
+            logger.exception("Error fetching context data:")
+            messages.error(self.request, f"An error occurred while preparing the page: {str(e)}")
         
         return context
 
@@ -485,8 +490,6 @@ class AdministratorCourseDetailView(LoginRequiredMixin, AdministratorRequiredMix
     model = Course
     template_name = 'users/administrator/course/course_detail.html'
     context_object_name = 'course'
-
-    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -521,60 +524,43 @@ class AdministratorCourseEditView(LoginRequiredMixin, AdministratorRequiredMixin
         return context
     
     
-class AdministratorCoursePublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
-    template_name = 'users/administrator/course/course_publish_confirm.html'
-    form_class = CoursePublishForm
-    success_url = reverse_lazy('administrator_course_list')
+class AdministratorCoursePublishView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, pk):
+        course = get_object_or_404(Course, pk=pk)
+        course.is_published = True
+        course.save()
+        messages.success(request, _('Course "{}" has been published successfully.').format(course.title))
+        return redirect('administrator_course_list')
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['course'] = get_object_or_404(Course, pk=self.kwargs['pk'])
-        return kwargs
-
-    def form_valid(self, form):
-        course = form.save()
-        messages.success(self.request, f'Course "{course.title}" has been published.')
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['course'] = get_object_or_404(Course, pk=self.kwargs['pk'])
-        return context
-    
-class AdministratorCourseUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
-    template_name = 'users/administrator/course/course_unpublish_confirm.html'
-    form_class = CourseUnpublishForm
-    success_url = reverse_lazy('administrator_course_list')    
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['course'] = get_object_or_404(Course, pk=self.kwargs['pk'])
-        return kwargs
-
-    def form_valid(self, form):
-        course = form.save()
-        messages.success(self.request, f'Course "{course.title}" has been unpublished.')
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['course'] = get_object_or_404(Course, pk=self.kwargs['pk'])
-        return context
+class AdministratorCourseUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, pk):
+        course = get_object_or_404(Course, pk=pk)
+        course.is_published = False
+        course.save()
+        messages.success(request, _('Course "{}" has been unpublished successfully.').format(course.title))
+        return redirect('administrator_course_list')
 
     
 
-class AdministratorCourseDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
+class CourseDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Course
-    template_name = 'users/administrator/course/course_delete_confirm.html'
     success_url = reverse_lazy('administrator_course_list')
 
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, ("The course was successfully deleted."))
-        return super().delete(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            course_title = self.object.title
+            self.object.delete()
+            messages.success(request, f"The course '{course_title}' was successfully deleted.")
+            logger.info(f"Course '{course_title}' (ID: {self.object.id}) deleted by user {request.user.username}")
+        except Exception as e:
+            messages.error(request, f"An error occurred while deleting the course: {str(e)}")
+            logger.error(f"Error deleting course '{self.object.title}' (ID: {self.object.id}): {str(e)}")
+        return HttpResponseRedirect(self.success_url)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ("Delete Course")
+        context['title'] = "Delete Course"
         return context
 
 
