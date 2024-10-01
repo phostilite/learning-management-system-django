@@ -79,6 +79,9 @@ urlpatterns = [
     path('administrator/delivery-component/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryComponentEditView.as_view(), name='administrator_delivery_component_edit'),
     path('administrator/delivery-component/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
 
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
+
     # Program Management
     path('administrator/program/', include([
         path('list/', administrator_views.AdministratorProgramListView.as_view(), name='administrator_program_list'),

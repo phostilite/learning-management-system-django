@@ -17,3 +17,7 @@ def split(value, arg):
 @stringfilter
 def file_extension(value):
     return value.split('.')[-1].lower()
+
+@register.filter(name='add_class')
+def add_class(value, arg):
+    return value.as_widget(attrs={'class': arg})

@@ -22,7 +22,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.files.storage import FileSystemStorage
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError, transaction
 from django.db.models import Count, Q
 from django.db.models.functions import TruncMonth
@@ -63,7 +63,7 @@ from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 
 from .utils.notification_utils import create_notification, log_activity
-from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter
+from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter, EnrollmentFilter, UserFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -1197,6 +1197,99 @@ class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, Administrator
         context['delivery'] = self.object.delivery
         return context
 
+class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
+    model = Enrollment
+    template_name = 'users/administrator/course/deliveries/enrollments/enrollment_list.html'
+    context_object_name = 'enrollments'
+    paginate_by = 20
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.delivery = get_object_or_404(Delivery, id=self.kwargs['delivery_id'])
+            return super().dispatch(request, *args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error in DeliveryEnrollmentListView dispatch: {str(e)}")
+            messages.error(self.request, _("An error occurred while accessing the delivery enrollments."))
+            return self.handle_no_permission()
+
+    def get_queryset(self):
+        try:
+            queryset = Enrollment.objects.filter(delivery=self.delivery).select_related('user', 'delivery')
+            self.filterset = EnrollmentFilter(self.request.GET, queryset=queryset)
+            return self.filterset.qs
+        except Exception as e:
+            logger.error(f"Error in DeliveryEnrollmentListView get_queryset: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching enrollments."))
+            return Enrollment.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['delivery'] = self.delivery
+            context['filterset'] = self.filterset
+
+            # Enrollment statistics
+            context['total_enrollments'] = self.filterset.qs.count()
+            context['active_enrollments'] = self.filterset.qs.filter(status__in=['ENROLLED', 'IN_PROGRESS']).count()
+            context['completed_enrollments'] = self.filterset.qs.filter(status='COMPLETED').count()
+
+        except Exception as e:
+            logger.error(f"Error in DeliveryEnrollmentListView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the enrollment data."))
+
+        return context
+
+class DeliveryEnrollmentsCreateView(LoginRequiredMixin, FormView):
+    template_name = 'users/administrator/course/deliveries/enrollments/enrollment_create.html'
+    form_class = EnrollmentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.delivery = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        user_filter = UserFilter(self.request.GET, queryset=User.objects.all())
+        kwargs['delivery'] = self.delivery
+        kwargs['user_queryset'] = user_filter.qs
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['delivery'] = self.delivery
+        user_filter = UserFilter(self.request.GET, queryset=User.objects.all())
+        context['filter'] = user_filter
+        return context
+
+    def form_valid(self, form):
+        try:
+            with transaction.atomic():
+                selected_users = form.cleaned_data['selected_users']
+                for user in selected_users:
+                    enrollment, created = Enrollment.objects.get_or_create(
+                        user=user,
+                        delivery=self.delivery,
+                        defaults={'status': 'ENROLLED'}
+                    )
+                    if created:
+                        logger.info(f"User {user.username} enrolled in delivery {self.delivery.title}")
+                    else:
+                        logger.info(f"User {user.username} already enrolled in delivery {self.delivery.title}")
+
+                messages.success(self.request, f"{len(selected_users)} users have been enrolled in {self.delivery.title}")
+        except Exception as e:
+            logger.error(f"Error during enrollment process: {str(e)}")
+            messages.error(self.request, "An error occurred during the enrollment process. Please try again.")
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Please correct the errors below.")
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('administrator_delivery_enrollments', kwargs={'delivery_id': self.delivery.id})
 # ============================================================
 # ======================= Program Views ======================
 # ============================================================
@@ -1408,56 +1501,6 @@ class AdministratorEnrollmentCreateView(LoginRequiredMixin, AdministratorRequire
             for error in errors:
                 messages.error(self.request, f"{form.fields[field].label}: {error}")
         return super().form_invalid(form)
-
-class AdministratorEnrollmentListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
-    model = Enrollment
-    template_name = 'users/administrator/enrollments/enrollment_list.html'
-    context_object_name = 'enrollments'
-    paginate_by = 20
-
-    def get_queryset(self):
-        queryset = Enrollment.objects.all().order_by('-enrollment_date')
-        
-        # Search
-        search_query = self.request.GET.get('search')
-        if search_query:
-            queryset = queryset.filter(
-                Q(user__username__icontains=search_query) |
-                Q(user__email__icontains=search_query) |
-                Q(delivery__title__icontains=search_query) |
-                Q(program__title__icontains=search_query) |
-                Q(course__title__icontains=search_query)
-            )
-
-        # Filters
-        status_filter = self.request.GET.get('status')
-        if status_filter:
-            queryset = queryset.filter(status=status_filter)
-
-        enrollment_type = self.request.GET.get('enrollment_type')
-        if enrollment_type:
-            if enrollment_type == 'delivery':
-                queryset = queryset.filter(delivery__isnull=False)
-            elif enrollment_type == 'program':
-                queryset = queryset.filter(program__isnull=False)
-            elif enrollment_type == 'course':
-                queryset = queryset.filter(course__isnull=False)
-
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['search_query'] = self.request.GET.get('search', '')
-        context['status_filter'] = self.request.GET.get('status', '')
-        context['enrollment_type'] = self.request.GET.get('enrollment_type', '')
-        
-        # Calculate metrics
-        all_enrollments = Enrollment.objects.all()
-        context['total_enrollments'] = all_enrollments.count()
-        context['active_enrollments'] = all_enrollments.filter(status='IN_PROGRESS').count()
-        context['completed_enrollments'] = all_enrollments.filter(status='COMPLETED').count()
-        
-        return context
     
 class AdministratorEnrollmentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Enrollment

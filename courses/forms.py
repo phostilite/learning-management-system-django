@@ -527,55 +527,23 @@ class ResourceComponentForm(forms.ModelForm):
 # ======================= Enrollment Forms ===================
 # ============================================================
 
-class EnrollmentForm(forms.Form):
-    ENROLLMENT_TYPES = (
-        ('delivery', _('Delivery')),
-        ('program', _('Program')),
-        ('course', _('Course')),
-    )
+class EnrollmentForm(forms.ModelForm):
+    selected_users = forms.ModelMultipleChoiceField(queryset=User.objects.none(), widget=forms.CheckboxSelectMultiple)
 
-    enrollment_type = forms.ChoiceField(
-        choices=ENROLLMENT_TYPES,
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        label=_("Enrollment Type")
-    )
+    class Meta:
+        model = Enrollment
+        fields = ['selected_users', 'status']
 
-    delivery = forms.ModelChoiceField(
-        queryset=Delivery.objects.all(),
-        required=False,
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        label=_("Delivery")
-    )
-
-    program = forms.ModelChoiceField(
-        queryset=Program.objects.all(),
-        required=False,
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        label=_("Program")
-    )
-
-    course = forms.ModelChoiceField(
-        queryset=Course.objects.all(),
-        required=False,
-        widget=forms.Select(attrs={'class': 'form-select'}),
-        label=_("Course")
-    )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        enrollment_type = cleaned_data.get('enrollment_type')
-        delivery = cleaned_data.get('delivery')
-        program = cleaned_data.get('program')
-        course = cleaned_data.get('course')
-
-        if enrollment_type == 'delivery' and not delivery:
-            self.add_error('delivery', _("Please select a delivery for enrollment."))
-        elif enrollment_type == 'program' and not program:
-            self.add_error('program', _("Please select a program for enrollment."))
-        elif enrollment_type == 'course' and not course:
-            self.add_error('course', _("Please select a course for enrollment."))
-
-        return cleaned_data
+    def __init__(self, *args, **kwargs):
+        delivery = kwargs.pop('delivery', None)
+        user_queryset = kwargs.pop('user_queryset', User.objects.none())
+        super(EnrollmentForm, self).__init__(*args, **kwargs)
+        if delivery:
+            self.instance.delivery = delivery
+        self.fields['selected_users'].queryset = user_queryset
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Submit'))
     
 class EnrollmentEditForm(forms.ModelForm):
     class Meta:

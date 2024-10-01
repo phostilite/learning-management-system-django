@@ -1,0 +1,65 @@
+{% extends '../../../_base.html' %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load custom_filters %}
+
+
+{% block title %}{% trans "Create Enrollments" %} | {{ delivery.title }} | {% trans "Administrator" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4">Enroll Users in {{ delivery.title }}</h2>
+
+  <form method="get" class="mb-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group">
+        {{ filter.form.first_name.label_tag }}
+        {{ filter.form.first_name|add_class:"form-input mt-1 block w-full" }}
+      </div>
+      <div class="form-group">
+        {{ filter.form.last_name.label_tag }}
+        {{ filter.form.last_name|add_class:"form-input mt-1 block w-full" }}
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div class="form-group">
+        {{ filter.form.gender.label_tag }}
+        {{ filter.form.gender|add_class:"form-select mt-1 block w-full" }}
+      </div>
+      <div class="form-group">
+        {{ filter.form.timezone.label_tag }}
+        {{ filter.form.timezone|add_class:"form-select mt-1 block w-full" }}
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div class="form-group">
+        {{ filter.form.current_organization.label_tag }}
+        {{ filter.form.current_organization|add_class:"form-select mt-1 block w-full" }}
+      </div>
+      <div class="form-group">
+        {{ filter.form.current_organization_unit.label_tag }}
+        {{ filter.form.current_organization_unit|add_class:"form-select mt-1 block w-full" }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4">Filter</button>
+  </form>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.selected_users.label_tag }}
+      {{ form.selected_users }}
+    </div>
+    <div class="form-group mt-4">
+      {{ form.status.label_tag }}
+      {{ form.status|add_class:"form-select mt-1 block w-full" }}
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Enroll Selected Users</button>
+  </form>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
