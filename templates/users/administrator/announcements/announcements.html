@@ -150,21 +150,22 @@
                                         <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-update-modal{{ announcement.id }}" data-modal-toggle="announcement-update-modal{{ announcement.id }}" data-announcement-id="{{ announcement.id }}" onclick="getAnnouncementDetails(this)">
                                             <i class="fas fa-edit mr-2"></i> {% trans "Edit/Update Announcement" %}
                                         </a>                                        
-                                    </li>
+                                    </li>                                    
                                     <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}">
-                                            <i class="fas fa-trash-alt mr-2"></i> {% trans "Delete Announcement" %}
-                                        </a>                                        
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="crud-modal{{ announcement.id }}" data-modal-toggle="crud-modal{{ announcement.id }}">
-                                            <i class="fas fa-user-plus mr-2"></i> {% trans "Add Recipients" %}
-                                        </a>                                        
+                                        <a href="#" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150 ease-in-out rounded-md group" data-modal-target="crud-modal{{ announcement.id }}" data-modal-toggle="crud-modal{{ announcement.id }}">
+                                            <i class="fas fa-user-plus mr-3 text-gray-400 group-hover:text-blue-500 transition duration-150 ease-in-out"></i>
+                                            <span class="font-medium">{% trans "Add Recipients" %}</span>
+                                        </a>
                                     </li>
                                     <li>
                                         <a href="{% url 'administrator_announcement_manage_recipients' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
                                             <i class="fas fa-eye mr-2"></i> {% trans "Manage Recipients" %}
                                         </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-red-600" data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}">
+                                            <i class="fas fa-trash-alt mr-2 text-red-600"></i> {% trans "Delete Announcement" %}
+                                        </a>                                        
                                     </li>
                                 </ul>
                             </div>
