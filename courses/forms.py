@@ -528,7 +528,11 @@ class ResourceComponentForm(forms.ModelForm):
 # ============================================================
 
 class EnrollmentForm(forms.ModelForm):
-    selected_users = forms.ModelMultipleChoiceField(queryset=User.objects.none(), widget=forms.CheckboxSelectMultiple)
+    selected_users = forms.ModelMultipleChoiceField(
+        queryset=User.objects.none(),
+        widget=forms.CheckboxSelectMultiple,
+        label="Select Users"
+    )
 
     class Meta:
         model = Enrollment
@@ -541,9 +545,25 @@ class EnrollmentForm(forms.ModelForm):
         if delivery:
             self.instance.delivery = delivery
         self.fields['selected_users'].queryset = user_queryset
+        self.fields['selected_users'].label_from_instance = self.label_from_instance
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Submit'))
+
+    @staticmethod
+    def label_from_instance(user):
+        return {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'gender': user.gender,
+            'timezone': user.timezone,
+            'organization': user.current_organization.name if user.current_organization else None,
+            'organization_unit': user.current_organization_unit.name if user.current_organization_unit else None,
+            'profile_picture': user.picture.url if user.picture else None,
+        }
     
 class EnrollmentEditForm(forms.ModelForm):
     class Meta:
