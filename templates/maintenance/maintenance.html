@@ -1,0 +1,114 @@
+{% extends './_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Maintenance Mode" %} - LMS{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                {% trans "We're Under Maintenance" %}
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                {% trans "Our team is working hard to improve your experience." %}
+            </p>
+        </div>
+        <div class="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div class="rounded-md bg-yellow-50 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-tools text-yellow-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-yellow-800">
+                            {% trans "Scheduled Maintenance" %}
+                        </h3>
+                        <div class="mt-2 text-sm text-yellow-700">
+                            <p>
+                                {% trans "We're performing some necessary updates to enhance your learning experience. We'll be back shortly!" %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">
+                            {% trans "Estimated time remaining" %}
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div id="countdown" class="flex justify-center space-x-4 text-2xl font-bold text-gray-900"></div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">
+                            {% trans "Need immediate assistance?" %}
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a href="mailto:support@example.com" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-accent hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+                        {% trans "Contact Support" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const countdownElement = document.getElementById('countdown');
+        const endTime = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 hours from now
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+
+            if (timeLeft < 0) {
+                countdownElement.innerHTML = "{% trans 'Maintenance should be completed. Please refresh the page.' %}";
+                return;
+            }
+
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `
+                <div class="text-center">
+                    <span class="text-3xl">${hours}</span>
+                    <span class="text-sm block">{% trans "Hours" %}</span>
+                </div>
+                <div class="text-center">
+                    <span class="text-3xl">${minutes}</span>
+                    <span class="text-sm block">{% trans "Minutes" %}</span>
+                </div>
+                <div class="text-center">
+                    <span class="text-3xl">${seconds}</span>
+                    <span class="text-sm block">{% trans "Seconds" %}</span>
+                </div>
+            `;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Animate the tools icon
+        anime({
+            targets: '.fa-tools',
+            rotate: '1turn',
+            duration: 2000,
+            loop: true,
+            easing: 'easeInOutQuad'
+        });
+    });
+</script>
+{% endblock %}

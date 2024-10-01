@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'organization',
     'gamification',
     'virtual_classroom',
+    'maintenance',
 
     # Third-party apps
     'formtools',
@@ -80,6 +81,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'users.middleware.SessionRefreshMiddleware',
+    'maintenance.middleware.MaintenanceModeMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -274,3 +276,6 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 SESSION_EXPIRE_SECONDS = 18000
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = 'session_expired'
+
+MAINTENANCE_MODE = False
+MAINTENANCE_BYPASS_QUERY_STRING = 'bypass_maintenance'
