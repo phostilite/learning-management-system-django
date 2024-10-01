@@ -62,7 +62,7 @@ from quizzes.models import Choice, Question, Quiz
 from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
-from announcements.models import Announcement, AnnouncementRead
+from announcements.models import Announcement, AnnouncementRead, AnnouncementRecipient
 from announcements.forms import AnnouncementForm, AnnouncementRecipientForm
 
 from .utils.notification_utils import create_notification, log_activity
@@ -1848,7 +1848,7 @@ class AdministratorAnnouncementDetailView(LoginRequiredMixin, AdministratorRequi
 class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Announcement
     template_name = 'users/administrator/announcements/announcement_manage_recipients.html'
-    context_object_name = 'announcement'
+    context_object_name = 'recipients'
 
     def test_func(self):
         return self.request.user.groups.filter(name='administrator').exists()
@@ -1859,17 +1859,8 @@ class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, Administr
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         announcement = self.get_object()
-        
-        # Prepare the recipients data with read status
-        recipients_data = []
-        for recipient in announcement.recipients.all():
-            read_status = announcement.reads.filter(user=recipient.content_object).exists()
-            recipients_data.append({
-                'recipient': recipient,
-                'read_status': read_status
-            })
-        
-        context['recipients_data'] = recipients_data
+        context['recipients'] = AnnouncementRecipient.objects.filter(announcement=announcement)
+        context['announcement'] = announcement
         return context
 
     

@@ -85,6 +85,7 @@ document.getElementById('mark-as-read-form').addEventListener('submit', function
     .then(response => {
         if (response.ok) {
             alert('Announcement marked as read.');
+            window.location.reload();
         } else {
             alert('Failed to mark announcement as read.');
         }

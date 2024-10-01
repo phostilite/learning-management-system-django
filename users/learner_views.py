@@ -936,26 +936,38 @@ class AnnouncementListView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user
-        announcements = Announcement.objects.filter(
-            recipients__recipient_type__in=['ALL', 'LEARNER', 'USER']
+
+        # Fetch announcements for 'ALL' recipient type
+        all_announcements = Announcement.objects.filter(
+            recipients__recipient_type='ALL'
         ).distinct()
 
+        # Initialize combined announcements with 'ALL' announcements
+        combined_announcements = all_announcements
+
+        # Check if user is in 'learner' group and fetch 'LEARNER' announcements
         if user.groups.filter(name='learner').exists():
-            announcements = announcements.filter(
+            learner_announcements = Announcement.objects.filter(
                 recipients__recipient_type='LEARNER'
             ).distinct()
+            combined_announcements = combined_announcements | learner_announcements
 
+        # Fetch specific user announcements
         specific_user_announcements = Announcement.objects.filter(
             recipients__recipient_type='USER',
             recipients__specific_recipient__in=[user.username, user.email]
         ).distinct()
 
-        return announcements | specific_user_announcements
+        # Combine all announcements and ensure uniqueness
+        combined_announcements = combined_announcements | specific_user_announcements
+        combined_announcements = combined_announcements.distinct()
+
+        return combined_announcements
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(f"Context data: {context}")
         return context
-
 
 class AnnouncementDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
     model = Announcement
@@ -972,7 +984,7 @@ class AnnouncementDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailVie
         context['announcement_read'] = announcement_read
         return context
     
-class AnnouncementReadView(LoginRequiredMixin, View):
+class AnnouncementReadView(LearnerRequiredMixin, LoginRequiredMixin, View):
     def post(self, request, pk):
         try:
             announcement = Announcement.objects.get(id=pk)
