@@ -36,6 +36,7 @@ urlpatterns = [
         path('<uuid:pk>/delete/', administrator_views.AdministratorCourseDeleteView.as_view(), name='administrator_course_delete'),
         path('categories/', administrator_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
         path('learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
+        path('<uuid:course_id>/deliveries/', administrator_views.CourseDeliveryListView.as_view(), name='administrator_course_delivery_list'),
     ])),
 
     # Learning Resources
@@ -72,15 +73,15 @@ urlpatterns = [
         path('<uuid:pk>/delete/', administrator_views.AdministratorEnrollmentDeleteView.as_view(), name='administrator_enrollment_delete'),
     ])),
 
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
+    path('administrator/delivery/<uuid:delivery_id>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
+
     # Delivery Components
     path('administrator/deliveries/<uuid:delivery_id>/add-course-component/', administrator_views.CourseComponentCreateView.as_view(), name='administrator_add_course_component'),
     path('administrator/components/<uuid:parent_component_id>/add-resource-component/', administrator_views.ResourceComponentCreateView.as_view(), name='administrator_add_resource_component'),
     path('administrator/deliveries/<uuid:delivery_id>/add-resource-component/', administrator_views.ResourceComponentCreateView.as_view(), name='administrator_add_resource_component_to_course'),
     path('administrator/delivery-component/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryComponentEditView.as_view(), name='administrator_delivery_component_edit'),
     path('administrator/delivery-component/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
-
-    path('administrator/delivery/<uuid:delivery_id>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
-    path('administrator/delivery/<uuid:delivery_id>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
 
     # Program Management
     path('administrator/program/', include([

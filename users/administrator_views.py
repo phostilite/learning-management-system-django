@@ -447,7 +447,7 @@ class AdministratorCourseListView(LoginRequiredMixin, AdministratorRequiredMixin
 
     def get_queryset(self):
         try:
-            courses = Course.objects.filter(created_by=self.request.user).select_related('category')
+            courses = Course.objects.all().select_related('category')
             logger.info(f"Fetched {len(courses)} courses for user {self.request.user.id}")
             return courses
         except Exception as e:
@@ -459,16 +459,14 @@ class AdministratorCourseListView(LoginRequiredMixin, AdministratorRequiredMixin
         context = super().get_context_data(**kwargs)
         
         # Fetch course metrics efficiently
-        course_metrics = Course.objects.filter(created_by=self.request.user).aggregate(
+        course_metrics = Course.objects.all().aggregate(
             total_courses=Count('id'),
             published_courses=Count('id', filter=Q(is_published=True)),
             unpublished_courses=Count('id', filter=Q(is_published=False))
         )
         
         # Fetch category metrics
-        category_metrics = CourseCategory.objects.filter(
-            course__created_by=self.request.user
-        ).annotate(course_count=Count('course')).order_by('-course_count')[:5]
+        category_metrics = CourseCategory.objects.all().annotate(course_count=Count('course')).order_by('-course_count')[:5]
 
         all_categories = CourseCategory.objects.all().order_by('name')
 
@@ -577,6 +575,62 @@ class AdministratorCourseDeleteView(LoginRequiredMixin, AdministratorRequiredMix
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = ("Delete Course")
+        return context
+
+
+class CourseDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/course/course_delivery_list.html'
+    context_object_name = 'deliveries'
+    paginate_by = 10
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.course = get_object_or_404(Course, id=self.kwargs['course_id'])
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            messages.error(self.request, _("The specified course does not exist."))
+            return redirect('administrator_course_list')
+        except Exception as e:
+            logger.exception(f"Error in AdministratorCourseDeliveryListView dispatch: {str(e)}")
+            messages.error(self.request, _("An unexpected error occurred. Please try again later."))
+            return redirect('administrator_course_list')
+
+    def get_queryset(self):
+        try:
+            return Delivery.objects.filter(course=self.course).select_related('created_by').order_by('-start_date')
+        except Exception as e:
+            logger.exception(f"Error fetching deliveries for course {self.course.id}: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching the delivery list. Please try again."))
+            return Delivery.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['course'] = self.course
+
+            # Delivery metrics
+            delivery_metrics = self.get_queryset().aggregate(
+                total_deliveries=Count('id'),
+                active_deliveries=Count('id', filter=Q(is_active=True)),
+                completed_deliveries=Count('id', filter=Q(end_date__lt=timezone.now()))
+            )
+
+            # Enrollment metrics
+            enrollment_metrics = Enrollment.objects.filter(delivery__course=self.course).aggregate(
+                total_enrollments=Count('id'),
+                active_enrollments=Count('id', filter=Q(status='IN_PROGRESS')),
+                completed_enrollments=Count('id', filter=Q(status='COMPLETED'))
+            )
+
+            context.update({
+                'delivery_metrics': delivery_metrics,
+                'enrollment_metrics': enrollment_metrics,
+            })
+
+        except Exception as e:
+            logger.exception(f"Error in AdministratorCourseDeliveryListView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Some information may be missing."))
+
         return context
     
 # ============================================================
