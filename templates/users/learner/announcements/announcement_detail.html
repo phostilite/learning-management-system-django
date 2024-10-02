@@ -16,6 +16,7 @@
         <p class="text-center text-lg">{% trans "Stay updated with the latest announcements." %}</p>
     </header>
 
+    <!-- Breadcrumb -->
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
@@ -40,30 +41,67 @@
     </nav>
 
     <!-- Announcement Details -->
-    <div class="bg-white p-6 rounded-xl mb-4 card-shadow">
-        <h2 class="text-2xl font-bold mb-4">{{ announcement.title }}</h2>
-        <p class="text-gray-700 mb-2"><strong>{% trans "Author:" %}</strong> {{ announcement.author }}</p>
-        <p class="text-gray-700 mb-2"><strong>{% trans "Priority:" %}</strong> {{ announcement.get_priority_display }}</p>
-        <p class="text-gray-700 mb-2"><strong>{% trans "Published on:" %}</strong> {{ announcement.publish_date|date:"F j, Y, g:i a" }}</p>
-        <p class="text-gray-700 mb-2"><strong>{% trans "Expires on:" %}</strong> {{ announcement.expiry_date|date:"F j, Y, g:i a" }}</p>
-        <p class="text-gray-700 mb-4"><strong>{% trans "Status:" %}</strong> {% if announcement.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}</p>
-        <div class="text-gray-700">
-            {{ announcement.content|linebreaks }}
+    <div class="min-h-screen flex flex-col">
+        <div class="bg-white shadow-md rounded-xl">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-gray-800">{{ announcement.title }}</h2>
+                <p class="text-lg text-gray-600 flex items-center mb-6">
+                    <i class="fas fa-user-circle mr-2"></i>{{ announcement.author }}
+                </p>
+    
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg shadow-sm border border-blue-100 transition-all duration-300 hover:shadow-md">
+                        <div class="bg-blue-500 text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-calendar-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-blue-600 mb-1">{% trans "Published on" %}</p>
+                            <p class="text-lg font-semibold text-gray-800">{{ announcement.publish_date|date:"M j, Y" }}</p>
+                            <p class="text-sm text-gray-500">{{ announcement.publish_date|date:"g:i a" }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg shadow-sm border border-purple-100 transition-all duration-300 hover:shadow-md">
+                        <div class="bg-purple-500 text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-hourglass-end text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-purple-600 mb-1">{% trans "Expires on" %}</p>
+                            <p class="text-lg font-semibold text-gray-800">{{ announcement.expiry_date|date:"M j, Y" }}</p>
+                            <p class="text-sm text-gray-500">{{ announcement.expiry_date|date:"g:i a" }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-8 flex flex-wrap gap-2">
+                    <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-md">
+                        {{ announcement.get_priority_display }}
+                    </span>
+                    <span class="inline-block {% if announcement.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %} text-sm font-semibold px-3 py-1 rounded-md">
+                        {% if announcement.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}
+                    </span>
+                </div>
+                
+                <div class="prose max-w-none text-gray-700 mb-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    {{ announcement.content|linebreaks }}
+                </div>
+                
+                <div class="flex justify-between items-center flex-wrap gap-4">
+                    {% if announcement_read %}
+                        <button class="bg-green-500 text-white font-semibold py-2 px-6 rounded-md opacity-60 cursor-not-allowed" disabled>
+                            <i class="fas fa-check mr-2"></i>{% trans "Already Read" %}
+                        </button>
+                    {% else %}
+                        <form id="mark-as-read-form" method="post" action="{% url 'learner_mark_announcement_read' pk=announcement.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition duration-300 ease-in-out">
+                                <i class="fas fa-book-reader mr-2"></i>{% trans "Mark as Read" %}
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        {% if announcement_read %}
-            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded" disabled>
-                {% trans "Already Read" %}
-            </button>
-        {% else %}
-            <form id="mark-as-read-form" method="post" action="{% url 'learner_mark_announcement_read' pk=announcement.pk %}">
-                {% csrf_token %}
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {% trans "Mark as Read" %}
-                </button>
-            </form>
-        {% endif %}
     </div>
-</div>
 {% endblock %}
 
 {% block extra_js %}
