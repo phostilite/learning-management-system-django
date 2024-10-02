@@ -53,7 +53,9 @@ from courses.forms import (CourseComponentForm, CourseForm, CoursePublishForm,
                            ScormResourceForm)
 from courses.models import (Course, CourseCategory, Delivery, DeliveryComponent,
                             Enrollment, LearningResource, Program,
-                            ProgramCourse, ScormResource, Tag)
+                            ProgramCourse, ScormResource, Tag, DeliverySchedule,
+    DeliveryInstructor, DeliveryFeedback, DeliveryEmailTemplate,
+    DeliveryAttendance)
 from organization.models import Organization, OrganizationUnit, OrganizationContact, OrganizationChange, Location, JobPosition, EmployeeProfile
 from organization.forms import EmployeeProfileForm, JobPositionForm, LocationForm, OrganizationUnitForm, OrganizationGroupForm
 from quizzes.forms import ChoiceForm, ChoiceFormSet, QuestionForm, QuestionFormSet, QuizForm
@@ -1117,37 +1119,70 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredM
         context = super().get_context_data(**kwargs)
         delivery = self.object
 
-        # Get all components for this delivery
-        components = DeliveryComponent.objects.filter(delivery=delivery)
+        try:
+            # Get all components for this delivery
+            components = DeliveryComponent.objects.filter(delivery=delivery)
 
-        # Count metrics
-        component_counts = components.aggregate(
-            total=Count('id'),
-            mandatory_count=Count('id', filter=Q(is_mandatory=True)),
-            optional_count=Count('id', filter=Q(is_mandatory=False))
-        )
+            # Count metrics
+            component_counts = components.aggregate(
+                total=Count('id'),
+                mandatory_count=Count('id', filter=Q(is_mandatory=True)),
+                optional_count=Count('id', filter=Q(is_mandatory=False))
+            )
 
-        # Enrollment count
-        enrollment_count = Enrollment.objects.filter(delivery=delivery).count()
+            # Enrollment count and status
+            enrollments = Enrollment.objects.filter(delivery=delivery)
+            enrollment_counts = enrollments.aggregate(
+                total=Count('id'),
+                in_progress=Count('id', filter=Q(status='IN_PROGRESS')),
+                completed=Count('id', filter=Q(status='COMPLETED'))
+            )
 
-        context['components'] = {
-            'count': component_counts['total'],
-            'mandatory_count': component_counts['mandatory_count'],
-            'optional_count': component_counts['optional_count'],
-        }
-        context['enrollment_stats'] = {
-            'total': enrollment_count,
-        }
+            # Schedules
+            schedules = DeliverySchedule.objects.filter(delivery=delivery).order_by('start_time')
 
-        if delivery.delivery_type == 'PROGRAM':
-            context['program_courses'] = components.filter(
-                program_course__isnull=False,
-                parent_component__isnull=True
-            ).select_related('program_course__course').order_by('order')
-        else:
-            context['learning_resources'] = components.filter(
-                learning_resource__isnull=False
-            ).select_related('learning_resource').order_by('order')
+            # Instructors
+            instructors = DeliveryInstructor.objects.filter(delivery=delivery).select_related('instructor')
+
+            # Feedback
+            feedback = DeliveryFeedback.objects.filter(delivery=delivery)
+
+            # Email Templates
+            email_templates = DeliveryEmailTemplate.objects.filter(delivery=delivery)
+
+            # Attendance (for the latest schedule, if any)
+            latest_schedule = schedules.first()
+            attendance = DeliveryAttendance.objects.filter(delivery=delivery, schedule=latest_schedule) if latest_schedule else None
+
+            context.update({
+                'components': {
+                    'count': component_counts['total'],
+                    'mandatory_count': component_counts['mandatory_count'],
+                    'optional_count': component_counts['optional_count'],
+                },
+                'enrollment_stats': enrollment_counts,
+                'schedules': schedules,
+                'instructors': instructors,
+                'feedback': feedback,
+                'email_templates': email_templates,
+                'attendance': attendance,
+            })
+
+            if delivery.delivery_type == 'PROGRAM':
+                context['program_courses'] = components.filter(
+                    program_course__isnull=False,
+                    parent_component__isnull=True
+                ).select_related('program_course__course').order_by('order')
+            else:
+                context['learning_resources'] = components.filter(
+                    learning_resource__isnull=False
+                ).select_related('learning_resource').order_by('order')
+
+        except Exception as e:
+            # Log the error
+            logger.error(f"Error in AdministratorDeliveryDetailView: {str(e)}")
+            # Add an error message to the context
+            context['error_message'] = "An error occurred while fetching delivery details. Please try again later."
 
         return context
     

@@ -5,8 +5,8 @@
 {% block title %}{% trans "Create New Delivery" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto">
-    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+<div>
+    <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create New Delivery" %}</h1>
         <p class="text-lg text-white text-center">{% trans "Set up a new delivery for a course or program." %}</p>
     </header>
@@ -34,11 +34,11 @@
         </ol>
     </nav>
 
-    <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <div>
         <form method="post" id="deliveryForm">
             {% csrf_token %}
             
-            <div class="mb-6">
+            <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                 <h3 class="text-xl font-semibold mb-4">Basic Information</h3>
                 <div class="grid grid-cols-1 gap-6">
                     <div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             
-            <div class="mb-6">
+            <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                 <h3 class="text-xl font-semibold mb-4">Schedule</h3>
                 <div class="grid grid-cols-2 gap-6">
                     <div>{{ form.start_date|as_crispy_field }}</div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             
-            <div class="mb-6">
+            <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                 <h3 class="text-xl font-semibold mb-4">Delivery Settings</h3>
                 <div class="grid grid-cols-3 gap-6">
                     <div>{{ form.max_participants|as_crispy_field }}</div>
