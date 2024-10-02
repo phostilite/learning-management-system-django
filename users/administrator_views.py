@@ -63,7 +63,8 @@ from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
 
 from .utils.notification_utils import create_notification, log_activity
-from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter, DeliveryFilter, EnrollmentFilter, UserFilter, CourseFilter, ProgramFilter
+from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter,  UserFilter
+from courses.filters import CourseFilter, ProgramFilter, DeliveryFilter, EnrollmentFilter
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -1046,13 +1047,13 @@ class QuizEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
         })
 
 # ============================================================
-# ======================= Course Delivery Views ==============
+# ======================= Delivery Views =====================
 # ============================================================
 
 class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = Delivery
     form_class = DeliveryCreateForm
-    template_name = 'users/administrator/course/deliveries/delivery_create.html'
+    template_name = 'users/administrator/deliveries/delivery_create.html'
     success_url = reverse_lazy('administrator_delivery_list')  
 
     def form_valid(self, form):
@@ -1083,7 +1084,7 @@ class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredM
 
 class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, FilterView):
     model = Delivery
-    template_name = 'users/administrator/course/deliveries/delivery_list.html'
+    template_name = 'users/administrator/deliveries/delivery_list.html'
     context_object_name = 'deliveries'
     filterset_class = DeliveryFilter
     paginate_by = 10
@@ -1109,7 +1110,7 @@ class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMix
     
 class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Delivery
-    template_name = 'users/administrator/course/deliveries/delivery_detail.html'
+    template_name = 'users/administrator/deliveries/delivery_detail.html'
     context_object_name = 'delivery'
 
     def get_context_data(self, **kwargs):
@@ -1153,7 +1154,7 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredM
 class AdministratorDeliveryEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Delivery
     form_class = DeliveryEditForm
-    template_name = 'users/administrator/course/deliveries/delivery_edit.html'
+    template_name = 'users/administrator/deliveries/delivery_edit.html'
     context_object_name = 'delivery'
 
     def get_success_url(self):
@@ -1177,7 +1178,7 @@ class AdministratorDeliveryDeleteView(LoginRequiredMixin, AdministratorRequiredM
 class CourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent
     form_class = CourseComponentForm
-    template_name = 'users/administrator/course/deliveries/course_component_form.html'
+    template_name = 'users/administrator/deliveries/course_component_form.html'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -1194,7 +1195,7 @@ class CourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, 
 class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent
     form_class = ResourceComponentForm
-    template_name = 'users/administrator/course/deliveries/resource_component_form.html'
+    template_name = 'users/administrator/deliveries/resource_component_form.html'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -1218,12 +1219,12 @@ class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin
 
 
 class AdministratorDeliveryComponentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
-    template_name = 'users/administrator/course/deliveries/delivery_component_edit.html'
+    template_name = 'users/administrator/deliveries/delivery_component_edit.html'
  
 
 class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = DeliveryComponent
-    template_name = 'users/administrator/course/deliveries/delivery_component_delete.html'
+    template_name = 'users/administrator/deliveries/delivery_component_delete.html'
     
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
@@ -1239,7 +1240,7 @@ class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, Administrator
 
 class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
     model = Enrollment
-    template_name = 'users/administrator/course/deliveries/enrollments/enrollment_list.html'
+    template_name = 'users/administrator/deliveries/enrollments/enrollment_list.html'
     context_object_name = 'enrollments'
     paginate_by = 20
 
@@ -1280,7 +1281,7 @@ class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
         return context
 
 class DeliveryEnrollmentsCreateView(LoginRequiredMixin, FormView):
-    template_name = 'users/administrator/course/deliveries/enrollments/enrollment_create.html'
+    template_name = 'users/administrator/deliveries/enrollments/enrollment_create.html'
     form_class = EnrollmentForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -1330,30 +1331,54 @@ class DeliveryEnrollmentsCreateView(LoginRequiredMixin, FormView):
 
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_enrollments', kwargs={'delivery_id': self.delivery.id})
+    
 # ============================================================
 # ======================= Program Views ======================
 # ============================================================
 
-class AdministratorProgramListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
-    model = Program
+class AdministratorProgramListView(LoginRequiredMixin, AdministratorRequiredMixin, FilterView):
     template_name = 'users/administrator/program/program_list.html'
     context_object_name = 'programs'
-    paginate_by = 10
+    filterset_class = ProgramFilter
+    paginate_by = 9
 
     def get_queryset(self):
-        return Program.objects.all().order_by('-created_at')
+        try:
+            programs = Program.objects.all().select_related('created_by').prefetch_related('tags')
+            logger.info(f"Fetched programs for user {self.request.user.id}")
+            return programs
+        except Exception as e:
+            logger.exception("Error fetching program list:")
+            messages.error(self.request, f"An error occurred while fetching the program list: {str(e)}")
+            return Program.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['total_programs'] = Program.objects.count()
-        context['published_programs'] = Program.objects.filter(is_published=True).count()
-        context['unpublished_programs'] = Program.objects.filter(is_published=False).count()
-        context['top_tags'] = Tag.objects.annotate(
-            program_count=Count('program')
-        ).order_by('-program_count')[:5]
-        context['all_tags'] = Tag.objects.all()
+        try:
+            # Fetch program metrics efficiently
+            program_metrics = Program.objects.aggregate(
+                total_programs=Count('id'),
+                published_programs=Count('id', filter=Q(is_published=True)),
+                unpublished_programs=Count('id', filter=Q(is_published=False))
+            )
+            
+            # Fetch tag metrics
+            tag_metrics = Tag.objects.annotate(program_count=Count('program')).order_by('-program_count')[:5]
+
+            all_tags = Tag.objects.all().order_by('name')
+
+            context.update({
+                'total_programs': program_metrics['total_programs'],
+                'published_programs': program_metrics['published_programs'],
+                'unpublished_programs': program_metrics['unpublished_programs'],
+                'top_tags': tag_metrics,
+                'all_tags': all_tags,
+            })
+        except Exception as e:
+            logger.exception("Error fetching context data:")
+            messages.error(self.request, f"An error occurred while preparing the page: {str(e)}")
+        
         return context
-    
 
 class AdministratorProgramDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Program
@@ -1378,18 +1403,20 @@ class AdministratorProgramCreateView(LoginRequiredMixin, AdministratorRequiredMi
 
 class AdministratorProgramDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = Program
-    template_name = 'users/administrator/program/program_confirm_delete.html'
     success_url = reverse_lazy('administrator_program_list')
 
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
         messages.success(self.request, "The program was successfully deleted.")
-        return super().delete(request, *args, **kwargs)
+        return HttpResponseRedirect(self.success_url)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['program'] = self.get_object()
         return context
-    
+
+
 class AdministratorProgramEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Program
     form_class = ProgramForm
@@ -1407,63 +1434,151 @@ class AdministratorProgramEditView(LoginRequiredMixin, AdministratorRequiredMixi
         return super().form_invalid(form)
     
 
-class AdministratorProgramPublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
-    template_name = 'users/administrator/program/program_publish_confirm.html'
-    form_class = ProgramPublishForm
-    success_url = reverse_lazy('administrator_program_list')
+class AdministratorProgramPublishView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, pk):
+        program = get_object_or_404(Program, pk=pk)
+        program.is_published = True
+        program.save()
+        messages.success(request, _('Program "{}" has been published successfully.').format(program.title))
+        return redirect('administrator_program_list')
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
-        return kwargs
-
-    def form_valid(self, form):
-        program = form.save()
-        messages.success(self.request, f'Program "{program.title}" has been published.')
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
-        return context
-
-class AdministratorProgramUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
-    template_name = 'users/administrator/program/program_unpublish_confirm.html'
-    form_class = ProgramUnpublishForm
-    success_url = reverse_lazy('administrator_program_list')  
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
-        return kwargs
-
-    def form_valid(self, form):
-        program = form.save()
-        messages.success(self.request, f'Program "{program.title}" has been unpublished.')
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['program'] = get_object_or_404(Program, pk=self.kwargs['pk'])
-        return context
+class AdministratorProgramUnpublishView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, pk):
+        program = get_object_or_404(Program, pk=pk)
+        program.is_published = False
+        program.save()
+        messages.success(request, _('Program "{}" has been unpublished successfully.').format(program.title))
+        return redirect('administrator_program_list')
     
+class AdministratorProgramCoursesView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/program/program_courses.html'
+    context_object_name = 'program_courses'
+    paginate_by = 10
 
-class AdministratorProgramCourseCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
-    model = ProgramCourse
-    form_class = ProgramCourseForm
-    template_name = 'users/administrator/program/program_course_create.html'
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.program = get_object_or_404(Program, pk=self.kwargs['program_id'])
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            messages.error(self.request, _("Program not found."))
+            return redirect('administrator_program_list')
+        except Exception as e:
+            logger.exception(f"Error in AdministratorProgramCoursesView dispatch: {str(e)}")
+            messages.error(self.request, _("An error occurred while accessing the program courses."))
+            return redirect('administrator_program_list')
 
-    def get_success_url(self):
-        return reverse_lazy('administrator_program_detail', kwargs={'pk': self.kwargs['program_id']})
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['program'] = get_object_or_404(Program, pk=self.kwargs['program_id'])
-        return kwargs
+    def get_queryset(self):
+        try:
+            return ProgramCourse.objects.filter(program=self.program).select_related('course').order_by('order')
+        except Exception as e:
+            logger.exception(f"Error fetching program courses: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching the program courses."))
+            return ProgramCourse.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['program'] = get_object_or_404(Program, pk=self.kwargs['program_id'])
+        try:
+            context['program'] = self.program
+            context['total_courses'] = self.get_queryset().count()
+            context['mandatory_courses'] = self.get_queryset().filter(is_mandatory=True).count()
+            context['optional_courses'] = self.get_queryset().filter(is_mandatory=False).count()
+            context['form'] = ProgramCourseForm(program=self.program)
+        except Exception as e:
+            logger.exception(f"Error getting context data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page."))
+        return context
+
+class AdministratorProgramCourseCreateView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            program = get_object_or_404(Program, pk=self.kwargs['program_id'])
+            form = ProgramCourseForm(request.POST, program=program)
+            if form.is_valid():
+                form.save()
+                return redirect('administrator_program_courses', program_id=program.id)
+            else:
+                return redirect('administrator_program_courses', program_id=program.id)
+        except Exception as e:
+            logger.exception(f"Error in AdministratorProgramCourseCreateView: {str(e)}")
+            return redirect('administrator_program_courses', program_id=self.kwargs['program_id'])
+        
+class AdministratorProgramCourseRemoveView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, program_id, program_course_id):
+        try:
+            program = get_object_or_404(Program, pk=program_id)
+            program_course = get_object_or_404(ProgramCourse, pk=program_course_id, program=program)
+            
+            course_title = program_course.course.title
+            program_course.delete()
+            
+            messages.success(request, _(f"Course '{course_title}' has been removed from the program."))
+            return redirect('administrator_program_courses', program_id=program.id)
+        except Exception as e:
+            logger.exception(f"Error removing course from program: {str(e)}")
+            messages.error(request, _("An error occurred while removing the course from the program."))
+            return redirect('administrator_program_courses', program_id=program.id)
+
+class ProgramDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
+    template_name = 'users/administrator/program/program_deliveries_list.html'
+    context_object_name = 'deliveries'
+    paginate_by = 10
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.program = get_object_or_404(Program, id=self.kwargs['program_id'])
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            messages.error(self.request, _("The specified program does not exist."))
+            return redirect('administrator_program_list')
+        except Exception as e:
+            logger.exception(f"Error in ProgramDeliveryListView dispatch: {str(e)}")
+            messages.error(self.request, _("An unexpected error occurred. Please try again later."))
+            return redirect('administrator_program_list')
+
+    def get_queryset(self):
+        try:
+            return Delivery.objects.filter(program=self.program).select_related('created_by').order_by('-start_date')
+        except Exception as e:
+            logger.exception(f"Error fetching deliveries for program {self.program.id}: {str(e)}")
+            messages.error(self.request, _("An error occurred while fetching the delivery list. Please try again."))
+            return Delivery.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['program'] = self.program
+
+            # Delivery metrics
+            delivery_metrics = self.get_queryset().aggregate(
+                total_deliveries=Count('id'),
+                active_deliveries=Count('id', filter=Q(is_active=True)),
+                completed_deliveries=Count('id', filter=Q(end_date__lt=timezone.now()))
+            )
+
+            # Enrollment metrics
+            enrollment_metrics = Enrollment.objects.filter(delivery__program=self.program).aggregate(
+                total_enrollments=Count('id'),
+                active_enrollments=Count('id', filter=Q(status='IN_PROGRESS')),
+                completed_enrollments=Count('id', filter=Q(status='COMPLETED'))
+            )
+
+            # Course metrics
+            course_metrics = self.program.program_courses.aggregate(
+                total_courses=Count('id'),
+                mandatory_courses=Count('id', filter=Q(is_mandatory=True)),
+                optional_courses=Count('id', filter=Q(is_mandatory=False))
+            )
+
+            context.update({
+                'delivery_metrics': delivery_metrics,
+                'enrollment_metrics': enrollment_metrics,
+                'course_metrics': course_metrics,
+            })
+
+        except Exception as e:
+            logger.exception(f"Error in ProgramDeliveryListView get_context_data: {str(e)}")
+            messages.error(self.request, _("An error occurred while preparing the page. Some information may be missing."))
+
         return context
     
 # ============================================================

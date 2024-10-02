@@ -1,0 +1,213 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Program Courses - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .course-card {
+        transition: transform 0.3s ease-in-out;
+    }
+    .course-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Program Courses" %}</h1>
+        <p class="text-lg text-white text-center">{{ program.title }}</p>
+    </header>
+
+    <!-- Course Metrics -->
+    <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Total Courses" %}</h3>
+            <p class="text-3xl font-bold text-primary">{{ total_courses }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Mandatory Courses" %}</h3>
+            <p class="text-3xl font-bold text-green-600">{{ mandatory_courses }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Optional Courses" %}</h3>
+            <p class="text-3xl font-bold text-yellow-600">{{ optional_courses }}</p>
+        </div>
+    </div>
+
+    <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_program_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Programs" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{% url 'administrator_program_detail' program.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ program.title }}</a>
+                </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Program Courses" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Action Buttons and View Switcher -->
+    <div class="mb-8 flex justify-between items-center">
+        <a href="#" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center" data-modal-target="add-course-modal" data-modal-toggle="add-course-modal">
+            <i class="fas fa-plus mr-2"></i> {% trans "Add Course" %}
+        </a>
+        <select id="viewSwitcher" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+            <option value="grid">{% trans "Grid View" %}</option>
+            <option value="list">{% trans "List View" %}</option>
+        </select>
+    </div>
+    {% include './program_course_create.html' %}
+
+    <!-- Grid View -->
+    <div id="gridView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for program_course in program_courses %}
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg course-card">
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-primary mb-2">{{ program_course.course.title }}</h3>
+                <p class="text-gray-600 mb-4">{{ program_course.course.short_description|truncatewords:20 }}</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-sm text-gray-500">{% trans "Order" %}: {{ program_course.order }}</span>
+                    {% if program_course.is_mandatory %}
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                        {% trans "Mandatory" %}
+                    </span>
+                    {% else %}
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                        {% trans "Optional" %}
+                    </span>
+                    {% endif %}
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <a href="{% url 'administrator_course_detail' program_course.course.id %}" class="text-green-600 hover:text-green-800" title="{% trans 'View' %}">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'administrator_course_edit' program_course.course.id %}" class="text-blue-600 hover:text-blue-800" title="{% trans 'Edit' %}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <button type="button" class="text-red-600 hover:text-red-800" id="programCourseRemoveButton{{ program_course.id }}" data-modal-target="programCourseRemoveModal{{ program_course.id }}" data-modal-toggle="programCourseRemoveModal{{ program_course.id }}" title="{% trans 'Remove from Program' %}">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% include './program_course_remove.html' %}
+        {% endfor %}
+    </div>
+
+    <!-- List View -->
+    <div id="listView" class="hidden overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">{% trans "Order" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Course Title" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Mandatory" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for program_course in program_courses %}
+                <tr class="bg-white border-b">
+                    <td class="px-6 py-4">{{ program_course.order }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ program_course.course.title }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {% if program_course.is_mandatory %}
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {% trans "Yes" %}
+                        </span>
+                        {% else %}
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                            {% trans "No" %}
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{% url 'administrator_course_detail' program_course.course.id %}" class="text-green-600 hover:text-green-800" title="{% trans 'View' %}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{% url 'administrator_course_edit' program_course.course.id %}" class="text-blue-600 hover:text-blue-800" title="{% trans 'Edit' %}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav class="flex justify-center mt-8">
+        <ul class="inline-flex items-center -space-x-px">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
+                    <span class="sr-only">Previous</span>
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+            </li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+            <li>
+                <a href="?page={{ num }}" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 {% if page_obj.number == num %}text-blue-600 border-blue-300 bg-blue-50{% endif %}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
+                    <span class="sr-only">Next</span>
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const viewSwitcher = document.getElementById('viewSwitcher');
+    const gridView = document.getElementById('gridView');
+    const listView = document.getElementById('listView');
+
+    viewSwitcher.addEventListener('change', function() {
+        if (this.value === 'grid') {
+            gridView.classList.remove('hidden');
+            listView.classList.add('hidden');
+        } else {
+            gridView.classList.add('hidden');
+            listView.classList.remove('hidden');
+        }
+    });
+});
+</script>
+{% endblock %}

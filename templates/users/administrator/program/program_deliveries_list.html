@@ -2,13 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Course Deliveries - LMS Admin" %}{% endblock %}
+{% block title %}{% trans "Program Deliveries - LMS Admin" %}{% endblock %}
 
 {% block content %}
 <div>
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Course Deliveries" %}</h1>
-        <p class="text-lg text-white text-center">{{ course.title }}</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Program Deliveries" %}</h1>
+        <p class="text-lg text-white text-center">{{ program.title }}</p>
     </header>
 
     <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
@@ -22,13 +22,13 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="{% url 'administrator_course_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Courses" %}</a>
+                    <a href="{% url 'administrator_program_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Programs" %}</a>
                 </div>
             </li>
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <a href="{% url 'administrator_course_detail' course.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ course.title }}</a>
+                    <a href="{% url 'administrator_program_detail' program.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{{ program.title }}</a>
                 </div>
             </li>
             <li>
@@ -40,35 +40,62 @@
         </ol>
     </nav>
 
-    <!-- Delivery Metrics -->
-    <div class="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Total Deliveries" %}</h3>
-            <p class="text-3xl font-bold text-primary">{{ delivery_metrics.total_deliveries }}</p>
+    <div class="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Delivery Metrics -->
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-primary">{% trans "Delivery Metrics" %}</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Total" %}</span>
+                    <span class="text-2xl font-bold text-primary">{{ delivery_metrics.total_deliveries }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Active" %}</span>
+                    <span class="text-2xl font-bold text-green-600">{{ delivery_metrics.active_deliveries }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Completed" %}</span>
+                    <span class="text-2xl font-bold text-blue-600">{{ delivery_metrics.completed_deliveries }}</span>
+                </div>
+            </div>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Active Deliveries" %}</h3>
-            <p class="text-3xl font-bold text-green-600">{{ delivery_metrics.active_deliveries }}</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Completed Deliveries" %}</h3>
-            <p class="text-3xl font-bold text-blue-600">{{ delivery_metrics.completed_deliveries }}</p>
-        </div>
-    </div>
 
-    <!-- Enrollment Metrics -->
-    <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Total Enrollments" %}</h3>
-            <p class="text-3xl font-bold text-primary">{{ enrollment_metrics.total_enrollments }}</p>
+        <!-- Enrollment Metrics -->
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-primary">{% trans "Enrollment Metrics" %}</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Total" %}</span>
+                    <span class="text-2xl font-bold text-primary">{{ enrollment_metrics.total_enrollments }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Active" %}</span>
+                    <span class="text-2xl font-bold text-green-600">{{ enrollment_metrics.active_enrollments }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Completed" %}</span>
+                    <span class="text-2xl font-bold text-blue-600">{{ enrollment_metrics.completed_enrollments }}</span>
+                </div>
+            </div>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Active Enrollments" %}</h3>
-            <p class="text-3xl font-bold text-green-600">{{ enrollment_metrics.active_enrollments }}</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Completed Enrollments" %}</h3>
-            <p class="text-3xl font-bold text-blue-600">{{ enrollment_metrics.completed_enrollments }}</p>
+
+        <!-- Course Metrics -->
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <h3 class="text-xl font-semibold mb-4 text-primary">{% trans "Course Metrics" %}</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Total" %}</span>
+                    <span class="text-2xl font-bold text-primary">{{ course_metrics.total_courses }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Mandatory" %}</span>
+                    <span class="text-2xl font-bold text-yellow-600">{{ course_metrics.mandatory_courses }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">{% trans "Optional" %}</span>
+                    <span class="text-2xl font-bold text-purple-600">{{ course_metrics.optional_courses }}</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -201,7 +228,7 @@
                 {% empty %}
                 <tr>
                     <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                        {% trans "No deliveries found for this course." %}
+                        {% trans "No deliveries found for this program." %}
                     </td>
                 </tr>
                 {% endfor %}

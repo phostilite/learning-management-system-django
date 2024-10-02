@@ -1,14 +1,14 @@
-{% extends '../../_base.html' %}
+{% extends '../_base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}{% trans "Edit Delivery" %}{% endblock %}
+{% block title %}{% trans "Create New Delivery" %}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto">
     <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
-        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Edit Delivery" %}</h1>
-        <p class="text-lg text-white text-center">{% trans "Update the details of an existing delivery." %}</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create New Delivery" %}</h1>
+        <p class="text-lg text-white text-center">{% trans "Set up a new delivery for a course or program." %}</p>
     </header>
 
     <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
@@ -28,7 +28,7 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Edit Delivery" %}</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Create Delivery" %}</span>
                 </div>
             </li>
         </ol>
@@ -51,20 +51,20 @@
                         <div>{{ form.delivery_type|as_crispy_field }}</div>
                         <div>{{ form.delivery_mode|as_crispy_field }}</div>
                     </div>
-                    <div id="programField" {% if form.instance.delivery_type != 'PROGRAM' %}class="hidden"{% endif %}>
+                    <div id="programField" class="hidden">
                         {{ form.program|as_crispy_field }}
                     </div>
-                    <div id="courseField" {% if form.instance.delivery_type != 'COURSE' %}class="hidden"{% endif %}>
+                    <div id="courseField" class="hidden">
                         {{ form.course|as_crispy_field }}
                     </div>
-                    <div id="instructorsField" {% if form.instance.delivery_mode != 'INSTRUCTOR_LED' %}class="hidden"{% endif %}>
+                    <div id="instructorsField" class="hidden">
                         <label for="id_instructors" class="block text-gray-700 text-sm font-bold mb-2">Instructors</label>
                         <input type="text" id="instructorSearch" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Search instructors...">
                         <div class="instructor-list h-48 overflow-y-auto border rounded p-2">
                             {% for value, label in form.instructors.field.choices %}
                                 <div class="instructor-item">
                                     <label class="inline-flex items-center">
-                                        <input type="checkbox" name="instructors" value="{{ value }}" class="form-checkbox" {% if value in form.instructors.value %}checked{% endif %}>
+                                        <input type="checkbox" name="instructors" value="{{ value }}" class="form-checkbox">
                                         <span class="ml-2">{{ label }}</span>
                                     </label>
                                 </div>
@@ -108,12 +108,12 @@
                 </div>
             </div>
             
-            <div class="flex items-center justify-between mt-6">
+            <div class="flex mt-6 justify-between">
                 <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.history.back();">
                     Back
                 </button>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Update Delivery
+                    Create Delivery
                 </button>
             </div>
         </form>

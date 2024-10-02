@@ -92,7 +92,10 @@ urlpatterns = [
         path('<uuid:pk>/edit/', administrator_views.AdministratorProgramEditView.as_view(), name='administrator_program_edit'),
         path('<uuid:pk>/publish/', administrator_views.AdministratorProgramPublishView.as_view(), name='administrator_program_publish'),
         path('<uuid:pk>/unpublish/', administrator_views.AdministratorProgramUnpublishView.as_view(), name='administrator_program_unpublish'),
+        path('<uuid:program_id>/courses/', administrator_views.AdministratorProgramCoursesView.as_view(), name='administrator_program_courses'),
         path('<uuid:program_id>/add-course/', administrator_views.AdministratorProgramCourseCreateView.as_view(), name='administrator_program_add_course'),
+        path('<uuid:program_id>/remove-course/<uuid:program_course_id>/', administrator_views.AdministratorProgramCourseRemoveView.as_view(), name='administrator_program_remove_course'),
+        path('<uuid:program_id>/deliveries/', administrator_views.ProgramDeliveryListView.as_view(), name='administrator_program_delivery_list'),
     ])),
 
     # Reports
