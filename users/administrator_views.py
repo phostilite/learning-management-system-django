@@ -1691,22 +1691,18 @@ class OrganizationDetailsView(LoginRequiredMixin, AdministratorRequiredMixin, Te
         context = super().get_context_data(**kwargs)
         try:
             organization = Organization.objects.first()
-            if not organization:
-                logger.error("No organization found in the system")
-                raise Http404("No organization found in the system")
-
-            context['organization'] = organization
-            context['organization_units'] = OrganizationUnit.objects.filter(organization=organization).select_related('parent', 'manager')
-            context['locations'] = Location.objects.filter(organization=organization)
-            context['contacts'] = OrganizationContact.objects.filter(organization=organization)
-
-            logger.info(f"Organization details retrieved successfully for {organization.name}")
-        except ObjectDoesNotExist as e:
-            logger.error(f"Error retrieving organization details: {str(e)}")
-            raise Http404("Organization not found")
+            if organization:
+                context['organization'] = organization
+                context['organization_units'] = OrganizationUnit.objects.filter(organization=organization).select_related('parent', 'manager')
+                context['locations'] = Location.objects.filter(organization=organization)
+                context['contacts'] = OrganizationContact.objects.filter(organization=organization)
+                logger.info(f"Organization details retrieved successfully for {organization.name}")
+            else:
+                logger.warning("No organization found in the system")
+                context['no_organization_message'] = _("No organization found in the system. Please create an organization.")
         except Exception as e:
             logger.error(f"Unexpected error in OrganizationDetailsView: {str(e)}")
-            raise
+            context['error'] = str(e)
 
         return context
 

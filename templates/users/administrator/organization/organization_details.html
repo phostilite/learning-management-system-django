@@ -48,16 +48,18 @@
 {% block content %}
 <div class="organization-details-page bg-gray-100 min-h-screen" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
     <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl mb-8 shadow-lg relative overflow-hidden">
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 shadow-lg relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-4xl font-bold text-center mb-2">{{ organization.name }}</h1>
-            <p class="text-center text-xl">{% trans "Organization Details" %}</p>
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Organization Details" %}</h1>
+            {% if organization %}
+                <p class="text-center text-xl">{{ organization.name }}</p>
+            {% endif %}
         </div>
         <div class="absolute inset-0 bg-black opacity-10"></div>
     </header>
 
     <!-- Breadcrumb -->
-    <nav class="flex mb-8" aria-label="Breadcrumb">
+    <nav class="flex mb-5" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
                 <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
@@ -74,6 +76,34 @@
         </ol>
     </nav>
 
+    {% if no_organization_message %}
+    <div class="mb-8">
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+            <p>{{ no_organization_message }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="mb-8">
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold">{% trans "Error" %}</p>
+            <p>{{ error }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if no_organization %}
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
+        <h2 class="text-2xl font-bold mb-4">{% trans "No Organization Found" %}</h2>
+        <p class="text-gray-600 mb-4">{% trans "There is currently no organization set up in the system." %}</p>
+    </div>
+    {% elif error %}
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-8" role="alert">
+        <p class="font-bold">{% trans "Error" %}</p>
+        <p>{{ error }}</p>
+    </div>
+    {% elif organization %}
     <!-- Organization Details -->
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Tabs -->
@@ -162,7 +192,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for unit in organization.units.all %}
+                            {% for unit in organization_units %}
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-4 px-6">{{ unit.name }}</td>
                                 <td class="py-4 px-6">{{ unit.get_unit_type_display }}</td>
@@ -183,7 +213,7 @@
             <div id="locations" class="tab-content">
                 <h2 class="text-2xl font-bold mb-4">{% trans "Locations" %}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {% for location in organization.locations.all %}
+                    {% for location in locations %}
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h3 class="text-xl font-semibold mb-2">{{ location.name }}</h3>
                         <p class="text-gray-600">{{ location.address_line1 }}</p>
@@ -217,7 +247,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for contact in organization.contacts.all %}
+                            {% for contact in contacts %}
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-4 px-6">{{ contact.name }}</td>
                                 <td class="py-4 px-6">{{ contact.position }}</td>
@@ -242,6 +272,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
 
