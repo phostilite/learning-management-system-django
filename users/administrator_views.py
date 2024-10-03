@@ -448,6 +448,24 @@ class AdministratorCourseCreateCategoryView(AdministratorRequiredMixin, View):
                 'success': False,
                 'errors': form.errors
             }, status=400)
+            
+            
+class AdministratorCourseDeleteCategoryView(AdministratorRequiredMixin, DeleteView):
+    model = CourseCategory
+    success_url = reverse_lazy('administrator_course_category_list')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            category = get_object_or_404(CourseCategory, pk=self.kwargs.get('pk'))
+            category.delete()
+            return redirect(self.success_url)
+        
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+
 # ============================================================
 # ======================= Course Views =======================
 # ============================================================
