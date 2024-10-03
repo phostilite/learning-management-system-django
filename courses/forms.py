@@ -13,6 +13,7 @@ from users.models import User
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -447,3 +448,26 @@ class UserEnrollmentForm(forms.Form):
                 raise forms.ValidationError("Invalid course selected.")
 
         return cleaned_data
+    
+
+
+# ============================================================
+# ======================= Course Category ====================
+# ============================================================
+
+class CourseCategoryForm(forms.ModelForm):
+    class Meta:
+        model = CourseCategory
+        fields = ['name', 'description', 'parent', 'status']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-input'}),
+            'description': forms.Textarea(attrs={'class': 'form-textarea', 'rows': 3}),
+            'parent': forms.Select(attrs={'class': 'form-select'}),
+            'status': forms.Select(attrs={'class': 'form-select'}),
+        }
+        help_texts = {
+            'name': 'Enter the name of the course category.',
+            'description': 'Provide a brief description of the course category.',
+            'parent': 'Select a parent category if applicable.',
+            'status': 'Choose the status of the course category.',
+        }

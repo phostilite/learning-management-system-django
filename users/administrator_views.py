@@ -29,7 +29,7 @@ from django.db.models import Count, Q, Avg, ExpressionWrapper, F, fields
 from django.db.models.functions import TruncMonth
 from django.forms import formset_factory
 from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -52,7 +52,7 @@ from courses.forms import (CourseComponentForm, CourseForm, CoursePublishForm,
                            LearningResourceForm, LearningResourceFormSet,
                            ProgramCourseForm, ProgramForm, ProgramPublishForm,
                            ProgramUnpublishForm, ResourceComponentForm,
-                           ScormResourceForm)
+                           ScormResourceForm, CourseCategoryForm)
 from courses.models import (Course, CourseCategory, Delivery, DeliveryComponent,
                             Enrollment, LearningResource, Program,
                             ProgramCourse, ScormResource, Tag)
@@ -428,9 +428,26 @@ class AdministratorCourseCategoryListView(AdministratorRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['status_choices'] = CourseCategory.STATUS_CHOICES
+        context['form'] = CourseCategoryForm
         return context
 
 
+    
+
+
+class AdministratorCourseCreateCategoryView(AdministratorRequiredMixin, View):
+    
+
+    def post(self, request, *args, **kwargs):
+        form = CourseCategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('administrator_course_category_list')
+        else:
+            return JsonResponse({
+                'success': False,
+                'errors': form.errors
+            }, status=400)
 # ============================================================
 # ======================= Course Views =======================
 # ============================================================

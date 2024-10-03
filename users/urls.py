@@ -26,6 +26,7 @@ urlpatterns = [
         path('categories/', administrator_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
         path('learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
     ])),
+        path('administrator/course/coursecategory/create', administrator_views.AdministratorCourseCreateCategoryView.as_view(), name='administrator_course_category_create'),
 
     # Learning Resources
     path('administrator/course/<uuid:course_id>/resources/', include([

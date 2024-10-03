@@ -1,8 +1,6 @@
 # forms.py
 
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit
 from .models import SupportTicket, SupportCategory,FAQ
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Field

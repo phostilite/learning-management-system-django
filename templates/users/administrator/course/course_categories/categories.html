@@ -1,5 +1,6 @@
 {% extends '../../_base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Course Categories - LMS Admin{% endblock %}
 
@@ -52,9 +53,10 @@
         
         <!-- Action Buttons -->
         <div class="mb-8 flex gap-4">
-            <button type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center" onclick="openModal()">
+            <a href="#" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center" data-modal-target="category-create-modal" data-modal-toggle="category-create-modal">
                 <i class="fas fa-plus mr-2"></i> Create Category
-            </button>
+            </a>
+            
             <button type="button" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
                 <i class="fas fa-file-export mr-2"></i> Export Categories
             </button>
@@ -148,6 +150,8 @@
         </div>
     </div>
 </div>
+{% include "./create_category.html" %} 
+
 {% endblock %}
 
 
