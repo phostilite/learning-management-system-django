@@ -149,6 +149,10 @@ urlpatterns = [
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
 
+    path('learner/announcements/', learner_views.AnnouncementListView.as_view(), name='learner_announcements'),
+    path('learner/announcement/<uuid:pk>/detail/', learner_views.AnnouncementDetailView.as_view(), name='learner_announcement_detail'),
+    path('learner/announcement/<uuid:pk>/mark-read/', learner_views.AnnouncementReadView.as_view(), name='learner_mark_announcement_read'),
+
     path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),
     path('learner/notifications/<uuid:pk>/mark-read/', learner_views.MarkNotificationReadView.as_view(), name='learner_mark_notification_read'),
@@ -193,19 +197,21 @@ urlpatterns = [
     # Enrollment
     path('learner/enroll/<str:enrollment_type>/<uuid:object_id>/', learner_views.EnrollmentConfirmationView.as_view(), name='learner_enroll'),
 
-    # Announcements
-    path('learner/announcements/', learner_views.AnnouncementListView.as_view(), name='learner_announcements'),
-    path('learner/announcement/<uuid:pk>/detail/', learner_views.AnnouncementDetailView.as_view(), name='learner_announcement_detail'),
-    path('learner/announcement/<uuid:pk>/mark-read/', learner_views.AnnouncementReadView.as_view(), name='learner_mark_announcement_read'),
-    
-
+  
 
 
 
     # ==================== Facilitator URLs ====================
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),
+
+    path('facilitator/announcements/', facilitator_views.AnnouncementListView.as_view(), name='facilitator_announcements'),
+    path('facilitator/announcement/<uuid:pk>/detail/', facilitator_views.AnnouncementDetailView.as_view(), name='facilitator_announcement_detail'),
+    path('facilitator/announcement/<uuid:pk>/mark-read/', facilitator_views.AnnouncementReadView.as_view(), name='facilitator_mark_announcement_read'),
+
     path('facilitator/notification/', facilitator_views.FacilitatorNotificationListView.as_view(), name='facilitator_notification_list'),
 
+    
+    
     # ==================== Supervisor URLs ====================
     path('supervisor/dashboard/', supervisor_views.SupervisorDashboardView.as_view(), name='supervisor_dashboard'),
     path('supervisor/notification/', supervisor_views.SupervisorNotificationListView.as_view(), name='supervisor_notification_list'),
