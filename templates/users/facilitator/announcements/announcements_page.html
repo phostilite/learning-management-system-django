@@ -1,0 +1,83 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Announcements - LMS" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="w-full">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-b from-green-900 to-green-800 text-white p-6 rounded-xl mb-4 card-shadow">
+        <h1 class="text-3xl font-bold text-white text-center">{% trans "Announcements" %}</h1>
+        <p class="text-center text-lg">{% trans "Stay updated with the latest announcements." %}</p>
+    </header>
+
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'facilitator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Announcements" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Announcements List -->
+    <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
+        {% if announcements %}
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Title" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Content" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Author" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Priority" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Publish Date" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{% trans "Status" %}</th>
+                        <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase
+                            tracking-wider">{% trans "Action" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for announcement in announcements %}
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.title }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.content }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.author.username }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.get_priority_display }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ announcement.publish_date|date:"Y-m-d H:i" }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                {% if announcement.is_read %}
+                                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-semibold"> Read </span>
+                                {% else %}
+                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs font-semibold"> Unread </span>
+                                {% endif %}
+                            </td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <a href="{% url 'facilitator_announcement_detail' announcement.id %}" class="text-green-600 hover:underline">
+                                    {% trans "View" %} 
+                                </a>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-center text-gray-600">{% trans "No announcements available." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

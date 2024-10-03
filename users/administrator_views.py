@@ -1765,10 +1765,11 @@ class UnreadNotificationsCountView(LoginRequiredMixin, AdministratorRequiredMixi
             logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
             return JsonResponse({'count': 0})
         
+
+
 # ============================================================
 # ======================= Announcements Views ================
 # ============================================================
-
 class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     template_name = 'users/administrator/announcements/announcements.html'
     model = Announcement
