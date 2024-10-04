@@ -1,0 +1,273 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load announcements_custom_filters %}
+
+{% block title %}{% trans "Announcements - LMS Supervisor" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="announcements-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Announcements Management" %}</h1>
+            <p class="text-center text-lg">{% trans "Create and Manage System-wide Announcements" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Announcements" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Announcement Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Total Announcements" %}</h3>
+            <p class="text-3xl font-bold text-primary">{{ total_announcements }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Active Announcements" %}</h3>
+            <p class="text-3xl font-bold text-accent">{{ active_announcements }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Scheduled" %}</h3>
+            <p class="text-3xl font-bold text-yellow-500">{{ scheduled_announcements }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 card-shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Engagement Rate" %}</h3>
+            <p class="text-3xl font-bold text-green-600">{{ avg_engagement_rate|floatformat:2 }}%</p>
+        </div>
+    </div>
+
+    <!-- Create New Announcement Button -->
+    <div class="mb-6">
+        <a href='#' data-modal-target="announcement-create-modal" data-modal-toggle="announcement-create-modal" class="bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 flex items-center" style="max-width: 280px;">
+            <svg class="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            {% trans "Create Announcement" %}
+        </a>
+        {% include './announcement_create.html' %}
+    </div>
+
+    <!-- Announcement Filters and Actions -->
+    <form method="get" class="mb-6 bg-white rounded-lg p-6 shadow-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="form-group">
+                <label for="{{ filter.form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Title" %}:</label>
+                <input type="text" name="{{ filter.form.title.name }}" id="{{ filter.form.title.id_for_label }}" {% if filter.form.title.value %}value="{{ filter.form.title.value }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.priority.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Priority" %}:</label>
+                <select name="{{ filter.form.priority.name }}" id="{{ filter.form.priority.id_for_label }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    {% for value, label in filter.form.priority.field.choices %}
+                        <option value="{{ value }}" {% if value == filter.form.priority.value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.publish_date_after.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Published After" %}:</label>
+                <input type="date" name="{{ filter.form.publish_date_after.name }}" id="{{ filter.form.publish_date_after.id_for_label }}" {% if filter.form.publish_date_after.value %}value="{{ filter.form.publish_date_after.value|date:'Y-m-d' }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            <div class="form-group">
+                <label for="{{ filter.form.publish_date_before.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{% trans "Published Before" %}:</label>
+                <input type="date" name="{{ filter.form.publish_date_before.name }}" id="{{ filter.form.publish_date_before.id_for_label }}" {% if filter.form.publish_date_before.value %}value="{{ filter.form.publish_date_before.value|date:'Y-m-d' }}"{% endif %} class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+        </div>
+        <div class="flex justify-end space-x-2 rtl:space-x-reverse mt-4">
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">{% trans "Apply Filter" %}</button>
+            <button type="button" onclick="exportToExcel()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">{% trans "Export" %}</button>
+        </div>
+    </form>
+
+
+    <!-- Announcements Table -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500" id="announcementsTable">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">{% trans "Title" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Author" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Priority" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Published Date" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Expiry Date" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Updated At" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for announcement in announcements %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ announcement.title }}
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ announcement.author }}
+                    </td>
+                    <td class="px-6 py-4 
+                        {% if announcement.priority == 'LOW' %}
+                            bg-green-100
+                        {% elif announcement.priority == 'MEDIUM' %}
+                            bg-yellow-100
+                        {% elif announcement.priority == 'HIGH' %}
+                            bg-orange-100
+                        {% elif announcement.priority == 'URGENT' %}
+                            bg-red-100
+                        {% endif %}
+                    ">
+                        {{ announcement.priority }}
+                    </td>
+                    <td class="px-6 py-4">{{ announcement.publish_date }}</td>
+                    <td class="px-6 py-4">{{ announcement.expiry_date }}</td>
+                    <td class="px-6 py-4">{{announcement.updated_at}}</td>
+                    <td class="px-6 py-4">                        
+                        <div>
+                            <button id="announcementDropdownButton{{ announcement.id }}" data-dropdown-toggle="announcementDropdown{{ announcement.id }}" class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div id="announcementDropdown{{ announcement.id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 text-left absolute right-0">
+                                <ul class="py-2 text-sm text-black" aria-labelledby="announcementDropdownButton{{ announcement.id }}">
+                                    <li>
+                                        <a href="{% url 'supervisor_announcement_detail' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "View Announcement Detail" %}
+                                        </a>
+                                    </li>
+                                    {% if announcement|is_author_in_group:'supervisor' %}
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100" data-modal-target="announcement-update-modal{{ announcement.id }}" data-modal-toggle="announcement-update-modal{{ announcement.id }}" data-announcement-id="{{ announcement.id }}" onclick="getAnnouncementDetails(this)">
+                                            <i class="fas fa-edit mr-2"></i> {% trans "Edit/Update Announcement" %}
+                                        </a>                                        
+                                    </li>
+                                    {% endif %}
+                                    <li>
+                                        <a href="#" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150 ease-in-out rounded-md group" data-modal-target="crud-modal{{ announcement.id }}" data-modal-toggle="crud-modal{{ announcement.id }}">
+                                            <i class="fas fa-user-plus mr-3 text-gray-400 group-hover:text-blue-500 transition duration-150 ease-in-out"></i>
+                                            <span class="font-medium">{% trans "Add Recipients" %}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'supervisor_announcement_manage_recipients' announcement.pk %}" class="block px-4 py-2 hover:bg-gray-100">
+                                            <i class="fas fa-eye mr-2"></i> {% trans "Manage Recipients" %}
+                                        </a>
+                                    </li>
+                                    {% if announcement|is_author_in_group:'supervisor' %}
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-red-600" data-modal-target="announcement-delete-modal{{ announcement.id }}" data-modal-toggle="announcement-delete-modal{{ announcement.id }}">
+                                            <i class="fas fa-trash-alt mr-2 text-red-600"></i> {% trans "Delete Announcement" %}
+                                        </a>                                        
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% include './announcement_update.html' %}
+                        {% include './announcement_delete.html' %}
+                        {% include './announcement_add_recipient.html' %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td colspan="4">No announcements found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Previous</a></li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function exportToExcel() {
+        // Get the table data
+        const table = document.getElementById('announcementsTable');
+        const rows = table.querySelectorAll('tr');
+        const data = [];
+    
+        // Iterate over each row and extract the data
+        rows.forEach((row, rowIndex) => {
+            const rowData = [];
+            row.querySelectorAll('th, td').forEach(cell => {
+                rowData.push(cell.innerText);
+            });
+            data.push(rowData);
+        });
+    
+        // Convert the data to a worksheet
+        const worksheet = XLSX.utils.aoa_to_sheet(data);
+    
+        // Create a new workbook and append the worksheet
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Announcements");
+    
+        // Export the workbook to an Excel file
+        XLSX.writeFile(workbook, "announcements.xlsx");
+    }
+
+
+    function handleRecipientFormSubmit(event, announcementId) {
+        event.preventDefault();
+        const form = document.getElementById(`recipient-form-${announcementId}`);
+        const formData = new FormData(form);
+    
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.href = "{% url 'supervisor_announcements' %}";
+            } else {
+                // Handle form errors (optional)
+                console.error('Form submission error:', data.errors);
+            }
+        })
+        .catch(error => {
+            console.error('Form submission error:', error);
+        });
+    }
+    </script>
+{% endblock %}
