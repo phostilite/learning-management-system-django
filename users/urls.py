@@ -57,31 +57,39 @@ urlpatterns = [
     ])),
 
     # Delivery Management
-    path('administrator/deliveries/', include([
-        path('', administrator_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
-        path('create/', administrator_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
-        path('<uuid:pk>/', administrator_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),
-        path('<uuid:pk>/edit/', administrator_views.AdministratorDeliveryEditView.as_view(), name='administrator_delivery_edit'),
-        path('<uuid:pk>/delete/', administrator_views.AdministratorDeliveryDeleteView.as_view(), name='administrator_delivery_delete'),
-    ])),
+    path('administrator/deliveries/', administrator_views.AdministratorDeliveryListView.as_view(), name='administrator_delivery_list'),
 
-    # Enrollment Management
-    path('administrator/enrollments/', include([
-        path('', administrator_views.AdministratorEnrollmentListView.as_view(), name='administrator_enrollment_list'),
-        path('create/', administrator_views.AdministratorEnrollmentCreateView.as_view(), name='administrator_enrollment_create'),
-        path('<uuid:pk>/edit/', administrator_views.AdministratorEnrollmentEditView.as_view(), name='administrator_enrollment_edit'),
-        path('<uuid:pk>/delete/', administrator_views.AdministratorEnrollmentDeleteView.as_view(), name='administrator_enrollment_delete'),
-    ])),
+    path('administrator/deliveries/create/basic-info/', administrator_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
+    path('administrator/deliveries/<uuid:pk>/create/enrollment/', administrator_views.DeliveryEnrollmentsFormView.as_view(), name='administrator_delivery_enrollment_form'),
+    path('administrator/deliveries/<uuid:pk>/create/component/', administrator_views.DeliveryComponentFormView.as_view(), name='administrator_delivery_component_form'),
 
-    path('administrator/delivery/<uuid:delivery_id>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
-    path('administrator/delivery/<uuid:delivery_id>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
 
-    # Delivery Components
-    path('administrator/deliveries/<uuid:delivery_id>/add-course-component/', administrator_views.CourseComponentCreateView.as_view(), name='administrator_add_course_component'),
+    path('administrator/deliveries/<uuid:pk>/', administrator_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),
+    path('administrator/deliveries/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryEditView.as_view(), name='administrator_delivery_edit'),
+    path('administrator/deliveries/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryDeleteView.as_view(), name='administrator_delivery_delete'),
+
+    path('administrator/delivery/<uuid:pk>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
+    path('administrator/delivery/<uuid:pk>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
+
+
+    
+
+    # Delivery Course Components
+    path('administrator/deliveries/<uuid:pk>/add-course-component/', administrator_views.DeliveryCourseComponentCreateView.as_view(), name='administrator_add_delivery_course_component'),
+
+    # Delivery Resource Components
     path('administrator/components/<uuid:parent_component_id>/add-resource-component/', administrator_views.ResourceComponentCreateView.as_view(), name='administrator_add_resource_component'),
+
+    # Delivery Add Resource To Course
     path('administrator/deliveries/<uuid:delivery_id>/add-resource-component/', administrator_views.ResourceComponentCreateView.as_view(), name='administrator_add_resource_component_to_course'),
+    
+    # Delivery Component Edit
     path('administrator/delivery-component/<uuid:pk>/edit/', administrator_views.AdministratorDeliveryComponentEditView.as_view(), name='administrator_delivery_component_edit'),
+
+    # Delivery Component Delete
     path('administrator/delivery-component/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
+
+
 
     # Program Management
     path('administrator/program/', include([

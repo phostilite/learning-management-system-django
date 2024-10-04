@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <h3 class="text-xl font-semibold mb-4">Schedule</h3>
+    <div class="grid grid-cols-2 gap-6">
+        <div>{{ form.start_date|as_crispy_field }}</div>
+        <div>{{ form.end_date|as_crispy_field }}</div>
+        <div>{{ form.enrollment_start|as_crispy_field }}</div>
+        <div>{{ form.enrollment_end|as_crispy_field }}</div>
+    </div>
+    <div class="mt-4">
+        {{ form.deactivation_date|as_crispy_field }}
+    </div>
+</div>

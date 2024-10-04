@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <h3 class="text-xl font-semibold mb-4">Basic Information</h3>
+    <div class="grid grid-cols-1 gap-6">
+        <div>
+            {{ form.title|as_crispy_field }}
+        </div>
+        <div>
+            {{ form.description|as_crispy_field }}
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>{{ form.delivery_type|as_crispy_field }}</div>
+            <div>{{ form.delivery_mode|as_crispy_field }}</div>
+        </div>
+        <div id="programField" class="hidden">
+            {{ form.program|as_crispy_field }}
+        </div>
+        <div id="courseField" class="hidden">
+            {{ form.course|as_crispy_field }}
+        </div>
+        <div id="instructorsField" class="hidden">
+            <label for="id_instructors" class="block text-gray-700 text-sm font-bold mb-2">Instructors</label>
+            <input type="text" id="instructorSearch" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Search instructors...">
+            <div class="instructor-list h-48 overflow-y-auto border rounded p-2">
+                {% for value, label in form.instructors.field.choices %}
+                    <div class="instructor-item">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="instructors" value="{{ value }}" class="form-checkbox">
+                            <span class="ml-2">{{ label }}</span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if form.instructors.help_text %}
+                <p class="text-gray-600 text-xs italic">{{ form.instructors.help_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <h3 class="text-xl font-semibold mb-4">Delivery Settings</h3>
+    <div class="grid grid-cols-3 gap-6">
+        <div>{{ form.max_participants|as_crispy_field }}</div>
+        <div>{{ form.is_active|as_crispy_field }}</div>
+        <div>{{ form.is_mandatory|as_crispy_field }}</div>
+    </div>
+    <div class="grid grid-cols-3 gap-6 mt-4">
+        <div>{{ form.completion_criteria|as_crispy_field }}</div>
+        <div>{{ form.minimum_score|as_crispy_field }}</div>
+        <div>{{ form.attendance_threshold|as_crispy_field }}</div>
+    </div>
+    <div class="grid grid-cols-2 gap-6 mt-4">
+        <div>{{ form.issue_certificate|as_crispy_field }}</div>
+        <div>{{ form.allow_self_unenroll|as_crispy_field }}</div>
+    </div>
+</div>

@@ -1,39 +1,30 @@
-{% extends '../_base.html' %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
-{% block title %}{% trans "Add Course Component" %}{% endblock %}
-
-{% block content %}
-<div>
-    <h1 class="text-3xl font-bold mb-4">{% trans "Add Course Component" %}</h1>
-    
-    <form method="post" class="max-w-lg">
-        {% csrf_token %}
-        
-        <div class="mb-4">
-            <label for="{{ form.program_course.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Program Course" %}:
-            </label>
-            {{ form.program_course }}
+<div id="delivery-course-component-modal{{ delivery.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                <h3 class="text-lg font-semibold text-gray-900">
+                    {% trans "Add Course Component" %}
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="delivery-course-component-modal{{ delivery.id }}">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">{% trans "Close modal" %}</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form method="post" action="{% url 'administrator_add_delivery_course_component' delivery.id %}" class="p-4 md:p-5">
+                {% csrf_token %}
+                {{ course_component_form|crispy }}
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Add Component
+                </button>
+            </form>
         </div>
-        
-        <div class="mb-4">
-            <label for="{{ form.is_mandatory.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Is Mandatory" %}:
-            </label>
-            {{ form.is_mandatory }}
-        </div>
-        
-        <div class="mb-4">
-            <label for="{{ form.order.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                {% trans "Order" %}:
-            </label>
-            {{ form.order }}
-        </div>
-        
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {% trans "Add Course Component" %}
-        </button>
-    </form>
+    </div>
 </div>
-{% endblock %}

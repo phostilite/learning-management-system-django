@@ -504,9 +504,10 @@ class CourseComponentForm(forms.ModelForm):
         fields = ['program_course', 'is_mandatory', 'order']
 
     def __init__(self, *args, **kwargs):
-        self.delivery = kwargs.pop('delivery')
+        self.delivery = kwargs.pop('delivery', None)
         super().__init__(*args, **kwargs)
-        self.fields['program_course'].queryset = ProgramCourse.objects.filter(program=self.delivery.program)
+        if self.delivery:
+            self.fields['program_course'].queryset = ProgramCourse.objects.filter(program=self.delivery.program)
 
 class ResourceComponentForm(forms.ModelForm):
     class Meta:

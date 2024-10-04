@@ -908,8 +908,6 @@ class QuizAddQuestionsView(LoginRequiredMixin, AdministratorRequiredMixin, Creat
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_add_questions.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if not self.permission_classes[0]().has_permission(request, self):
-            return self.handle_no_permission()
         self.quiz = get_object_or_404(Quiz, pk=self.kwargs['quiz_id'])
         self.course = get_object_or_404(Course, pk=self.kwargs['course_id'])
         self.learning_resource = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'])
@@ -1056,7 +1054,6 @@ class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredM
     model = Delivery
     form_class = DeliveryCreateForm
     template_name = 'users/administrator/deliveries/delivery_create.html'
-    success_url = reverse_lazy('administrator_delivery_list')  
 
     def form_valid(self, form):
         try:
@@ -1068,7 +1065,7 @@ class AdministratorDeliveryCreateView(LoginRequiredMixin, AdministratorRequiredM
             delivery.save()
             logger.info(f"Delivery '{delivery.title}' created successfully by {self.request.user}")
             messages.success(self.request, f"Delivery '{delivery.title}' has been created successfully.")
-            return super().form_valid(form)
+            return redirect('administrator_delivery_enrollment_form', pk=delivery.pk)
         except Exception as e:
             logger.error(f"Error creating delivery: {str(e)}")
             messages.error(self.request, "An error occurred while creating the delivery. Please try again.")
@@ -1150,6 +1147,9 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredM
             # Email Templates
             email_templates = DeliveryEmailTemplate.objects.filter(delivery=delivery)
 
+            # Course Component Form
+            context['course_component_form'] = CourseComponentForm(delivery=delivery)
+
             # Attendance (for the latest schedule, if any)
             latest_schedule = schedules.first()
             attendance = DeliveryAttendance.objects.filter(delivery=delivery, schedule=latest_schedule) if latest_schedule else None
@@ -1209,23 +1209,22 @@ class AdministratorDeliveryDeleteView(LoginRequiredMixin, AdministratorRequiredM
 
     def handle_no_permission(self):
         return JsonResponse({'error': _('You do not have permission to delete this delivery.')}, status=403)
+    
 
-class CourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
-    model = DeliveryComponent
-    form_class = CourseComponentForm
-    template_name = 'users/administrator/deliveries/course_component_form.html'
+class DeliveryCourseComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        delivery = get_object_or_404(Delivery, pk=self.kwargs['pk'])
+        form = CourseComponentForm(request.POST, delivery=delivery)
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['delivery'] = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
-        return kwargs
-
-    def form_valid(self, form):
-        form.instance.delivery = form.delivery
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.kwargs['delivery_id']})
+        if form.is_valid():
+            component = form.save(commit=False)
+            component.delivery = delivery
+            component.save()
+            success_url = reverse_lazy('administrator_delivery_detail', kwargs={'pk': delivery.id})
+            return HttpResponseRedirect(success_url)
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
+        
 
 class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
     model = DeliveryComponent
@@ -1315,12 +1314,11 @@ class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
 
         return context
 
-class DeliveryEnrollmentsCreateView(LoginRequiredMixin, FormView):
-    template_name = 'users/administrator/deliveries/enrollments/enrollment_create.html'
+class BaseDeliveryEnrollmentsView(LoginRequiredMixin, FormView):
     form_class = EnrollmentForm
 
     def dispatch(self, request, *args, **kwargs):
-        self.delivery = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
+        self.delivery = get_object_or_404(Delivery, pk=self.kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
@@ -1364,8 +1362,25 @@ class DeliveryEnrollmentsCreateView(LoginRequiredMixin, FormView):
         messages.error(self.request, "Please correct the errors below.")
         return super().form_invalid(form)
 
+# Full functionality view
+class DeliveryEnrollmentsCreateView(BaseDeliveryEnrollmentsView):
+    template_name = 'users/administrator/deliveries/enrollments/enrollment_create.html'
+
     def get_success_url(self):
-        return reverse_lazy('administrator_delivery_enrollments', kwargs={'delivery_id': self.delivery.id})
+        return reverse_lazy('administrator_delivery_enrollments', kwargs={'pk': self.delivery.id})
+
+# Form only view
+class DeliveryEnrollmentsFormView(BaseDeliveryEnrollmentsView):
+    template_name = 'users/administrator/deliveries/delivery_create_form/enrollment_form.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('administrator_delivery_component_form', kwargs={'pk': self.delivery.id})
+
+class DeliveryComponentFormView(AdministratorDeliveryDetailView):
+    template_name = 'users/administrator/deliveries/delivery_create_form/delivery_component_form.html'
+
+    def get_success_url(self):
+        return reverse('custom_delivery_success_url')
     
 # ============================================================
 # ======================= Program Views ======================
@@ -1616,104 +1631,6 @@ class ProgramDeliveryListView(LoginRequiredMixin, AdministratorRequiredMixin, Li
 
         return context
     
-# ============================================================
-# ======================= Enrollments Views ==================
-# ============================================================
-
-class AdministratorEnrollmentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
-    template_name = 'users/administrator/enrollments/enrollment_create.html'
-    form_class = EnrollmentForm
-    success_url = reverse_lazy('administrator_enrollment_list')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['users'] = User.objects.all()
-        return context
-
-    def form_valid(self, form):
-        enrollment_type = form.cleaned_data['enrollment_type']
-        delivery = form.cleaned_data.get('delivery')
-        program = form.cleaned_data.get('program')
-        course = form.cleaned_data.get('course')
-        
-        selected_users = self.request.POST.getlist('selected_users')
-        users = User.objects.filter(id__in=selected_users)
-
-        enrollments_created = 0
-        already_enrolled = []
-        errors = []
-
-        for user in users:
-            enrollment_data = {
-                'user': user,
-                'status': 'ENROLLED'
-            }
-
-            if enrollment_type == 'delivery':
-                enrollment_data['delivery'] = delivery
-                existing_enrollment = Enrollment.objects.filter(user=user, delivery=delivery).exists()
-            elif enrollment_type == 'program':
-                enrollment_data['program'] = program
-                existing_enrollment = Enrollment.objects.filter(user=user, program=program).exists()
-            else:
-                enrollment_data['course'] = course
-                existing_enrollment = Enrollment.objects.filter(user=user, course=course).exists()
-
-            if existing_enrollment:
-                already_enrolled.append(user.username)
-                continue
-
-            try:
-                Enrollment.objects.create(**enrollment_data)
-                enrollments_created += 1
-            except IntegrityError:
-                already_enrolled.append(user.username)
-            except Exception as e:
-                errors.append(f"Error enrolling {user.username}: {str(e)}")
-
-        if enrollments_created > 0:
-            messages.success(self.request, _(f"{enrollments_created} enrollments created successfully."))
-        
-        if already_enrolled:
-            messages.warning(self.request, _(f"The following users were already enrolled: {', '.join(already_enrolled)}"))
-        
-        if errors:
-            for error in errors:
-                messages.error(self.request, _(error))
-        
-        if errors or not enrollments_created:
-            return self.form_invalid(form)
-        
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        for field, errors in form.errors.items():
-            for error in errors:
-                messages.error(self.request, f"{form.fields[field].label}: {error}")
-        return super().form_invalid(form)
-    
-class AdministratorEnrollmentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
-    model = Enrollment
-    form_class = EnrollmentEditForm
-    template_name = 'users/administrator/enrollments/enrollment_edit.html'
-    success_url = reverse_lazy('administrator_enrollment_list')
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(Enrollment, pk=self.kwargs['pk'])
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, _("Enrollment updated successfully."))
-        return response
-
-class AdministratorEnrollmentDeleteView(DeleteView):
-    model = Enrollment
-    template_name = 'users/administrator/enrollments/enrollment_confirm_delete.html'
-    success_url = reverse_lazy('administrator_enrollment_list')
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, _("Enrollment deleted successfully."))
-        return super().delete(request, *args, **kwargs)
 
 # ============================================================
 # =============== Organization Hierarcy Views ================
