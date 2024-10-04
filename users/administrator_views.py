@@ -879,11 +879,6 @@ class QuizCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView)
     form_class = QuizForm
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_create.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.permission_classes[0]().has_permission(request, self):
-            return self.handle_no_permission()
-        return super().dispatch(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['course'] = get_object_or_404(Course, pk=self.kwargs['course_id'])
@@ -984,8 +979,6 @@ class QuizEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     template_name = 'users/administrator/course/learning_resource/quizzes/quiz_edit.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if not all(permission().has_permission(request, self) for permission in self.permission_classes):
-            return self.handle_no_permission()
         self.course = get_object_or_404(Course, pk=self.kwargs['course_id'])
         self.learning_resource = get_object_or_404(LearningResource, pk=self.kwargs['resource_id'], course=self.course)
         return super().dispatch(request, *args, **kwargs)
