@@ -214,5 +214,16 @@ urlpatterns = [
     
     # ==================== Supervisor URLs ====================
     path('supervisor/dashboard/', supervisor_views.SupervisorDashboardView.as_view(), name='supervisor_dashboard'),
+    
+
+    path('supervisor/announcements/', supervisor_views.SupervisorAnnouncementListView.as_view(), name='supervisor_announcements'),
+    path('supervisor/announcement/create/', supervisor_views.AnnouncementCreateView.as_view(), name='supervisor_create_announcement'),
+    path('supervisor/announcement/<uuid:pk>/detail/', supervisor_views.SupervisorAnnouncementDetailView.as_view(), name='supervisor_announcement_detail'),
+    path('supervisor/announcement/<uuid:pk>/delete/', supervisor_views.SupervisorAnnouncementDeleteView.as_view(), name='supervisor_announcement_delete'),
+    path('supervisor/announcement/<uuid:pk>/update/', supervisor_views.SupervisorAnnouncementUpdateView.as_view(), name='supervisor_announcement_update'),
+    path('supervisor/announcement/<uuid:pk>/manage_recipient/', supervisor_views.SupervisorAnnouncementManageRecipientView.as_view(), name='supervisor_announcement_manage_recipients'),
+    path('supervisor/announcement/<uuid:pk>/mark-read/', supervisor_views.AnnouncementReadView.as_view(), name='supervisor_mark_announcement_read'),
+
+
     path('supervisor/notification/', supervisor_views.SupervisorNotificationListView.as_view(), name='supervisor_notification_list'),
 ]

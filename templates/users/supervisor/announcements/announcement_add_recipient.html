@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+    <div id="crud-modal{{ announcement.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900 bg-opacity-50">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-xl transform transition-all">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-6 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900 flex items-center">
+                        <i class="fas fa-plus-circle mr-2 text-blue-500"></i>
+                        Add Recipients
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="crud-modal{{ announcement.id }}">
+                        <i class="fas fa-times text-xl"></i>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6">
+                    <form id="recipient-form-{{ announcement.id }}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="announcement_recipient">
+                        <input type="hidden" name="announcement_id" value="{{ announcement.id }}">
+                        {% crispy recipient_form %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
