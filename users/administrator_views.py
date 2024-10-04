@@ -428,10 +428,13 @@ class AdministratorCourseCategoryListView(AdministratorRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['status_choices'] = CourseCategory.STATUS_CHOICES
-        context['form'] = CourseCategoryForm
+        context['form'] = CourseCategoryForm()
+        
+        # Add edit forms for each category
+        for category in context['categories']:
+            category.edit_form = CourseCategoryForm(instance=category, prefix=f'category_{category.id}')
+        
         return context
-
-
     
 
 
@@ -465,6 +468,31 @@ class AdministratorCourseDeleteCategoryView(AdministratorRequiredMixin, DeleteVi
                 'success': False,
                 'error': str(e)
             }, status=500)
+            
+            
+            
+class CourseCategoryEditView(View):
+    def get(self, request, pk):
+        category = get_object_or_404(CourseCategory, pk=pk)
+        parent_categories = CourseCategory.objects.exclude(pk=pk)
+        context = {
+            'category': category,
+            'parent_categories': parent_categories,
+        }
+        return render(request, 'course_category_edit_modal.html', context)
+
+    def post(self, request, pk):
+        try:
+            category = get_object_or_404(CourseCategory, pk=pk)
+            category.name = request.POST.get('name')
+            category.description = request.POST.get('description')
+            parent_id = request.POST.get('parent')
+            category.parent = CourseCategory.objects.get(pk=parent_id) if parent_id else None
+            category.status = request.POST.get('status')
+            category.save()
+            return JsonResponse({'success': True, 'message': 'Category updated successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)}, status=400)
 
 # ============================================================
 # ======================= Course Views =======================

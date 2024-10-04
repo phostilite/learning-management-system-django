@@ -27,7 +27,13 @@ urlpatterns = [
         path('learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
     ])),
         path('administrator/course/coursecategory/create/', administrator_views.AdministratorCourseCreateCategoryView.as_view(), name='administrator_course_category_create'),
+        
         path('administrator/course/coursecategory/<int:pk>/delete/', administrator_views.AdministratorCourseDeleteCategoryView.as_view(), name='administrator_course_category_delete'),
+        
+        path('administrator/course/coursecategory/<int:pk>/edit/', administrator_views.CourseCategoryEditView.as_view(),name='administrator_course_category_edit'),
+        
+        
+        
     # Learning Resources
     path('administrator/course/<uuid:course_id>/resources/', include([
         path('', administrator_views.AdministratorLearningResourcesListView.as_view(), name='administrator_course_resource_list'),
