@@ -1,0 +1,90 @@
+{% load i18n %}
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
+    <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Delivery Information" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Type:" %}</strong> {{ delivery.get_delivery_type_display }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Start Date:" %}</strong> {{ delivery.start_date|date:"F d, Y" }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "End Date:" %}</strong> {{ delivery.end_date|date:"F d, Y" }}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Status:" %}</strong> 
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if delivery.is_active %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                    {% if delivery.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Created:" %}</strong> {{ delivery.created_at|date:"F d, Y H:i" }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Last Updated:" %}</strong> {{ delivery.updated_at|date:"F d, Y H:i" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">{% trans "Quick Stats" %}</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="stat-card bg-blue-100 p-3 relative">
+                        <span class="stat-icon text-blue-300">📊</span>
+                        <p class="text-blue-800 font-semibold text-sm">{% trans "Total Components" %}</p>
+                        <p class="text-2xl font-bold text-blue-600">{{ components.count }}</p>
+                    </div>
+                    <div class="stat-card bg-green-100 p-3 relative">
+                        <span class="stat-icon text-green-300">🔒</span>
+                        <p class="text-green-800 font-semibold text-sm">{% trans "Mandatory" %}</p>
+                        <p class="text-2xl font-bold text-green-600">{{ components.mandatory_count }}</p>
+                    </div>
+                    <div class="stat-card bg-yellow-100 p-3 relative">
+                        <span class="stat-icon text-yellow-300">🔓</span>
+                        <p class="text-yellow-800 font-semibold text-sm">{% trans "Optional" %}</p>
+                        <p class="text-2xl font-bold text-yellow-600">{{ components.optional_count }}</p>
+                    </div>
+                    <div class="stat-card bg-purple-100 p-3 relative">
+                        <span class="stat-icon text-purple-300">👥</span>
+                        <p class="text-purple-800 font-semibold text-sm">{% trans "Enrollments" %}</p>
+                        <p class="text-2xl font-bold text-purple-600">{{ enrollment_stats.total }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-50 px-6 py-4">
+        <div class="flex flex-wrap gap-4">
+            <a href="{% url 'administrator_delivery_edit' delivery.id %}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                {% trans "Edit Delivery" %}
+            </a>
+            {% if delivery.delivery_type == 'PROGRAM' %}
+                <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center" data-modal-target="delivery-course-component-modal{{ delivery.id }}" data-modal-toggle="delivery-course-component-modal{{ delivery.id }}">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    {% trans "Add Course Component" %}
+                </a>
+            {% else %}
+                <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex items-center"
+                data-modal-target="delivery-resource-component-modal{{ delivery.id }}" data-modal-toggle="delivery-resource-component-modal{{ delivery.id }}">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    {% trans "Add Learning Resource" %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+{% load i18n %}
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
+    <div class="p-6">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Course Information" %}</h2>
+        {% if delivery.course %}
+            <div class="flex flex-col md:flex-row items-start md:items-center mb-6">
+                {% if delivery.course.cover_image %}
+                    <img src="{{ delivery.course.cover_image.url }}" alt="{{ delivery.course.title }}" class="w-full md:w-48 h-48 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
+                {% else %}
+                    <div class="w-full md:w-48 h-48 bg-gray-200 rounded-lg mb-4 md:mb-0 md:mr-6 flex items-center justify-center">
+                        <span class="text-gray-500">{% trans "No Image" %}</span>
+                    </div>
+                {% endif %}
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ delivery.course.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ delivery.course.short_description }}</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Category:" %}</strong> {{ delivery.course.category }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Language:" %}</strong> {{ delivery.course.language }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Duration:" %}</strong> {{ delivery.course.duration }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Difficulty:" %}</strong> {{ delivery.course.get_difficulty_level_display }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-gray-600">{% trans "No course information available for this delivery." %}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInUp">
+    <div class="p-6">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Learning Resources" %}</h2>
+        {% if learning_resources %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Order" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Title" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Type" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Mandatory" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Actions" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for component in learning_resources %}
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ component.order }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ component.learning_resource.title }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ component.learning_resource.get_resource_type_display }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                        {% if component.is_mandatory %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-gray-600">{% trans "No learning resources found for this course delivery." %}</p>
+        {% endif %}
+        <div class="mt-6 flex justify-start">
+            <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" data-modal-target="delivery-resource-component-modal{{ delivery.id }}" data-modal-toggle="delivery-resource-component-modal{{ delivery.id }}">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                {% trans "Add Learning Resource" %}
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+{% load i18n %}
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
+    <div class="p-6">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Program Information" %}</h2>
+        {% if delivery.program %}
+            <div class="flex flex-col md:flex-row items-start md:items-center mb-6">
+                {% if delivery.program.cover_image %}
+                    <img src="{{ delivery.program.cover_image.url }}" alt="{{ delivery.program.title }}" class="w-full md:w-48 h-48 object-cover rounded-lg mb-4 md:mb-0 md:mr-6">
+                {% else %}
+                    <div class="w-full md:w-48 h-48 bg-gray-200 rounded-lg mb-4 md:mb-0 md:mr-6 flex items-center justify-center">
+                        <span class="text-gray-500">{% trans "No Image" %}</span>
+                    </div>
+                {% endif %}
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ delivery.program.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ delivery.program.short_description }}</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Type:" %}</strong> {{ delivery.program.get_program_type_display }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Duration:" %}</strong> {{ delivery.program.duration }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Level:" %}</strong> {{ delivery.program.level }}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span class="text-gray-700"><strong>{% trans "Provider:" %}</strong> {{ delivery.program.provider }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-gray-600">{% trans "No program information available for this delivery." %}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInUp">
+    <div class="p-6">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Program Courses" %}</h2>
+        {% if program_courses %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Order" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Course" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Mandatory" %}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {% trans "Actions" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for component in program_courses %}
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ component.order }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ component.program_course.course.title }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                        {% if component.is_mandatory %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="{% url 'administrator_delivery_component_edit' component.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
+                                    <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                    <a href="{% url 'administrator_add_resource_component' parent_component_id=component.id %}" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
+                                </td>
+                            </tr>
+                            {% if component.child_components.exists %}
+                                {% for resource in component.child_components.all %}
+                                    <tr class="bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 pl-12">
+                                            {{ resource.order }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ resource.learning_resource.title }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if resource.is_mandatory %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                                                {% if resource.is_mandatory %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <a href="{% url 'administrator_delivery_component_edit' resource.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
+                                            <a href="{% url 'administrator_delivery_component_delete' resource.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-gray-600">{% trans "No courses found for this program delivery." %}</p>
+        {% endif %}
+        <div class="mt-6 flex justify-start">
+            <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" data-modal-target="delivery-course-component-modal{{ delivery.id }}" 
+            data-modal-toggle="delivery-course-component-modal{{ delivery.id }}">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                {% trans "Add Course Component" %}
+            </a>
+        </div>
+    </div>
+</div>

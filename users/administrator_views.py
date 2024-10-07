@@ -1103,7 +1103,7 @@ class AdministratorDeliveryListView(LoginRequiredMixin, AdministratorRequiredMix
     
 class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
     model = Delivery
-    template_name = 'users/administrator/deliveries/delivery_detail.html'
+    template_name = 'users/administrator/deliveries/delivery_details/base_delivery_detail.html'
     context_object_name = 'delivery'
 
     def get_context_data(self, **kwargs):
@@ -1291,7 +1291,7 @@ class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, Administrator
         context['delivery'] = self.object.delivery
         return context
 
-class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
+class DeliveryEnrollmentListView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Enrollment
     template_name = 'users/administrator/deliveries/enrollments/enrollment_list.html'
     context_object_name = 'enrollments'
@@ -1299,12 +1299,12 @@ class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            self.delivery = get_object_or_404(Delivery, id=self.kwargs['delivery_id'])
+            self.delivery = get_object_or_404(Delivery, id=self.kwargs['pk'])
             return super().dispatch(request, *args, **kwargs)
         except Exception as e:
             logger.error(f"Error in DeliveryEnrollmentListView dispatch: {str(e)}")
             messages.error(self.request, _("An error occurred while accessing the delivery enrollments."))
-            return self.handle_no_permission()
+            return super().dispatch(request, *args, **kwargs)  
 
     def get_queryset(self):
         try:
@@ -1333,7 +1333,7 @@ class DeliveryEnrollmentListView(LoginRequiredMixin, ListView):
 
         return context
 
-class BaseDeliveryEnrollmentsView(LoginRequiredMixin, FormView):
+class BaseDeliveryEnrollmentsView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
     form_class = EnrollmentForm
 
     def dispatch(self, request, *args, **kwargs):
