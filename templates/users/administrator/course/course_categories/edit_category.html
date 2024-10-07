@@ -22,7 +22,7 @@
                         <select name="parent" id="parent" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option value="">None</option>
                             {% for parent_category in parent_categories %}
-                                <option value="{{ parent_category.id }}" {% if category.parent.id == parent_category.id %}selected{% endif %}>{{ parent_category.name }}</option>
+                                <option value="{{ parent_category.id }}" {% if category.parent and category.parent.id == parent_category.id %}selected{% endif %}>{{ parent_category.name }}</option>
                             {% endfor %}
                         </select>
                     </div>

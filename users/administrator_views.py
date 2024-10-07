@@ -478,6 +478,7 @@ class CourseCategoryEditView(View):
         context = {
             'category': category,
             'parent_categories': parent_categories,
+            'current_parent': category.parent,
         }
         return render(request, 'course_category_edit_modal.html', context)
 
