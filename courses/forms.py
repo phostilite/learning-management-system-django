@@ -22,7 +22,7 @@ from crispy_forms.bootstrap import PrependedText
 # Local application imports
 from .models import (
     Course, LearningResource, ScormResource, CourseCategory, Enrollment, 
-    Program, Tag, ProgramCourse, Delivery, DeliveryComponent, DeliveryInstructor    
+    Program, Tag, ProgramCourse, Delivery, DeliveryComponent, DeliveryInstructor, DeliveryEmailTemplate    
 )
 from users.models import User
 from courses.models import Delivery, Program, Course, User
@@ -499,6 +499,8 @@ class DeliveryComponentForm(forms.ModelForm):
         return cleaned_data
 
 class CourseComponentForm(forms.ModelForm):
+    is_creation_process = forms.BooleanField(widget=forms.HiddenInput(), required=False)
+
     class Meta:
         model = DeliveryComponent
         fields = ['program_course', 'is_mandatory', 'order']
@@ -510,6 +512,8 @@ class CourseComponentForm(forms.ModelForm):
             self.fields['program_course'].queryset = ProgramCourse.objects.filter(program=self.delivery.program)
 
 class ResourceComponentForm(forms.ModelForm):
+    is_creation_process = forms.BooleanField(widget=forms.HiddenInput(), required=False)
+
     class Meta:
         model = DeliveryComponent
         fields = ['learning_resource', 'is_mandatory', 'order']
@@ -523,6 +527,83 @@ class ResourceComponentForm(forms.ModelForm):
             self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.delivery.course)
         elif self.parent_component:
             self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.parent_component.program_course.course)
+
+
+class DeliveryEmailTemplateForm(forms.Form):
+    ENROLLMENT_CONFIRMATION = forms.CharField(widget=forms.Textarea, required=False)
+    REMINDER = forms.CharField(widget=forms.Textarea, required=False)
+    COMPLETION = forms.CharField(widget=forms.Textarea, required=False)
+    CERTIFICATE = forms.CharField(widget=forms.Textarea, required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.delivery = kwargs.pop('delivery')
+        super().__init__(*args, **kwargs)
+
+        for email_type, field in self.fields.items():
+            try:
+                template = DeliveryEmailTemplate.objects.get(delivery=self.delivery, email_type=email_type)
+                field.initial = template.body
+            except DeliveryEmailTemplate.DoesNotExist:
+                field.initial = self.get_default_template(email_type)
+
+    def get_default_template(self, email_type):
+        placeholders = {
+            'ENROLLMENT_CONFIRMATION': """
+Dear {{ participant_name }},
+
+Welcome to {{ delivery_title }}! We're excited to have you join us for this {{ delivery_type }}.
+
+Start Date: {{ start_date }}
+End Date: {{ end_date }}
+
+To get started, please log in to your account and access the course materials.
+
+If you have any questions, please don't hesitate to reach out.
+
+Best regards,
+The {{ organization_name }} Team
+            """,
+            'REMINDER': """
+Dear {{ participant_name }},
+
+This is a friendly reminder that {{ delivery_title }} is starting soon.
+
+Start Date: {{ start_date }}
+End Date: {{ end_date }}
+
+Don't forget to prepare any necessary materials and be ready to participate.
+
+If you have any questions, please let us know.
+
+Best regards,
+The {{ organization_name }} Team
+            """,
+            'COMPLETION': """
+Dear {{ participant_name }},
+
+Congratulations on completing {{ delivery_title }}!
+
+We hope you found the {{ delivery_type }} informative and valuable. Your certificate of completion is attached to this email.
+
+We appreciate your participation and hope to see you in future courses.
+
+Best regards,
+The {{ organization_name }} Team
+            """,
+            'CERTIFICATE': """
+Dear {{ participant_name }},
+
+Congratulations on earning your certificate for {{ delivery_title }}!
+
+This certificate recognizes your successful completion of the {{ delivery_type }}. We commend your dedication and hard work.
+
+You can access and download your certificate from your account dashboard.
+
+Best regards,
+The {{ organization_name }} Team
+            """
+        }
+        return placeholders.get(email_type, "")
 
 # ============================================================
 # ======================= Enrollment Forms ===================
@@ -596,3 +677,5 @@ class UserEnrollmentForm(forms.Form):
                 raise forms.ValidationError("Invalid course selected.")
 
         return cleaned_data
+    
+

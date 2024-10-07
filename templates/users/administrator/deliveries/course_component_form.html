@@ -18,7 +18,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form method="post" action="{% url 'administrator_add_delivery_course_component' delivery.id %}" class="p-4 md:p-5">
+            <form method="post" action="{% url 'administrator_add_delivery_course_component' pk=delivery.id %}" class="p-4 md:p-5">
                 {% csrf_token %}
                 {{ course_component_form|crispy }}
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">

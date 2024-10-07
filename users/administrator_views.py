@@ -50,7 +50,7 @@ from courses.forms import (CourseComponentForm, CourseForm, CoursePublishForm,
                            LearningResourceForm, LearningResourceFormSet,
                            ProgramCourseForm, ProgramForm, ProgramPublishForm,
                            ProgramUnpublishForm, ResourceComponentForm,
-                           ScormResourceForm)
+                           ScormResourceForm, DeliveryEmailTemplateForm)
 from courses.models import (Course, CourseCategory, Delivery, DeliveryComponent,
                             Enrollment, LearningResource, Program,
                             ProgramCourse, ScormResource, Tag, DeliverySchedule,
@@ -67,6 +67,7 @@ from activities.models import SystemNotification, ActivityLog, UserSession
 from .utils.notification_utils import create_notification, log_activity
 from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter,  UserFilter
 from courses.filters import CourseFilter, ProgramFilter, DeliveryFilter, EnrollmentFilter
+from courses.utils import send_delivery_email
 
 # Initialize logger
 logger = logging.getLogger(__name__)
@@ -1141,7 +1142,16 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredM
             email_templates = DeliveryEmailTemplate.objects.filter(delivery=delivery)
 
             # Course Component Form
-            context['course_component_form'] = CourseComponentForm(delivery=delivery)
+            context['course_component_form'] = CourseComponentForm(
+                delivery=delivery,
+                initial={'is_creation_process': False}
+            )
+
+            # Resource Component Form
+            context['resource_component_form'] = ResourceComponentForm(
+                delivery=delivery,
+                initial={'is_creation_process': False}
+            )
 
             # Attendance (for the latest schedule, if any)
             latest_schedule = schedules.first()
@@ -1213,36 +1223,52 @@ class DeliveryCourseComponentCreateView(LoginRequiredMixin, AdministratorRequire
             component = form.save(commit=False)
             component.delivery = delivery
             component.save()
-            success_url = reverse_lazy('administrator_delivery_detail', kwargs={'pk': delivery.id})
+            if form.cleaned_data['is_creation_process']:
+                success_url = reverse_lazy('administrator_delivery_component_form', kwargs={'pk': delivery.pk})
+            else:
+                success_url = reverse_lazy('administrator_delivery_detail', kwargs={'pk': delivery.id})
             return HttpResponseRedirect(success_url)
         else:
             return JsonResponse({'errors': form.errors}, status=400)
         
 
-class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, CreateView):
-    model = DeliveryComponent
-    form_class = ResourceComponentForm
-    template_name = 'users/administrator/deliveries/resource_component_form.html'
+class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            # Determine if we're adding to a delivery or a parent component
+            if 'delivery_id' in kwargs:
+                delivery = get_object_or_404(Delivery, pk=kwargs['delivery_id'])
+                form = ResourceComponentForm(request.POST, delivery=delivery)
+            elif 'parent_component_id' in kwargs:
+                parent_component = get_object_or_404(DeliveryComponent, pk=kwargs['parent_component_id'])
+                form = ResourceComponentForm(request.POST, parent_component=parent_component)
+            else:
+                logger.error("Neither delivery_id nor parent_component_id provided in kwargs")
+                return JsonResponse({'error': 'Invalid request parameters'}, status=400)
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if 'delivery_id' in self.kwargs:
-            kwargs['delivery'] = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
-        elif 'parent_component_id' in self.kwargs:
-            kwargs['parent_component'] = get_object_or_404(DeliveryComponent, pk=self.kwargs['parent_component_id'])
-        return kwargs
+            if form.is_valid():
+                component = form.save(commit=False)
+                if 'delivery_id' in kwargs:
+                    component.delivery = delivery
+                elif 'parent_component_id' in kwargs:
+                    component.delivery = parent_component.delivery
+                    component.parent_component = parent_component
+                component.save()
+                
+                logger.info(f"Resource component created successfully: {component.id}")
+                if form.cleaned_data['is_creation_process']:
+                    success_url = reverse_lazy('administrator_delivery_component_form', kwargs={'pk': delivery.pk})
+                else:
+                    success_url = reverse_lazy('administrator_delivery_detail', kwargs={'pk': delivery.pk})
+                
+                return JsonResponse({'success': True, 'redirect_url': str(success_url)})
+            else:
+                logger.warning(f"Invalid form submission: {form.errors}")
+                return JsonResponse({'errors': form.errors}, status=400)
 
-    def form_valid(self, form):
-        if 'delivery_id' in self.kwargs:
-            form.instance.delivery = get_object_or_404(Delivery, pk=self.kwargs['delivery_id'])
-        elif 'parent_component_id' in self.kwargs:
-            parent_component = get_object_or_404(DeliveryComponent, pk=self.kwargs['parent_component_id'])
-            form.instance.delivery = parent_component.delivery
-            form.instance.parent_component = parent_component
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
+        except Exception as e:
+            logger.exception(f"Unexpected error in ResourceComponentCreateView: {str(e)}")
+            return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
 
 
 class AdministratorDeliveryComponentEditView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
@@ -1372,8 +1398,88 @@ class DeliveryEnrollmentsFormView(BaseDeliveryEnrollmentsView):
 class DeliveryComponentFormView(AdministratorDeliveryDetailView):
     template_name = 'users/administrator/deliveries/delivery_create_form/delivery_component_form.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the delivery ID from the URL
+        delivery_id = self.kwargs.get('pk')
+        
+        try:
+            # Fetch the delivery object using the ID
+            delivery = get_object_or_404(Delivery, pk=delivery_id)
+
+            # Create the CourseComponentForm with the fetched delivery
+            context['course_component_form'] = CourseComponentForm(
+                delivery=delivery,
+                initial={'is_creation_process': True}
+            )
+
+            # Create the ResourceComponentForm with the fetched delivery
+            context['resource_component_form'] = ResourceComponentForm(
+                delivery=delivery,
+                initial={'is_creation_process': True}
+            )
+            
+            # Add the delivery object to the context if needed elsewhere in the template
+            context['delivery'] = delivery
+
+        except Delivery.DoesNotExist:
+            # Handle the case where the delivery doesn't exist
+            context['error_message'] = f"Delivery with ID {delivery_id} not found."
+            context['resource_component_form'] = None
+            context['course_component_form'] = None
+        return context
+
     def get_success_url(self):
         return reverse('custom_delivery_success_url')
+
+class DeliveryEmailTemplateView(LoginRequiredMixin, AdministratorRequiredMixin, FormView):
+    template_name = 'users/administrator/deliveries/delivery_create_form/email_templates.html'
+    form_class = DeliveryEmailTemplateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        self.delivery = get_object_or_404(Delivery, pk=self.kwargs['pk'])
+        kwargs['delivery'] = self.delivery
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['delivery'] = self.delivery
+        return context
+
+    def form_valid(self, form):
+        try:
+            for email_type, content in form.cleaned_data.items():
+                DeliveryEmailTemplate.objects.update_or_create(
+                    delivery=self.delivery,
+                    email_type=email_type,
+                    defaults={'body': content}
+                )
+            messages.success(self.request, "Email templates have been saved successfully.")
+            logger.info(f"Email templates for delivery {self.delivery.id} updated by user {self.request.user}")
+
+            # Send enrollment confirmation emails to all current enrollments
+            self.send_enrollment_confirmations()
+            
+            return redirect(self.get_success_url())
+        except Exception as e:
+            logger.error(f"Error saving email templates for delivery {self.delivery.id}: {str(e)}")
+            messages.error(self.request, "An error occurred while saving the email templates. Please try again.")
+            return self.form_invalid(form)
+        
+    def send_enrollment_confirmations(self):
+        logger.info(f"Sending enrollment confirmation emails for delivery {self.delivery.id}")
+        try:
+            enrollments = Enrollment.objects.filter(delivery=self.delivery)
+            for enrollment in enrollments:
+                send_delivery_email(self.delivery, 'ENROLLMENT_CONFIRMATION')
+            logger.info(f"Sent enrollment confirmation emails for delivery {self.delivery.id}")
+        except Exception as e:
+            logger.error(f"Error sending enrollment confirmation emails for delivery {self.delivery.id}: {str(e)}")
+
+    def get_success_url(self):
+        return reverse('administrator_delivery_detail', kwargs={'pk': self.delivery.id})
     
 # ============================================================
 # ======================= Program Views ======================

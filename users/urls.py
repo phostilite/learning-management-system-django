@@ -62,6 +62,7 @@ urlpatterns = [
     path('administrator/deliveries/create/basic-info/', administrator_views.AdministratorDeliveryCreateView.as_view(), name='administrator_delivery_create'),
     path('administrator/deliveries/<uuid:pk>/create/enrollment/', administrator_views.DeliveryEnrollmentsFormView.as_view(), name='administrator_delivery_enrollment_form'),
     path('administrator/deliveries/<uuid:pk>/create/component/', administrator_views.DeliveryComponentFormView.as_view(), name='administrator_delivery_component_form'),
+    path('administrator/deliveries/<uuid:pk>/create/email-templates/', administrator_views.DeliveryEmailTemplateView.as_view(), name='administrator_delivery_email_templates'),
 
 
     path('administrator/deliveries/<uuid:pk>/', administrator_views.AdministratorDeliveryDetailView.as_view(), name='administrator_delivery_detail'),

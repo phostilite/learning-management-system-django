@@ -94,7 +94,7 @@
 
             
 
-            {% if delivery.delivery_type == 'PROGRAM' %}
+        {% if delivery.delivery_type == 'PROGRAM' %}
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
             <div class="p-6">
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Program Information" %}</h2>
@@ -207,7 +207,9 @@
                     <p class="text-gray-600">{% trans "No courses found for this program delivery." %}</p>
                 {% endif %}
                 <div class="mt-6 flex justify-start">
-                    <a href="{% url 'administrator_add_delivery_course_component' delivery.id %}" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                    data-modal-target="delivery-course-component-modal{{ delivery.id }}" 
+                    data-modal-toggle="delivery-course-component-modal{{ delivery.id }}">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                         {% trans "Add Course Component" %}
                     </a>
@@ -310,7 +312,8 @@
                     <p class="text-gray-600">{% trans "No learning resources found for this course delivery." %}</p>
                 {% endif %}
                 <div class="mt-6 flex justify-start">
-                    <a href="{% url 'administrator_add_resource_component_to_course' delivery.id %}" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+                    <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                    data-modal-target="delivery-resource-component-modal{{ delivery.id }}" data-modal-toggle="delivery-resource-component-modal{{ delivery.id }}">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                         {% trans "Add Learning Resource" %}
                     </a>
@@ -319,8 +322,27 @@
         </div>
         {% endif %}
         </div>
+
+        <div class="mt-8 p-4 flex justify-between items-center">
+            <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded transition duration-300 ease-in-out">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                {% trans "Back to Enrollments" %}
+            </a>
+            <a href="{% url 'administrator_delivery_email_templates' delivery.id %}" class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded transition duration-300 ease-in-out">
+                {% trans "Proceed to Email Templates" %}
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+        </div>
+
     </div>
 </div>
+
+{% include '../course_component_form.html' %}
+{% include '../resource_component_form.html' %}
 {% endblock %}
 
 {% block extra_js %}

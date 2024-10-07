@@ -1,0 +1,152 @@
+{% extends '../../_base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Create New Delivery" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .timeline-container {
+        height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+    .form-container {
+        height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col md:flex-row h-screen">
+    <!-- Timeline Panel -->
+    <div class="w-full md:w-1/4 p-4 bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">{% trans "Delivery Creation Process" %}</h2>
+        <ol class="relative border-s border-gray-200 ml-3">
+            <li class="mb-10 ms-6">
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full -start-4 ring-4 ring-white">
+                    <i class="fas fa-info-circle text-gray-600"></i>
+                </span>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-500">{% trans "Step 1 of 4" %}</time>
+                <p class="mb-4 text-base font-normal text-gray-600">{% trans "Set up the core details of your delivery, including type, mode, and scheduling." %}</p>
+            </li>
+            <li class="mb-10 ms-6">
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full -start-4 ring-4 ring-white">
+                    <i class="fas fa-users text-gray-600"></i>
+                </span>
+                <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-800">{% trans "Basic Information" %}
+                </h3>
+                <h3 class="mb-1 text-lg font-semibold text-gray-800">{% trans "Enrollments" %}</h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-500">{% trans "Step 2 of 4" %}</time>
+                <p class="text-base font-normal text-gray-600">{% trans "Manage participant enrollments for your delivery." %}</p>
+            </li>
+            <li class="mb-10 ms-6">
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full -start-4 ring-4 ring-white">
+                    <i class="fas fa-puzzle-piece text-gray-800"></i>
+                </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-800">{% trans "Delivery Components" %}
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-500">{% trans "Step 3 of 4" %}</time>
+                <p class="text-base font-normal text-gray-600">{% trans "Set up the components and structure of your delivery." %}</p>
+            </li>
+            <li class="ms-6">
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full -start-4 ring-4 ring-white">
+                    <i class="fas fa-envelope text-white"></i>
+                </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-800">{% trans "Email Templates" %}
+                    <span class="bg-blue-500 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded ms-3">{% trans "Current" %}</span>
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-500">{% trans "Step 4 of 4" %}</time>
+                <p class="text-base font-normal text-gray-600">{% trans "Configure email templates for various delivery notifications." %}</p>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Existing Form Content -->
+    <div class="w-full md:w-3/4 form-container">
+        <div class="p-4">
+            <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
+                <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Create New Delivery" %}</h1>
+                <p class="text-lg text-white text-center">{% trans "Set up a new delivery for a course or program." %}</p>
+            </header>
+
+            <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                            {% trans "Dashboard" %}
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <a href="{% url 'administrator_delivery_list' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Deliveries" %}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Create Delivery" %}</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        
+            <div class="bg-white p-6 shadow-md rounded-lg">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <h3>Enrollment Confirmation</h3>
+                        {{ form.ENROLLMENT_CONFIRMATION|as_crispy_field }}
+                    </div>
+                
+                    <div class="mb-4">
+                        <h3>Reminder</h3>
+                        {{ form.REMINDER|as_crispy_field }}
+                    </div>
+                
+                    <div class="mb-4">
+                        <h3>Completion</h3>
+                        {{ form.COMPLETION|as_crispy_field }}
+                    </div>
+                
+                    <div class="mb-4">
+                        <h3>Certificate Issuance</h3>
+                        {{ form.CERTIFICATE|as_crispy_field }}
+                    </div>
+                
+                    <div class="mt-8 flex justify-between items-center">
+                        <a href="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400">
+                            <i class="fas fa-arrow-left mr-2"></i>Back to Components
+                        </a>
+                        <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <i class="fas fa-save mr-2"></i>Save Email Templates
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const placeholders = {
+        'ENROLLMENT_CONFIRMATION': ['participant_name', 'delivery_title', 'delivery_type', 'start_date', 'end_date', 'organization_name'],
+        'REMINDER': ['participant_name', 'delivery_title', 'start_date', 'end_date', 'organization_name'],
+        'COMPLETION': ['participant_name', 'delivery_title', 'delivery_type', 'organization_name'],
+        'CERTIFICATE': ['participant_name', 'delivery_title', 'delivery_type', 'organization_name']
+    };
+
+    document.querySelectorAll('textarea').forEach(textarea => {
+        textarea.addEventListener('focus', function() {
+            const emailType = this.id.replace('id_', '');
+            const availablePlaceholders = placeholders[emailType].map(p => `{${p}}`).join(', ');
+            this.title = `Available placeholders: ${availablePlaceholders}`;
+        });
+    });
+</script>
+{% endblock %} 
