@@ -14,6 +14,52 @@
         height: calc(100vh - 2rem);
         overflow-y: auto;
     }
+    #completion-card {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 50;
+    }
+    #completion-card .card-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 28rem;
+        width: 100%;
+        margin: 2rem auto;
+    }
+    .completion-step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .step-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem;
+        position: relative;
+    }
+    .loader {
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .checkmark {
+        display: none;
+        color: #4CAF50;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 {% endblock %}
 
@@ -94,7 +140,7 @@
             </nav>
         
             <div class="bg-white p-6 shadow-md rounded-lg">
-                <form method="post">
+                <form method="post" id="deliveryForm">
                     {% csrf_token %}
                     
                     <div class="mb-4">
@@ -130,6 +176,46 @@
         </div>    
     </div>
 </div>
+
+
+<div id="completion-card">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="card-content">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Completing Delivery Creation</h2>
+            <div id="completion-steps">
+                <div class="completion-step" data-step="Basic Information">
+                    <div class="step-icon">
+                        <div class="loader"></div>
+                        <svg class="checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span>Basic Information</span>
+                </div>
+                <div class="completion-step" data-step="Enrollments">
+                    <div class="step-icon">
+                        <div class="loader"></div>
+                        <svg class="checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span>Enrollments</span>
+                </div>
+                <div class="completion-step" data-step="Delivery Components">
+                    <div class="step-icon">
+                        <div class="loader"></div>
+                        <svg class="checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span>Delivery Components</span>
+                </div>
+                <div class="completion-step" data-step="Email Templates">
+                    <div class="step-icon">
+                        <div class="loader"></div>
+                        <svg class="checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span>Email Templates</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_js %}
@@ -148,5 +234,44 @@
             this.title = `Available placeholders: ${availablePlaceholders}`;
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('deliveryForm');
+        const completionCard = document.getElementById('completion-card');
+        const completionSteps = document.querySelectorAll('.completion-step');
+    
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            completionCard.style.display = 'block';
+    
+            let currentStep = 0;
+            const animateStep = (step) => {
+                return new Promise((resolve) => {
+                    const loader = step.querySelector('.loader');
+                    const checkmark = step.querySelector('.checkmark');
+                    
+                    // Show loader for 1 second
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        checkmark.style.display = 'block';
+                        resolve();
+                    }, 1000);
+                });
+            };
+
+            const processSteps = async () => {
+                for (const step of completionSteps) {
+                    await animateStep(step);
+                }
+                
+                // Wait for 1 second after all steps are complete
+                setTimeout(() => {
+                    form.submit();
+                }, 1000);
+            };
+
+            processSteps();
+        });
+    });
 </script>
-{% endblock %} 
+{% endblock %}
