@@ -159,10 +159,18 @@
             <div class="bg-white rounded-lg shadow-lg p-6 animate__animated animate__fadeInRight">
                 <h3 class="text-xl font-bold mb-4 text-gray-800"><i class="fas fa-share-alt mr-2 text-purple-500"></i>Share this course</h3>
                 <div class="flex justify-around">
-                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fab fa-facebook-square text-2xl"></i></a>
-                    <a href="#" class="text-blue-400 hover:text-blue-500"><i class="fab fa-twitter-square text-2xl"></i></a>
-                    <a href="#" class="text-red-600 hover:text-red-700"><i class="fab fa-pinterest-square text-2xl"></i></a>
-                    <a href="#" class="text-blue-700 hover:text-blue-800"><i class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700">
+                        <i class="fab fa-facebook-square text-2xl"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ course.title|urlencode }}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-500">
+                        <i class="fab fa-twitter-square text-2xl"></i>
+                    </a>
+                    <a href="https://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}{% if course.cover_image %}&media={{ course.cover_image.url|urlencode }}{% endif %}&description={{ course.short_description|default:course.title|urlencode }}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-700">
+                        <i class="fab fa-pinterest-square text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ course.title|urlencode }}&summary={{ course.short_description|default:''|urlencode }}" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-800">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
                 </div>
             </div>
         </div>
