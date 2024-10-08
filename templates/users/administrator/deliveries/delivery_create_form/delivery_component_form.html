@@ -175,7 +175,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{% url 'administrator_delivery_component_edit' component.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
                                             <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
-                                            <a href="#" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
+                                            <a href="#" class="text-green-600 hover:text-green-900 ml-3" onclick="openModal('modal-{{ component.id }}')">{% trans "Add Resource" %}</a>
                                         </td>
                                     </tr>
                                     {% if component.child_components.exists %}
@@ -199,6 +199,7 @@
                                             </tr>
                                         {% endfor %}
                                     {% endif %}
+                                    {% include '../resource_component_form.html' %}
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -346,4 +347,47 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // Add this new function to handle form submissions
+    function setupFormSubmission(formId) {
+        const form = document.getElementById(formId);
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    console.error('Form submission failed:', data.errors);
+                    // Handle errors here (e.g., display error messages)
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    }
+
+    // Set up form submission for each modal
+    {% for component in program_courses %}
+        setupFormSubmission('resourceForm-{{ component.id }}');
+    {% endfor %}
+</script>
 {% endblock %}
