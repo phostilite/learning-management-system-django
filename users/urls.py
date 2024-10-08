@@ -125,6 +125,8 @@ urlpatterns = [
     path('administrator/announcement/<uuid:pk>/delete/', administrator_views.AdministratorAnnouncementDeleteView.as_view(), name='administrator_announcement_delete'),
     path('administrator/announcement/<uuid:pk>/update/', administrator_views.AdministratorAnnouncementUpdateView.as_view(), name='administrator_announcement_update'),
     path('administrator/announcement/<uuid:pk>/manage_recipient/', administrator_views.AdministratorAnnouncementManageRecipientView.as_view(), name='administrator_announcement_manage_recipients'),
+    path('administrator/announcement/filter-users/<uuid:announcement_id>/<uuid:announcement_recipient_id>/', administrator_views.FilterUsersByRecipientTypeView.as_view(), name='filter_users_by_recipient_type'),
+
 
     # Notification Views
     path('administrator/notifications/recent/', administrator_views.RecentNotificationsView.as_view(), name='administrator_recent_notifications'),
