@@ -4,9 +4,9 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
-@register.filter(name='get_item')
+@register.filter
 def get_item(dictionary, key):
-    return dictionary.get(key)
+    return dictionary.get(str(key))
 
 @register.filter
 @stringfilter

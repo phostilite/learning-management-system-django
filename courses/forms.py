@@ -523,10 +523,22 @@ class ResourceComponentForm(forms.ModelForm):
         self.parent_component = kwargs.pop('parent_component', None)
         super().__init__(*args, **kwargs)
         
-        if self.delivery:
-            self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.delivery.course)
-        elif self.parent_component:
-            self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.parent_component.program_course.course)
+        try:
+            if self.delivery:
+                self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.delivery.course)
+            elif self.parent_component:
+                self.fields['learning_resource'].queryset = LearningResource.objects.filter(course=self.parent_component.program_course.course)
+            else:
+                logger.warning("Neither delivery nor parent_component provided to ResourceComponentForm")
+                self.fields['learning_resource'].queryset = LearningResource.objects.none()
+
+            if self.fields['learning_resource'].queryset.exists():
+                logger.info(f"Learning resources found: {self.fields['learning_resource'].queryset.count()}")
+            else:
+                logger.warning("No learning resources found for the given delivery or parent component")
+        except Exception as e:
+            logger.error(f"Error in ResourceComponentForm initialization: {str(e)}")
+            self.fields['learning_resource'].queryset = LearningResource.objects.none()
 
 
 class DeliveryEmailTemplateForm(forms.Form):

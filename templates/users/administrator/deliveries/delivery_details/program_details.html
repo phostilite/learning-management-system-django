@@ -1,6 +1,8 @@
 {% load i18n %}
+{% load custom_filters %}
 
-<div class="bg-white rounded-lg shadow-lg overflow-hidden card animate__animated animate__fadeInLeft mb-8">
+
+<div class="bg-white rounded-lg shadow-lg card animate__animated animate__fadeInLeft mb-8">
     <div class="p-6">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">{% trans "Program Information" %}</h2>
         {% if delivery.program %}
@@ -80,7 +82,9 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <a href="{% url 'administrator_delivery_component_edit' component.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
                                     <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
-                                    <a href="{% url 'administrator_add_resource_component' parent_component_id=component.id %}" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
+                                    <button type="button" class="text-green-600 hover:text-green-900 ml-3" onclick="openModal('modal-{{ component.id }}')">
+                                        {% trans "Add Resource" %}
+                                    </button>
                                 </td>
                             </tr>
                             {% if component.child_components.exists %}
@@ -104,6 +108,32 @@
                                     </tr>
                                 {% endfor %}
                             {% endif %}
+
+
+                        <!-- Modal for adding resource -->
+    <div id="modal-{{ component.id }}" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full" role="dialog">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Add Resource to {{ component.program_course.course.title }}</h3>
+                <div class="mt-2 px-7 py-3">
+                    <form method="post" action="{% url 'administrator_add_resource_component' parent_component_id=component.id %}">
+                        {% csrf_token %}
+                        {{ resource_component_forms|get_item:component.id|stringformat:"s" }}
+                        <button type="submit" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                            {% trans "Add" %}
+                        </button>
+                    </form>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="close-modal" onclick="closeModal('modal-{{ component.id }}')" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        {% trans "Close" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
                         {% endfor %}
                     </tbody>
                 </table>
@@ -120,3 +150,14 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
+</script>

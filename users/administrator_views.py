@@ -1147,11 +1147,29 @@ class AdministratorDeliveryDetailView(LoginRequiredMixin, AdministratorRequiredM
                 initial={'is_creation_process': False}
             )
 
-            # Resource Component Form
-            context['resource_component_form'] = ResourceComponentForm(
-                delivery=delivery,
-                initial={'is_creation_process': False}
-            )
+            # Resource Component Forms
+            if delivery.delivery_type == 'PROGRAM':
+                # For program deliveries, create a form for each program course
+                program_courses = components.filter(
+                    program_course__isnull=False,
+                    parent_component__isnull=True
+                ).select_related('program_course__course').order_by('order')
+                
+                context['resource_component_forms'] = {
+                    str(course.id): ResourceComponentForm(
+                        parent_component=course,
+                        initial={'is_creation_process': False}
+                    ) for course in program_courses
+                }
+                
+                # Also add the program courses to the context for easy access in the template
+                context['program_courses'] = program_courses
+            else:
+                # For course deliveries, just one form
+                context['resource_component_form'] = ResourceComponentForm(
+                    delivery=delivery,
+                    initial={'is_creation_process': False}
+                )
 
             # Attendance (for the latest schedule, if any)
             latest_schedule = schedules.first()
@@ -1235,28 +1253,29 @@ class DeliveryCourseComponentCreateView(LoginRequiredMixin, AdministratorRequire
 class ResourceComponentCreateView(LoginRequiredMixin, AdministratorRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         try:
-            # Determine if we're adding to a delivery or a parent component
             if 'delivery_id' in kwargs:
                 delivery = get_object_or_404(Delivery, pk=kwargs['delivery_id'])
                 form = ResourceComponentForm(request.POST, delivery=delivery)
+                parent_component = None
             elif 'parent_component_id' in kwargs:
                 parent_component = get_object_or_404(DeliveryComponent, pk=kwargs['parent_component_id'])
                 form = ResourceComponentForm(request.POST, parent_component=parent_component)
+                delivery = parent_component.delivery
             else:
                 logger.error("Neither delivery_id nor parent_component_id provided in kwargs")
                 return JsonResponse({'error': 'Invalid request parameters'}, status=400)
 
             if form.is_valid():
                 component = form.save(commit=False)
-                if 'delivery_id' in kwargs:
-                    component.delivery = delivery
-                elif 'parent_component_id' in kwargs:
+                if parent_component:
                     component.delivery = parent_component.delivery
                     component.parent_component = parent_component
+                else:
+                    component.delivery = delivery
                 component.save()
                 
                 logger.info(f"Resource component created successfully: {component.id}")
-                if form.cleaned_data['is_creation_process']:
+                if form.cleaned_data.get('is_creation_process'):
                     success_url = reverse_lazy('administrator_delivery_component_form', kwargs={'pk': delivery.pk})
                 else:
                     success_url = reverse_lazy('administrator_delivery_detail', kwargs={'pk': delivery.pk})

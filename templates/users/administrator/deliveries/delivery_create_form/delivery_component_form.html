@@ -175,7 +175,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{% url 'administrator_delivery_component_edit' component.pk %}" class="text-indigo-600 hover:text-indigo-900 mr-3">{% trans "Edit" %}</a>
                                             <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
-                                            <a href="{% url 'administrator_add_resource_component' parent_component_id=component.id %}" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
+                                            <a href="#" class="text-green-600 hover:text-green-900 ml-3">{% trans "Add Resource" %}</a>
                                         </td>
                                     </tr>
                                     {% if component.child_components.exists %}
@@ -313,7 +313,7 @@
                 {% endif %}
                 <div class="mt-6 flex justify-start">
                     <a href="#" class="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-                    data-modal-target="delivery-resource-component-modal{{ delivery.id }}" data-modal-toggle="delivery-resource-component-modal{{ delivery.id }}">
+                    data-modal-target="delivery-add-resource-to-course-component-modal{{ delivery.id }}" data-modal-toggle="delivery-add-resource-to-course-component-modal{{ delivery.id }}">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                         {% trans "Add Learning Resource" %}
                     </a>
@@ -342,7 +342,7 @@
 </div>
 
 {% include '../course_component_form.html' %}
-{% include '../resource_component_form.html' %}
+{% include '../resource_to_course_component_form.html' %}
 {% endblock %}
 
 {% block extra_js %}
