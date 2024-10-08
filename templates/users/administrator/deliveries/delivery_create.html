@@ -106,12 +106,17 @@
                     {% include './delivery_create_form/delivery_settings.html' %}
                 </div>
                 
-                <div class="flex mt-6 justify-between">
-                    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="window.history.back();">
-                        {% trans "Back" %}
+                <div class="flex mt-8 justify-between">
+                    <button 
+                        class="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex items-center"
+                        type="button" 
+                        onclick="window.history.back();">
+                        <i class="fas fa-times-circle mr-2"></i> {% trans "Cancel Process" %}
                     </button>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                        {% trans "Proceed to Enrollments" %}
+                    <button 
+                        class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 flex items-center"
+                        type="submit">
+                        {% trans "Proceed to Enrollments" %} <i class="fas fa-arrow-circle-right ml-2"></i>
                     </button>
                 </div>
             </form>
