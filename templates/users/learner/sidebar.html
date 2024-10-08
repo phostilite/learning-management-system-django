@@ -12,40 +12,28 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{% url 'learner_learning_catalog' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-book-open mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Learning Catalog</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'learner_enrollments' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-graduation-cap mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">My Enrollments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'learner_progress' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-chart-line mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">My Progress</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{% url 'learner_calendar' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-calendar mr-3 text-orange-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
                             <span class="ml-3">Calendar</span>
                         </a>
-                    </li>
-                    <li>
-                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-blue-700" aria-controls="dropdown-programs" data-collapse-toggle="dropdown-programs">
-                            <i class="fa-solid fa-graduation-cap mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Programs" %}</span>
-                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
-                        </button>
-                        <ul id="dropdown-programs" class="hidden py-2 space-y-2 sidebar-dropdown">
-                            <li>
-                                <a href="{% url 'learner_program_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "All Programs" %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'learner_my_programs' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "My Programs" %}</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-blue-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
-                            <i class="fa-solid fa-book mr-3 text-purple-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Courses" %}</span>
-                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
-                        </button>
-                        <ul id="dropdown-courses" class="hidden py-2 space-y-2 sidebar-dropdown">
-                            <li>
-                                <a href="{% url 'learner_course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "All Courses" %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'learner_my_courses' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-blue-700">{% trans "My Courses" %}</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="{% url 'learner_message_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
@@ -54,31 +42,37 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'learner_forum' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-comments mr-3 text-pink-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Forums</span>
+                            <span class="ml-3">Discussions</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'learner_certificate' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-certificate mr-3 text-yellow-500 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Certificates</span>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-award mr-3 text-yellow-500 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Achievements</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'learner_badge' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-medal mr-3 text-amber-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Badges</span>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-book mr-3 text-green-500 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Resources</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'learner_leaderboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
-                            <i class="fa-solid fa-trophy mr-3 text-amber-500 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
-                            <span class="ml-3">Leaderboard</span>
+                        <a href="#" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-comment-dots mr-3 text-blue-500 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Feedback</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="pt-5 mt-5 space-y-2 border-t border-blue-700">
+                    <li>
+                        <a href="{% url 'learner_notifications' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-bell mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">Notifications</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{% url 'learner_settings' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-blue-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
                             <i class="fa-solid fa-gear mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-90"></i>

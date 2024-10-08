@@ -1,0 +1,152 @@
+{% extends '../_base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    {% if error_message %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">{{ error_message }}</span>
+        </div>
+    {% else %}
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="lg:w-2/3">
+                <div id="content-player" class="bg-white rounded-lg shadow-md overflow-hidden">
+                    {% include "./course_content_player.html" %}
+                </div>
+            </div>
+
+            <div class="lg:w-1/3 space-y-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                        <i class="fas fa-chart-line mr-2"></i>Your Progress
+                    </h3>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ progress.progress_percentage }}%"></div>
+                        </div>
+                    </div>
+                    <p class="text-lg font-medium text-gray-700">{{ progress.progress_percentage|floatformat:1 }}% Complete</p>
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-book-open mr-2"></i>{{ progress.completed_items }} / {{ progress.total_items }} items completed
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                        <i class="fas fa-list mr-2"></i>Course Content
+                    </h3>
+                    <ul class="space-y-2">
+                        {% for resource in resources %}
+                            <li class="{% if resource == current_resource %}bg-gray-100 rounded-lg{% endif %}">
+                                <a href="{% url 'learner_course_consumption' enrollment_id=enrollment.id %}?resource={{ resource.resource.id }}" 
+                                   class="resource-link flex items-center p-2 {% if resource == current_resource %}text-blue-600{% else %}text-gray-700{% endif %} hover:text-blue-600 transition-colors duration-200"
+                                   data-resource-id="{{ resource.resource.id }}">
+                                    <span class="mr-3">
+                                        {% if resource.type == 'Video' %}
+                                            <i class="fas fa-video"></i>
+                                        {% elif resource.type == 'Document' %}
+                                            <i class="fas fa-file-alt"></i>
+                                        {% elif resource.type == 'SCORM Package' %}
+                                            <i class="fas fa-box-open"></i>
+                                        {% elif resource.type == 'Quiz' %}
+                                            <i class="fas fa-question-circle"></i>
+                                        {% else %}
+                                            <i class="fas fa-file"></i>
+                                        {% endif %}
+                                    </span>
+                                    <span class="flex-1">{{ resource.resource.title }}</span>
+                                    {% if resource.is_completed %}
+                                        <span class="text-green-500"><i class="fas fa-check-circle"></i></span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">{{ content_object.title }}</h2>
+            <p class="text-gray-600">{{ content_object.description }}</p>
+            <!-- Add more course details as needed -->
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contentPlayer = document.getElementById('content-player');
+        const resourceLinks = document.querySelectorAll('.resource-link');
+    
+        resourceLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const resourceId = this.dataset.resourceId;
+                const url = new URL(this.href);
+                url.searchParams.set('resource', resourceId);
+    
+                // Use fetch to get the new content
+                fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the content player
+                        contentPlayer.innerHTML = data.html;
+    
+                        // Update the URL without reloading the page
+                        history.pushState(null, '', url);
+    
+                        // Update active state in the course content list
+                        resourceLinks.forEach(link => {
+                            link.parentElement.classList.remove('bg-gray-100');
+                            link.classList.remove('text-blue-600');
+                            link.classList.add('text-gray-700');
+                        });
+                        this.parentElement.classList.add('bg-gray-100');
+                        this.classList.remove('text-gray-700');
+                        this.classList.add('text-blue-600');
+    
+                        // Reinitialize any necessary scripts for the new content
+                        initializeContentScripts();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching resource:', error);
+                    });
+            });
+        });
+
+        function initializeContentScripts() {
+            // SCORM integration (if applicable)
+            const scormPlayer = document.getElementById('scorm-player');
+            if (scormPlayer) {
+                const scormUrl = scormPlayer.dataset.scormUrl;
+                // Implement SCORM player initialization here
+            }
+
+            // Quiz handling (if applicable)
+            const quizContainer = document.getElementById('quiz-container');
+            if (quizContainer) {
+                const quizId = quizContainer.dataset.quizId;
+                // Implement quiz loading and interaction here
+            }
+
+            // Add any other necessary initializations for your content types
+        }
+
+        // Initial call to set up scripts for the first loaded content
+        initializeContentScripts();
+    });
+</script>
+{% endblock %}
