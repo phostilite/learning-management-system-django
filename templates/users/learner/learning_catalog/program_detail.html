@@ -1,0 +1,186 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ program.title }} - Program Details{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-lg text-white">
+    <div class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="animate__animated animate__fadeInLeft">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ program.title }}</h1>
+                <p class="text-xl mb-6">{{ program.short_description }}</p>
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+                    <span class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-book mr-2"></i>{{ total_courses }} Courses
+                    </span>
+                    <span class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-clock mr-2"></i>{{ total_duration }} hours
+                    </span>
+                    <span class="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-graduation-cap mr-2"></i>{{ program.level }}
+                    </span>
+                </div>
+                {% if not is_enrolled %}
+                    <a href="#" class="inline-block bg-white text-purple-600 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                    </a>
+                {% else %}
+                    <a href="#" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-play mr-2"></i>Continue Learning
+                    </a>
+                {% endif %}
+            </div>
+            <div class="animate__animated animate__fadeInRight">
+                {% if program.cover_image %}
+                    <img src="{{ program.cover_image.url }}" alt="{{ program.title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                {% else %}
+                    <img src="{% static 'images/default_program_cover.jpg' %}" alt="{{ program.title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 animate__animated animate__fadeInUp">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800"><i class="fas fa-info-circle mr-2 text-purple-500"></i>About this program</h2>
+                <p class="text-gray-700">{{ program.description }}</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 animate__animated animate__fadeInUp">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800"><i class="fas fa-list-ul mr-2 text-green-500"></i>Courses in this Program</h2>
+                <div class="space-y-6">
+                    {% for program_course in program_courses %}
+                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ program_course.course.title }}</h3>
+                            <p class="text-gray-600 mb-2">{{ program_course.course.short_description }}</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="mr-4"><i class="fas fa-clock mr-1"></i> {{ program_course.course.duration }}</span>
+                                <span><i class="fas fa-signal mr-1"></i> {{ program_course.course.get_difficulty_level_display }}</span>
+                            </div>
+                            <h4 class="text-md font-semibold text-gray-700 mb-2">Learning Resources:</h4>
+                            <ul class="list-disc pl-5">
+                                {% for resource in program_course.learning_resources %}
+                                    <li class="text-gray-600">{{ resource.title }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if program.prerequisites.exists %}
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 animate__animated animate__fadeInUp">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800"><i class="fas fa-clipboard-list mr-2 text-yellow-500"></i>Prerequisites</h2>
+                <ul class="space-y-2">
+                    {% for prereq in program.prerequisites.all %}
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            {{ prereq.title }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <div class="bg-white rounded-lg shadow-lg p-6 animate__animated animate__fadeInUp">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800"><i class="fas fa-star mr-2 text-yellow-400"></i>Reviews</h2>
+                {% if average_rating %}
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl font-bold mr-2 text-yellow-400">{{ average_rating|floatformat:1 }}</span>
+                        <div class="flex items-center">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= average_rating|add:0 %}
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                {% else %}
+                                    <i class="far fa-star text-yellow-400"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="ml-2 text-gray-600">({{ total_reviews }} reviews)</span>
+                    </div>
+                {% else %}
+                    <p class="text-gray-600 mb-4">No reviews yet</p>
+                {% endif %}
+                
+                {% for review in reviews|slice:":3" %}
+                    <div class="border-t border-gray-200 py-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex items-center">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= review.rating %}
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    {% else %}
+                                        <i class="far fa-star text-yellow-400"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <span class="ml-2 text-gray-600">{{ review.user.get_full_name }}</span>
+                        </div>
+                        <p class="text-gray-700">{{ review.comment }}</p>
+                    </div>
+                {% endfor %}
+                <div class="mt-4">
+                    <a href="#" class="text-purple-500 hover:text-purple-600 font-semibold">View all reviews <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 animate__animated animate__fadeInRight">
+                <h3 class="text-xl font-bold mb-4 text-gray-800"><i class="fas fa-graduation-cap mr-2 text-purple-500"></i>Program Overview</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center justify-between p-2">
+                        <span class="text-gray-700"><i class="fas fa-book mr-2 text-purple-500"></i>Total Courses</span>
+                        <span class="font-semibold">{{ total_courses }}</span>
+                    </li>
+                    <li class="flex items-center justify-between p-2">
+                        <span class="text-gray-700"><i class="fas fa-clock mr-2 text-green-500"></i>Total Duration</span>
+                        <span class="font-semibold">{{ total_duration }} hours</span>
+                    </li>
+                    <li class="flex items-center justify-between p-2">
+                        <span class="text-gray-700"><i class="fas fa-users mr-2 text-blue-500"></i>Enrolled Students</span>
+                        <span class="font-semibold">{{ total_students }}</span>
+                    </li>
+                    <li class="flex items-center justify-between p-2">
+                        <span class="text-gray-700"><i class="fas fa-certificate mr-2 text-yellow-500"></i>Certificate</span>
+                        <span class="font-semibold">Yes</span>
+                    </li>
+                </ul>
+                {% if not is_enrolled %}
+                    <div class="mt-6">
+                        <a href="#" class="block w-full text-center bg-purple-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-600 transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 animate__animated animate__fadeInRight">
+                <h3 class="text-xl font-bold mb-4 text-gray-800"><i class="fas fa-share-alt mr-2 text-purple-500"></i>Share this program</h3>
+                <div class="flex justify-around">
+                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fab fa-facebook-square text-2xl"></i></a>
+                    <a href="#" class="text-blue-400 hover:text-blue-500"><i class="fab fa-twitter-square text-2xl"></i></a>
+                    <a href="#" class="text-red-600 hover:text-red-700"><i class="fab fa-pinterest-square text-2xl"></i></a>
+                    <a href="#" class="text-blue-700 hover:text-blue-800"><i class="fab fa-linkedin text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+{% endblock %}

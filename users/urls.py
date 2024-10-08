@@ -72,9 +72,6 @@ urlpatterns = [
     path('administrator/delivery/<uuid:pk>/enrollments/', administrator_views.DeliveryEnrollmentListView.as_view(), name='administrator_delivery_enrollments'),
     path('administrator/delivery/<uuid:pk>/enrollments/create/', administrator_views.DeliveryEnrollmentsCreateView.as_view(), name='administrator_delivery_enrollments_create'),
 
-
-    
-
     # Delivery Course Components
     path('administrator/deliveries/<uuid:pk>/add-course-component/', administrator_views.DeliveryCourseComponentCreateView.as_view(), name='administrator_add_delivery_course_component'),
 
@@ -89,8 +86,6 @@ urlpatterns = [
 
     # Delivery Component Delete
     path('administrator/delivery-component/<uuid:pk>/delete/', administrator_views.AdministratorDeliveryComponentDeleteView.as_view(), name='administrator_delivery_component_delete'),
-
-
 
     # Program Management
     path('administrator/program/', include([
@@ -152,64 +147,33 @@ urlpatterns = [
     path('administrator/notifications/unread-count/', administrator_views.UnreadNotificationsCountView.as_view(), name='administrator_unread_notifications_count'),
 
     # ==================== Learner URLs ====================
+
     # Dashboard and General Views
     path('learner/dashboard/', learner_views.DashboardView.as_view(), name='learner_dashboard'),
+
+    path('learner/learning-catalog/', learner_views.LearningCatalogView.as_view(), name='learner_learning_catalog'),
+    path('learner/programs/', learner_views.ProgramListView.as_view(), name='learner_program_list'),
+    path('learner/course/<uuid:pk>/', learner_views.CourseDetailView.as_view(), name='learner_course_detail'),
+    path('learner/program/<uuid:pk>/', learner_views.ProgramDetailView.as_view(), name='learner_program_detail'),
+
+    path('learner/enrollments/', learner_views.EnrollmentsView.as_view(), name='learner_enrollments'),
+    path('learner/enrollments/course-consumption/<uuid:enrollment_id>/', learner_views.CourseConsumptionView.as_view(), name='learner_course_consumption'),
+
+
+    path('learner/progress/', learner_views.ProgressView.as_view(), name='learner_progress'),
+
     path('learner/calendar/', learner_views.CalendarView.as_view(), name='learner_calendar'),
     path('learner/messages/', learner_views.MessageListView.as_view(), name='learner_message_list'),
-    path('learner/assignments/', learner_views.AssigmentListView.as_view(), name='learner_assignment_list'),
-    path('learner/grades/', learner_views.GradesView.as_view(), name='learner_grades'),
     path('learner/resources/', learner_views.ResourceView.as_view(), name='learner_resource_list'),
-    path('learner/progress/', learner_views.ProgressView.as_view(), name='learner_progress'),
-    path('learner/forum/', learner_views.ForumView.as_view(), name='learner_forum'),
-    path('learner/certificates/', learner_views.CertificateView.as_view(), name='learner_certificate'),
-    path('learner/badges/', learner_views.BadgeView.as_view(), name='learner_badge'),
     path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
 
     path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
-    path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notification_list'),
+    path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notifications'),
     path('learner/notifications/<uuid:pk>/mark-read/', learner_views.MarkNotificationReadView.as_view(), name='learner_mark_notification_read'),
     path('learner/notifications/mark-all-read/', learner_views.MarkAllNotificationsReadView.as_view(), name='learner_mark_all_notifications_read'),
     path('learner/notifications/unread-count/', learner_views.UnreadNotificationsCountView.as_view(), name='learner_unread_notifications_count'),
-
-    # Programs
-    path('learner/programs/', include([
-        path('', learner_views.ProgramListView.as_view(), name='learner_program_list'),
-        path('<uuid:pk>/', learner_views.ProgramDetailView.as_view(), name='learner_program_detail'),
-        path('my-programs/', learner_views.MyProgramListView.as_view(), name='learner_my_programs'),
-        path('my-programs/<uuid:enrollment_id>/', learner_views.MyProgramDetailView.as_view(), name='learner_my_program_detail'),
-    ])),
-
-    # Courses
-    path('learner/courses/', include([
-        path('', learner_views.CourseListView.as_view(), name='learner_course_list'),
-        path('<uuid:pk>/', learner_views.CourseDetailView.as_view(), name='learner_course_detail'),
-        path('my-courses/', learner_views.MyCourseListView.as_view(), name='learner_my_courses'),
-        path('my-courses/<uuid:enrollment_id>/', learner_views.MyCourseDetailView.as_view(), name='learner_my_course_detail'),
-    ])),
-
-    # Direct Consumption
-    path('learner/my-programs/<uuid:enrollment_id>/course/<uuid:course_id>/direct/', 
-         learner_views.DirectCourseConsumptionView.as_view(), 
-         name='direct_course_consumption'),
-    path('learner/my-programs/<uuid:enrollment_id>/resource/<uuid:resource_id>/direct/', 
-         learner_views.DirectResourceConsumptionView.as_view(), 
-         name='direct_resource_consumption'),
-
-    # Delivery Consumption
-    path('learner/my-programs/<uuid:enrollment_id>/delivery/course/<uuid:component_id>/', 
-         learner_views.DeliveryCourseConsumptionView.as_view(), 
-         name='delivery_course_consumption'),
-    path('learner/my-programs/<uuid:enrollment_id>/delivery/resource/<uuid:component_id>/', 
-         learner_views.DeliveryResourceConsumptionView.as_view(), 
-         name='delivery_resource_consumption'),
-
-    # Learning Resources
-    path('learner/resource/<uuid:resource_id>/', learner_views.LearningResourceDetailView.as_view(), name='learning_resource_detail'),
-
-    # Enrollment
-    path('learner/enroll/<str:enrollment_type>/<uuid:object_id>/', learner_views.EnrollmentConfirmationView.as_view(), name='learner_enroll'),
 
     # ==================== Facilitator URLs ====================
     path('facilitator/dashboard/', facilitator_views.FacilitatorDashboardView.as_view(), name='facilitator_dashboard'),

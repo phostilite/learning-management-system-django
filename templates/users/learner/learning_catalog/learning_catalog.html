@@ -1,0 +1,161 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Learning Catalog - LMS Learner" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .program-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="container mx-auto px-4">
+    <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold text-white text-center mb-2">Discover Your Learning Journey</h1>
+        <p class="text-lg text-white text-center"> Explore our wide range of courses and programs to boost your skills </p>
+    </header>
+</div>
+
+<div class="container mx-auto px-4 py-4">
+    <!-- Search and Filter Section -->
+    <div class="mb-8 bg-white rounded-lg shadow-lg p-6 animate__animated animate__fadeInUp">
+        <form method="get" action="{% url 'learner_learning_catalog' %}">
+            <div class="flex flex-wrap items-center justify-between">
+                <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                    <input type="text" name="search" placeholder="Search courses and programs..." value="{{ search_query }}" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-wrap justify-end">
+                    <select name="category" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2 mb-2 md:mb-0">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                            <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="level" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">All Levels</option>
+                        <option value="BEGINNER" {% if selected_level == 'BEGINNER' %}selected{% endif %}>Beginner</option>
+                        <option value="INTERMEDIATE" {% if selected_level == 'INTERMEDIATE' %}selected{% endif %}>Intermediate</option>
+                        <option value="ADVANCED" {% if selected_level == 'ADVANCED' %}selected{% endif %}>Advanced</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-between">
+                <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-search mr-2"></i>Apply Filters
+                </button>
+                <a href="{% url 'learner_learning_catalog' %}" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-undo mr-2"></i>Clear Filters
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Featured Programs Section -->
+    <section class="mb-12 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Featured Programs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for program in featured_programs %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden program-card transition duration-300">
+                    {% if program.cover_image %}
+                        <img src="{{ program.cover_image.url }}" alt="{{ program.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <img src="https://via.placeholder.com/400x200" alt="{{ program.title }}" class="w-full h-48 object-cover">
+                    {% endif %}
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ program.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ program.short_description|truncatewords:20 }}</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-2"></i>{{ program.duration }}</span>
+                            <span class="text-sm text-gray-500"><i class="fas fa-signal mr-2"></i>{{ program.level }}</span>
+                        </div>
+                        <a href="{% url 'learner_program_detail' program.id %}" class="block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 transform hover:scale-105">
+                            <i class="fas fa-info-circle mr-2"></i>View Program
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if total_programs > 3 %}
+            <div class="mt-8 text-center">
+                <a href="{% url 'learner_program_list' %}" class="inline-block bg-indigo-500 text-white px-8 py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-th-list mr-2"></i>View All Programs ({{ total_programs }})
+                </a>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- Courses Section -->
+    <section class="animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Explore Courses</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for course in courses %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden course-card transition duration-300">
+                    {% if course.cover_image %}
+                        <img src="{{ course.cover_image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x200" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% endif %}
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ course.title }}</h3>
+                        <p class="text-sm text-gray-600 mb-4">{{ course.short_description|truncatewords:10 }}</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs text-gray-500"><i class="fas fa-book mr-2"></i>{{ course.resources.count }} lessons</span>
+                            <span class="text-xs text-gray-500"><i class="fas fa-clock mr-2"></i>{{ course.duration }}</span>
+                        </div>
+                        <a href="{% url 'learner_course_detail' course.id %}" class="block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 transform hover:scale-105">
+                            <i class="fas fa-info-circle mr-2"></i>View Course
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="col-span-4 text-center text-gray-500 text-lg">No courses found matching your criteria.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    {% if courses.has_other_pages %}
+        <div class="flex justify-center mt-12">
+            <nav class="inline-flex rounded-md shadow-sm">
+                {% if courses.has_previous %}
+                    <a href="?page={{ courses.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_level %}&level={{ selected_level }}{% endif %}" class="px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-300">
+                        <i class="fas fa-chevron-left mr-2"></i>Previous
+                    </a>
+                {% endif %}
+                
+                {% for num in courses.paginator.page_range %}
+                    {% if courses.number == num %}
+                        <span class="px-4 py-2 border border-gray-300 bg-blue-50 text-sm font-medium text-blue-600">{{ num }}</span>
+                    {% else %}
+                        <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_level %}&level={{ selected_level }}{% endif %}" class="px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-300">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if courses.has_next %}
+                    <a href="?page={{ courses.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_level %}&level={{ selected_level }}{% endif %}" class="px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-300">
+                        Next<i class="fas fa-chevron-right ml-2"></i>
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+{% endblock %}

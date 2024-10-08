@@ -18,6 +18,7 @@ from django.http import JsonResponse
 from django.db.models import Count, Avg
 from django.core.cache import cache
 from django.views import View
+from django.template.loader import render_to_string
 
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,6 +29,7 @@ from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -49,7 +51,7 @@ from django.db.models import Avg, Q
 
 from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
-from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
+from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery, ComponentCompletion)
 from .api_client import upload_scorm_package, register_user_for_course
 
 from activities.models import SystemNotification
@@ -60,7 +62,6 @@ logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
-@method_decorator(login_required, name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'users/learner/dashboard.html'
 
@@ -68,597 +69,343 @@ class DashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-# ================================================================
-#                           Programs Views
-# ================================================================
-
-class ProgramListView(LoginRequiredMixin, LearnerRequiredMixin, FilterView):
-    model = Program
-    template_name = 'users/learner/programs/program_list.html'
-    context_object_name = 'programs'
-    filterset_class = ProgramFilter
-    paginate_by = 10
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(is_published=True)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            context['total_programs'] = self.get_queryset().count()
-        except Exception as e:
-            logger.error(f"Error getting total programs count: {str(e)}")
-            context['total_programs'] = 0
-        return context
-    
-class ProgramDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    model = Program
-    template_name = 'users/learner/programs/program_detail.html'
-    context_object_name = 'program'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            program_courses = ProgramCourse.objects.filter(program=self.object).select_related('course').prefetch_related(
-                Prefetch('course__resources', queryset=LearningResource.objects.order_by('order'))
-            ).order_by('order')
-            context['program_courses'] = program_courses
-            context['is_enrolled'] = Enrollment.objects.filter(user=self.request.user, program=self.object).exists()
-            program_tags = self.object.tags.values_list('id', flat=True)
-            related_programs = Program.objects.filter(tags__in=program_tags).exclude(id=self.object.id).distinct().order_by('-created_at')[:3]
-            context['related_programs'] = related_programs
-            reviews = Review.objects.filter(content_type__model='program', object_id=self.object.id).select_related('user').order_by('-created_at')
-            context['reviews'] = reviews[:5]
-            context['average_rating'] = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
-            context['user_has_reviewed'] = reviews.filter(user=self.request.user).exists()
-        except Exception as e:
-            logger.error(f"Error in ProgramDetailView: {str(e)}")
-            context['error'] = str(e)
-        return context
-    
-
-class MyProgramListView(LoginRequiredMixin, LearnerRequiredMixin, ListView):
-    template_name = 'users/learner/programs/my_programs.html'
-    context_object_name = 'enrollments'
-
-    def get_queryset(self):
-        try:
-            user = self.request.user
-            enrollments = Enrollment.objects.filter(user=user).select_related('program', 'delivery')
-            
-            enrollment_data = []
-            for enrollment in enrollments:
-                if enrollment.delivery and enrollment.delivery.delivery_type == 'PROGRAM':
-                    title = enrollment.delivery.title
-                    enrollment_type = 'Via Delivery'
-                elif enrollment.program:
-                    title = enrollment.program.title
-                    enrollment_type = 'Direct'
-                else:
-                    logger.error(f"Enrollment {enrollment.id} has no associated delivery or program")
-                    continue
-                
-                enrollment_data.append({
-                    'id': enrollment.id,
-                    'title': title,
-                    'enrollment_type': enrollment_type,
-                    'status': enrollment.status,
-                })
-            
-            logger.info(f"Retrieved {len(enrollment_data)} program enrollments for user {user.username}")
-            return enrollment_data
-        except Exception as e:
-            logger.error(f"Error retrieving program enrollments for user {user.username}: {str(e)}")
-            raise
-
-class MyProgramDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/my_program_detail.html'
-    context_object_name = 'enrollment'
-
-    def get_object(self):
-        enrollment_id = self.kwargs.get('enrollment_id')
-        user = self.request.user
-        return get_object_or_404(Enrollment, id=enrollment_id, user=user)
-
-    def get_template_names(self):
-        enrollment = self.get_object()
-        if enrollment.delivery:
-            return ['users/learner/programs/my_program_detail_delivery.html']
-        else:
-            return ['users/learner/programs/my_program_detail_direct.html']
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        enrollment = self.get_object()
-
-        try:
-            if enrollment.delivery:
-                # Delivery enrollment
-                delivery = enrollment.delivery
-                components = DeliveryComponent.objects.filter(delivery=delivery).select_related(
-                    'program_course__course', 'learning_resource'
-                ).order_by('order')
-
-                context['delivery'] = delivery
-                context['components'] = components
-                logger.info(f"Retrieved {components.count()} delivery components for enrollment {enrollment.id}")
-            else:
-                # Direct program enrollment
-                program = enrollment.program
-                program_courses = program.program_courses.select_related('course').order_by('order')
-                courses_with_resources = []
-
-                for program_course in program_courses:
-                    course = program_course.course
-                    resources = LearningResource.objects.filter(course=course).order_by('order')
-                    courses_with_resources.append({
-                        'course': course,
-                        'resources': resources
-                    })
-
-                context['program'] = program
-                context['courses_with_resources'] = courses_with_resources
-                logger.info(f"Retrieved {len(courses_with_resources)} courses with resources for enrollment {enrollment.id}")
-
-        except Exception as e:
-            logger.error(f"Error retrieving details for enrollment {enrollment.id}: {str(e)}")
-            raise
-
-        return context
-    
-class DirectCourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/course_consumption/direct/course_consumption.html'
-    context_object_name = 'program_course'
-
-    def get_object(self):
-        try:
-            enrollment_id = self.kwargs.get('enrollment_id')
-            course_id = self.kwargs.get('course_id')
-            user = self.request.user
-
-            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
-            program_course = get_object_or_404(ProgramCourse, program=enrollment.program, course__id=course_id)
-
-            return program_course
-        except Exception as e:
-            logger.error(f"Error retrieving program course for user {self.request.user.username}: {str(e)}")
-            raise
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            program_course = self.object
-            resources = LearningResource.objects.filter(course=program_course.course).order_by('order')
-            context['resources'] = resources
-            context['enrollment_id'] = self.kwargs.get('enrollment_id')
-            logger.info(f"Retrieved {resources.count()} learning resources for course {program_course.course.id}")
-        except Exception as e:
-            logger.error(f"Error retrieving learning resources for course {program_course.course.id}: {str(e)}")
-            raise
-        return context
-    
-class DirectResourceConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/course_consumption/direct/resource_types/resource_consumption.html'
-    context_object_name = 'resource'
-
-    def get_object(self):
-        try:
-            resource_id = self.kwargs.get('resource_id')
-            # Directly retrieve the resource without re-validating the enrollment
-            resource = get_object_or_404(LearningResource, id=resource_id)
-            return resource
-        except Exception as e:
-            logger.error(f"Error retrieving learning resource for user {self.request.user.username}: {str(e)}")
-            raise
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['enrollment_id'] = self.kwargs.get('enrollment_id')
-
-        # Add SCORM-specific context if the resource type is SCORM
-        if self.object.resource_type == 'SCORM':
-            context['scorm_details'] = self.object.scorm_details
-            context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
-            context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
-            context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
-
-        return context
-
-    def get_template_names(self):
-        resource = self.object
-        return [
-            f'users/learner/programs/course_consumption/direct/resource_types/{resource.resource_type.lower()}_resource.html',
-            self.template_name
-        ]
-    
-
-class DeliveryCourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/course_consumption/delivery/course_consumption.html'
-    context_object_name = 'delivery_component'
-
-    def get_object(self):
-        try:
-            enrollment_id = self.kwargs.get('enrollment_id')
-            component_id = self.kwargs.get('component_id')
-            user = self.request.user
-
-            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
-            delivery_component = get_object_or_404(
-                DeliveryComponent, 
-                id=component_id, 
-                delivery=enrollment.delivery,
-                program_course__isnull=False
-            )
-
-            return delivery_component
-        except Exception as e:
-            logger.error(f"Error retrieving delivery component for user {self.request.user.username}: {str(e)}")
-            raise
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            delivery_component = self.object
-            child_components = DeliveryComponent.objects.filter(
-                delivery=delivery_component.delivery,
-                parent_component=delivery_component
-            ).select_related('learning_resource').order_by('order')
-
-            context['child_components'] = child_components
-            context['enrollment_id'] = self.kwargs.get('enrollment_id')
-            logger.info(f"Retrieved {child_components.count()} child components for delivery component {delivery_component.id}")
-        except Exception as e:
-            logger.error(f"Error retrieving child components for delivery component {delivery_component.id}: {str(e)}")
-            raise
-        return context
-
-class DeliveryResourceConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/programs/course_consumption/delivery/resource_types/resource_consumption.html'
-    context_object_name = 'delivery_component'
-
-    def get_object(self):
-        try:
-            enrollment_id = self.kwargs.get('enrollment_id')
-            component_id = self.kwargs.get('component_id')
-            user = self.request.user
-
-            enrollment = get_object_or_404(Enrollment, id=enrollment_id, user=user)
-            delivery_component = get_object_or_404(
-                DeliveryComponent, 
-                id=component_id, 
-                delivery=enrollment.delivery,
-                learning_resource__isnull=False
-            )
-
-            return delivery_component
-        except Exception as e:
-            logger.error(f"Error retrieving delivery component for user {self.request.user.username}: {str(e)}")
-            raise
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['enrollment_id'] = self.kwargs.get('enrollment_id')
-
-        delivery_component = self.object
-        resource = delivery_component.learning_resource
-
-        # Add SCORM-specific context if the resource type is SCORM
-        if resource.resource_type == 'SCORM':
-            try:
-                context['scorm_details'] = resource.scorm_details
-                context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
-                context['SCORM_PLAYER_USER_ID'] = self.request.user.scorm_profile.scorm_player_id
-                context['SCORM_PLAYER_API_TOKEN'] = self.request.user.scorm_profile.token
-            except Exception as e:
-                logger.error(f"Error retrieving SCORM details for resource {resource.id}: {str(e)}")
-                # Handle the error appropriately, e.g., set a flag in the context
-
-        return context
-
-    def get_template_names(self):
-        delivery_component = self.object
-        resource = delivery_component.learning_resource
-        return [
-            f'users/learner/programs/course_consumption/delivery/resource_types/{resource.resource_type.lower()}_resource.html',
-            self.template_name
-        ]
-    
-# ================================================================
-#                           Courses Views
-# ================================================================
-
-class CourseListView(LoginRequiredMixin, LearnerRequiredMixin, FilterView):
-    model = Course
-    template_name = 'users/learner/courses/course_list.html'
+class LearningCatalogView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
+    template_name = 'users/learner/learning_catalog/learning_catalog.html'
     context_object_name = 'courses'
-    filterset_class = CourseFilter
-    paginate_by = 12  # Increased from 10 to 12 for better grid layout
+    paginate_by = 12
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(is_published=True).select_related('category').prefetch_related('tags')
+        try:
+            queryset = Course.objects.filter(is_published=True)
+            search_query = self.request.GET.get('search')
+            category = self.request.GET.get('category')
+            level = self.request.GET.get('level')
+
+            if search_query:
+                queryset = queryset.filter(
+                    Q(title__icontains=search_query) |
+                    Q(description__icontains=search_query)
+                )
+
+            if category:
+                queryset = queryset.filter(category__name=category)
+
+            if level:
+                queryset = queryset.filter(difficulty_level=level)
+
+            return queryset.order_by('-created_at')
+        except Exception as e:
+            logger.error(f"Error in LearningCatalogView get_queryset: {str(e)}")
+            return Course.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            context['total_courses'] = self.get_queryset().count()
-            context['categories'] = CourseCategory.objects.all()
+            context['categories'] = CourseCategory.objects.filter(status='ACTIVE')
+            context['featured_programs'] = Program.objects.filter(is_published=True)[:3]
+            context['total_programs'] = Program.objects.filter(is_published=True).count()
             
-            # Get unique difficulty levels from the database
-            context['difficulty_levels'] = Course.objects.values_list('difficulty_level', flat=True).distinct()
+            # Paginate courses
+            page = self.request.GET.get('page')
+            paginator = Paginator(self.object_list, self.paginate_by)
+            try:
+                courses = paginator.page(page)
+            except PageNotAnInteger:
+                courses = paginator.page(1)
+            except EmptyPage:
+                courses = paginator.page(paginator.num_pages)
             
+            context['courses'] = courses
+            context['search_query'] = self.request.GET.get('search', '')
+            context['selected_category'] = self.request.GET.get('category', '')
+            context['selected_level'] = self.request.GET.get('level', '')
         except Exception as e:
-            logger.error(f"Error in CourseListView get_context_data: {str(e)}")
-            context['total_courses'] = 0
-            context['categories'] = []
-            context['difficulty_levels'] = []
-        
+            logger.error(f"Error in LearningCatalogView get_context_data: {str(e)}")
         return context
+    
+class ProgramListView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
+    template_name = 'users/learner/learning_catalog/program_list.html'
+    context_object_name = 'programs'
+    paginate_by = 12
 
-class CourseDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
+    def get_queryset(self):
+        try:
+            queryset = Program.objects.filter(is_published=True)
+            search_query = self.request.GET.get('search')
+            
+            if search_query:
+                queryset = queryset.filter(
+                    Q(title__icontains=search_query) |
+                    Q(description__icontains=search_query)
+                )
+
+            return queryset.order_by('-created_at')
+        except Exception as e:
+            logger.error(f"Error in ProgramListView get_queryset: {str(e)}")
+            return Program.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['search_query'] = self.request.GET.get('search', '')
+        except Exception as e:
+            logger.error(f"Error in ProgramListView get_context_data: {str(e)}")
+        return context
+    
+
+class CourseDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
     model = Course
-    template_name = 'users/learner/courses/course_detail.html'
+    template_name = 'users/learner/learning_catalog/course_detail.html'
     context_object_name = 'course'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            context['learning_resources'] = self.object.resources.all().order_by('order')
+            course = self.get_object()
+            context['learning_resources'] = LearningResource.objects.filter(course=course).order_by('order')
+            context['reviews'] = Review.objects.filter(content_type__model='course', object_id=course.id)
+            context['average_rating'] = context['reviews'].aggregate(Avg('rating'))['rating__avg']
+            context['total_reviews'] = context['reviews'].count()
+            context['is_enrolled'] = course.enrollments.filter(user=self.request.user).exists()
             
-            # Get course reviews
-            reviews = Review.objects.filter(content_type__model='course', object_id=self.object.id)
-            context['reviews'] = reviews
-            context['average_rating'] = reviews.aggregate(Avg('rating'))['rating__avg']
-
-            # Get related courses (courses with same category or shared tags)
-            related_courses = Course.objects.filter(
-                Q(category=self.object.category) | Q(tags__in=self.object.tags.all())
-            ).exclude(id=self.object.id).distinct()[:3]
-            context['related_courses'] = related_courses
-
+            logger.info(f"Course detail page accessed for course {course.id} by user {self.request.user.username}")
         except Exception as e:
             logger.error(f"Error in CourseDetailView get_context_data: {str(e)}")
-            context['learning_resources'] = []
-            context['reviews'] = []
-            context['average_rating'] = None
-            context['related_courses'] = []
-
         return context
     
-class MyCourseListView(LoginRequiredMixin, LearnerRequiredMixin, ListView):
-    template_name = 'users/learner/courses/my_courses.html'
-    context_object_name = 'enrollments'
-
-    def get_queryset(self):
-        try:
-            user = self.request.user
-            enrollments = Enrollment.objects.filter(user=user).select_related('course', 'delivery')
-            
-            enrollment_data = []
-            for enrollment in enrollments:
-                if enrollment.delivery and enrollment.delivery.delivery_type == 'COURSE':
-                    title = enrollment.delivery.title
-                    enrollment_type = 'Via Delivery'
-                elif enrollment.course:
-                    title = enrollment.course.title
-                    enrollment_type = 'Direct'
-                else:
-                    logger.error(f"Enrollment {enrollment.id} has no associated delivery or course")
-                    continue
-                
-                enrollment_data.append({
-                    'id': enrollment.id,
-                    'title': title,
-                    'enrollment_type': enrollment_type,
-                    'status': enrollment.status,
-                })
-            
-            logger.info(f"Retrieved {len(enrollment_data)} course enrollments for user {user.username}")
-            return enrollment_data
-        except Exception as e:
-            logger.error(f"Error retrieving course enrollments for user {user.username}: {str(e)}")
-            raise
-
-class MyCourseDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    template_name = 'users/learner/courses/my_course_detail.html'
-    context_object_name = 'enrollment'
-
-    def get_object(self):
-        enrollment_id = self.kwargs.get('enrollment_id')
-        user = self.request.user
-        return get_object_or_404(Enrollment, id=enrollment_id, user=user)
-
-    def get_template_names(self):
-        enrollment = self.get_object()
-        if enrollment.delivery:
-            return ['users/learner/courses/my_course_detail_delivery.html']
-        else:
-            return ['users/learner/courses/my_course_detail_direct.html']
+    
+class ProgramDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
+    model = Program
+    template_name = 'users/learner/learning_catalog/program_detail.html'
+    context_object_name = 'program'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        enrollment = self.get_object()
+        try:
+            program = self.get_object()
+            context['program_courses'] = ProgramCourse.objects.filter(program=program).select_related('course').order_by('order')
+            context['reviews'] = Review.objects.filter(content_type__model='program', object_id=program.id)
+            context['average_rating'] = context['reviews'].aggregate(Avg('rating'))['rating__avg']
+            context['total_reviews'] = context['reviews'].count()
+            context['is_enrolled'] = program.enrollments.filter(user=self.request.user).exists()
+            context['total_duration'] = sum([pc.course.duration for pc in context['program_courses'] if pc.course.duration])
+            context['total_courses'] = context['program_courses'].count()
+            context['total_students'] = program.enrollments.count()
+            
+            # Get learning resources for each course
+            for program_course in context['program_courses']:
+                program_course.learning_resources = program_course.course.resources.all()
 
+            logger.info(f"Program detail page accessed for program {program.id} by user {self.request.user.username}")
+        except Exception as e:
+            logger.error(f"Error in ProgramDetailView get_context_data: {str(e)}")
+        return context
+    
+
+
+class EnrollmentsView(LearnerRequiredMixin, LoginRequiredMixin, TemplateView):
+    template_name = 'users/learner/enrollments/enrollments.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        try:
+            # Get all enrollments for the user
+            enrollments = Enrollment.objects.filter(user=user).select_related(
+                'delivery', 'program', 'course'
+            ).prefetch_related('progress_records')
+
+            # Active enrollments
+            active_enrollments = enrollments.filter(
+                Q(status='ENROLLED') | Q(status='IN_PROGRESS')
+            ).order_by('-enrollment_date')
+
+            # Completed enrollments
+            completed_enrollments = enrollments.filter(status='COMPLETED').order_by('-completion_date')
+
+            # Calculate summary statistics
+            total_enrollments = enrollments.count()
+            active_count = active_enrollments.count()
+            completed_count = completed_enrollments.count()
+
+            # Get certificates
+            certificates = Certificate.objects.filter(user=user)
+            certificate_count = certificates.count()
+
+            # Process active enrollments
+            processed_active_enrollments = []
+            for enrollment in active_enrollments:
+                progress = Progress.objects.filter(enrollment=enrollment).first()
+                processed_enrollment = {
+                    'enrollment': enrollment,
+                    'title': self.get_enrollment_title(enrollment),
+                    'type': self.get_enrollment_type(enrollment),
+                    'progress': progress.progress_percentage if progress else 0,
+                    'start_date': enrollment.enrollment_date,
+                    'estimated_completion': self.estimate_completion_date(enrollment),
+                }
+                processed_active_enrollments.append(processed_enrollment)
+
+            context.update({
+                'active_enrollments': processed_active_enrollments,
+                'completed_enrollments': completed_enrollments,
+                'total_enrollments': total_enrollments,
+                'active_count': active_count,
+                'completed_count': completed_count,
+                'certificate_count': certificate_count,
+            })
+
+        except Exception as e:
+            logger.error(f"Error in EnrollmentsView for user {user}: {str(e)}")
+            context['error_message'] = "An error occurred while fetching your enrollments. Please try again later."
+
+        return context
+
+    def get_enrollment_title(self, enrollment):
+        if enrollment.delivery:
+            return enrollment.delivery.title
+        elif enrollment.program:
+            return enrollment.program.title
+        elif enrollment.course:
+            return enrollment.course.title
+        return "Unknown Enrollment"
+
+    def get_enrollment_type(self, enrollment):
+        if enrollment.delivery:
+            return enrollment.delivery.delivery_type
+        elif enrollment.program:
+            return 'PROGRAM'
+        elif enrollment.course:
+            return 'COURSE'
+        return "UNKNOWN"
+
+    def estimate_completion_date(self, enrollment):
         try:
             if enrollment.delivery:
-                # Delivery enrollment
-                delivery = enrollment.delivery
-                components = DeliveryComponent.objects.filter(delivery=delivery).select_related(
-                    'learning_resource'
-                ).order_by('order')
-
-                context['delivery'] = delivery
-                context['components'] = components
-                logger.info(f"Retrieved {components.count()} delivery components for enrollment {enrollment.id}")
-            else:
-                # Direct course enrollment
-                course = enrollment.course
-                resources = LearningResource.objects.filter(course=course).order_by('order')
-
-                context['course'] = course
-                context['resources'] = resources
-                logger.info(f"Retrieved {resources.count()} resources for enrollment {enrollment.id}")
-
+                return enrollment.delivery.end_date
+            # For direct enrollments, you might want to implement a more sophisticated estimation
+            # based on the average completion time or the intended duration of the program/course
+            return enrollment.enrollment_date + timezone.timedelta(days=90)  # Example: 3 months from enrollment
         except Exception as e:
-            logger.error(f"Error retrieving details for enrollment {enrollment.id}: {str(e)}")
-            raise
+            logger.error(f"Error estimating completion date for enrollment {enrollment.id}: {str(e)}")
+            return None
+        
 
-        return context
-    
-class LearningResourceDetailView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
-    model = LearningResource
-    context_object_name = 'resource'
-    template_name = 'users/learner/courses/learning_resource_base.html'
+class CourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):
+    template_name = 'users/learner/enrollments/course_consumption.html'
+    context_object_name = 'enrollment'
 
     def get_object(self, queryset=None):
-        resource_id = self.kwargs.get('resource_id')
         try:
-            return get_object_or_404(LearningResource, id=resource_id)
+            enrollment_id = self.kwargs.get('enrollment_id')
+            enrollment = get_object_or_404(
+                Enrollment.objects.select_related(
+                    'delivery', 'program', 'course', 'user'
+                ).prefetch_related(
+                    Prefetch('progress_records', queryset=Progress.objects.order_by('-last_updated')),
+                    Prefetch('component_completions', queryset=ComponentCompletion.objects.order_by('completion_date')),
+                ),
+                id=enrollment_id,
+                user=self.request.user
+            )
+            return enrollment
+        except Enrollment.DoesNotExist:
+            logger.error(f"Enrollment with id {enrollment_id} does not exist for user {self.request.user}")
+            raise PermissionDenied(_("You do not have access to this enrollment."))
         except Exception as e:
-            logger.error(f"Error fetching learning resource with id {resource_id}: {str(e)}", exc_info=True)
-            return None
+            logger.error(f"Error fetching enrollment: {str(e)}")
+            raise
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
-            resource = self.object
-            user = self.request.user
+            enrollment = self.object
+            content_object = enrollment.delivery or enrollment.program or enrollment.course
 
-            # Get the enrollment for this resource
-            enrollment = Enrollment.objects.filter(
-                user=user,
-                course=resource.course
-            ).first()
+            # Fetch resources based on the content_object type
+            if enrollment.delivery:
+                resources = LearningResource.objects.filter(
+                    deliverycomponent__delivery=content_object
+                ).order_by('deliverycomponent__order')
+            elif enrollment.program:
+                resources = LearningResource.objects.filter(
+                    course__programcourse__program=content_object
+                ).order_by('course__programcourse__order', 'order')
+            elif enrollment.course:
+                resources = content_object.resources.all().order_by('order')
+            else:
+                raise ValueError(_("Invalid enrollment type"))
 
-            if not enrollment:
-                context['error'] = "You are not enrolled in this course."
-                return context
-
-            # Get or create progress for this resource
-            progress, created = Progress.objects.get_or_create(
-                enrollment=enrollment,
-                learning_resource=resource,
-                defaults={
-                    'progress_type': 'LEARNING_RESOURCE',
-                    'total_items': 1  # Assuming each resource counts as one item
-                }
+            progress = enrollment.progress_records.first()
+            completed_resources = set(
+                enrollment.component_completions.values_list('learning_resource_id', flat=True)
             )
 
-            context['enrollment'] = enrollment
-            context['progress'] = progress
-            context['is_completed'] = progress.completed_items == progress.total_items
+            processed_resources = [
+                {
+                    'resource': resource,
+                    'is_completed': resource.id in completed_resources,
+                    'type': resource.get_resource_type_display(),
+                } for resource in resources
+            ]
 
-            # Set the specific template based on resource type
-            context['specific_template'] = f'users/learner/courses/resource_types/{resource.resource_type.lower()}_detail.html'
+            # Get the requested resource ID from the query parameters
+            requested_resource_id = self.request.GET.get('resource')
+            
+            # Find the current resource based on the requested ID
+            current_resource = next(
+                (r for r in processed_resources if str(r['resource'].id) == requested_resource_id),
+                processed_resources[0] if processed_resources else None
+            )
 
-            # Add resource-specific context data
-            if resource.resource_type == 'SCORM':
-                context['scorm_details'] = resource.scorm_details
-                context['SCORM_API_BASE_URL'] = settings.SCORM_API_BASE_URL
-                context['SCORM_PLAYER_USER_ID'] = user.scorm_profile.scorm_player_id
-                context['SCORM_PLAYER_API_TOKEN'] = user.scorm_profile.token
-            elif resource.resource_type == 'QUIZ':
-                context['quiz_details'] = resource.quiz
-            # Add more resource-specific context as needed
+            context.update({
+                'content_object': content_object,
+                'resources': processed_resources,
+                'progress': progress,
+                'current_resource': current_resource,
+            })
+
+            # Add SCORM-specific details if the current resource is a SCORM package
+            if current_resource and current_resource['resource'].resource_type == 'SCORM':
+                context.update({
+                    'scorm_details': current_resource['resource'].scorm_details,
+                    'SCORM_API_BASE_URL': settings.SCORM_API_BASE_URL,
+                    'SCORM_PLAYER_USER_ID': self.request.user.scorm_profile.scorm_player_id,
+                    'SCORM_PLAYER_API_TOKEN': self.request.user.scorm_profile.token,
+                })
 
         except Exception as e:
-            logger.error(f"Error in LearningResourceDetailView get_context_data for user {user.id} and resource {resource.id if resource else 'None'}: {str(e)}", exc_info=True)
-            context['error'] = "An error occurred while fetching resource details. Please try again later."
+            logger.error(f"Error in CourseConsumptionView for enrollment {self.object.id}: {str(e)}")
+            context['error_message'] = _("An error occurred while loading the course content. Please try again later.")
 
         return context
     
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+            context = self.get_context_data(object=self.object)
+            
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                html = render_to_string('users/learner/enrollments/course_content_player.html', context, request=request)
+                return JsonResponse({'html': html})
+            
+            return self.render_to_response(context)
+        except PermissionDenied as e:
+            logger.warning(f"Permission denied for user {request.user}: {str(e)}")
+            return self.handle_no_permission()
+        except Exception as e:
+            logger.error(f"Unexpected error in CourseConsumptionView: {str(e)}")
+            return JsonResponse({'error': _("An unexpected error occurred. Please try again later.")}, status=500)
+    
 
-# ================================================================
-#                           Enrollment Views
-# ================================================================
-
-class EnrollmentConfirmationView(LoginRequiredMixin, LearnerRequiredMixin, FormView):
-    template_name = 'users/learner/enrollment/enrollment_confirmation.html'
-    form_class = UserEnrollmentForm
-    success_url = reverse_lazy('learner_dashboard')
-
-    def get_initial(self):
-        return {
-            'enrollment_type': self.kwargs['enrollment_type'],
-            'object_id': self.kwargs['object_id']
-        }
+class ProgressView(TemplateView):
+    template_name = 'users/learner/progress.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        enrollment_type = self.kwargs['enrollment_type']
-        object_id = self.kwargs['object_id']
-
-        logger.info(f"EnrollmentConfirmationView: get_context_data called for {enrollment_type} with id {object_id}")
-
-        try:
-            if enrollment_type == 'program':
-                context['object'] = get_object_or_404(Program, id=object_id)
-                logger.info(f"Program found: {context['object'].title}")
-            elif enrollment_type == 'course':
-                context['object'] = get_object_or_404(Course, id=object_id)
-                logger.info(f"Course found: {context['object'].title}")
-            else:
-                logger.error(f"Invalid enrollment type: {enrollment_type}")
-                raise ValueError("Invalid enrollment type")
-        except Exception as e:
-            logger.error(f"Error in EnrollmentConfirmationView get_context_data: {str(e)}")
-            messages.error(self.request, _("An error occurred. Please try again."))
-            return redirect('home')
-
         return context
 
-    def form_valid(self, form):
-        enrollment_type = form.cleaned_data['enrollment_type']
-        object_id = form.cleaned_data['object_id']
-
-        logger.info(f"EnrollmentConfirmationView: form_valid called for {enrollment_type} with id {object_id}")
-
-        try:
-            with transaction.atomic():
-                if enrollment_type == 'program':
-                    program = get_object_or_404(Program, id=object_id)
-                    logger.info(f"Program found: {program.title}")
-
-                    enrollment, created = Enrollment.objects.get_or_create(
-                        user=self.request.user,
-                        program=program,
-                        defaults={'status': 'ENROLLED'}
-                    )
-
-                else:  # course
-                    course = get_object_or_404(Course, id=object_id)
-                    logger.info(f"Course found: {course.title}")
-
-
-                    enrollment, created = Enrollment.objects.get_or_create(
-                        user=self.request.user,
-                        course=course,
-                        defaults={'status': 'ENROLLED'}
-                    )
-
-                if created:
-                    logger.info(f"New enrollment created: {enrollment.id}")
-                    messages.success(self.request, _("You have successfully enrolled."))
-                else:
-                    logger.info(f"Existing enrollment found: {enrollment.id}")
-                    messages.info(self.request, _("You were already enrolled."))
-
-                logger.info(f"Enrollment process completed successfully for user {self.request.user.username}")
-
-        except Exception as e:
-            logger.exception(f"Error in EnrollmentConfirmationView form_valid: {str(e)}")
-            messages.error(self.request, _("An error occurred during enrollment. Please try again."))
-            return JsonResponse({'error': 'An error occurred during enrollment.'}, status=500)
-
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        logger.warning(f"Invalid form submission: {form.errors}")
-        messages.error(self.request, _("Invalid enrollment data. Please try again."))
-        return super().form_invalid(form)
-
-@method_decorator(login_required, name='dispatch')
 class CalendarView(TemplateView):
     template_name = 'users/learner/calendar.html'
 
@@ -666,7 +413,6 @@ class CalendarView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-@method_decorator(login_required, name='dispatch')
 class MessageListView(TemplateView):
     template_name = 'users/learner/messages.html'
 
@@ -674,92 +420,13 @@ class MessageListView(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
-@method_decorator(login_required, name='dispatch')
-class AssigmentListView(TemplateView):
-    template_name = 'users/learner/assignments.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-@method_decorator(login_required, name='dispatch')
-class GradesView(TemplateView):
-    template_name = 'users/learner/grades.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-@method_decorator(login_required, name='dispatch')
 class ResourceView(TemplateView):
     template_name = 'users/learner/resource.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-    
-@method_decorator(login_required, name='dispatch')
-class ProgressView(TemplateView):
-    template_name = 'users/learner/progress.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-@method_decorator(login_required, name='dispatch')
-class ForumView(TemplateView):
-    template_name = 'users/learner/forum.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-@method_decorator(login_required, name='dispatch')
-class CertificateView(LoginRequiredMixin, LearnerRequiredMixin, TemplateView):
-    template_name = 'users/learner/certificate.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        # Get certificates for the logged-in learner
-        certificates = Certificate.objects.filter(user=self.request.user).order_by('-issue_date')
-        
-        # Get certificate counts
-        context['certificates'] = certificates
-        context['total_certificates'] = certificates.count()
-        context['this_year_certificates'] = certificates.filter(issue_date__year=timezone.now().year).count()
-        
-        # Get certificate counts by category
-        certificate_types = certificates.values('course__category__name').annotate(count=Count('id'))
-        
-        # Initialize counts for each certificate type
-        context['course_certificates'] = 0
-        context['specialization_certificates'] = 0
-        context['professional_certificates'] = 0
-
-        # Categorize certificates
-        for cert_type in certificate_types:
-            category_name = cert_type['course__category__name']
-            count = cert_type['count']
-            
-            if category_name == 'Course':
-                context['course_certificates'] = count
-            elif category_name == 'Specialization':
-                context['specialization_certificates'] = count
-            elif category_name == 'Professional':
-                context['professional_certificates'] = count
-
-        return context
-    
-@method_decorator(login_required, name='dispatch')
-class BadgeView(TemplateView):
-    template_name = 'users/learner/badge.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-@method_decorator(login_required, name='dispatch')
 class LeaderboardView(TemplateView):
     template_name = 'users/learner/leaderboard.html'
 
@@ -914,7 +581,6 @@ class SettingsView(LoginRequiredMixin, LearnerRequiredMixin, UserPassesTestMixin
 # ====================== Help & Support Views ================
 # ============================================================
     
-@method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):
     template_name = 'users/learner/help_support.html'
 
@@ -966,7 +632,7 @@ class MarkNotificationReadView(LoginRequiredMixin, LearnerRequiredMixin, View):
             notification = SystemNotification.objects.get(id=pk, user=request.user)
             notification.is_read = True
             notification.save()
-            return redirect('learner_notification_list')
+            return redirect('learner_notifications')
         except SystemNotification.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Notification not found'}, status=404)
         except Exception as e:
