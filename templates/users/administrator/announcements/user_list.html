@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Manage Recipients - LMS Supervisor" %}{% endblock %}
+{% block title %}{% trans "Manage Recipients - LMS Administrator" %}{% endblock %}
 
 {% block extra_css %}
 {% endblock %}
@@ -13,7 +13,7 @@
 
     <!-- Header -->
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow">
-        <h1 class="text-3xl font-bold text-white text-center">{% trans "Manage Recipients" %}</h1>
+        <h1 class="text-3xl font-bold text-white text-center">{% trans "User List" %}</h1>
         <p class="text-center text-lg">{% trans "Check if recipients have read their respective announcements." %}</p>
     </header>
 
@@ -41,7 +41,13 @@
             <li>
                 <div class="flex items-center">
                     <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Manage Recipients" %}</span>
+                    <a href="{% url 'administrator_announcement_manage_recipients' announcement.id %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">{% trans "Manage Recipients" %}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "User List" %}</span>
                 </div>
             </li>
         </ol>
@@ -50,19 +56,17 @@
     <table class="min-w-full bg-white">
         <thead>
             <tr>
-                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">ID</th>
-                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Recipient Type</th>
-                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Action</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Username</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Email</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Read at</th>
             </tr>
         </thead>
         <tbody>
-            {% for recipient in recipients %}
+            {% for user in user_details %}
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200">{{ recipient.id }}</td>
-                <td class="py-2 px-4 border-b border-gray-200">{{ recipient.recipient_type }}</td>
-                <td class="py-2 px-4 border-b border-gray-200">
-                    <a href="{% url 'filter_users_by_recipient_type' recipient.announcement.id recipient.id %}">View Users</a>
-                </td>
+                <td class="py-2 px-4 border-b border-gray-200">{{ user.username }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">{{ user.email }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">{{ user.read_at }}</td>
             </tr>
             {% endfor %}
         </tbody>

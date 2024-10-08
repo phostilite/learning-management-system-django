@@ -1782,7 +1782,8 @@ class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequire
         queryset = Announcement.objects.all().order_by('-publish_date')
         self.filterset = AnnouncementFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
-
+    
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
@@ -1839,20 +1840,14 @@ class AdministratorAnnouncementDetailView(LoginRequiredMixin, AdministratorRequi
     template_name = 'users/administrator/announcements/announcement_detail.html'
     context_object_name = 'announcement'
 
-    def test_func(self):
-        return self.request.user.groups.filter(name='administrator').exists()
-
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
     
 
-class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, AdministratorRequiredMixin, DetailView):
+class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, AdministratorRequiredMixin, ListView):
     model = Announcement
     template_name = 'users/administrator/announcements/announcement_manage_recipients.html'
     context_object_name = 'recipients'
-
-    def test_func(self):
-        return self.request.user.groups.filter(name='administrator').exists()
 
     def get_object(self):
         return get_object_or_404(Announcement, pk=self.kwargs.get('pk'))
@@ -1862,6 +1857,65 @@ class AdministratorAnnouncementManageRecipientView(LoginRequiredMixin, Administr
         announcement = self.get_object()
         context['recipients'] = AnnouncementRecipient.objects.filter(announcement=announcement)
         context['announcement'] = announcement
+        context['all_announcements'] = Announcement.objects.all()
+        return context
+    
+
+class FilterUsersByRecipientTypeView(TemplateView):
+    template_name = 'users/administrator/announcements/user_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcement_id = self.kwargs['announcement_id']
+        announcement_recipient_id = self.kwargs['announcement_recipient_id']
+        
+        # Retrieve the Announcement object
+        announcement = get_object_or_404(Announcement, id=announcement_id)
+        
+        # Retrieve the AnnouncementRecipient object
+        announcement_recipient = get_object_or_404(AnnouncementRecipient, id=announcement_recipient_id, announcement_id=announcement_id)
+        
+        # Filter users based on recipient_type
+        recipient_type = announcement_recipient.recipient_type
+        if recipient_type == 'ALL':
+            users = User.objects.all()
+        elif recipient_type == 'LEARNER':
+            users = User.objects.filter(groups__name='learner')
+        elif recipient_type == 'FACILITATOR':
+            users = User.objects.filter(groups__name='facilitator')
+        elif recipient_type == 'SUPERVISOR':
+            users = User.objects.filter(groups__name='supervisor')
+        elif recipient_type == 'USER':
+            users = User.objects.filter(username=announcement_recipient.specific_recipient)
+        else:
+            users = User.objects.none()
+        
+        
+        # Get read_at timestamp for each user
+        user_read_details = []
+        for user in users:
+            try:
+                # Get the AnnouncementRead object for the specific announcement and user
+                announcement_read = AnnouncementRead.objects.get(announcement=announcement, user=user)
+                # Append the user's details and read_at field to the list
+                user_read_details.append({
+                    'username': user.username,
+                    'email': user.email,
+                    'read_at': announcement_read.read_at
+                })
+            except AnnouncementRead.DoesNotExist:
+                # Handle the case where the AnnouncementRead object does not exist
+                user_read_details.append({
+                    'username': user.username,
+                    'email': user.email,
+                    'read_at': None
+                })
+        print(user_read_details)      
+        
+        
+        # Add users to context
+        context['user_details'] = user_read_details
+        context['announcement'] = announcement # Add announcement to context
         return context
 
     
@@ -1880,6 +1934,7 @@ class AdministratorAnnouncementDeleteView(LoginRequiredMixin, AdministratorRequi
         self.object = self.get_object()
         self.object.delete()
         return JsonResponse({'success': True, 'redirect_url': str(self.success_url)})
+
 
 class AdministratorAnnouncementUpdateView(LoginRequiredMixin, AdministratorRequiredMixin, UpdateView):
     model = Announcement

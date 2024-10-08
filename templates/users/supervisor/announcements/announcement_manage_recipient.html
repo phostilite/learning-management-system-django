@@ -47,50 +47,26 @@
         </ol>
     </nav>
     
-    <div class="bg-white rounded-xl p-6 mb-8 card-shadow">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">ID</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Recipient Type</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-medium text-gray-700">Action</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for recipient in recipients %}
-    <div class="rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300
-                {% if recipient.recipient_type == 'ALL' %}bg-blue-100
-                {% elif recipient.recipient_type == 'LEARNER' %}bg-green-100
-                {% elif recipient.recipient_type == 'FACILITATOR' %}bg-yellow-100
-                {% elif recipient.recipient_type == 'SUPERVISOR' %}bg-purple-100
-                {% elif recipient.recipient_type == 'USER' %}bg-red-100
-                {% else %}bg-gray-100{% endif %}">
-        <div class="flex items-center justify-between mb-4">
-            <span class="text-sm font-semibold text-gray-600 bg-white bg-opacity-60 rounded-full px-3 py-1">
-                {{ recipient.get_recipient_type_display }}
-            </span>
-            <i class="fas 
-                 {% if recipient.recipient_type == 'USER' %}fa-user text-red-500
-                {% elif recipient.recipient_type == 'LEARNER' %}fa-user-graduate text-green-500
-                {% elif recipient.recipient_type == 'FACILITATOR' %}fa-chalkboard-teacher text-yellow-500
-                {% elif recipient.recipient_type == 'SUPERVISOR' %}fa-user-tie text-purple-500
-                {% else %}fa-users text-blue-500{% endif %} text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">
-            {% if recipient.recipient_type == 'USER' %}
-                {{ recipient.content_object.username }}
-            {% elif recipient.recipient_type == 'COURSE' %}
-                {{ recipient.content_object.name }}
-            {% elif recipient.recipient_type == 'PROGRAM' %}
-                {{ recipient.content_object.name }}
-            {% else %}
-                {{ recipient.get_recipient_type_display }}
-            {% endif %}
-        </h3>
-        <p class="text-sm text-gray-600">
-            {% trans "Recipient ID" %}: {{ recipient.id }}
-        </p>
-    </div>
-{% empty %}
-    <div class="col-span-full text-center py-8">
-        <p class="text-gray-500 text-lg">{% trans "No recipients found." %}</p>
-    </div>
-{% endfor %}
-        </div>
-    </div>
-
+            <tr>
+                <td class="py-2 px-4 border-b border-gray-200">{{ recipient.id }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">{{ recipient.recipient_type }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">
+                    <a href="#">View Users</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 {% block extra_js %}
