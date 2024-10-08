@@ -1,15 +1,38 @@
 {% if current_resource %}
     {% if current_resource.resource.resource_type == 'VIDEO' %}
-        <video controls class="w-full">
-            <source src="{{ current_resource.resource.content.url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        {% if current_resource.resource.content %}
+            <video controls class="w-full">
+                <source src="{{ current_resource.resource.content.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <p class="p-4">Video content not available</p>
+        {% endif %}
     {% elif current_resource.resource.resource_type == 'DOCUMENT' %}
-        <iframe src="{{ current_resource.resource.content.url }}" class="w-full h-[600px]"></iframe>
+        {% if current_resource.resource.content %}
+            <iframe src="{{ current_resource.resource.content.url }}" class="w-full h-[600px]"></iframe>
+        {% else %}
+            <p class="p-4">Document content not available</p>
+        {% endif %}
     {% elif current_resource.resource.resource_type == 'SCORM' %}
-        <div id="scorm-player" data-scorm-url="{{ current_resource.resource.scorm_details.web_path }}" class="w-full h-[600px]"></div>
+        {% if current_resource.resource.scorm_details %}
+            <div id="scorm-player" 
+                data-scorm-url="{{ current_resource.resource.scorm_details.web_path }}"
+                data-package-id="{{ current_resource.resource.scorm_details.scorm_package_id }}"
+                data-api-base-url="{{ SCORM_API_BASE_URL }}"
+                data-user-id="{{ SCORM_PLAYER_USER_ID }}"
+                data-token="{{ SCORM_PLAYER_API_TOKEN }}"
+                class="w-full h-[600px]">
+            </div>
+        {% else %}
+            <p class="p-4">SCORM content not available</p>
+        {% endif %}
     {% elif current_resource.resource.resource_type == 'QUIZ' %}
-        <div id="quiz-container" data-quiz-id="{{ current_resource.resource.id }}" class="w-full h-[600px]"></div>
+        {% if current_resource.resource.id %}
+            <div id="quiz-container" data-quiz-id="{{ current_resource.resource.id }}" class="w-full h-[600px]"></div>
+        {% else %}
+            <p class="p-4">Quiz content not available</p>
+        {% endif %}
     {% else %}
         <p class="p-4">Unsupported resource type</p>
     {% endif %}

@@ -366,6 +366,15 @@ class CourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView
                 'current_resource': current_resource,
             })
 
+            # Add SCORM-specific details if the current resource is a SCORM package
+            if current_resource and current_resource['resource'].resource_type == 'SCORM':
+                context.update({
+                    'scorm_details': current_resource['resource'].scorm_details,
+                    'SCORM_API_BASE_URL': settings.SCORM_API_BASE_URL,
+                    'SCORM_PLAYER_USER_ID': self.request.user.scorm_profile.scorm_player_id,
+                    'SCORM_PLAYER_API_TOKEN': self.request.user.scorm_profile.token,
+                })
+
         except Exception as e:
             logger.error(f"Error in CourseConsumptionView for enrollment {self.object.id}: {str(e)}")
             context['error_message'] = _("An error occurred while loading the course content. Please try again later.")

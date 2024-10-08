@@ -132,7 +132,12 @@
             const scormPlayer = document.getElementById('scorm-player');
             if (scormPlayer) {
                 const scormUrl = scormPlayer.dataset.scormUrl;
-                // Implement SCORM player initialization here
+                const packageId = scormPlayer.dataset.packageId;
+                const apiBaseUrl = scormPlayer.dataset.apiBaseUrl;
+                const userId = scormPlayer.dataset.userId;
+                const token = scormPlayer.dataset.token;
+
+                launchScorm(packageId, apiBaseUrl, userId, token);
             }
 
             // Quiz handling (if applicable)
@@ -144,6 +149,56 @@
 
             // Add any other necessary initializations for your content types
         }
+
+        function launchScorm(packageId, apiBaseUrl, userId, token) {
+            const apiUrl = `${apiBaseUrl}/api/attempts/start_attempt/`;
+        
+            const formData = new FormData();
+            formData.append('user_id', userId);
+            formData.append('package_id', packageId);
+        
+            fetch(apiUrl, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const launchUrl = `${apiBaseUrl}/launch/${data.id}/`;
+                launchScormPackage(launchUrl);
+            })
+            .catch(error => {
+                console.error('Error launching SCORM package:', error);
+                alert('Failed to launch SCORM package. Please try again.');
+            });
+        }
+        
+        function launchScormPackage(launchUrl) {
+            // You might want to launch this in a new window or iframe
+            // For this example, we'll use an iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = launchUrl;
+            iframe.width = '100%';
+            iframe.height = '600px';  // Adjust as needed
+            iframe.style.border = 'none';
+        
+            const scormPlayer = document.getElementById('scorm-player');
+            scormPlayer.innerHTML = '';  // Clear any existing content
+            scormPlayer.appendChild(iframe);
+        }
+        
+        // Initial call to set up scripts for the first loaded content
+        document.addEventListener('DOMContentLoaded', initializeContentScripts);
+        
+        // Re-initialize scripts when content is dynamically loaded
+        document.addEventListener('contentLoaded', initializeContentScripts);
 
         // Initial call to set up scripts for the first loaded content
         initializeContentScripts();
