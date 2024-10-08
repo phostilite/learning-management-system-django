@@ -156,6 +156,7 @@ urlpatterns = [
     path('learner/course/<uuid:pk>/', learner_views.CourseDetailView.as_view(), name='learner_course_detail'),
     path('learner/program/<uuid:pk>/', learner_views.ProgramDetailView.as_view(), name='learner_program_detail'),
 
+    path('learner/enroll/', learner_views.EnrollmentCreateView.as_view(), name='learner_enrollment_create'),
     path('learner/enrollments/', learner_views.EnrollmentsView.as_view(), name='learner_enrollments'),
     path('learner/enrollments/course-consumption/<uuid:enrollment_id>/', learner_views.CourseConsumptionView.as_view(), name='learner_course_consumption'),
 

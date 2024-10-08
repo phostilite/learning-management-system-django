@@ -166,7 +166,8 @@ class CourseDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
             context['reviews'] = Review.objects.filter(content_type__model='course', object_id=course.id)
             context['average_rating'] = context['reviews'].aggregate(Avg('rating'))['rating__avg']
             context['total_reviews'] = context['reviews'].count()
-            context['is_enrolled'] = course.enrollments.filter(user=self.request.user).exists()
+            context['is_enrolled'] = Enrollment.objects.filter(course=course, user=self.request.user).exists()
+            context['total_enrollments'] = Enrollment.objects.filter(course=course).count()
             
             logger.info(f"Course detail page accessed for course {course.id} by user {self.request.user.username}")
         except Exception as e:
@@ -187,11 +188,11 @@ class ProgramDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
             context['reviews'] = Review.objects.filter(content_type__model='program', object_id=program.id)
             context['average_rating'] = context['reviews'].aggregate(Avg('rating'))['rating__avg']
             context['total_reviews'] = context['reviews'].count()
-            context['is_enrolled'] = program.enrollments.filter(user=self.request.user).exists()
+            context['is_enrolled'] = Enrollment.objects.filter(program=program, user=self.request.user).exists()
             context['total_duration'] = sum([pc.course.duration for pc in context['program_courses'] if pc.course.duration])
             context['total_courses'] = context['program_courses'].count()
-            context['total_students'] = program.enrollments.count()
-            
+            context['total_enrollments'] = Enrollment.objects.filter(program=program).count()    
+
             # Get learning resources for each course
             for program_course in context['program_courses']:
                 program_course.learning_resources = program_course.course.resources.all()
@@ -290,6 +291,46 @@ class EnrollmentsView(LearnerRequiredMixin, LoginRequiredMixin, TemplateView):
         except Exception as e:
             logger.error(f"Error estimating completion date for enrollment {enrollment.id}: {str(e)}")
             return None
+        
+
+class EnrollmentCreateView(LoginRequiredMixin, View):
+    http_method_names = ['post']
+
+    def post(self, request, *args, **kwargs):
+        try:
+            enrollment_type = request.POST.get('enrollment_type')
+            object_id = request.POST.get('object_id')
+
+            if enrollment_type not in ['course', 'program']:
+                raise ValueError(_("Invalid enrollment type"))
+
+            with transaction.atomic():
+                if enrollment_type == 'course':
+                    course = get_object_or_404(Course, id=object_id)
+                    enrollment = Enrollment.objects.create(
+                        user=request.user,
+                        course=course,
+                        status='ENROLLED'
+                    )
+                    message = _("Successfully enrolled in the course: {}").format(course.title)
+                else:
+                    program = get_object_or_404(Program, id=object_id)
+                    enrollment = Enrollment.objects.create(
+                        user=request.user,
+                        program=program,
+                        status='ENROLLED'
+                    )
+                    message = _("Successfully enrolled in the program: {}").format(program.title)
+
+                logger.info(f"User {request.user.username} enrolled in {enrollment_type} {object_id}")
+                return JsonResponse({'status': 'success', 'message': message})
+
+        except ValueError as ve:
+            logger.warning(f"Invalid enrollment attempt: {str(ve)}")
+            return JsonResponse({'status': 'error', 'message': str(ve)}, status=400)
+        except Exception as e:
+            logger.error(f"Enrollment creation failed: {str(e)}")
+            return JsonResponse({'status': 'error', 'message': _("An error occurred during enrollment. Please try again.")}, status=500)
         
 
 class CourseConsumptionView(LoginRequiredMixin, LearnerRequiredMixin, DetailView):

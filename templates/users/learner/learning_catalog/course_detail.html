@@ -27,9 +27,20 @@
                     </span>
                 </div>
                 {% if not is_enrolled %}
-                    <a href="#" class="inline-block bg-white text-blue-600 font-bold py-3 px-6 rounded-full hover:bg-blue-100 transition duration-300 transform hover:scale-105">
+                    <button type="button" class="enroll-button inline-block bg-white text-blue-600 font-bold py-3 px-6 rounded-full hover:bg-blue-100 transition duration-300 transform hover:scale-105"
+                        data-modal-target="enrollment-modal" data-modal-toggle="enrollment-modal"
+                        data-enrollment-type="course"
+                        data-object-id="{{ course.id }}"
+                        data-title="{{ course.title }}"
+                        data-subtitle="{{ course.short_description }}"
+                        data-instructor="{{ course.created_by.get_full_name }}"
+                        data-duration="{{ course.duration }}"
+                        data-level="{{ course.get_difficulty_level_display }}"
+                        data-language="{{ course.language }}"
+                        data-description="{{ course.description }}"
+                        data-image-url="{% if course.cover_image %}{{ course.cover_image.url }}{% else %}{% static 'images/default_course_cover.jpg' %}{% endif %}">
                         <i class="fas fa-user-plus mr-2"></i>Enroll Now
-                    </a>
+                    </button>
                 {% else %}
                     <a href="#" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105">
                         <i class="fas fa-play mr-2"></i>Continue Learning
@@ -140,7 +151,7 @@
                     </li>
                     <li class="flex items-center justify-between p-2">
                         <span class="text-gray-700"><i class="fas fa-users mr-2 text-green-500"></i>Total Enrolled</span>
-                        <span class="font-semibold">{{ course.enrollments.count }}</span>
+                        <span class="font-semibold">{{ total_enrollments }}</span>
                     </li>
                     <li class="flex items-center justify-between p-2">
                         <span class="text-gray-700"><i class="fas fa-certificate mr-2 text-yellow-500"></i>Certificate</span>
@@ -148,11 +159,22 @@
                     </li>
                 </ul>
                 {% if not is_enrolled %}
-                    <div class="mt-6">
-                        <a href="#" class="block w-full text-center bg-blue-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105">
-                            <i class="fas fa-user-plus mr-2"></i>Enroll Now
-                        </a>
-                    </div>
+                <div class="mt-6">
+                    <button type="button" class="enroll-button block w-full text-center bg-blue-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105"
+                            data-modal-target="enrollment-modal" data-modal-toggle="enrollment-modal"
+                            data-enrollment-type="course"
+                            data-object-id="{{ course.id }}"
+                            data-title="{{ course.title }}"
+                            data-subtitle="{{ course.short_description }}"
+                            data-instructor="{{ course.created_by.get_full_name }}"
+                            data-duration="{{ course.duration }}"
+                            data-level="{{ course.get_difficulty_level_display }}"
+                            data-language="{{ course.language }}"
+                            data-description="{{ course.description }}"
+                            data-image-url="{% if course.cover_image %}{{ course.cover_image.url }}{% else %}{% static 'images/default_course_cover.jpg' %}{% endif %}">
+                        <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                    </button>
+                </div>
                 {% endif %}
             </div>
 
@@ -176,6 +198,7 @@
         </div>
     </div>
 </div>
+{% include '../enrollments/enrollment_modal.html' %}
 {% endblock %}
 
 {% block extra_js %}
@@ -183,4 +206,5 @@
 <script>
     new WOW().init();
 </script>
+<script src="{% static 'js/learner/enrollment.js' %}"></script>
 {% endblock %}

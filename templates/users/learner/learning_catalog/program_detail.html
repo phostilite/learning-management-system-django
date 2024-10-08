@@ -27,9 +27,20 @@
                     </span>
                 </div>
                 {% if not is_enrolled %}
-                    <a href="#" class="inline-block bg-white text-purple-600 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition duration-300 transform hover:scale-105">
-                        <i class="fas fa-user-plus mr-2"></i>Enroll Now
-                    </a>
+                <button type="button" class="enroll-button inline-block bg-white text-purple-600 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition duration-300 transform hover:scale-105"
+                        data-modal-target="enrollment-modal" data-modal-toggle="enrollment-modal"
+                        data-enrollment-type="program"
+                        data-object-id="{{ program.id }}"
+                        data-title="{{ program.title }}"
+                        data-subtitle="{{ program.short_description }}"
+                        data-instructor="{{ program.created_by.get_full_name }}"
+                        data-duration="{{ total_duration }} hours"
+                        data-level="{{ program.level }}"
+                        data-language="{{ program.language|default:'Multiple' }}"
+                        data-description="{{ program.description }}"
+                        data-image-url="{% if program.cover_image %}{{ program.cover_image.url }}{% else %}{% static 'images/default_program_cover.jpg' %}{% endif %}">
+                    <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                </button>
                 {% else %}
                     <a href="#" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105">
                         <i class="fas fa-play mr-2"></i>Continue Learning
@@ -59,7 +70,8 @@
                 <h2 class="text-2xl font-bold mb-4 text-gray-800"><i class="fas fa-list-ul mr-2 text-green-500"></i>Courses in this Program</h2>
                 <div class="space-y-6">
                     {% for program_course in program_courses %}
-                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition duration-300">
+                    <a href="{% url 'learner_course_detail' program_course.course.id %}" class="block border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition duration-300">
+                        <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ program_course.course.title }}</h3>
                             <p class="text-gray-600 mb-2">{{ program_course.course.short_description }}</p>
                             <div class="flex items-center text-sm text-gray-500 mb-2">
@@ -73,6 +85,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
@@ -148,7 +161,7 @@
                     </li>
                     <li class="flex items-center justify-between p-2">
                         <span class="text-gray-700"><i class="fas fa-users mr-2 text-blue-500"></i>Enrolled Students</span>
-                        <span class="font-semibold">{{ total_students }}</span>
+                        <span class="font-semibold">{{ total_enrollments }}</span>
                     </li>
                     <li class="flex items-center justify-between p-2">
                         <span class="text-gray-700"><i class="fas fa-certificate mr-2 text-yellow-500"></i>Certificate</span>
@@ -156,11 +169,22 @@
                     </li>
                 </ul>
                 {% if not is_enrolled %}
-                    <div class="mt-6">
-                        <a href="#" class="block w-full text-center bg-purple-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-600 transition duration-300 transform hover:scale-105">
-                            <i class="fas fa-user-plus mr-2"></i>Enroll Now
-                        </a>
-                    </div>
+                <div class="mt-6">
+                    <button type="button" class="enroll-button block w-full text-center bg-purple-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-purple-600 transition duration-300 transform hover:scale-105"
+                            data-modal-target="enrollment-modal" data-modal-toggle="enrollment-modal"
+                            data-enrollment-type="program"
+                            data-object-id="{{ program.id }}"
+                            data-title="{{ program.title }}"
+                            data-subtitle="{{ program.short_description }}"
+                            data-instructor="{{ program.created_by.get_full_name }}"
+                            data-duration="{{ total_duration }} hours"
+                            data-level="{{ program.level }}"
+                            data-language="{{ program.language|default:'Multiple' }}"
+                            data-description="{{ program.description }}"
+                            data-image-url="{% if program.cover_image %}{{ program.cover_image.url }}{% else %}{% static 'images/default_program_cover.jpg' %}{% endif %}">
+                        <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                    </button>
+                </div>
                 {% endif %}
             </div>
 
@@ -184,6 +208,7 @@
         </div>
     </div>
 </div>
+{% include 'users/learner/enrollments/enrollment_modal.html' %}
 {% endblock %}
 
 {% block extra_js %}
@@ -191,4 +216,5 @@
 <script>
     new WOW().init();
 </script>
+<script src="{% static 'js/learner/enrollment.js' %}"></script>
 {% endblock %}
