@@ -173,7 +173,10 @@
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                            <a href="#" class="text-red-600 hover:text-red-900"
+                                            onclick="showDeleteModal(this)" 
+                                            data-target="{{ component.pk }}"
+                                            >{% trans "Delete" %}</a>
                                             <a href="#" class="text-green-600 hover:text-green-900 ml-3" onclick="openModal('modal-{{ component.id }}')">{% trans "Add Resource" %}</a>
                                         </td>
                                     </tr>
@@ -192,7 +195,10 @@
                                                     </span>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <a href="{% url 'administrator_delivery_component_delete' resource.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                                    <a href="#" class="text-red-600 hover:text-red-900"
+                                                    onclick="showDeleteModal(this)" 
+                                                    data-target="{{ resource.pk }}"
+                                                    >{% trans "Delete" %}</a>
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -300,7 +306,10 @@
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                            <a href="#" class="text-red-600 hover:text-red-900"
+                                            onclick="showDeleteModal(this)" 
+                                            data-target="{{ component.pk }}"
+                                            >{% trans "Delete" %}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -388,4 +397,174 @@
         setupFormSubmission('resourceForm-{{ component.id }}');
     {% endfor %}
 </script>
+<script>
+    // Initialize styles
+if (!document.getElementById('modalStyles')) {
+    const styleTag = document.createElement('style');
+    styleTag.id = 'modalStyles';
+    styleTag.innerHTML = `
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 450px;
+            animation: slideIn 0.3s;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-title {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .modal-text {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .delete-btn, .cancel-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            margin-left: 10px;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .cancel-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .cancel-btn:hover {
+            background-color: #e2e6ea;
+        }
+    `;
+    document.head.appendChild(styleTag);
+}
+
+// Initialize modal HTML template
+const modalTemplate = `
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">{% trans "Confirm Delivery Deletion" %}</h2>
+            <p class="modal-text">{% trans "Are you sure you want to delete this delivery component? This action cannot be undone." %}</p>
+            <form id="deleteForm" method="post" action="/en/user/administrator/delivery-component/{componentId}/delete/">
+                {% csrf_token %}
+                <div class="button-group">
+                    <button type="button" class="cancel-btn" onclick="closeModal()">{% trans "Cancel" %}</button>
+                    <button type="submit" class="delete-btn">{% trans "Delete" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+`;
+
+function showDeleteModal(button) {
+    const componentId = button.getAttribute('data-target');
+    
+    // Create modal HTML
+    const modalHtml = modalTemplate.replace('{componentId}', componentId);
+
+    // Remove existing modal if present
+    const existingModal = document.getElementById('deleteModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Add modal to the DOM
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Show the modal
+    const modal = document.getElementById('deleteModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+
+    // Add event listener for form submission
+    const form = document.getElementById('deleteForm');
+    form.addEventListener('submit', handleSubmit);
+}
+
+function closeModal() {
+    const modal = document.getElementById('deleteModal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.remove();
+    }
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const url = form.action;
+    const formData = new FormData(form);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Reload the page
+            window.location.reload();
+        } else {
+            // Handle error
+            console.error('Delete failed');
+            // You might want to show an error message to the user here
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // You might want to show an error message to the user here
+    })
+    .finally(() => {
+        closeModal();
+    });
+}
+
+// Add event listeners when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('[data-target]');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            showDeleteModal(this);
+        });
+    });
+});
+    </script>
 {% endblock %}

@@ -1296,14 +1296,26 @@ class AdministratorDeliveryComponentEditView(LoginRequiredMixin, AdministratorRe
 
 class AdministratorDeliveryComponentDeleteView(LoginRequiredMixin, AdministratorRequiredMixin, DeleteView):
     model = DeliveryComponent
-    template_name = 'users/administrator/deliveries/delivery_component_delete.html'
     
     def get_success_url(self):
         return reverse_lazy('administrator_delivery_detail', kwargs={'pk': self.object.delivery.pk})
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, 'Delivery component deleted successfully.')
-        return super().delete(request, *args, **kwargs)
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+            messages.success(self.request, 'Delivery component deleted successfully.')
+            response_data = {
+                'message': 'Delivery component deleted successfully.',
+                'redirect_url': self.get_success_url()
+            }
+            return JsonResponse(response_data, status=200)
+        except Exception as e:
+            response_data = {
+                'message': 'An error occurred while deleting the delivery component.',
+                'error': str(e)
+            }
+            return JsonResponse(response_data, status=500)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -9,9 +9,9 @@
               {% csrf_token %}
               {{ resource_component_forms|get_item:component.id|stringformat:"s" }}
               <div class="flex justify-end mt-6">
-                  <button type="button" onclick="closeModal('modal-{{ component.id }}')" class="px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 mr-2">
-                      {% trans "Cancel" %}
-                  </button>
+                  <button type="button" onclick="location.reload();" class="px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 mr-2">
+                    {% trans "Cancel" %}
+                </button>
                   <button type="submit" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
                       {% trans "Add" %}
                   </button>

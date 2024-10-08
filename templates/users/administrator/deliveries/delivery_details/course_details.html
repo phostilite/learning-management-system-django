@@ -84,7 +84,10 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{% url 'administrator_delivery_component_delete' component.pk %}" class="text-red-600 hover:text-red-900">{% trans "Delete" %}</a>
+                                    <a href="#" class="text-red-600 hover:text-red-900"
+                                    onclick="showDeleteModal(this)" 
+                                    data-target="{{ component.pk }}">
+                                    {% trans "Delete Component" %}</a>
                                 </td>
                             </tr>
                         {% endfor %}
