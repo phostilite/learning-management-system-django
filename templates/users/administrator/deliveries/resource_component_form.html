@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load custom_filters %} 
+
+<div id="modal-{{ component.id }}" class="fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-75 flex hidden" role="dialog">
+  <div class="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-lg">
+      <div class="flex flex-col items-start">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Add Resource to {{ component.program_course.course.title }}</h3>
+          <form id="resourceForm-{{ component.id }}" method="post" action="{% url 'administrator_add_resource_component' parent_component_id=component.id %}" class="w-full">
+              {% csrf_token %}
+              {{ resource_component_forms|get_item:component.id|stringformat:"s" }}
+              <div class="flex justify-end mt-6">
+                  <button type="button" onclick="closeModal('modal-{{ component.id }}')" class="px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 mr-2">
+                      {% trans "Cancel" %}
+                  </button>
+                  <button type="submit" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                      {% trans "Add" %}
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

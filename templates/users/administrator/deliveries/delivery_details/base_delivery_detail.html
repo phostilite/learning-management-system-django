@@ -18,38 +18,6 @@
         right: 1rem;
         top: 1rem;
     }
-    .custom-modal-123 {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.4);
-    }
-    .custom-modal-content-123 {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 500px;
-    }
-    .custom-close-123 {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .custom-close-123:hover,
-    .custom-close-123:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 </style>
 {% endblock %}
 
@@ -111,139 +79,52 @@
 
         {% include '../course_component_form.html' %}
         {% include '../resource_to_course_component_form.html' %}
-
-
-        
-
-
     </main>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // Render the form to a JavaScript string
-    const formHtml = `{{ resource_component_form.as_p|escapejs }}`;
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
 
-    function showModal(button) {
-        const componentPk = button.getAttribute('data-target');
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
 
-        // Create modal elements
-        const modal = document.createElement('div');
-        const modalContent = document.createElement('div');
-        const closeBtn = document.createElement('span');
-        const title = document.createElement('h2');
-        const form = document.createElement('form');
-
-        // Set content and styles
-        title.textContent = 'Add Resource';
-        closeBtn.textContent = '×';
-
-        modal.style.cssText = `
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        `;
-
-        modalContent.style.cssText = `
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            position: relative;
-            width: 50%;
-            max-width: 500px;
-            max-height: 80%;
-            overflow-y: auto;
-        `;
-
-        closeBtn.style.cssText = `
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        `;
-
-        // Set the form HTML
-        form.innerHTML = formHtml;
-
-        // Add submit button if it's not already in the form
-        if (!form.querySelector('input[type="submit"]')) {
-            const submitBtn = document.createElement('input');
-            submitBtn.type = 'submit';
-            submitBtn.value = 'Submit';
-            submitBtn.style.cssText = `
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 15px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                margin-top: 10px;
-            `;
-            form.appendChild(submitBtn);
-        }
-
-        // Assemble modal
-        modalContent.appendChild(closeBtn);
-        modalContent.appendChild(title);
-        modalContent.appendChild(form);
-        modal.appendChild(modalContent);
-
-        // Add modal to body
-        document.body.appendChild(modal);
-
-        // Close modal when clicking the close button or outside the modal
-        closeBtn.onclick = () => document.body.removeChild(modal);
-        modal.onclick = (event) => {
-            if (event.target === modal) {
-                document.body.removeChild(modal);
-            }
-        };
-
-        // Handle form submission
-        form.onsubmit = (e) => {
+    // Add this new function to handle form submissions
+    function setupFormSubmission(formId) {
+        const form = document.getElementById(formId);
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(form);
 
-            // Get CSRF token
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-            // Make POST request
-            fetch(`/en/user/administrator/components/${componentPk}/add-resource-component/`, {
+            fetch(form.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-CSRFToken': csrfToken
-                },
-                credentials: 'same-origin'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    'X-Requested-With': 'XMLHttpRequest',
                 }
-                return response.json();
             })
+            .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
-                alert('Resource component added successfully!');
-                document.body.removeChild(modal);
-                // Optionally, refresh the page or update the UI here
+                if (data.success) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    console.error('Form submission failed:', data.errors);
+                    // Handle errors here (e.g., display error messages)
+                }
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred while adding the resource component.');
             });
-        };
-
-        console.log(`Modal opened for Component PK: ${componentPk}`);
+        });
     }
+
+    // Set up form submission for each modal
+    {% for component in program_courses %}
+        setupFormSubmission('resourceForm-{{ component.id }}');
+    {% endfor %}
 </script>
 {% endblock %}
