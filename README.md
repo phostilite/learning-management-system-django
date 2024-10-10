@@ -1,4 +1,4 @@
-# 🚀 Advanced Learning Management System (LMS)
+# 🚀 Learning Management System (LMS) Django
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/downloads/)
@@ -13,7 +13,6 @@
 - [🛠️ Installation](#️-installation)
 - [🔧 Configuration](#-configuration)
 - [🏃‍♂️ Running the Project](#️-running-the-project)
-- [📁 Project Structure](#-project-structure)
 - [👥 User Roles](#-user-roles)
 - [🔒 Security](#-security)
 - [🌐 Internationalization](#-internationalization)
@@ -54,8 +53,8 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/PriyanshuSharma23/advanced-lms.git
-   cd advanced-lms
+   git clone https://github.com/phostilite/learning-management-system-django.git
+   cd learning-management-system-django
    ```
 
 2. Create a virtual environment:
@@ -117,32 +116,6 @@ EMAIL_HOST_PASSWORD=your_email_password
 
 3. Log in with the superuser credentials you created earlier.
 
-## 📁 Project Structure
-
-```
-advanced-lms/
-├── api/
-├── authentication/
-├── certificates/
-├── courses/
-├── events/
-├── gamification/
-├── leaderboard/
-├── lms/
-├── organization/
-├── quizzes/
-├── support/
-├── users/
-├── virtual_classroom/
-├── website/
-├── static/
-├── templates/
-├── locale/
-├── manage.py
-├── requirements.txt
-└── .env
-```
-
 ## 👥 User Roles
 
 - 👑 **Administrator**: Full system access and management
@@ -180,7 +153,7 @@ Support for 28+ languages, including:
 
 ## 🔌 Integration
 
-- 🔗 SCORM package support
+- 🔗 SCORM package integration
 - 📅 Virtual classroom integration (Zoom, Microsoft Teams, Google Meet)
 - 🎥 Video hosting platforms
 - 📊 Analytics tools
