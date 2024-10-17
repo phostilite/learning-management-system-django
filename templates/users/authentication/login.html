@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if organization and organization.name %}{{ organization.name }}{% else %}NextGen{% endif %} - Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% extends '../../website/_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -54,8 +50,12 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
     </style>
-</head>
-<body class="login-bg min-h-screen flex items-center justify-center p-4">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<section class="login-bg min-h-screen flex items-center justify-center p-4">
     <div class="gradient-overlay absolute inset-0"></div>
     
     <div class="glassmorphism p-8 w-full max-w-md relative z-10">
@@ -110,10 +110,5 @@
             <p class="text-white text-sm">Don't have an account? Please contact your administrator for access.</p>
         </div>
     </div>
-    
-    <script>
-        // Add any necessary JavaScript here
-        // For example, you could add form validation or handle the "Remember me" functionality
-    </script>
-</body>
-</html>
+</section>
+{% endblock %}
