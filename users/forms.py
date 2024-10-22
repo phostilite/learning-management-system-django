@@ -71,3 +71,19 @@ class ProfilePictureForm(forms.ModelForm):
             if picture.content_type not in ['image/jpeg', 'image/png', 'image/gif']:
                 raise forms.ValidationError(_("Unsupported file type. Please upload a JPEG, PNG, or GIF image."))
         return picture
+    
+class NewMessageForm(forms.Form):
+    recipient = forms.ModelChoiceField(
+        queryset=get_user_model().objects.all(),
+        label=_("Recipient"),
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    subject = forms.CharField(
+        max_length=255,
+        label=_("Subject"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        label=_("Message")
+    )

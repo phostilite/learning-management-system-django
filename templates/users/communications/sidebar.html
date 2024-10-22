@@ -1,0 +1,238 @@
+{% load i18n %}
+
+<aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-300 lg:flex transition-all" aria-label="{% trans 'Sidebar' %}">
+    <div class="relative flex flex-col flex-1 min-h-0 pt-0 bg-gradient-to-b from-gray-900 to-gray-800 border-r border-gray-700 shadow-lg">
+        <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
+            <div class="flex-1 px-3 space-y-1 divide-y divide-gray-700">
+                <ul class="pb-2 space-y-2">
+                    <li>
+                        <a href="{% url 'administrator_dashboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-chart-line mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12 sidebar-icon"></i>
+                            <span class="ml-3">{% trans "Dashboard" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_calendar' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-calendar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Calendar" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-programs" data-collapse-toggle="dropdown-programs">
+                            <i class="fa-solid fa-sitemap mr-3 text-indigo-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Programs" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-programs" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_program_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Programs" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_program_create' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Create Program" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-courses" data-collapse-toggle="dropdown-courses">
+                            <i class="fa-solid fa-graduation-cap mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Courses" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-courses" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_course_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Courses" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_course_category_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Categories" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_learning_path_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Learning Path" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-deliveries" data-collapse-toggle="dropdown-deliveries">
+                            <i class="fa-solid fa-truck-fast mr-3 text-orange-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Deliveries" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-deliveries" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_delivery_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Deliveries" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_delivery_create' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Create Delivery" %}</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Delivery Components" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-enrollments" data-collapse-toggle="dropdown-enrollments">
+                            <i class="fa-solid fa-user-plus mr-3 text-pink-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Enrollments" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-enrollments" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_enrollment_list' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "All Enrollments" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_enrollment_create' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Create Enrollment" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-organization" data-collapse-toggle="dropdown-organization">
+                            <i class="fa-solid fa-building mr-3 text-teal-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Organization" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-organization" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_organization_details' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Organization Details" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_units' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Organization Units" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_groups' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Groups" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_locations' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Locations" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_job_positions' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Job Positions" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_organization_employee_profiles' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Employee Profiles" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_leaderboard' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-trophy mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Leaderboard" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_message_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-comments mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Messages" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-reports" data-collapse-toggle="dropdown-reports">
+                            <i class="fa-solid fa-chart-bar mr-3 text-green-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">{% trans "Reports & Analytics" %}</span>
+                            <i class="fa-solid fa-chevron-down ml-3 transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dropdown-reports" class="hidden py-2 space-y-2 sidebar-dropdown">
+                            <li>
+                                <a href="{% url 'administrator_course_completion_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Course Completion" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_user_progress_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "User Progress" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_assessment_results_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Assessment Results" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_user_engagement_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "User Engagement" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_resource_usage_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Resource Usage" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_certification_tracking_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Certification Tracking" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_learner_feedback_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Learner Feedback" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'administrator_custom_report' %}" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">{% trans "Custom Reports" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_certificate_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-certificate mr-3 text-yellow-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Certificates" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_announcement_list' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-bullhorn mr-3 text-red-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Announcements" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'administrator_help_support' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-question-circle mr-3 text-blue-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Help & Support" %}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pt-5 mt-5 space-y-2 border-t border-gray-700">
+                    <li>
+                        <a href="{% url 'administrator_settings' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-gear mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-90"></i>
+                            <span class="ml-3">{% trans "Settings" %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="flex items-center p-2 text-base text-white rounded-lg hover:bg-gray-700 group transition-all duration-300 ease-in-out transform hover:scale-105">
+                            <i class="fa-solid fa-right-from-bracket mr-3 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"></i>
+                            <span class="ml-3">{% trans "Logout" %}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<style>
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.sidebar-icon {
+    animation: pulse 2s infinite;
+}
+
+.sidebar-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.sidebar-dropdown.show {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const dropdownToggles = document.querySelectorAll('[data-collapse-toggle]');
+    
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const targetId = toggle.getAttribute('data-collapse-toggle');
+            const target = document.getElementById(targetId);
+            target.classList.toggle('show');
+            toggle.querySelector('i:last-child').classList.toggle('fa-rotate-180');
+        });
+    });
+});
+</script>

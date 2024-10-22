@@ -1,12 +1,21 @@
 from django.urls import path, include
 from django.views.i18n import set_language
-from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views
+from . import administrator_views, facilitator_views, learner_views, supervisor_views, auth_views,communications_view
 
 urlpatterns = [
     # ==================== Authentication URLs ====================
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', auth_views.SignupView.as_view(), name='signup'),
     path('logout/', auth_views.user_logout, name='logout'),
+    
+    path('communications/', communications_view.MessageCenterView.as_view(), name='message_center'),
+    path('communications/send-message/', communications_view.SendMessageView.as_view(), name='send_message'),
+    path('communications/get-messages/', communications_view.GetMessagesView.as_view(), name='get_messages'),
+    path('communications/get-thread-messages/', communications_view.GetMessagesView.as_view(), name='get_messages'),
+    path('communications/mark-unstarred/', communications_view.GetMessageDetailsView.as_view(), name='get_message_details'),
+    path('communications/mark-unread/', communications_view.ToggleStarMessageView.as_view(), name='toggle_star_massages'),
+    path('communications/new_message/', communications_view.NewMessageView.as_view(), name='new_message'),
+    
 
     # ==================== Administrator URLs ====================
     # Dashboard and General Views
@@ -26,7 +35,8 @@ urlpatterns = [
         path('categories/', administrator_views.AdministratorCourseCategoryListView.as_view(), name='administrator_course_category_list'),
         path('learning_paths/', administrator_views.AdministratorLearningPathListView.as_view(), name='administrator_learning_path_list'),
     ])),
-
+    
+    
     # Learning Resources
     path('administrator/course/<uuid:course_id>/resources/', include([
         path('', administrator_views.AdministratorLearningResourcesListView.as_view(), name='administrator_course_resource_list'),
@@ -114,7 +124,18 @@ urlpatterns = [
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
     path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
     path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
-    path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
+    
+    
+    
+    
+    
+    path('communications/messages/', communications_view.CommunicationMessageListView.as_view(), name='administrator_message_list'),
+    
+    
+    
+    
+    
+    
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
 
     # Notification Views
