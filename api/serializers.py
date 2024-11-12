@@ -75,4 +75,21 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'bio', 'preferred_language', 'email_notifications_enabled',
             'sms_notifications_enabled', 'date_joined', 'last_login'
         )
-        read_only_fields = fields
+        read_only_fields = ('id', 'email', 'username', 'date_joined', 'last_login')
+
+    def validate(self, data):
+        # Check if any read-only field is being attempted to modify
+        read_only_attempts = []
+        request_data = dict(self.context['request'].data)
+        
+        for field in self.Meta.read_only_fields:
+            if field in request_data:
+                read_only_attempts.append(field)
+        
+        if read_only_attempts:
+            raise serializers.ValidationError({
+                'error': f'Cannot modify read-only field(s): {", ".join(read_only_attempts)}',
+                'read_only_fields': self.Meta.read_only_fields
+            })
+        
+        return data

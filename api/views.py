@@ -115,3 +115,52 @@ class UserDetailAPIView(APIView):
                 'status': 'error',
                 'message': 'An error occurred while fetching user data'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def put(self, request):
+        try:
+            serializer = UserDetailSerializer(
+                request.user,
+                data=request.data,
+                partial=True,
+                context={'request': request}
+            )
+            if serializer.is_valid():
+                serializer.save()
+                response_data = {
+                    'status': 'success',
+                    'message': 'User profile updated successfully',
+                    'data': serializer.data
+                }
+                return Response(response_data, status=status.HTTP_200_OK)
+            
+            return Response({
+                'status': 'error',
+                'message': 'Invalid data provided',
+                'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+        except Exception as e:
+            logger.error(f"Error updating user data: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'An error occurred while updating user data'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request):
+        try:
+            user = request.user
+            # Soft delete - deactivate user
+            user.is_active = False
+            user.save()
+            
+            return Response({
+                'status': 'success',
+                'message': 'User account deactivated successfully'
+            }, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            logger.error(f"Error deactivating user: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'An error occurred while deactivating user account'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
