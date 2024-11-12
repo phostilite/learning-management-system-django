@@ -65,3 +65,14 @@ class LoginSerializer(serializers.Serializer):
 
         data['user'] = user
         return data
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id', 'email', 'username', 'first_name', 'last_name',
+            'phone_number', 'gender', 'picture', 'timezone',
+            'bio', 'preferred_language', 'email_notifications_enabled',
+            'sms_notifications_enabled', 'date_joined', 'last_login'
+        )
+        read_only_fields = fields

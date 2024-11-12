@@ -3,8 +3,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import login
-from .serializers import LoginSerializer, SignupSerializer
+from .serializers import LoginSerializer, SignupSerializer, UserDetailSerializer
 import logging
+from rest_framework.permissions import IsAuthenticated
+from .utils import BearerTokenAuthentication
+
 
 logger = logging.getLogger(__name__)
 
@@ -89,4 +92,26 @@ class LoginAPIView(APIView):
             return Response({
                 'status': 'error',
                 'message': 'An error occurred during login'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class UserDetailAPIView(APIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        try:
+            serializer = UserDetailSerializer(request.user)
+            response_data = {
+                'status': 'success',
+                'message': 'User data retrieved successfully',
+                'data': serializer.data
+            }
+            return Response(response_data, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            logger.error(f"Error fetching user data: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'An error occurred while fetching user data'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
