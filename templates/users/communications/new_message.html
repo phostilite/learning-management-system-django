@@ -4,26 +4,72 @@
 
 {% block title %}{% trans "Compose New Message" %}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container mx-auto mt-8">
-    <h1 class="text-2xl font-bold mb-4">{% trans "Compose New Message" %}</h1>
-    <form method="post" action="{% url 'send_message' %}">
+<div class="new-message-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Compose New Message" %}</h1>
+            <p class="text-center text-lg">{% trans "Send a new message to a user" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <form method="post" action="{% url 'new_message' %}">
         {% csrf_token %}
         <div class="mb-4">
-            <label for="recipient" class="block text-sm font-medium text-gray-700">{% trans "To:" %}</label>
-            <input type="text" id="recipient" name="recipient" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-        </div>
-        <div class="mb-4">  
-            <label for="subject" class="block text-sm font-medium text-gray-700">{% trans "Subject:" %}</label>
-            <input type="text" id="subject" name="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <label for="recipient" class="block text-sm font-medium text-gray-700">{% trans "Recipient" %}</label>
+            <input type="text" name="recipient" id="recipient" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ recipient }}" required>
         </div>
         <div class="mb-4">
-            <label for="message" class="block text-sm font-medium text-gray-700">{% trans "Message:" %}</label>
-            <textarea id="message" name="message" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+            <label for="subject" class="block text-sm font-medium text-gray-700">{% trans "Subject" %}</label>
+            <input type="text" name="subject" id="subject" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" value="{{ subject }}" required>
         </div>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            {% trans "Send Message" %}
-        </button>
+        <div class="mb-4">
+            <label for="message" class="block text-sm font-medium text-gray-700">{% trans "Message" %}</label>
+            <textarea name="message" id="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>{{ content }}</textarea>
+        </div>
+        <div class="flex justify-end">
+            <a href="{% url 'administrator_message_list' %}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                {% trans "Send Message" %}
+            </a>
+        </div>
     </form>
 </div>
 {% endblock %}

@@ -5,46 +5,95 @@
 {% block title %}{% trans "Messages - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
-
 <style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
+    /* Statistics Cards */
+    .stats-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+    }
+
+    .stats-card::before {
+        content: '';
+        position: absolute;
         top: 0;
+        left: 0;
         width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.4);
+        height: 6px;
+        transition: background 0.3s ease;
     }
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
+
+    .stats-card.total::before {
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    }
+
+    .stats-card.unread::before {
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .stats-card .card-content {
         padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 600px;
-        border-radius: 8px;
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        border-radius: 0 0 12px 12px;
     }
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
+
+    .stats-card .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
     }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
+
+    .stats-card .card-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1a202c;
+    }
+
+    .stats-card .card-description {
+        font-size: 1rem;
+        color: #4a5568;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .stats-card:hover .card-content {
+        animation: pulse 1s infinite;
+    }
+
+    .stats-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+    }
+
+    .total .stats-icon { color: #4f46e5; }
+    .unread .stats-icon { color: #2563eb; }
+    .starred .stats-icon { color: #eab308; }
+
+    .stats-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        opacity: 0.8;
     }
 </style>
 {% endblock %}
-{% block content %}
 
-<div class="messages-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
-    <!-- Header -->
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <!--Header-->
     <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
         <div class="relative z-10">
             <h1 class="text-4xl font-bold text-center mb-2">{% trans "Message Center" %}</h1>
@@ -52,196 +101,341 @@
         </div>
         <div class="absolute inset-0"></div>
     </header>
-
-    <!-- Breadcrumb -->
-    <nav class="flex mb-4" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                    {% trans "Dashboard" %}
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Messages" %}</span>
-                </div>
-            </li>
-        </ol>
-    </nav>
-
-    <!-- Message Statistics -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Total Messages" %}</h3>
-            <p class="text-3xl font-bold text-primary">12,345</p>
+        <!-- Breadcrumb -->
+        <nav class="flex mb-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                        {% trans "Dashboard" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Messages" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    <!-- Message Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="stats-card total p-4 rounded-lg">
+            <i class="fas fa-envelope stats-icon"></i>
+            <div class="stats-number text-2xl font-bold">{{ total_messages }}</div>
+            <div class="stats-label text-gray-600">{% trans "Total Messages" %}</div>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Unread Messages" %}</h3>
-            <p class="text-3xl font-bold text-accent">78</p>
+        
+        <div class="stats-card unread p-4 rounded-lg">
+            <i class="fas fa-envelope-open stats-icon"></i>
+            <div class="stats-number text-2xl font-bold">{{ unread_messages }}</div>
+            <div class="stats-label text-gray-600">{% trans "Unread Messages" %}</div>
         </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Flagged Messages" %}</h3>
-            <p class="text-3xl font-bold text-yellow-500">23</p>
-        </div>
-        <div class="bg-white rounded-lg p-4 card-shadow">
-            <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Response Time" %}</h3>
-            <p class="text-3xl font-bold text-green-600">2.5h</p>
+        
+        <div class="stats-card starred p-4 rounded-lg">
+            <i class="fas fa-star stats-icon"></i>
+            <div class="stats-number text-2xl font-bold">{{ starred_messages }}</div>
+            <div class="stats-label text-gray-600">{% trans "Starred Messages" %}</div>
         </div>
     </div>
 
- <!-- Message Management Section -->
- <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-    <!-- Message List -->
-    <div class="md:col-span-1 bg-white rounded-lg card-shadow overflow-hidden">
-    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-        <h2 class="text-xl font-semibold">{% trans "Messages" %}</h2>
-        <button id="composeBtn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-            {% trans "Compose" %}
-        </button>
-    </div>  
-            <div class="overflow-y-auto" style="max-height: 600px;">
-                <!-- Message Item -->
-                <div class="border-b border-gray-200 p-4 hover:bg-gray-50 cursor-pointer">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="font-semibold">John Doe</span>
-                        <span class="text-sm text-gray-500">2023-08-14 10:30</span>
-                    </div>
-                    <p class="text-gray-600 truncate">{% trans "Question about course registration..." %}</p>
-                </div>
-                <!-- Repeat for more messages -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Message List Panel -->
+        <div class="md:col-span-1 bg-white rounded-lg card-shadow">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold">{% trans "Inbox" %}</h2>
+                <button id="composeBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                    <i class="fas fa-pencil-alt mr-2"></i>{% trans "Compose" %}
+                </button>
+            </div>
+            
+            <div id="messageList" class="divide-y divide-gray-200 max-h-[600px] overflow-y-auto">
+                <!-- Messages will be loaded here -->
             </div>
         </div>
 
-        <!-- Message Content -->
+        <!-- Message Details Panel -->
         <div class="md:col-span-2 bg-white rounded-lg card-shadow overflow-hidden">
             <div class="p-4 border-b border-gray-200">
                 <h2 class="text-xl font-semibold">{% trans "Message Details" %}</h2>
             </div>
             <div class="p-4">
                 <div class="mb-4">
-                    <span class="font-semibold">{% trans "From:" %}</span> John Doe (john.doe@example.com)
+                    <span class="font-semibold">{% trans "From:" %}</span>
+                    <span id="senderName"></span>
                 </div>
                 <div class="mb-4">
-                    <span class="font-semibold">{% trans "Subject:" %}</span> {% trans "Question about course registration" %}
+                    <span class="font-semibold">{% trans "To:" %}</span>
+                    <span id="recipientName"></span>
                 </div>
                 <div class="mb-4">
-                    <span class="font-semibold">{% trans "Date:" %}</span> 2023-08-14 10:30
+                    <span class="font-semibold">{% trans "Subject:" %}</span>
+                    <span id="subjectContent"></span>
                 </div>
                 <div class="mb-4">
-                    <p>{% trans "Hello, I'm having trouble registering for the Advanced Python course. The system keeps showing an error message when I try to complete the registration. Can you please help me with this issue?" %}</p>
+                    <span class="font-semibold">{% trans "Date:" %}</span>
+                    <span id="messageDate"></span>
                 </div>
-                <div class="mt-6">
-                    <textarea class="w-full p-2 border border-gray-300 rounded-lg" rows="4" placeholder="{% trans 'Type your reply here...' %}"></textarea>
-                    <button class="mt-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-                        {% trans "Send Reply" %}
+                <div class="mb-4">
+                    <p id="messageBody"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Compose Message Modal -->
+    <div id="composeModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl">
+            <div class="bg-white rounded-lg shadow-xl">
+                <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold">{% trans "New Message" %}</h3>
+                    <button id="closeComposeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
+                
+                <form id="messageForm" class="p-4">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="recipient_email">
+                            {% trans "To:" %}
+                        </label>
+                        <input type="email" 
+                               id="recipient_email" 
+                               name="recipient_email" 
+                               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               >
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="subject">
+                            {% trans "Subject:" %}
+                        </label>
+                        <input type="text" 
+                               id="subject" 
+                               name="subject"
+                               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               >
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="content">
+                            {% trans "Message:" %}
+                        </label>
+                        <textarea id="content" 
+                                 name="content" 
+                                 rows="6"
+                                 class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                 ></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" 
+                                id="cancelCompose"
+                                class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            {% trans "Cancel" %}
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                            {% trans "Send" %}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-    <!-- Message Filters and Search -->
-    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
-        <div class="p-4 border-b border-gray-200">
-            <h2 class="text-xl font-semibold">{% trans "Message Filters" %}</h2>
-        </div>
-        <div class="p-4 flex flex-wrap gap-4">
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>{% trans "All Messages" %}</option>
-                <option>{% trans "Unread" %}</option>
-                <option>{% trans "Flagged" %}</option>
-                <option>{% trans "Archived" %}</option>
-            </select>
-            <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option selected>{% trans "All Users" %}</option>
-                <option>{% trans "Students" %}</option>
-                <option>{% trans "Instructors" %}</option>
-                <option>{% trans "Administrators" %}</option>
-            </select>
-            <input type="text" placeholder="{% trans 'Search messages...' %}" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-                {% trans "Apply Filters" %}
-            </button>
-        </div>
-    </div>
-
-    <!-- Bulk Actions -->
-    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
-        <div class="p-4 border-b border-gray-200">
-            <h2 class="text-xl font-semibold">{% trans "Bulk Actions" %}</h2>
-        </div>
-        <div class="p-4 flex flex-wrap gap-4">
-            <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
-                {% trans "Mark as Read" %}
-            </button>
-            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
-                {% trans "Flag Selected" %}
-            </button>
-            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
-                {% trans "Delete Selected" %}
-            </button>
-            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-                {% trans "Export Selected" %}
-            </button>
-        </div>
-    </div>
-    
-    
-    <div id="messageContent" class="bg-white rounded-lg card-shadow overflow-hidden">
-        <div class="p-4 border-b border-gray-200">
-            <h2 class="text-xl font-semibold">{% trans "Message Details" %}</h2>
-        </div>
-        <div class="p-4">
-            <div class="mb-4">
-                <span class="font-semibold">{% trans "From:" %}</span> <span id="senderName"></span>
-            </div>
-            <div class="mb-4">
-                <span class="font-semibold">{% trans "To:" %}</span> <span id="recipientName"></span>
-            </div>
-            <div class="mb-4">
-                <span class="font-semibold">{% trans "Subject:" %}</span> <span id="subjectContent"></span>
-            </div>
-            <div class="mb-4">
-                <span class="font-semibold">{% trans "Date:" %}</span> <span id="messageDate"></span>
-            </div>
-            <div class="mb-4">
-                <p id="messageBody"></p>
-            </div>
-            {% if user.is_staff or user.is_superuser %}
-            <div class="mt-4 p-4 bg-yellow-100 rounded-lg">
-                <h3 class="font-semibold mb-2">{% trans "Admin Actions" %}</h3>
-                <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 mr-2">
-                    {% trans "Delete Message" %}
-                </button>
-                <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
-                    {% trans "Flag Message" %}
-                </button>
-            </div>
-            {% endif %}
-            {% if user.is_instructor %}
-            <div class="mt-4 p-4 bg-blue-100 rounded-lg">
-                <h3 class="font-semibold mb-2">{% trans "Instructor Actions" %}</h3>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                    {% trans "Send to Course Group" %}
-                </button>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-    
+</div>
 {% endblock %}
 
 {% block extra_js %}
+
 <script>
-
-    var composeBtn = document.getElementById("composeBtn");
-
-    // Add click event listener to the compose button
-    composeBtn.addEventListener("click", function() {
-        // Redirect to the new message page
-        window.location.href = "{% url 'new_message' %}";
-    });    
-</script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get DOM elements
+        const messageList = document.getElementById('messageList');
+        const composeBtn = document.getElementById('composeBtn');
+        const composeModal = document.getElementById('composeModal');
+        const closeComposeModal = document.getElementById('closeComposeModal');
+        const cancelCompose = document.getElementById('cancelCompose');
+        const messageForm = document.getElementById('messageForm');
+    
+        // Load messages function
+        function loadMessages() {
+            fetch('{% url "get_messages" %}')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        messageList.innerHTML = data.messages.map(message => `
+                            <div class="message-item p-4 hover:bg-gray-50 cursor-pointer ${!message.is_read ? 'bg-blue-50' : ''}"
+                                 data-id="${message.id}">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-semibold">${message.sender_name}</span>
+                                    <span class="text-sm text-gray-500">${message.created_at}</span>
+                                </div>
+                                <div class="text-gray-800">${message.subject}</div>
+                                <div class="flex justify-between items-center mt-2">
+                                    <span class="text-sm ${message.is_read ? 'text-gray-400' : 'text-blue-500'}">
+                                        ${message.is_read ? '✓ Read' : '● New'}
+                                    </span>
+                                    <button class="star-button" data-id="${message.id}">
+                                        <i class="fas fa-star ${message.is_starred ? 'text-yellow-400' : 'text-gray-300'}"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('');
+                        addMessageHandlers();
+                    } else {
+                        showNotification(data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Failed to load messages', 'error');
+                });
+        }
+    
+        // Add message click handlers
+        function addMessageHandlers() {
+            document.querySelectorAll('.message-item').forEach(item => {
+                item.addEventListener('click', () => loadMessageDetails(item.dataset.id));
+            });
+    
+            document.querySelectorAll('.star-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleStar(button.dataset.id);
+                });
+            });
+        }
+    
+        // Load message details
+        function loadMessageDetails(messageId) {
+            fetch(`{% url "get_message_details" %}?id=${messageId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('senderName').textContent = data.sender_name;
+                        document.getElementById('recipientName').textContent = data.recipient_name;
+                        document.getElementById('subjectContent').textContent = data.subject;
+                        document.getElementById('messageDate').textContent = data.created_at;
+                        document.getElementById('messageBody').textContent = data.content;
+                    } else {
+                        showNotification(data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Failed to load message details', 'error');
+                });
+        }
+    
+        // Toggle star status
+        function toggleStar(messageId) {
+            const formData = new FormData();
+            formData.append('id', messageId);
+            
+            fetch('{% url "toggle_star" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    loadMessages();
+                } else {
+                    showNotification(data.error, 'error');
+                }
+            })
+            .catch(error => {
+                showNotification('Failed to update star status', 'error');
+            });
+        }
+    
+        // Message form submit handler
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(messageForm);
+            const data = {
+                recipient_email: formData.get('recipient_email'),
+                subject: formData.get('subject'),
+                content: formData.get('content')
+            };
+    
+            fetch('{% url "send_message" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    composeModal.classList.add('hidden');
+                    messageForm.reset();
+                    showNotification('Message sent successfully!', 'success');
+                    loadMessages();
+                } else {
+                    const errorMessage = data.form_errors ? 
+                        Object.values(data.form_errors).flat().join('\n') : 
+                        data.error;
+                    showNotification(errorMessage, 'error');
+                }
+            })
+            .catch(error => {
+                showNotification('Failed to send message', 'error');
+            });
+        });
+    
+        // Modal controls
+        composeBtn.addEventListener('click', () => {
+            composeModal.classList.remove('hidden');
+            composeModal.classList.add('flex');
+        });
+    
+        const closeModal = () => {
+            composeModal.classList.remove('flex');
+            composeModal.classList.add('hidden');
+            messageForm.reset();
+        };
+    
+        closeComposeModal.addEventListener('click', closeModal);
+        cancelCompose.addEventListener('click', closeModal);
+    
+        // Close on outside click
+        composeModal.addEventListener('click', function(e) {
+            if (e.target === composeModal) {
+                closeModal();
+            }
+        });
+    
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !composeModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            }`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+    
+        // Initial load
+        loadMessages();
+        
+        // Auto refresh messages every 30 seconds
+        setInterval(loadMessages, 30000);
+    });
+    </script>
 {% endblock %}

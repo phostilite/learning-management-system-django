@@ -8,13 +8,20 @@ urlpatterns = [
     path('signup/', auth_views.SignupView.as_view(), name='signup'),
     path('logout/', auth_views.user_logout, name='logout'),
     
-    path('communications/', communications_view.MessageCenterView.as_view(), name='message_center'),
-    path('communications/send-message/', communications_view.SendMessageView.as_view(), name='send_message'),
-    path('communications/get-messages/', communications_view.GetMessagesView.as_view(), name='get_messages'),
-    path('communications/get-thread-messages/', communications_view.GetMessagesView.as_view(), name='get_messages'),
-    path('communications/mark-unstarred/', communications_view.GetMessageDetailsView.as_view(), name='get_message_details'),
-    path('communications/mark-unread/', communications_view.ToggleStarMessageView.as_view(), name='toggle_star_massages'),
-    path('communications/new_message/', communications_view.NewMessageView.as_view(), name='new_message'),
+path('communications/', include([
+    # Message center and list views
+    path('messages/', communications_view.MessageCenterView.as_view(), name='message_center'),
+    path('messages/list/', communications_view.CommunicationMessageListView.as_view(), name='message_list'),
+    
+    # Message operations
+    path('messages/send/', communications_view.SendMessageView.as_view(), name='send_message'),
+    path('messages/get/', communications_view.GetMessagesView.as_view(), name='get_messages'),
+    path('messages/details/', communications_view.GetMessageDetailsView.as_view(), name='get_message_details'),
+    path('messages/toggle-star/', communications_view.ToggleStarMessageView.as_view(), name='toggle_star'),
+    
+    # New message
+    path('messages/new/', communications_view.NewMessageView.as_view(), name='new_message'),
+])),
     
 
     # ==================== Administrator URLs ====================

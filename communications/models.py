@@ -55,7 +55,7 @@ class Recipient(models.Model):
     class Meta:
         unique_together = ['thread', 'user']
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.user.username} - {self.thread.subject}"
 
 class Label(models.Model):
