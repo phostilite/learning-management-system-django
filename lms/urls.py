@@ -22,10 +22,15 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import set_language
 from django.utils.translation import gettext_lazy as _
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
+    # Include API URLs outside i18n_patterns
+    path('api/', include('api.urls', namespace='api')),
+]
+
+# Add other URL patterns that should have language prefix
+urlpatterns += i18n_patterns(
     path('i18n/setlang/', set_language, name='set_language'),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
     path('auth/', include('authentication.urls')),
     path('user/', include('users.urls')),
     path('', include('website.urls')),
@@ -33,5 +38,6 @@ urlpatterns = i18n_patterns(
     path('certificates/', include('certificates.urls')),
     path(_('quizzes/'), include('quizzes.urls')),
     path('organization/', include('organization.urls')),
+    prefix_default_language=True
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

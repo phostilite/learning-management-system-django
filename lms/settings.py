@@ -67,10 +67,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'widget_tweaks',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
-    'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,7 +79,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Moved after CommonMiddleware
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'users.middleware.SessionRefreshMiddleware',
     'maintenance.middleware.MaintenanceModeMiddleware',
@@ -203,6 +204,10 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
 
+# Add this setting to exclude API URLs from i18n redirects
+LANGUAGE_URL_PATTERNS_EXCLUDE = [
+    r'^/api/'  # Exclude API URLs from language prefix
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -279,3 +284,16 @@ SESSION_TIMEOUT_REDIRECT = 'session_expired'
 
 MAINTENANCE_MODE = False
 MAINTENANCE_BYPASS_QUERY_STRING = 'bypass_maintenance'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
