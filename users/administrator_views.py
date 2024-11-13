@@ -2200,7 +2200,7 @@ class AdministratorTicketDeleteView (AdministratorRequiredMixin, DeleteView):
 class AdministratorFaqCreateView(AdministratorRequiredMixin, FormView):
     model= FAQ
     form_class = FAQForm
-    template_name = 'users/administrator/help_and_support/FAQ/create_faq.html'
+    template_name = 'users/administrator/help_and_support/faq/create_faq.html'
     success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
 
     def get_context_data(self, **kwargs):
@@ -2227,7 +2227,7 @@ class AdministratorFaqCreateView(AdministratorRequiredMixin, FormView):
 
 class AdministratorFaqEditView(AdministratorRequiredMixin, UpdateView):
     model = FAQ
-    template_name = 'users/administrator/help_and_support/FAQ/edit_faq.html'
+    template_name = 'users/administrator/help_and_support/faq/edit_faq.html'
     form_class = FAQForm
     success_url = reverse_lazy('administrator_help_support') 
 
