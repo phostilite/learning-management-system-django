@@ -1,0 +1,133 @@
+{% extends '../../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Ticket Details" %} - LMS Admin{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ticket-details {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .ticket-field {
+        margin-bottom: 1rem;
+    }
+    .field-label {
+        font-size: 0.875em;
+        color: #6c757d;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+    .field-value {
+        font-size: 1em;
+        color: #343a40;
+    }
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        font-weight: 600;
+        font-size: 0.75rem;
+        border-radius: 9999px;
+        display: inline-block;
+    }
+    .status-OPEN {
+        color: #047857;
+        background-color: #d1fae5;
+    }
+    .status-IN_PROGRESS {
+        color: #1d4ed8;
+        background-color: #dbeafe;
+    }
+    .status-RESOLVED {
+        color: #b45309;
+        background-color: #fef3c7;
+    }
+    .status-CLOSED {
+        color: #b91c1c;
+        background-color: #fee2e2;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="w-full mx-auto">
+        <!-- Header -->
+        <header class="mb-6 gradient-bg p-6 rounded-lg shadow-md">
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Ticket Details" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "View and manage support ticket information" %}</p>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'administrator_help_support' %}" class="text-gray-700 hover:text-indigo-600">
+                        {% trans "Support Tickets" %}
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Ticket Details" %}</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Ticket Information -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">{% trans "Ticket Information" %}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "ID" %}</span>
+                    <span class="field-value">{{ support_ticket.id }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Title" %}</span>
+                    <span class="field-value">{{ support_ticket.title }}</span>
+                </div>
+                <div class="ticket-field col-span-2">
+                    <span class="field-label">{% trans "Description" %}</span>
+                    <p class="field-value">{{ support_ticket.description }}</p>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Category" %}</span>
+                    <span class="field-value">{{ support_ticket.category }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Status" %}</span>
+                    <span class="status-badge status-{{ support_ticket.status }}">
+                        {{ support_ticket.get_status_display }}
+                    </span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Priority" %}</span>
+                    <span class="field-value">{{ support_ticket.get_priority_display }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Created By" %}</span>
+                    <span class="field-value">{{ support_ticket.created_by }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Assigned To" %}</span>
+                    <span class="field-value">{{ support_ticket.assigned_to|default_if_none:"Not Assigned" }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Created At" %}</span>
+                    <span class="field-value">{{ support_ticket.created_at|date:"F d, Y H:i" }}</span>
+                </div>
+                <div class="ticket-field">
+                    <span class="field-label">{% trans "Last Updated" %}</span>
+                    <span class="field-value">{{ support_ticket.updated_at|date:"F d, Y H:i" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <a href="{% url 'administrator_help_support' %}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                {% trans "Back to Tickets" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

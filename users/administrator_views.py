@@ -24,7 +24,7 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import IntegrityError, transaction
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Avg, F, ExpressionWrapper, fields
 from django.db.models.functions import TruncMonth
 from django.forms import formset_factory
 from django.http import Http404, HttpResponse, JsonResponse, HttpResponseRedirect
@@ -63,6 +63,8 @@ from quizzes.models import Choice, Question, Quiz
 from users.forms import LearnerCreationForm
 from users.models import SCORMUserProfile, User
 from activities.models import SystemNotification, ActivityLog, UserSession
+from support.models import SupportTicket, SupportCategory, FAQ
+from support.forms import TicketForm, FAQForm, SupportCategoryForm
 
 from .utils.notification_utils import create_notification, log_activity
 from .filters import NotificationFilter, EmployeeProfileFilter, OrganizationUnitFilter, JobPositionFilter, LocationFilter, GroupFilter,  UserFilter
@@ -166,13 +168,6 @@ class AdministratorCertificateListView(LoginRequiredMixin, AdministratorRequired
     
 class AdministratorAnnouncementListView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
     template_name = 'users/administrator/announcements.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
-class AdministratorHelpSupportView(LoginRequiredMixin, AdministratorRequiredMixin, TemplateView):
-    template_name = 'users/administrator/help_support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -2059,3 +2054,294 @@ class UnreadNotificationsCountView(LoginRequiredMixin, AdministratorRequiredMixi
         except Exception as e:
             logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
             return JsonResponse({'count': 0})
+        
+
+
+# ============================================================
+# ======================= Help and support ================
+# ============================================================
+
+class AdministratorHelpSupportView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/help_and_support/support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the current date and the date 7 days ago
+        now = timezone.now()
+        week_ago = now - timedelta(days=7)
+        
+        # Fetch all required metrics in a single query
+        metrics = SupportTicket.objects.aggregate(
+            open_tickets=Count('id', filter=Q(status='OPEN')),
+            resolved_this_week=Count('id', filter=Q(status='RESOLVED', updated_at__gte=week_ago)),
+            total_response_time=Avg(
+                ExpressionWrapper(
+                    F('responses__created_at') - F('created_at'),
+                    output_field=fields.DurationField()
+                ),
+                filter=Q(responses__isnull=False)
+            )
+        )
+        
+        # Calculate average response time in hours
+        avg_response_time = metrics['total_response_time'].total_seconds() / 3600 if metrics['total_response_time'] else 0
+        
+        # Fetch user satisfaction (this is a placeholder, adjust based on your actual data model)
+        user_satisfaction = 94  # Placeholder value, replace with actual calculation if available
+        
+        context.update({
+            'open_tickets': metrics['open_tickets'],
+            'avg_response_time': f"{avg_response_time:.1f}h",
+            'resolved_this_week': metrics['resolved_this_week'],
+            'user_satisfaction': f"{user_satisfaction}%",
+            'support_tickets': SupportTicket.objects.all(),
+            'faqs': FAQ.objects.all(),
+        })
+        
+        return context
+
+class AdministratorTicketCreateView(AdministratorRequiredMixin, FormView):
+    template_name = 'users/administrator/help_and_support/tickets/creating_tickets.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Ticket'
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorTicketDetailView(AdministratorRequiredMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class AdministratorTicketEditView(AdministratorRequiredMixin, UpdateView):
+    model = SupportTicket
+    form_class = TicketForm
+    success_url = reverse_lazy('administrator_support_ticket')
+
+    def get(self, request, *args, **kwargs):
+        try:
+            ticket = get_object_or_404(SupportTicket, pk=self.kwargs.get('pk'))
+            all_categories = SupportCategory.objects.values('id', 'name')
+            
+            return JsonResponse({
+                'id': str(ticket.id),
+                'title': ticket.title,
+                'description': ticket.description,
+                'category_id': str(ticket.category.id) if ticket.category else None,
+                'status': ticket.status,
+                'priority': ticket.priority,
+                'created_by': ticket.created_by.username,
+                'assigned_to': ticket.assigned_to.username if ticket.assigned_to else None,
+                'created_at': ticket.created_at.isoformat(),
+                'updated_at': ticket.updated_at.isoformat(),
+                'all_categories': list(all_categories),
+                'priority_choices': dict(SupportTicket.PRIORITY_CHOICES),
+                'status_choices': dict(SupportTicket.STATUS_CHOICES),
+            }, encoder=DjangoJSONEncoder)
+        except Exception as e:
+            logger.error(f"Error fetching ticket: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred while fetching the ticket.'}, status=500)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            ticket = get_object_or_404(SupportTicket, pk=self.kwargs.get('pk'))
+            form = TicketForm(request.POST, instance=ticket)
+            if form.is_valid():
+                form.save()
+                redirect_url = reverse('administrator_support_ticket')
+                return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+            else:
+                return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+        except Exception as e:
+            logger.error(f"Error updating ticket: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred while updating the ticket.'}, status=500)
+        
+class AdministratorTicketDeleteView (AdministratorRequiredMixin, DeleteView):
+    model = SupportTicket
+    template_name = 'users/administrator/help_and_support/tickets/delete_ticket.html'
+    success_url = reverse_lazy('administrator_help_support')
+
+    def get_object(self):
+        return get_object_or_404(SupportTicket, pk=self.kwargs.get('pk'))
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({
+            'success': True,
+            'redirect_url': str(self.success_url)
+        })
+    
+class AdministratorFaqCreateView(AdministratorRequiredMixin, FormView):
+    model= FAQ
+    form_class = FAQForm
+    template_name = 'users/administrator/help_and_support/FAQ/create_faq.html'
+    success_url = reverse_lazy('administrator_help_support')  # Assuming you have a URL name for the ticket list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New FAQ'
+        return context
+
+    def form_valid(self, form):
+        try:
+            faq = form.save(commit=False)
+            faq.created_by = self.request.user
+            faq.save()
+            messages.success(self.request, 'FAQ created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating FAQ: {e}")
+            messages.error(self.request, 'There was an error creating the FAQ. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the FAQ. Please check the form and try again.')
+        return super().form_invalid(form)
+
+class AdministratorFaqEditView(AdministratorRequiredMixin, UpdateView):
+    model = FAQ
+    template_name = 'users/administrator/help_and_support/FAQ/edit_faq.html'
+    form_class = FAQForm
+    success_url = reverse_lazy('administrator_help_support') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support faq updated successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error updating FAQ: {e}")
+            messages.error(self.request, 'There was an error updating the FAQs. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error updating the FAQs. Please check the form and try again.')
+        return super().form_invalid(form)    
+    
+class AdministratorFaqDeleteView(AdministratorRequiredMixin, DeleteView):
+    model = FAQ
+    success_url = reverse_lazy('administrator_help_support')
+
+    def get_object(self):
+        return get_object_or_404(FAQ, pk=self.kwargs.get('pk'))
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({
+            'success': True,
+            'redirect_url': str(self.success_url)
+        })
+    
+class AdministratorSupportCategoryView(AdministratorRequiredMixin, TemplateView):
+    template_name = 'users/administrator/help_and_support/support_category/category_dash.html'
+    
+    def get_context_data(self, **kwargs):
+        try:
+            context = super().get_context_data(**kwargs)
+            context['support_categories'] = SupportCategory.objects.all()
+            context['form'] = SupportCategoryForm()
+            return context
+        except Exception as e:
+            logger.error(f"Error in get_context_data: {e}")
+            context = super().get_context_data(**kwargs)
+            context['support_categories'] = []
+            context['form'] = SupportCategoryForm()
+            return context
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            form = SupportCategoryForm(request.POST)
+            if form.is_valid():
+                category = form.save(commit=False)
+                category.created_by = request.user
+                category.save()
+                redirect_url = reverse('administrator_support_category')
+                return redirect(redirect_url)
+            else:
+                logger.error(f"Form errors: {form.errors}")
+                return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+        except Exception as e:
+            logger.error(f"Error in post method: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An unexpected error occurred.'}, status=500)
+    
+from django.core.serializers.json import DjangoJSONEncoder
+
+class AdministratorCategoryEditView(AdministratorRequiredMixin, UpdateView):
+    model = SupportCategory
+    fields = ['name', 'description', 'parent']
+    success_url = reverse_lazy('administrator_support_category')
+
+    def get(self, request, *args, **kwargs):
+        category = get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+        all_categories = SupportCategory.objects.exclude(pk=category.pk).values('id', 'name')
+        
+        return JsonResponse({
+            'name': category.name,
+            'description': category.description,
+            'parent_id': str(category.parent.id) if category.parent else None,
+            'is_active': category.is_active,
+            'all_categories': list(all_categories)
+        }, encoder=DjangoJSONEncoder)
+    
+    def post(self, request, *args, **kwargs):
+        category = get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+        form = SupportCategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            redirect_url = reverse('administrator_support_category')
+            return JsonResponse({'status': 'success', 'redirect_url': redirect_url})
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+
+
+    
+    
+class AdministratorCategoryDeleteView(AdministratorRequiredMixin, DeleteView):
+    model = SupportCategory
+    success_url = reverse_lazy('administrator_support_category')
+
+    def get_object(self):
+        return get_object_or_404(SupportCategory, pk=self.kwargs.get('pk'))
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({
+            'success': True,
+            'redirect_url': str(self.success_url)
+        })

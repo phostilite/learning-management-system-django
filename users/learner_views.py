@@ -53,6 +53,8 @@ from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery, ComponentCompletion)
 from .api_client import upload_scorm_package, register_user_for_course
+from support.models import SupportTicket, SupportCategory
+from support.forms import TicketForm
 
 from activities.models import SystemNotification
 from .utils.notification_utils import create_notification, log_activity
@@ -622,8 +624,53 @@ class SettingsView(LoginRequiredMixin, LearnerRequiredMixin, UserPassesTestMixin
 # ====================== Help & Support Views ================
 # ============================================================
     
+@method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):
-    template_name = 'users/learner/help_support.html'
+    template_name = 'users/learner/support/help_and_support.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['support_tickets'] = SupportTicket.objects.filter(created_by=self.request.user)
+        return context
+    
+class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+    template_name = 'users/learner/support/tickets/create.html'
+    form_class = TicketForm
+    success_url = reverse_lazy('learner_help_support')  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create New Support Ticket'
+        return context
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='learner').exists()
+
+    def form_valid(self, form):
+        try:
+            ticket = form.save(commit=False)
+            ticket.created_by = self.request.user
+            ticket.save()
+            messages.success(self.request, 'Support ticket created successfully!')
+            return super().form_valid(form)
+        except Exception as e:
+            logger.error(f"Error creating support ticket: {e}")
+            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        logger.error(f"Form errors: {form.errors}")
+        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
+        return super().form_invalid(form)
+    
+    
+class LearnerTicketDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    model = SupportTicket
+    template_name = 'users/learner/support/tickets/ticket_details.html'
+    context_object_name = 'support_ticket'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='learner').exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

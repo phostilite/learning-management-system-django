@@ -135,9 +135,26 @@ urlpatterns = [
     # Other Administrator Views
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
     path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
-    path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
+
+    # Help and Support Management
+    path('administrator/help-support/', administrator_views.AdministratorHelpSupportView.as_view(), name='administrator_help_support'),
+    path('administrator/help-support/tickets/create/',administrator_views.AdministratorTicketCreateView.as_view(), name='administrator_tickets_create'),
+    path('administrator/help-support/tickets/<uuid:pk>/detail/', administrator_views.AdministratorTicketDetailView.as_view(), name='administrator_tickets_detail'),
+    path('administrator/help-support/tickets/<uuid:pk>/edit/', administrator_views.AdministratorTicketEditView.as_view(), name= 'administrator_ticket_edit'),
+    path('administrator/help-support/tickets/<uuid:pk>/delete/', administrator_views.AdministratorTicketDeleteView.as_view(), name= 'administrator_ticket_delete'),
+    path('administrator/help-support/faq/create/', administrator_views.AdministratorFaqCreateView.as_view(), name='administrator_faq_create'),
+    path('administrator/help-support/faq/<uuid:pk>/edit/', administrator_views.AdministratorFaqEditView.as_view(), name='administrator_faq_edit'),
+    path('administrator/help-support/faq/<uuid:pk>/delete/', administrator_views.AdministratorFaqDeleteView.as_view(), name='administrator_faq_delete'),
+    
+    path('administrator/help-support/support_category/', administrator_views.AdministratorSupportCategoryView.as_view(), name='administrator_support_category'),
+    path('administrator/help-support/category/<uuid:pk>/edit/', administrator_views.AdministratorCategoryEditView.as_view(), name='administrator_category_edit'),
+    path('administrator/help-support/category/<uuid:pk>/delete/', administrator_views.AdministratorCategoryDeleteView.as_view(), name='administrator_category_delete'),
+    
+    path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
+    path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
+
 
     # Notification Views
     path('administrator/notifications/recent/', administrator_views.RecentNotificationsView.as_view(), name='administrator_recent_notifications'),
@@ -168,7 +185,10 @@ urlpatterns = [
     path('learner/resources/', learner_views.ResourceView.as_view(), name='learner_resource_list'),
     path('learner/leaderboard/', learner_views.LeaderboardView.as_view(), name='learner_leaderboard'),
     path('learner/settings/', learner_views.SettingsView.as_view(), name='learner_settings'),
+    
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
+    path('learner/help-support/tickets/create/',learner_views.LearnerTicketCreateView.as_view(), name='learner_tickets_create'),
+    path('learner/help-support/tickets/<uuid:pk>/ticket_details/', learner_views.LearnerTicketDetailView.as_view(), name='learner_tickets_detail'),
 
     path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notifications'),

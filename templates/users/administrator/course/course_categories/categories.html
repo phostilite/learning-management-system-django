@@ -1,7 +1,8 @@
 {% extends '../../_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Course Categories - LMS Admin{% endblock %}
+{% block title %}{% trans "Course Categories - LMS Admin" %}{% endblock %}
 
 {% block extra_css %}
 {% endblock %}
@@ -10,22 +11,22 @@
 <div>
     <div>
         <header class="mb-4 gradient-bg p-6 rounded-lg shadow-md">
-            <h1 class="text-4xl font-bold text-white text-center mb-2">Course Categories</h1>
-            <p class="text-lg text-white text-center">Manage and Organize Your Course Categories</p>
+            <h1 class="text-4xl font-bold text-white text-center mb-2">{% trans "Course Categories" %}</h1>
+            <p class="text-lg text-white text-center">{% trans "Manage and Organize Your Course Categories" %}</p>
         </header>
 
-        <nav class="flex mb-4" aria-label="Breadcrumb">
+        <nav class="flex mb-4" aria-label="{% trans 'Breadcrumb' %}">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                        Dashboard
+                        {% trans "Dashboard" %}
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Categories</span>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Categories" %}</span>
                     </div>
                 </li>
             </ol>
@@ -38,14 +39,14 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fas fa-search text-gray-400"></i>
                     </div>
-                    <input type="text" id="categorySearchInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search categories...">
+                    <input type="text" id="categorySearchInput" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="{% trans 'Search categories...' %}">
                 </div>
             </div>
             <div class="flex gap-4">
                 <select class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                    <option selected>All Statuses</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option selected>{% trans "All Statuses" %}</option>
+                    <option value="active">{% trans "Active" %}</option>
+                    <option value="inactive">{% trans "Inactive" %}</option>
                 </select>
             </div>
         </div>
@@ -53,10 +54,10 @@
         <!-- Action Buttons -->
         <div class="mb-8 flex gap-4">
             <button type="button" class="bg-accent hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center" onclick="openModal()">
-                <i class="fas fa-plus mr-2"></i> Create Category
+                <i class="fas fa-plus mr-2"></i> {% trans "Create Category" %}
             </button>
             <button type="button" class="bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg flex items-center">
-                <i class="fas fa-file-export mr-2"></i> Export Categories
+                <i class="fas fa-file-export mr-2"></i> {% trans "Export Categories" %}
             </button>
         </div>
         
@@ -65,11 +66,11 @@
             <table id="categoriesTable" class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Category Name</th>
-                        <th scope="col" class="px-6 py-3">Description</th>
-                        <th scope="col" class="px-6 py-3">Courses</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
-                        <th scope="col" class="px-6 py-3">Actions</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Category Name" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Description" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Courses" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+                        <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,7 +119,9 @@
             <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                 <div>
                     <p class="text-sm text-gray-700">
-                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">97</span> results
+                        {% blocktrans with start=1 end=10 total=97 %}
+                            Showing {{ start }} to {{ end }} of {{ total }} results
+                        {% endblocktrans %}
                     </p>
                 </div>
                 <div>

@@ -1,0 +1,223 @@
+{% extends '../_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Help & Support - LMS Admin" %}{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="help-support-page" dir="{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 rounded-xl mb-4 card-shadow relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-4xl font-bold text-center mb-2">{% trans "Help & Support Center" %}</h1>
+            <p class="text-center text-lg">{% trans "Manage Support Tickets and Access Resources" %}</p>
+        </div>
+        <div class="absolute inset-0"></div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+                <a href="{% url 'administrator_dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    {% trans "Dashboard" %}
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400 rtl:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{% trans "Help & Support" %}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-lg p-4 shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Open Tickets" %}</h3>
+            <p class="text-3xl font-bold text-blue-600">{{ open_tickets }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Avg. Response Time" %}</h3>
+            <p class="text-3xl font-bold text-green-600">{{ avg_response_time }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "Resolved This Week" %}</h3>
+            <p class="text-3xl font-bold text-purple-600">{{ resolved_this_week }}</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow">
+            <h3 class="text-lg font-semibold mb-2">{% trans "User Satisfaction" %}</h3>
+            <p class="text-3xl font-bold text-yellow-600">{{ user_satisfaction }}</p>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <a href="{% url 'administrator_tickets_create' %}" class="bg-primary text-white p-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 flex items-center justify-center">
+            <svg class="w-6 h-6 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            {% trans "Create New Ticket" %}
+        </a>
+        <a href="{% url 'administrator_support_category' %}" class="bg-accent text-white p-4 rounded-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 flex items-center justify-center">
+            <svg class="w-6 h-6 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+            </svg>
+            {% trans "Manage Support Categories" %}
+        </a>
+        <a href="#" class="bg-green-600 text-white p-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 flex items-center justify-center">
+            <svg class="w-6 h-6 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            {% trans "Manage FAQs" %}
+        </a>
+    </div>
+
+    <!-- Recent Support Tickets -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <div class="p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold">{% trans "Recent Support Tickets" %}</h2>
+        </div>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">{% trans "Title" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Category" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Priority" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Created By" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Assigned To" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Created At" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Updated At" %}</th>
+                    <th scope="col" class="px-6 py-3">{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in support_tickets %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">{{ ticket.title }}</td>
+                    <td class="px-6 py-4">{{ ticket.category.name }}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 font-semibold leading-tight rounded-full
+                            {% if ticket.status == 'OPEN' %}text-green-700 bg-green-100
+                            {% elif ticket.status == 'IN_PROGRESS' %}text-blue-700 bg-blue-100
+                            {% elif ticket.status == 'RESOLVED' %}text-yellow-700 bg-yellow-100
+                            {% elif ticket.status == 'CLOSED' %}text-red-700 bg-red-100
+                            {% else %}text-gray-700 bg-gray-100{% endif %}">
+                            {{ ticket.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 font-semibold leading-tight rounded-full
+                            {% if ticket.priority == 'LOW' %}text-green-700 bg-green-100
+                            {% elif ticket.priority == 'MEDIUM' %}text-blue-700 bg-blue-100
+                            {% elif ticket.priority == 'HIGH' %}text-yellow-700 bg-yellow-100
+                            {% elif ticket.priority == 'URGENT' %}text-red-700 bg-red-100
+                            {% else %}text-gray-700 bg-gray-100{% endif %}">
+                            {{ ticket.get_priority_display }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {% if ticket.created_by %}
+                            {{ ticket.created_by.get_full_name }}
+                        {% else %}
+                            {% trans "N/A" %}
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4">
+                        {% if ticket.assigned_to %}
+                            {{ ticket.assigned_to.get_full_name }}
+                        {% else %}
+                            {% trans "Unassigned" %}
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4">{{ ticket.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="px-6 py-4">{{ ticket.updated_at|date:"Y-m-d H:i" }}</td>
+                    <td class="px-6 py-4">
+                        <a href="#" class="text-blue-600 hover:text-blue-900" title="{% trans 'View Ticket' %}">
+                            <i class="fas fa-eye"></i>
+                        </a>    
+                        <button id="edit-ticket-button{{ ticket.id }}" class="text-red-600 hover:text-red-900 ml-2" 
+                                data-modal-target="ticket-edit-modal{{ ticket.id }}" 
+                                data-modal-toggle="ticket-edit-modal{{ ticket.id }}" 
+                                data-ticket-id="{{ ticket.id }}"
+                                title="{% trans 'Edit' %}">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        {% include "./tickets/edit_ticket.html" %}
+                        <a href="#" class="text-red-600 hover:text-red-900 ml-2" data-modal-target="delete-ticket-modal{{ ticket.id }}" data-modal-toggle="delete-ticket-modal{{ ticket.id }}"  title="{% trans 'Delete' %}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        {% include "./tickets/delete_ticket.html" %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="bg-white rounded-lg card-shadow overflow-hidden mb-6">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold">{% trans "Frequently Asked Questions" %}</h2>
+            <div>
+                <a class="bg-blue-500 text-white px-4 py-2 rounded" href="{% url 'administrator_faq_create' %}">{% trans "Create FAQ" %}</a>
+            </div>
+        </div>
+        <div class="p-4">
+            {% for faq in faqs %}
+            <div class="mb-4 flex justify-between items-center">
+                <div>
+                    <h3 class="font-semibold mb-2">{{ faq.question }}</h3>
+                    <p class="text-gray-600">{{ faq.answer }}</p>
+                </div>
+                <div class="flex space-x-2">
+                    <a href="{% url 'administrator_faq_edit' faq.id %}" class="text-blue-600 hover:text-blue-900" title="{% trans 'Edit' %}">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a href="#" class="text-red-600 hover:text-red-900 ml-2" data-modal-target="delete-faq-modal{{ faq.id }}" data-modal-toggle="delete-faq-modal{{ faq.id }}"  title="{% trans 'Delete' %}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    {% include "./faq/delete_faq.html" %} 
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageCode = document.documentElement.lang || 'en'; 
+        
+        document.querySelectorAll('[id^="edit-ticket-button"]').forEach(button => {
+            button.addEventListener('click', function() {
+                const ticketId = this.getAttribute('data-ticket-id');
+                const url = `http://127.0.0.1:8000/${languageCode}/user/administrator/help-support/tickets/${ticketId}/edit/`;
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const modal = document.getElementById(`ticket-edit-modal${ticketId}`);
+                        const content = `
+                            <strong>Title:</strong> ${data.title}<br>
+                            <strong>Description:</strong> ${data.description}<br>
+                            <strong>Category:</strong> ${data.category}<br>
+                            <strong>Priority:</strong> ${data.priority}<br>
+                            <strong>Status:</strong> ${data.status}
+                        `;
+                        modal.querySelector(`#ticket-content-${ticketId}`).innerHTML = content;
+                        modal.classList.remove('hidden');
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
+
+{% endblock %}

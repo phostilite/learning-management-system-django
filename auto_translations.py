@@ -1,167 +1,197 @@
+import polib
+from googletrans import Translator
 import os
 import subprocess
 import re
 import chardet
 import unicodedata
 import codecs
-import polib
-from googletrans import Translator
-from django.core.management import call_command
-from django.apps import apps
-from django.conf import settings
-from django.db import connection, models
 import logging
+from typing import List, Tuple, Dict
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
-# List of language codes
-languages = [
-    'en', 'ar', 'fr', 'de', 'ja', 'hi', 'es', 'pt', 'ru', 'it', 'ko', 'nl', 'tr', 'pl', 'sv', 'da', 'fi', 'el', 'he', 'th', 'vi', 'id', 'bn', 'ta', 'te', 'kn', 'pa', 'mr', 'ml'
-]
-
-# List of app names to process
-apps_to_process = [
-    'api', 'users', 'courses', 'authentication', 'website', 'certificates', 
-    'quizzes', 'leaderboard', 'support', 'announcements', 'activities', 
-    'events', 'organization', 'gamification'
-]
-
-def detect_encoding(file_path):
-    encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii']
-    for enc in encodings:
-        try:
-            with codecs.open(file_path, 'r', encoding=enc) as file:
-                file.read()
-            return enc
-        except UnicodeDecodeError:
-            continue
+class TranslationManager:
+    LANGUAGES = ['ar']  # Add more language codes as needed
     
-    with open(file_path, 'rb') as file:
-        raw_data = file.read()
-    return chardet.detect(raw_data)['encoding']
+    IGNORE_PATTERNS = [
+        'node_modules/*',
+        'staticfiles/*',
+        'venv/*',
+        '*.txt'
+    ]
+    
+    def __init__(self):
+        self.translator = Translator()
+        
+    @staticmethod
+    def detect_encoding(file_path: str) -> str:
+        """Detect file encoding with fallback options."""
+        encodings = ['utf-8', 'iso-8859-1', 'windows-1252', 'ascii']
+        for enc in encodings:
+            try:
+                with codecs.open(file_path, 'r', encoding=enc) as file:
+                    file.read()
+                return enc
+            except UnicodeDecodeError:
+                continue
+        
+        with open(file_path, 'rb') as file:
+            return chardet.detect(file.read())['encoding']
 
-def sanitize_string(s):
-    return ''.join(ch for ch in s if unicodedata.category(ch)[0] != 'C')
+    def validate_po_entry(self, entry: polib.POEntry) -> Tuple[bool, str]:
+        """Validate a single PO entry."""
+        if not entry.msgid or not isinstance(entry.msgid, str):
+            return False, "Invalid msgid"
+        if entry.msgstr and not isinstance(entry.msgstr, str):
+            return False, "Invalid msgstr"
+        return True, ""
 
-def unicode_escape(s):
-    return ''.join('\\U{:08x}'.format(ord(c)) if ord(c) > 0xFFFF else c for c in s)
+    def remove_duplicates(self, po_file: polib.POFile) -> int:
+        """Remove duplicate entries from PO file."""
+        seen: Dict[str, polib.POEntry] = {}
+        duplicates: List[polib.POEntry] = []
+        
+        for entry in po_file:
+            if entry.msgid in seen:
+                duplicates.append(entry)
+            else:
+                seen[entry.msgid] = entry
+        
+        for dup in duplicates:
+            po_file.remove(dup)
+        
+        return len(duplicates)
 
-def translate_po_file(input_file, target_lang):
-    try:
-        encoding = detect_encoding(input_file)
-        print(f"Detected encoding for {input_file}: {encoding}")
+    def validate_po_file(self, po_file: polib.POFile) -> List[str]:
+        """Validate entire PO file."""
+        errors = []
         
-        po = polib.pofile(input_file, encoding=encoding)
+        if not po_file.metadata.get('Content-Type'):
+            errors.append("Missing Content-Type in header")
         
-        translator = Translator()
+        for entry in po_file:
+            is_valid, error = self.validate_po_entry(entry)
+            if not is_valid:
+                errors.append(f"Error in msgid '{entry.msgid}': {error}")
         
-        po.metadata['Content-Type'] = 'text/plain; charset=UTF-8'
-        
-        for entry in po:
-            if entry.msgstr == "" and not entry.obsolete:
-                try:
-                    placeholders = re.findall(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', entry.msgid)
-                    sanitized_msgid = sanitize_string(re.sub(r'%\([^)]+\)[sd]|%[sd]|\{[^}]+\}', '{}', entry.msgid))
-                    translated = translator.translate(sanitized_msgid, dest=target_lang).text
-                    
-                    for i, placeholder in enumerate(placeholders):
-                        translated = translated.replace('{}', placeholder, 1)
-                    
-                    entry.msgstr = unicode_escape(translated)
-                    print(f"Translated: '{entry.msgid}' -> '{entry.msgstr}'")
-                except Exception as e:
-                    print(f"Error translating '{entry.msgid}': {str(e)}")
-        
-        po.save(input_file)
-    except Exception as e:
-        print(f"Error processing PO file {input_file}: {str(e)}")
+        return errors
 
-def compile_messages():
-    try:
-        result = subprocess.run(["django-admin", "compilemessages"], capture_output=True, text=True, check=True)
-        print("Messages compiled successfully.")
-        print(result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Error compiling messages: {e}")
-        print(e.output)
-
-def translate_database_content(target_lang):
-    try:
-        translator = Translator()
+    def translate_string(self, text: str, target_lang: str) -> str:
+        """Translate a single string with format preservation."""
+        format_specs = []
+        counter = 0
         
-        for app_name in apps_to_process:
-            app_models = apps.get_app_config(app_name).get_models()
+        # Handle Python format strings
+        for pattern in [r'\{\}', r'\{[0-9]+\}']:
+            matches = re.finditer(pattern, text)
+            for match in matches:
+                placeholder = f'[[{counter}]]'
+                text = text.replace(match.group(), placeholder)
+                format_specs.append(match.group())
+                counter += 1
+        
+        # Translate
+        translated = self.translator.translate(text, dest=target_lang).text
+        
+        # Restore format specifiers
+        for i, spec in enumerate(format_specs):
+            translated = translated.replace(f'[[{i}]]', spec)
             
-            for model in app_models:
-                print(f"\nProcessing model: {model.__name__}")
-                
-                # Get specific fields of the model
-                fields_to_translate = [
-                    f for f in model._meta.fields 
-                    if isinstance(f, (models.CharField, models.TextField, models.BooleanField))
-                ]
-                
-                if not fields_to_translate:
-                    print(f"No suitable fields found in {model.__name__}")
-                    continue
-                
-                # Fetch all instances of the model
-                instances = model.objects.all()
-                
-                for instance in instances:
-                    for field in fields_to_translate:
-                        original_value = getattr(instance, field.name)
-                        if original_value:
-                            try:
-                                if isinstance(field, models.BooleanField):
-                                    # For BooleanField, we just copy the value
-                                    translated_value = original_value
-                                else:
-                                    translated_value = translator.translate(str(original_value), dest=target_lang).text
-                                
-                                setattr(instance, f"{field.name}_{target_lang}", translated_value)
-                                print(f"Translated {model.__name__}.{field.name}: '{original_value}' -> '{translated_value}'")
-                            except Exception as e:
-                                print(f"Error translating {model.__name__}.{field.name}: {str(e)}")
-                    
+        return translated
+
+    def translate_po_file(self, input_file: str, target_lang: str) -> None:
+        """Translate PO file contents."""
+        try:
+            encoding = self.detect_encoding(input_file)
+            logging.info(f"Detected encoding: {encoding}")
+            
+            po = polib.pofile(input_file, encoding=encoding)
+            
+            # Validate and clean
+            errors = self.validate_po_file(po)
+            if errors:
+                for error in errors:
+                    logging.error(error)
+                return
+            
+            num_duplicates = self.remove_duplicates(po)
+            if num_duplicates:
+                logging.info(f"Removed {num_duplicates} duplicate entries")
+            
+            po.metadata['Content-Type'] = 'text/plain; charset=UTF-8'
+            
+            # Translate entries
+            for entry in po:
+                if not entry.msgstr and not entry.obsolete:
                     try:
-                        instance.save()
-                        print(f"Saved translated instance of {model.__name__}")
+                        translated = self.translate_string(entry.msgid, target_lang)
+                        entry.msgstr = translated
+                        logging.info(f"Translated: {entry.msgid} -> {translated}")
                     except Exception as e:
-                        print(f"Error saving instance of {model.__name__}: {str(e)}")
-    except Exception as e:
-        print(f"Error translating database content: {str(e)}")
+                        logging.error(f"Translation error for '{entry.msgid}': {str(e)}")
+            
+            po.save(input_file)
+            logging.info(f"Successfully saved translations to {input_file}")
+            
+        except Exception as e:
+            logging.error(f"Error processing PO file: {str(e)}")
 
-def main():
-    try:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lms.settings")
-        import django
-        django.setup()
+    def compile_messages(self) -> None:
+        """Compile message files."""
+        try:
+            result = subprocess.run(
+                ["django-admin", "compilemessages"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            logging.info("Messages compiled successfully")
+            logging.info(result.stdout)
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Compilation error: {e.output}")
 
-        for target_lang in languages:
-            print(f"\n--- Processing language: {target_lang} ---")
+    def make_messages(self, target_lang: str) -> None:
+        """Create/update message files."""
+        ignore_patterns = ' '.join([f'--ignore={pattern}' for pattern in self.IGNORE_PATTERNS])
+        
+        try:
+            cmd = f"django-admin makemessages -l {target_lang} --add-location file {ignore_patterns}"
+            result = subprocess.run(
+                cmd.split(),
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            logging.info(f"Message file for {target_lang} created/updated successfully")
+            logging.info(result.stdout)
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Error creating messages: {e.stderr}")
+
+    def process_translations(self) -> None:
+        """Main processing function."""
+        for target_lang in self.LANGUAGES:
             locale_path = os.path.join('locale', target_lang, 'LC_MESSAGES')
             os.makedirs(locale_path, exist_ok=True)
-
-            try:
-                call_command("makemessages", locale=[target_lang], add_location="file")
-                print(f"Message file for {target_lang} created/updated successfully.")
-            except Exception as e:
-                print(f"Error creating/updating message file for {target_lang}: {str(e)}")
-                continue
-
-            po_file = os.path.join(locale_path, 'django.po')
-            print(f"\nTranslating PO file: {po_file}")
-            translate_po_file(po_file, target_lang)
             
-            print(f"\nTranslating database content for {target_lang}")
-            translate_database_content(target_lang)
+            self.make_messages(target_lang)
+            
+            po_file = os.path.join(locale_path, 'django.po')
+            if os.path.exists(po_file):
+                self.translate_po_file(po_file, target_lang)
+            else:
+                logging.warning(f"PO file not found: {po_file}")
         
-        compile_messages()
-    except Exception as e:
-        print(f"An unexpected error occurred: {str(e)}")
+        self.compile_messages()
+
+def main():
+    """Entry point."""
+    translator = TranslationManager()
+    translator.process_translations()
 
 if __name__ == "__main__":
     main()
