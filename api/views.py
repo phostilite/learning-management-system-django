@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import login
-from .serializers import LoginSerializer, SignupSerializer, UserDetailSerializer
+from .serializers import LoginSerializer, SignupSerializer, UserDetailSerializer, PasswordResetSerializer
 import logging
 from rest_framework.permissions import IsAuthenticated
 from .utils import BearerTokenAuthentication
@@ -164,4 +164,42 @@ class UserDetailAPIView(APIView):
             return Response({
                 'status': 'error',
                 'message': 'An error occurred while deactivating user account'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class PasswordResetAPIView(APIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        try:
+            serializer = PasswordResetSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                user = request.user
+                user.set_password(serializer.validated_data['new_password'])
+                user.save()
+                
+                # Optionally invalidate old token and generate new one
+                Token.objects.filter(user=user).delete()
+                new_token = Token.objects.create(user=user)
+                
+                return Response({
+                    'status': 'success',
+                    'message': 'Password updated successfully',
+                    'data': {
+                        'token': new_token.key  # Return new token
+                    }
+                }, status=status.HTTP_200_OK)
+            
+            return Response({
+                'status': 'error',
+                'message': 'Invalid data provided',
+                'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+        except Exception as e:
+            logger.error(f"Error in password reset: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'An error occurred while resetting password'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
