@@ -2,38 +2,59 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import gettext_lazy as _
 from users.models import User
+from django.contrib.auth.models import Group
 
 class SignupSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     confirm_password = serializers.CharField(write_only=True)
+    group = serializers.CharField(write_only=True)  # New field for group
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'password', 'confirm_password', 
-                 'first_name', 'last_name', 'phone_number', 'gender')
+        fields = ('id', 'email', 'username', 'password', 'confirm_password',
+                 'first_name', 'last_name', 'phone_number', 'gender', 'group')
         extra_kwargs = {
             'email': {'required': True},
             'username': {'required': True},
             'first_name': {'required': True},
-            'last_name': {'required': True}
+            'last_name': {'required': True},
+            'group': {'required': True}
         }
 
     def validate(self, data):
         if data['password'] != data.pop('confirm_password'):
             raise serializers.ValidationError("Passwords do not match")
-        
+
         # Email validation
         if User.objects.filter(email=data['email']).exists():
             raise serializers.ValidationError("Email already registered")
-        
+
         # Username validation
         if User.objects.filter(username=data['username']).exists():
             raise serializers.ValidationError("Username already taken")
+
+        # Group validation
+        group_name = data['group'].lower()
+        available_groups = list(Group.objects.values_list('name', flat=True))
+        
+        if not available_groups:
+            raise serializers.ValidationError("No groups are defined in the system")
+        
+        if group_name not in [group.lower() for group in available_groups]:
+            raise serializers.ValidationError({
+                "group": f"Invalid group. Available groups are: {', '.join(available_groups)}"
+            })
+
+        # Store the actual Group object
+        data['group'] = Group.objects.get(name__iexact=group_name)
         
         return data
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        group = validated_data.pop('group')  # Remove group from validated_data
+        user = User.objects.create_user(**validated_data)
+        user.groups.add(group)  # Add user to the group
+        return user
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField(required=False)

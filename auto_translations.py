@@ -16,7 +16,9 @@ logging.basicConfig(
 )
 
 class TranslationManager:
-    LANGUAGES = ['ar']  # Add more language codes as needed
+    LANGUAGES = [
+    'en', 'ar', 'fr', 'de', 'ja', 'hi', 'es', 'pt', 'ru', 'it', 'ko', 'nl', 'tr', 'pl', 'sv', 'da', 'fi', 'el', 'he', 'th', 'vi', 'id', 'bn', 'ta', 'te', 'kn', 'pa', 'mr', 'ml'
+    ]
     
     IGNORE_PATTERNS = [
         'node_modules/*',
@@ -127,10 +129,14 @@ class TranslationManager:
             
             # Translate entries
             for entry in po:
-                if not entry.msgstr and not entry.obsolete:
+                # Handle both fuzzy and non-fuzzy entries that need translation
+                if (entry.fuzzy or not entry.msgstr) and not entry.obsolete:
                     try:
                         translated = self.translate_string(entry.msgid, target_lang)
                         entry.msgstr = translated
+                        # Clear the fuzzy flag after successful translation
+                        if 'fuzzy' in entry.flags:
+                            entry.flags.remove('fuzzy')
                         logging.info(f"Translated: {entry.msgid} -> {translated}")
                     except Exception as e:
                         logging.error(f"Translation error for '{entry.msgid}': {str(e)}")

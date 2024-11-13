@@ -32,7 +32,8 @@ class SignupAPIView(APIView):
                             'username': user.username,
                             'email': user.email,
                             'first_name': user.first_name,
-                            'last_name': user.last_name
+                            'last_name': user.last_name,
+                            'group': user.groups.first().name if user.groups.exists() else None
                         }
                     }
                 }
@@ -43,7 +44,7 @@ class SignupAPIView(APIView):
                 'message': 'Invalid data provided',
                 'errors': serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
-
+            
         except Exception as e:
             logger.error(f"Error in signup: {str(e)}")
             return Response({
