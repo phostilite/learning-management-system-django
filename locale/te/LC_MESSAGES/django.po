@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 17:13+0530\n"
+"POT-Creation-Date: 2024-11-14 10:46+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1806,19 +1806,72 @@ msgstr "తక్షణ సహాయం కావాలా?"
 msgid "Contact Support"
 msgstr "మద్దతును సంప్రదించండి"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "ప్రకటనలు - LMS అడ్మిన్"
 
-#: templates/users/administrator/announcements.html
-msgid "Announcements Management"
-msgstr "ప్రకటనల నిర్వహణ"
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Announcements"
+msgid "Announcements Details"
+msgstr "ప్రకటనల వివరాలు"
 
-#: templates/users/administrator/announcements.html
-msgid "Create and Manage System-wide Announcements"
-msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటనలను సృష్టించండి మరియు నిర్వహించండి"
+#: templates/users/administrator/announcements/announcement_detail.html
+msgid ""
+"Modify existing announcements to keep everyone up-to-date with the latest "
+"information."
+msgstr ""
+"తాజా సమాచారంతో ప్రతి ఒక్కరినీ తాజాగా ఉంచడానికి ఇప్పటికే ఉన్న ప్రకటనలను "
+"సవరించండి."
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/course/learning_resource/learning_resource_create.html
+#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
+#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
+#: templates/users/administrator/course/learning_resource/learning_resource_list.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
+#: templates/users/administrator/deliveries/delivery_component_create.html
+#: templates/users/administrator/deliveries/delivery_create.html
+#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
+#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
+#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
+#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
+#: templates/users/administrator/deliveries/delivery_edit.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enroll_users.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
+#: templates/users/administrator/enrollments/enrollment_create.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/program/program_courses.html
+#: templates/users/administrator/program/program_create.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_edit.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Breadcrumb"
+msgstr "బ్రెడ్ క్రంబ్"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_create.html
@@ -1879,6 +1932,8 @@ msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటన�
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 #: templates/users/learner/calendar.html
 #: templates/users/learner/dashboard.html
 #: templates/users/learner/help_support.html
@@ -1887,88 +1942,100 @@ msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటన�
 msgid "Dashboard"
 msgstr "డాష్‌బోర్డ్"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Announcements"
 msgstr "ప్రకటనలు"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "FAQ Details"
+msgid "Details"
+msgstr "వివరాలు"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Priority"
+msgstr "ప్రాధాన్యత"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/help_and_support/faq/edit_faq.html
+#: templates/users/administrator/program/program_list.html
+msgid "Published"
+msgstr "ప్రచురించబడింది"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires"
+msgstr "గడువు ముగుస్తుంది"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/program/program_detail.html
+msgid "Created"
+msgstr "సృష్టించబడింది"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+msgid "Updated"
+msgstr "నవీకరించబడింది"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+msgid "Manage Recipients - LMS Supervisor"
+msgstr "గ్రహీతలను నిర్వహించండి - LMS సూపర్‌వైజర్"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Manage Components"
+msgid "Manage Recipients"
+msgstr "గ్రహీతలను నిర్వహించండి"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+msgid "Check if recipients have read their respective announcements."
+msgstr "స్వీకర్తలు వారి సంబంధిత ప్రకటనలను చదివారో లేదో తనిఖీ చేయండి."
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Announcements Management"
+msgstr "ప్రకటనల నిర్వహణ"
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Create and Manage System-wide Announcements"
+msgstr "సిస్టమ్ వ్యాప్తంగా ప్రకటనలను సృష్టించండి మరియు నిర్వహించండి"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Total Announcements"
 msgstr "మొత్తం ప్రకటనలు"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Active Announcements"
 msgstr "యాక్టివ్ ప్రకటనలు"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Scheduled"
 msgstr "షెడ్యూల్ చేయబడింది"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Avg. Engagement Rate"
 msgstr "సగటు నిశ్చితార్థం రేటు"
 
-#: templates/users/administrator/announcements.html
-msgid "Create New Announcement"
-msgstr "కొత్త ప్రకటనను సృష్టించండి"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Create New Announcement"
+msgid "Create Announcement"
+msgstr "ప్రకటనను సృష్టించండి"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/leaderboard.html
-msgid "All Categories"
-msgstr "అన్ని వర్గాలు"
-
-#: templates/users/administrator/announcements.html
-msgid "System Updates"
-msgstr "సిస్టమ్ నవీకరణలు"
-
-#: templates/users/administrator/announcements.html
-msgid "Course Announcements"
-msgstr "కోర్సు ప్రకటనలు"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/settings.html
-msgid "Events"
-msgstr "ఈవెంట్స్"
-
-#: templates/users/administrator/announcements.html
-msgid "Maintenance"
-msgstr "నిర్వహణ"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "All Statuses"
-msgstr "అన్ని స్థితిగతులు"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Active"
-msgstr "చురుకుగా"
-
-#: templates/users/administrator/announcements.html
-msgid "Expired"
-msgstr "గడువు ముగిసింది"
-
-#: templates/users/administrator/announcements.html
-msgid "Draft"
-msgstr "డ్రాఫ్ట్"
-
-#: templates/users/administrator/announcements.html
-msgid "Export Report"
-msgstr "ఎగుమతి నివేదిక"
-
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -1991,57 +2058,45 @@ msgstr "ఎగుమతి నివేదిక"
 #: templates/users/administrator/program/program_detail.html
 #: templates/users/administrator/program/program_edit.html
 #: templates/users/administrator/program/program_list.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Title"
 msgstr "శీర్షిక"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-msgid "Category"
-msgstr "వర్గం"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Date"
+msgid "Published After"
+msgstr "తర్వాత ప్రచురించబడింది"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Status"
-msgstr "స్థితి"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Courses"
+msgid "Published Before"
+msgstr "ముందు ప్రచురించబడింది"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Apply Filters"
+msgid "Apply Filter"
+msgstr "ఫిల్టర్‌ని వర్తింపజేయండి"
+
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Export CSV"
+msgid "Export"
+msgstr "ఎగుమతి చేయండి"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Published Date"
 msgstr "ప్రచురించబడిన తేదీ"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Expiry Date"
 msgstr "గడువు తేదీ"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/learner/leaderboard.html
-msgid "Engagement"
-msgstr "నిశ్చితార్థం"
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: virtual_classroom/models.py
+msgid "Updated At"
+msgstr "వద్ద నవీకరించబడింది"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -2074,52 +2129,34 @@ msgstr "నిశ్చితార్థం"
 msgid "Actions"
 msgstr "చర్యలు"
 
-#: templates/users/administrator/announcements.html
-msgid "New Course Release: Advanced AI"
-msgstr "కొత్త కోర్సు విడుదల: అధునాతన AI"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "View Announcement Detail"
+msgstr "ప్రకటన వివరాలను వీక్షించండి"
 
-#: templates/users/administrator/announcements.html
-msgid "Edit Announcement"
-msgstr "ప్రకటనను సవరించండి"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "Edit/Update Announcement"
+msgstr "ప్రకటనను సవరించండి/నవీకరించండి"
 
-#: templates/users/administrator/announcements.html
-msgid "View Statistics"
-msgstr "గణాంకాలను వీక్షించండి"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Add Resource"
+msgid "Add Recipients"
+msgstr "గ్రహీతలను జోడించండి"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Delete Announcement"
 msgstr "ప్రకటనను తొలగించండి"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-msgid "Previous"
-msgstr "మునుపటి"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Learning Resources - LMS Admin"
+msgid "Manage Recipients - LMS Administrator"
+msgstr "గ్రహీతలను నిర్వహించండి - LMS అడ్మినిస్ట్రేటర్"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/learner/calendar.html
-msgid "Next"
-msgstr "తదుపరి"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "User Activity"
+msgid "User List"
+msgstr "వినియోగదారు జాబితా"
 
 #: templates/users/administrator/calendar.html
 msgid "LMS Calendar"
@@ -2377,47 +2414,6 @@ msgid "Manage and Organize Your Course Categories"
 msgstr "మీ కోర్సు వర్గాలను నిర్వహించండి మరియు నిర్వహించండి"
 
 #: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/course/learning_resource/learning_resource_create.html
-#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
-#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
-#: templates/users/administrator/course/learning_resource/learning_resource_list.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
-#: templates/users/administrator/deliveries/delivery_component_create.html
-#: templates/users/administrator/deliveries/delivery_create.html
-#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
-#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
-#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
-#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
-#: templates/users/administrator/deliveries/delivery_edit.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enroll_users.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
-#: templates/users/administrator/enrollments/enrollment_create.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/program/program_courses.html
-#: templates/users/administrator/program/program_create.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_edit.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Breadcrumb"
-msgstr "బ్రెడ్ క్రంబ్"
-
-#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/resource.html
 msgid "Categories"
@@ -2429,6 +2425,14 @@ msgid "Search categories..."
 msgstr "వర్గాలను శోధించండి..."
 
 #: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "All Statuses"
+msgstr "అన్ని స్థితిగతులు"
+
+#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/deliveries/delivery_details/delivery_info.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2437,6 +2441,20 @@ msgstr "వర్గాలను శోధించండి..."
 #: templates/users/administrator/organization/organization_units.html
 #: templates/users/administrator/program/program_deliveries_list.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Active"
+msgstr "చురుకుగా"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Inactive"
 msgstr "నిష్క్రియ"
 
@@ -2482,6 +2500,26 @@ msgstr "వివరణ"
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
 msgstr "కోర్సులు"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Status"
+msgstr "స్థితి"
 
 #: templates/users/administrator/course/course_categories/categories.html
 #, python-format
@@ -2535,6 +2573,18 @@ msgstr "పూర్తి వివరణ"
 #: templates/users/administrator/course/course_edit.html
 msgid "Course Details"
 msgstr "కోర్సు వివరాలు"
+
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Category"
+msgstr "వర్గం"
 
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_detail.html
@@ -2778,9 +2828,38 @@ msgid "No deliveries found for this course."
 msgstr "ఈ కోర్సు కోసం డెలివరీలు ఏవీ కనుగొనబడలేదు."
 
 #: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+msgid "Previous"
+msgstr "మునుపటి"
+
+#: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/program/program_deliveries_list.html
 msgid "current"
 msgstr "ప్రస్తుత"
+
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/learner/calendar.html
+msgid "Next"
+msgstr "తదుపరి"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/learning_path.html
@@ -2791,12 +2870,6 @@ msgstr "ప్రస్తుత"
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Completion Rate"
 msgstr "పూర్తి రేటు"
-
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/program/program_detail.html
-msgid "Created"
-msgstr "సృష్టించబడింది"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2834,6 +2907,7 @@ msgstr "టైప్ చేయండి"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/program/program_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Action"
 msgstr "చర్య"
 
@@ -2957,12 +3031,6 @@ msgid "Course Cover"
 msgstr "కోర్సు కవర్"
 
 #: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/help_and_support/faq/edit_faq.html
-#: templates/users/administrator/program/program_list.html
-msgid "Published"
-msgstr "ప్రచురించబడింది"
-
-#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/program/program_list.html
 msgid "Unpublished"
 msgstr "ప్రచురించబడలేదు"
@@ -2980,6 +3048,7 @@ msgstr "ప్రచురించబడలేదు"
 #: templates/users/administrator/program/program_list.html
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "View"
 msgstr "చూడండి"
 
@@ -3342,10 +3411,6 @@ msgstr "అభ్యాస వనరుల వివరాలు"
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Manage and Review Your Course's Learning Resource"
 msgstr "మీ కోర్సు అభ్యాస వనరులను నిర్వహించండి మరియు సమీక్షించండి"
-
-#: templates/users/administrator/course/learning_resource/base_detail.html
-msgid "Updated"
-msgstr "నవీకరించబడింది"
 
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Resource Metrics"
@@ -4854,12 +4919,6 @@ msgid "Recent Support Tickets"
 msgstr "ఇటీవలి మద్దతు టిక్కెట్లు"
 
 #: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-msgid "Priority"
-msgstr "ప్రాధాన్యత"
-
-#: templates/users/administrator/help_and_support/support.html
 #: templates/users/administrator/help_and_support/tickets/ticket_details.html
 #: templates/users/administrator/program/program_list.html
 msgid "Created By"
@@ -4876,11 +4935,6 @@ msgstr "కు కేటాయించబడింది"
 #: virtual_classroom/models.py
 msgid "Created At"
 msgstr "వద్ద సృష్టించబడింది"
-
-#: templates/users/administrator/help_and_support/support.html
-#: virtual_classroom/models.py
-msgid "Updated At"
-msgstr "వద్ద నవీకరించబడింది"
 
 #: templates/users/administrator/help_and_support/support.html
 msgid "N/A"
@@ -5001,6 +5055,10 @@ msgstr "లీడర్‌బోర్డ్"
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "మా టాప్ అచీవర్స్‌ను జరుపుకుంటున్నాము"
+
+#: templates/users/administrator/leaderboard.html
+msgid "All Categories"
+msgstr "అన్ని వర్గాలు"
 
 #: templates/users/administrator/leaderboard.html
 msgid "IT & Programming"
@@ -5215,6 +5273,7 @@ msgid "Bulk Actions"
 msgstr "బల్క్ చర్యలు"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Mark as Read"
 msgstr "చదివినట్లు గుర్తు పెట్టండి"
 
@@ -7057,6 +7116,10 @@ msgid "Organizations"
 msgstr "సంస్థలు"
 
 #: templates/users/administrator/settings.html
+msgid "Events"
+msgstr "ఈవెంట్స్"
+
+#: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 msgid "Certificates"
 msgstr "సర్టిఫికెట్లు"
@@ -7501,7 +7564,7 @@ msgstr "ఫీడ్‌బ్యాక్ రిమైండర్ ఆలస్�
 
 #: templates/users/administrator/settings.html
 msgid "Save Event Settings"
-msgstr ""
+msgstr "ఈవెంట్ సెట్టింగ్‌లను సేవ్ చేయండి"
 
 #: templates/users/administrator/settings.html
 msgid "Certificates Settings"
@@ -7989,6 +8052,50 @@ msgstr "ఉద్యోగులు"
 msgid "🤖 Ask AI anything..."
 msgstr "🤖 ఏదైనా AIని అడగండి..."
 
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Announcements - LMS Admin"
+msgid "Announcements - LMS"
+msgstr "ప్రకటనలు - LMS"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Stay updated with the latest announcements."
+msgstr "తాజా ప్రకటనలతో అప్‌డేట్‌గా ఉండండి."
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Published"
+msgid "Published on"
+msgstr "ప్రచురించబడింది"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires on"
+msgstr "గడువు ముగుస్తుంది"
+
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Already Read"
+msgstr "ఇప్పటికే చదివారు"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Content File"
+msgid "Content"
+msgstr "కంటెంట్"
+
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Author"
+msgstr "రచయిత"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Published Date"
+msgid "Publish Date"
+msgstr "ప్రచురణ తేదీ"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "No Document Content Available"
+msgid "No announcements available."
+msgstr "ప్రకటనలు అందుబాటులో లేవు."
+
 #: templates/users/learner/calendar.html
 msgid "Calendar - LMS Learner"
 msgstr "క్యాలెండర్ - LMS లెర్నర్"
@@ -8365,6 +8472,10 @@ msgstr "మీ మొత్తం ర్యాంక్"
 #: templates/users/learner/leaderboard.html
 msgid "Quiz Performance"
 msgstr "క్విజ్ ప్రదర్శన"
+
+#: templates/users/learner/leaderboard.html
+msgid "Engagement"
+msgstr "నిశ్చితార్థం"
 
 #: templates/users/learner/leaderboard.html
 msgid "View:"
@@ -9646,3 +9757,24 @@ msgstr "వర్చువల్ క్లాస్‌రూమ్ అటెం�
 #: virtual_classroom/models.py
 msgid "Virtual Classroom Attendees"
 msgstr "వర్చువల్ క్లాస్‌రూమ్ హాజరైనవారు"
+
+#~ msgid "System Updates"
+#~ msgstr "సిస్టమ్ నవీకరణలు"
+
+#~ msgid "Course Announcements"
+#~ msgstr "కోర్సు ప్రకటనలు"
+
+#~ msgid "Maintenance"
+#~ msgstr "నిర్వహణ"
+
+#~ msgid "Draft"
+#~ msgstr "డ్రాఫ్ట్"
+
+#~ msgid "Export Report"
+#~ msgstr "ఎగుమతి నివేదిక"
+
+#~ msgid "New Course Release: Advanced AI"
+#~ msgstr "కొత్త కోర్సు విడుదల: అధునాతన AI"
+
+#~ msgid "View Statistics"
+#~ msgstr "గణాంకాలను వీక్షించండి"
