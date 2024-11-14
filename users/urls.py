@@ -134,7 +134,6 @@ urlpatterns = [
 
     # Other Administrator Views
     path('administrator/certificates/', administrator_views.AdministratorCertificateListView.as_view(), name='administrator_certificate_list'),
-    path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
 
@@ -155,6 +154,13 @@ urlpatterns = [
     path('administrator/messages/', administrator_views.AdministratorMessageListView.as_view(), name='administrator_message_list'),
     path('administrator/settings/', administrator_views.AdministratorSettingsView.as_view(), name='administrator_settings'),
 
+    # Announcements
+    path('administrator/announcements/', administrator_views.AdministratorAnnouncementListView.as_view(), name='administrator_announcement_list'),
+    path('administrator/announcement/<uuid:pk>/detail/', administrator_views.AdministratorAnnouncementDetailView.as_view(), name='administrator_announcement_detail'),
+    path('administrator/announcement/<uuid:pk>/delete/', administrator_views.AdministratorAnnouncementDeleteView.as_view(), name='administrator_announcement_delete'),
+    path('administrator/announcement/<uuid:pk>/update/', administrator_views.AdministratorAnnouncementUpdateView.as_view(), name='administrator_announcement_update'),
+    path('administrator/announcement/<uuid:pk>/manage_recipient/', administrator_views.AdministratorAnnouncementManageRecipientView.as_view(), name='administrator_announcement_manage_recipients'),
+    path('administrator/announcement/filter-users/<uuid:announcement_id>/<uuid:announcement_recipient_id>/', administrator_views.FilterUsersByRecipientTypeView.as_view(), name='filter_users_by_recipient_type'),
 
     # Notification Views
     path('administrator/notifications/recent/', administrator_views.RecentNotificationsView.as_view(), name='administrator_recent_notifications'),
@@ -189,6 +195,10 @@ urlpatterns = [
     path('learner/help-support/', learner_views.HelpSupportView.as_view(), name='learner_help_support'),
     path('learner/help-support/tickets/create/',learner_views.LearnerTicketCreateView.as_view(), name='learner_tickets_create'),
     path('learner/help-support/tickets/<uuid:pk>/ticket_details/', learner_views.LearnerTicketDetailView.as_view(), name='learner_tickets_detail'),
+
+    path('learner/announcements/', learner_views.AnnouncementListView.as_view(), name='learner_announcements'),
+    path('learner/announcement/<uuid:pk>/detail/', learner_views.AnnouncementDetailView.as_view(), name='learner_announcement_detail'),
+    path('learner/announcement/<uuid:pk>/mark-read/', learner_views.AnnouncementReadView.as_view(), name='learner_mark_announcement_read'),
 
     path('learner/notifications/recent/', learner_views.RecentNotificationsView.as_view(), name='learner_recent_notifications'),
     path('learner/notification/', learner_views.NotificationListView.as_view(), name='learner_notifications'),

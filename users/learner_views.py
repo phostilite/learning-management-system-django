@@ -48,6 +48,8 @@ from .filters import NotificationFilter
 from courses.filters import ProgramFilter, CourseFilter
 from django.db.models import Prefetch
 from django.db.models import Avg, Q
+from django.db import models
+from django.contrib.contenttypes.models import ContentType
 
 from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
@@ -55,6 +57,7 @@ from courses.models import (Course, CourseCategory, Enrollment, LearningResource
 from .api_client import upload_scorm_package, register_user_for_course
 from support.models import SupportTicket, SupportCategory
 from support.forms import TicketForm
+from announcements.models import Announcement, AnnouncementRecipient, AnnouncementRead
 
 from activities.models import SystemNotification
 from .utils.notification_utils import create_notification, log_activity
@@ -740,3 +743,70 @@ class UnreadNotificationsCountView(LoginRequiredMixin, LearnerRequiredMixin, Vie
         except Exception as e:
             logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
             return JsonResponse({'count': 0})
+        
+
+# ============================================================
+# =================== Announcements Views ====================
+# ============================================================
+
+class AnnouncementListView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_page.html'
+    context_object_name = 'announcements'
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Announcement.objects.filter(
+            is_active=True
+        ).prefetch_related('recipients').order_by('-publish_date')
+
+        # Filter announcements based on recipient types and user access
+        user_announcements = queryset.filter(
+            models.Q(recipients__recipient_type='ALL') |
+            models.Q(recipients__recipient_type='STUDENTS') |
+            models.Q(
+                recipients__recipient_type='USER',
+                recipients__content_type=ContentType.objects.get_for_model(User),
+                recipients__object_id=user.id
+            )
+        ).distinct()
+
+        return user_announcements
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context if needed
+        return context
+
+class AnnouncementDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_detail.html'
+    context_object_name = 'announcement'
+
+    def get_queryset(self):
+        return Announcement.objects.filter(id=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcement = self.get_object()
+        announcement_read = AnnouncementRead.objects.filter(user=self.request.user, announcement=announcement).first()
+        context['announcement_read'] = announcement_read
+        return context
+    
+class AnnouncementReadView(LearnerRequiredMixin, LoginRequiredMixin, View):
+    def post(self, request, pk):
+        try:
+            announcement = Announcement.objects.get(id=pk)
+            announcement_read, created = AnnouncementRead.objects.get_or_create(user=self.request.user, announcement=announcement)
+            if created:
+                logger.info(f"Announcement {pk} marked as read by user {request.user.id}")
+            else:
+                logger.info(f"Announcement {pk} was already marked as read by user {request.user.id}")
+            return JsonResponse({'status': 'success'})
+        except Announcement.DoesNotExist:
+            logger.warning(f"Announcement {pk} not found for user {request.user.id}")
+            return JsonResponse({'status': 'error', 'message': 'Announcement not found'}, status=404)
+        except Exception as e:
+            logger.error(f"Error marking announcement {pk} as read for user {request.user.id}: {e}")
+            return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
+

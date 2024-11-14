@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 15:13+0530\n"
+"POT-Creation-Date: 2024-11-14 09:32+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1792,19 +1792,72 @@ msgstr "Har du brug for øjeblikkelig hjælp?"
 msgid "Contact Support"
 msgstr "Kontakt support"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "Meddelelser - LMS Admin"
 
-#: templates/users/administrator/announcements.html
-msgid "Announcements Management"
-msgstr "Meddelelser Management"
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Announcements"
+msgid "Announcements Details"
+msgstr "Meddelelser detaljer"
 
-#: templates/users/administrator/announcements.html
-msgid "Create and Manage System-wide Announcements"
-msgstr "Opret og administrer meddelelser på hele systemet"
+#: templates/users/administrator/announcements/announcement_detail.html
+msgid ""
+"Modify existing announcements to keep everyone up-to-date with the latest "
+"information."
+msgstr ""
+"Rediger eksisterende meddelelser for at holde alle opdaterede med de seneste"
+" oplysninger."
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/course/learning_resource/learning_resource_create.html
+#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
+#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
+#: templates/users/administrator/course/learning_resource/learning_resource_list.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
+#: templates/users/administrator/deliveries/delivery_component_create.html
+#: templates/users/administrator/deliveries/delivery_create.html
+#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
+#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
+#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
+#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
+#: templates/users/administrator/deliveries/delivery_edit.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enroll_users.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
+#: templates/users/administrator/enrollments/enrollment_create.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/program/program_courses.html
+#: templates/users/administrator/program/program_create.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_edit.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Breadcrumb"
+msgstr "Brødkrumme"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_create.html
@@ -1865,6 +1918,8 @@ msgstr "Opret og administrer meddelelser på hele systemet"
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 #: templates/users/learner/calendar.html
 #: templates/users/learner/dashboard.html
 #: templates/users/learner/help_support.html
@@ -1873,88 +1928,100 @@ msgstr "Opret og administrer meddelelser på hele systemet"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Announcements"
 msgstr "Meddelelser"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "FAQ Details"
+msgid "Details"
+msgstr "Detaljer"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Priority"
+msgstr "Prioritet"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/help_and_support/faq/edit_faq.html
+#: templates/users/administrator/program/program_list.html
+msgid "Published"
+msgstr "Udgivet"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires"
+msgstr "Udløber"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/program/program_detail.html
+msgid "Created"
+msgstr "Oprettet"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+msgid "Updated"
+msgstr "Opdateret"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+msgid "Manage Recipients - LMS Supervisor"
+msgstr "Administrer modtagere - LMS Supervisor"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Manage Components"
+msgid "Manage Recipients"
+msgstr "Administrer modtagere"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+msgid "Check if recipients have read their respective announcements."
+msgstr "Tjek, om modtagerne har læst deres respektive meddelelser."
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Announcements Management"
+msgstr "Meddelelser Management"
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Create and Manage System-wide Announcements"
+msgstr "Opret og administrer meddelelser på hele systemet"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Total Announcements"
 msgstr "Samlet meddelelser"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Active Announcements"
 msgstr "Aktive meddelelser"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Scheduled"
 msgstr "Planlagt"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Avg. Engagement Rate"
 msgstr "Gns. Engagementrate"
 
-#: templates/users/administrator/announcements.html
-msgid "Create New Announcement"
-msgstr "Opret ny meddelelse"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Create New Announcement"
+msgid "Create Announcement"
+msgstr "Opret meddelelse"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/leaderboard.html
-msgid "All Categories"
-msgstr "Alle kategorier"
-
-#: templates/users/administrator/announcements.html
-msgid "System Updates"
-msgstr "Systemopdateringer"
-
-#: templates/users/administrator/announcements.html
-msgid "Course Announcements"
-msgstr "Kursusmeddelelser"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/settings.html
-msgid "Events"
-msgstr "Begivenheder"
-
-#: templates/users/administrator/announcements.html
-msgid "Maintenance"
-msgstr "Opretholdelse"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "All Statuses"
-msgstr "Alle statusser"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Active"
-msgstr "Aktiv"
-
-#: templates/users/administrator/announcements.html
-msgid "Expired"
-msgstr "Udløbet"
-
-#: templates/users/administrator/announcements.html
-msgid "Draft"
-msgstr "Udkast"
-
-#: templates/users/administrator/announcements.html
-msgid "Export Report"
-msgstr "Eksporter rapport"
-
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -1977,57 +2044,45 @@ msgstr "Eksporter rapport"
 #: templates/users/administrator/program/program_detail.html
 #: templates/users/administrator/program/program_edit.html
 #: templates/users/administrator/program/program_list.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Title"
 msgstr "Titel"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-msgid "Category"
-msgstr "Kategori"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Date"
+msgid "Published After"
+msgstr "Udgivet Efter"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Status"
-msgstr "Status"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Courses"
+msgid "Published Before"
+msgstr "Udgivet før"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Apply Filters"
+msgid "Apply Filter"
+msgstr "Anvend filter"
+
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Export CSV"
+msgid "Export"
+msgstr "Eksportere"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Published Date"
 msgstr "Udgivet dato"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Expiry Date"
 msgstr "Udløbsdato"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/learner/leaderboard.html
-msgid "Engagement"
-msgstr "Engagement"
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: virtual_classroom/models.py
+msgid "Updated At"
+msgstr "Opdateret kl"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -2060,52 +2115,34 @@ msgstr "Engagement"
 msgid "Actions"
 msgstr "Handlinger"
 
-#: templates/users/administrator/announcements.html
-msgid "New Course Release: Advanced AI"
-msgstr "Ny kursusudgivelse: Avanceret AI"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "View Announcement Detail"
+msgstr "Se meddelelsesdetaljer"
 
-#: templates/users/administrator/announcements.html
-msgid "Edit Announcement"
-msgstr "Rediger meddelelse"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "Edit/Update Announcement"
+msgstr "Rediger/opdater meddelelse"
 
-#: templates/users/administrator/announcements.html
-msgid "View Statistics"
-msgstr "Se statistik"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Add Resource"
+msgid "Add Recipients"
+msgstr "Tilføj modtagere"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Delete Announcement"
 msgstr "Slet meddelelse"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-msgid "Previous"
-msgstr "Tidligere"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Learning Resources - LMS Admin"
+msgid "Manage Recipients - LMS Administrator"
+msgstr "Administrer modtagere - LMS-administrator"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/learner/calendar.html
-msgid "Next"
-msgstr "Næste"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "User Activity"
+msgid "User List"
+msgstr "Brugerliste"
 
 #: templates/users/administrator/calendar.html
 msgid "LMS Calendar"
@@ -2362,47 +2399,6 @@ msgid "Manage and Organize Your Course Categories"
 msgstr "Administrer og organiser dine kursuskategorier"
 
 #: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/course/learning_resource/learning_resource_create.html
-#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
-#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
-#: templates/users/administrator/course/learning_resource/learning_resource_list.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
-#: templates/users/administrator/deliveries/delivery_component_create.html
-#: templates/users/administrator/deliveries/delivery_create.html
-#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
-#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
-#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
-#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
-#: templates/users/administrator/deliveries/delivery_edit.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enroll_users.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
-#: templates/users/administrator/enrollments/enrollment_create.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/program/program_courses.html
-#: templates/users/administrator/program/program_create.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_edit.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Breadcrumb"
-msgstr "Brødkrumme"
-
-#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/resource.html
 msgid "Categories"
@@ -2414,6 +2410,14 @@ msgid "Search categories..."
 msgstr "Søg i kategorier..."
 
 #: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "All Statuses"
+msgstr "Alle statusser"
+
+#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/deliveries/delivery_details/delivery_info.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2422,6 +2426,20 @@ msgstr "Søg i kategorier..."
 #: templates/users/administrator/organization/organization_units.html
 #: templates/users/administrator/program/program_deliveries_list.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Active"
+msgstr "Aktiv"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Inactive"
 msgstr "Inaktiv"
 
@@ -2467,6 +2485,26 @@ msgstr "Beskrivelse"
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
 msgstr "Kurser"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Status"
+msgstr "Status"
 
 #: templates/users/administrator/course/course_categories/categories.html
 #, python-format
@@ -2520,6 +2558,18 @@ msgstr "Fuld beskrivelse"
 #: templates/users/administrator/course/course_edit.html
 msgid "Course Details"
 msgstr "Kursusdetaljer"
+
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Category"
+msgstr "Kategori"
 
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_detail.html
@@ -2763,9 +2813,38 @@ msgid "No deliveries found for this course."
 msgstr "Ingen leverancer fundet til dette kursus."
 
 #: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+msgid "Previous"
+msgstr "Tidligere"
+
+#: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/program/program_deliveries_list.html
 msgid "current"
 msgstr "strøm"
+
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/learner/calendar.html
+msgid "Next"
+msgstr "Næste"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/learning_path.html
@@ -2776,12 +2855,6 @@ msgstr "strøm"
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Completion Rate"
 msgstr "Gennemførelsesrate"
-
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/program/program_detail.html
-msgid "Created"
-msgstr "Oprettet"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2819,6 +2892,7 @@ msgstr "Type"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/program/program_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Action"
 msgstr "Handling"
 
@@ -2942,12 +3016,6 @@ msgid "Course Cover"
 msgstr "Kursusdækning"
 
 #: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/help_and_support/faq/edit_faq.html
-#: templates/users/administrator/program/program_list.html
-msgid "Published"
-msgstr "Udgivet"
-
-#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/program/program_list.html
 msgid "Unpublished"
 msgstr "Upubliceret"
@@ -2965,6 +3033,7 @@ msgstr "Upubliceret"
 #: templates/users/administrator/program/program_list.html
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "View"
 msgstr "Udsigt"
 
@@ -3326,10 +3395,6 @@ msgstr "Læringsressourcedetaljer"
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Manage and Review Your Course's Learning Resource"
 msgstr "Administrer og gennemgå dine kursusressourcer"
-
-#: templates/users/administrator/course/learning_resource/base_detail.html
-msgid "Updated"
-msgstr "Opdateret"
 
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Resource Metrics"
@@ -4838,12 +4903,6 @@ msgid "Recent Support Tickets"
 msgstr "Seneste supportbilletter"
 
 #: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-msgid "Priority"
-msgstr "Prioritet"
-
-#: templates/users/administrator/help_and_support/support.html
 #: templates/users/administrator/help_and_support/tickets/ticket_details.html
 #: templates/users/administrator/program/program_list.html
 msgid "Created By"
@@ -4860,11 +4919,6 @@ msgstr "Tildelt til"
 #: virtual_classroom/models.py
 msgid "Created At"
 msgstr "Oprettet kl"
-
-#: templates/users/administrator/help_and_support/support.html
-#: virtual_classroom/models.py
-msgid "Updated At"
-msgstr "Opdateret kl"
 
 #: templates/users/administrator/help_and_support/support.html
 msgid "N/A"
@@ -4985,6 +5039,10 @@ msgstr "Leaderboard"
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "Vi fejrer vores bedste præstationer"
+
+#: templates/users/administrator/leaderboard.html
+msgid "All Categories"
+msgstr "Alle kategorier"
 
 #: templates/users/administrator/leaderboard.html
 msgid "IT & Programming"
@@ -5199,6 +5257,7 @@ msgid "Bulk Actions"
 msgstr "Massehandlinger"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Mark as Read"
 msgstr "Markér som læst"
 
@@ -7039,6 +7098,10 @@ msgid "Organizations"
 msgstr "Organisationer"
 
 #: templates/users/administrator/settings.html
+msgid "Events"
+msgstr "Begivenheder"
+
+#: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 msgid "Certificates"
 msgstr "Certifikater"
@@ -7969,6 +8032,50 @@ msgstr "Medarbejdere"
 msgid "🤖 Ask AI anything..."
 msgstr "🤖 Spørg AI hvad som helst..."
 
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Announcements - LMS Admin"
+msgid "Announcements - LMS"
+msgstr "Meddelelser - LMS"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Stay updated with the latest announcements."
+msgstr "Hold dig opdateret med de seneste meddelelser."
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Published"
+msgid "Published on"
+msgstr "Udgivet den"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires on"
+msgstr "Udløber d"
+
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Already Read"
+msgstr "Allerede læst"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Content File"
+msgid "Content"
+msgstr "Tilfreds"
+
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Author"
+msgstr "Forfatter"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Published Date"
+msgid "Publish Date"
+msgstr "Udgivelsesdato"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "No Document Content Available"
+msgid "No announcements available."
+msgstr "Ingen meddelelser tilgængelige."
+
 #: templates/users/learner/calendar.html
 msgid "Calendar - LMS Learner"
 msgstr "Kalender - LMS Learner"
@@ -8346,6 +8453,10 @@ msgid "Quiz Performance"
 msgstr "Quiz præstation"
 
 #: templates/users/learner/leaderboard.html
+msgid "Engagement"
+msgstr "Engagement"
+
+#: templates/users/learner/leaderboard.html
 msgid "View:"
 msgstr "Udsigt:"
 
@@ -8511,7 +8622,7 @@ msgstr "Brugernavn:"
 
 #: templates/users/learner/settings.html
 msgid "Last Login:"
-msgstr ""
+msgstr "Sidste login:"
 
 #: templates/users/learner/settings.html
 msgid "Date Joined:"
@@ -9620,3 +9731,24 @@ msgstr "Deltager i virtuelt klasseværelse"
 #: virtual_classroom/models.py
 msgid "Virtual Classroom Attendees"
 msgstr "Deltagere i virtuelle klasseværelser"
+
+#~ msgid "System Updates"
+#~ msgstr "Systemopdateringer"
+
+#~ msgid "Course Announcements"
+#~ msgstr "Kursusmeddelelser"
+
+#~ msgid "Maintenance"
+#~ msgstr "Opretholdelse"
+
+#~ msgid "Draft"
+#~ msgstr "Udkast"
+
+#~ msgid "Export Report"
+#~ msgstr "Eksporter rapport"
+
+#~ msgid "New Course Release: Advanced AI"
+#~ msgstr "Ny kursusudgivelse: Avanceret AI"
+
+#~ msgid "View Statistics"
+#~ msgstr "Se statistik"

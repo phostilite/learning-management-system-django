@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 15:57+0530\n"
+"POT-Creation-Date: 2024-11-14 09:34+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1796,19 +1796,72 @@ msgstr "Tarvitsetko välitöntä apua?"
 msgid "Contact Support"
 msgstr "Ota yhteyttä tukeen"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Announcements - LMS Admin"
 msgstr "Ilmoitukset - LMS Admin"
 
-#: templates/users/administrator/announcements.html
-msgid "Announcements Management"
-msgstr "Ilmoitusten hallinta"
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Announcements"
+msgid "Announcements Details"
+msgstr "Ilmoitukset Yksityiskohdat"
 
-#: templates/users/administrator/announcements.html
-msgid "Create and Manage System-wide Announcements"
-msgstr "Luo ja hallitse järjestelmän laajuisia ilmoituksia"
+#: templates/users/administrator/announcements/announcement_detail.html
+msgid ""
+"Modify existing announcements to keep everyone up-to-date with the latest "
+"information."
+msgstr ""
+"Muokkaa olemassa olevia ilmoituksia, jotta kaikki ovat ajan tasalla "
+"viimeisimmistä tiedoista."
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/course/learning_resource/learning_resource_create.html
+#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
+#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
+#: templates/users/administrator/course/learning_resource/learning_resource_list.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
+#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
+#: templates/users/administrator/deliveries/delivery_component_create.html
+#: templates/users/administrator/deliveries/delivery_create.html
+#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
+#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
+#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
+#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
+#: templates/users/administrator/deliveries/delivery_edit.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enroll_users.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
+#: templates/users/administrator/enrollments/enrollment_create.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/program/program_courses.html
+#: templates/users/administrator/program/program_create.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_edit.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Breadcrumb"
+msgstr "Leipämuru"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/calendar.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_create.html
@@ -1869,6 +1922,8 @@ msgstr "Luo ja hallitse järjestelmän laajuisia ilmoituksia"
 #: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 #: templates/users/learner/calendar.html
 #: templates/users/learner/dashboard.html
 #: templates/users/learner/help_support.html
@@ -1877,88 +1932,100 @@ msgstr "Luo ja hallitse järjestelmän laajuisia ilmoituksia"
 msgid "Dashboard"
 msgstr "Kojelauta"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
 #: templates/users/administrator/sidebar.html
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Announcements"
 msgstr "Ilmoitukset"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "FAQ Details"
+msgid "Details"
+msgstr "Yksityiskohdat"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Priority"
+msgstr "Prioriteetti"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_list.html
+#: templates/users/administrator/help_and_support/faq/edit_faq.html
+#: templates/users/administrator/program/program_list.html
+msgid "Published"
+msgstr "Julkaistu"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires"
+msgstr "Vanhenee"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+#: templates/users/administrator/program/program_detail.html
+msgid "Created"
+msgstr "Luotu"
+
+#: templates/users/administrator/announcements/announcement_detail.html
+#: templates/users/administrator/course/learning_resource/base_detail.html
+msgid "Updated"
+msgstr "Päivitetty"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+msgid "Manage Recipients - LMS Supervisor"
+msgstr "Hallinnoi vastaanottajia - LMS-valvoja"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Manage Components"
+msgid "Manage Recipients"
+msgstr "Hallinnoi vastaanottajia"
+
+#: templates/users/administrator/announcements/announcement_manage_recipients.html
+#: templates/users/administrator/announcements/user_list.html
+msgid "Check if recipients have read their respective announcements."
+msgstr "Tarkista, ovatko vastaanottajat lukeneet ilmoituksensa."
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Announcements Management"
+msgstr "Ilmoitusten hallinta"
+
+#: templates/users/administrator/announcements/announcements.html
+msgid "Create and Manage System-wide Announcements"
+msgstr "Luo ja hallitse järjestelmän laajuisia ilmoituksia"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Total Announcements"
 msgstr "Ilmoitukset yhteensä"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Active Announcements"
 msgstr "Aktiiviset ilmoitukset"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Scheduled"
 msgstr "Aikataulutettu"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Avg. Engagement Rate"
 msgstr "Keskim. Sitoutumisprosentti"
 
-#: templates/users/administrator/announcements.html
-msgid "Create New Announcement"
-msgstr "Luo uusi ilmoitus"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Create New Announcement"
+msgid "Create Announcement"
+msgstr "Luo ilmoitus"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/leaderboard.html
-msgid "All Categories"
-msgstr "Kaikki luokat"
-
-#: templates/users/administrator/announcements.html
-msgid "System Updates"
-msgstr "Järjestelmäpäivitykset"
-
-#: templates/users/administrator/announcements.html
-msgid "Course Announcements"
-msgstr "Kurssin ilmoitukset"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/settings.html
-msgid "Events"
-msgstr "Tapahtumat"
-
-#: templates/users/administrator/announcements.html
-msgid "Maintenance"
-msgstr "Huolto"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "All Statuses"
-msgstr "Kaikki tilat"
-
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/help_and_support/support_category/category_dash.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Active"
-msgstr "Aktiivinen"
-
-#: templates/users/administrator/announcements.html
-msgid "Expired"
-msgstr "Vanhentunut"
-
-#: templates/users/administrator/announcements.html
-msgid "Draft"
-msgstr "Luonnos"
-
-#: templates/users/administrator/announcements.html
-msgid "Export Report"
-msgstr "Vie raportti"
-
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -1981,57 +2048,45 @@ msgstr "Vie raportti"
 #: templates/users/administrator/program/program_detail.html
 #: templates/users/administrator/program/program_edit.html
 #: templates/users/administrator/program/program_list.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Title"
 msgstr "Otsikko"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/reports/certification_tracking.html
-#: templates/users/administrator/reports/course_completion.html
-msgid "Category"
-msgstr "Luokka"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Date"
+msgid "Published After"
+msgstr "Julkaistu jälkeen"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/enrollments/enrollments.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Status"
-msgstr "Status"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Published Courses"
+msgid "Published Before"
+msgstr "Julkaistu ennen"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Apply Filters"
+msgid "Apply Filter"
+msgstr "Käytä suodatinta"
+
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Export CSV"
+msgid "Export"
+msgstr "Viedä"
+
+#: templates/users/administrator/announcements/announcements.html
 msgid "Published Date"
 msgstr "Julkaisupäivämäärä"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Expiry Date"
 msgstr "Viimeinen voimassaolopäivä"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/learner/leaderboard.html
-msgid "Engagement"
-msgstr "Kihlaus"
+#: templates/users/administrator/announcements/announcements.html
+#: templates/users/administrator/help_and_support/support.html
+#: virtual_classroom/models.py
+msgid "Updated At"
+msgstr "Päivitetty klo"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 #: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/course/course_detail.html
@@ -2064,52 +2119,34 @@ msgstr "Kihlaus"
 msgid "Actions"
 msgstr "Toiminnot"
 
-#: templates/users/administrator/announcements.html
-msgid "New Course Release: Advanced AI"
-msgstr "Uusi kurssijulkaisu: Advanced AI"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "View Announcement Detail"
+msgstr "Näytä tiedotteen tiedot"
 
-#: templates/users/administrator/announcements.html
-msgid "Edit Announcement"
-msgstr "Muokkaa ilmoitusta"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Edit Announcement"
+msgid "Edit/Update Announcement"
+msgstr "Muokkaa/päivitä ilmoitus"
 
-#: templates/users/administrator/announcements.html
-msgid "View Statistics"
-msgstr "Näytä tilastot"
+#: templates/users/administrator/announcements/announcements.html
+#| msgid "Add Resource"
+msgid "Add Recipients"
+msgstr "Lisää vastaanottajia"
 
-#: templates/users/administrator/announcements.html
+#: templates/users/administrator/announcements/announcements.html
 msgid "Delete Announcement"
 msgstr "Poista ilmoitus"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-msgid "Previous"
-msgstr "Edellinen"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "Learning Resources - LMS Admin"
+msgid "Manage Recipients - LMS Administrator"
+msgstr "Hallinnoi vastaanottajia - LMS-järjestelmänvalvoja"
 
-#: templates/users/administrator/announcements.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/leaderboard.html
-#: templates/users/administrator/organization/organization_employee_profiles.html
-#: templates/users/administrator/organization/organization_groups.html
-#: templates/users/administrator/organization/organization_job_positions.html
-#: templates/users/administrator/organization/organization_locations.html
-#: templates/users/administrator/organization/organization_units.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/learner/calendar.html
-msgid "Next"
-msgstr "Seuraavaksi"
+#: templates/users/administrator/announcements/user_list.html
+#| msgid "User Activity"
+msgid "User List"
+msgstr "Käyttäjäluettelo"
 
 #: templates/users/administrator/calendar.html
 msgid "LMS Calendar"
@@ -2366,47 +2403,6 @@ msgid "Manage and Organize Your Course Categories"
 msgstr "Hallinnoi ja järjestä kurssikategorioitasi"
 
 #: templates/users/administrator/course/course_categories/categories.html
-#: templates/users/administrator/course/course_create.html
-#: templates/users/administrator/course/course_delivery_list.html
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/course_edit.html
-#: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/course/learning_path.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/course/learning_resource/learning_resource_create.html
-#: templates/users/administrator/course/learning_resource/learning_resource_delete_confirm.html
-#: templates/users/administrator/course/learning_resource/learning_resource_edit.html
-#: templates/users/administrator/course/learning_resource/learning_resource_list.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_add_questions.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_create.html
-#: templates/users/administrator/course/learning_resource/quizzes/quiz_edit.html
-#: templates/users/administrator/deliveries/delivery_component_create.html
-#: templates/users/administrator/deliveries/delivery_create.html
-#: templates/users/administrator/deliveries/delivery_create_form/delivery_component_form.html
-#: templates/users/administrator/deliveries/delivery_create_form/email_templates.html
-#: templates/users/administrator/deliveries/delivery_create_form/enrollment_form.html
-#: templates/users/administrator/deliveries/delivery_details/base_delivery_detail.html
-#: templates/users/administrator/deliveries/delivery_edit.html
-#: templates/users/administrator/deliveries/delivery_list.html
-#: templates/users/administrator/deliveries/enrollments/enroll_users.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_create.html
-#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
-#: templates/users/administrator/enrollments/enrollment_confirm_delete.html
-#: templates/users/administrator/enrollments/enrollment_create.html
-#: templates/users/administrator/enrollments/enrollment_edit.html
-#: templates/users/administrator/enrollments/enrollment_list.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-#: templates/users/administrator/program/program_courses.html
-#: templates/users/administrator/program/program_create.html
-#: templates/users/administrator/program/program_deliveries_list.html
-#: templates/users/administrator/program/program_detail.html
-#: templates/users/administrator/program/program_edit.html
-#: templates/users/administrator/program/program_list.html
-#: templates/users/administrator/users/organization_hierarcy.html
-msgid "Breadcrumb"
-msgstr "Leipämuru"
-
-#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/sidebar.html
 #: templates/users/learner/resource.html
 msgid "Categories"
@@ -2418,6 +2414,14 @@ msgid "Search categories..."
 msgstr "Hae luokkia..."
 
 #: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "All Statuses"
+msgstr "Kaikki tilat"
+
+#: templates/users/administrator/course/course_categories/categories.html
 #: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/deliveries/delivery_details/delivery_info.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2426,6 +2430,20 @@ msgstr "Hae luokkia..."
 #: templates/users/administrator/organization/organization_units.html
 #: templates/users/administrator/program/program_deliveries_list.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_details/delivery_info.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/help_and_support/support_category/category_dash.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Inactive"
 msgstr "Ei-aktiivinen"
 
@@ -2471,6 +2489,26 @@ msgstr "Kuvaus"
 #: templates/users/administrator/sidebar.html
 msgid "Courses"
 msgstr "Kurssit"
+
+#: templates/users/administrator/course/course_categories/categories.html
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/enrollments/enrollments.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_edit.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/administrator/program/program_detail.html
+#: templates/users/administrator/program/program_list.html
+#: templates/users/administrator/users/organization_hierarcy.html
+msgid "Status"
+msgstr "Status"
 
 #: templates/users/administrator/course/course_categories/categories.html
 #, python-format
@@ -2524,6 +2562,18 @@ msgstr "Täysi kuvaus"
 #: templates/users/administrator/course/course_edit.html
 msgid "Course Details"
 msgstr "Kurssin tiedot"
+
+#: templates/users/administrator/course/course_create.html
+#: templates/users/administrator/course/course_detail.html
+#: templates/users/administrator/course/course_edit.html
+#: templates/users/administrator/course/learning_path.html
+#: templates/users/administrator/help_and_support/support.html
+#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
+#: templates/users/administrator/help_and_support/tickets/ticket_details.html
+#: templates/users/administrator/reports/certification_tracking.html
+#: templates/users/administrator/reports/course_completion.html
+msgid "Category"
+msgstr "Luokka"
 
 #: templates/users/administrator/course/course_create.html
 #: templates/users/administrator/course/course_detail.html
@@ -2767,9 +2817,38 @@ msgid "No deliveries found for this course."
 msgstr "Tälle kurssille ei löytynyt toimituksia."
 
 #: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+msgid "Previous"
+msgstr "Edellinen"
+
+#: templates/users/administrator/course/course_delivery_list.html
 #: templates/users/administrator/program/program_deliveries_list.html
 msgid "current"
 msgstr "nykyinen"
+
+#: templates/users/administrator/course/course_delivery_list.html
+#: templates/users/administrator/deliveries/delivery_list.html
+#: templates/users/administrator/deliveries/enrollments/enrollment_list.html
+#: templates/users/administrator/enrollments/enrollment_list.html
+#: templates/users/administrator/leaderboard.html
+#: templates/users/administrator/organization/organization_employee_profiles.html
+#: templates/users/administrator/organization/organization_groups.html
+#: templates/users/administrator/organization/organization_job_positions.html
+#: templates/users/administrator/organization/organization_locations.html
+#: templates/users/administrator/organization/organization_units.html
+#: templates/users/administrator/program/program_deliveries_list.html
+#: templates/users/learner/calendar.html
+msgid "Next"
+msgstr "Seuraavaksi"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/course/learning_path.html
@@ -2780,12 +2859,6 @@ msgstr "nykyinen"
 #: templates/users/administrator/reports/custom_reports.html
 msgid "Completion Rate"
 msgstr "Valmistumisaste"
-
-#: templates/users/administrator/course/course_detail.html
-#: templates/users/administrator/course/learning_resource/base_detail.html
-#: templates/users/administrator/program/program_detail.html
-msgid "Created"
-msgstr "Luotu"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/deliveries/delivery_list.html
@@ -2823,6 +2896,7 @@ msgstr "Tyyppi"
 
 #: templates/users/administrator/course/course_detail.html
 #: templates/users/administrator/program/program_detail.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "Action"
 msgstr "Toiminta"
 
@@ -2946,12 +3020,6 @@ msgid "Course Cover"
 msgstr "Kurssin kansi"
 
 #: templates/users/administrator/course/course_list.html
-#: templates/users/administrator/help_and_support/faq/edit_faq.html
-#: templates/users/administrator/program/program_list.html
-msgid "Published"
-msgstr "Julkaistu"
-
-#: templates/users/administrator/course/course_list.html
 #: templates/users/administrator/program/program_list.html
 msgid "Unpublished"
 msgstr "Julkaisematon"
@@ -2969,6 +3037,7 @@ msgstr "Julkaisematon"
 #: templates/users/administrator/program/program_list.html
 #: templates/users/administrator/reports/custom_reports.html
 #: templates/users/administrator/users/organization_hierarcy.html
+#: templates/users/learner/announcements/announcement_page.html
 msgid "View"
 msgstr "Näytä"
 
@@ -3329,10 +3398,6 @@ msgstr "Oppimisresurssien tiedot"
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Manage and Review Your Course's Learning Resource"
 msgstr "Hallinnoi ja tarkista kurssin oppimisresurssit"
-
-#: templates/users/administrator/course/learning_resource/base_detail.html
-msgid "Updated"
-msgstr "Päivitetty"
 
 #: templates/users/administrator/course/learning_resource/base_detail.html
 msgid "Resource Metrics"
@@ -4841,12 +4906,6 @@ msgid "Recent Support Tickets"
 msgstr "Viimeaikaiset tukiliput"
 
 #: templates/users/administrator/help_and_support/support.html
-#: templates/users/administrator/help_and_support/tickets/creating_tickets.html
-#: templates/users/administrator/help_and_support/tickets/ticket_details.html
-msgid "Priority"
-msgstr "Prioriteetti"
-
-#: templates/users/administrator/help_and_support/support.html
 #: templates/users/administrator/help_and_support/tickets/ticket_details.html
 #: templates/users/administrator/program/program_list.html
 msgid "Created By"
@@ -4863,11 +4922,6 @@ msgstr "Määrätty vastaanottajalle"
 #: virtual_classroom/models.py
 msgid "Created At"
 msgstr "Luotu klo"
-
-#: templates/users/administrator/help_and_support/support.html
-#: virtual_classroom/models.py
-msgid "Updated At"
-msgstr "Päivitetty klo"
 
 #: templates/users/administrator/help_and_support/support.html
 msgid "N/A"
@@ -4988,6 +5042,10 @@ msgstr "Tulostaulukko"
 #: templates/users/administrator/leaderboard.html
 msgid "Celebrating Our Top Achievers"
 msgstr "Juhlistamme huippusuoritajiamme"
+
+#: templates/users/administrator/leaderboard.html
+msgid "All Categories"
+msgstr "Kaikki luokat"
 
 #: templates/users/administrator/leaderboard.html
 msgid "IT & Programming"
@@ -5202,6 +5260,7 @@ msgid "Bulk Actions"
 msgstr "Joukkotoiminnot"
 
 #: templates/users/administrator/messages.html
+#: templates/users/learner/announcements/announcement_detail.html
 msgid "Mark as Read"
 msgstr "Merkitse luetuksi"
 
@@ -7051,6 +7110,10 @@ msgid "Organizations"
 msgstr "Organisaatiot"
 
 #: templates/users/administrator/settings.html
+msgid "Events"
+msgstr "Tapahtumat"
+
+#: templates/users/administrator/settings.html
 #: templates/users/administrator/sidebar.html
 msgid "Certificates"
 msgstr "Sertifikaatit"
@@ -7982,6 +8045,50 @@ msgstr "Työntekijät"
 msgid "🤖 Ask AI anything..."
 msgstr "🤖 Kysy AI:ltä mitä tahansa..."
 
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Announcements - LMS Admin"
+msgid "Announcements - LMS"
+msgstr "Ilmoitukset - LMS"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Stay updated with the latest announcements."
+msgstr "Pysy ajan tasalla uusimmista ilmoituksista."
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Published"
+msgid "Published on"
+msgstr "Julkaistu"
+
+#: templates/users/learner/announcements/announcement_detail.html
+#| msgid "Expired"
+msgid "Expires on"
+msgstr "Vanhenee"
+
+#: templates/users/learner/announcements/announcement_detail.html
+msgid "Already Read"
+msgstr "Jo Luettu"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Content File"
+msgid "Content"
+msgstr "Sisältö"
+
+#: templates/users/learner/announcements/announcement_page.html
+msgid "Author"
+msgstr "Tekijä"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "Published Date"
+msgid "Publish Date"
+msgstr "Julkaisupäivämäärä"
+
+#: templates/users/learner/announcements/announcement_page.html
+#| msgid "No Document Content Available"
+msgid "No announcements available."
+msgstr "Ei ilmoituksia saatavilla."
+
 #: templates/users/learner/calendar.html
 msgid "Calendar - LMS Learner"
 msgstr "Kalenteri - LMS Learner"
@@ -8359,6 +8466,10 @@ msgstr "Kokonaissijoituksesi"
 #: templates/users/learner/leaderboard.html
 msgid "Quiz Performance"
 msgstr "Tietokilpailun suorituskyky"
+
+#: templates/users/learner/leaderboard.html
+msgid "Engagement"
+msgstr "Kihlaus"
 
 #: templates/users/learner/leaderboard.html
 msgid "View:"
@@ -9617,3 +9728,24 @@ msgstr "Virtuaaliluokkahuoneen osallistuja"
 #: virtual_classroom/models.py
 msgid "Virtual Classroom Attendees"
 msgstr "Virtuaaliluokkahuoneen osallistujat"
+
+#~ msgid "System Updates"
+#~ msgstr "Järjestelmäpäivitykset"
+
+#~ msgid "Course Announcements"
+#~ msgstr "Kurssin ilmoitukset"
+
+#~ msgid "Maintenance"
+#~ msgstr "Huolto"
+
+#~ msgid "Draft"
+#~ msgstr "Luonnos"
+
+#~ msgid "Export Report"
+#~ msgstr "Vie raportti"
+
+#~ msgid "New Course Release: Advanced AI"
+#~ msgstr "Uusi kurssijulkaisu: Advanced AI"
+
+#~ msgid "View Statistics"
+#~ msgstr "Näytä tilastot"

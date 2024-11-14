@@ -28,13 +28,13 @@ from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import UserPassesTestMixin
 
 from django.contrib import messages
-from .mixins import AdministratorRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from .models import User, SCORMUserProfile
+from .mixins import LearnerRequiredMixin
 from .forms import (
     PersonalInfoForm,
     PasswordChangeForm,
@@ -46,22 +46,15 @@ from django_filters.views import FilterView
 from .filters import ProgramFilter, CourseFilter, NotificationFilter
 from django.db.models import Prefetch
 from django.db.models import Avg, Q
-from django.http import JsonResponse
-from django.core.exceptions import PermissionDenied
-from django.utils.translation import gettext as _
-from django.shortcuts import get_object_or_404
-
-
 
 from quizzes.models import QuizAttempt
 from courses.forms import CourseForm, LearningResourceFormSet, ScormResourceForm, UserEnrollmentForm
 from courses.models import (Course, CourseCategory, Enrollment, LearningResource, ScormResource, Tag, Program, ProgramCourse, Review, Progress, DeliveryComponent, Delivery)
+from announcements.models import Announcement, AnnouncementRecipient, AnnouncementRead
 from .api_client import upload_scorm_package, register_user_for_course
 
 from activities.models import SystemNotification
 from .utils.notification_utils import create_notification, log_activity
-from support.models import SupportTicket, SupportCategory
-from support.forms import TicketForm
 
 logger = logging.getLogger(__name__)
 
@@ -779,7 +772,7 @@ class LeaderboardView(TemplateView):
 # ======================= Settings Views =====================
 # ============================================================
     
-class SettingsView(AdministratorRequiredMixin, View):
+class SettingsView(LoginRequiredMixin, UserPassesTestMixin, View):
     template_name = 'users/learner/settings.html'
 
     def test_func(self):
@@ -923,117 +916,88 @@ class SettingsView(AdministratorRequiredMixin, View):
     
 @method_decorator(login_required, name='dispatch')
 class HelpSupportView(TemplateView):
-    template_name = 'users/learner/support/help_and_support.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['support_tickets'] = SupportTicket.objects.filter(created_by=self.request.user)
-        return context
-    
-class LearnerTicketCreateView(LoginRequiredMixin, UserPassesTestMixin, FormView):
-    template_name = 'users/learner/support/tickets/create.html'
-    form_class = TicketForm
-    success_url = reverse_lazy('learner_help_support')  
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Create New Support Ticket'
-        return context
-
-    def test_func(self):
-        return self.request.user.groups.filter(name='learner').exists()
-
-    def form_valid(self, form):
-        try:
-            ticket = form.save(commit=False)
-            ticket.created_by = self.request.user
-            ticket.save()
-            messages.success(self.request, 'Support ticket created successfully!')
-            return super().form_valid(form)
-        except Exception as e:
-            logger.error(f"Error creating support ticket: {e}")
-            messages.error(self.request, 'There was an error creating the support ticket. Please try again later.')
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        logger.error(f"Form errors: {form.errors}")
-        messages.error(self.request, 'There was an error creating the support ticket. Please check the form and try again.')
-        return super().form_invalid(form)
-    
-    
-class LearnerTicketDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-    model = SupportTicket
-    template_name = 'users/learner/support/tickets/ticket_details.html'
-    context_object_name = 'support_ticket'
-
-    def test_func(self):
-        return self.request.user.groups.filter(name='learner').exists()
+    template_name = 'users/learner/help_support.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
     
-    
+
+
+
 # ============================================================
-# ======================= Notifications Views ================
+# =================== Announcements Views ====================
 # ============================================================
 
-class RecentNotificationsView(LoginRequiredMixin, View):
-    def get(self, request):
-        notifications = SystemNotification.objects.filter(
-            user=request.user,
-            is_read=False
-        )[:3]  
-
-        data = [{
-            'id': notification.id,
-            'message': notification.message,
-            'timestamp': notification.timestamp.isoformat()
-        } for notification in notifications]
-
-        return JsonResponse(data, safe=False)
-
-class NotificationListView(FilterView, ListView):
-    model = SystemNotification
-    template_name = 'users/learner/notifications/notifications_list.html'
-    context_object_name = 'notifications'
-    filterset_class = NotificationFilter
+class AnnouncementListView(LearnerRequiredMixin, LoginRequiredMixin, ListView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_page.html'
+    context_object_name = 'announcements'
 
     def get_queryset(self):
-        try:
-            return SystemNotification.objects.filter(user=self.request.user).order_by('-timestamp')
-        except Exception as e:
-            logger.error(f"Error fetching notifications for user {self.request.user}: {e}")
-            return SystemNotification.objects.none()
-        
+        user = self.request.user
+
+        # Fetch announcements for 'ALL' recipient type
+        all_announcements = Announcement.objects.filter(
+            recipients__recipient_type='ALL'
+        ).distinct()
+
+        # Initialize combined announcements with 'ALL' announcements
+        combined_announcements = all_announcements
+
+        # Check if user is in 'learner' group and fetch 'LEARNER' announcements
+        if user.groups.filter(name='learner').exists():
+            learner_announcements = Announcement.objects.filter(
+                recipients__recipient_type='LEARNER'
+            ).distinct()
+            combined_announcements = combined_announcements | learner_announcements
+
+        # Fetch specific user announcements
+        specific_user_announcements = Announcement.objects.filter(
+            recipients__recipient_type='USER',
+            recipients__specific_recipient__in=[user.username, user.email]
+        ).distinct()
+
+        # Combine all announcements and ensure uniqueness
+        combined_announcements = combined_announcements | specific_user_announcements
+        combined_announcements = combined_announcements.distinct()
+
+        return combined_announcements
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filter'] = self.filterset
+        print(f"Context data: {context}")
         return context
-        
-class MarkNotificationReadView(LoginRequiredMixin, View):
+
+class AnnouncementDetailView(LearnerRequiredMixin, LoginRequiredMixin, DetailView):
+    model = Announcement
+    template_name = 'users/learner/announcements/announcement_detail.html'
+    context_object_name = 'announcement'
+
+    def get_queryset(self):
+        return Announcement.objects.filter(id=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        announcement = self.get_object()
+        announcement_read = AnnouncementRead.objects.filter(user=self.request.user, announcement=announcement).first()
+        context['announcement_read'] = announcement_read
+        return context
+    
+class AnnouncementReadView(LearnerRequiredMixin, LoginRequiredMixin, View):
     def post(self, request, pk):
         try:
-            notification = SystemNotification.objects.get(id=pk, user=request.user)
-            notification.is_read = True
-            notification.save()
-            return redirect('learner_notification_list')
-        except SystemNotification.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Notification not found'}, status=404)
+            announcement = Announcement.objects.get(id=pk)
+            announcement_read, created = AnnouncementRead.objects.get_or_create(user=request.user, announcement=announcement)
+            if created:
+                logger.info(f"Announcement {pk} marked as read by user {request.user.id}")
+            else:
+                logger.info(f"Announcement {pk} was already marked as read by user {request.user.id}")
+            return JsonResponse({'status': 'success'})
+        except Announcement.DoesNotExist:
+            logger.warning(f"Announcement {pk} not found for user {request.user.id}")
+            return JsonResponse({'status': 'error', 'message': 'Announcement not found'}, status=404)
         except Exception as e:
-            logger.error(f"Error marking notification as read: {e}")
+            logger.error(f"Error marking announcement {pk} as read for user {request.user.id}: {e}")
             return JsonResponse({'status': 'error', 'message': 'An error occurred'}, status=500)
-
-class MarkAllNotificationsReadView(LoginRequiredMixin, View):
-    def post(self, request):
-        SystemNotification.objects.filter(user=request.user, is_read=False).update(is_read=True)
-        return JsonResponse({'status': 'success'})
-    
-class UnreadNotificationsCountView(LoginRequiredMixin, View):
-    def get(self, request):
-        try:
-            count = SystemNotification.objects.filter(user=request.user, is_read=False).count()
-            return JsonResponse({'count': count})
-        except Exception as e:
-            logger.error(f"Error fetching unread notifications count for user {request.user}: {e}")
-            return JsonResponse({'count': 0})
+   
