@@ -7,7 +7,7 @@
     
     {% if resource.content %}
         <p class="mb-2"><strong>{% trans "File Name" %}:</strong> {{ resource.content.name }}</p>
-        <p class="mb-2"><strong>{% trans "File Size" %}:</strong> {{ resource.content.size|filesizeformat }}</p>
+        <p class="mb-2"><strong>{% trans "File Size" %}:</strong> {{ resource.content.size }}</p>
         <p class="mb-4"><strong>{% trans "File Type" %}:</strong> {{ resource.content.name|file_extension|upper }}</p>
 
         {% with file_ext=resource.content.name|file_extension %}
