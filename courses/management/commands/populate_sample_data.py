@@ -23,6 +23,7 @@ class Command(BaseCommand):
         tags = [Tag.objects.create(name=fake.word()) for _ in range(10)]
 
         # Create fake courses
+        created_courses = []
         for _ in range(10):
             course = Course.objects.create(
                 id=uuid.uuid4(),
@@ -37,11 +38,17 @@ class Command(BaseCommand):
                 language=fake.language_name(),
                 difficulty_level=random.choice(['BEGINNER', 'INTERMEDIATE', 'ADVANCED']),
             )
-            course.tags.set(random.sample(tags, 3))
-            course.prerequisites.set(random.sample(list(Course.objects.all()), 2))
+            course.tags.set(random.sample(tags, random.randint(1, 3)))
+            created_courses.append(course)
+
+            # Add prerequisites only if there are enough courses to sample from
+            existing_courses = created_courses[:-1]  # Exclude the current course
+            if len(existing_courses) >= 2:
+                course.prerequisites.set(random.sample(existing_courses, random.randint(1, min(2, len(existing_courses)))))
             course.save()
 
         # Create fake programs
+        created_programs = []
         for _ in range(10):
             program = Program.objects.create(
                 id=uuid.uuid4(),
@@ -58,8 +65,13 @@ class Command(BaseCommand):
                 exam_code=fake.bothify(text='??-####'),
                 exam_link=fake.url(),
             )
-            program.tags.set(random.sample(tags, 3))
-            program.prerequisites.set(random.sample(list(Program.objects.all()), 2))
+            program.tags.set(random.sample(tags, random.randint(1, 3)))
+            created_programs.append(program)
+
+            # Add prerequisites only if there are enough programs to sample from
+            existing_programs = created_programs[:-1]  # Exclude the current program
+            if len(existing_programs) >= 2:
+                program.prerequisites.set(random.sample(existing_programs, random.randint(1, min(2, len(existing_programs)))))
             program.save()
 
         self.stdout.write(self.style.SUCCESS('Successfully populated the database with fake courses and programs'))
